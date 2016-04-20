@@ -1,0 +1,188 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. Redis &mdash; Changchang Documentation 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
+    <link rel="up" title="데이터베이스" href="database_index.html" />
+    <link rel="next" title="2. 데이터베이스 모델링" href="model_basic.html" />
+    <link rel="prev" title="데이터베이스" href="database_index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="model_basic.html" title="2. 데이터베이스 모델링"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="database_index.html" title="데이터베이스"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
+          <li><a href="database_index.html" accesskey="U">데이터베이스</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="redis">
+<span id="redis-basic"></span><h1>1. Redis<a class="headerlink" href="#redis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>1.1. 설치 방법<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Ubuntu 기준 <strong>설치</strong> 방법입니다.</p>
+<div class="line-block">
+<div class="line"><strong>1. 패키지 업데이트</strong></div>
+</div>
+<div class="line-block">
+<div class="line">sudo apt-get update</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>2. Redis 빌드에 필요한 패키지</strong></div>
+</div>
+<div class="line-block">
+<div class="line">sudo apt-get install build-essential (데비안 패키지 빌드 및 환경 구성을 위해 필요함)</div>
+<div class="line">sudo apt-get install tcl8.5</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>3. 최신 버전 다운로드</strong></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://redis.io/download">Redis</a> 최신 버전 다운로드 (wget <strong>URL</strong>)</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>4. 압축 해제 및 컴파일</strong></div>
+</div>
+<div class="line-block">
+<div class="line">tar -xzvf redis-2.8.19.tar.gz</div>
+<div class="line">make</div>
+<div class="line">make test</div>
+<div class="line">sudo make install</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>5. Redis 설정 스크립트로 편하게 환경설정</strong></div>
+</div>
+<div class="line-block">
+<div class="line">cd utils</div>
+<div class="line">sudo sh install_server.sh</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>6. 실행 및 정지</strong></div>
+</div>
+<div class="line-block">
+<div class="line">sudo redis-server /etc/redis/6379.conf</div>
+<div class="line">redis-cli -p 6379 shutdown</div>
+</div>
+<div class="section" id="redis-line">
+<h3>1.1.1. Redis 와 Line 메신저 정리<a class="headerlink" href="#redis-line" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://charsyam.wordpress.com/2012/04/29/%EB%B0%9C-%EB%B2%88%EC%97%AD-line-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%ED%95%9C%EB%8B%AC%EC%97%90-%EC%88%98%EC%8B%AD%EC%96%B5-%EA%B1%B4%EC%9D%98-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-redis%EC%99%80/">라인 스토리지, 한달에 수십억건의 데이터를 Redis와 HBase에 저장하다.</a></p>
+<p><strong>초기에 Line 메신저는 Redis 클러스터를 여러개로 샤딩하여 저장 서버를 구축하였다고 한다. 이는 주키퍼와 클러스터 매니저 데몬으로 관리되었고 Consistent Hashing과 유사한 방식으로 관리하고 자동 Fail over(장애 복구) 기능을 포함하고 있었다고 한다.</strong></p>
+<p>이후 Line 사용자가 <strong>수 천만명에서 계속</strong> 기하급수적으로 증가하면서 Redis 클러스터 운영 비용과 안정적으로 운영하기 어려워 졌다고 한다. 이후 LINE의 목표는 수천만명에서 수억명의 규모를 처리할 수 있는 것으로 바뀌었다.</p>
+<p>라인 개발자들은 데이터 규모 분석(사용자, 라인 시스템 운영시간)과 각 데이터들의 요구사항을 분석하였다.</p>
+<ul class="simple">
+<li>O(1) : 전송 큐의 메세지, 잡큐의 비동기 작업 -&gt; 빠른 읽기 (Workload) -&gt; Redis</li>
+<li>O(n) : 유저 프로필, 주소록, 그룹 -&gt; 빠른 읽기 및 쓰기 (Workload)</li>
+<li>O(n*t) : 메세지, 프로필, 그룹, 주소록 데이터 변경 -&gt; 빠른 연속적인 쓰기 및 최신 데이터 읽기 (Workload)</li>
+</ul>
+<p><strong>Workload</strong> 란 컴퓨터가 주어진 시간 동안 처리하는 양을 뜻한다.</p>
+<p>이중 HBase는 메세지 타임라인에 적합한 스토리지였다. HDFS 위에서 동작하므로 쉽게 파티셔닝 된다. 단점으로는 랜덤 읽기와 삭제가 느리고 SPOF도 가끔 존재한다고 한다. SPOF(Single Point of Failure)는 하둡의 네임노드에서 주로 발생할 수 있다고 한다.</p>
+<p><a href="#id3"><span class="problematic" id="id4">**</span></a>최종 아키텍처는 App Server + Local Redis(큐잉 용도) + Dispatcher가 하나의 클러스터로 존재하고 메인 저장소로 Shared Redis Cluster와 HBase를 사용한다.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. Redis</a><ul>
+<li><a class="reference internal" href="#id1">1.1. 설치 방법</a><ul>
+<li><a class="reference internal" href="#redis-line">1.1.1. Redis 와 Line 메신저 정리</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="database_index.html"
+                        title="previous chapter">데이터베이스</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="model_basic.html"
+                        title="next chapter">2. 데이터베이스 모델링</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/database/redis_basic.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="model_basic.html" title="2. 데이터베이스 모델링"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="database_index.html" title="데이터베이스"
+             >previous</a> |</li>
+        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
+          <li><a href="database_index.html" >데이터베이스</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+#include <binder/IServiceManager.h>
+#include <binder/IPCThreadState.h>
+#include <helloworld/BnHelloWorldService.h>
+#include <helloworld/HelloWorldService.h>
+#include <utils/Log.h>
+
+namespace android {
+
+/*
+  void HelloWorldService::instantiate() {
+      defaultServiceManager()->addService(
+      String16("android.apps.IHelloWorldService"), new HelloWorldService());
+  }
+*/
+
+  status_t HelloWorldService::helloWorld(const char* str) {
+      LOGI("%s\n", str);
+      printf("%s\n", str);
+      
+      return NO_ERROR;
+  }
+
+  int HelloWorldService::add(int numberOne, int numberTwo) {
+	int result = numberOne + numberTwo;
+
+	LOGI("add service call");
+	printf("%5d + %5d = %10d\n", numberOne, numberTwo, result);
+
+	return result;
+  }
+
+  int HelloWorldService::subtract(int numberOne, int numberTwo) {
+	int result = numberOne - numberTwo;
+
+	LOGI("subtract service call");
+	printf("%5d - %5d = %10d\n", numberOne, numberTwo, result);
+
+	return result;
+  }
+
+  int HelloWorldService::multiple(int numberOne, int numberTwo) {
+	int result = numberOne * numberTwo;
+
+	LOGI("multiple service call");
+	printf("%5d * %5d = %10d\n", numberOne, numberTwo, result);
+
+	return result;
+
+  }
+
+  int HelloWorldService::divide(int numberOne, int numberTwo) {
+	int result = numberOne / numberTwo;
+
+	LOGI("divide service call");
+	printf("%5d / %5d = %10d\n", numberOne, numberTwo, result);
+
+	return result;
+  }
+
+  HelloWorldService::HelloWorldService() : BnHelloWorldService() 
+  {
+      LOGI("HelloWorldService is created");
+  }
+
+  HelloWorldService::~HelloWorldService()
+  {
+      LOGI("HelloWorldService is destroyed");
+  }
+// ------------------------------------------------------------
+
+  status_t HelloWorldService::onTransact( uint32_t code, 
+                                          const Parcel& data, 
+                                          Parcel* reply, 
+                                          uint32_t flags)
+  {
+      return BnHelloWorldService::onTransact(code, data, reply, flags);
+  }
+// ------------------------------------------------------------
+
+}; // namespace android

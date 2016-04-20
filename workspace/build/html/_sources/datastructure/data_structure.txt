@@ -1,0 +1,134 @@
+.. _data_structure:
+.. highlightlang:: c++
+
+
+======================
+자료구조  
+======================
+
+-------------------------
+이진트리
+-------------------------
+
+.. topic:: 이진 트리의 종류 (`위키피디아 <http://ko.wikipedia.org/wiki/%EC%9D%B4%EC%A7%84_%ED%8A%B8%EB%A6%AC>`_)
+
+	- 정 이진 트리(full binary tree)는 단말 노드가 아닌 모든 노드가 2개의 자식을 가진 트리이다.
+	- 포화 이진 트리(perfect binary tree)는 모든 단말 노드의 깊이가 같은 정 이진 트리이다.
+	- 완전 이진 트리(complete binary tree)는 포화 이진 트리에서 끝 부분을 제외하고 다른 것이 남아 있는 트리이다. 포화 이진 트리의 각 노드에 부모에서 자식으로, 왼쪽에서 오른쪽으로 번호를 매겼을 때 포화 이진 트리는 아니지만 그 번호가 연속되어 있는 경우 완전 이진 트리가 된다.
+	
+포화 이진 트리(perfect binary tree)와 달리 **정 이진 트리(full binary tree)** 는 모든 단말노드의 깊이가 같지는 않다. 어쨌든 포화 이진 트리(perfect binary tree)와 정 이진 트리(full binary tree)는 각 노드의 차수가 0또는 2인 점에서 비슷한 트리이다. 
+
+---------------------------
+해시 테이블
+---------------------------
+
+인용한 사이트는 `Java HashMap은 어떻게 동작하는가? <http://helloworld.naver.com/helloworld/textyle/831311>`_ 과 같다.
+
+Java HashMap 분석을 통한 **해시테이블** 을 알아보자::
+	
+	public class HashMap<K,V> extends AbstractMap<K,V>
+    implements Map<K,V>, Cloneable, Serializable {
+
+Map.java 인터페이스 함수::
+
+	int size();
+	Set<Map.Entry<K, V>> entrySet();
+    Collection<V> values();
+    Set<K> keySet();
+    void clear();
+    void putAll(Map<? extends K, ? extends V> m);
+    V remove(Object key);
+    V put(K key, V value);
+    V get(Object key);
+    boolean containsValue(Object value);
+    boolean containsKey(Object key);
+    boolean isEmpty();
+
+Java HashMap은 Java 버전에 따라 개선되고 있는 Java Collection Framework이다. Map 인터페이스를 구현한 구현체이다. **HashMap은** 키에 대한 해시 값을 사용하여 값을 저장하고 조회하며, 키-값 쌍의 개수에 따라 동적으로 증가하는 associate array라고 할 수 있다. **associate array** 는 다른 말로 Map, Dictionary(파이썬), Symbol Table등이 있다고 한다.
+
+----------------------------------------------------------------
+데이터 타입 별 충돌과 hashCode에 의존한 값 생성
+----------------------------------------------------------------
+
+인용 사이트에 의하면 Boolean이나 Integer, Long, Double과 같은 숫자객체는 값 자체를 해시값으로 사용할 수 있어서 해시 충돌이 적게 발생하지만 String이나 POJO에 대해서 충돌이 적은 완전한 해시함수를 제작하는 것은 사실상 불가능하다고 한다.
+
+해시값 생성 예::
+
+	public static void main(String[] args){
+		String stringKey = "Hello World";
+		People objectKey1 = new People();
+		People objectKey2 = new People();
+		boolean keyBool1 = false;
+		boolean keyBool2 = true;
+		int keyInt1 = 1;
+		int keyInt2 = 2;
+		int keyInt3 = 3;
+		
+		System.out.println(stringKey.hashCode());
+		System.out.println(objectKey1.hashCode());		System.out.println(objectKey2.hashCode());
+		System.out.println(((Boolean)keyBool1).hashCode());		System.out.println(((Boolean)keyBool2).hashCode());
+		System.out.println(((Integer)keyInt1).hashCode());
+		System.out.println(((Integer)keyInt2).hashCode());
+		System.out.println(((Integer)keyInt3).hashCode());
+	}
+
+출력 결과::
+
+	-862545276
+	31168322
+	17225372
+	1237
+	1231
+	1
+	2
+	3
+
+위를 보니 **Integer 타입은 데이터 자체** 가 **hashCode()로 반환** 되기 때문에 HashMap의 키값으로 사용된다. **Boolean 타입은 위 출력과 같이 고정된 값** 으로 변환된다. 
+
+실제 HashMap에서는 hash()함수를 호출하여 해시값을 생성하게된다. **내부적으로 hashcode()라는 메서드를 사용** 한다. (>>> 연산자는 sign 부호에 상관없이 0으로 채운다)::
+
+	static final int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+    }
+
+Object 클래스의 hashCode()::
+
+	 public native int hashCode();
+
+hashCode는 HashMap을 위해 **객체를 구별** 하기위해 사용되는 함수이다. 일반적으로 hashCode()는 오버라드하여 사용하지만 Object클래스에 구현되어 있는 이 함수는 것은 객체의 내부주소를 Integer값으로 바꾼다고 한다.::
+
+	As much as is reasonably practical, the hashCode method defined by
+	     * class {@code Object} does return distinct integers for distinct
+	     * objects. (This is typically implemented by converting the internal
+	     * address of the object into an integer, but this implementation
+	     * technique is not required by the
+	     * Java&trade; programming language.)
+
+따라서 hashCode에 의존해서 해시값이 생성된다는 것이다.
+
+-----------------------------------
+실제 테이블 해시값 삽입
+-----------------------------------
+
+hashCode()의 해시값을 이용해 실제 테이블의 인덱스를 구한다.::
+
+	final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+                   boolean evict) {
+        Node<K,V>[] tab; Node<K,V> p; int n, i;
+        if ((tab = table) == null || (n = tab.length) == 0)
+            n = (tab = resize()).length;
+        if ((p = tab[i = (n - 1) & hash]) == null)
+            tab[i] = newNode(hash, key, value, null);
+
+tab의 사이즈는 해시테이블의 크기로 2의 제곱수이다. **tab[i = (n - 1) & hash]** 부분에서 연산되는 i에 실제 데이터가 들어간다. 즉 hashCode()의 결과와 사이즈를 &연산 한 위치에 들어가는 것이다. 이는 int index = X.hashCode() % M; 와 유사하다. (이때 M은 크기)
+
+-----------------------------------
+해시 충돌 해결법
+-----------------------------------
+
+Java HashMap에서 충돌을 극복하기 위해 Separate Channing을 사용한다. 그 외에 Open Addressing 기법이 있으나 데이터를 삭제할 때 처리가 효율적이기 어렵다고 한다. 예를들어 putVal에서 이미 값이 들어있다면 해당 노드에 연결된 링크드 리스트 또는 Red-Black Tree를 사용하여 키에 대한 해시값을 삽입한다.
+
+
+
+
