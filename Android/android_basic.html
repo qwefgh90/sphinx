@@ -1,0 +1,151 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. 안드로이드 핵심정리 &mdash; Changchang Documentation 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Android" href="android_index.html" />
+    <link rel="next" title="3. 안드로이드 페이스북 연동" href="android_facebook.html" />
+    <link rel="prev" title="1. 안드로이드 프레임워크" href="android_kernel.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="android_facebook.html" title="3. 안드로이드 페이스북 연동"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="android_kernel.html" title="1. 안드로이드 프레임워크"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
+          <li><a href="android_index.html" accesskey="U">Android</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="android-basic">
+<span id="id1"></span><h1>2. 안드로이드 핵심정리<a class="headerlink" href="#android-basic" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>2.1. 안드로이드 액티비티와 뷰<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Activity는 사용자와 상호작용하며 UI를 제공하는 화면이라 볼 수 있다. <em>setContentView()</em> 라는 함수를 이용하여 UI를 배치할 수 있다. <em>setContentView()</em> 는 <em>OnCreate()</em> 라는 Activity의 메서드에서 호출되며 인자로 전달된 XML파일을 읽어들여 자바 인스턴스를 생성 하는 역할을 한다. <em>setContentView()</em> 가 하는 역할을 <em>인플레이션(Inflation)</em> 이라 부른다.</p>
+<p>개발자가 직접 XML 레이아웃을 객체화하고 싶다면 먼저 <em>getSystemService(Context.LAYOUT_INFLATER_SERVICE)</em> 을 통해 <em>LayoutInflater</em> 객체를 반환 받는다. 다음 <em>LayoutInflater</em> 객체의 <em>inflate()</em> 메서드를 이용해 XML을 객체화 할 수 있다.</p>
+<p>안드로이드에서 어플리케이션이 액티비티 또는 어떤 안드로이드  구성 요소들을 포함하는지 알고 싶다면 AndroidManifest.xml 파일을 확인하면 된다. 뿐만 아니라 Android Framework에서 반드시 이 파일에 구성요소를 등록하길 요청 하므로 작성되지 않을 경우 오류가 발생한다.</p>
+<p>따라서 크게 Activity를 생성하는 과정은 먼저 AndroidManifest.xml에 Activity 태그를 추가함으로써 시작한다. 다음 Activity의 UI를 구성하는 레이아웃을 작성한다. 마지막으로 Activity 코드를 작성하면 Activity를 시작할 수 있다.</p>
+<p>다른 Activity 실행하는 API로는 startActivity, startActivityForResult 가 있다. 첫 번째 인자로 Intent를 전달하면 원하는 Activity를 실행할 수 있다. Intent는 무언가 행동을 하려는 의도에 대한 정보를 포함하고 있다. 첫번째 인자로 Context 두번째 인자로 실행할 컴포넌트의 Class 객체를 전달함으로써 Intent를 생성할 수 있다. Intent의 생성방법은 다양하고 방대한 내용을 가지고 있다.</p>
+<div class="section" id="life-cycle">
+<h3>2.1.1. Life Cycle<a class="headerlink" href="#life-cycle" title="Permalink to this headline">¶</a></h3>
+<p>안드로이드는 하나의 OS로서 시스템상에서 동작하는 어플리케이션과 자원을 관리한다. 안드로이드 프레임워크는 어플리케이션에 여러가지 상태변화를 콜백 함수로 제공하여 각 상태에 맞게 처리할 수 있도록 도움을 주고 있다.</p>
+</div>
+<div class="section" id="view-view-group">
+<h3>2.1.2. View &amp; View Group<a class="headerlink" href="#view-view-group" title="Permalink to this headline">¶</a></h3>
+<p>View는 일반적으로 컨트롤이나 위젯이라는 이름으로 불리는 UI 구성 요소이다. 이러한 View를 담는 것을 ViewGroup이라고 한다.</p>
+<p>View 중에서 일반적인 컨트롤의 역할을 하고 있는것을 <strong>위젯</strong> , 뷰그룹 중에서 뷰를 배치하는 역할을 하는 것을 <strong>레이아웃</strong> 이라고 한다.</p>
+</div>
+<div class="section" id="fragments">
+<h3>2.1.3. Fragments<a class="headerlink" href="#fragments" title="Permalink to this headline">¶</a></h3>
+<p>프레그먼트는 여러개의 액티비티를 동시에 사용하고 싶은 욕구에서 만들어졌다고 한다. Activity Layout에서 View처럼 사용될 수 있고 또한 액티비티의 성질을 가지고 있어서 다른 뷰를 포함할 수 있다. 쉽게 말해서 소형 Activity 역할을 한다.</p>
+<p>프레그먼트를 사용하기 위해 FragmentActivity 사용할 수 있다. 콜백 함수 <strong>onResumeFragments()</strong> 는 FragmentManager의 초기화가 완료되면 호출된다. 따라서 그 시점에 필요한 작업을 하는데 유용한 콜백이다.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. 안드로이드 핵심정리</a><ul>
+<li><a class="reference internal" href="#id2">2.1. 안드로이드 액티비티와 뷰</a><ul>
+<li><a class="reference internal" href="#life-cycle">2.1.1. Life Cycle</a></li>
+<li><a class="reference internal" href="#view-view-group">2.1.2. View &amp; View Group</a></li>
+<li><a class="reference internal" href="#fragments">2.1.3. Fragments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="android_kernel.html"
+                        title="previous chapter">1. 안드로이드 프레임워크</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="android_facebook.html"
+                        title="next chapter">3. 안드로이드 페이스북 연동</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/Android/android_basic.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="android_facebook.html" title="3. 안드로이드 페이스북 연동"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="android_kernel.html" title="1. 안드로이드 프레임워크"
+             >previous</a> |</li>
+        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
+          <li><a href="android_index.html" >Android</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

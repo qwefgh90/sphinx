@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. 안드로이드 프레임워크 &mdash; Changchang Documentation 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Android" href="android_index.html" />
+    <link rel="next" title="2. 안드로이드 핵심정리" href="android_basic.html" />
+    <link rel="prev" title="Android" href="android_index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="android_basic.html" title="2. 안드로이드 핵심정리"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="android_index.html" title="Android"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
+          <li><a href="android_index.html" accesskey="U">Android</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="android-kernel">
+<span id="id1"></span><h1>1. 안드로이드 프레임워크<a class="headerlink" href="#android-kernel" title="Permalink to this headline">¶</a></h1>
+<p>간단하게 정리한 내용입니다. 뒤에 부분은 그림설명이 많아 내용이 없습니다.</p>
+<p><a class="reference download internal" href="../_downloads/AndroidFramework분석.pdf"><tt class="xref download docutils literal"><span class="pre">강의</span> <span class="pre">자료.pdf</span></tt></a></p>
+<div class="section" id="android-framework">
+<span id="id2"></span><h2>1.1. 프레임워크 기반<a class="headerlink" href="#android-framework" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><em>AOSP</em> 기반, <em>Google Android Platform</em> 기반 2가지로 나눠져 있다. 프레임워크의 파편화 현상이 존재한다.</li>
+<li><em>Embeded Linux Kernel OS</em> 를 기반으로 구성되어 있다.</li>
+<li><em>Java</em> 언어를 사용한다.</li>
+<li>검증된 많은 라이브러리를 대거 포함하고 있다. (OPEN GL ES)</li>
+<li>BUILT-IN 프로그램과 사용자(서드파티)가 만든 프로그램이 동일한 API를 사용</li>
+</ol>
+<img alt="../_images/android_platform.jpg" src="../_images/android_platform.jpg" />
+<ol class="arabic simple">
+<li>Java 가상머신 환경</li>
+<li>리눅스 Native 실행환경</li>
+</ol>
+<div class="section" id="android-platform">
+<h3>1.1.1. Android Platform 구조<a class="headerlink" href="#android-platform" title="Permalink to this headline">¶</a></h3>
+<p>기존 리눅스는 파일 시스템, 네트워크, 메모리 관리, 프로세스 관리, .. 기능을 지원한다.</p>
+<p>차이점:</p>
+<div class="highlight-c"><div class="highlight"><pre>1. 기존 리눅스와 다르게 Binder를 제공한다. Binder는 IPC도구이다.
+2. 기존 공유메모리와 다른 ashmem 이 있다.
+3. Low Memory Killer가 다르다.
+4. Power Management가 다르다.
+5. GNU타입과 다르게 BIONIC타입 라이브러리를 제공한다.
+</pre></div>
+</div>
+<p>Android Platform은 Library 계층과 Application Framework 계층을 합친 부분으로 구성되어 있다.</p>
+</div>
+<div class="section" id="library">
+<h3>1.1.2. Library 계층<a class="headerlink" href="#library" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>System Service - Audio, Camera, Surface, Media</li>
+<li>외부 Library - Open GL/ES, Sqlite, Webkit</li>
+<li>HAL - 시스템콜의 매커니즘과 달리 사용자는 HAL을 통해서만 커널안의 디바이스 드라이버를 사용할 수 있게 해주는 인터페이스이다. HAL GPL이 아니다. 즉 APL이다.</li>
+</ol>
+</div>
+<div class="section" id="android-runtime">
+<h3>1.1.3. Android Runtime<a class="headerlink" href="#android-runtime" title="Permalink to this headline">¶</a></h3>
+<p>Dalvik Virtual Machine 위에서 동작한다.</p>
+</div>
+<div class="section" id="application-framework-system-service">
+<span id="system-service"></span><h3>1.1.4. Application Framework &amp; System Service<a class="headerlink" href="#application-framework-system-service" title="Permalink to this headline">¶</a></h3>
+<p>SystemService는 <a class="reference internal" href="#mediaserver"><em>MediaServer</em></a> , <a class="reference internal" href="#surfaceflinger"><em>SurfaceFlinger</em></a> , <a class="reference internal" href="#systemserver"><em>SystemServer</em></a> 로 구성된다.</p>
+<p>System Service는 Binder를 사용하므로 다른 라이브러리하고 동작 방식이 다르다.
+Android Framework 또한 시스템 서비스에 속하며 Binder를 사용한다.</p>
+<p>Application Framework는 <em>SystemService</em> 라는 서비스로 동작한다. Application 프로세스와 별개로 동작한다. 부팅과 함께 실행되면서 Dalvik 위에서 실행된다. 이 부분은 Application이 동작하는것을 제어해준다.</p>
+<p><em>SystemService</em> 는 크게 2가지 분류로 자바로 구현된 <a class="reference internal" href="#android-native"><em>Core Platform Service</em></a> 와 <a class="reference internal" href="#android-native"><em>HW Service</em></a> 로 나뉜다. (Power Service, Package Service 등등)</p>
+<p>Native Server는 C++로 구현되어 있고 Binder로 통신한다. 하드웨어 제어를 대신해준다고 보면된다. 하드웨어 제어는 2가지 방법이 있다. Function Library를 이용한 방식 또는 Native Server를 이용한 방식이 있다.</p>
+</div>
+<div class="section" id="function-library-native-daemon-native-server">
+<span id="android-native"></span><h3>1.1.5. Function Library, Native Daemon, Native Server<a class="headerlink" href="#function-library-native-daemon-native-server" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/android_native.png" src="../_images/android_native.png" />
+<ul class="simple">
+<li>예를들어 블루투스를 제어할 경우 HW Service에 요청을 하고 <em>Function Library</em> 를 Load하고 하드웨어를 제어하는 형태이다. 라이브러리 형태로 존재</li>
+<li>Connectivity는 <em>Native Daemon</em> 에 접근한다. 소켓을 쓴다. 프로세스로 동작</li>
+<li>Camera, Audio, Surface는 <em>Native Server</em> 를 사용하고 Binder로 접근한다. 프로세스로 동작</li>
+</ul>
+<p>임베디드 리눅스에서는 HAL을 사용하지 않고 리눅스가 플랫폼으로 사용될 경우에는 HAL을 사용한다. 각 통신사의 라이브러리가 끼워져서 프레임워크가 달라진다.</p>
+</div>
+<div class="section" id="android-framework-and-binder">
+<h3>1.1.6. Android Framework And Binder<a class="headerlink" href="#android-framework-and-binder" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/android_binder.png" src="../_images/android_binder.png" />
+<ul class="simple">
+<li><em>Android Framework</em> 계층은 <em>Library</em> 계층과 밀접한 연관을 가지고있다.</li>
+</ul>
+</div>
+<div class="section" id="android">
+<h3>1.1.7. Android 개발 환경<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Android SDK : Application 개발</li>
+<li>Android NDK : Library 개발</li>
+<li>Android PDK : Platform 개발</li>
+</ul>
+<div class="section" id="pdk">
+<h4>1.1.7.1. PDK<a class="headerlink" href="#pdk" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li>Make Utility, Python 환경이 필요</li>
+<li>JDK 설치 필요</li>
+<li></li>
+</ol>
+<p>빌드를 완료하게되면 5개의 파일이 생성된다.</p>
+<ul class="simple">
+<li>boot.img : 커널 이미지</li>
+<li>recovery.img</li>
+<li>system.img : /system 부분</li>
+<li>userdata.img : /usr 부분</li>
+<li>ramdisk.img : / 파일 시스템 부분</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>1.1.8. 파일 시스템<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="system">
+<h4>1.1.8.1. /system<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h4>
+<p>루트권한이 있어야 접근이 가능한 공간</p>
+<ul class="simple">
+<li>app : 내장 어플리케이션이 저장되어있는 공간이다.</li>
+<li>framework : Application Framework (자바로 구현된 코드, .jar)</li>
+<li>lib : Library (C++로 구현, .so)</li>
+</ul>
+</div>
+<div class="section" id="data">
+<h4>1.1.8.2. /data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h4>
+<p>사용자 어플리케이션이 설치되고 데이터가 저장되는 공간</p>
+<ul class="simple">
+<li>app : *.apk</li>
+<li>app-lib : *.so</li>
+<li>data : 작업 디렉토리</li>
+</ul>
+</div>
+<div class="section" id="mnt">
+<h4>1.1.8.3. /mnt<a class="headerlink" href="#mnt" title="Permalink to this headline">¶</a></h4>
+<p>외부 장치 연결시 필요한 공간</p>
+<ul class="simple">
+<li>sdcard</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h4>1.1.8.4. 기타<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>/proc : 커널 동작시 필요한 여러가지 정보, 발생한 정보</li>
+<li>/dev : 디바이스 노드</li>
+<li>/sys : 디바이스 정보</li>
+</ul>
+<p>위 3가지 디렉토리는 부팅할때 구성된다.</p>
+<ol class="arabic simple">
+<li>directory 생성</li>
+<li>file system 결정</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>1.1.9. Android 부팅과정<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>리눅스 커널이 부팅하는것과 동일한 방식으로 부팅된다. <a class="reference external" href="http://androidxref.com/">androidxref</a> 에서 소스코드를 확인할 수 있다.</p>
+<img alt="../_images/android_boot.png" src="../_images/android_boot.png" />
+<ol class="arabic simple">
+<li>가장 먼저 <em>init</em> 프로세스가 실행된다.</li>
+</ol>
+<blockquote>
+<div><p><em>생성 시점에 하는 일</em></p>
+<ol class="arabic simple">
+<li>init.rc 내용 실행</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>init.rc는 action과 service로 나눠져 있다.</li>
+</ul>
+<ul class="simple">
+<li>action : 액션이 동작하는 시점에 해야하는 부분들이다. 환경설정</li>
+<li>service : init는 서비스에 표시된 프로세스들을 생성한다.</li>
+</ul>
+<blockquote>
+<div><p><em>init.rc</em> 의 service에 명시되어 생성되는 프로세스</p>
+<ul class="simple">
+<li>Daemon Process : 리눅스 서비스이며 주로 소켓통신 사용한다. ( 몇가지 안드로이드와 연관된 프로세스가 존재 ex)rild )</li>
+</ul>
+<ul class="simple" id="servicemanager">
+<li>ServiceManager : System Service를 관리해주고 바인더를 사용한다. <em>ContextManager</em> 로서 동작하고 같은 의미이다.</li>
+</ul>
+<ul class="simple" id="mediaserver">
+<li><em>MediaServer</em> : System Service가 동작하는 프로세스이다.(Audio, Camera, MediaPlayer)</li>
+</ul>
+<ul class="simple" id="surfaceflinger">
+<li><em>SurfaceFlinger</em> : System Service이다. (화면 출력 Surface) Binder를 사용한다.</li>
+<li>Zygote : Application을 생성하는 프로세스이다.</li>
+</ul>
+<blockquote>
+<div><ol class="arabic" id="systemserver">
+<li><p class="first"><em>SystemServer</em> : System Service가 동작하는 프로세스</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>MediaServer</em> 와 <em>SurfaceFlinger</em> 는 Native System Service이고 <em>SystemServer</em> 같은 경우는 Java System Server이다. <em>SystemServer</em> 는 SDK를 통해 직접 접근할 수 있다. Application Framework 계층의 모듈은 모두 <em>SystemServer</em> 프로세스 안에서 실행된다.</li>
+<li>실질적으로 MediaServer, SurfaceFlinger, SystemServer는 Android를 위한 System Service로서 ServiceManager에 등록되어 동작하게 된다.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Application Process</p>
+</li>
+</ol>
+<p>Dalvik이 각각 어플리케이션 마다 생성된다. 내용 구성물은 다음과 같다.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Dalvik</td>
+</tr>
+<tr class="row-even"><td>사용자 작성코드</td>
+</tr>
+<tr class="row-odd"><td>Resource</td>
+</tr>
+<tr class="row-even"><td>Core Lib (Android Library)</td>
+</tr>
+<tr class="row-odd"><td>Native Lib</td>
+</tr>
+</tbody>
+</table>
+<p>이중에서 Resource와 Core Lib와 Dalvik은 공통이다. 공통적인 부분은 Zygote를 Fork하는 방식으로 생성한다. 복사한 후 사용자 작성코드만 끼워 넣는 방식으로 구현되었다.</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>device node 생성</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>/dev 디렉토리에 디바이스 노드를 만든다.</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>system property 초기화</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Android가 공유하는 값이다. init 프로세스만 생성하고 초기화할 수 있다.</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>keychord 초기화</li>
+<li>signal 등록</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>고아 Process 방지, 양부모 역할을 한다?</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li>bootchart 생성</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>이 부분은 선택적인 부분이다.</li>
+<li>부팅과정에서 어떤 부분이 가장 시간을 많이 소비하는지 볼 수 있다.</li>
+</ul>
+</div></blockquote>
+<p><em>생성 후 하는일</em></p>
+<ol class="arabic simple">
+<li>device 연결 감시</li>
+<li>property 변경/조회 요청 감시</li>
+<li>keychord 발생 감시</li>
+<li>process 종료 감</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="android-application">
+<h3>1.1.10. Android Application 실행<a class="headerlink" href="#android-application" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Zygote</td>
+</tr>
+</tbody>
+</table>
+<p><em>Zygote</em> 는 <em>SystemServer</em> 로 부터 생성요청을 받아 <em>App</em> 을 생성한다.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>App</td>
+</tr>
+</tbody>
+</table>
+<p><em>App</em> 과 <em>SystemServer</em> 는 Binder에 의해 관리/요청된다.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>SystemServer</td>
+</tr>
+<tr class="row-even"><td>JNI</td>
+</tr>
+</tbody>
+</table>
+<p><em>SystemServer</em> 에서 필요한 라이브러리는 JNI를 이용해 사용한다. 예를들어 하드웨어 제어(GPS 정보)에 JNI가 사용된다.</p>
+<p>안드로이드에서 IPC 종류는 다음과같다.:</p>
+<div class="highlight-c"><div class="highlight"><pre>1. Binder 이용 (RPC로 불리운다.)
+2. Socket을 이용 (Data 공유)
+3. Linux IPC 도구이용 (Data 공유)
+</pre></div>
+</div>
+<div class="section" id="app-runtime-service-lib">
+<h4>1.1.10.1. App -&gt; Runtime Service -&gt; lib<a class="headerlink" href="#app-runtime-service-lib" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference internal" href="#android-native"><em>Function Library을 참조하자.</em></a> 예를들어 GPS 정보를 활용할 경우에는 아래의 과정을 거쳐 가져온다.</p>
+<img alt="../_images/android_gps.png" src="../_images/android_gps.png" />
+</div>
+<div class="section" id="app-runtime-service-native-service-lib">
+<h4>1.1.10.2. App -&gt; Runtime Service -&gt; Native Service -&gt; lib<a class="headerlink" href="#app-runtime-service-native-service-lib" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference internal" href="#android-native"><em>Native Server을 참조하자.</em></a> 예를들어 MediaPlayer를 사용할 경우 SystemService에서 라이브러리를 로드하고 <em>MediaServer</em> 에 접근한다. MediaPlayer와 AudioFlinger 사이에서 Binder 통신이 이루어 진다.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>MediaServer</td>
+</tr>
+<tr class="row-even"><td>MediaPlayer</td>
+</tr>
+<tr class="row-odd"><td>AudioFlinger</td>
+</tr>
+</tbody>
+</table>
+<p>아래는 과정을 보여주고 있다.</p>
+<img alt="../_images/android_media.png" src="../_images/android_media.png" />
+</div>
+<div class="section" id="app-runtime-service-native-daemon-lib">
+<h4>1.1.10.3. App -&gt; Runtime Service -&gt; Native Daemon -&gt; lib<a class="headerlink" href="#app-runtime-service-native-daemon-lib" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference internal" href="#android-native"><em>Native Daemon을 참조하자.</em></a> 예를들어 전화를 사용하는 경우이다. 이때는 Socket을 사용한다.</p>
+<img alt="../_images/android_ril.png" src="../_images/android_ril.png" />
+</div>
+</div>
+<div class="section" id="jni">
+<h3>1.1.11. JNI<a class="headerlink" href="#jni" title="Permalink to this headline">¶</a></h3>
+<p>자바가 다른 언어로 만들어진 어플리케이션과 상호작용할 수 있는 인터페이스를 제공한다.</p>
+<p>얻을 수 있는 장점:</p>
+<ol class="arabic simple">
+<li>빠른 처리 속도</li>
+<li>Hardware 제어</li>
+<li>기존 C/C++ 프로그램의 재사용</li>
+</ol>
+<p>JNI 활용 방법</p>
+<ol class="arabic simple">
+<li>Java Code 에서 C/C++ 라이브러리 함수 호출하기</li>
+<li>C/C++ 함수에서 Java 요소(Class/Field/Method) 사용하기</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>1.2. Android Application 구성<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="service">
+<h3>1.2.1. Service<a class="headerlink" href="#service" title="Permalink to this headline">¶</a></h3>
+<p><em>Service</em> 컴포넌트는 Background 상태에서 동작하는 컴포넌트이다. 단순한 Background 형태로 주어진 일을 처리하기도 하고 Activity와 같은 Service Client에서 Service의 기능을 사용할 수 있게 하는 RPC(Service 제공 기능)형태로 동작한다. <em>Local Service</em> 와 <em>Remote Service</em> 로 나뉘어 진다.</p>
+<p>Service가 RPC 형태로 제공되는 예를 보자. 예를들어 계산기 프로그램에서 계산하는 부분을 Service로 구현할 수 있다. Activity 에서는 <tt class="docutils literal"><span class="pre">bindService()</span></tt> 메서드를 사용하여 Service와 연결할 수 있다. 그리고 계산 기능을 사용할 수 있다.</p>
+<p><tt class="docutils literal"><span class="pre">manifest.xml</span></tt> 에서 아래와 같 수정해보면:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="o">&lt;</span><span class="n">service</span>
+        <span class="nl">android</span><span class="p">:</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;....&quot;</span>
+        <span class="nl">android</span><span class="p">:</span><span class="n">process</span><span class="o">=</span><span class="s">&quot;:service&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>android:process를 추가하면 서비스와 액티비티가 별개의 프로세스로 분리되어 위 방식대로 Service의 함수를 호출하면 프로세스가 죽어버린다.</p>
+<p>별개의 프로세스에서 함수 호출이 가능하도록 하려면 기존의 IPC방식으로는 불가능하다. 이때 커널의 Binder Driver를 통하여 다른 프로세스의 함수를 호출할 수 있다. Java 코드에서 이를 가능하게 하기위 AIDL을 사용한다.</p>
+<p>IDL은 구현 언어가 다른 프로세스간의 통신을 위해 고안된 인터페이스 정의어이다. 안드로이드에서는 AIDL에 의해 컴파일되어 .java가 생성된다. 이를 정의함으로써 다른 프로세스에서 서비스를 사용할 수 있도록 한다.</p>
+<img alt="../_images/android_rpc.png" src="../_images/android_rpc.png" />
+<img alt="../_images/android_stub.png" src="../_images/android_stub.png" />
+<p>위 그림에서 proxy는 마샬링하는 역할 stub은 언마샬링하는 역할을 한다. 즉 <em>AIDL</em> 이 있을 경우 즉 프로세스가 분리되었을 경우 <em>Remote Service</em> 없을 경우 <em>Local Service</em> 이다.</p>
+<p>이때 Remote Service와의 Binder 통신과 <a class="reference internal" href="#system-service"><em>System Service</em></a> 에서 사용되는 Binder 통신이 같다.</p>
+<p>Android Service는 크게 Application Service와 System Service로 나뉘어 진다.</p>
+<img alt="../_images/android_service2.png" src="../_images/android_service2.png" />
+</div>
+<div class="section" id="system-service-again">
+<span id="id7"></span><h3>1.2.2. System Service Again<a class="headerlink" href="#system-service-again" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#system-service"><em>System Service 설명</em></a></p>
+<p>특징:</p>
+<div class="highlight-c"><div class="highlight"><pre>1. 시스템 부팅과 함께 실행된다.
+2. Context Manager에 등록된다.
+3. Binder 통신을 한다.
+</pre></div>
+</div>
+<p>System Services는 <em>Java</em> 로 구현되었는지 <em>C++</em> 로 구현되었는지 즉 2가지 타입으로 나뉘어 진다.</p>
+<p>Activity Service, Connectivity Service .. 등등 이 <em>Java System Service</em> 로서 Java 언어로 구현된 서비스이다. Application을 도와주는 역할을 하는 서비스이다. 이는 바로 <a class="reference internal" href="#systemserver"><em>SystemServer</em></a> 이다.</p>
+<p><em>Native System Service</em> 같은 경우는 C++로 구현되었고 하드웨어를 제어하는 기능을 가진다. <a class="reference internal" href="#surfaceflinger"><em>SurfaceFlinger</em></a> ,:ref:<cite>MediaServer&lt;mediaserver&gt;</cite> 가 있다.</p>
+<p>기존의 IPC통신에서 사용되는 data는 형식이 정해져 있지 않다. 예를들어 원격 함수를 호출한다고 생각하면 함수마다 data형식이 다르기 때문에 송수신자 모두 통신 간 불편하다.</p>
+</div>
+</div>
+<div class="section" id="binder">
+<h2>1.3. Binder<a class="headerlink" href="#binder" title="Permalink to this headline">¶</a></h2>
+<p>커널공간은 공유할 수 있기 때문에 Binder Driver를 포함시켜 IPC를 할 수 있게한다. <em>Binder IPC Data</em> 는 크게 핸들, RPC데이터, RPC코드, 바인더 프로토콜로 구성되어 있다.</p>
+<img alt="../_images/android_binder2.png" src="../_images/android_binder2.png" />
+<p><em>핸들</em> 은 <em>Binder IPC Data</em> 를 수신하는 위치이다. 아마 진정한 의미는 핸들을 어디에 보낼지 뜻하는것 같은데 이 값은 <a class="reference internal" href="#servicemanager"><em>Context Manager</em></a> 에 검색해서 핸들값을 결정할 수 있다. <em>RPC Code</em> ,*RPC Data*를 합친 Binder RPC는 서비스 요청정보이다. 어떤 정보를 전달할지에 대한 내용이 포함되어있다.</p>
+<p><em>Binder Protocol</em> 은 Binder Driver가 데이터를 송신할지 수신할지 어떤 동작을 할지
+결정한다.</p>
+<div class="section" id="binder-driver">
+<h3>1.3.1. Binder Driver 동작<a class="headerlink" href="#binder-driver" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Service 등록 : Context Manager와 Service Server간 IPC</li>
+<li>Service 검색 : Context Manager와 Service Client간 IPC</li>
+<li>Service 사용 : Service Server와 Service Client간 IPC</li>
+</ul>
+<p><em>Service 등록</em> 과정은 시스템 부팅 시점에 한번 이루어진다. 이 시점부터 Binder Driver와 통신상태를 유지하고 있어야 한다. Binder Node는 Binder Driver와 자신과 연결된 프로세스에 대한 데이터 블록이다. 모든 프로세스는 지속적으로 Binder Driver와 연결상태를 유지하며 연결상태를 체크한다.</p>
+<p>Binder Driver은 노드를 Binder Node Table에 관리한다. 첫번째 노드는 항상 Context Manager이다. 이때 Binder Node 테이블에서 각 노드의 식별자는 핸들값이 된다.</p>
+</div>
+<div class="section" id="service-framework">
+<h3>1.3.2. Service Framework 동작<a class="headerlink" href="#service-framework" title="Permalink to this headline">¶</a></h3>
+<p>개발자의 입장에서 Java System Service를 개발하고자 한다면 Java System Framework를 사용하고
+Native System Service를 개발하고자 한다면 Native System Framework를 사용하면된다.</p>
+<ul class="simple">
+<li>Service Proxy : Service 요청 작성 (RPC Code/ Data)</li>
+<li>Service Stub : Service 요청 해석 / Service 실행</li>
+</ul>
+<p>인터페이스를 아래와 같은 계층으로 나누어 볼 수 있다.</p>
+<ul class="simple">
+<li>Service Layer : IInterface, BnInterface, BpInterface, BpRefBase</li>
+<li>RPC Layer : Service Proxy, Service Stub</li>
+<li>IPC Layer : BBinder, BpBinder, IPCThreadState, ProcessState, Parcel</li>
+</ul>
+<img alt="../_images/android_service_frame.png" src="../_images/android_service_frame.png" />
+<p>BpBinder는 Context Manager에 핸들값을 요청한다.</p>
+<img alt="../_images/android_native_service.png" src="../_images/android_native_service.png" />
+<p>약어:</p>
+<div class="highlight-c"><div class="highlight"><pre>B : Binder
+Bn : Binder native
+Bp : Binder Proxy
+
+&quot;B&quot; 나 &quot;Bn&quot; 이 접두사로 붙을경우 서버쪽에서 동작하는 클래스 &quot;Bp&quot;가 붙으면 클라이언트 측에서 동작하는 클래스이다.
+</pre></div>
+</div>
+<ul class="simple">
+<li>IBinder : IBinder 타입은 바인더 IPC데이터의 타입이다. 또한 바인더 드라이버 내부에서 사용하는 데이터 타입이다.</li>
+<li>IInterface : 서비스를 정의하는 인터페이스이다. 이를 상속받아 서비스 인터페이스(ServiceInterface)를 정의한다.</li>
+<li>ServiceInterface를 : 위 그림 외에 IInterface를 상속 받아 정의된 인터페이스이다.</li>
+<li>BnInterface : 위 그림 외에도 ServiceInterface를 상속 받고 있다.</li>
+<li>BpInterface : 위 그림 외에도 ServiceInterface를 상속 받고 있다.</li>
+</ul>
+<p>다음표에는 BnInterface를 부모로 갖는 클래스들이 있다.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>BnInterface</td>
+</tr>
+<tr class="row-even"><td>Service Stub</td>
+</tr>
+<tr class="row-odd"><td>Service</td>
+</tr>
+</tbody>
+</table>
+<p>다음표에는 BpInterface를 부모로 갖는 클래스들이 있다.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>BpInterface</td>
+</tr>
+<tr class="row-even"><td>Service Proxy</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id8">
+<h4>1.3.2.1. 네이티브 서비스 추가 실습<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference download internal" href="../_downloads/Archive.zip"><tt class="xref download docutils literal"><span class="pre">실습자료.zip</span></tt></a></p>
+<p>각 디렉토리에 있는 소스를 android/frameworks에 복사한다. 그리고 <tt class="docutils literal"><span class="pre">android/build/target/product</span></tt> 에 <tt class="docutils literal"><span class="pre">base.mk</span></tt> 에 모듈을 등록해야한다.:</p>
+<div class="highlight-c"><div class="highlight"><pre>helloworldservice \
+helloworldclient \
+libhelloworld \
+
+위와 같은 내용을 PRODUCT_PAKAGES += \ 아래에 추가한다.
+</pre></div>
+</div>
+<p>안드로이드 빌드 방법은 다음과같다. android 소스 홈에서 다음과 같이 진행한다.</p>
+<ol class="arabic simple">
+<li>SOURCE BUILD/ENVSETUP.SH 입력</li>
+<li>launch 입력</li>
+<li>1을 입력한다.</li>
+<li>make 입력</li>
+</ol>
+<p>컴파일된 결과는 <tt class="docutils literal"><span class="pre">out/target/product/generic</span></tt> 에 생성된다. <tt class="docutils literal"><span class="pre">~/usr/sdk/tools/emulator</span> <span class="pre">-system</span> <span class="pre">system.img</span> <span class="pre">-data</span> <span class="pre">userdata.img</span> <span class="pre">-ramdisk</span> <span class="pre">ramdisk.img</span></tt> 라는 명령어로 빌드된 결과를 에뮬레이터로 실행할 수 있다.</p>
+<p>부팅이 되었다면 adb shell을 입력하고 ls <tt class="docutils literal"><span class="pre">/system/bin/hello*</span></tt> 와 <tt class="docutils literal"><span class="pre">ls</span> <span class="pre">/system/ib/libhello*</span></tt> 을 입력해보면 파일이 추가된것을 확인할 수 있다.</p>
+<p>그리고 <tt class="docutils literal"><span class="pre">/system/bin/helloworldservice</span> <span class="pre">&amp;</span></tt> 을 입력하면 프로세스를 하나 생성할 수 있다. <tt class="docutils literal"><span class="pre">service</span> <span class="pre">list</span></tt> 라는 명령어를 입력하면 0번에 Context Manager에 등록된것을 볼 수 있다. <tt class="docutils literal"><span class="pre">/system/bin/helloworldclient</span></tt> 를 입력하면 네이티브 서비스가 동작하는것을 확인할 수 있다.</p>
+<p>부팅시에 자동으로 SystemService로 등록하길 원한다면 <tt class="docutils literal"><span class="pre">android/system/core/rootdir</span></tt> 에 <tt class="docutils literal"><span class="pre">init.rc</span></tt> 에 아래와 같은 내용을 추가해한다.:</p>
+<div class="highlight-c"><div class="highlight"><pre>service media ... 밑에 아래 추가하자.
+
+service hello /system/bin/helloworldservice
+class main
+</pre></div>
+</div>
+<p>다시 컴파일 후 에뮬레이터로 실행하고 <tt class="docutils literal"><span class="pre">ps</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">hello</span></tt> 를 입력해보면 init를 부모로 갖는 서비스가 실행된것을 확인할 수 있다. <tt class="docutils literal"><span class="pre">logcat</span> <span class="pre">-d</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">hello</span></tt> 를 입력해보면 서비스가 실행될때 발생한 로그도 확인할 수 있다.</p>
+<p><tt class="docutils literal"><span class="pre">service</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">android.apps</span></tt> 를 입력해보면 역시 서비스가 보인다.</p>
+<p>android.mk에서 <tt class="docutils literal"><span class="pre">LOCAL_PATH:=</span> <span class="pre">$(call</span> <span class="pre">my-dir)</span></tt> 은 현재디렉토리를 시작 경로로 하겠다는 의미이다. 따라서 다른 경로에 소스코드를 위치시켜도 상관없다.</p>
+</div>
+<div class="section" id="framework-native-include">
+<h4>1.3.2.2. framework.native.include 분석<a class="headerlink" href="#framework-native-include" title="Permalink to this headline">¶</a></h4>
+<p>IHelloWorldService.h 분석:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cp">#ifndef IHello_World_Service_H</span>
+<span class="cp">#define IHello_World_Service_H</span>
+
+<span class="cp">#include &lt;binder/IInterface.h&gt;</span>
+
+<span class="n">namespace</span> <span class="n">android</span> <span class="p">{</span>
+
+  <span class="c1">//HelloWorldService에서 사용할 RPC 코드 정의</span>
+  <span class="k">enum</span> <span class="p">{</span>
+    <span class="n">HW_HELLOWORLD</span> <span class="o">=</span> <span class="n">IBinder</span><span class="o">::</span><span class="n">FIRST_CALL_TRANSACTION</span><span class="p">,</span>
+    <span class="n">TRANSACTION_add</span><span class="p">,</span>
+    <span class="n">TRANSACTION_subtract</span><span class="p">,</span>
+    <span class="n">TRANSACTION_multiple</span><span class="p">,</span>
+    <span class="n">TRANSACTION_divide</span>
+  <span class="p">};</span>
+
+  <span class="c1">//서비스 인터페이스인 IHelloWorldService 클래스를 정의한다.</span>
+  <span class="n">class</span> <span class="nl">IHelloWorldService</span><span class="p">:</span> <span class="n">public</span> <span class="n">IInterface</span>
+  <span class="p">{</span>
+    <span class="nl">public</span><span class="p">:</span>
+      <span class="c1">//서비스 인터페이스 매크로</span>
+      <span class="n">DECLARE_META_INTERFACE</span><span class="p">(</span><span class="n">HelloWorldService</span><span class="p">);</span>
+      <span class="c1">// 서비스 함수</span>
+      <span class="n">virtual</span> <span class="kt">status_t</span> <span class="n">helloWorld</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+      <span class="n">virtual</span> <span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">numberOne</span><span class="p">,</span> <span class="kt">int</span> <span class="n">numberTwo</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+      <span class="n">virtual</span> <span class="kt">int</span> <span class="n">subtract</span><span class="p">(</span><span class="kt">int</span> <span class="n">numberOne</span><span class="p">,</span> <span class="kt">int</span> <span class="n">numberTwo</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+      <span class="n">virtual</span> <span class="kt">int</span> <span class="n">multiple</span><span class="p">(</span><span class="kt">int</span> <span class="n">numberOne</span><span class="p">,</span> <span class="kt">int</span> <span class="n">numberTwo</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+      <span class="n">virtual</span> <span class="kt">int</span> <span class="n">divide</span><span class="p">(</span><span class="kt">int</span> <span class="n">numberOne</span><span class="p">,</span> <span class="kt">int</span> <span class="n">numberTwo</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="p">};</span>
+
+<span class="p">};</span> <span class="c1">// namespace android</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>서비스 구현 시 형변환</p>
+<ol class="arabic simple">
+<li>사용자 Service type -&gt; IBinder (클라이언트 쪽, 클리이언트가 드라이버에 요청할 때) -&gt; asBinder()가 호출됨</li>
+<li>IBinder -&gt; 사용자 Service type (드라이버에서 사용자에게 전달할 때) -&gt; asInterface()가 호출됨</li>
+</ol>
+<p>이때 <tt class="docutils literal"><span class="pre">DECLARE_META_INTERFACE</span></tt> 매크로를 이용하여 형변환을 수행한다. 매크로 내부에서 onAsBinder()라는 가상함수에서 asBinder()를 호출할지 asInterface()를 호출할지 결정한다.</p>
+<p>HelloWorldService.h는 BinderService.h를 상속하여 서비스 초기화 메서드를 가지게된다. BpHelloWorldService.h에는 service proxy 함수가 위치한다. BnHelloWorldService.h에는 onTransact가 위치하고 이것은 service stub이다.</p>
+</div>
+<div class="section" id="framework-native-libs">
+<h4>1.3.2.3. framework.native.libs 분석<a class="headerlink" href="#framework-native-libs" title="Permalink to this headline">¶</a></h4>
+<p>IHelloWorldService.cpp 에서 DECLARE_META_INTERFACE는 정의에 대응되는 IMPLEMENT_META_INTERFACE 라는 매크로가 위치한다.  HelloWorldService.cpp 에는 서비스 함수 구현이 있다.</p>
+<p>BpHelloWorldService.cpp 에는 서비스 Proxy가 위치한다. 바인더에 RPC 데이터를 담을때는 Parcel에 데이터를 담는다. 여기서 data 변수는 RPC데이터이고 reply 변수는 응답결과를 담는 변수이다.</p>
+<p><em>BpBinder</em> 입장에서 서비스를 검색할때 검색할 대상을 알아야한다. 서비스를 등록할때 검색 키(서비스의 식별자)를 RPC 데이터의 첫번째 인자로 넘겨줘야한다.</p>
+<p>다음과 같은 코드에서 확인할 수 있다.:</p>
+<div class="highlight-c"><div class="highlight"><pre>    <span class="n">data</span><span class="p">.</span><span class="n">writeInterfaceToken</span><span class="p">(</span><span class="n">IHelloWorldService</span><span class="o">::</span><span class="n">getInterfaceDescriptor</span><span class="p">());</span>
+<span class="n">data</span><span class="p">.</span><span class="n">writeInt32</span><span class="p">(</span><span class="n">numberOne</span><span class="p">);</span>
+<span class="n">data</span><span class="p">.</span><span class="n">writeInt32</span><span class="p">(</span><span class="n">numberTwo</span><span class="p">);</span>
+<span class="kt">status_t</span> <span class="n">status</span> <span class="o">=</span> <span class="n">remote</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">transact</span><span class="p">(</span><span class="n">TRANSACTION_add</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">reply</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>BpBinder에서 transact 함수로 ContextManager에게 키값을 요청한다.:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">status_t</span> <span class="n">status</span> <span class="o">=</span> <span class="n">remote</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">transact</span><span class="p">(</span><span class="n">TRANSACTION_add</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">reply</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>BnHelloWorldService는 RPC코드를 분석해서 정상적인 요청인지 분석해서 요청한 함수를 호출해준다.</p>
+<p>인자 전달이 올바른지 체크해준다.:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">CHECK_INTERFACE</span><span class="p">(</span><span class="n">IHelloWorldService</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">reply</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>서비스 함수 호출 부분.:</p>
+<div class="highlight-c"><div class="highlight"><pre>    <span class="kt">int</span> <span class="n">arg1</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">readInt32</span><span class="p">();</span>
+<span class="kt">int</span> <span class="n">arg2</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">readInt32</span><span class="p">();</span>
+
+<span class="n">reply</span><span class="o">-&gt;</span><span class="n">writeInt32</span><span class="p">(</span> <span class="n">add</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span> <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="framework-native-helloworld">
+<h4>1.3.2.4. framework.native.helloworld 분석<a class="headerlink" href="#framework-native-helloworld" title="Permalink to this headline">¶</a></h4>
+<p>main_helloworldservice.cpp는 서버를 등록해주는 역할을 한다. instantiate를 호출하면 ContextManager에 서비스가 등록되고 ProcessState의 self에서 startThreadPool()를 호출해서 서버가 바인더드라이버와 연결을 유지하게 한다. joinThreadPool()를 호출해서 프로세스를 실행상태로 나둔다.:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+   <span class="n">HelloWorldService</span><span class="o">::</span><span class="n">instantiate</span><span class="p">();</span>
+   <span class="n">ProcessState</span><span class="o">::</span><span class="n">self</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">startThreadPool</span><span class="p">();</span>
+   <span class="n">ALOGI</span><span class="p">(</span><span class="s">&quot;HelloWorldService is starting now&quot;</span><span class="p">);</span>
+   <span class="n">IPCThreadState</span><span class="o">::</span><span class="n">self</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">joinThreadPool</span><span class="p">();</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>main_helloworldclient.cpp를 보자.</p>
+<ul class="simple">
+<li>getService : ContextManager에 검색 요청하는 함수</li>
+<li>addService ContextManager에 등록 요청하는 함수</li>
+</ul>
+<p>여기서 서비스를 찾기위해 IHelloWorldService 타입을 알고 있어야한다. 이는 JAVA JNI에선 알기 어렵다.</p>
+<blockquote>
+<div>sp&lt;IHelloWorldService&gt; sHelloWorldService;</div></blockquote>
+<p>바인더 드라이버로 부터 반환 받은 결과를 사용할 수 있게 형변환한다.:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">sHelloWorldService</span> <span class="o">=</span> <span class="n">interface_cast</span><span class="o">&lt;</span><span class="n">IHelloWorldService</span><span class="o">&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h4>1.3.2.5. 어플리케이션을 사용하고 싶을때<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p>Application에서 BpHelloWorldService를 JNI로 바로 사용하기 어렵고 Native Proxy가 존재해야한다.</p>
+<p>Java System Service 구현 시 차이점</p>
+<ul class="simple">
+<li>AIDL을 사용할 수 있다.</li>
+</ul>
+</div>
+<div class="section" id="java-hello-calculator">
+<h4>1.3.2.6. java-hello-calculator ?<a class="headerlink" href="#java-hello-calculator" title="Permalink to this headline">¶</a></h4>
+<p>Java로 구현된 System Service 로서 System Server에서 동작하는 매니저이다.</p>
+<p><tt class="docutils literal"><span class="pre">android/frameworks/base/core/java/android/app</span></tt> 디렉토리에 3개의 파일을 넣을 수 있다.</p>
+<p>사용할 수 있도록 세팅을 해보자. <tt class="docutils literal"><span class="pre">android/frameworks/base/core/java/android/content</span></tt> 디렉토리로 이동하여 Context.java를 열어보자. 그리고 public static final String ALARM_SERVICE = &#8220;alarm&#8221;; 밑에 Alarm 부분의 주석과 코드 1줄을 복사하여 AlarmManager대신에 HelloWorldManager로 바꾸면 된다. alarm 대신 hello로 바꾼다.</p>
+<p><tt class="docutils literal"><span class="pre">android/frameworks/base/services/java/com/android/server</span></tt> 에 <tt class="docutils literal"><span class="pre">SystemServer.java</span></tt> 라는 파일을 찾아보자. 이 프로세스가 Zygote가 시스템 부팅시 실행하는 프로그램이다.</p>
+<p><tt class="docutils literal"><span class="pre">SystemServer.java</span></tt> 에 import android.app.HelloWorldService; 를 추가하고 345라인 밑에 아래 코드를 추가하자.:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">try</span><span class="p">{</span>
+        <span class="n">Slog</span><span class="p">.</span><span class="n">i</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span><span class="s">&quot;HelloWorld Service&quot;</span><span class="p">);</span>
+        <span class="n">HelloWorldService</span> <span class="n">helloWorldService</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HelloWorldService</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+        <span class="n">ServiceManager</span><span class="p">.</span><span class="n">addService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="n">HELLO_SERVICE</span><span class="p">,</span> <span class="n">helloWorldService</span><span class="p">);</span>
+<span class="p">}</span><span class="n">catch</span><span class="p">(</span><span class="n">Throwable</span> <span class="n">e</span><span class="p">){</span>
+        <span class="n">Slog</span><span class="p">.</span><span class="n">e</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Failure starting HelloWorld Service&quot;</span><span class="p">,</span><span class="n">e</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>서비스 래퍼를 만들기 위해 <tt class="docutils literal"><span class="pre">android/frameworks/base/core/java/android/app</span></tt> ContextImpl.java 파일을 찾는다. ALARM을 검색해보자. 그리고 registerService(...) 부분을 아래 라인에 복사하고 아래와 같이 수정하자.:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">registerService</span><span class="p">(</span><span class="n">HELLO_SERVICE</span><span class="p">,</span> <span class="n">new</span> <span class="n">ServiceFetcher</span><span class="p">(){</span>
+        <span class="n">public</span> <span class="n">Object</span> <span class="n">createService</span><span class="p">(</span><span class="n">contextImple</span> <span class="n">ctx</span><span class="p">){</span>
+                <span class="n">IBinder</span> <span class="n">b</span> <span class="o">=</span> <span class="n">ServiceManager</span><span class="p">.</span><span class="n">getService</span><span class="p">(</span><span class="n">HELLO_SERVICE</span><span class="p">);</span>
+                <span class="n">IHelloWorld</span> <span class="n">service</span> <span class="o">=</span> <span class="n">IHelloWorld</span><span class="p">.</span><span class="n">Stub</span><span class="p">.</span><span class="n">asInterface</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+                <span class="k">return</span> <span class="n">new</span> <span class="nf">HelloWorldManager</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>마지막으로 수정해야할 부분은 다음이다. <tt class="docutils literal"><span class="pre">android/frameworks/base/Android.mk</span></tt> 을 열여보자. <tt class="docutils literal"><span class="pre">aidl_files</span> <span class="pre">:=</span></tt> 라는 부분을 찾아보자. 그리고 가장 앞줄에 아래 부분을 등록하자.:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">frameworks</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">android</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">IHelloWorld</span><span class="p">.</span><span class="n">aidl</span> \
+</pre></div>
+</div>
+<p>make를 해보자. 만약 에러가 날경우 make update-api 를 입력하고 다시 make를 해보자.</p>
+<p>시스템을 부팅해보면 service list 에서 helloworld</p>
+</div>
+<div class="section" id="helloworldmanager-java">
+<h4>1.3.2.7. HelloWorldManager.java<a class="headerlink" href="#helloworldmanager-java" title="Permalink to this headline">¶</a></h4>
+<p>다시 android.app에 복사한 자바 코드를 보자. IHelloWorld를 멤버로 가지고 있는것을 볼 수 있다. 서비스를 얻어내기 위해 getSystemService() 메서드를 사용할 수 있다. 이 메서드는 Java System Service 래퍼에 접근할 수 있는 함수이다.</p>
+<p>android-4.4.2-sdk_eng_linux-x86.zip 파일은 Context에 방금 만든 서비스를 추가한 새로운 SDK이다.</p>
+</div>
+<div class="section" id="java-system-service">
+<h4>1.3.2.8. Java System Service<a class="headerlink" href="#java-system-service" title="Permalink to this headline">¶</a></h4>
+<img alt="../_images/android_java_service.png" src="../_images/android_java_service.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. 안드로이드 프레임워크</a><ul>
+<li><a class="reference internal" href="#android-framework">1.1. 프레임워크 기반</a><ul>
+<li><a class="reference internal" href="#android-platform">1.1.1. Android Platform 구조</a></li>
+<li><a class="reference internal" href="#library">1.1.2. Library 계층</a></li>
+<li><a class="reference internal" href="#android-runtime">1.1.3. Android Runtime</a></li>
+<li><a class="reference internal" href="#application-framework-system-service">1.1.4. Application Framework &amp; System Service</a></li>
+<li><a class="reference internal" href="#function-library-native-daemon-native-server">1.1.5. Function Library, Native Daemon, Native Server</a></li>
+<li><a class="reference internal" href="#android-framework-and-binder">1.1.6. Android Framework And Binder</a></li>
+<li><a class="reference internal" href="#android">1.1.7. Android 개발 환경</a><ul>
+<li><a class="reference internal" href="#pdk">1.1.7.1. PDK</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">1.1.8. 파일 시스템</a><ul>
+<li><a class="reference internal" href="#system">1.1.8.1. /system</a></li>
+<li><a class="reference internal" href="#data">1.1.8.2. /data</a></li>
+<li><a class="reference internal" href="#mnt">1.1.8.3. /mnt</a></li>
+<li><a class="reference internal" href="#id4">1.1.8.4. 기타</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">1.1.9. Android 부팅과정</a></li>
+<li><a class="reference internal" href="#android-application">1.1.10. Android Application 실행</a><ul>
+<li><a class="reference internal" href="#app-runtime-service-lib">1.1.10.1. App -&gt; Runtime Service -&gt; lib</a></li>
+<li><a class="reference internal" href="#app-runtime-service-native-service-lib">1.1.10.2. App -&gt; Runtime Service -&gt; Native Service -&gt; lib</a></li>
+<li><a class="reference internal" href="#app-runtime-service-native-daemon-lib">1.1.10.3. App -&gt; Runtime Service -&gt; Native Daemon -&gt; lib</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jni">1.1.11. JNI</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">1.2. Android Application 구성</a><ul>
+<li><a class="reference internal" href="#service">1.2.1. Service</a></li>
+<li><a class="reference internal" href="#system-service-again">1.2.2. System Service Again</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#binder">1.3. Binder</a><ul>
+<li><a class="reference internal" href="#binder-driver">1.3.1. Binder Driver 동작</a></li>
+<li><a class="reference internal" href="#service-framework">1.3.2. Service Framework 동작</a><ul>
+<li><a class="reference internal" href="#id8">1.3.2.1. 네이티브 서비스 추가 실습</a></li>
+<li><a class="reference internal" href="#framework-native-include">1.3.2.2. framework.native.include 분석</a></li>
+<li><a class="reference internal" href="#framework-native-libs">1.3.2.3. framework.native.libs 분석</a></li>
+<li><a class="reference internal" href="#framework-native-helloworld">1.3.2.4. framework.native.helloworld 분석</a></li>
+<li><a class="reference internal" href="#id9">1.3.2.5. 어플리케이션을 사용하고 싶을때</a></li>
+<li><a class="reference internal" href="#java-hello-calculator">1.3.2.6. java-hello-calculator ?</a></li>
+<li><a class="reference internal" href="#helloworldmanager-java">1.3.2.7. HelloWorldManager.java</a></li>
+<li><a class="reference internal" href="#java-system-service">1.3.2.8. Java System Service</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="android_index.html"
+                        title="previous chapter">Android</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="android_basic.html"
+                        title="next chapter">2. 안드로이드 핵심정리</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/Android/android_kernel.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="android_basic.html" title="2. 안드로이드 핵심정리"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="android_index.html" title="Android"
+             >previous</a> |</li>
+        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
+          <li><a href="android_index.html" >Android</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
