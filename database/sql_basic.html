@@ -505,6 +505,20 @@ DATETIME : 날짜와 시각 정보
 <p>INNER JOIN에서 INNER를 생략해도 같은 동작을 하게된다.</p>
 </div>
 </div>
+<div class="section" id="dbms">
+<h2>4.12. DBMS별 스키마 정보<a class="headerlink" href="#dbms" title="Permalink to this headline">¶</a></h2>
+<p><em>해킹방어를 위한 JAVA 시큐어코딩</em> 내용을 참조하였습니다.</p>
+<p>MySQL</p>
+<p>INFORMATION_SCHEMA.SCHEMATA : 하나의 스키마는 하나의 데이터베이스다. SCHEMATA는 데이터베이스의 정보를 제공한다.
+INFORMATION_SCHEMA.TABLES : 데이터베이스에 존재하는 테이블에 대한 정보를 제공한다.
+INFORMATION_SCHEMA.COLUMNS : 테이블 칼럼의 컬렉션 정보, 칼럼이라도 CHAR, VARCHAR, TEXT 형태의 칼럼은 컬렉션을 가진다. 비문자 타입은 컬렉션을 가지지 않는다.</p>
+<p>SQLServer</p>
+<p>sysdatabases(sys.databases) : 각 행당 하나의 데이터베이스 정보
+sysobjects(sys.objects) : 데이터베이스 내에 만들어진 각 사용자 정의 스키마 범위 개체에 대한 행을 포함
+syscolumns(sys.columns) : 뷰 또는 테이블과 같이 열을 갖고 있는 개체의 각 열에 대한 행을 반환
+systypes(sys.types) : 각 행당 시스템 및 사용자 정의 정보
+sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Microsoft Windows 사용자, Windows 그룹, Microsoft SQL Server 사용자 또는 SQL Server 역할 정보</p>
+</div>
 </div>
 
 
@@ -546,6 +560,7 @@ DATETIME : 날짜와 시각 정보
 <li><a class="reference internal" href="#equi-join-inner-join">4.11.1. EQUI JOIN (INNER JOIN)</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#dbms">4.12. DBMS별 스키마 정보</a></li>
 </ul>
 </li>
 </ul>

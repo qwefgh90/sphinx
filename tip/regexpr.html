@@ -1,0 +1,147 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. Regexpr cheat sheet &mdash; Changchang Documentation 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Tips" href="tip_index.html" />
+    <link rel="next" title="화성학" href="../music/music_index.html" />
+    <link rel="prev" title="Tips" href="tip_index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../music/music_index.html" title="화성학"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tip_index.html" title="Tips"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
+          <li><a href="tip_index.html" accesskey="U">Tips</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="regexpr-cheat-sheet">
+<span id="regexpr"></span><h1>1. Regexpr cheat sheet<a class="headerlink" href="#regexpr-cheat-sheet" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://regexper.com/">https://regexper.com/</a> 및 <a class="reference external" href="http://regex101.com">http://regex101.com</a> 에서 정규표현식을 테스트 및 시각적으로 볼 수 있다.</p>
+<p>문자 표현식</p>
+<ul class="simple">
+<li>. : 임의의 한 문자</li>
+<li>[abcd] : []안의 형식과 일치하는 한 문자</li>
+<li>[1-9] : 1부터 9까지 범위내의 숫자를 뜻한다.</li>
+<li>[a-zA-Z] : a부터 z까지의 하나의 소문자 및 대문자를 뜻한다.</li>
+<li>[^] : ^이후의 괄호 안 문자를 제외한 한 문자이다.</li>
+</ul>
+<p>반복 횟수 지정</p>
+<ul class="simple">
+<li>? : 바로 앞의 문자가 0번이나 1번</li>
+<li>* : 바로 앞의 문자가 0번 이상</li>
+<li>+ : 바로 앞의 문자가 1번 이상 반복</li>
+<li>{1} : {}앞 문자가 1번 반복된다.</li>
+<li>{3,} : {}앞 문자가 3번 이상 반복된다.</li>
+<li>{,10} : {}앞 문자가 10번 이하로 반복된다.</li>
+</ul>
+<p>시작과 끝</p>
+<ul class="simple">
+<li>^ : 문자열의 시작</li>
+<li>$ : 문자열의 끝</li>
+</ul>
+<p>그룹 지정 (capturing / non-capturing)</p>
+<ul class="simple">
+<li>(ab){2} : ab를 하나의 그룹으로 보고 abab에 매칭된다.</li>
+<li>(ab){2} (\1) : &#8220;abab ab&#8221;에 매칭된다. 괄호는 값을 저장한다. <strong>캡처링이라는 특징을 갖는다. 이는 \1 ~ \9를 사용하여 항목을 검색할 수 있다.</strong></li>
+<li>(?:pattern) : 패턴의 일부가 매칭되는가? data(?:apple|kiwi)은 dataapple 또는 datakiwi에 매칭된다. <strong>(캡처링하지 않는다.)</strong></li>
+<li>(?=p1)(?=p2) : look-ahead 방식으로 미리 검색해서 패턴에 일치할 경우만 계속 검색을 진행할때 사용한다. 문자열에 p1 패턴이 왔는가? 왔다면 p2 패턴이 왔는가? 동시에 여러개의 패턴을 적용할 수 있다. <strong>positive lookahead 방식이다.</strong> <strong>ex) 문자열 조사에 앞서 &#8216;_&#8217;가 존재한다면 진행하지 않음 ^(?=[^_])[0-9a-zA-Z_]+&#64;[a-zA-Z]+.[a-zA-Z]+</strong></li>
+<li>(?!p1)(?!p2) : look-ahead 방식으로 미리 검색해서 패턴에 일치하지 않을 경우만 계속 검색을 진행할때 사용한다. 문자열에 p1 패턴이 아니여야하고 p2 패턴이 아니여야 한다. <strong>negative lookahead 방식이다.</strong> <strong>ex) 문자열 조사에 앞서 &#8216;_&#8217;가 존재한다면 진행하지 않음 ^(?![_])[0-9a-zA-Z_]+&#64;[a-zA-Z]+.[a-zA-Z]+</strong></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tip_index.html"
+                        title="previous chapter">Tips</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../music/music_index.html"
+                        title="next chapter">화성학</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tip/regexpr.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../music/music_index.html" title="화성학"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tip_index.html" title="Tips"
+             >previous</a> |</li>
+        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
+          <li><a href="tip_index.html" >Tips</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
