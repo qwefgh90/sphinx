@@ -1,5 +1,6 @@
 .. _tip_index:
 
+<<<<<<< HEAD
 .. meta::
 	:site_name: Chang docs
 	:title: tip index page
@@ -18,6 +19,8 @@ Contents:
    regexpr.rst
 
   
+=======
+>>>>>>> 8586868c859120d342713a1fcc5ea708b31f1927
 팁 모음
 ==================================================
 

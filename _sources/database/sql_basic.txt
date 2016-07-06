@@ -512,6 +512,7 @@ EQUI JOIN (INNER JOIN)
 결과는 같다. 아래 방식은 ANSI/ISO SQL 표준방식이다. 등가조인, 이너조인은 자식 테이블의 FK와 부모 테이블의 PK가 같은 모든 결과를 출력한다. 이는 두 테이블의 교집합의 모든결과라고 할 수 있다.
 
 INNER JOIN에서 INNER를 생략해도 같은 동작을 하게된다.
+<<<<<<< HEAD
 
 
 DBMS별 스키마 정보
@@ -519,7 +520,7 @@ DBMS별 스키마 정보
 
 *해킹방어를 위한 JAVA 시큐어코딩* 내용을 참조하였습니다.
 
-MySQL
+MySQL
 
 INFORMATION_SCHEMA.SCHEMATA : 하나의 스키마는 하나의 데이터베이스다. SCHEMATA는 데이터베이스의 정보를 제공한다.
 INFORMATION_SCHEMA.TABLES : 데이터베이스에 존재하는 테이블에 대한 정보를 제공한다.
@@ -535,3 +536,5 @@ sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Mic
 
 
 
+=======
+>>>>>>> 8586868c859120d342713a1fcc5ea708b31f1927

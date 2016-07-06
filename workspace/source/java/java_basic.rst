@@ -139,11 +139,19 @@ java.lang.Error를 상속받는 종류로 OutofMemoryError나 ThreadDeath와 같
 
 2) Exception 언체크 예외
 
+<<<<<<< HEAD
 java.lang.RuntimeException을 상속받는 종류의 예외는 소스코드 레벨에서 체크되지 않는다. 이는 기본적으로 if문을 이용해서 처리해야하는 예외이다.
 
 3) Exception 체크(Checked) 예외
 
 API개발자가 명시적으로 발생할 수 있는 예외들을 처리하길 강요하는 것. 체크예외가 발생한다면 반드시 try-catch 구문으로 처리하거나 throws을 이용해 예외를 전가해야한다.
+=======
+java.lang.RuntimeException을 상속받는 종류의 예외는 소스코드 레벨에서 체크되지 않는다. 대표적으로 런타임 예외라는 말을 쓴다. 하지만 체크 예외도 실행중에 발생하는 예외이다. 이는 Error와 마찬가지로 처리될 수 없는 예외이다.
+
+3) Exception 체크 예외
+
+체크예외가 발생한다면 반드시 try-catch 구문으로 처리하거나 throws을 이용해 예외를 전가해야한다.
+>>>>>>> 8586868c859120d342713a1fcc5ea708b31f1927
 
 --------------------------------------------------
 언체크 예외의 목적(Runtime Exception)
