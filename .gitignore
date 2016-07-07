@@ -1,3 +1,4 @@
 .DS_Store
 github.sublime-project
 github.sublime-workspace
+workspace/source/**/*.html

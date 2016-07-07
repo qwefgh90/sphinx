@@ -35,7 +35,8 @@ Category:
    tip/tip_index.rst
    music/music_index.rst
    ict/ict_index.rst
-
+   software/software_index.rst
+   
 SlideShare
 ===================
 
