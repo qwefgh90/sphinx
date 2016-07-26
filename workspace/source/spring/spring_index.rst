@@ -18,7 +18,6 @@ Contents:
    spring_basic.rst
    spring_rest.rst
    design_pattern.rst
-   spring_changim.rst
    tomcat.rst
 
 .. raw:: html

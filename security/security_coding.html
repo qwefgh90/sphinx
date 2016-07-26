@@ -78,7 +78,7 @@
 <div class="section" id="id7">
 <h4>3.1.1.4. 소프트웨어 해킹 사례<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li>KT의 요금명세서 조회 기능에서 파라미터 조작을 통해 다른 사용자의 요금명세서를 조회하는 사례가 있었다.</li>
+<li>KT의 요금명세서 조회 기능에서 파라미터 조작을 통해 다른 사용자의 요금명세서를 조회하는 사례가 있었다.(파라미터의 고객번호를 A에서 B로 바꾼뒤 쿼리를 실행하여 해킹, 이를 해결하기 위해 로그인한 사용자의 세션값에 맞는 고객정보만 조회되도록 수정 해야함)</li>
 <li>현대캐피탈 - SSL을 이용해 종단간 암화화를 했더라도 소프트웨어 자체에서 암호화되지 않은 로깅을 쌓아서 원본데이터가 노출될 수 있다.</li>
 <li>OpenSSL HeartBleed 취약점은 서버와 연결상태를 체크하는 HeartBeat 프로토콜에서 문제가 발생한 경우이다. TLS HeartBeat Request에서 Length를 조작할 경우 서버의 메모리를 읽어들일 수 있었다. 라이브러리에서 길이와 실제 데이터를 비교했다면 이런 문제가 발생하지 않았을 것이다.</li>
 </ul>
@@ -86,9 +86,9 @@
 </div>
 <div class="section" id="cwe-cve-owasp">
 <h3>3.1.2. 소프트웨어 보안 약점/취약점(CWE, CVE, OWASP)<a class="headerlink" href="#cwe-cve-owasp" title="Permalink to this headline">¶</a></h3>
-<p>CWE이란 일반적으로 침해사고를 일으킬 수 있는 소프트웨어의 분류체계를 정의한다. CVE란 이미 침해사고가 발생한 소프트웨어의 결함의 히스토리이다. 미국 국토안보부에서 만든 <a class="reference external" href="http://cwe.mitre.org">CWE</a> 에서 일반적인 소프트웨어 약점을 검색할 수 있다. <a class="reference external" href="http://cve.mitre.org">CVE</a> 에서 소프트웨어 취약점(이미 침해사고가 발생한)을 검색할 수 있다. <a class="reference external" href="http://www.sans.org">SANS TOP 25</a> 에서 가장 위험한 소프트웨어 취약점 25개를 확인할 수 있다.</p>
+<p>CWE이란 일반적으로 침해사고를 일으킬 수 있는 소프트웨어의 분류체계를 정의한다. CVE란 이미 침해사고가 발생한 소프트웨어의 결함의 히스토리이다. 미국 국토안보부에서 만든 <a class="reference external" href="http://cwe.mitre.org">CWE</a> 에서 일반적인 소프트웨어 약점을 검색할 수 있다. <a class="reference external" href="http://cve.mitre.org">CVE</a> 에서 소프트웨어 취약점(이미 침해사고가 발생한)을 검색할 수 있다. <a class="reference external" href="http://www.sans.org">SANS TOP 25</a> 에서 가장 위험한 소프트웨어 약점 25개를 확인할 수 있다.</p>
 <p>시큐어 코딩 방법은 <a class="reference external" href="https://www.securecoding.cert.org/">https://www.securecoding.cert.org/</a> 과 <strong>행자부 소프트웨어 개발 보안 가이드(7개의 카테고리 47개의 항목 - CERT LEVEL1 + SANS 25)에서 확인할 수 있다. SANS 25를 이용해서 스코어링해서 순서대로 제거해라.</strong></p>
-<p>25개의 CVE를 적용하기 어렵다면 <strong>OWASP TOP 10</strong> 을 사용하여 시큐어 코딩을 적용하자.</p>
+<p>25개의 CWE를 적용하기 어렵다면 <strong>OWASP TOP 10</strong> 을 사용하여 시큐어 코딩을 적용하자.</p>
 </div>
 <div class="section" id="id8">
 <h3>3.1.3. 소프트웨어 개발보안 방법론<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
@@ -110,14 +110,14 @@
 <div class="section" id="id10">
 <h4>3.1.3.2. 위협모델링<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <p>위협모델은 요구사항 분석 단계에서( <strong>유즈케이스 다이어그램, 액티비티 다이어그램, DFD</strong> ) 기능 단위로 공격자가 어떻게 공격할 수 있는지 정의한 것이다. 이에 대한 위협분석의 목적은 대응해야할 위협을 파악하고, 어떻게 대응할 수 있는지를 결정하기 위한 체계적인 방법을 제공하는 것이다. 이를 조사하여 설계자에게 전달하는 것은 개발보안에서 중요하다.</p>
-<p>단계는 다음과 같다.</p>
+<p>단계는 다음과 같다. (실제로 7단계로 구성되어 있음) <a class="reference external" href="https://msdn.microsoft.com/en-us/library/ff648644.aspx">MS가 제시한 모델링 방법</a>
+<a class="reference external" href="http://openeg.co.kr/378">OPENEG 예시</a></p>
 <ol class="arabic simple">
 <li>배경 정보 수집 (DFD를 사용하여 어플리케이션을 분해한다.)</li>
+<li>위협 모델 만들기 및 분석 (각 기능별 보안 약점을 도출하고 이를 7가지로 분류한다. SPRIDE를 사용한다.)</li>
+<li>위협 검토 (DREAD의 각 항목에 점수를 매겨 높은 순서대로 제거한다.)</li>
+<li>완화 방법 및 기술 식별</li>
 </ol>
-<p>2. 위협 모델 만들기 및 분석 (각 기능별 보안 약점을 도출하고 이를 7가지로 분류한다. SPRIDE를 사용한다.)
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-3. 위협 검토 (DREAD의 각 항목에 점수를 매겨 높은 순서대로 제거한다.)
-4. 완화 방법 및 기술 식별</p>
 </div>
 </div>
 <div class="section" id="id11">
@@ -154,9 +154,9 @@
 <div class="section" id="xss">
 <h4>3.1.4.4. XSS (크로스 사이트 스크립트)<a class="headerlink" href="#xss" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li>Reflective XSS : 악성스크립트를 GET 파라미터에 포함 시킨 하이퍼 링크를 다른 사용자가 클릭하게 만들어서 악성 스크립트를 실행하는 해킹방법</li>
+<li>Reflective XSS : 악성스크립트를 GET 파라미터에 포함 시킨 하이퍼 링크를 다른 사용자가 클릭하게 만들어서 악성 스크립트를 실행하는 해킹 방법</li>
 <li>Stored XSS : 악성스크립트를 DB에 저장하는 기능을 이용하여 저장하고 다른 사용자가 그 정보를 이용할때 공격이 일어나는 해킹 방법</li>
-<li>DOM XSS : AJAX 요청에 대한 브라우저에 수신된 데이터를 다시 잘라서 Document에 write하는 작업을 수행하는 경우 사용하는 방법</li>
+<li>DOM XSS : AJAX 요청에 대한 브라우저에 수신된 데이터를 다시 잘라서 Document에 write하는 작업을 수행하는 경우 사용하는 해킹 방법</li>
 </ul>
 </div>
 <div class="section" id="csrf">
@@ -185,7 +185,6 @@
 <li>addCookie()</li>
 <li>setHeader()</li>
 </ul>
-<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 8586868c859120d342713a1fcc5ea708b31f1927</p>
 </div>
 </div>
 </div>
