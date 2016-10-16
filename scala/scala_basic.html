@@ -1,0 +1,218 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. 스칼라 기본 &mdash; Changchang Documentation 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
+    <link rel="up" title="스칼라(Scala)" href="scala_index.html" />
+    <link rel="next" title="C++" href="../cpp/cpp_index.html" />
+    <link rel="prev" title="스칼라(Scala)" href="scala_index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cpp/cpp_index.html" title="C++"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="scala_index.html" title="스칼라(Scala)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
+          <li><a href="scala_index.html" accesskey="U">스칼라(Scala)</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>1. 스칼라 기본<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>1.1. 제네릭 타입의 변성 및 공변적인 파라미터 타입<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><strong>스칼라에서는 타입파라미터를 통해 다양한 타입 생성을 지원한다.</strong> 제네릭(타입 생성자) 클래스/트레이트에 특정 타입을 넘겨주면 파라미터화된 타입을 생성할 수 있다. 파라미터화된 타입이나 평범한 타입(타입 파라미터가 없는)을 사용해 인스턴스를 생성할 수 있다.</p>
+<p>타입 파라미터 예시:</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="k">object</span> <span class="nc">Main</span> <span class="k">extends</span> <span class="nc">App</span> <span class="o">{</span>
+      <span class="k">val</span> <span class="n">q</span> <span class="k">=</span> <span class="nc">Queue</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="mi">7</span><span class="o">).</span><span class="n">enqueue</span><span class="o">(</span><span class="mi">10</span><span class="o">).</span><span class="n">tail</span>
+      <span class="n">println</span><span class="o">(</span><span class="n">q</span><span class="o">.</span><span class="n">toString</span><span class="o">)</span>
+<span class="o">}</span>
+<span class="k">class</span> <span class="nc">Queue</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="k">private</span> <span class="k">val</span> <span class="n">leading</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">T</span><span class="o">],</span>
+                              <span class="k">private</span> <span class="k">val</span> <span class="n">trailing</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">T</span><span class="o">]){</span>
+      <span class="k">private</span> <span class="k">def</span> <span class="n">mirror</span> <span class="k">=</span> <span class="k">if</span><span class="o">(</span><span class="n">leading</span><span class="o">.</span><span class="n">isEmpty</span><span class="o">)</span> <span class="k">new</span> <span class="nc">Queue</span><span class="o">(</span><span class="n">trailing</span><span class="o">.</span><span class="n">reverse</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">)</span>
+              <span class="k">else</span> <span class="k">this</span>
+      <span class="k">override</span> <span class="k">def</span> <span class="n">toString</span> <span class="k">=</span> <span class="o">(</span><span class="n">leading</span> <span class="o">:::</span> <span class="n">trailing</span><span class="o">.</span><span class="n">reverse</span><span class="o">).</span><span class="n">toString</span>
+      <span class="k">def</span> <span class="n">head</span> <span class="k">=</span> <span class="n">mirror</span><span class="o">.</span><span class="n">leading</span><span class="o">.</span><span class="n">head</span>
+      <span class="k">def</span> <span class="n">tail</span> <span class="k">=</span> <span class="o">{</span>
+              <span class="k">val</span> <span class="n">q</span> <span class="k">=</span> <span class="n">mirror</span>
+              <span class="k">new</span> <span class="nc">Queue</span><span class="o">(</span><span class="n">q</span><span class="o">.</span><span class="n">leading</span><span class="o">.</span><span class="n">tail</span><span class="o">,</span> <span class="n">q</span><span class="o">.</span><span class="n">trailing</span><span class="o">)</span>
+      <span class="o">}</span>
+      <span class="k">def</span> <span class="n">enqueue</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">T</span><span class="o">)</span> <span class="k">=</span>
+              <span class="k">new</span> <span class="nc">Queue</span><span class="o">(</span><span class="n">leading</span><span class="o">,</span> <span class="n">x</span> <span class="o">::</span> <span class="n">trailing</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="k">object</span> <span class="nc">Queue</span><span class="o">{</span>
+      <span class="k">def</span> <span class="n">apply</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="n">arr</span><span class="k">:</span> <span class="kt">T*</span><span class="o">)</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Queue</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="n">arr</span><span class="o">.</span><span class="n">toList</span><span class="o">,</span> <span class="nc">Nil</span><span class="o">)</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>제네릭 클래스나 트레이트</strong> 는 다음과 같이 정의할 수 있다.:</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Queue</span><span class="o">[</span><span class="kt">T</span><span class="o">]{</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>파라미터화 된 타입은 <em>new Queue[Int]</em> 또는 <em>new Queue[String]</em> 와 같이 타입을 대괄호 안에 넣어서 타입을 생성할 수 있다. 스칼라에서는 타입 파라미터 덕분에 파라미터화된 타입들 간에 서브타입 관계 <strong>(subtype relationship)</strong> 가 존재할 수 있다. 예를들어 Queue[String]은 Queue[AnyRef]의 서브타입이 될 수 있다. <strong>만약 그렇다면 Queue 클래스는 타입 파라미터 T에 대해 공변적이라고 할 수 있다.</strong> (서브타입이 될 수도 안될 수도 있음)</p>
+<p><strong>스칼라에서는 기본적으로 타입 파라미터에 대해 무공변성을 갖는다.</strong> 즉 위의 Queue[String]은 Queue[AnyRef]의 서브타입이 아니다. 타입파라미터 T에 대해 공변성을 띄게하고 싶다면 T앞에 변성표기 <em>+</em> 를 넣어서 공변성을 띄게 할 수 있다. <em>-</em> 를 넣는다면 반공변성을 띄게 된다. 타입 파라미터에 반공변적이라면 임의의 타입 파라미터 S가 T의 서브타입일때 Queue[T]는 Queue[S]의 서브타입이 된다.</p>
+<p>어떤 타입 파라미터의 공변(covariant), 반공변, 무공변 여부를 파라미터의 <strong>변성(variance)</strong> 이라고 f부른다. 또한 공변/반공변을 띄게 하는 <strong>+/-</strong> 표기는 <strong>변성표기</strong> 라고 한다.</p>
+<p>공변 타입이 항상 가능하지는 않다. 다음과 같은 설계는 불가능하다.:</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Cell</span><span class="o">[</span><span class="kt">+T</span><span class="o">](</span><span class="n">init</span><span class="k">:</span> <span class="kt">T</span><span class="o">){</span>
+      <span class="k">private</span><span class="o">[</span><span class="kt">this</span><span class="o">]</span> <span class="k">var</span> <span class="n">v</span> <span class="k">=</span> <span class="n">init</span>
+      <span class="k">def</span> <span class="n">get</span> <span class="k">=</span> <span class="n">v</span>
+      <span class="k">def</span> <span class="n">set</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">T</span><span class="o">)</span> <span class="o">{</span> <span class="n">v</span> <span class="k">=</span> <span class="n">x</span> <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>위와 같이 변수 재할당이 있는 경우 공변 타입이 가능하지 않다. (실제로 타입 파라미터를 함수의 파라미터로 사용하는 것이 허용되지 않는다.) 예를들어 다음과 같은 코드가 있다고 가정할 경우 문제가 발생한다.:</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="k">val</span> <span class="n">original</span><span class="k">:</span> <span class="kt">Cell</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Cell</span><span class="o">(</span><span class="s">&quot;Hello World&quot;</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">post</span><span class="k">:</span> <span class="kt">Cell</span><span class="o">[</span><span class="kt">Any</span><span class="o">]</span> <span class="k">=</span> <span class="n">original</span>
+<span class="n">post</span><span class="o">.</span><span class="n">set</span><span class="o">(</span><span class="mi">1234</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">value</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="n">get</span>
+</pre></div>
+</div>
+<p>위 코드에서 문제가 되는 부분은 2번째 줄에서 Cell[String] 타입을 Cell[Any]로 서브타이핑 하는 부분이다. (<a class="reference external" href="https://en.wikipedia.org/wiki/Subtyping">subtyping(서브타이핑)</a>) 따라서 마지막 4번째 줄에서 String이 아닌 1234를 얻게되므로 이는 프로그램 오류이다. 서브타이핑 관점에서 Cell[String]은 Cell[Any]보다 할 수 있는 것이 적으므로 (Int 타입 set의 파라미터로 넘기는 등) 서브타이핑이 불가능하다. 따라서 위의 공변적 Cell 타입은 컴파일 되지 않는다. <strong>클래스의 공변적 타입 파라미터는 함수의 파라미터로 사용할 수 없다.</strong> (실제로 타입 T인 v라는 변수는 게터 메소드 def v: T, def v_=(x: T)로 취급되므로 var을 사용할 수 없다.)</p>
+<p>다음 예제도 타입 건전성을 위반하므로 컴파일 될 수 없다.:</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="k">object</span> <span class="nc">TestCovariant</span> <span class="o">{</span>
+  <span class="k">class</span> <span class="nc">Fruit</span>
+  <span class="k">class</span> <span class="nc">Apple</span> <span class="k">extends</span> <span class="nc">Fruit</span>
+  <span class="k">class</span> <span class="nc">Orange</span> <span class="k">extends</span> <span class="nc">Fruit</span>
+  <span class="k">class</span> <span class="nc">Space</span><span class="o">[</span><span class="kt">+T</span><span class="o">]</span> <span class="o">(</span><span class="k">private</span> <span class="k">val</span> <span class="n">element</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">T</span><span class="o">]){</span>
+    <span class="k">def</span> <span class="n">add</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">T</span><span class="o">)</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Space</span><span class="o">(</span><span class="n">x</span> <span class="o">::</span> <span class="n">element</span><span class="o">)</span>
+    <span class="k">def</span> <span class="n">get</span><span class="k">:</span><span class="kt">List</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="n">element</span>
+  <span class="o">}</span>
+  <span class="k">class</span> <span class="nc">DoubleSpace</span><span class="o">(</span><span class="k">val</span> <span class="n">t</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">Space</span><span class="o">[</span><span class="kt">Int</span><span class="o">](</span><span class="n">t</span><span class="o">){</span>
+    <span class="k">override</span> <span class="k">def</span> <span class="n">add</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="k">super</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="o">)</span>
+  <span class="o">}</span>
+  <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="o">={</span>
+    <span class="k">val</span> <span class="n">any</span><span class="k">:</span> <span class="kt">Space</span><span class="o">[</span><span class="kt">Any</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">DoubleSpace</span>
+    <span class="n">any</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="s">&quot;Can&#39;t double this string&quot;</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>위와 같이 main문에서 잘못된 서브타이핑으로 문자열을 제곱하는 오류가 발생할 수 도 있다. 이는 Space[Any]가 Space[Int]보다 할 수 있는 것이 많기 때문이다. 즉 리스코프 치환 원칙(Liskov Substitution Principle)에 의해 Space[Int]는 Space[Any]의 서브타입이 될 수 없다. <strong>Space[Int]가 Space[Any]의 모든 연산을 지원하고 인자를 더 적게 요구하고, 더 많은 기능을 제공할 때 Space[Int]는 Space[Any]의 서브타입이 될 수 있다.</strong> 따라서 Space[Int]를 Space[Any]로 서브타이핑 했을때 이런 요류가 발생하는 것이다.</p>
+<p>좀더 제약을 준다면 공변적 타입 파라미터를 함수의 인자로 문제없이 사용할 수 있다. 먼저 <em>파라미터화 된 메소드로 바꾼 뒤 타입 파라미터 U의 하위바운드로 class의 타입파라미터 T를 지정</em> 하는 것이다.:</p>
+<div class="highlight-scala"><div class="highlight"><pre><span class="k">object</span> <span class="nc">TestCovariant</span> <span class="o">{</span>
+  <span class="k">class</span> <span class="nc">Fruit</span>
+  <span class="k">class</span> <span class="nc">Apple</span> <span class="k">extends</span> <span class="nc">Fruit</span>
+  <span class="k">class</span> <span class="nc">Orange</span> <span class="k">extends</span> <span class="nc">Fruit</span>
+  <span class="k">class</span> <span class="nc">Space</span><span class="o">[</span><span class="kt">+T</span><span class="o">]</span> <span class="o">(</span><span class="k">private</span> <span class="k">val</span> <span class="n">element</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">T</span><span class="o">]){</span>
+    <span class="k">def</span> <span class="n">add</span><span class="o">[</span><span class="kt">U</span> <span class="k">&gt;:</span> <span class="kt">T</span><span class="o">](</span><span class="n">x</span><span class="k">:</span> <span class="kt">U</span><span class="o">)</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Space</span><span class="o">(</span><span class="n">x</span> <span class="o">::</span> <span class="n">element</span><span class="o">)</span>
+    <span class="k">def</span> <span class="n">get</span><span class="k">:</span><span class="kt">List</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="n">element</span>
+  <span class="o">}</span>
+  <span class="k">class</span> <span class="nc">DoubleSpace</span><span class="o">(</span><span class="k">val</span> <span class="n">t</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">Space</span><span class="o">[</span><span class="kt">Int</span><span class="o">](</span><span class="n">t</span><span class="o">){</span>
+    <span class="k">override</span> <span class="k">def</span> <span class="n">add</span><span class="o">[</span><span class="kt">U</span> <span class="k">&gt;:</span> <span class="kt">Int</span><span class="o">](</span><span class="n">x</span><span class="k">:</span> <span class="kt">U</span><span class="o">)</span> <span class="k">=</span> <span class="k">super</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="n">x</span><span class="o">.</span><span class="n">toString</span><span class="o">.</span><span class="n">length</span> <span class="o">+</span> <span class="n">x</span><span class="o">.</span><span class="n">toString</span><span class="o">.</span><span class="n">length</span><span class="o">)</span> <span class="c1">//오버라이드를 하더라도 이러한 시그니쳐를 갖는다.</span>
+  <span class="o">}</span>
+  <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="o">={</span>
+    <span class="k">val</span> <span class="n">ap</span><span class="k">:</span> <span class="kt">Space</span><span class="o">[</span><span class="kt">Apple</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Space</span><span class="o">[</span><span class="kt">Apple</span><span class="o">](</span><span class="nc">List</span><span class="o">(</span><span class="k">new</span> <span class="nc">Apple</span><span class="o">()))</span>
+    <span class="k">val</span> <span class="n">or</span> <span class="k">=</span> <span class="n">ap</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Orange</span><span class="o">)</span>
+    <span class="n">println</span><span class="o">(</span><span class="n">or</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">toString</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Space는 공변적 T를 갖고 있으므로 T의 임의의 슈퍼타입으로 파라미터화된 Space로 서브타이핑할 수 있다. 또한 add를 공통 슈퍼타입을 갖는 다른 타입을 인자로 계속해서 호출할 수 있으며 추가할 수 있다. 결과적으로 Apple만 받는 Space가 아닌 좀더 일반적인 Space 타입이 되었다. 또한 호출할때마다 타입 Space[U]를 반환한다. 변성표기와 하위 바운드를 지정함으로써 더 유연한 모델을 만들 수 있으며 이는 타입 위주 설계(type-driven design)에 유용하다.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. 스칼라 기본</a><ul>
+<li><a class="reference internal" href="#id2">1.1. 제네릭 타입의 변성 및 공변적인 파라미터 타입</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="scala_index.html"
+                        title="previous chapter">스칼라(Scala)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../cpp/cpp_index.html"
+                        title="next chapter">C++</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/scala/scala_basic.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cpp/cpp_index.html" title="C++"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="scala_index.html" title="스칼라(Scala)"
+             >previous</a> |</li>
+        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
+          <li><a href="scala_index.html" >스칼라(Scala)</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

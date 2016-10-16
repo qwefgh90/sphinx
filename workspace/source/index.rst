@@ -24,6 +24,7 @@ Category:
    python/python_index.rst
    spring/spring_index.rst
    java/java_index.rst
+   scala/scala_index.rst
    cpp/cpp_index.rst
    database/database_index.rst
    network/network_index.rst

