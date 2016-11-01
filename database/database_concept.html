@@ -8,9 +8,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. 데이터베이스를 이루는 주요 개념 &mdash; Changchang Documentation 1.0 documentation</title>
+    <title>3. 데이터베이스를 이루는 주요 개념 &#8212; Changchang Documentation 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,14 +25,16 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
     <link rel="up" title="데이터베이스" href="database_index.html" />
     <link rel="next" title="4. SQL 기본" href="sql_basic.html" />
     <link rel="prev" title="2. 데이터베이스 모델링" href="model_basic.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,15 +46,15 @@
         <li class="right" >
           <a href="model_basic.html" title="2. 데이터베이스 모델링"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="database_index.html" accesskey="U">데이터베이스</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="database_index.html" accesskey="U">데이터베이스</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="id1">
 <h1>3. 데이터베이스를 이루는 주요 개념<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
@@ -108,22 +110,22 @@
 <h3>3.5.2. 팬텀 문제<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>위의 <strong>REPEATABLE READ</strong> 설명에서 공유락이 걸려있지 않은 레코드는 삽입할 수 있다고 하였다. SELECT 쿼리가 하나의 트랜잭션에 2번이 실행되고 그 사이에 INSERT 쿼리가 발생할 경우 2번째 SELECT 문에서 새로운 데이터가 검색될 것이다.</p>
 <p>팬텀 문제</p>
-<div class="highlight-python"><div class="highlight"><pre>트랜잭션 1
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">트랜잭션</span> <span class="mi">1</span>
 
-SELECT ENAME
-FROM EMPLOYEE
-WHERE DNO = 1;
+<span class="n">SELECT</span> <span class="n">ENAME</span>
+<span class="n">FROM</span> <span class="n">EMPLOYEE</span>
+<span class="n">WHERE</span> <span class="n">DNO</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 
-트랜잭션 2
+<span class="n">트랜잭션</span> <span class="mi">2</span>
 
-INSERT INTO EMPLOYEE
-VALUES(3474, &#39;정희연&#39;, &#39;사원&#39;, 2106, 1500000, 1);
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">EMPLOYEE</span>
+<span class="n">VALUES</span><span class="p">(</span><span class="mi">3474</span><span class="p">,</span> <span class="s1">&#39;정희연&#39;</span><span class="p">,</span> <span class="s1">&#39;사원&#39;</span><span class="p">,</span> <span class="mi">2106</span><span class="p">,</span> <span class="mi">1500000</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
-트랜잭션 1 (아직 트랜잭션 내부)
+<span class="n">트랜잭션</span> <span class="mi">1</span> <span class="p">(</span><span class="n">아직</span> <span class="n">트랜잭션</span> <span class="n">내부</span><span class="p">)</span>
 
-SELECT ENAME
-FROM EMPLOYEE
-WHERE DNO = 1;
+<span class="n">SELECT</span> <span class="n">ENAME</span>
+<span class="n">FROM</span> <span class="n">EMPLOYEE</span>
+<span class="n">WHERE</span> <span class="n">DNO</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -176,7 +178,7 @@ WHERE DNO = 1;
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -205,29 +207,28 @@ WHERE DNO = 1;
   <h4>Next topic</h4>
   <p class="topless"><a href="sql_basic.html"
                         title="next chapter">4. SQL 기본</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/database/database_concept.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/database/database_concept.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -239,13 +240,13 @@ WHERE DNO = 1;
         <li class="right" >
           <a href="model_basic.html" title="2. 데이터베이스 모델링"
              >previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="database_index.html" >데이터베이스</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="database_index.html" >데이터베이스</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, Changwon Choe.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>

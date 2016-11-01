@@ -8,9 +8,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. 객체지향 스프링 &mdash; Changchang Documentation 1.0 documentation</title>
+    <title>1. 객체지향 스프링 &#8212; Changchang Documentation 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,14 +25,16 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
     <link rel="up" title="Spring" href="spring_index.html" />
     <link rel="next" title="2. Spring MVC" href="spring_rest.html" />
     <link rel="prev" title="Spring" href="spring_index.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,15 +46,15 @@
         <li class="right" >
           <a href="spring_index.html" title="Spring"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="spring_index.html" accesskey="U">Spring</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="spring_index.html" accesskey="U">Spring</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="spring-basic-intro">
 <span id="id1"></span><h1>1. 객체지향 스프링<a class="headerlink" href="#spring-basic-intro" title="Permalink to this headline">¶</a></h1>
@@ -94,7 +96,7 @@ Instrumentation - 클래스 파일을 쪼개고 다시 조립할 수 있는 기�
 <div class="section" id="xml">
 <h3>1.2.1. XML 파일<a class="headerlink" href="#xml" title="Permalink to this headline">¶</a></h3>
 <p>web.xml:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;web-app</span> <span class="na">version=</span><span class="s">&quot;2.5&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee&quot;</span>
         <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
         <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</span><span class="nt">&gt;</span>
@@ -131,7 +133,7 @@ Instrumentation - 클래스 파일을 쪼개고 다시 조립할 수 있는 기�
 </div>
 <p>URL이 <em>/</em> 로 요청이 들어오면 DispatcherServlet이 실행된다. servlet-context.xml 을 블록잡고 command + shift + R (맥 - 이클립스) 을 누르면 해당파일을 열 수 있다.</p>
 <p>servlet_context.xml:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/mvc&quot;</span>
         <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
         <span class="na">xmlns:beans=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
@@ -162,7 +164,7 @@ Instrumentation - 클래스 파일을 쪼개고 다시 조립할 수 있는 기�
 </div>
 <div class="section" id="applicationcontext-work">
 <span id="id7"></span><h3>1.2.2. 어플리케이션 컨텍스트 동작방식<a class="headerlink" href="#applicationcontext-work" title="Permalink to this headline">¶</a></h3>
-<p>왜 <em>어플리케이션 컨텍스트</em> 가 빈 팩토리보다 뛰어난가? DaoFactory는 객체를 생성하고 DB 커넥션 코드가 포함된 클래스임에 반해 어플리케이션 컨텍스트는 IoC를 적용해서 관리할 모든 오브젝트에 대한 생성과 관계설정을 담당한다. 결론적으로 어플리케이션 컨텍스트를 사용하면 DaoFactory를 알 필요 없이 이는 일관된 방식으로 빈 객체를 사용할 수 있다. 또한 다양한 검색기능을 제공해주고 종합적인 <em class="xref std std-term">IoC</em> 기능을 제공해 준다.</p>
+<p>왜 <em>어플리케이션 컨텍스트</em> 가 빈 팩토리보다 뛰어난가? DaoFactory는 객체를 생성하고 DB 커넥션 코드가 포함된 클래스임에 반해 어플리케이션 컨텍스트는 IoC를 적용해서 관리할 모든 오브젝트에 대한 생성과 관계설정을 담당한다. 결론적으로 어플리케이션 컨텍스트를 사용하면 DaoFactory를 알 필요 없이 이는 일관된 방식으로 빈 객체를 사용할 수 있다. 또한 다양한 검색기능을 제공해주고 종합적인 <span class="xref std std-term">IoC</span> 기능을 제공해 준다.</p>
 <p>용어 정리
 &#8212;&#8212;&#8211;–&#8212;-</p>
 <p>빈:</p>
@@ -208,13 +210,13 @@ Instrumentation - 클래스 파일을 쪼개고 다시 조립할 수 있는 기�
 </div>
 <div class="section" id="applicationcontext-singleton">
 <span id="id8"></span><h3>1.2.3. 어플리케이션 컨텍스트와 싱글톤 객체<a class="headerlink" href="#applicationcontext-singleton" title="Permalink to this headline">¶</a></h3>
-<p>서버 어플리케이션에서 매번 클라이언트 요청마다 새로운 객체를 만들어 데이터를 엑세스한다면 자원 낭비가 심할 것이다. 따라서 어플리케이션 컨테스트는 빈을 생성할때 싱글톤 객체를 반환한다. 하지만 서버 어플리케이션에서 싱글톤 패턴을 사용한 객체는 여러개 생길 수 있다. 예를들어 분산된 JVM의 경우 그럴 수 있다. 또한 싱글톤 객체는 private로서 상속이 불가능하다. 따라서 스프링에선 <em class="xref std std-term">싱글톤 레지스트리</em> 를 제공한다. 일반적인 클래스를 싱글톤으로 사용할 수 있게 하는 스프링의 중요한 기능이다.</p>
+<p>서버 어플리케이션에서 매번 클라이언트 요청마다 새로운 객체를 만들어 데이터를 엑세스한다면 자원 낭비가 심할 것이다. 따라서 어플리케이션 컨테스트는 빈을 생성할때 싱글톤 객체를 반환한다. 하지만 서버 어플리케이션에서 싱글톤 패턴을 사용한 객체는 여러개 생길 수 있다. 예를들어 분산된 JVM의 경우 그럴 수 있다. 또한 싱글톤 객체는 private로서 상속이 불가능하다. 따라서 스프링에선 <span class="xref std std-term">싱글톤 레지스트리</span> 를 제공한다. 일반적인 클래스를 싱글톤으로 사용할 수 있게 하는 스프링의 중요한 기능이다.</p>
 <p>싱글톤 방식으로 사용될 클래스를 설계할때 멀티스레드 환경에서 동작할 것을 고려하여 설계하여야 한다. 하지만 싱글톤을 사용할 수 있다고 해서 컨테이너가 삭제하기 전까지 사용할 수 있는 싱글톤 스코프만 존재하는것은 아니다. 요청 스코프, 세션 스코프, 프로토타입 스코프 등도 사용할 수 있다.</p>
 </div>
 <div class="section" id="di">
 <h3>1.2.4. 의존관계 주입(DI)<a class="headerlink" href="#di" title="Permalink to this headline">¶</a></h3>
 <p>컨테이너에서 객체의 레퍼런스를 전달받고 그 레퍼런스와 다른 객체들 사이의 의존관계를 만들어 주는 것 이것을 의존관계 주입이라고 한다. 이때 의존한다는 뜻은 예를들어 2개의 클래스가 A &#8212;&gt; B 와 같은 관계를 가지고 있을때 A클래스는 B클래스에 의존하고 있고 B클래스는 A클래스에 의존하고 있지 않다라고 한다.</p>
-<p>2개의 클래스가 서로 의존관계를 생성할때 인터페이스에 의존하게 된다면 인터페이스를 구현하는 실제 클래스와의 의존관계가 느슨해져서 다른 한쪽의 변화로 부터 자유롭다. 런타임에 실제 클래스가 인스턴스화 된다면 그 객체를 <em class="xref std std-term">의존 오브젝트</em> 라고 한다.</p>
+<p>2개의 클래스가 서로 의존관계를 생성할때 인터페이스에 의존하게 된다면 인터페이스를 구현하는 실제 클래스와의 의존관계가 느슨해져서 다른 한쪽의 변화로 부터 자유롭다. 런타임에 실제 클래스가 인스턴스화 된다면 그 객체를 <span class="xref std std-term">의존 오브젝트</span> 라고 한다.</p>
 <p>의존관계를 주입을 하는 역할을 가진 DaoFactory는 DI 컨테이너가 된다. DaoFactory가 UserDao라는 DAO를 만들때 DB연결 객체를 주입하게된다.</p>
 <p>애노테이션이 아닌 XML 설정파일을 활용하여 의존관계 주입을 할 수 있다.</p>
 </div>
@@ -238,7 +240,7 @@ mvn package: 컴파일 후 jar 또는 war 패키지를 생성한다.
 mvn install: jar또는 war를 로컬 저장소에 복사한다.
 mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포함하고 있다면 WAS 까지 자동으로 실행한다.</p>
 <p>톰캣 바로 실행:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;plugin&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;plugin&gt;</span>
         <span class="nt">&lt;groupId&gt;</span>org.apache.tomcat.maven<span class="nt">&lt;/groupId&gt;</span>
         <span class="nt">&lt;artifactId&gt;</span>tomcat7-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
         <span class="c">&lt;!-- or if you want to use tomcat 6.x &lt;artifactId&gt;tomcat6-maven-plugin&lt;/artifactId&gt; --&gt;</span>
@@ -260,7 +262,7 @@ mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포�
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -294,29 +296,28 @@ mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포�
   <h4>Next topic</h4>
   <p class="topless"><a href="spring_rest.html"
                         title="next chapter">2. Spring MVC</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/spring/spring_basic.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/spring/spring_basic.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -328,13 +329,13 @@ mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포�
         <li class="right" >
           <a href="spring_index.html" title="Spring"
              >previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="spring_index.html" >Spring</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="spring_index.html" >Spring</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, Changwon Choe.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>

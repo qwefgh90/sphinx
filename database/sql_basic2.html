@@ -8,9 +8,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5. SQL 활용 &mdash; Changchang Documentation 1.0 documentation</title>
+    <title>5. SQL 활용 &#8212; Changchang Documentation 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,14 +25,16 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
     <link rel="up" title="데이터베이스" href="database_index.html" />
     <link rel="next" title="6. SQL 최적화 및 성능 튜닝" href="sql_optimize.html" />
     <link rel="prev" title="4. SQL 기본" href="sql_basic.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,27 +46,27 @@
         <li class="right" >
           <a href="sql_basic.html" title="4. SQL 기본"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="database_index.html" accesskey="U">데이터베이스</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="database_index.html" accesskey="U">데이터베이스</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="sql">
 <span id="sql-basic2"></span><h1>5. SQL 활용<a class="headerlink" href="#sql" title="Permalink to this headline">¶</a></h1>
 <p>본 내용은 <a class="reference external" href="http://www.dbguide.net/db.db?cmd=view&amp;boardUid=148404&amp;boardConfigUid=9&amp;categoryUid=216&amp;boardIdx=132&amp;boardStep=1">DBGuide.net</a> 목차/내용을 기반으로 작성자의 입장에서 요점을 정리한 문서입니다.</p>
 <div class="section" id="standard-join">
 <h2>5.1. 표준 조인(STANDARD JOIN)<a class="headerlink" href="#standard-join" title="Permalink to this headline">¶</a></h2>
-<p>표준조인에는 INNER JOIN이 있다. INNER JOIN에 대한 설명은 <a class="reference internal" href="sql_basic.html#inner-join"><em>EQUI JOIN (INNER JOIN)</em></a> 을 확인해보라.</p>
+<p>표준조인에는 INNER JOIN이 있다. INNER JOIN에 대한 설명은 <a class="reference internal" href="sql_basic.html#inner-join"><span class="std std-ref">EQUI JOIN (INNER JOIN)</span></a> 을 확인해보라.</p>
 <p>NATURAL JOIN은 두 테이블 간의 동일한 이름을 갖는 모든 칼럼들에 대해 EQUI(=) JOIN을 수행한다. 하지만 이는 SQL Server에서는 지원하지 않는 기능이다. 주의할 사항으로는 칼럼명 뿐만 아니라 도메인 역시 같아야 한다는 점이다. (데이터 성격)</p>
-<p>NATURAL JOIN은 모든 일치되는 칼럼들에 대해 JOIN이 이루어지지만, FROM 절의 USING 조건절을 이용하면 같은 이름을 가진칼럼들 중에서 원하는 칼럼에 대해서만 선택적으로 EQUI JOIN을 할 수 있다. using 사용법은 <a class="reference internal" href="#sql-using"><em>USING 조건절</em></a> 에서 확인할 수 있다.</p>
+<p>NATURAL JOIN은 모든 일치되는 칼럼들에 대해 JOIN이 이루어지지만, FROM 절의 USING 조건절을 이용하면 같은 이름을 가진칼럼들 중에서 원하는 칼럼에 대해서만 선택적으로 EQUI JOIN을 할 수 있다. using 사용법은 <a class="reference internal" href="#sql-using"><span class="std std-ref">USING 조건절</span></a> 에서 확인할 수 있다.</p>
 <p><em>USING절</em> 이외에도 <em>ON 조건절</em> 을 사용하여 칼럼명이 다르더라도 조인을 수행할 수 있다.</p>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
 <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="n">STU</span>
 <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">STUDENT_TEMP</span> <span class="n">STUT</span> <span class="k">ON</span> <span class="n">STU</span><span class="p">.</span><span class="n">AGE</span> <span class="o">=</span> <span class="n">STUT</span><span class="p">.</span><span class="n">TAGE</span>
 </pre></div>
@@ -72,14 +74,14 @@
 <div class="section" id="using">
 <span id="sql-using"></span><h3>5.1.1. USING 조건절<a class="headerlink" href="#using" title="Permalink to this headline">¶</a></h3>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
 <span class="k">FROM</span> <span class="n">DEPT</span> <span class="k">JOIN</span> <span class="n">DEPT_TEMP</span>
 <span class="k">USING</span> <span class="p">(</span><span class="n">DEPTNO</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>DEPT와 DEPT_TEMP 테이블을 DEPTNO 칼럼을 이용하여 JOIN(INNER JOIN)의 USING 조건절로 수행한다.</p>
 <p>잘못된 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">DEPT</span><span class="p">.</span><span class="n">DEPTNO</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">DEPT</span><span class="p">.</span><span class="n">DEPTNO</span>
 <span class="k">FROM</span> <span class="n">DEPT</span> <span class="k">JOIN</span> <span class="n">DEPT_TEMP</span>
 <span class="k">USING</span> <span class="p">(</span><span class="n">DEPTNO</span><span class="p">);</span>
 </pre></div>
@@ -90,7 +92,7 @@
 <span id="id1"></span><h3>5.1.2. CROSS JOIN<a class="headerlink" href="#cross-join" title="Permalink to this headline">¶</a></h3>
 <p>곱집합을 반환하는 JOIN이라고 보면된다. 예를들어 EMP 칼럼의 개수가 14건, DEPT 칼럼의 개수가 4건일 경우 총 56건의 데이터가 반환된다.</p>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
 <span class="k">FROM</span> <span class="n">student</span> <span class="n">stu</span>
 <span class="k">CROSS</span> <span class="k">JOIN</span> <span class="n">student_temp</span> <span class="n">stut</span>
 </pre></div>
@@ -101,12 +103,12 @@
 <p>기본적으로 INNER JOIN의 결과를 가져오고 JOIN 조건에 동일한 조건이 없을 경우에도 행을 반환할 수 있다. <em>LEFT OUTER JOIN</em> 은 A테이블과 B테이블의 JOIN 칼럼에 같은 값이 있는경우 해당 데이터를 가져오고 없는경우 B의 칼럼에서 가져오는 칼럼들은 NULL 값으로 채운다. RIGHT OUTER JOIN은 LEFT JOIN과 반대로 결과를 생성한다.</p>
 <p>FULL OUTER JOIN은 LEFT OUTER JOIN과 RIGHT OUTER JOIN 의 결과를 합친결과를 반환한다. 이때 UNION ALL이 아닌 UNION 처럼 중복되는 데이터는 삭제한다.</p>
 <p>예시</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="n">STU</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="n">STU</span>
 <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">STUDENT_TEMP</span> <span class="n">STUT</span>
 <span class="k">ON</span> <span class="n">STU</span><span class="p">.</span><span class="n">AGE</span> <span class="o">=</span> <span class="n">STUT</span><span class="p">.</span><span class="n">AGE</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="#cross-join"><em>CROSS JOIN</em></a> 과 <a class="reference internal" href="#outer-join"><em>OUTER JOIN</em></a> 의 차이점은 OUTER JOIN은 NULL로 채워서 반환한다는 점이고 CROSS는 NULL을 포함하지 않고 존재하는 모든행을 곱해서 반환한다는 점이다.</p>
+<p><a class="reference internal" href="#cross-join"><span class="std std-ref">CROSS JOIN</span></a> 과 <a class="reference internal" href="#outer-join"><span class="std std-ref">OUTER JOIN</span></a> 의 차이점은 OUTER JOIN은 NULL로 채워서 반환한다는 점이고 CROSS는 NULL을 포함하지 않고 존재하는 모든행을 곱해서 반환한다는 점이다.</p>
 </div>
 </div>
 <div class="section" id="set-operator">
@@ -124,7 +126,7 @@
 <div class="section" id="oracle">
 <h3>5.3.1. Oracle 계층형 질의<a class="headerlink" href="#oracle" title="Permalink to this headline">¶</a></h3>
 <p>형식:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="p">...</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">...</span>
 <span class="k">FROM</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 <span class="k">WHERE</span> <span class="p">[</span><span class="n">CONDITION</span><span class="p">]</span>
 <span class="k">START</span> <span class="k">WITH</span> <span class="p">[</span><span class="n">CONDITION</span><span class="p">]</span>
@@ -167,7 +169,7 @@
 </tbody>
 </table>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre>SELECT LEVEL, CONCAT(LPAD(&#39;-&#39;, 4 * (LEVEL-1)), 사원) as 사원, 관리자, CONNECT_BY_ISLEAF ISLEAF
+<div class="highlight-sql"><div class="highlight"><pre><span></span>SELECT LEVEL, CONCAT(LPAD(&#39;-&#39;, 4 * (LEVEL-1)), 사원) as 사원, 관리자, CONNECT_BY_ISLEAF ISLEAF
 FROM 사원
 START WITH 관리자 IS NULL
 CONNECT BY PRIOR 사원 = 관리자;
@@ -220,7 +222,7 @@ CONNECT BY PRIOR 사원 = 관리자;
 <h3>5.3.2. 셀프 조인<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>셀프 조인이란 동일 테이블 사이의 조인을 말한다.</p>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre>SELECT E1.사원, E1.관리자, E2.관리자 차상위 관리자
+<div class="highlight-sql"><div class="highlight"><pre><span></span>SELECT E1.사원, E1.관리자, E2.관리자 차상위 관리자
 FROM 사원 E1 LEFT OUTER JOIN 사원 E2
 ON (E1.관리자 = E2.사원)
 ORDER BY E1.사원
@@ -274,7 +276,7 @@ ORDER BY E1.사원
 </ul>
 <p>사용 가능한 위치는 SELECT, FROM, WHERE, HAVING, ORDER BY, INSERT의 VALUES 절, UPDATE문의 SET 절이 있다. 서브쿼리가 FROM 에서 사용된다면 INLINE 뷰라고 부르며 절차성있는 특징을 보여주게된다.</p>
 <p>EXISTS 사용 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">student</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">student</span>
 <span class="k">where</span> <span class="k">exists</span> <span class="p">(</span><span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">student</span> <span class="k">where</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -283,12 +285,12 @@ ORDER BY E1.사원
 <h3>5.4.1. 뷰(View)<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>테이블과 달리 뷰는 실제 데이터를 가지고 있지 않고 정의로만 구성 되어있다. (Select 문으로 구성되어 있음) 뷰의 장점으로는 <em>독립성</em> , <em>편리성</em> , <em>보안성</em> 등이 있다. 여기서 독립성은 테이블 구조가 변경되어도 뷰를 사용하는 응용 프로그램은 변경되지 않아도 된다는 점을 말하고 편리성은 복잡한 쿼리를 뷰로 정의했을때 편리하다는 것을 뜻한다. 보안성은 직원의 금여정보와 같이 숨기고 싶은 정보가 존재한다면 숨길 수 있는 성질이다. 단순하게 뷰에서 해당 칼럼을 제외하면 된다.</p>
 <p>뷰생성</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">V_STUDENT</span> <span class="k">AS</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">V_STUDENT</span> <span class="k">AS</span>
 <span class="k">SELECT</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">AGE</span> <span class="k">FROM</span> <span class="n">STUDENT</span>
 </pre></div>
 </div>
 <p>뷰삭제</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">DROP</span> <span class="k">VIEW</span> <span class="n">V_STUDENT</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">DROP</span> <span class="k">VIEW</span> <span class="n">V_STUDENT</span>
 </pre></div>
 </div>
 </div>
@@ -296,7 +298,7 @@ ORDER BY E1.사원
 <div class="section" id="group-function">
 <span id="sql-group-function"></span><h2>5.5. 그룹 함수(GROUP FUNCTION)<a class="headerlink" href="#group-function" title="Permalink to this headline">¶</a></h2>
 <p>일반적인 GROUP BY 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">DNAME</span><span class="p">,</span> <span class="n">JOB</span><span class="p">,</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">DNAME</span><span class="p">,</span> <span class="n">JOB</span><span class="p">,</span>
                 <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="ss">&quot;Total Empl&quot;</span>
                 <span class="k">SUM</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span> <span class="ss">&quot;Total Sal&quot;</span>
 <span class="k">FROM</span> <span class="n">EMP</span><span class="p">,</span> <span class="n">DEPT</span>
@@ -344,7 +346,7 @@ ORDER BY E1.사원
 </tbody>
 </table>
 <p>ROLLUP 함수 사용예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">DNAME</span><span class="p">,</span> <span class="n">JOB</span><span class="p">,</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">DNAME</span><span class="p">,</span> <span class="n">JOB</span><span class="p">,</span>
                 <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="ss">&quot;Tota Empl&quot;</span><span class="p">,</span>
                 <span class="k">SUM</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span> <span class="ss">&quot;Total Sal&quot;</span>
 <span class="k">FROM</span> <span class="n">EMP</span><span class="p">,</span> <span class="n">DEPT</span>
@@ -408,7 +410,7 @@ L3 - GRAND TOTAL</p>
 <p>만약 정렬을 하고 싶다면 ORDER BY DNAME, JOB 을 붙여주면 된다.</p>
 <p>GROUPING 함수를 사용한다면 소집계를 내주는 칸에 문자열을 넣을 수 있다. GROUPING은 GROUP BY 에 명시한 칼럼에 사용할 수 있으며 소집계를 하는 레코드는 1 아닐 경우 0을 반환한다.</p>
 <p>GROUPING 함수 사용:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="k">CASE</span> <span class="k">GROUPING</span><span class="p">(</span><span class="n">DNAME</span><span class="p">)</span> <span class="k">WHEN</span> <span class="mi">1</span> <span class="k">THEN</span> <span class="s1">&#39;All Departments&#39;</span> <span class="k">ELSE</span> <span class="n">DNAME</span> <span class="k">END</span> <span class="k">AS</span> <span class="n">DNAME</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">CASE</span> <span class="k">GROUPING</span><span class="p">(</span><span class="n">DNAME</span><span class="p">)</span> <span class="k">WHEN</span> <span class="mi">1</span> <span class="k">THEN</span> <span class="s1">&#39;All Departments&#39;</span> <span class="k">ELSE</span> <span class="n">DNAME</span> <span class="k">END</span> <span class="k">AS</span> <span class="n">DNAME</span>
                 <span class="p">,</span> <span class="k">CASE</span> <span class="k">GROUPING</span><span class="p">(</span><span class="n">JOB</span><span class="p">)</span> <span class="k">WHEN</span> <span class="mi">1</span> <span class="k">THEN</span> <span class="ss">&quot;All Job&quot;</span> <span class="k">ELSE</span> <span class="n">JOB</span> <span class="k">END</span> <span class="k">AS</span> <span class="n">JOB</span>
                 <span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="ss">&quot;Tota Empl&quot;</span>
                 <span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span> <span class="ss">&quot;Total Sal&quot;</span>
@@ -471,7 +473,7 @@ L3 - GRAND TOTAL</p>
 </tbody>
 </table>
 <p>ROLL UP 함수 결합 칼럼:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="p">...</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">...</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">ROLLUP</span> <span class="p">(</span><span class="n">DNAME</span><span class="p">,</span> <span class="p">(</span><span class="n">JOB</span><span class="p">,</span><span class="n">MGR</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -540,7 +542,7 @@ L3 - GRAND TOTAL</p>
 </tbody>
 </table>
 <p>GROUPING SETS를 사용하여 더욱 다양한 소계 집합을 만들 수 있다:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="k">CASE</span> <span class="k">GROUPING</span><span class="p">(</span><span class="n">DNAME</span><span class="p">)</span> <span class="k">WHEN</span> <span class="mi">1</span> <span class="k">THEN</span> <span class="s1">&#39;All Departments&#39;</span> <span class="k">ELSE</span> <span class="n">DNAME</span> <span class="k">END</span> <span class="k">AS</span> <span class="n">DNAME</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">CASE</span> <span class="k">GROUPING</span><span class="p">(</span><span class="n">DNAME</span><span class="p">)</span> <span class="k">WHEN</span> <span class="mi">1</span> <span class="k">THEN</span> <span class="s1">&#39;All Departments&#39;</span> <span class="k">ELSE</span> <span class="n">DNAME</span> <span class="k">END</span> <span class="k">AS</span> <span class="n">DNAME</span>
                 <span class="p">,</span> <span class="k">CASE</span> <span class="k">GROUPING</span><span class="p">(</span><span class="n">JOB</span><span class="p">)</span> <span class="k">WHEN</span> <span class="mi">1</span> <span class="k">THEN</span> <span class="ss">&quot;All Job&quot;</span> <span class="k">ELSE</span> <span class="n">JOB</span> <span class="k">END</span> <span class="k">AS</span> <span class="n">JOB</span>
                 <span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="ss">&quot;Tota Empl&quot;</span>
                 <span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span> <span class="ss">&quot;Total Sal&quot;</span>
@@ -557,7 +559,7 @@ L3 - GRAND TOTAL</p>
 <div class="section" id="id8">
 <h3>5.6.1. 그룹 내 순위 함수<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>RANK 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">JOB</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">SAL</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">JOB</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">SAL</span>
                 <span class="p">,</span><span class="n">RANK</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">SAL</span> <span class="k">DESC</span><span class="p">)</span> <span class="n">ALL_RANK</span>
                 <span class="p">,</span><span class="n">RANK</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">JOB</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">SAL</span> <span class="k">DESC</span><span class="p">)</span> <span class="n">JOB_RANK</span>
 <span class="k">FROM</span> <span class="n">EMP</span><span class="p">;</span>
@@ -569,7 +571,7 @@ L3 - GRAND TOTAL</p>
 <div class="section" id="id9">
 <h3>5.6.2. 일반 집계 함수<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>SUM 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">MGR</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">SAL</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">MGR</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">SAL</span>
         <span class="k">SUM</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">MGR</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">SAL</span> <span class="n">RANGE</span> <span class="n">UNBOUNDED</span> <span class="n">PERCEDING</span><span class="p">)</span>
         <span class="k">AS</span> <span class="n">MGR_SUM</span>
 <span class="k">FROM</span> <span class="n">EMP</span><span class="p">;</span>
@@ -577,7 +579,7 @@ L3 - GRAND TOTAL</p>
 </div>
 <p>RANGE UNBOUNDED PERCEDING은 현재 행을 기준으로 파티션 내의 첫 번째 행까지의 범위를 지정한다. 이 구문을 사용하면 SALARY의 누적값을 출력한다.</p>
 <p>MAX 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">MGR</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">SAL</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">MGR</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">SAL</span>
 <span class="k">FROM</span> <span class="p">(</span> <span class="k">SELECT</span> <span class="n">MGR</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">SAL</span><span class="p">,</span> <span class="k">MAX</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">MGR</span><span class="p">)</span> <span class="k">AS</span> <span class="n">IV_MAX_SAL</span>
            <span class="k">FROM</span> <span class="n">EMP</span><span class="p">)</span>
 <span class="k">WHERE</span> <span class="n">SAL</span> <span class="o">=</span> <span class="n">IV_MAX_SAL</span><span class="p">;</span>
@@ -585,7 +587,7 @@ L3 - GRAND TOTAL</p>
 </div>
 <p>같은 매너지를 가진 사람중 최대 급여를 받는 사원들을 구한다.</p>
 <p>AVG 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">MGR</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">HIREDATE</span><span class="p">,</span> <span class="n">SAL</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">MGR</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">HIREDATE</span><span class="p">,</span> <span class="n">SAL</span>
         <span class="k">AVG</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">MGR</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">HIREDATE</span>
         <span class="k">ROWS</span> <span class="k">BETWEEN</span> <span class="mi">1</span> <span class="n">PRECEDING</span> <span class="k">AND</span> <span class="mi">1</span> <span class="n">FOLLOWING</span><span class="p">))</span> <span class="k">AS</span> <span class="n">MGR_AVG</span>
         <span class="k">AS</span> <span class="n">MGR_SUM</span>
@@ -594,7 +596,7 @@ L3 - GRAND TOTAL</p>
 </div>
 <p>그룹내에서 고용일자로 정렬했을때 앞~뒤 사람과 급여의 평균을 내는 식이다.</p>
 <p>COUNT 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">SAL</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">SAL</span>
         <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">SAL</span>
         <span class="n">RANGE</span> <span class="k">BETWEEN</span> <span class="mi">50</span> <span class="n">PRECEDING</span> <span class="k">AND</span> <span class="mi">150</span> <span class="n">FOLLOWING</span><span class="p">))</span> <span class="k">AS</span> <span class="n">SIM_CNT</span>
         <span class="k">AS</span> <span class="n">MGR_SUM</span>
@@ -621,27 +623,27 @@ L3 - GRAND TOTAL</p>
 <h3>5.7.1. 유저 생성과 시스템 권한 부여<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>로그인한 후 DDL을 수행하려면 적절한 권한이 있어야 한다.</p>
 <p>사용자 생성 / 로그인 권한 주기 (SYSTEM 계정으로 접속 한후):</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">GRANT</span> <span class="k">CREATE</span> <span class="k">USER</span> <span class="k">TO</span> <span class="n">SCOTT</span><span class="p">;</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">GRANT</span> <span class="k">CREATE</span> <span class="k">USER</span> <span class="k">TO</span> <span class="n">SCOTT</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">CREATE</span> <span class="k">SESSION</span> <span class="k">TO</span> <span class="n">SCOTT</span><span class="p">;</span>
 <span class="n">CONN</span> <span class="n">SCOTT</span><span class="o">/</span><span class="n">TIGER</span><span class="p">;</span> <span class="c1">-- 로그인 가능</span>
 <span class="k">CREATE</span> <span class="k">USER</span> <span class="n">PJS</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="n">KOREAD7</span><span class="p">;</span> <span class="c1">-- 사용자 생성 가능함</span>
 </pre></div>
 </div>
 <p>테이블 생성 권한 주기:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">GRANT</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">TO</span> <span class="n">SCOTT</span><span class="p">;</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">GRANT</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">TO</span> <span class="n">SCOTT</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>테이블 조회 권한 주기:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="n">MENU</span> <span class="k">TO</span> <span class="n">SCOTT</span><span class="p">;</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="n">MENU</span> <span class="k">TO</span> <span class="n">SCOTT</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>권한 제거:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">REVOKE</span> <span class="k">CREATE</span> <span class="k">SESSION</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">FROM</span> <span class="n">SCOTT</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">REVOKE</span> <span class="k">CREATE</span> <span class="k">SESSION</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">FROM</span> <span class="n">SCOTT</span>
 </pre></div>
 </div>
-<p>이런식으로 일일히 권한을 줄 수도있지만 <a class="reference internal" href="../security/security_basic.html#rbac"><em>Role-based access control (RBAC)</em></a> 를 사용하면 훨씬 편하게 권한을 관리할 수 있다.</p>
+<p>이런식으로 일일히 권한을 줄 수도있지만 <a class="reference internal" href="../security/security_basic.html#rbac"><span class="std std-ref">Role-based access control (RBAC)</span></a> 를 사용하면 훨씬 편하게 권한을 관리할 수 있다.</p>
 <p>권한 생성:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">LOGIN_TABLE</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">LOGIN_TABLE</span>
 <span class="k">GRANT</span> <span class="k">CREATE</span> <span class="n">SETTION</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">TO</span> <span class="n">LOGIN_TABLE</span>
 <span class="n">GRANCT</span> <span class="n">LOGIN_TABLE</span> <span class="k">TO</span> <span class="n">JISUNG</span>
 </pre></div>
@@ -664,7 +666,7 @@ L3 - GRAND TOTAL</p>
 </ul>
 <p>구조</p>
 <p>문법:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">CREATE</span> <span class="p">[</span><span class="k">OR</span> <span class="k">REPLACE</span><span class="p">]</span> <span class="k">Procedure</span> <span class="p">[</span><span class="n">PROC_NAME</span><span class="p">]</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="p">[</span><span class="k">OR</span> <span class="k">REPLACE</span><span class="p">]</span> <span class="k">Procedure</span> <span class="p">[</span><span class="n">PROC_NAME</span><span class="p">]</span>
 <span class="p">(</span><span class="n">ARGV1</span> <span class="p">[</span><span class="k">MODE</span><span class="p">]</span> <span class="n">TYPE1</span> <span class="p">,</span> <span class="p">...)</span>
  <span class="p">...</span>
 <span class="k">IS</span> <span class="p">[</span><span class="k">AS</span><span class="p">]</span>
@@ -679,7 +681,7 @@ L3 - GRAND TOTAL</p>
 </div>
 <p>REPLACE는 덮어 쓰겠다는 의미이다. MODE는 IN/OUT/INOUT 등이 있다. /는 컴파일 하라는 의미이다.</p>
 <p>삭제:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span class="k">DROP</span> <span class="k">Procedure</span> <span class="p">[</span><span class="n">PROC_NAME</span><span class="p">]</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">DROP</span> <span class="k">Procedure</span> <span class="p">[</span><span class="n">PROC_NAME</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>T-SQL에 대해 알아보자. SQL Server를 제어하기 위한 언어로서 T-SQL은 ANSI/ISO 기능 뿐만 아니라 추가적인 기능을 포함하고 있다.</p>
@@ -692,7 +694,7 @@ L3 - GRAND TOTAL</p>
 </ul>
 <p>구조</p>
 <p>문법:</p>
-<div class="highlight-sql"><div class="highlight"><pre>CREATE [OR ALTER] Procedure [PROC_NAME]
+<div class="highlight-sql"><div class="highlight"><pre><span></span>CREATE [OR ALTER] Procedure [PROC_NAME]
 (@ARGV1 TYPE1 [MODE], ...)
  ...
  WITH &lt;proc_option&gt;
@@ -760,7 +762,7 @@ END;
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -808,29 +810,28 @@ END;
   <h4>Next topic</h4>
   <p class="topless"><a href="sql_optimize.html"
                         title="next chapter">6. SQL 최적화 및 성능 튜닝</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/database/sql_basic2.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/database/sql_basic2.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -842,13 +843,13 @@ END;
         <li class="right" >
           <a href="sql_basic.html" title="4. SQL 기본"
              >previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="database_index.html" >데이터베이스</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="database_index.html" >데이터베이스</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, Changwon Choe.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>

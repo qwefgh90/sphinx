@@ -109,3 +109,53 @@
 
 Space는 공변적 T를 갖고 있으므로 T의 임의의 슈퍼타입으로 파라미터화된 Space로 서브타이핑할 수 있다. 또한 add를 공통 슈퍼타입을 갖는 다른 타입을 인자로 계속해서 호출할 수 있으며 추가할 수 있다. 결과적으로 Apple만 받는 Space가 아닌 좀더 일반적인 Space 타입이 되었다. 또한 호출할때마다 타입 Space[U]를 반환한다. 변성표기와 하위 바운드를 지정함으로써 더 유연한 모델을 만들 수 있으며 이는 타입 위주 설계(type-driven design)에 유용하다.
 
+오히려 반 공변적일때는 타입파라미터를 메서드 파라미터로 사용할 수 있다.
+::
+
+   class Fruit{
+     override def toString:String = {return "Fruit"}
+   }
+   class Apple extends Fruit{
+     override def toString:String = {return "Apple"}
+   }
+   class Orange extends Fruit{
+     override def toString:String = {return "Orange"}
+   }
+
+   class Out[-T]{
+     def write(x: T){
+      println(x.toString)
+     }
+   }
+
+   val f = new Out[Fruit];
+   f.write(new Apple());
+   f.write(new Orange());
+
+   val a: Out[Apple] = f;
+   a.write(new Apple())
+
+
+**Out[Fruit]과 같이 Fruit로 파라미터화된 타입이 실제로 동작할때 Apple과 Orange를 다 받아들일 수 있다.** 즉 Out[Fruit]은 Out[Apple]로 서브타이핑 될 수 있다. 반대로 타입 T에 대해 공변적이라면 Out[Apple]은 Out[Fruit]로 서브타이핑이 되어야 하지만 Out[Apple]은 Out[Fruit]보다 더 적은 타입을 받아들이므로 불가능하다. 이는 *리스코프 치환 원칙* 과 관련이 있다.
+
+공변성과 반공변성이 섞여있는 예제는 아래와 같다.::
+
+  class Animal(val name: String)
+  class Human(name: String) extends Animal(name)
+
+  object Dict{
+    val humans: Set[Human] = Set(new Human("changwon"), new Human("be y"))
+    def printNames(extract: Human => AnyRef){
+      for (human <- humans) println(extract(human))
+    }
+  }
+
+  def getName(h: Animal): String = h.name
+  Dict.printNames(getName)
+
+printNames 메서드의 파라미터는 Human => AnyRef 이지만 실제로 사용자는 Animal => String을 전달할 수 있다. 함수타입 A => B는 Function1[A,B]로 바뀌게 된다. **Function1의 정의를 보면 첫번째 타입파라미터는 반공변성을 띄고 두번째 파라미터는 공변성을 띄게된다.**
+
+이러한 변성이 문제없이 동작하는 이유는 함수의 파라미터에서 Human대신 더 많은 파라미터를 받을 수 있는 Animal이 사용되는 것은 타당하며 함수의 반환 타입인 AnyRef의 기능을 String이 모두 포함하고 있기 문맥상 **Animal => String 으로 서브타이핑이 되어도 문제가 없기 때문이다.** **Human은 Animal의 서브타입이지만 Human => AnyRef는 Animal => String의 서브타입이 아니다. 즉 상속관계가 반대가 된다.**
+
+
+

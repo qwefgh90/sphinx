@@ -8,9 +8,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2. 데이터베이스 모델링 &mdash; Changchang Documentation 1.0 documentation</title>
+    <title>2. 데이터베이스 모델링 &#8212; Changchang Documentation 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,14 +25,16 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
     <link rel="up" title="데이터베이스" href="database_index.html" />
     <link rel="next" title="3. 데이터베이스를 이루는 주요 개념" href="database_concept.html" />
     <link rel="prev" title="1. Redis" href="redis_basic.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,15 +46,15 @@
         <li class="right" >
           <a href="redis_basic.html" title="1. Redis"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="database_index.html" accesskey="U">데이터베이스</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="database_index.html" accesskey="U">데이터베이스</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="model-basic">
 <span id="id1"></span><h1>2. 데이터베이스 모델링<a class="headerlink" href="#model-basic" title="Permalink to this headline">¶</a></h1>
@@ -160,7 +162,7 @@
 </div>
 <div class="section" id="normal-form">
 <span id="index-0"></span><h2>2.4. 정규화의 종류 (Normal form)<a class="headerlink" href="#normal-form" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference download internal" href="../_downloads/정규화참고.pptx"><tt class="xref download docutils literal"><span class="pre">정규화</span> <span class="pre">참고</span> <span class="pre">다운로드</span></tt></a></p>
+<p><a class="reference download internal" href="../_downloads/정규화참고.pptx" download=""><code class="xref download docutils literal"><span class="pre">정규화</span> <span class="pre">참고</span> <span class="pre">다운로드</span></code></a></p>
 <p><strong>DB정규화란 불필요한 데이터의 중복을 제거하고 갱신 이상이 발생하지 않게 하는 과정이다. 이때 이를 이용해 데이터의 무결성(데이터의 정확성, 일관성이 유지됨을 뜻하는 말)이 쉽게 보장된다. 또한 엔티티를 적절하게 분리하기 떄문에 설계를 직관적으로 나타낼 수 있고 개발자가 이해하기 쉽다. 일반적으로 3NF가 되면 완전히 정규화 되었다라고 한다.</strong></p>
 <div class="section" id="id11">
 <h3>2.4.1. 제 1 정규형<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
@@ -465,17 +467,17 @@
 <p>라인 타임라인에서 좋아요 속성을 따로 테이블로 두지 않고 성능을 위해 속성으로 둘 경우 서비스 초기에는 문제없이 동작할 수 있다. 하지만 이후 새로운 요구사항이 발생했을 때 테이블로 나눠야 한다. 즉 성능을 위해 반드시 반정규화 하기 보다는 정규화로 먼저 서비스하는 것이 유연할 수 있다.</p>
 <p>제품들의 분류를 위해 유형기능이 라는 속성을 7개를 두고 인덱스를 걸었다. 7개는 각각 다른 유형을 나타내는 속성이다. 이렇게할 경우 7개 모두 검색에 사용될 수 있기 때문에 업무환경상 인덱스를 7개를 걸어야한다. 하지만 유형과 기능 칼럼을 나눈뒤 테이블로 분리할 경우 인덱스를 1번만 생성하면된다.</p>
 <p>기존 인덱스:</p>
-<div class="highlight-python"><div class="highlight"><pre>Create Index product_A_index ON Product(A유형_기능);
-Create Index product_B_index ON Product(B유형_기능);
-Create Index product_C_index ON Product(C유형_기능);
-Create Index product_D_index ON Product(D유형_기능);
-Create Index product_E_index ON Product(E유형_기능);
-Create Index product_F_index ON Product(F유형_기능);
-Create Index product_G_index ON Product(G유형_기능);
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Create</span> <span class="n">Index</span> <span class="n">product_A_index</span> <span class="n">ON</span> <span class="n">Product</span><span class="p">(</span><span class="n">A유형_기능</span><span class="p">);</span>
+<span class="n">Create</span> <span class="n">Index</span> <span class="n">product_B_index</span> <span class="n">ON</span> <span class="n">Product</span><span class="p">(</span><span class="n">B유형_기능</span><span class="p">);</span>
+<span class="n">Create</span> <span class="n">Index</span> <span class="n">product_C_index</span> <span class="n">ON</span> <span class="n">Product</span><span class="p">(</span><span class="n">C유형_기능</span><span class="p">);</span>
+<span class="n">Create</span> <span class="n">Index</span> <span class="n">product_D_index</span> <span class="n">ON</span> <span class="n">Product</span><span class="p">(</span><span class="n">D유형_기능</span><span class="p">);</span>
+<span class="n">Create</span> <span class="n">Index</span> <span class="n">product_E_index</span> <span class="n">ON</span> <span class="n">Product</span><span class="p">(</span><span class="n">E유형_기능</span><span class="p">);</span>
+<span class="n">Create</span> <span class="n">Index</span> <span class="n">product_F_index</span> <span class="n">ON</span> <span class="n">Product</span><span class="p">(</span><span class="n">F유형_기능</span><span class="p">);</span>
+<span class="n">Create</span> <span class="n">Index</span> <span class="n">product_G_index</span> <span class="n">ON</span> <span class="n">Product</span><span class="p">(</span><span class="n">G유형_기능</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>새로운 테이블 생성 후 필요한 인덱스:</p>
-<div class="highlight-python"><div class="highlight"><pre>Create Index product_category_index ON ProductCategory (유형, 기능, 제품코드);
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Create</span> <span class="n">Index</span> <span class="n">product_category_index</span> <span class="n">ON</span> <span class="n">ProductCategory</span> <span class="p">(</span><span class="n">유형</span><span class="p">,</span> <span class="n">기능</span><span class="p">,</span> <span class="n">제품코드</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -511,21 +513,21 @@ Create Index product_G_index ON Product(G유형_기능);
 </ol>
 <p>단순 데이터 중복만이 아닌 테이블/관계/속성을 분할/추가 하는 방식을 모두 사용하는 방식으로 접근한다.</p>
 <p>테이블 반정규화:</p>
-<div class="highlight-python"><div class="highlight"><pre>- 테이블 병합 : 1:1 관계 병합 , 1:N 관계 병합 등 단순 2개의 테이블을 1개로 테이블로 만드는 방식. 그 외에 슈퍼/서브 타입 병합 이 있음
+<div class="highlight-default"><div class="highlight"><pre><span></span>- 테이블 병합 : 1:1 관계 병합 , 1:N 관계 병합 등 단순 2개의 테이블을 1개로 테이블로 만드는 방식. 그 외에 슈퍼/서브 타입 병합 이 있음
 - 테이블 분할 : 수직 분할 (테이블을 2개로 쪼개서 디스크 I/O 성능 개선), 수평 분할 (트랜잭션을 분석하여 레코드 단위로 분산)
 - 테이블 추가 : 중복테이블 추가 (서버가 달라서 원격 JOIN이 발생할 경우에 적절), 통계 테이블 추가 , 이력 테이블 추가 (이력 테이블을 만들어서 이력을 저장하여 성능을 개선하는 방식으로 보임?), 부분테이블 추가 (자주 이용되는 칼럼을 별도의 부분테이블로 추가)
 </pre></div>
 </div>
 <p>칼럼 반정규화:</p>
-<div class="highlight-python"><div class="highlight"><pre>- 중복칼럼 추가 : 조인 성능저하 예방
-- 파생칼럼 추가 : Derived Column이라고 하며 다른 칼럼의 값으로 부터 파생된 칼럼 (값을 계산한다던지)
-- 이력테이블 칼럼 추가 : 불특정 날을 조회하는 경우 성능저하를 예방하기 위해 이력테이블에 기능성 칼럼추가(최근값, 시작 종료 일자)
-- PK에 의한 칼럼 추가 : PK 안에 이미 데이터가 존재할 경우 이를 일반속성으로 포함하여 성능 개선
-- 응용시스템 오작동을 위한 칼럼 추가 : 성능하고 관련 있다기 보다 이전 데이터를 임시 저장하여 원래 값으로 복구할 수 있는 기법
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">중복칼럼</span> <span class="n">추가</span> <span class="p">:</span> <span class="n">조인</span> <span class="n">성능저하</span> <span class="n">예방</span>
+<span class="o">-</span> <span class="n">파생칼럼</span> <span class="n">추가</span> <span class="p">:</span> <span class="n">Derived</span> <span class="n">Column이라고</span> <span class="n">하며</span> <span class="n">다른</span> <span class="n">칼럼의</span> <span class="n">값으로</span> <span class="n">부터</span> <span class="n">파생된</span> <span class="n">칼럼</span> <span class="p">(</span><span class="n">값을</span> <span class="n">계산한다던지</span><span class="p">)</span>
+<span class="o">-</span> <span class="n">이력테이블</span> <span class="n">칼럼</span> <span class="n">추가</span> <span class="p">:</span> <span class="n">불특정</span> <span class="n">날을</span> <span class="n">조회하는</span> <span class="n">경우</span> <span class="n">성능저하를</span> <span class="n">예방하기</span> <span class="n">위해</span> <span class="n">이력테이블에</span> <span class="n">기능성</span> <span class="n">칼럼추가</span><span class="p">(</span><span class="n">최근값</span><span class="p">,</span> <span class="n">시작</span> <span class="n">종료</span> <span class="n">일자</span><span class="p">)</span>
+<span class="o">-</span> <span class="n">PK에</span> <span class="n">의한</span> <span class="n">칼럼</span> <span class="n">추가</span> <span class="p">:</span> <span class="n">PK</span> <span class="n">안에</span> <span class="n">이미</span> <span class="n">데이터가</span> <span class="n">존재할</span> <span class="n">경우</span> <span class="n">이를</span> <span class="n">일반속성으로</span> <span class="n">포함하여</span> <span class="n">성능</span> <span class="n">개선</span>
+<span class="o">-</span> <span class="n">응용시스템</span> <span class="n">오작동을</span> <span class="n">위한</span> <span class="n">칼럼</span> <span class="n">추가</span> <span class="p">:</span> <span class="n">성능하고</span> <span class="n">관련</span> <span class="n">있다기</span> <span class="n">보다</span> <span class="n">이전</span> <span class="n">데이터를</span> <span class="n">임시</span> <span class="n">저장하여</span> <span class="n">원래</span> <span class="n">값으로</span> <span class="n">복구할</span> <span class="n">수</span> <span class="n">있는</span> <span class="n">기법</span>
 </pre></div>
 </div>
 <p>관계 반정규화:</p>
-<div class="highlight-python"><div class="highlight"><pre>- 중복관계 추가 : 여러 경로의 조인으로 인한 성능저하를 예방하기 위한 방식
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">중복관계</span> <span class="n">추가</span> <span class="p">:</span> <span class="n">여러</span> <span class="n">경로의</span> <span class="n">조인으로</span> <span class="n">인한</span> <span class="n">성능저하를</span> <span class="n">예방하기</span> <span class="n">위한</span> <span class="n">방식</span>
 </pre></div>
 </div>
 </div>
@@ -564,9 +566,9 @@ Create Index product_G_index ON Product(G유형_기능);
 <div class="section" id="pk-fk">
 <h3>2.7.2. 인덱스 특성에 고려한 PK/FK 데이터베이스 성능향상<a class="headerlink" href="#pk-fk" title="Permalink to this headline">¶</a></h3>
 <p>복합 인덱스일 경우 PK의 순서에 따라 모델/쿼리를 작성하여야 한다. (서로 맞춰가면됨) PK순서가 중요한 이유는 실제 인덱스가 생성되어 인덱스 생성 DDL 규칙에 따라 정렬되기 때문이다. 아래 그림에서 보면 Index Leaf의 가장 앞 부분부터 스캐닝 하게 된다.:</p>
-<div class="highlight-python"><div class="highlight"><pre>SELECT * FROM TABLE WHERE COL1 = &#39;4&#39; 처럼 COL1을 조건으로 검색할 경우 Index Leaf에서 바로 찾아 갈 수 있지만
-SELECT * FROM TABLE WHERE COL2 = &#39;CCC&#39; 처럼 COL2을 조건으로 검색할 경우 Index Leaf의 처음부터 검색하기 때문에
-(FULL TABLE SCAN) 성능에 좋지않다. 따라서 PK의 순서를 바꿈으로써 성능 개선을 시키거나 쿼리를 수정하여야 한다.
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">TABLE</span> <span class="n">WHERE</span> <span class="n">COL1</span> <span class="o">=</span> <span class="s1">&#39;4&#39;</span> <span class="n">처럼</span> <span class="n">COL1을</span> <span class="n">조건으로</span> <span class="n">검색할</span> <span class="n">경우</span> <span class="n">Index</span> <span class="n">Leaf에서</span> <span class="n">바로</span> <span class="n">찾아</span> <span class="n">갈</span> <span class="n">수</span> <span class="n">있지만</span>
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">TABLE</span> <span class="n">WHERE</span> <span class="n">COL2</span> <span class="o">=</span> <span class="s1">&#39;CCC&#39;</span> <span class="n">처럼</span> <span class="n">COL2을</span> <span class="n">조건으로</span> <span class="n">검색할</span> <span class="n">경우</span> <span class="n">Index</span> <span class="n">Leaf의</span> <span class="n">처음부터</span> <span class="n">검색하기</span> <span class="n">때문에</span>
+<span class="p">(</span><span class="n">FULL</span> <span class="n">TABLE</span> <span class="n">SCAN</span><span class="p">)</span> <span class="n">성능에</span> <span class="n">좋지않다</span><span class="o">.</span> <span class="n">따라서</span> <span class="n">PK의</span> <span class="n">순서를</span> <span class="n">바꿈으로써</span> <span class="n">성능</span> <span class="n">개선을</span> <span class="n">시키거나</span> <span class="n">쿼리를</span> <span class="n">수정하여야</span> <span class="n">한다</span><span class="o">.</span>
 </pre></div>
 </div>
 <img alt="../_images/index_scan.png" src="../_images/index_scan.png" />
@@ -594,16 +596,16 @@ SELECT * FROM TABLE WHERE COL2 = &#39;CCC&#39; 처럼 COL2을 조건으로 검�
 <li><p class="first">테이블 분할 분산 : 수평 분할 (레코드를 분산), 수직 분할 (칼럼을 분산) 하는 방식이 있다.</p>
 </li>
 <li><p class="first">테이블 복제 분산</p>
-<div class="highlight-python"><div class="highlight"><pre>부분복제(Segment Replication) : 본사에 전체 데이터 베이스를 구성하고 지사에 레코드를 분산 시켜놓는 방식으로 구성하는 것이다.
-이 경우 여러 테이블에 조인이 발생하지 않는 한 빠른 작업 수행이 가능해진다.
-광역복제(Broadcast Replication) : 본사에 통합된 테이블을 가지고 있으면서 지사도 본사와 동일한 데이터를 모두 가지고 있는 형태이다.
-부분 복제와 마찬가지로 데이터를 복제하는데 많은 시간이 소요되고 서버에 부하가 발생하므로 보통 실시간(On-Line) 처리에 의해 복사하는 것보다는 배치(Batch)에 의해 복제되도록 한다.
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">부분복제</span><span class="p">(</span><span class="n">Segment</span> <span class="n">Replication</span><span class="p">)</span> <span class="p">:</span> <span class="n">본사에</span> <span class="n">전체</span> <span class="n">데이터</span> <span class="n">베이스를</span> <span class="n">구성하고</span> <span class="n">지사에</span> <span class="n">레코드를</span> <span class="n">분산</span> <span class="n">시켜놓는</span> <span class="n">방식으로</span> <span class="n">구성하는</span> <span class="n">것이다</span><span class="o">.</span>
+<span class="n">이</span> <span class="n">경우</span> <span class="n">여러</span> <span class="n">테이블에</span> <span class="n">조인이</span> <span class="n">발생하지</span> <span class="n">않는</span> <span class="n">한</span> <span class="n">빠른</span> <span class="n">작업</span> <span class="n">수행이</span> <span class="n">가능해진다</span><span class="o">.</span>
+<span class="n">광역복제</span><span class="p">(</span><span class="n">Broadcast</span> <span class="n">Replication</span><span class="p">)</span> <span class="p">:</span> <span class="n">본사에</span> <span class="n">통합된</span> <span class="n">테이블을</span> <span class="n">가지고</span> <span class="n">있으면서</span> <span class="n">지사도</span> <span class="n">본사와</span> <span class="n">동일한</span> <span class="n">데이터를</span> <span class="n">모두</span> <span class="n">가지고</span> <span class="n">있는</span> <span class="n">형태이다</span><span class="o">.</span>
+<span class="n">부분</span> <span class="n">복제와</span> <span class="n">마찬가지로</span> <span class="n">데이터를</span> <span class="n">복제하는데</span> <span class="n">많은</span> <span class="n">시간이</span> <span class="n">소요되고</span> <span class="n">서버에</span> <span class="n">부하가</span> <span class="n">발생하므로</span> <span class="n">보통</span> <span class="n">실시간</span><span class="p">(</span><span class="n">On</span><span class="o">-</span><span class="n">Line</span><span class="p">)</span> <span class="n">처리에</span> <span class="n">의해</span> <span class="n">복사하는</span> <span class="n">것보다는</span> <span class="n">배치</span><span class="p">(</span><span class="n">Batch</span><span class="p">)</span><span class="n">에</span> <span class="n">의해</span> <span class="n">복제되도록</span> <span class="n">한다</span><span class="o">.</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">테이블 요약 분산(다소 난해한 내용)</p>
-<div class="highlight-python"><div class="highlight"><pre>분석요약 : 각 지사별로 존재하는 요약정보를 본사에서 통합하여 다시 전체에 대해서 요약정보를 산출하는 분산방법이다.
-통합요약 : 각 지사별로 존재하는 다른 내용의 정보를 본삭에 통합하여 다시 전체에 대해서 요약정보를 산출하는 분산방법이다.
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">분석요약</span> <span class="p">:</span> <span class="n">각</span> <span class="n">지사별로</span> <span class="n">존재하는</span> <span class="n">요약정보를</span> <span class="n">본사에서</span> <span class="n">통합하여</span> <span class="n">다시</span> <span class="n">전체에</span> <span class="n">대해서</span> <span class="n">요약정보를</span> <span class="n">산출하는</span> <span class="n">분산방법이다</span><span class="o">.</span>
+<span class="n">통합요약</span> <span class="p">:</span> <span class="n">각</span> <span class="n">지사별로</span> <span class="n">존재하는</span> <span class="n">다른</span> <span class="n">내용의</span> <span class="n">정보를</span> <span class="n">본삭에</span> <span class="n">통합하여</span> <span class="n">다시</span> <span class="n">전체에</span> <span class="n">대해서</span> <span class="n">요약정보를</span> <span class="n">산출하는</span> <span class="n">분산방법이다</span><span class="o">.</span>
 </pre></div>
 </div>
 </li>
@@ -616,7 +618,7 @@ SELECT * FROM TABLE WHERE COL2 = &#39;CCC&#39; 처럼 COL2을 조건으로 검�
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -678,29 +680,28 @@ SELECT * FROM TABLE WHERE COL2 = &#39;CCC&#39; 처럼 COL2을 조건으로 검�
   <h4>Next topic</h4>
   <p class="topless"><a href="database_concept.html"
                         title="next chapter">3. 데이터베이스를 이루는 주요 개념</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/database/model_basic.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/database/model_basic.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -712,13 +713,13 @@ SELECT * FROM TABLE WHERE COL2 = &#39;CCC&#39; 처럼 COL2을 조건으로 검�
         <li class="right" >
           <a href="redis_basic.html" title="1. Redis"
              >previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="database_index.html" >데이터베이스</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="database_index.html" >데이터베이스</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, Changwon Choe.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>

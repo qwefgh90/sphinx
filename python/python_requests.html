@@ -8,9 +8,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. Road to Contributor &mdash; Changchang Documentation 1.0 documentation</title>
+    <title>3. Road to Contributor &#8212; Changchang Documentation 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,14 +25,16 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
     <link rel="up" title="Python" href="python_index.html" />
     <link rel="next" title="Spring" href="../spring/spring_index.html" />
     <link rel="prev" title="2. Python Example" href="python_example.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,15 +46,15 @@
         <li class="right" >
           <a href="python_example.html" title="2. Python Example"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="python_index.html" accesskey="U">Python</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="python_index.html" accesskey="U">Python</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="road-to-contributor">
 <span id="id1"></span><h1>3. Road to Contributor<a class="headerlink" href="#road-to-contributor" title="Permalink to this headline">¶</a></h1>
@@ -67,13 +69,13 @@
 </ul>
 <p>먼저 클론을 받은 후 테스트 환경을 구축하는게 우선이라 생각한다.</p>
 <p>시작:</p>
-<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/kennethreitz/requests.git
-pip install -r requirements.txt
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kennethreitz</span><span class="o">/</span><span class="n">requests</span><span class="o">.</span><span class="n">git</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p><em>requirements.txt</em> 에 있는 패키지들을 설치하는 명령이다.</p>
 <p>테스트:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">py</span><span class="o">.</span><span class="n">test</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">py</span><span class="o">.</span><span class="n">test</span>
 </pre></div>
 </div>
 <p>pytest를 이용해 파이썬 테스트를 시작한다. <em>test_</em> 접두사를 갖는 파일을 읽어들여 파이썬 테스트를 진행한다. test_requests.py이 테스트 코드이다.</p>
@@ -83,7 +85,7 @@ pip install -r requirements.txt
 <div class="section" id="id4">
 <h3>3.2.1. 14.12.29 (월)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>Requests 모듈은 크게 7가지 인터페이스를 제공한다. HTTP 라이브러리인 만큼 HTTP 메소드 별로 요청함수가 존재한다. request, head, get, post, put, patch, delete 이다.</p>
-<div class="highlight-python"><div class="highlight"><pre>requests.request(method, url, **kwargs)
+<div class="highlight-python"><div class="highlight"><pre><span></span>requests.request(method, url, **kwargs)
         Constructs and sends a Request. Returns Response object.
 
 Parameters:
@@ -123,7 +125,7 @@ Parameters:
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -143,29 +145,28 @@ Parameters:
   <h4>Next topic</h4>
   <p class="topless"><a href="../spring/spring_index.html"
                         title="next chapter">Spring</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/python/python_requests.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/python/python_requests.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -177,13 +178,13 @@ Parameters:
         <li class="right" >
           <a href="python_example.html" title="2. Python Example"
              >previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="python_index.html" >Python</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="python_index.html" >Python</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, Changwon Choe.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>

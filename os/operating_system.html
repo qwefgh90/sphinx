@@ -8,9 +8,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. 운영체제 &mdash; Changchang Documentation 1.0 documentation</title>
+    <title>1. 운영체제 &#8212; Changchang Documentation 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,14 +25,16 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
     <link rel="up" title="운영체제와 시스템" href="operating_system_index.html" />
     <link rel="next" title="2. 분산 시스템" href="distributed_system.html" />
     <link rel="prev" title="운영체제와 시스템" href="operating_system_index.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,15 +46,15 @@
         <li class="right" >
           <a href="operating_system_index.html" title="운영체제와 시스템"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="operating_system_index.html" accesskey="U">운영체제와 시스템</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="operating_system_index.html" accesskey="U">운영체제와 시스템</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="id1">
 <h1>1. 운영체제<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
@@ -341,7 +343,7 @@
 <div class="section" id="id24">
 <h3>1.5.3. 임계영역 문제 해결법<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
 <p><strong>피터슨의 해결법은 고전적인 방법으로 상호배제, 진행, 한정된 대기의 조건을 만족하는 해결법이다.</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="kt">int</span> <span class="n">turn</span><span class="p">;</span>                       <span class="c1">//진입할 순번</span>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">turn</span><span class="p">;</span>                       <span class="c1">//진입할 순번</span>
 <span class="n">boolean</span> <span class="n">flag</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>        <span class="c1">//임계영역으로 진입할 준비가 됨</span>
 
 <span class="n">flag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
@@ -356,11 +358,11 @@
 </div>
 <p><strong>세마포는 임계영역 문제를 해결할 수 있는 동기화 도구이다.</strong> 이때 임계영역 접근에 관련된 도구에는 세마포어와 뮤텍스가 있다. 뮤텍스는 이진 세마포어로서 하나의 자원을 동시에 1개의 프로세스만 사용할 수 있도록 제한하는 락이다.(1은 접근가능 0은 접근불가) 반면 세마포어는 동기화 대상인 자원의 개수가 2개 이상일때 사용한다. 세마포어는 자원의 할당개수를 카운팅하는 중요한 변수를 가지고 있다.</p>
 <p><strong>세마포어와 뮤텍스의 가장 큰 차이점은 동기화하는 자원(임계영역)의 개수이다.</strong> 세마포어는 여러개의 자원의 동기화를 관리하지만 뮤텍스는 오직 1개의 자원만 동기화한다.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">wait</span><span class="p">(</span><span class="kt">int</span> <span class="n">mutex</span><span class="p">);</span><span class="c1">//현재 프로세스가 대기 상태로 됨</span>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">wait</span><span class="p">(</span><span class="kt">int</span> <span class="n">mutex</span><span class="p">);</span><span class="c1">//현재 프로세스가 대기 상태로 됨</span>
 <span class="kt">void</span> <span class="n">signal</span><span class="p">(</span><span class="kt">int</span> <span class="n">mutex</span><span class="p">)</span><span class="c1">//다른 프로세스를 깨움</span>
 </pre></div>
 </div>
-<div class="highlight-c++"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">wait</span><span class="p">(</span><span class="n">semaphore</span> <span class="o">*</span><span class="n">S</span><span class="p">){</span>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">wait</span><span class="p">(</span><span class="n">semaphore</span> <span class="o">*</span><span class="n">S</span><span class="p">){</span>
         <span class="n">S</span><span class="o">-&gt;</span><span class="n">pCount</span><span class="o">--</span><span class="p">;</span>
         <span class="k">if</span><span class="p">(</span><span class="n">S</span><span class="o">-&gt;</span><span class="n">pCount</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
                 <span class="c1">//자신의 프로세스를 S-&gt;list에 넣는다.</span>
@@ -506,7 +508,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -578,29 +580,28 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="distributed_system.html"
                         title="next chapter">2. 분산 시스템</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/os/operating_system.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/os/operating_system.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -612,13 +613,13 @@
         <li class="right" >
           <a href="operating_system_index.html" title="운영체제와 시스템"
              >previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="operating_system_index.html" >운영체제와 시스템</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="operating_system_index.html" >운영체제와 시스템</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, Changwon Choe.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>

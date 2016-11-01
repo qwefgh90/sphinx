@@ -8,9 +8,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. 시큐어 코딩 &mdash; Changchang Documentation 1.0 documentation</title>
+    <title>3. 시큐어 코딩 &#8212; Changchang Documentation 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,14 +25,16 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
     <link rel="up" title="Security" href="security_index.html" />
     <link rel="next" title="Tips" href="../tip/tip_index.html" />
     <link rel="prev" title="2. 인터넷 프로토콜 보안" href="security_internet.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,15 +46,15 @@
         <li class="right" >
           <a href="security_internet.html" title="2. 인터넷 프로토콜 보안"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="security_index.html" accesskey="U">Security</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="security_index.html" accesskey="U">Security</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="security-coding">
 <span id="id1"></span><h1>3. 시큐어 코딩<a class="headerlink" href="#security-coding" title="Permalink to this headline">¶</a></h1>
@@ -163,16 +165,16 @@
 <h4>3.1.4.5. CSRF (크로스사이트 요청위조)<a class="headerlink" href="#csrf" title="Permalink to this headline">¶</a></h4>
 <p>상대방이 잘못된 요청을 보내도록 하는 사회공학적 해킹 기법이다. 이를 방어하기 위해서 write.html에서 <strong>CSRF Token(난수)</strong> 을 미리 발급하고 실제 요청할때 토큰을 포함시켜서 보내도록 한다. 여러가지 재인증 기법을 사용하여 막을 수 있다. 이를 WAS의 CSRFInterceptor를 통해 검사하고 비지니스 로직을 수행한다.</p>
 <p>아래는 CSRF 공격 코드의 예시이다. XSS 취약점이 있는 게시판에 삽입하여 CSRF공격을 수행할 수 있다.</p>
-<div class="code html highlight-python"><div class="highlight"><pre>&lt;body&gt;
-&lt;form style=&quot;display:none&quot; method=&quot;post&quot; action=&quot;write.do&quot; ENCTYPE=&quot;multipart/form-data&quot;&gt;
-&lt;input type=&quot;hidden&quot; name=&quot;subject&quot; value=&quot;회비 계좌 확인 요합니다&quot;&gt;
-&lt;input type=&quot;hidden&quot; name=&quot;writer&quot; value=&quot;관리자&quot;&gt;
-&lt;input type=&quot;hidden&quot; name=&quot;writerId&quot; value=&quot;admin&quot;&gt;
-&lt;input type=&quot;hidden&quot; name=&quot;content&quot; value=&quot;이번 모임의 회비 납부 안내입니다&lt;br&gt;국민은행 010 최창원&quot;&gt;
-&lt;input type=&quot;hidden&quot; name=&quot;submit&quot; id=&quot;send&quot;&gt;
-&lt;/form&gt;
-&lt;script&gt;document.forms[0].send.click();&lt;/script&gt;
-&lt;/body&gt;
+<div class="code html highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">form</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;display:none&quot;</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;write.do&quot;</span> <span class="n">ENCTYPE</span><span class="o">=</span><span class="s2">&quot;multipart/form-data&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;subject&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;회비 계좌 확인 요합니다&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;writer&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;관리자&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;writerId&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;content&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;이번 모임의 회비 납부 안내입니다&lt;br&gt;국민은행 010 최창원&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;send&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span><span class="n">document</span><span class="o">.</span><span class="n">forms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">send</span><span class="o">.</span><span class="n">click</span><span class="p">();</span><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -207,7 +209,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -248,29 +250,28 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="../tip/tip_index.html"
                         title="next chapter">Tips</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/security/security_coding.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/security/security_coding.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -282,13 +283,13 @@
         <li class="right" >
           <a href="security_internet.html" title="2. 인터넷 프로토콜 보안"
              >previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="security_index.html" >Security</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="security_index.html" >Security</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, Changwon Choe.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>

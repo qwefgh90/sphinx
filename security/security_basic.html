@@ -8,9 +8,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. 정보보안 &mdash; Changchang Documentation 1.0 documentation</title>
+    <title>1. 정보보안 &#8212; Changchang Documentation 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,14 +25,16 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Changchang Documentation 1.0 documentation" href="../index.html" />
     <link rel="up" title="Security" href="security_index.html" />
     <link rel="next" title="2. 인터넷 프로토콜 보안" href="security_internet.html" />
     <link rel="prev" title="Security" href="security_index.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -44,15 +46,15 @@
         <li class="right" >
           <a href="security_index.html" title="Security"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="security_index.html" accesskey="U">Security</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="security_index.html" accesskey="U">Security</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="security-basic">
 <span id="id1"></span><h1>1. 정보보안<a class="headerlink" href="#security-basic" title="Permalink to this headline">¶</a></h1>
@@ -95,7 +97,7 @@
 </div>
 <div class="section" id="id3">
 <h4>1.2.1.2. 블록 단위 암호화 방식<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
-<p>고정된 크기의 블록으로 암호화 하는 방식이다. 대표적인 알고리즘으로 DES, 3DES, <a class="reference internal" href="#security-aes"><em>AES</em></a> 이 있다. 1998년에 DES는 안전하지 않는 알고리즘으로 증명됬다. 3DES는 DES의 3배 정도 크기의 키를 가지고 있다.</p>
+<p>고정된 크기의 블록으로 암호화 하는 방식이다. 대표적인 알고리즘으로 DES, 3DES, <a class="reference internal" href="#security-aes"><span class="std std-ref">AES</span></a> 이 있다. 1998년에 DES는 안전하지 않는 알고리즘으로 증명됬다. 3DES는 DES의 3배 정도 크기의 키를 가지고 있다.</p>
 </div>
 <div class="section" id="id4">
 <h4>1.2.1.3. 스트림 암호화 방식<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
@@ -107,7 +109,7 @@
 <img alt="../_images/confidentiality.png" src="../_images/confidentiality.png" />
 <p>공개키로 데이터를 암호화할 경우 비밀키를 가진 쪽에서만 복호화할 수 있기 때문에 기밀성이 보장된다.</p>
 <img alt="../_images/auth.png" src="../_images/auth.png" />
-<p>비밀키로 데이터를 암호화할 경우 공개를 받은 측에서 풀 수 있는데 풀릴 경우 비밀키의 소유자가 누군지 인증되고 데이터의 무결성을 보장받을 수 있다. 이유는 공격자가 비밀키를 추측해서 암호화하기 어렵기 때문이다. 대표적인 알고리즘은 <a class="reference internal" href="#security-rsa"><em>RSA</em></a> , Diffie-Hellman 키 교환, 전자 서명 표준(NIST)등이 있다.</p>
+<p>비밀키로 데이터를 암호화할 경우 공개를 받은 측에서 풀 수 있는데 풀릴 경우 비밀키의 소유자가 누군지 인증되고 데이터의 무결성을 보장받을 수 있다. 이유는 공격자가 비밀키를 추측해서 암호화하기 어렵기 때문이다. 대표적인 알고리즘은 <a class="reference internal" href="#security-rsa"><span class="std std-ref">RSA</span></a> , Diffie-Hellman 키 교환, 전자 서명 표준(NIST)등이 있다.</p>
 </div>
 <div class="section" id="aes-advanced-encryption-standard">
 <span id="security-aes"></span><h4>1.2.1.5. AES (Advanced Encryption Standard)<a class="headerlink" href="#aes-advanced-encryption-standard" title="Permalink to this headline">¶</a></h4>
@@ -156,8 +158,8 @@
 <h4>1.2.2.3. Message Authentication using Hash Functions<a class="headerlink" href="#message-authentication-using-hash-functions" title="Permalink to this headline">¶</a></h4>
 <p>MAC(메세지 인증 코드)에 Hash함수를 사용하여 메세지 인증을 설계하였다.</p>
 <img alt="../_images/auth_using_hash.png" src="../_images/auth_using_hash.png" />
-<p><tt class="docutils literal"><span class="pre">(a)Using</span> <span class="pre">conventional</span> <span class="pre">encryption</span></tt> 방식은 송신측은 메세지를 해싱한 값을 비밀키로 암호화하여 전달하고 수신측은 복호화한 후 해시값을 비교하는 방식이다.</p>
-<p><tt class="docutils literal"><span class="pre">(c)Using</span> <span class="pre">secret</span> <span class="pre">value</span></tt> 방식은 (메세지 + 비밀키)를 해싱하여 값을 만들고 그 값을 메세지에 담아 전달하여 인증하는 방식이다.</p>
+<p><code class="docutils literal"><span class="pre">(a)Using</span> <span class="pre">conventional</span> <span class="pre">encryption</span></code> 방식은 송신측은 메세지를 해싱한 값을 비밀키로 암호화하여 전달하고 수신측은 복호화한 후 해시값을 비교하는 방식이다.</p>
+<p><code class="docutils literal"><span class="pre">(c)Using</span> <span class="pre">secret</span> <span class="pre">value</span></code> 방식은 (메세지 + 비밀키)를 해싱하여 값을 만들고 그 값을 메세지에 담아 전달하여 인증하는 방식이다.</p>
 </div>
 </div>
 <div class="section" id="digital-signature">
@@ -173,7 +175,7 @@
 </div>
 <div class="section" id="ssl">
 <h3>1.2.5. SSL 인증서, 공인인증서와 전자서명<a class="headerlink" href="#ssl" title="Permalink to this headline">¶</a></h3>
-<p><strong>SSL 인증서는</strong> 서버가 신뢰할 수 있는지 증명할 수 있는 전자인증서이다. 이때 공개키 암호화 방식을 사용하여 사용자 인증과 인증서의 무결성을 증명할 수 있다. <a class="reference internal" href="#digital-signature"><em>Digital Signature(전자 서명)</em></a> 을 참고하도록 하자. SSL 인증서는 도메인 정보 ,서버 공개키 등을 저장하고 있다. 이런 인증서 정보로부터 해시값을 만들고 이를 인증기관의 비밀키로 암호화 한 값을 전자서명으로 사용한다. 인증서와 함께 전자서명을 보내서 인증서의 무결성 및 신뢰성을 보장한다. 브라우저는 이미 CA의 비밀키에 대한 공개키를 가지고 있다. CA는 신뢰할 수 있는 제3의 인증기관이다. SSL 인증서의 서버 공개키를 이용하여 전송계층을 암호화할때 사용하는 대칭키를 암호화하여 전송한다.</p>
+<p><strong>SSL 인증서는</strong> 서버가 신뢰할 수 있는지 증명할 수 있는 전자인증서이다. 이때 공개키 암호화 방식을 사용하여 사용자 인증과 인증서의 무결성을 증명할 수 있다. <a class="reference internal" href="#digital-signature"><span class="std std-ref">Digital Signature(전자 서명)</span></a> 을 참고하도록 하자. SSL 인증서는 도메인 정보 ,서버 공개키 등을 저장하고 있다. 이런 인증서 정보로부터 해시값을 만들고 이를 인증기관의 비밀키로 암호화 한 값을 전자서명으로 사용한다. 인증서와 함께 전자서명을 보내서 인증서의 무결성 및 신뢰성을 보장한다. 브라우저는 이미 CA의 비밀키에 대한 공개키를 가지고 있다. CA는 신뢰할 수 있는 제3의 인증기관이다. SSL 인증서의 서버 공개키를 이용하여 전송계층을 암호화할때 사용하는 대칭키를 암호화하여 전송한다.</p>
 <p><strong>공인인증서는</strong> 클라이언트가 신뢰할 수 있는지 증명할 수 있는 전자인증서이다. 공인인증서는 암호화된 개인키와 공개키로 이루어진다. <strong>인증서의 개인키와 공개키는 한 쌍이다.</strong> 패스워드를 입력받아 개인키를 얻어낸뒤 {결재정보, 암호화된 결재정보, 공인인증서}를 전달한다. 먼저 공인인증서의 전자서명 인증 절차에 따라 인증서가 신뢰할 수 있는지 판단한다. 만약 공인인증서를 신뢰할 수 없다면 공개키를 신뢰할 수 있게된다. 수신한 전자서명을 이용해 결재정보가 옳바른지 인증하고 인증에 성공한다면 공인인증서의 역할이 끝나게된다.</p>
 </div>
 </div>
@@ -348,7 +350,7 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
 <div class="section" id="buffer-overflow">
 <h2>1.9. Buffer Overflow<a class="headerlink" href="#buffer-overflow" title="Permalink to this headline">¶</a></h2>
 <p>버퍼 오버플로우는 할당된 수용량 보다 데이터가 버퍼에 입력되어 다른 정보를 덮어쓰는 것을 말한다. 공격자는 시스템을 충돌내기위해 이러한 조건을 발생 시키거나 시스템의 제어를 얻는 코드를 삽입한다.</p>
-<p>C에서 <tt class="xref py py-func docutils literal"><span class="pre">gets()</span></tt> 는 데이터의 량을 체크하는 코드를 가지고 있지 않다. 결과적으로 <tt class="xref py py-func docutils literal"><span class="pre">gets()</span></tt> 를 사용하여 다른 인접한 변수를 덮어쓸 수 있다.</p>
+<p>C에서 <code class="xref py py-func docutils literal"><span class="pre">gets()</span></code> 는 데이터의 량을 체크하는 코드를 가지고 있지 않다. 결과적으로 <code class="xref py py-func docutils literal"><span class="pre">gets()</span></code> 를 사용하여 다른 인접한 변수를 덮어쓸 수 있다.</p>
 <p>스택 버퍼 오버플로우는 함수 호출 매커니즘에서 return 복귀 주소를 덮어쓰면서 이루어 진다.</p>
 <p>마지막으로 쉘코드의 주소를 복귀주소로 넣게된다. 쉘코드는 공격자에 의해 작성되었으며 버퍼오버플로우에 의해 저장되곤 한다. 제어를 사용자 인터프리터로 넘긴다.</p>
 <div class="section" id="bof">
@@ -413,7 +415,7 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
@@ -505,29 +507,28 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
   <h4>Next topic</h4>
   <p class="topless"><a href="security_internet.html"
                         title="next chapter">2. 인터넷 프로토콜 보안</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/security/security_basic.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/security/security_basic.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -539,13 +540,13 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
         <li class="right" >
           <a href="security_index.html" title="Security"
              >previous</a> |</li>
-        <li><a href="../index.html">Changchang Documentation 1.0 documentation</a> &raquo;</li>
-          <li><a href="security_index.html" >Security</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Changchang Documentation 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="security_index.html" >Security</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, Changwon Choe.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Changwon Choe.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
     </div>
   </body>
 </html>
