@@ -15,11 +15,9 @@ Contents:
    :maxdepth: 2
    :numbered: 
 
+   network_terms.rst
    network_basic.rst
-   network_http.rst
-   network_etc.rst
    network_tcp.rst
-   infra.rst
+   network_http.rst
+   network_programming.rst
    
-.. raw:: html
-   :file: ../comment_tag1.txt

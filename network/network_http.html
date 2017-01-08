@@ -28,6 +28,9 @@
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="네트워크" href="network_index.html" />
+    <link rel="next" title="3. 네트워크 프로그래밍" href="network_programming.html" />
+    <link rel="prev" title="1. 프로토콜" href="network_basic.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -84,23 +87,14 @@
 <h2>2.2. 컨텐츠 압축<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
 <p>압축은 HTTP 요청의 <strong>Accept-Encoding: gzip, deflate, sdch</strong> 과 <strong>HTTP 응답의 Content-Encoding: deflate</strong> 이 관련이 있다.</p>
 <p>먼저 클라이언트가 처리할 수 있는 압축 알고리즘을 Accept-Encoding에 명시한다. 서버는 컨텐츠를 압축한 뒤 Content-Encoding에 명시해서 함께 보낸다. 따라서 컨텐츠 압축을 해제해야만 원래 콘텐츠를 확인할 수 있다.</p>
-<div class="section" id="head">
-<h3>2.2.1. &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<a class="headerlink" href="#head" title="제목 주소">¶</a></h3>
 </div>
 <div class="section" id="stateless">
-<h3>2.2.2. Stateless<a class="headerlink" href="#stateless" title="제목 주소">¶</a></h3>
+<h2>2.3. Stateless<a class="headerlink" href="#stateless" title="제목 주소">¶</a></h2>
 <p><strong>HTTP 프로토콜은 상태를 유지하지 않는다.</strong> 반면 SSH 프로토콜은 서버에서 클라이언트 상태를 유지한 상태로 데이터를 주고받는다. 이를 위해 서버에서는 세션값을 이용해 클라이언트 상태를 유지한다. <strong>세션은 세션메모리에 저장되며 이를 찾는 검색값을 세션 아이디라고 한다.</strong></p>
 </div>
-</div>
 <div class="section" id="id2">
-<h2>2.3. 쿠키<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
-<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 8586868c859120d342713a1fcc5ea708b31f1927</p>
-<ul class="simple">
-<li>압축은 어떻게 됨??</li>
-<li>응답헤더는 어떻게 생겼음?? 요청 헤더는??</li>
-<li>소켓에서 우아한 종료는 무엇이고 4-핸드셰이킹과 관련 있나요?</li>
-</ul>
-<p>하나의 웹 어플리케이션에서 다른 도메인을 처리하는 것을 뜻한다. HOST 필드값을 분석하여 서브 도메인의 종류에 따라 그에 맞는 서비스를 제공한다. 여러대의 서버를 둘 수 없을때 사용할 수 있다.</p>
+<h2>2.4. 쿠키<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<p>이때 쿠키를 사용한다. 쿠키는 영속성 쿠키, 세션 쿠키로 나눠진다. 영속성 쿠키는 디스크에 저장되며 세션 쿠키는 메모리에 저장된다. 브라우저 쿠키는 document 객체의 cookie에 저장된다.</p>
 </div>
 </div>
 
@@ -114,12 +108,9 @@
   <ul>
 <li><a class="reference internal" href="#">2. HTTP</a><ul>
 <li><a class="reference internal" href="#vs">2.1. 지속 연결 vs 비지속 연결</a></li>
-<li><a class="reference internal" href="#id1">2.2. 컨텐츠 압축</a><ul>
-<li><a class="reference internal" href="#head">2.2.1. &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</a></li>
-<li><a class="reference internal" href="#stateless">2.2.2. Stateless</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id2">2.3. 쿠키</a></li>
+<li><a class="reference internal" href="#id1">2.2. 컨텐츠 압축</a></li>
+<li><a class="reference internal" href="#stateless">2.3. Stateless</a></li>
+<li><a class="reference internal" href="#id2">2.4. 쿠키</a></li>
 </ul>
 </li>
 </ul>
@@ -127,6 +118,10 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="network_index.html">네트워크</a><ul>
+      <li>Previous: <a href="network_basic.html" title="이전 장">1. 프로토콜</a></li>
+      <li>Next: <a href="network_programming.html" title="다음 장">3. 네트워크 프로그래밍</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. 차세대통합정보시스템 구축 사례 &#8212; Code Accelerator Document 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="달리 분류되지 않음" href="etc_index.html" />
+    <link rel="prev" title="1. Regexpr cheat sheet" href="regexpr.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mis">
+<span id="id1"></span><h1>2. 차세대통합정보시스템 구축 사례<a class="headerlink" href="#mis" title="제목 주소">¶</a></h1>
+<p>모 기관의 MIS구축 사례</p>
+<ul class="simple">
+<li>직원 749명</li>
+<li>학생 2000명</li>
+<li>전산부서 6명</li>
+</ul>
+<p>행정정보시스템이 C/S와 Web로 이원화되어 있었고 전자결재와 통합정보를 따로 운영했다. 4개의 T/F팀을 구성하였다. 각 T/F팀은 현업무 담당자, 전임자1, 전임자2로 구성되어있다. 또한 임원의 적극적인 지원이 있었다.</p>
+<div class="section" id="id2">
+<h2>2.1. 업무프로세스 분석<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<p>분석/설계 5개월
+개발 5개월
+테스트 3개월
+안정화 지원
+운영 지원</p>
+<dl class="docutils">
+<dt>AS-IS 분석</dt>
+<dd>업무분류, 현 업무처리 절차 분석
+문제점과 개선점 도출</dd>
+<dt>TO-BE 설계</dt>
+<dd>AS-IS 대비 개선점 도출 및 목표설정
+TO-BE 설계서 작성
+지침과의 연관관계 검토</dd>
+</dl>
+<p>주관부서 중심으로 업무분석서, 프로세스설계서 작성 및 용역업체에 제공(용역업체 입장에서는 분석이 쉬워짐)</p>
+</div>
+<div class="section" id="id3">
+<h2>2.2. 시사점<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<p>사점 추진에 대한 역할관계를 정리할 것:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">전산부서는</span> <span class="n">개발</span> <span class="n">및</span> <span class="n">오류조치</span> <span class="n">등</span> <span class="n">기술적인</span> <span class="n">책임</span>
+
+<span class="o">*</span> <span class="n">업무분석</span> <span class="n">및</span> <span class="n">안정화에</span> <span class="n">대한</span> <span class="n">책임</span>
+
+<span class="o">*</span> <span class="n">기관장</span> <span class="n">관심</span> <span class="o">/</span> <span class="n">역할</span> <span class="o">&gt;</span> <span class="n">업무부서</span> <span class="n">의지</span> <span class="o">&gt;</span> <span class="n">전산부서</span> <span class="n">능력</span> <span class="o">/</span> <span class="n">노력</span> <span class="o">&gt;</span> <span class="n">예산</span>
+</pre></div>
+</div>
+<p>자체 업무분석 및 프로세스 설계(명확한 업무 및 프로세스 확정):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">업무담당자</span> <span class="n">및</span> <span class="n">전임자</span> <span class="n">중심</span> <span class="n">T</span><span class="o">/</span><span class="n">F구성</span>
+
+<span class="o">*</span> <span class="n">업무담당자에</span> <span class="n">의한</span> <span class="n">업무분석</span><span class="p">(</span><span class="n">AS</span><span class="o">-</span><span class="n">IS</span><span class="p">)</span><span class="n">및</span> <span class="n">업무프로세스</span> <span class="n">설계</span><span class="p">(</span><span class="n">TO</span><span class="o">-</span><span class="n">BE</span><span class="p">)</span><span class="n">후</span> <span class="n">추진</span>
+</pre></div>
+</div>
+<p>사업기간 중 업무범위 증가 억제(사전정의 필수):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">설계완료</span> <span class="n">이후</span> <span class="n">추가설계</span> <span class="n">요구</span> <span class="n">최소화</span>
+
+<span class="o">*</span> <span class="n">담당부서와</span> <span class="n">업체간</span> <span class="n">이견에</span> <span class="n">대해</span> <span class="n">냉정하게</span> <span class="n">판단하고</span> <span class="n">조정</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. 차세대통합정보시스템 구축 사례</a><ul>
+<li><a class="reference internal" href="#id2">2.1. 업무프로세스 분석</a></li>
+<li><a class="reference internal" href="#id3">2.2. 시사점</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="etc_index.html">달리 분류되지 않음</a><ul>
+      <li>Previous: <a href="regexpr.html" title="이전 장">1. Regexpr cheat sheet</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/etc/mis.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/etc/mis.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -18,35 +18,31 @@ Contents:
    :maxdepth: 2
 
    author.rst
-   python/python_index.rst
    java/java_index.rst
    design/design_index.rst
    scala/scala_index.rst
-   cpp/cpp_index.rst
-   database/database_index.rst
    network/network_index.rst
+   python/python_index.rst
+   database/database_index.rst
    os/operating_system_index.rst
    datastructure/datastructure_index.rst
-   Android/android_index.rst
    statistics/statistics_index.rst
    security/security_index.rst
-   tip/tip_index.rst
-   music/music_index.rst
    ict/ict_index.rst
-   software/software_index.rst
+   etc/etc_index.rst
 
 
 
-Indices and tables
-==================
+인덱스(Indices)
+===============
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
 
 
-SlideShare
-===================
+슬라이드쉐어(SlideShare)
+========================
 
 .. raw:: html
    

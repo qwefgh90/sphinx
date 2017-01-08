@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4. SQL 기본 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>3. SQL 기본 &#8212; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -28,6 +28,9 @@
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="데이터베이스" href="database_index.html" />
+    <link rel="next" title="4. SQL 활용" href="sql_basic2.html" />
+    <link rel="prev" title="2. 데이터베이스 모델링" href="model_basic.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -44,7 +47,7 @@
           <div class="body" role="main">
             
   <div class="section" id="sql">
-<span id="sql-basic"></span><h1>4. SQL 기본<a class="headerlink" href="#sql" title="제목 주소">¶</a></h1>
+<span id="sql-basic"></span><h1>3. SQL 기본<a class="headerlink" href="#sql" title="제목 주소">¶</a></h1>
 <p><a class="reference external" href="http://www.dbguide.net/db.db?cmd=view&amp;boardUid=148404&amp;boardConfigUid=9&amp;categoryUid=216&amp;boardIdx=132&amp;boardStep=1">DBGuide.net</a> 의 요점만 정리 하여 정리한 글입니다. SQL 기본 파트는 SQL 기본, SQL 활용, SQL 최적화 기본 원리로 구성되어 있습니다.</p>
 <p>관계형 데이터베이스는 IBM의 SQL 개발단계를 거쳐 Oracle을 중심으로 여러회사가 상용화된 제품을 내놓았다. 관계형 데이터베이스는 파일 시스템을 저장소로 사용하는것 보다 훨씬 안정적인데 여러 프로그램이 동시에 데이터를 공유 및 조작할 수 있고 데이터 중복 제거가 가능하며 무결성 제약조건을 이용해 데이터 무결성을 보장할 수 있다. 또한 데이터 성격 및 속성, 표현방법 등을 체계화 할수 있어 데이터 품질을 확보할 수 있다.</p>
 <p><em>SQL</em> 이란 관계형 데이터베이스에서 데이터 정의, 조작, 제어를 하기 위해 사용하는 언어이다. 최초 SQL은 ANSI/ISO 표준화 되었고 계속해서 새로운 표준이 나오고 있다.</p>
@@ -57,7 +60,7 @@
 </ul>
 <p><em>테이블(Table)</em> 은 RDBMS의 기본 단위로 어떤 목적으로 만들어지는 집합과 같다. 테이블은 로우(Row), 칼럼(Column), 필드(Field)로 구성된다.</p>
 <div class="section" id="ddl-data-definition-language">
-<h2>4.1. DDL(DATA DEFINITION LANGUAGE)<a class="headerlink" href="#ddl-data-definition-language" title="제목 주소">¶</a></h2>
+<h2>3.1. DDL(DATA DEFINITION LANGUAGE)<a class="headerlink" href="#ddl-data-definition-language" title="제목 주소">¶</a></h2>
 <p>DDL의 경우 명령어를 실행하는 순간 즉시(AUTO COMMIT) 이 완료된다.</p>
 <p>데이터 유형:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span>CHAR(s) : s만큼의 최대 길이를 고정으로 갖고 데이터가 채워지고 남은 공간은 비어있게 된다.
@@ -68,7 +71,7 @@ DATETIME : 날짜와 시각 정보
 </div>
 <p>데이터 유형은 테이블 설계시 고려해야할 중요한 요소이다.</p>
 <div class="section" id="create-table">
-<h3>4.1.1. CREATE TABLE 문<a class="headerlink" href="#create-table" title="제목 주소">¶</a></h3>
+<h3>3.1.1. CREATE TABLE 문<a class="headerlink" href="#create-table" title="제목 주소">¶</a></h3>
 <p>생성 예시:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">STUDENT</span><span class="p">(</span>
 
@@ -98,7 +101,7 @@ DATETIME : 날짜와 시각 정보
 <p>테이블이 복사 생성된다. 다만 기본키, 고유키, 외래키, CHECK등의 제약조건은 복사되지 않는다. NOT NULL 제약조건만 복사된다.</p>
 </div>
 <div class="section" id="alter-table">
-<h3>4.1.2. ALTER TABLE 문<a class="headerlink" href="#alter-table" title="제목 주소">¶</a></h3>
+<h3>3.1.2. ALTER TABLE 문<a class="headerlink" href="#alter-table" title="제목 주소">¶</a></h3>
 <p>칼럼 추가 예시(GRADE):</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 <span class="k">ADD</span> <span class="p">(</span><span class="k">COLUMN</span><span class="p">)</span> <span class="n">GRADE</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
@@ -138,21 +141,21 @@ DATETIME : 날짜와 시각 정보
 </div>
 </div>
 <div class="section" id="id1">
-<h3>4.1.3. 테이블명 변경<a class="headerlink" href="#id1" title="제목 주소">¶</a></h3>
+<h3>3.1.3. 테이블명 변경<a class="headerlink" href="#id1" title="제목 주소">¶</a></h3>
 <p>테이블명 변경:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">RENAME</span> <span class="p">[</span><span class="n">OLD_TABLE_NAME</span><span class="p">]</span> <span class="k">TO</span> <span class="p">[</span><span class="n">NEW_TABLE_NAME</span><span class="p">];</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="drop-table">
-<h3>4.1.4. DROP TABLE<a class="headerlink" href="#drop-table" title="제목 주소">¶</a></h3>
+<h3>3.1.4. DROP TABLE<a class="headerlink" href="#drop-table" title="제목 주소">¶</a></h3>
 <p>예시:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">DROP</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="truncate-table">
-<h3>4.1.5. TRUNCATE TABLE<a class="headerlink" href="#truncate-table" title="제목 주소">¶</a></h3>
+<h3>3.1.5. TRUNCATE TABLE<a class="headerlink" href="#truncate-table" title="제목 주소">¶</a></h3>
 <p>예시:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">TRUNCATE</span> <span class="k">TABLE</span> <span class="n">PLAYER</span>
 </pre></div>
@@ -161,10 +164,10 @@ DATETIME : 날짜와 시각 정보
 </div>
 </div>
 <div class="section" id="dml-data-manipulation-language">
-<h2>4.2. DML(DATA MANIPULATION LANGUAGE)<a class="headerlink" href="#dml-data-manipulation-language" title="제목 주소">¶</a></h2>
+<h2>3.2. DML(DATA MANIPULATION LANGUAGE)<a class="headerlink" href="#dml-data-manipulation-language" title="제목 주소">¶</a></h2>
 <p>DML 명령어의 경우 조작하려는 테이블을 메모리에 버퍼에 올려 놓고 작업을 하기 때문에 실시간으로 테이블에 영향을 미치는 것이 아니다. 따라서 COMMIT 명령어를 입력하여 TRANSACTION을 종료 해야한다. 하지만 SQL Server의 경우 DML도 AUTO COMMIT으로 처리되기 때문에 실제 테이블에 반영하기 위해 COMMIT 명령어를 입력할 필요가 없다.</p>
 <div class="section" id="insert">
-<h3>4.2.1. INSERT<a class="headerlink" href="#insert" title="제목 주소">¶</a></h3>
+<h3>3.2.1. INSERT<a class="headerlink" href="#insert" title="제목 주소">¶</a></h3>
 <p>예시:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">STUDENT</span> <span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">AGE</span><span class="p">,</span> <span class="n">GRADE</span><span class="p">)</span>
 <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;창원&#39;</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">);</span>
@@ -173,7 +176,7 @@ DATETIME : 날짜와 시각 정보
 <p>테이블명 다음 괄호가 없다면 모든 값을 다 넣어야한다.</p>
 </div>
 <div class="section" id="update">
-<h3>4.2.2. UPDATE<a class="headerlink" href="#update" title="제목 주소">¶</a></h3>
+<h3>3.2.2. UPDATE<a class="headerlink" href="#update" title="제목 주소">¶</a></h3>
 <p>예시:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="n">STUDENT</span> <span class="k">SET</span> <span class="n">NAME</span> <span class="o">=</span> <span class="s1">&#39;최창원&#39;</span><span class="p">;</span>
 </pre></div>
@@ -181,7 +184,7 @@ DATETIME : 날짜와 시각 정보
 <p>SET 칼럼명 = 데이터 순으로 작성 해야하는 것을 이해하자.</p>
 </div>
 <div class="section" id="delete">
-<h3>4.2.3. DELETE<a class="headerlink" href="#delete" title="제목 주소">¶</a></h3>
+<h3>3.2.3. DELETE<a class="headerlink" href="#delete" title="제목 주소">¶</a></h3>
 <p>예시:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">DELETE</span> <span class="k">FROM</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 </pre></div>
@@ -195,7 +198,7 @@ DATETIME : 날짜와 시각 정보
 </div>
 </div>
 <div class="section" id="select">
-<h2>4.3. SELECT, 산술 연산자와 합성 연산자<a class="headerlink" href="#select" title="제목 주소">¶</a></h2>
+<h2>3.3. SELECT, 산술 연산자와 합성 연산자<a class="headerlink" href="#select" title="제목 주소">¶</a></h2>
 <p>SELECT는 데이터를 조회하는 쿼리이다. SELECT 는 실제 디스크의 데이터를 읽어오며 칼럼의 수에 따라 차지하는 메모리가 다르다.</p>
 <p><em>산술 연산자</em> 는 NUMBER와 DATE 자료형에 대해 적용되며 일반적으로 수학에서의 4칙 연산과 동일하다. 또한 우선순위를 위한 괄호 적용이 가능하다.</p>
 <p>산술 연산자의 종류</p>
@@ -215,7 +218,7 @@ DATETIME : 날짜와 시각 정보
 <p>각 벤더마다 다른 합성 연산자가 존재하지만 공통적으로 <em>CONCAT 함수</em> 를 사용할 수 있다.</p>
 </div>
 <div class="section" id="tcl-transaction-control-language">
-<h2>4.4. TCL (TRANSACTION CONTROL LANGUAGE)<a class="headerlink" href="#tcl-transaction-control-language" title="제목 주소">¶</a></h2>
+<h2>3.4. TCL (TRANSACTION CONTROL LANGUAGE)<a class="headerlink" href="#tcl-transaction-control-language" title="제목 주소">¶</a></h2>
 <p>트랜잭션은 데이터베이스의 논리적 연산단위 이다. 트랜잭션은 분할할 수 없는 최소의 연산단위 이다. 트랜잭션의 특징은 <em>ACID</em> 라고 줄여서 부를 수 있다.</p>
 <ul class="simple">
 <li>Atomicity(원자성) : 트랜잭션에서 정의된 연산들은 모두 실행되던지 실패되어야 한다.</li>
@@ -258,7 +261,7 @@ DATETIME : 날짜와 시각 정보
 <p>위의 예시에서는 INSERT 구문만 실행되고 UPDATE는 실행되지 않는다.</p>
 </div>
 <div class="section" id="where">
-<h2>4.5. WHERE 절<a class="headerlink" href="#where" title="제목 주소">¶</a></h2>
+<h2>3.5. WHERE 절<a class="headerlink" href="#where" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>비교 연산자 : <em>=</em> , <em>&gt;</em> , <em>&lt;</em> , <em>&gt;=</em> , <em>&lt;=</em></li>
 <li>SQL 연산자 : BETWEEN , IN , LIKE , IS NULL ( <em>LIKE</em> 에서 %는 0개 이상의 문자를 의미, - 는 1개인 단일 문자를 의미)</li>
@@ -294,7 +297,7 @@ DATETIME : 날짜와 시각 정보
 <p>ORACLE, SQL SERVER, MYSQL 순서 이다.</p>
 </div>
 <div class="section" id="function">
-<h2>4.6. 함수(FUNCTION)<a class="headerlink" href="#function" title="제목 주소">¶</a></h2>
+<h2>3.6. 함수(FUNCTION)<a class="headerlink" href="#function" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>문자형 함수 : LOWER, UPPER, SUBSTR/SUBSTRING, LENGTH/LEN, LTRIM, RTRIM, TRIM, ASCII</li>
 <li>숫자형 함수 : ABS, MOD, ROUND, TRUNC, SIGN, CHR/CHAR, CEIL/CEILING, FLOOR, EXP, LOG, LN, POWER, SIN, COS, TAN</li>
@@ -325,7 +328,7 @@ DATETIME : 날짜와 시각 정보
 <p>위는 Oracle, MySQL에서 사용되는 구문, 밑은 SQL Server에서 사용되는 구문이다. <em>extract</em> 대신 <em>YEAR(sysdate())</em> 형식으로 년도만 추출할 수 있다. YEAR, MONTH, DAY와 같은 함수로 반환값을 합치고 싶다면 <em>CONCAT</em> 을 사용하여 된다.</p>
 </div>
 <div class="section" id="case">
-<h2>4.7. CASE 표현<a class="headerlink" href="#case" title="제목 주소">¶</a></h2>
+<h2>3.7. CASE 표현<a class="headerlink" href="#case" title="제목 주소">¶</a></h2>
 <p>CASE 예시:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
 <span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">SAL</span> <span class="o">&gt;</span> <span class="mi">2000</span> <span class="k">THEN</span> <span class="n">SAL</span>
@@ -347,7 +350,7 @@ DATETIME : 날짜와 시각 정보
 <p>CASE 문은 WHEN .. THEN 을 이용해서 계속 조건을 추가할 수 있다.</p>
 </div>
 <div class="section" id="null">
-<h2>4.8. NULL관련 함수<a class="headerlink" href="#null" title="제목 주소">¶</a></h2>
+<h2>3.8. NULL관련 함수<a class="headerlink" href="#null" title="제목 주소">¶</a></h2>
 <p>ISNULL 예시:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
 <span class="k">ISNULL</span><span class="p">(</span><span class="k">NULL</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">STUDENT</span>
@@ -372,9 +375,9 @@ DATETIME : 날짜와 시각 정보
 <p>모든 값이 NULL일 경우 (AND 연산을 통해) NULL을 반환한다.</p>
 </div>
 <div class="section" id="group-by-having">
-<h2>4.9. GROUP BY, HAVING 절<a class="headerlink" href="#group-by-having" title="제목 주소">¶</a></h2>
+<h2>3.9. GROUP BY, HAVING 절<a class="headerlink" href="#group-by-having" title="제목 주소">¶</a></h2>
 <div class="section" id="id2">
-<h3>4.9.1. 집계함수<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
+<h3>3.9.1. 집계함수<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
 <p>여러 행들의 그룹이 모여서 그룹당 단 하나의 결과를 돌려줄때 사용할 수 있는 함수를 뜻한다.</p>
 <p>특성</p>
 <ul class="simple">
@@ -412,7 +415,7 @@ DATETIME : 날짜와 시각 정보
 <p>다른 함수와 달리 <em>집계 함수와 Scalar Subquery</em> 의 경우는 인수의 결과 값이 공집합인 경우에도 NULL을 출력한다. 따라서 위 쿼리 결과는 9999가 된다.</p>
 </div>
 <div class="section" id="id3">
-<h3>4.9.2. GROUP BY, HAVING 절<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
+<h3>3.9.2. GROUP BY, HAVING 절<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
 <p>WHERE 절로 일차적인 결과를 가공한 후 각 팀별 데이터를 얻어오고 싶을때 사용할 수 있다. 예를 들면 팀별 선수의 연봉 평균이나 나이등을 얻을 수 있다.</p>
 <p>형식:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">[</span><span class="k">DISTINCT</span><span class="p">]</span> <span class="k">COLUMN</span> <span class="p">[</span><span class="k">ALIAS</span><span class="p">]</span>
@@ -457,7 +460,7 @@ DATETIME : 날짜와 시각 정보
 </div>
 </div>
 <div class="section" id="order-by">
-<h2>4.10. ORDER BY 정렬<a class="headerlink" href="#order-by" title="제목 주소">¶</a></h2>
+<h2>3.10. ORDER BY 정렬<a class="headerlink" href="#order-by" title="제목 주소">¶</a></h2>
 <p>ORDER BY에 표현식은 집계함수 등이 있다.</p>
 <p>형식:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">[</span><span class="k">DISTINCT</span><span class="p">]</span> <span class="k">COLUMN</span> <span class="p">[</span><span class="k">ALIAS</span><span class="p">]</span>
@@ -481,10 +484,10 @@ DATETIME : 날짜와 시각 정보
 <p>GROUP BY를 한 후 ORDER BY나 SELECT 칼럼에 일반 칼럼을 사용하면 에러가 나온다고 한다. 하지만 MySQL에서 해본결과 동작한다. (설명이 틀렸거나 MySQL 대표값을 사용하는 느낌이다.)</p>
 </div>
 <div class="section" id="join">
-<h2>4.11. 조인(JOIN)<a class="headerlink" href="#join" title="제목 주소">¶</a></h2>
+<h2>3.11. 조인(JOIN)<a class="headerlink" href="#join" title="제목 주소">¶</a></h2>
 <p>JOIN이란 두개 이상의 테이블을 조합하여 데이터를 출력하는것을 뜻한다.</p>
 <div class="section" id="equi-join-inner-join">
-<span id="inner-join"></span><h3>4.11.1. EQUI JOIN (INNER JOIN)<a class="headerlink" href="#equi-join-inner-join" title="제목 주소">¶</a></h3>
+<span id="inner-join"></span><h3>3.11.1. EQUI JOIN (INNER JOIN)<a class="headerlink" href="#equi-join-inner-join" title="제목 주소">¶</a></h3>
 <p>예시</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">A</span><span class="p">,</span><span class="n">B</span> <span class="k">WHERE</span> <span class="n">A</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">ID</span>
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">A</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">B</span> <span class="k">ON</span> <span class="n">A</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">ID</span>
@@ -496,7 +499,7 @@ DATETIME : 날짜와 시각 정보
 </div>
 </div>
 <div class="section" id="dbms">
-<h2>4.12. DBMS별 스키마 정보<a class="headerlink" href="#dbms" title="제목 주소">¶</a></h2>
+<h2>3.12. DBMS별 스키마 정보<a class="headerlink" href="#dbms" title="제목 주소">¶</a></h2>
 <p><em>해킹방어를 위한 JAVA 시큐어코딩</em> 내용을 참조하였습니다.</p>
 <p>MySQL</p>
 <p>INFORMATION_SCHEMA.SCHEMATA : 하나의 스키마는 하나의 데이터베이스다. SCHEMATA는 데이터베이스의 정보를 제공한다.
@@ -519,38 +522,38 @@ sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Mic
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">목차</a></h3>
   <ul>
-<li><a class="reference internal" href="#">4. SQL 기본</a><ul>
-<li><a class="reference internal" href="#ddl-data-definition-language">4.1. DDL(DATA DEFINITION LANGUAGE)</a><ul>
-<li><a class="reference internal" href="#create-table">4.1.1. CREATE TABLE 문</a></li>
-<li><a class="reference internal" href="#alter-table">4.1.2. ALTER TABLE 문</a></li>
-<li><a class="reference internal" href="#id1">4.1.3. 테이블명 변경</a></li>
-<li><a class="reference internal" href="#drop-table">4.1.4. DROP TABLE</a></li>
-<li><a class="reference internal" href="#truncate-table">4.1.5. TRUNCATE TABLE</a></li>
+<li><a class="reference internal" href="#">3. SQL 기본</a><ul>
+<li><a class="reference internal" href="#ddl-data-definition-language">3.1. DDL(DATA DEFINITION LANGUAGE)</a><ul>
+<li><a class="reference internal" href="#create-table">3.1.1. CREATE TABLE 문</a></li>
+<li><a class="reference internal" href="#alter-table">3.1.2. ALTER TABLE 문</a></li>
+<li><a class="reference internal" href="#id1">3.1.3. 테이블명 변경</a></li>
+<li><a class="reference internal" href="#drop-table">3.1.4. DROP TABLE</a></li>
+<li><a class="reference internal" href="#truncate-table">3.1.5. TRUNCATE TABLE</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#dml-data-manipulation-language">4.2. DML(DATA MANIPULATION LANGUAGE)</a><ul>
-<li><a class="reference internal" href="#insert">4.2.1. INSERT</a></li>
-<li><a class="reference internal" href="#update">4.2.2. UPDATE</a></li>
-<li><a class="reference internal" href="#delete">4.2.3. DELETE</a></li>
+<li><a class="reference internal" href="#dml-data-manipulation-language">3.2. DML(DATA MANIPULATION LANGUAGE)</a><ul>
+<li><a class="reference internal" href="#insert">3.2.1. INSERT</a></li>
+<li><a class="reference internal" href="#update">3.2.2. UPDATE</a></li>
+<li><a class="reference internal" href="#delete">3.2.3. DELETE</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#select">4.3. SELECT, 산술 연산자와 합성 연산자</a></li>
-<li><a class="reference internal" href="#tcl-transaction-control-language">4.4. TCL (TRANSACTION CONTROL LANGUAGE)</a></li>
-<li><a class="reference internal" href="#where">4.5. WHERE 절</a></li>
-<li><a class="reference internal" href="#function">4.6. 함수(FUNCTION)</a></li>
-<li><a class="reference internal" href="#case">4.7. CASE 표현</a></li>
-<li><a class="reference internal" href="#null">4.8. NULL관련 함수</a></li>
-<li><a class="reference internal" href="#group-by-having">4.9. GROUP BY, HAVING 절</a><ul>
-<li><a class="reference internal" href="#id2">4.9.1. 집계함수</a></li>
-<li><a class="reference internal" href="#id3">4.9.2. GROUP BY, HAVING 절</a></li>
+<li><a class="reference internal" href="#select">3.3. SELECT, 산술 연산자와 합성 연산자</a></li>
+<li><a class="reference internal" href="#tcl-transaction-control-language">3.4. TCL (TRANSACTION CONTROL LANGUAGE)</a></li>
+<li><a class="reference internal" href="#where">3.5. WHERE 절</a></li>
+<li><a class="reference internal" href="#function">3.6. 함수(FUNCTION)</a></li>
+<li><a class="reference internal" href="#case">3.7. CASE 표현</a></li>
+<li><a class="reference internal" href="#null">3.8. NULL관련 함수</a></li>
+<li><a class="reference internal" href="#group-by-having">3.9. GROUP BY, HAVING 절</a><ul>
+<li><a class="reference internal" href="#id2">3.9.1. 집계함수</a></li>
+<li><a class="reference internal" href="#id3">3.9.2. GROUP BY, HAVING 절</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#order-by">4.10. ORDER BY 정렬</a></li>
-<li><a class="reference internal" href="#join">4.11. 조인(JOIN)</a><ul>
-<li><a class="reference internal" href="#equi-join-inner-join">4.11.1. EQUI JOIN (INNER JOIN)</a></li>
+<li><a class="reference internal" href="#order-by">3.10. ORDER BY 정렬</a></li>
+<li><a class="reference internal" href="#join">3.11. 조인(JOIN)</a><ul>
+<li><a class="reference internal" href="#equi-join-inner-join">3.11.1. EQUI JOIN (INNER JOIN)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#dbms">4.12. DBMS별 스키마 정보</a></li>
+<li><a class="reference internal" href="#dbms">3.12. DBMS별 스키마 정보</a></li>
 </ul>
 </li>
 </ul>
@@ -558,6 +561,10 @@ sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Mic
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="database_index.html">데이터베이스</a><ul>
+      <li>Previous: <a href="model_basic.html" title="이전 장">2. 데이터베이스 모델링</a></li>
+      <li>Next: <a href="sql_basic2.html" title="다음 장">4. SQL 활용</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

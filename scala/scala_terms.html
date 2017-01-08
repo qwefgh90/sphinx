@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. 용어 &#8212; Code Accelerator Document 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="스칼라(Scala)" href="scala_index.html" />
+    <link rel="next" title="2. 스칼라 기본" href="scala_basic.html" />
+    <link rel="prev" title="스칼라(Scala)" href="scala_index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>1. 용어<a class="headerlink" href="#id1" title="제목 주소">¶</a></h1>
+<div class="section" id="first-class-citizen">
+<h2>1.1. 일급 계층 시민(First-class citizen)<a class="headerlink" href="#first-class-citizen" title="제목 주소">¶</a></h2>
+<p>프로그래밍 언어에서 <a href="#id2"><span class="problematic" id="id3">`</span></a>일급 계층 시민 &lt;<a class="reference external" href="https://en.wikipedia.org/wiki/First-class_citizen">https://en.wikipedia.org/wiki/First-class_citizen</a>&gt;`_이란 사회 계급에 빗대 인자값, 반환값, 변수 할당에 사용 가능한 존재를 뜻한다. 숫자, 문자열, 배열, 객체, 함수등이 있을 수 있다.</p>
+</div>
+<div class="section" id="first-class-functions">
+<h2>1.2. 일급 계층 함수(First-class functions)<a class="headerlink" href="#first-class-functions" title="제목 주소">¶</a></h2>
+<p>프로그래밍 언어에서 <a class="reference external" href="https://en.wikipedia.org/wiki/First-class_function">일급 계층 함수</a> 란 일급 계층 시민으로 다뤄지는 함수를 뜻한다. 다른 함수의 인자와 반환값으로 사용할 수 있으며 변수에 할당 할 수 있다.</p>
+</div>
+<div class="section" id="generic-class-trait">
+<span id="id5"></span><h2>1.3. 제네릭 클래스/트레이트(Generic class/trait)<a class="headerlink" href="#generic-class-trait" title="제목 주소">¶</a></h2>
+<p>타입 생성자(type constructor)라고 불리우며, 타입 파라미터를 받을 수 있는 포괄적인 클래스나 트레이트를 제네릭 클래스/트레이트라고 부른다.</p>
+</div>
+<div class="section" id="parameterized-type">
+<span id="id6"></span><h2>1.4. 파라미터화된 타입(Parameterized type)<a class="headerlink" href="#parameterized-type" title="제목 주소">¶</a></h2>
+<p>파라미터화된 타입은 <a class="reference internal" href="#id5"><span class="std std-ref">제네릭 클래스</span></a> 에 파라미터 타입을 인자로 넘겨서 생성된 타입을 뜻한다.</p>
+</div>
+<div class="section" id="subtyping">
+<span id="id7"></span><h2>1.5. 서브타이핑(Subtyping)<a class="headerlink" href="#subtyping" title="제목 주소">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Subtyping">서브타이핑</a> 이란 타입 다형성의 한 종류로서 슈퍼타입(supertpye)과 동작하는 프로그램 요소에서 서브타입(subtype)을 쓸 수 있는 것을 의미한다. 만약 S가 T의 서브타입이라면 서브 타이핑 관계는 <strong>S&lt;: T</strong> 로 나타내고 이는 타입 T가 사용되는 문맥에서 타입 S를 안전하게 사용할 수 있다는 의미를 갖는다.</p>
+</div>
+<div class="section" id="variances">
+<span id="id9"></span><h2>1.6. 변성 (Variances)<a class="headerlink" href="#variances" title="제목 주소">¶</a></h2>
+<p>어떤 타입 파라미터의 공변, 반공변, 무공변 여부를 변성이라고 한다.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. 용어</a><ul>
+<li><a class="reference internal" href="#first-class-citizen">1.1. 일급 계층 시민(First-class citizen)</a></li>
+<li><a class="reference internal" href="#first-class-functions">1.2. 일급 계층 함수(First-class functions)</a></li>
+<li><a class="reference internal" href="#generic-class-trait">1.3. 제네릭 클래스/트레이트(Generic class/trait)</a></li>
+<li><a class="reference internal" href="#parameterized-type">1.4. 파라미터화된 타입(Parameterized type)</a></li>
+<li><a class="reference internal" href="#subtyping">1.5. 서브타이핑(Subtyping)</a></li>
+<li><a class="reference internal" href="#variances">1.6. 변성 (Variances)</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="scala_index.html">스칼라(Scala)</a><ul>
+      <li>Previous: <a href="scala_index.html" title="이전 장">스칼라(Scala)</a></li>
+      <li>Next: <a href="scala_basic.html" title="다음 장">2. 스칼라 기본</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/scala/scala_terms.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/scala/scala_terms.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

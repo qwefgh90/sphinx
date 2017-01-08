@@ -1,8 +1,8 @@
 .. _author-index:
 
-###########
-Author
-###########
+=================
+ 관리자 (Author)
+=================
 
 | **최창원 Choe Changwon(28)**
 | \- 010-7314-4993
@@ -17,7 +17,7 @@ Author
 
 
 | **Works**
-| `https://qwefgh90.github.io <https://qwefgh90.github.io>`_
+| `http://qwefgh90.github.io <https://qwefgh90.github.io>`_
 | `https://github.com/qwefgh90/ <https://github.com/qwefgh90/>`_
 | `http://www.slideshare.net/changwonchoe7 <http://www.slideshare.net/changwonchoe7>`_
 | `https://www.facebook.com/changwon.choe.7 <https://www.facebook.com/changwon.choe.7>`_

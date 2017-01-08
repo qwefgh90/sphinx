@@ -19,6 +19,3 @@ Contents:
    data_structure.rst
    algorithm_question.rst
    well_known_algorithm.rst
-
-.. raw:: html
-   :file: ../comment_tag1.txt

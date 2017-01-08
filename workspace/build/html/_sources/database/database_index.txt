@@ -15,12 +15,8 @@ Contents:
    :maxdepth: 2
    :numbered: 
 
-   redis_basic.rst
-   model_basic.rst
    database_concept.rst
+   model_basic.rst
    sql_basic.rst
    sql_basic2.rst
    sql_optimize.rst
-
-.. raw:: html
-   :file: ../comment_tag1.txt

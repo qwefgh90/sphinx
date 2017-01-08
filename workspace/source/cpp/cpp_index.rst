@@ -16,6 +16,3 @@ Contents:
    :numbered: 
 
    cpp_template.rst
-
-.. raw:: html
-   :file: ../comment_tag1.txt

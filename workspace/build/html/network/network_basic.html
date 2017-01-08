@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. 프로토콜 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>2. 프로토콜 &#8212; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -28,6 +28,9 @@
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="네트워크" href="network_index.html" />
+    <link rel="next" title="3. TCP" href="network_tcp.html" />
+    <link rel="prev" title="1. 용어" href="network_terms.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -44,37 +47,37 @@
           <div class="body" role="main">
             
   <div class="section" id="index-0">
-<span id="id1"></span><h1>1. 프로토콜<a class="headerlink" href="#index-0" title="제목 주소">¶</a></h1>
+<span id="id1"></span><h1>2. 프로토콜<a class="headerlink" href="#index-0" title="제목 주소">¶</a></h1>
 <p>계층적으로 이루진 프토로콜은 송신측에서 하위 Layer가 상위 Layer를 등에 태우고 자신의 목적지로 보내게된다. ( <strong>링크 계층은 데이터 그램을 다음 노드로</strong> , <strong>네트워크 계층은 세그먼트를 목적지 호스트로</strong> , <strong>트랜스포트 계층은 메세지를 서버 어플리케이션으로</strong> 보냄)</p>
 <p id="index-1">유심히 보면 각 계층의 패킷은 상위계층 패킷(메세지, 세그먼트, 데이터그램)과 헤더로 구성된다. 일반적으로 상위계층 패킷을 페이로드라고 부르게 된다. 즉 <strong>하위 계층의 패킷은 페이로드 필드(payload field)</strong> 과 <strong>헤더 필드</strong> 로 이루어진다.</p>
 <div class="section" id="index-2">
-<span id="id2"></span><h2>1.1. 어플리케이션 계층<a class="headerlink" href="#index-2" title="제목 주소">¶</a></h2>
+<span id="id2"></span><h2>2.1. 어플리케이션 계층<a class="headerlink" href="#index-2" title="제목 주소">¶</a></h2>
 <p>네트워크로 연결된 어플리케이션 간에 데이터를 주고받기 위한 프로토콜이다. 어플리케이션 계층에서의 정보를 메세지(message)라고 부른다.</p>
 <p><strong>대표적인 프로토콜은 다음과 같다. SMTP(25), TELNET(23), FTP(20,21(제어))</strong></p>
 </div>
 <div class="section" id="index-3">
-<span id="id3"></span><h2>1.2. 트랜스포트 계층<a class="headerlink" href="#index-3" title="제목 주소">¶</a></h2>
+<span id="id3"></span><h2>2.2. 트랜스포트 계층<a class="headerlink" href="#index-3" title="제목 주소">¶</a></h2>
 <p>클라이언트와 서버 어플리케이션 간에 어플리케이션 계층의 메세지를 전송하는 서비스를 제공하는 프로토콜이다. TCP와 UDP라는 전송 프로토콜이 있으며 이들은 어플리케이션 계층 메세지를 전달한다. 트랜스포트 계층의 정보를 <strong>세그먼트</strong> 라고 한다.</p>
 <p><strong>세그먼트</strong> 는 가장 간단한 경우에 어플리케이션 계층의 메세지 + 트랜스포트 계층 헤더 정보를 갖게 된다. 세그먼트에는 기본적으로 수신측 어플리케이션 정보(포트)와 오류 검출 비트를 포함한다. 트랜스포트 계층은 어플리케이션 계층의 메세지를 포함하고 있지만 <strong>메세지를 잘게 조각낼 수 있기 때문에 실제로 여러개의 세그먼트가 생성</strong> 될 수 있다. 여러개로 분할된다면 수신측에서 세그먼트롤 다시 조립해야 한다.</p>
 <div class="section" id="tcp">
-<h3>1.2.1. TCP<a class="headerlink" href="#tcp" title="제목 주소">¶</a></h3>
+<h3>2.2.1. TCP<a class="headerlink" href="#tcp" title="제목 주소">¶</a></h3>
 <p>TCP 프로토콜은 어플리케이션에게 연결지향형 서비스를 제공한다. 또한 목적지로의 어플리케이션 계층 메세지 전달 보장과 흐름제어(송신자/수신자의 속도 일치)를 포함한다. 또한 TCP는 긴 메세지를 짦은 메세지로 나누고 혼잡제어 기능을 제공하며 네트워크가 혼잡할때 출발지의 전송속도를 줄이도록 한다.</p>
 </div>
 <div class="section" id="udp">
-<h3>1.2.2. UDP<a class="headerlink" href="#udp" title="제목 주소">¶</a></h3>
+<h3>2.2.2. UDP<a class="headerlink" href="#udp" title="제목 주소">¶</a></h3>
 <p>UDP 프로토콜은 어플리케이션에 비연결형 서비스를 제공한다. 이 서비스는 신뢰성, 흐름제어, 혼잡제어를 제공하지 않는 아주 간단한 서비스이다.</p>
 </div>
 </div>
 <div class="section" id="index-4">
-<span id="id4"></span><h2>1.3. 네트워크 계층<a class="headerlink" href="#index-4" title="제목 주소">¶</a></h2>
+<span id="id4"></span><h2>2.3. 네트워크 계층<a class="headerlink" href="#index-4" title="제목 주소">¶</a></h2>
 <p>인터넷의 네트워크 계층은 한 호스트에서 다른 호스트로 데이터그램을 라우팅하는 책임을 진다. 네트워크 계층은 IP프로토콜과 라우팅 프로토콜을 모두 가지고 있지만 IP가 인터넷을 묶는 역할을 하므로 흔히 <strong>IP계층</strong> 이라 부른다.</p>
 <p><strong>데이터그램은</strong> 목적지 호스트 주소를 헤더와 트랜스포트 계층에서 내려온 세그먼트를 포함한다.</p>
 <div class="section" id="id5">
-<h3>1.3.1. 송신할 때 트랜스포트 계층과 네트워크 계층의 관계<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
+<h3>2.3.1. 송신할 때 트랜스포트 계층과 네트워크 계층의 관계<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
 <p>메일 서비스를 이용하기 위해 목적지 주소가 적힌 편지를 전달하는 것처럼, 출발지 호스트에서 <strong>트랜스포트 계층</strong> 은 세그먼트와 목적지 주소를 네트워크 계층으로 전달한다. 이후 네트워크 계층은 목적지 호스트의 트랜스포트 계층으로 세그먼트를 운반하는 서비스를 제공한다.</p>
 </div>
 <div class="section" id="ipv4">
-<h3>1.3.2. IPv4 주소체계<a class="headerlink" href="#ipv4" title="제목 주소">¶</a></h3>
+<h3>2.3.2. IPv4 주소체계<a class="headerlink" href="#ipv4" title="제목 주소">¶</a></h3>
 <p>라우터나 호스트는 인터페이스(NIC)를 통해 데이터그램을 주고받는다. 즉 호스트가 데이터를 수신하기 위해 IP주소와 인터페이스를 연관시킨다. 이때 네트워크를 서브넷으로 관리한다. <strong>서브넷이란 IP주소에 규칙을 부여할 수 있는 방식이다.</strong> <strong>서브넷 표기는 255.1.1.0/24</strong> 와 같다. 왼쪽 24비트가 서브넷 주소라 불린다.</p>
 <p>서브넷을 만들기 위해선 인터페이스로 이루어진 링크들을 그룹 지으면 된다.</p>
 <p><strong>인터넷 주소 할당 방식에 CIDR(Classless Interdomain Routing, 사이다)라는 것이 있다.</strong> 이는 서브넷 표기법과 같이 192.168.1.0/24 와 같다. 최상위 비트를 네트워크 접두사(prefix)라고 한다고 한다.(서브넷 주소 이기도 한 듯) 즉 라우팅될때 네트워크 접두사를 사용해 단순하게 라우팅할 수 있다.</p>
@@ -83,26 +86,26 @@
 </div>
 </div>
 <div class="section" id="fragmentation">
-<h2>1.4. 단편화(Fragmentation)<a class="headerlink" href="#fragmentation" title="제목 주소">¶</a></h2>
+<h2>2.4. 단편화(Fragmentation)<a class="headerlink" href="#fragmentation" title="제목 주소">¶</a></h2>
 <p>패킷이 목적에 도달하기위해 네트워크 경로(Path)에서 여러개의 데이터 링크 계층 프로토콜을 지나가게 된다. 어떤 링크계층은 4000bytes를 처리할수 있으며 어떤 링크계층은 1500bytes를 처리할 수 있을 것이다. 즉 MTU(maximum transmission unit)이 다를 수 있다. <strong>네트워크 계층의 데이터그램은 한 라우터에서 다른 라우터로 전송되기 위해 링크 계층 패킷으로 캡슐화</strong> 되므로 <strong>MTU는 데이터그램의 길이에 강한 제약</strong> 을 둔다. 즉 데이터그램을 조각낸다. 이를 <strong>단편화</strong> 라고 한다.</p>
 <p>기본적으로 IP계층은 네트워크 계층에서(TCP, UDP) 단편화가 일어나지 않는 것을 예상하고 있다. (상위 계층에서 단편화를 신경쓰지 않도록) 어쨌든 네트워크 계층의 단편화는 데이터 링크 계층의 MTU를 고려하여 이루어지게 된다. 예를들어 3980bytes의 세그먼트가 네트워크 계층에 도착했다면 1480 + 1480 + 1020로 <strong>Fragmentation(단편화)</strong> 된다. (일반적으로 LAN에서 사용되는 이더넷의 MTU는 1500 이므로 네트워크 계층 헤더(20bytes) + 페이로드(1480bytes))</p>
 <p>단, 라우터에서 단편화된 데이터그램의 재결합이 발생하지 않는다. 그 이유는 라우팅이라는 더 중대한 일이 있기 때문이다. <strong>결론적으로 라우터 단에서 단편화는 발생할 수 있으며 종단 호스트에서 재결합이 일어나게 된다.</strong></p>
 <div class="section" id="id6">
-<h3>1.4.1. 단편화를 고려한 설계<a class="headerlink" href="#id6" title="제목 주소">¶</a></h3>
+<h3>2.4.1. 단편화를 고려한 설계<a class="headerlink" href="#id6" title="제목 주소">¶</a></h3>
 <p>이와 같이 IPv4 설계자는 단편화를 고려하여 IPv4를 설계하였다. 따라서 단편화를 위해 ID 필드, 오프셋 필드, 플래그 필드를 포함시켰다.</p>
 </div>
 <div class="section" id="segmentation-vs-fragmentation">
-<h3>1.4.2. Segmentation VS Fragmentation<a class="headerlink" href="#segmentation-vs-fragmentation" title="제목 주소">¶</a></h3>
+<h3>2.4.2. Segmentation VS Fragmentation<a class="headerlink" href="#segmentation-vs-fragmentation" title="제목 주소">¶</a></h3>
 <p>하지만 <strong>TCP</strong> 는 트랜스포트 계층에서 <strong>Segmentation</strong> 을 하기 때문에 <strong>UDP</strong> 만 네트워크 계층 <strong>Fragmentation</strong> 이 일어나게 된다.</p>
 <p><a class="reference external" href="http://se2n.com/study/io/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%A7%9D-%ED%86%B5%EC%8B%A0/38">Segmentation vs Fragmentation</a> 을 읽어보자.</p>
 </div>
 </div>
 <div class="section" id="index-5">
-<span id="id8"></span><h2>1.5. 데이터 링크 계층<a class="headerlink" href="#index-5" title="제목 주소">¶</a></h2>
+<span id="id8"></span><h2>2.5. 데이터 링크 계층<a class="headerlink" href="#index-5" title="제목 주소">¶</a></h2>
 <p>링크 계층은 <strong>데이터그램을 경로 상의 다음 노드로 전달</strong> 하는 서비스를 제공한다. 링크 계층에서 제공하는 서비스는 <strong>그 링크에서 채용된 특정 링크 계층 프로토콜</strong> 에 의해 결정된다. 예를들어 어떤 프로토콜은 목적지 노드까지 신뢰적 전송을 제공한다. <strong>이 신뢰적 전송은 TCP와는 다르다.</strong> 링크 계층 패킷을 프레임이라고 한다.</p>
 <p><strong>링크 계층 프레임</strong> 은 데이터그램과 자신의 헤더정보를 포함한다.</p>
 <div class="section" id="index-6">
-<span id="id9"></span><h3>1.5.1. 링크 계층 프로토콜(링크에서 채용된 특정 프로토콜)<a class="headerlink" href="#index-6" title="제목 주소">¶</a></h3>
+<span id="id9"></span><h3>2.5.1. 링크 계층 프로토콜(링크에서 채용된 특정 프로토콜)<a class="headerlink" href="#index-6" title="제목 주소">¶</a></h3>
 <p>근거리 통신망 LAN을 위해 개발된 링크 계층 프로토콜은 다음과 같다.</p>
 <ul class="simple">
 <li>이더넷 (토큰링, FDDI와 같은 표준을 대체)</li>
@@ -113,28 +116,28 @@
 <p>예를들면 하나의 링크에선 이더넷에 의해 다루어지고 다음 링크에서는 PPP에 의해 다루어질 수 있다. <strong>즉 데이터그램은 서로 다른 링크 계층 프로토콜로부터 다른 서비스를 제공</strong> 받을 것이다.</p>
 </div>
 <div class="section" id="id10">
-<h3>1.5.2. 네트워크 계층과 링크 계층의 관계<a class="headerlink" href="#id10" title="제목 주소">¶</a></h3>
+<h3>2.5.2. 네트워크 계층과 링크 계층의 관계<a class="headerlink" href="#id10" title="제목 주소">¶</a></h3>
 <p>인터넷의 네트워크 계층은 출발지와 목적지 간 일련의 패킷 스위치를 통해 데이터그램을 라우트한다. <strong>경로상의 한 노드</strong> 에서 다른 노드로 패킷을 이동하기 위해, 네트워크 계층은 링크 계층 서비스에 의존해야한다.</p>
 <p><strong>각 노드에서 네트워크 계층은 데이터그램을 링크 계층으로 보내고</strong> 링크 계층은 그 데이터그램을 경로상의 다음 노드에 전달한다. <strong>다음 노드에서 링크 계층은 그 데이터그램을 상위 네트워크 계층으로 보낸다.</strong></p>
 </div>
 <div class="section" id="mac">
-<h3>1.5.3. MAC 주소, 물리 주소, 랜 주소<a class="headerlink" href="#mac" title="제목 주소">¶</a></h3>
+<h3>2.5.3. MAC 주소, 물리 주소, 랜 주소<a class="headerlink" href="#mac" title="제목 주소">¶</a></h3>
 <p>데이터링크 계층의 주소는 위와 같이 다양한 이름으로 불리며 가장 널리 알려진 용어는 <strong>MAC 주소</strong> 이다. 대부분의 랜의 경우(이더넷, WIFI) MAC 주소는 6바이트 길이를 가지며 2^48개만큼의 사용 가능한 랜 주소가 있다.</p>
 <p>실제 데이터 링크 계층의 주소를 가진 것은 호스트나 라우터가 아닌 <strong>호스트나 라우터의 어댑터(NIC)</strong> 이다. 즉 다수의 네트워크 인터페이스를 갖고 있는 호스트나 라우터는 여러개의 링크 계층 주소를 갖게된다.</p>
 </div>
 <div class="section" id="ip-mac">
-<h3>1.5.4. IP주소, MAC주소 따로 존재하는 이유<a class="headerlink" href="#ip-mac" title="제목 주소">¶</a></h3>
+<h3>2.5.4. IP주소, MAC주소 따로 존재하는 이유<a class="headerlink" href="#ip-mac" title="제목 주소">¶</a></h3>
 <p>네트워크 구조에서 계층이 <strong>독립적인 구성 요소가 되도록 하기 위해서</strong> 각 계층은 자신만의 이름을 가져야 한다. 당연한 말이지만 데이터 링크계층은 네트워크 계층 뿐만 아니라 다른 프로토콜도 지원하기위해 설계되었다. 따라서 데이터 링크 계층에서 IP주소를 갖게 되면 다른 프로토콜을 지원할 수 없다.</p>
 </div>
 <div class="section" id="index-7">
-<span id="id11"></span><h3>1.5.5. 링크 계층 스위치<a class="headerlink" href="#index-7" title="제목 주소">¶</a></h3>
+<span id="id11"></span><h3>2.5.5. 링크 계층 스위치<a class="headerlink" href="#index-7" title="제목 주소">¶</a></h3>
 <p>특이한 점은 링크 계층 스위치는 호스트나 라우터를 연결해주는 <strong>인터페이스에 링크 주소를 할당받지 않는다.</strong>  그 이유는 링크 계층 스위치가 호스트와 라우터 간에 데이터그램을 전달하는 일을 하기 때문이다.</p>
 <p>호스트나 라우터는 중간에 거쳐가는 스위치의 주소를 프레임에 명시하지 않는다.</p>
 <img alt="../_images/linkswitch.jpeg" src="../_images/linkswitch.jpeg" />
 </div>
 </div>
 <div class="section" id="id12">
-<h2>1.6. 네트워크 지연 시간<a class="headerlink" href="#id12" title="제목 주소">¶</a></h2>
+<h2>2.6. 네트워크 지연 시간<a class="headerlink" href="#id12" title="제목 주소">¶</a></h2>
 <p><strong>네트워크의 지연은 통신 어플리케이션에 많은 영향을 주며 성능을 파악하는데 도움이 된다.</strong> 컴퓨터 네트워크를 이해하는데 중요한 부분중 하나이다.</p>
 <p>패킷은 송신호스트에서 여러 노드를 거쳐 수신호스트에 도달한다. 이때 각 링크에서 지연이 발생할 수 있다. 대표적인 <strong>지연(delay)은 노드 처리 지연(processing delay), 큐잉 지연(queuing delay), 전송 지연(transmission delay), 전파 지연(propagation delay)</strong> 이 있다.</p>
 <p><strong>처리 지연은</strong> 라우터에 도착한 패킷을 어디에 보낼지 결정하는데 걸리는 시간을 뜻한다. <strong>큐잉 지연은</strong> 큐에서 전송되기 직전까지 대기하는 시간을 뜻한다. <strong>전송 지연은</strong> 다음 라우터까지의 <strong>링크의 전송률에</strong> 에 영향을 받는다. <strong>패킷의 길이를 Lbits, 전송률을 Rbps</strong> 라고 했을때 <strong>L/R은 전송 지연이다.</strong></p>
@@ -143,7 +146,7 @@
 <p><strong>또한 Ping 도구를 사용하여 2지점 사이의 지연을 구할 수 있다. 이를 RTT(Round-trip delay) 라고 한다.</strong> <a class="reference external" href="http://en.wikipedia.org/wiki/Round-trip_delay_time">RTT 위키</a></p>
 </div>
 <div class="section" id="dhcp">
-<h2>1.7. DHCP 프로토콜<a class="headerlink" href="#dhcp" title="제목 주소">¶</a></h2>
+<h2>2.7. DHCP 프로토콜<a class="headerlink" href="#dhcp" title="제목 주소">¶</a></h2>
 <p>TCP/IP 위에서 동작하기 위해 호스트에게 IP를 할당하는 프로토콜이다. DHCP server discovery, DHCP server offer, DHCP request, DHCP ack 순으로 동작한다.</p>
 <ol class="arabic simple">
 <li>클라이언트는 255.255.255.255(브로드캐스트) 주소의 67번 포트로 UDP 패킷을 보낸다.</li>
@@ -162,33 +165,33 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">목차</a></h3>
   <ul>
-<li><a class="reference internal" href="#">1. 프로토콜</a><ul>
-<li><a class="reference internal" href="#index-2">1.1. 어플리케이션 계층</a></li>
-<li><a class="reference internal" href="#index-3">1.2. 트랜스포트 계층</a><ul>
-<li><a class="reference internal" href="#tcp">1.2.1. TCP</a></li>
-<li><a class="reference internal" href="#udp">1.2.2. UDP</a></li>
+<li><a class="reference internal" href="#">2. 프로토콜</a><ul>
+<li><a class="reference internal" href="#index-2">2.1. 어플리케이션 계층</a></li>
+<li><a class="reference internal" href="#index-3">2.2. 트랜스포트 계층</a><ul>
+<li><a class="reference internal" href="#tcp">2.2.1. TCP</a></li>
+<li><a class="reference internal" href="#udp">2.2.2. UDP</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#index-4">1.3. 네트워크 계층</a><ul>
-<li><a class="reference internal" href="#id5">1.3.1. 송신할 때 트랜스포트 계층과 네트워크 계층의 관계</a></li>
-<li><a class="reference internal" href="#ipv4">1.3.2. IPv4 주소체계</a></li>
+<li><a class="reference internal" href="#index-4">2.3. 네트워크 계층</a><ul>
+<li><a class="reference internal" href="#id5">2.3.1. 송신할 때 트랜스포트 계층과 네트워크 계층의 관계</a></li>
+<li><a class="reference internal" href="#ipv4">2.3.2. IPv4 주소체계</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fragmentation">1.4. 단편화(Fragmentation)</a><ul>
-<li><a class="reference internal" href="#id6">1.4.1. 단편화를 고려한 설계</a></li>
-<li><a class="reference internal" href="#segmentation-vs-fragmentation">1.4.2. Segmentation VS Fragmentation</a></li>
+<li><a class="reference internal" href="#fragmentation">2.4. 단편화(Fragmentation)</a><ul>
+<li><a class="reference internal" href="#id6">2.4.1. 단편화를 고려한 설계</a></li>
+<li><a class="reference internal" href="#segmentation-vs-fragmentation">2.4.2. Segmentation VS Fragmentation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#index-5">1.5. 데이터 링크 계층</a><ul>
-<li><a class="reference internal" href="#index-6">1.5.1. 링크 계층 프로토콜(링크에서 채용된 특정 프로토콜)</a></li>
-<li><a class="reference internal" href="#id10">1.5.2. 네트워크 계층과 링크 계층의 관계</a></li>
-<li><a class="reference internal" href="#mac">1.5.3. MAC 주소, 물리 주소, 랜 주소</a></li>
-<li><a class="reference internal" href="#ip-mac">1.5.4. IP주소, MAC주소 따로 존재하는 이유</a></li>
-<li><a class="reference internal" href="#index-7">1.5.5. 링크 계층 스위치</a></li>
+<li><a class="reference internal" href="#index-5">2.5. 데이터 링크 계층</a><ul>
+<li><a class="reference internal" href="#index-6">2.5.1. 링크 계층 프로토콜(링크에서 채용된 특정 프로토콜)</a></li>
+<li><a class="reference internal" href="#id10">2.5.2. 네트워크 계층과 링크 계층의 관계</a></li>
+<li><a class="reference internal" href="#mac">2.5.3. MAC 주소, 물리 주소, 랜 주소</a></li>
+<li><a class="reference internal" href="#ip-mac">2.5.4. IP주소, MAC주소 따로 존재하는 이유</a></li>
+<li><a class="reference internal" href="#index-7">2.5.5. 링크 계층 스위치</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id12">1.6. 네트워크 지연 시간</a></li>
-<li><a class="reference internal" href="#dhcp">1.7. DHCP 프로토콜</a></li>
+<li><a class="reference internal" href="#id12">2.6. 네트워크 지연 시간</a></li>
+<li><a class="reference internal" href="#dhcp">2.7. DHCP 프로토콜</a></li>
 </ul>
 </li>
 </ul>
@@ -196,6 +199,10 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="network_index.html">네트워크</a><ul>
+      <li>Previous: <a href="network_terms.html" title="이전 장">1. 용어</a></li>
+      <li>Next: <a href="network_tcp.html" title="다음 장">3. TCP</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

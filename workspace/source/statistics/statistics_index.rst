@@ -6,7 +6,7 @@
 	:description: This is a Statistics index page.
 	:keywords: Statistics, 통계, 확률변수, 분산, 분포, 표본, 확률
 
-Statictics
+통계학(Statictics)
 ==================================================
 
 Contents:
@@ -18,7 +18,3 @@ Contents:
    statistics_terms.rst
    statistics_estimation_test.rst
    machinelearning.rst
-
-.. raw:: html
-   :file: ../comment_tag1.txt
-  

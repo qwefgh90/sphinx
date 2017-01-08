@@ -15,7 +15,5 @@ Contents:
    :maxdepth: 2
    :numbered: 
 
-   scala_basic.rst
-
-.. raw:: html
-   :file: ../comment_tag1.txt
+   scala_terms.rst
+   scala_basic.rst   

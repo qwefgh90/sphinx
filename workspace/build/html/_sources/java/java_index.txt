@@ -6,7 +6,7 @@
 	:description: This is a Java index page.
 	:keywords: Java, Class, 최창원, 창원
 
-자바(JAVA)
+자바(Java)
 ==================================================
 
 Contents:
@@ -17,7 +17,3 @@ Contents:
 
    java_basic.rst
    java_jvm.rst
-   design_pattern.rst
-
-.. raw:: html
-   :file: ../comment_tag1.txt
