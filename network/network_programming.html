@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. 네트워크 프로그래밍 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>5. 네트워크 프로그래밍 &#8212; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -29,8 +29,8 @@
     <link rel="search" title="검색" href="../search.html" />
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
     <link rel="up" title="네트워크" href="network_index.html" />
-    <link rel="next" title="4. TCP" href="network_tcp.html" />
-    <link rel="prev" title="2. HTTP" href="network_http.html" />
+    <link rel="next" title="Python" href="../python/python_index.html" />
+    <link rel="prev" title="4. HTTP" href="network_http.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -47,15 +47,15 @@
           <div class="body" role="main">
             
   <div class="section" id="network-programming">
-<span id="id1"></span><h1>3. 네트워크 프로그래밍<a class="headerlink" href="#network-programming" title="제목 주소">¶</a></h1>
+<span id="id1"></span><h1>5. 네트워크 프로그래밍<a class="headerlink" href="#network-programming" title="제목 주소">¶</a></h1>
 <div class="section" id="vs">
-<h2>3.1. 블로킹 기법 vs 논블로킹 기법<a class="headerlink" href="#vs" title="제목 주소">¶</a></h2>
+<h2>5.1. 블로킹 기법 vs 논블로킹 기법<a class="headerlink" href="#vs" title="제목 주소">¶</a></h2>
 <p><a class="reference internal" href="network_terms.html#network-terms"><span class="std std-ref">블로킹 기법</span></a> 을 활용한 I/O의 단점은 사용자의 수만큼 스레드를 생성하기 때문에 많은수의 사용자를 처리하기 위해 여러번의 스레드 컨텍스트 스위칭이 발생하여 성능이 줄어든다. Tomcat이 이런 구조라고 한다. 반면 <a class="reference internal" href="network_terms.html#id5"><span class="std std-ref">논블로킹 기법</span></a> 은 스레드를 일정량 생산한 후 여러개의 I/O 채널을 관리하게 하고 이벤트-리스너 구조를 이용한다. 이때 대기하던 워커 쓰레드가 작업(Task)을 처리할 수 있다. 단점으로 스위칭 비용이 줄어드나 코드의 제어가 복잡해진다. <a class="reference external" href="http://ayedo.github.io/netty/2013/06/19/what-is-netty.html">네티 NIO 아키텍처</a> <a class="reference external" href="http://www.joinc.co.kr/modules/moniwiki/wiki.php/Site/win_network_prog/doc/iocp">IOCP 란</a></p>
 <p>즉 큰 차이점으로 스레드 컨텍스트 스위칭 비용이 있다. 동시에 500개의 연결이 들어온다면 스레드 500개가 각각을 처리하게되어 컨텍스트 스위칭 비용이 들지만 비동기 방식이라면 이런 비용없이 처리할 수 있다. <strong>하지만 각 이벤트 또는 작업에 대한 비용이 많이 든다면 성능이 떨어진다고 한다.</strong></p>
 <p>이때 블로킹 기법은 동기적 방법에 해당한다. OS의 작업완료가 될때까지 프로세스는 대기한다. 반면 논블로킹 기법은 무한정 busy-waiting을 할 수도있지만 이것이 아닌 OS단에서 비동기적 방식의 지원으로 인해 시그널로 알림을 받는다. <strong>자바에서는 Select라는 클래스를 이용해 알림을 받을 수 있다고 한다.</strong></p>
 </div>
 <div class="section" id="id2">
-<h2>3.2. 게임 동기화 모델<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<h2>5.2. 게임 동기화 모델<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <p><a class="reference external" href="http://www.gamedevforever.com/m/post/62">게임 네트워크 아키텍처</a>
 <a class="reference external" href="http://www.gabrielgambetta.com/fpm1.html">게임 네트워크 아키텍처 메뉴얼 추천</a>
 <a class="reference external" href="http://blog.naver.com/zzleggam/70176251463">Authoritative Server 설명</a></p>
@@ -78,9 +78,9 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">목차</a></h3>
   <ul>
-<li><a class="reference internal" href="#">3. 네트워크 프로그래밍</a><ul>
-<li><a class="reference internal" href="#vs">3.1. 블로킹 기법 vs 논블로킹 기법</a></li>
-<li><a class="reference internal" href="#id2">3.2. 게임 동기화 모델</a></li>
+<li><a class="reference internal" href="#">5. 네트워크 프로그래밍</a><ul>
+<li><a class="reference internal" href="#vs">5.1. 블로킹 기법 vs 논블로킹 기법</a></li>
+<li><a class="reference internal" href="#id2">5.2. 게임 동기화 모델</a></li>
 </ul>
 </li>
 </ul>
@@ -89,8 +89,8 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="network_index.html">네트워크</a><ul>
-      <li>Previous: <a href="network_http.html" title="이전 장">2. HTTP</a></li>
-      <li>Next: <a href="network_tcp.html" title="다음 장">4. TCP</a></li>
+      <li>Previous: <a href="network_http.html" title="이전 장">4. HTTP</a></li>
+      <li>Next: <a href="../python/python_index.html" title="다음 장">Python</a></li>
   </ul></li>
   </ul></li>
 </ul>

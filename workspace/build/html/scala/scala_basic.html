@@ -29,8 +29,8 @@
     <link rel="search" title="검색" href="../search.html" />
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
     <link rel="up" title="스칼라(Scala)" href="scala_index.html" />
-    <link rel="next" title="C++" href="../cpp/cpp_index.html" />
-    <link rel="prev" title="1. 스칼라 용어" href="scala_terms.html" />
+    <link rel="next" title="네트워크" href="../network/network_index.html" />
+    <link rel="prev" title="1. 용어" href="scala_terms.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -83,7 +83,7 @@
 </div>
 <p><a class="reference internal" href="scala_terms.html#id6"><span class="std std-ref">파라미터화된 타입</span></a> 은 <em>new Queue[Int]</em> 또는 <em>new Queue[String]</em> 와 같이 타입을 대괄호 안에 넣어서 타입을 생성할 수 있다. 스칼라에서는 타입 파라미터 덕분에 파라미터화된 타입들 간에 서브타입 관계 <strong>(subtyping relationship)</strong> 가 존재할 수 있다. 예를들어 Queue[String]은 Queue[AnyRef]의 서브타입이 될 수 있다. <strong>만약 그렇다면 Queue 클래스는 타입 파라미터 T에 대해 공변적이라고 할 수 있다.</strong> (서브타입이 될 수도 안될 수도 있음)</p>
 <p><strong>스칼라에서는 기본적으로 타입 파라미터에 대해 무공변성을 갖는다.</strong> 즉 위의 Queue[String]은 Queue[AnyRef]의 서브타입이 아니다. 타입 파라미터 T에 대해 공변성을 띄게하고 싶다면 T앞에 변성표기 <em>+</em> 를 넣어서 공변성을 띄게 할 수 있다. <em>-</em> 를 넣는다면 반공변성을 띄게 된다. 타입 파라미터에 <em>반공변적</em> 이라면 임의의 타입 파라미터 S가 T의 서브타입일때 Queue[T]는 Queue[S]의 서브타입이 된다.</p>
-<p>공변/반공변을 띄게 하는 <strong>+/-</strong> 표기는 <span class="xref std std-ref">변성</span> 표기 라고 한다.</p>
+<p>공변/반공변을 띄게 하는 <strong>+/-</strong> 표기는 <a class="reference internal" href="scala_terms.html#id9"><span class="std std-ref">변성</span></a> 표기 라고 한다.</p>
 <p>공변 타입이 항상 가능하지는 않다. 다음과 같은 설계는 불가능하다.:</p>
 <div class="highlight-scala"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Cell</span><span class="o">[</span><span class="kt">+T</span><span class="o">](</span><span class="n">init</span><span class="k">:</span> <span class="kt">T</span><span class="o">){</span>
       <span class="k">private</span><span class="o">[</span><span class="kt">this</span><span class="o">]</span> <span class="k">var</span> <span class="n">v</span> <span class="k">=</span> <span class="n">init</span>
@@ -205,8 +205,8 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="scala_index.html">스칼라(Scala)</a><ul>
-      <li>Previous: <a href="scala_terms.html" title="이전 장">1. 스칼라 용어</a></li>
-      <li>Next: <a href="../cpp/cpp_index.html" title="다음 장">C++</a></li>
+      <li>Previous: <a href="scala_terms.html" title="이전 장">1. 용어</a></li>
+      <li>Next: <a href="../network/network_index.html" title="다음 장">네트워크</a></li>
   </ul></li>
   </ul></li>
 </ul>

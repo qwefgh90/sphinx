@@ -21,6 +21,7 @@ Contents:
    java/java_index.rst
    design/design_index.rst
    scala/scala_index.rst
+   server/server_index.rst
    network/network_index.rst
    python/python_index.rst
    database/database_index.rst
