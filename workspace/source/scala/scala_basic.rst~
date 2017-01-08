@@ -1,0 +1,60 @@
+.. _scala_basic:
+
+.. highlightlang:: scala
+
+****************************
+스칼라 기본
+****************************
+
+==================================================
+제네릭 타입의 변성 및 공변적인 파라미터 타입
+==================================================
+
+**스칼라에서는 타입파라미터를 통해 다양한 타입 생성을 지원한다.** 제네릭(타입 생성자) 클래스/트레이트에 특정 타입을 넘겨주면 파라미터화된 타입을 생성할 수 있다. 파라미터화된 타입이나 평범한 타입(타입 파라미터가 없는)을 사용해 인스턴스를 생성할 수 있다.
+
+타입 파라미터 예시::
+
+  object Main extends App {
+	val q = Queue(1,2,3,4,5,6,7).enqueue(10).tail
+	println(q.toString)
+  }
+  class Queue[T](private val leading: List[T],
+				private val trailing: List[T]){
+	private def mirror = if(leading.isEmpty) new Queue(trailing.reverse, Nil)
+		else this
+	override def toString = (leading ::: trailing.reverse).toString
+	def head = mirror.leading.head
+	def tail = {
+		val q = mirror
+		new Queue(q.leading.tail, q.trailing)
+	}
+	def enqueue(x: T) =
+		new Queue(leading, x :: trailing)
+  }
+	
+  object Queue{
+	def apply[T](arr: T*) = new Queue[T](arr.toList, Nil)
+  }
+
+
+**제네릭 클래스나 트레이트** 는 다음과 같이 정의할 수 있다.::
+
+  class Queue[T]{
+
+  }
+
+파라미터화 된 타입은 *new Queue[Int]* 또는 *new Queue[String]* 와 같이 타입을 대괄호 안에 넣어서 타입을 생성할 수 있다. 스칼라에서는 타입 파라미터 덕분에 파라미터화된 타입들 간에 서브타입 관계 **(subtype relationship)** 가 존재할 수 있다. 예를들어 Queue[String]은 Queue[AnyRef]의 서브타입이 될 수 있다. **만약 그렇다면 Queue 클래스는 타입 파라미터 T에 대해 공변적이라고 할 수 있다.** (서브타입이 될 수도 안될 수도 있음)
+
+**스칼라에서는 기본적으로 타입 파라미터에 대해 무공변성을 갖는다.** 즉 위의 Queue[String]은 Queue[AnyRef]의 서브타입이 아니다. 타입파라미터 T에 대해 공변성을 띄게하고 싶다면 T앞에 변성표기 *+* 를 넣어서 공변성을 띄게 할 수 있다. *-* 를 넣는다면 반공변성을 띄게 된다. 타입 파라미터에 반공변적이라면 임의의 타입 파라미터 S가 T의 서브타입일때 Queue[T]는 Queue[S]의 서브타입이 된다.
+
+어떤 타입 파라미터의 공변(covariant), 반공변, 무공변 여부를 파라미터의 **변성(variance)** 이라고 f부른다. 또한 공변/반공변을 띄게 하는 **+/-** 표기는 **변성표기** 라고 한다.
+
+공변 타입이 항상 가능하지는 않다. 다음과 같은 설계는 불가능하다.::
+
+  class Cell[+T](init: T){
+	private[this] var v = init
+	def get = v
+	def set(x: T) { v = x }
+  }
+
+위와 같이 변수 재할당이 있는 경우 공변 타입이 가능하지 않다. 

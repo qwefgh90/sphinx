@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. 인터넷 프로토콜 보안 &#8212; Code Accelerator Document 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="security-ssl">
+<span id="id1"></span><h1>2. 인터넷 프로토콜 보안<a class="headerlink" href="#security-ssl" title="제목 주소">¶</a></h1>
+<div class="section" id="ssl-secure-socket-layer">
+<h2>2.1. SSL (Secure Socket Layer)<a class="headerlink" href="#ssl-secure-socket-layer" title="제목 주소">¶</a></h2>
+<p>TCP를 사용하여 종단 간 (end to end) 신뢰할 수 있는 통신을 제공하는 암호화 프로토콜이다. SSL은 기본적으로 connection과 session라는 용어를 분리한다.</p>
+<p>connection은 서버의 자원을 요청할때 연결되는 무수히 많은 TCP 연결을 뜻한다. session 같은 경우는 클라이언트와 서버 간의 연결로서 서로 인증을 위해 생성된 보안 키 값이다. 이때 session은 session이 생성된 이후의 모든 connection에서 사용될 수 있는 보안 키 값을 뜻한다.</p>
+<p>다음은 <em>SSL Stack</em> 이다. SSL의 주요 구성요소 정도로 볼 수있다.</p>
+<img alt="../_images/sslstack.jpg" src="../_images/sslstack.jpg" />
+<div class="section" id="ssl-handshake-protocol">
+<h3>2.1.1. SSL handshake protocol<a class="headerlink" href="#ssl-handshake-protocol" title="제목 주소">¶</a></h3>
+<p>SSL Handshake protocol 동작 과정이다.</p>
+<img alt="../_images/sslhand.gif" src="../_images/sslhand.gif" />
+<ol class="arabic simple">
+<li>client hello 에서는 클라이언트가 생성한 난수, 가능한 암호방식, 이전 세션 아이디 (존재한다면)를 전송</li>
+<li>server hello 에서는 서버가 생성한 난수, 암호방식 전송</li>
+<li>certificate 는 server -&gt; client 인증서 전송</li>
+<li>server_key_exchange 는 server -&gt; client 간 키교환이 필요할 경우 사용된다.</li>
+<li>certificate_request 는 server -&gt; client 필요한 경우 인증서 요청</li>
+<li>server_hello_done 은 서버에서 보낼 메세지는 모두 보냈다는 의미</li>
+<li>certificate 는 server 요청 시 인증서 전송</li>
+<li>client_key_exchange 는 pre master key 전송</li>
+<li>certificate_verify 는 요청시 자신이 보낸 인증서가 유효한지 전자서명을 보내는 메세지</li>
+<li>change_cipher_spec 는 클라이언트가 다음 메세지 부터 (암호, 키교환, 서명, 압축)방식을 적용 하여 전송하겠다는 메세지. finished 전송</li>
+<li>change_cipher_spec 는 위와 마찬가지 의미. 다음 finished 전송</li>
+</ol>
+</div>
+<div class="section" id="ssl-record-protocol">
+<h3>2.1.2. SSL record protocol<a class="headerlink" href="#ssl-record-protocol" title="제목 주소">¶</a></h3>
+<p>핸드쉐이크가 끝난 후 클라이언트와 서버는 MAC를 포함한 메세지를 암호화하여 통신한다.</p>
+<img alt="../_images/sslrecord.png" src="../_images/sslrecord.png" />
+<p>먼저 메세지 fragmentation은 2^14 바이트로 된다. 그리고 옵션이 설정되있다면 메세지를 압축하고 MAC 코드를 계산한 후 메세지를 암호화 한다. 마지막으로 SSL Record Header를 암호문에 붙인다. SSL Record Header는 content_type, major version, minor version, compressed length 필드를 가지고 있다.</p>
+<p>SSL은 종합적으로 대칭키 암호 방식과 MAC을 사용함으로써 기밀성 및 무결성을 보장하는 프로토콜이다.</p>
+</div>
+</div>
+<div class="section" id="ip-securiy">
+<h2>2.2. IP Securiy<a class="headerlink" href="#ip-securiy" title="제목 주소">¶</a></h2>
+<p>IPSec은 보안이 없는 Application에 사용될 수 있는 IP패킷 암호화 프로토콜이다. 주로 원격 작업이나 내부, 외부 접점 보안, 전자 상거래 등에 사용된다. IPSec은 2가지 헤더를 가지고 있다. AH(Authentication Header)및 ESP(Encapsulating Security Payload)이다. AH는 데이터 무결성 및 인증을 제공하고 ESP는 무결성, 인증, 기밀성을 제공한다.</p>
+<p><em>Authentication Header</em> 는 다음과 같다.</p>
+<img alt="../_images/ah.jpg" src="../_images/ah.jpg" />
+<ul class="simple">
+<li>next header : AH 다음에 오는 헤더의 프로토콜 번호를 담고있다.</li>
+<li>payload length : 이름과 다르게 AH 자체 길이를 뜻한다.</li>
+<li>security parameter index(SPI) : 데이터 그램에 쓰이는 보안 키값/보안 연관이다.</li>
+<li>sequence number : 보안 연관(SA)를 쓴다면 값이 증가된다. 재생 공격을 막기위해 사용된다.</li>
+<li>authentication data : 무결성 검사 값(ICV)이다.</li>
+</ul>
+<p><em>Encapsulating Security Payload</em> 는 다음과 같다.</p>
+<img alt="../_images/esp.jpg" src="../_images/esp.jpg" />
+<ul class="simple">
+<li>security parameter index(SPI) : 보안 연관이다.</li>
+<li>sequence number : 보안 연관과 관련된 연속적인 값이다.</li>
+<li>payload data : 암호화 된 상위 프로토콜 계층의 메세지이다.</li>
+<li>padding length : 패딩 길이</li>
+<li>next header : 다음 헤더의 프로토콜 번호</li>
+<li>authentication data : 무결성 검사 값(ICV)이다.</li>
+</ul>
+</div>
+<div class="section" id="s-mime">
+<h2>2.3. S/MIME<a class="headerlink" href="#s-mime" title="제목 주소">¶</a></h2>
+<p>암호화된 이메일 메세지를 사용할 수 있는 암호화 프로토콜이다. 전자 봉투, 디지털 서명이 포함되어 전송된다. PGP에서 사용하는 방식을 그대로 사용한다. S/MIME는 디지털 서명은 <em>인증 및 무결성</em> 을 보장하고 전자 봉투를 사용함으로써 <em>기밀성</em> 을 보장한다.</p>
+<img alt="../_images/pgp.png" src="../_images/pgp.png" />
+</div>
+<div class="section" id="kerberos">
+<h2>2.4. Kerberos<a class="headerlink" href="#kerberos" title="제목 주소">¶</a></h2>
+<p>마지막으로 Kerberos Protocol이다.</p>
+<img alt="../_images/ker.png" src="../_images/ker.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. 인터넷 프로토콜 보안</a><ul>
+<li><a class="reference internal" href="#ssl-secure-socket-layer">2.1. SSL (Secure Socket Layer)</a><ul>
+<li><a class="reference internal" href="#ssl-handshake-protocol">2.1.1. SSL handshake protocol</a></li>
+<li><a class="reference internal" href="#ssl-record-protocol">2.1.2. SSL record protocol</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ip-securiy">2.2. IP Securiy</a></li>
+<li><a class="reference internal" href="#s-mime">2.3. S/MIME</a></li>
+<li><a class="reference internal" href="#kerberos">2.4. Kerberos</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/security/security_internet.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/security/security_internet.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
