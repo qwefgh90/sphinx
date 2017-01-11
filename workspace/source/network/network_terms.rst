@@ -32,3 +32,7 @@ SMB
 =========
 
 **SMB(Server Message Block)** 는 네트워크 파일 공유 프로토콜이다. CIFS는 SMB의 표현식(dialects) 중 하나이다.
+
+NFS
+==========
+**NFS(Network File System)** 은 컴퓨터 사용자가 네트워크상의 파일에 접근할 때 직접 연결된 스토리지에 접근하는 것 처럼 접근하도록 지원해주는 프로토콜이다.
