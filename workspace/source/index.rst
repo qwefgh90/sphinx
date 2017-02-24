@@ -23,6 +23,7 @@ Contents:
    scala/scala_index.rst
    server/server_index.rst
    network/network_index.rst
+   javascript/javascript_index.rst
    python/python_index.rst
    database/database_index.rst
    os/operating_system_index.rst
