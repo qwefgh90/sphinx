@@ -1,0 +1,20 @@
+.. _statistics_index:
+
+.. meta::
+	:site_name: Chang docs
+	:title: Statistics index page
+	:description: This is a Statistics index page.
+	:keywords: Statistics, 통계, 확률변수, 분산, 분포, 표본, 확률
+
+통계학(Statictics)
+==================================================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+   :numbered: 
+   
+   statistics_terms.rst
+   statistics_estimation_test.rst
+   machinelearning.rst

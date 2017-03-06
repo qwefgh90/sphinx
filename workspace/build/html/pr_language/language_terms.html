@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. 용어 &#8212; Code Accelerator Document 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="서버(Server)" href="../server/server_index.html" />
+    <link rel="prev" title="프로그래밍 언어(Programming Language)" href="language_index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pr-language-terms">
+<span id="id1"></span><h1>1. 용어<a class="headerlink" href="#pr-language-terms" title="제목 주소">¶</a></h1>
+<div class="section" id="context-free-grammar">
+<h2>1.1. 문맥 자유 문법(Context-free grammar)<a class="headerlink" href="#context-free-grammar" title="제목 주소">¶</a></h2>
+<p>문맥 자유 문법은 모든 가능한 문자열을 표시하기 위한 <a class="reference internal" href="#production-rules"><span class="std std-ref">생성 규칙(Production rules)</span></a> 의 집합이다.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions">문맥 자유 문법은 4개의 튜플로 정의된다.</a></p>
+<ul class="simple">
+<li><strong>유한 집합.</strong> 비단말 문자 또는 변수(nonterminal charactor or varibale), variable은 구문 분류(syntatic category)</li>
+<li><strong>유한 집합.</strong> 실제 문장을 구성하는 단말 문자(terminal charactor)</li>
+<li><strong>관계.</strong> 비단말 -&gt; (단말+비단말)*</li>
+<li><strong>시작 심볼.</strong> 전체 문장 또는 프로그램</li>
+</ul>
+</div>
+<div class="section" id="production-rules">
+<span id="id3"></span><h2>1.2. 생성 규칙(Production rules)<a class="headerlink" href="#production-rules" title="제목 주소">¶</a></h2>
+<p>생성 규칙은 심볼(Symbol)을 재귀적으로 치환하여 새로운 심볼의 결과를 만드는 재작성 규칙(rewrite rule) 이다.</p>
+</div>
+<div class="section" id="backus-normal-form">
+<h2>1.3. 배커스 정규형(Backus normal form)<a class="headerlink" href="#backus-normal-form" title="제목 주소">¶</a></h2>
+<p>배커스 정규형은 문맥 자유 문법을 위한 <strong>표기법</strong> 이다. 배커스 정규형은 주로 프로그래밍 언어의 문법을 묘사하며, <a class="reference external" href="https://en.wikipedia.org/wiki/Metasyntax">메타문법</a> 으로서 구절의 허용 가능한 구조와 문장의 구성과 문장을 묘사한다.</p>
+<p>BNF는 파생규칙의 집합이며 다음과 같이 작성한다.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">symbol</span><span class="o">&gt;</span> <span class="p">::</span><span class="o">=</span> <span class="n">__expression__</span>
+</pre></div>
+</div>
+<p>&lt;symbol&gt;은 비단말이고 __expression__은 1개 이상의 심볼로 구성된다. 2개 이상의 시퀀스는 수직바로 구분하여 표시하면 되고 시퀀스중 하나를 선택하여 치환 가능함을 뜻한다. 왼쪽에는 단말이 올 수 없고 왼쪽편의 심볼은 언제나 <strong>&lt; &gt;</strong> 로 감싸야 한다.</p>
+<p>::= 은 왼쪽의 심볼이 오른쪽의 표현식으로 치환 될 수 있다는 의미를 갖는다.</p>
+</div>
+<div class="section" id="extended-backusnaur-form">
+<h2>1.4. 확장된 배커스 정규형 (Extended Backus–Naur form)<a class="headerlink" href="#extended-backusnaur-form" title="제목 주소">¶</a></h2>
+<p>EBNF는 프로그래밍 언어와 같은 형식 언어를 형식적으로 표현하기 위한 메타문법이다. EBNF는 CFG와 같이 생성규칙의 집합이다. <a class="reference external" href="http://standards.iso.org/ittf/PubliclyAvailableStandards/s026153_ISO_IEC_14977_1996(E).zip">이곳</a> 에서 ENBF 표준을 확인할 수 있다.</p>
+</div>
+<div class="section" id="references">
+<h2>1.5. References<a class="headerlink" href="#references" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li>문맥자유문법: <a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions">https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions</a></li>
+<li>배커스 정규형: <a class="reference external" href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form">https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form</a></li>
+<li>확장된 배커스 정규형: <a class="reference external" href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. 용어</a><ul>
+<li><a class="reference internal" href="#context-free-grammar">1.1. 문맥 자유 문법(Context-free grammar)</a></li>
+<li><a class="reference internal" href="#production-rules">1.2. 생성 규칙(Production rules)</a></li>
+<li><a class="reference internal" href="#backus-normal-form">1.3. 배커스 정규형(Backus normal form)</a></li>
+<li><a class="reference internal" href="#extended-backusnaur-form">1.4. 확장된 배커스 정규형 (Extended Backus–Naur form)</a></li>
+<li><a class="reference internal" href="#references">1.5. References</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="language_index.html">프로그래밍 언어(Programming Language)</a><ul>
+      <li>Previous: <a href="language_index.html" title="이전 장">프로그래밍 언어(Programming Language)</a></li>
+      <li>Next: <a href="../server/server_index.html" title="다음 장">서버(Server)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/pr_language/language_terms.rst.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/pr_language/language_terms.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

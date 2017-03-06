@@ -17,7 +17,8 @@
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -27,8 +28,6 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
-    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
-    <link rel="up" title="네트워크" href="network_index.html" />
     <link rel="next" title="2. 프로토콜" href="network_basic.html" />
     <link rel="prev" title="네트워크" href="network_index.html" />
    
@@ -64,6 +63,14 @@
 <span id="id6"></span><h2>1.4. 논블로킹 기법<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
 <p><strong>논블로킹 기법이란</strong> 작업을 요청한 후 바로 결과가 나오길 기대하지 않으며 다른작업을 하다가 알림을 받는 구조이다.</p>
 </div>
+<div class="section" id="smb">
+<h2>1.5. SMB<a class="headerlink" href="#smb" title="제목 주소">¶</a></h2>
+<p><strong>SMB(Server Message Block)</strong> 는 네트워크 파일 공유 프로토콜이다. CIFS는 SMB의 표현식(dialects) 중 하나이다.</p>
+</div>
+<div class="section" id="nfs">
+<h2>1.6. NFS<a class="headerlink" href="#nfs" title="제목 주소">¶</a></h2>
+<p><strong>NFS(Network File System)</strong> 은 컴퓨터 사용자가 네트워크상의 파일에 접근할 때 직접 연결된 스토리지에 접근하는 것 처럼 접근하도록 지원해주는 프로토콜이다.</p>
+</div>
 </div>
 
 
@@ -79,6 +86,8 @@
 <li><a class="reference internal" href="#id3">1.2. 가상 호스팅</a></li>
 <li><a class="reference internal" href="#network-terms">1.3. 블로킹 기법</a></li>
 <li><a class="reference internal" href="#id5">1.4. 논블로킹 기법</a></li>
+<li><a class="reference internal" href="#smb">1.5. SMB</a></li>
+<li><a class="reference internal" href="#nfs">1.6. NFS</a></li>
 </ul>
 </li>
 </ul>
@@ -96,7 +105,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/network/network_terms.txt"
+      <li><a href="../_sources/network/network_terms.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -118,11 +127,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/network/network_terms.txt"
+      <a href="../_sources/network/network_terms.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

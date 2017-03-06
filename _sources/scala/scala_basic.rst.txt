@@ -1,0 +1,161 @@
+.. _scala_basic:
+
+.. highlightlang:: scala
+
+****************************
+스칼라 기본
+****************************
+
+==================================================
+제네릭 타입의 변성 및 공변적인 파라미터 타입
+==================================================
+
+**스칼라에서는 타입 파라미터를 통해 다양한 타입 생성을 지원한다.** :ref:`제네릭 클래스/트레이트 <scala_terms_제네릭_클래스>` 에 특정 타입을 넘겨주면 파라미터화된 타입을 생성할 수 있다. 파라미터화된 타입이나 평범한 타입(타입 파라미터가 없는)을 사용해 인스턴스를 생성할 수 있다.
+
+타입 파라미터 예시::
+
+  object Main extends App {
+	val q = Queue(1,2,3,4,5,6,7).enqueue(10).tail
+	println(q.toString)
+  }
+  class Queue[T](private val leading: List[T],
+				private val trailing: List[T]){
+	private def mirror = if(leading.isEmpty) new Queue(trailing.reverse, Nil)
+		else this
+	override def toString = (leading ::: trailing.reverse).toString
+	def head = mirror.leading.head
+	def tail = {
+		val q = mirror
+		new Queue(q.leading.tail, q.trailing)
+	}
+	def enqueue(x: T) =
+		new Queue(leading, x :: trailing)
+  }
+	
+  object Queue{
+	def apply[T](arr: T*) = new Queue[T](arr.toList, Nil)
+  }
+
+
+**제네릭 클래스나 트레이트** 는 다음과 같이 정의할 수 있다.::
+
+  class Queue[T]{
+
+  }
+
+:ref:`파라미터화된 타입 <scala_terms_파라미터화된_타입>` 은 *new Queue[Int]* 또는 *new Queue[String]* 와 같이 타입을 대괄호 안에 넣어서 타입을 생성할 수 있다. 스칼라에서는 타입 파라미터 덕분에 파라미터화된 타입들 간에 서브타입 관계 **(subtyping relationship)** 가 존재할 수 있다. 예를들어 Queue[String]은 Queue[AnyRef]의 서브타입이 될 수 있다. **만약 그렇다면 Queue 클래스는 타입 파라미터 T에 대해 공변적이라고 할 수 있다.** (서브타입이 될 수도 안될 수도 있음)
+
+**스칼라에서는 기본적으로 타입 파라미터에 대해 무공변성을 갖는다.** 즉 위의 Queue[String]은 Queue[AnyRef]의 서브타입이 아니다. 타입 파라미터 T에 대해 공변성을 띄게하고 싶다면 T앞에 변성표기 *+* 를 넣어서 공변성을 띄게 할 수 있다. *-* 를 넣는다면 반공변성을 띄게 된다. 타입 파라미터에 *반공변적* 이라면 임의의 타입 파라미터 S가 T의 서브타입일때 Queue[T]는 Queue[S]의 서브타입이 된다.
+
+공변/반공변을 띄게 하는 **+/-** 표기는 :ref:`변성 <scala_terms_변성>` 표기 라고 한다.
+
+공변 타입이 항상 가능하지는 않다. 다음과 같은 설계는 불가능하다.::
+
+  class Cell[+T](init: T){
+	private[this] var v = init
+	def get = v
+	def set(x: T) { v = x }
+  }
+
+위와 같이 변수 재할당이 있는 경우 공변 타입이 가능하지 않다. (실제로 타입 파라미터를 함수의 파라미터로 사용하는 것이 허용되지 않는다.) 예를들어 다음과 같은 코드가 있다고 가정할 경우 문제가 발생한다.::
+
+  val original: Cell[String] = new Cell("Hello World")
+  val post: Cell[Any] = original
+  post.set(1234)
+  val value: String = original.get
+
+위 코드에서 문제가 되는 부분은 2번째 줄에서 Cell[String] 값을 Cell[Any] 변수에 할당하는 부분이다. 따라서 마지막 4번째 줄에서 String이 아닌 1234를 얻게되므로 이는 프로그램 오류이다. 서브타이핑 관점에서 Cell[String]은 Cell[Any]보다 할 수 있는 것이 적으므로 (Int 타입 set의 파라미터로 넘기는 등) 서브타이핑 관계가 될 수 없다. 이 코드는 컴파일 되지 않는다. **클래스의 공변적 타입 파라미터는 함수의 파라미터로 사용할 수 없다.** (실제로 타입 T인 v라는 변수는 setter/getter 메소드 def v: T, def v_=(x: T)로 취급되므로 var 또한 사용할 수 없다.)
+
+다음 예제도 타입 건전성을 위반하므로 컴파일 될 수 없다.::
+
+  object TestCovariant {
+    class Fruit
+    class Apple extends Fruit
+    class Orange extends Fruit
+    class Space[+T] (private val element: List[T]){
+      def add(x: T) = new Space(x :: element)
+      def get:List[T] = element
+    }
+    class DoubleSpace(val t: List[Int]) extends Space[Int](t){
+      override def add(x: Int) = super.add(x * x)
+    }
+    def main(args: Array[String]) ={      
+      val any: Space[Any] = new DoubleSpace(List[Int](1234))
+      any.add("Can't double this string")
+    }
+  }
+
+위와 같이 main문에서 잘못된 서브타이핑으로 문자열을 제곱하는 오류가 발생할 수 도 있다. 이는 Space[Any]가 Space[Int]보다 할 수 있는 것이 많기 때문이다. 즉 리스코프 치환 원칙(Liskov Substitution Principle)에 의해 Space[Int]는 Space[Any]의 서브타입이 될 수 없다. **Space[Int]가 Space[Any]의 모든 연산을 지원하고 인자를 더 적게 요구하고, 더 많은 기능을 제공할 때 Space[Int]는 Space[Any]의 서브타입이 될 수 있다.** 따라서 Space[Int]를 Space[Any]로 서브타이핑 했을때 이런 오류가 발생하는 것이다.
+
+좀더 제약을 준다면 공변적 타입 파라미터를 함수의 인자로 문제없이 사용할 수 있다. 먼저 *파라미터화 된 메소드로 바꾼 뒤 타입 파라미터 U의 하위바운드로 class의 타입파라미터 T를 지정* 하는 것이다.::
+
+  object TestCovariant {
+    class Fruit
+    class Apple extends Fruit
+    class Orange extends Fruit
+    class Space[+T] (private val element: List[T]){
+      def add[U >: T](x: U) = new Space(x :: element)
+      def get:List[T] = element
+    }
+    class DoubleSpace(val t: List[Int]) extends Space[Int](t){
+      override def add[U >: Int](x: U) = super.add(x.toString.length + x.toString.length) //오버라이드를 하더라도 이러한 시그니쳐를 갖는다.
+    }
+    def main(args: Array[String]) ={
+      val ap: Space[Apple] = new Space[Apple](List(new Apple()))
+      val or = ap.add(new Orange)
+      println(or.get.toString)
+    }
+  }
+
+Space는 공변적 T를 갖고 있으므로 T의 임의의 슈퍼타입으로 파라미터화된 Space로 서브타이핑할 수 있다. 또한 add를 공통 슈퍼타입을 갖는 다른 타입을 인자로 계속해서 호출할 수 있으며 추가할 수 있다. 결과적으로 Apple만 받는 Space가 아닌 좀더 일반적인 Space 타입이 되었다. 또한 호출할때마다 타입 Space[U]를 반환한다. 변성표기와 하위 바운드를 지정함으로써 더 유연한 모델을 만들 수 있으며 이는 타입 위주 설계(type-driven design)에 유용하다.
+
+오히려 반 공변적일때는 타입파라미터를 메서드 파라미터로 사용할 수 있다.
+::
+
+   class Fruit{
+     override def toString:String = {return "Fruit"}
+   }
+   class Apple extends Fruit{
+     override def toString:String = {return "Apple"}
+   }
+   class Orange extends Fruit{
+     override def toString:String = {return "Orange"}
+   }
+
+   class Out[-T]{
+     def write(x: T){
+      println(x.toString)
+     }
+   }
+
+   val f = new Out[Fruit];
+   f.write(new Apple());
+   f.write(new Orange());
+
+   val a: Out[Apple] = f;
+   a.write(new Apple())
+
+
+**Out[Fruit]과 같이 Fruit로 파라미터화된 타입이 실제로 동작할때 Apple과 Orange를 다 받아들일 수 있다.** 즉 Out[Fruit]은 Out[Apple]로 서브타이핑 될 수 있다. 반대로 타입 T에 대해 공변적이라면 Out[Apple]은 Out[Fruit]로 서브타이핑이 되어야 하지만 Out[Apple]은 Out[Fruit]보다 더 적은 타입을 받아들이므로 불가능하다. 이는 *리스코프 치환 원칙* 과 관련이 있다.
+
+공변성과 반공변성이 섞여있는 예제는 아래와 같다.::
+
+  class Animal(val name: String)
+  class Human(name: String) extends Animal(name)
+
+  object Dict{
+    val humans: Set[Human] = Set(new Human("changwon"), new Human("be y"))
+    def printNames(extract: Human => AnyRef){
+      for (human <- humans) println(extract(human))
+    }
+  }
+
+  def getName(h: Animal): String = h.name
+  Dict.printNames(getName)
+
+printNames 메서드의 파라미터는 Human => AnyRef 이지만 실제로 사용자는 Animal => String을 전달할 수 있다. 함수타입 A => B는 Function1[A,B]로 바뀌게 된다. **Function1의 정의를 보면 첫번째 타입파라미터는 반공변성을 띄고 두번째 파라미터는 공변성을 띄게된다.**
+
+이러한 변성이 문제없이 동작하는 이유는 함수의 파라미터에서 Human대신 더 많은 파라미터를 받을 수 있는 Animal이 사용되는 것은 타당하며 함수의 반환 타입인 AnyRef의 기능을 String이 모두 포함하고 있기 문맥상 **Animal => String 으로 서브타이핑이 되어도 문제가 없기 때문이다.** **Human은 Animal의 서브타입이지만 Human => AnyRef는 Animal => String의 서브타입이 아니다. 즉 상속관계가 반대가 된다.**
+
+
+

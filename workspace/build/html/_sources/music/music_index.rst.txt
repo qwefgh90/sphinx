@@ -1,0 +1,21 @@
+.. _music_index:
+
+.. meta::
+	:site_name: Chang docs
+	:title: Music index page
+	:description: This is a Music index page.
+	:keywords: music, rock, 화성악, 음악
+
+화성학
+==================================================
+
+Contents:
+	
+.. toctree::
+   :maxdepth: 2
+   :numbered: 
+
+   music_basic.rst
+
+.. raw:: html
+   :file: ../comment_tag1.txt

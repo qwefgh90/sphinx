@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4. TCP &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>3. TCP &#8212; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -17,7 +17,8 @@
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -27,10 +28,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
-    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
-    <link rel="up" title="네트워크" href="network_index.html" />
-    <link rel="next" title="5. 웹 인프라 구축" href="infra.html" />
-    <link rel="prev" title="3. 네트워크 프로그래밍 관련" href="network_etc.html" />
+    <link rel="next" title="4. HTTP" href="network_http.html" />
+    <link rel="prev" title="2. 프로토콜" href="network_basic.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -47,18 +46,18 @@
           <div class="body" role="main">
             
   <div class="section" id="tcp">
-<span id="network-tcp"></span><h1>4. TCP<a class="headerlink" href="#tcp" title="제목 주소">¶</a></h1>
+<span id="network-tcp"></span><h1>3. TCP<a class="headerlink" href="#tcp" title="제목 주소">¶</a></h1>
 <p>기본적으로 TCP는 SYN_SENT, ESTABLISHED, FIN_WAIT_1, FIN_WAIT_2, TIME_WAIT 의 상태를 갖는다.</p>
 <p>포트는 16비트로 하나의 NIC에서 최대 65,535개의 소켓을 수용할 수 있다.</p>
 <div class="section" id="id1">
-<h2>4.1. TCP 재전송<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
+<h2>3.1. TCP 재전송<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>기본적으로 특정 세그먼트를 송신한뒤 타이머를 두어 시간안에 ACK가 오기를 기다리는 방식</li>
 <li>3연속으로 같은 ACK를 받게된다면 해당 ACK번호의 SEQ를 갖는 세그먼트를 보내는 방식 (fast retransmits)</li>
 </ul>
 </div>
 <div class="section" id="id2">
-<h2>4.2. TCP 종료<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<h2>3.2. TCP 종료<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <ol class="arabic simple">
 <li>서버(한쪽)에서 FIN을 세팅하여 세그먼트를 전송한다. (서버는 FIN_WAIT_1 상태)</li>
 <li>클라이언트는 확인응답(ACK)을 보낸다. (서버는 FIN_WAIT_2 상태)</li>
@@ -77,9 +76,9 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">목차</a></h3>
   <ul>
-<li><a class="reference internal" href="#">4. TCP</a><ul>
-<li><a class="reference internal" href="#id1">4.1. TCP 재전송</a></li>
-<li><a class="reference internal" href="#id2">4.2. TCP 종료</a></li>
+<li><a class="reference internal" href="#">3. TCP</a><ul>
+<li><a class="reference internal" href="#id1">3.1. TCP 재전송</a></li>
+<li><a class="reference internal" href="#id2">3.2. TCP 종료</a></li>
 </ul>
 </li>
 </ul>
@@ -88,8 +87,8 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="network_index.html">네트워크</a><ul>
-      <li>Previous: <a href="network_etc.html" title="이전 장">3. 네트워크 프로그래밍 관련</a></li>
-      <li>Next: <a href="infra.html" title="다음 장">5. 웹 인프라 구축</a></li>
+      <li>Previous: <a href="network_basic.html" title="이전 장">2. 프로토콜</a></li>
+      <li>Next: <a href="network_http.html" title="다음 장">4. HTTP</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -97,7 +96,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/network/network_tcp.txt"
+      <li><a href="../_sources/network/network_tcp.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -119,11 +118,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/network/network_tcp.txt"
+      <a href="../_sources/network/network_tcp.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
