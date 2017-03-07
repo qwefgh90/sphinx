@@ -41,9 +41,23 @@ BNF는 파생규칙의 집합이며 다음과 같이 작성한다.::
 
 EBNF는 프로그래밍 언어와 같은 형식 언어를 형식적으로 표현하기 위한 메타문법이다. EBNF는 CFG와 같이 생성규칙의 집합이다. `이곳 <http://standards.iso.org/ittf/PubliclyAvailableStandards/s026153_ISO_IEC_14977_1996(E).zip>`_ 에서 EBNF 표준을 확인할 수 있다.
 
+문법, 구문론(Syntax)
+====================
+
+어떤 문장 구조가 타당한지 나타내는 규칙이다.
+
+구문론적, 문법적 메타언어(Syntactic Metalanguage)
+=========================================
+
+언어(Language)의 문법(Syntax)을 정의하기 위한 표기법이다.(BNF, EBNF)
+
+
+
 References
 ==========
 
 - 문맥자유문법: https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions
 - 배커스 정규형: https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form
 - 확장된 배커스 정규형: https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form
+- [네이버 지식백과] 구문론 [syntax] (실험심리학용어사전, 2008., 시그마프레스㈜): http://terms.naver.com/entry.nhn?docId=271494&cid=41990&categoryId=41990
+- ISO/IEC 14977: http://standards.iso.org/ittf/PubliclyAvailableStandards/s026153_ISO_IEC_14977_1996(E).zip
