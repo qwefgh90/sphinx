@@ -26,7 +26,7 @@
 배커스 정규형(Backus normal form)
 =================================
 
-배커스 정규형은 문맥 자유 문법을 위한 **표기법** 이다. 배커스 정규형은 주로 프로그래밍 언어의 문법을 묘사하며, `메타문법 <https://en.wikipedia.org/wiki/Metasyntax>`_ 으로서 구절의 허용 가능한 구조와 문장의 구성과 문장을 묘사한다.
+배커스 정규형은 문맥 자유 문법을 위한 **표기법** 이다. 배커스 정규형은 주로 프로그래밍 언어의 문법을 묘사하며, `메타언어 <https://en.wikipedia.org/wiki/Metalanguage>`_ 으로서 구절의 허용 가능한 구조와 문장의 구성과 문장을 묘사한다.
 
 BNF는 파생규칙의 집합이며 다음과 같이 작성한다.::
 
@@ -49,9 +49,12 @@ EBNF는 프로그래밍 언어와 같은 형식 언어를 형식적으로 표현
 구문론적, 문법적 메타언어(Syntactic Metalanguage)
 =========================================
 
-언어(Language)의 문법(Syntax)을 정의하기 위한 표기법이다.(BNF, EBNF)
+메타언어란 몇가지 규칙을 적용하여 다른 언어(Language)의 문법(Syntax)을 정의하기 위한 표기법이다.(BNF, EBNF)
 
+메타문법(Metasyntax)
+====================
 
+`메타문법 <https://en.wikipedia.org/wiki/Metasyntax>`_ 은 메타언어에서 사용 가능한 문장의 조합이나 구조를 나타내는 문법이다.
 
 References
 ==========
@@ -61,3 +64,4 @@ References
 - 확장된 배커스 정규형: https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form
 - [네이버 지식백과] 구문론 [syntax] (실험심리학용어사전, 2008., 시그마프레스㈜): http://terms.naver.com/entry.nhn?docId=271494&cid=41990&categoryId=41990
 - ISO/IEC 14977: http://standards.iso.org/ittf/PubliclyAvailableStandards/s026153_ISO_IEC_14977_1996(E).zip
+- 메타문법: https://en.wikipedia.org/wiki/Metasyntax
