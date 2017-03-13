@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. 용어 &#8212; Code Accelerator Document 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title=".Net Framework" href="netframework_index.html" />
+    <link rel="next" title="3. C# 기초" href="netframework_c_sharp.html" />
+    <link rel="prev" title="1. .NET Framework" href="netframework_basic.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="netframework-terms">
+<span id="id1"></span><h1>2. 용어<a class="headerlink" href="#netframework-terms" title="제목 주소">¶</a></h1>
+<div class="section" id="net-framework">
+<h2>2.1. .NET Framework<a class="headerlink" href="#net-framework" title="제목 주소">¶</a></h2>
+<p>CLR과 Class Libray로 구성된다.</p>
+</div>
+<div class="section" id="id2">
+<h2>2.2. .NET Framework 예시<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<p>Console ,Windows Forms ,WPF ,Class Library, ASP.NET Web, ASP.NET MVC, WCF Service</p>
+</div>
+<div class="section" id="id3">
+<h2>2.3. .NET Framework 버전<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<p>버전 VS 윈도우 특징
+1.0, 1.1 / 2002, 2003 / Windows 2003
+2.0 / 2005 / - / Generic
+3.0 / - / - / WPF, WCF
+3.5 / 2008 / Windows 2008, 7 / LINQ
+4.0 / 2010 / -
+4.5,4.51 / 2012, 2013 / Windows 2012, 8 / Windows Store App(Windows 8) /
+4.6 / 2015 / - / -
+- / 2017 / - / -</p>
+</div>
+<div class="section" id="clr-common-language-runtime">
+<h2>2.4. CLR(Common Language Runtime)<a class="headerlink" href="#clr-common-language-runtime" title="제목 주소">¶</a></h2>
+<p>코드가 실행되는 전반적인 환경을 제공한다. 공용 언어런 타임이라 불린다. JIT 컴파일러를 제공한다.</p>
+<ul class="simple">
+<li><strong>기계어까지.</strong> .cs =&gt; 빌드(Compile/Link) =&gt; .exe (MSIL Code) =&gt; JIT Compiler(처음 한번만) =&gt; Machine code (natvie code)</li>
+</ul>
+</div>
+<div class="section" id="class-library">
+<h2>2.5. Class Library<a class="headerlink" href="#class-library" title="제목 주소">¶</a></h2>
+<p>많은 언어를 지원하지만 동일한 클래스를 참조한다.</p>
+<dl class="docutils">
+<dt>코드 비교 ::</dt>
+<dd><p class="first">string s = &#8220;hello&#8221;; //System.String
+int i = 10; //System.Int32</p>
+<p class="last">Dim s as string = &#8220;hello&#8221;
+Dim i as Integer = 10</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id4">
+<h2>2.6. 네임 스페이스<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
+<dl class="docutils">
+<dt>코드 ::</dt>
+<dd><p class="first">namespace System
+{</p>
+<blockquote>
+<div><p>class String{}
+namespace IO
+{</p>
+<blockquote>
+<div><p>class StringWriter
+{</p>
+<p>}</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="managed-code-unmanaged-code">
+<h2>2.7. Managed Code, Unmanaged Code<a class="headerlink" href="#managed-code-unmanaged-code" title="제목 주소">¶</a></h2>
+<p>CLR이 관리하는 코드는 Managed Code 아닐경우 Unmanaged Code가 된다.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. 용어</a><ul>
+<li><a class="reference internal" href="#net-framework">2.1. .NET Framework</a></li>
+<li><a class="reference internal" href="#id2">2.2. .NET Framework 예시</a></li>
+<li><a class="reference internal" href="#id3">2.3. .NET Framework 버전</a></li>
+<li><a class="reference internal" href="#clr-common-language-runtime">2.4. CLR(Common Language Runtime)</a></li>
+<li><a class="reference internal" href="#class-library">2.5. Class Library</a></li>
+<li><a class="reference internal" href="#id4">2.6. 네임 스페이스</a></li>
+<li><a class="reference internal" href="#managed-code-unmanaged-code">2.7. Managed Code, Unmanaged Code</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="netframework_index.html">.Net Framework</a><ul>
+      <li>Previous: <a href="netframework_basic.html" title="이전 장">1. .NET Framework</a></li>
+      <li>Next: <a href="netframework_c_sharp.html" title="다음 장">3. C# 기초</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/netframework/netframework_terms.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/netframework/netframework_terms.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

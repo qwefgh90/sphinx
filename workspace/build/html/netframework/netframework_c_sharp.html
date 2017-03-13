@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. C# 기초 &#8212; Code Accelerator Document 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title=".Net Framework" href="netframework_index.html" />
+    <link rel="next" title="Python" href="../python/python_index.html" />
+    <link rel="prev" title="2. 용어" href="netframework_terms.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="c">
+<h1>3. C# 기초<a class="headerlink" href="#c" title="제목 주소">¶</a></h1>
+<p>C++에서 기능이 더 추가되서 C# 이라는 이름을 사용함. 2000년 6월에 만들어진 언어다.</p>
+<div class="section" id="id1">
+<h2>3.1. 네이밍 컨벤션<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
+<p>1. PascalCasing Convention
+- ClassName,MethodName,PropertyName,NamespaceName</p>
+<p>2. camelCasing Convention
+- VariableName</p>
+</div>
+<div class="section" id="id2">
+<h2>3.2. 자료형<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<p>제공하는 자료형은 다음과 같다.</p>
+<ul class="simple">
+<li>Value type 값 형식 : stack</li>
+<li>Reference type 참조 형식 : heap</li>
+</ul>
+<p>int는 Int32 구조체(struct)이다. string은 System.String의 약어이다.</p>
+<div class="section" id="id3">
+<h3>3.2.1. 값 형식<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
+<p>상수 필드나 지역 상수:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="k">private</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">ProductName</span> <span class="p">=</span> <span class="s">&quot;C#&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>문자</p>
+<ul class="simple">
+<li><strong>char.</strong> 2byte unicode</li>
+</ul>
+<p>숫자</p>
+<ul class="simple">
+<li><strong>short.</strong> 2bytes</li>
+<li><strong>int.</strong> 4bytes</li>
+<li><strong>long.</strong> 8bytes</li>
+</ul>
+<p>실수</p>
+<ul class="simple">
+<li><strong>float.</strong> 4bytes</li>
+<li><strong>double.</strong> 8bytes</li>
+<li><strong>decimal.</strong> 16bytes</li>
+</ul>
+<p>불리언</p>
+<ul class="simple">
+<li><strong>bool.</strong> 1byte</li>
+</ul>
+<p>signed vs unsigned</p>
+<ul class="simple">
+<li>음수: 2의 보수법으로 생성</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>3.2.2. 형변환<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
+<p>형변환은 반드시 <em>Type Cast Operator</em> 나 메서드를 이용해서 명시적으로 형변환을 해야한다.:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="n">b</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">b</span><span class="p">;</span>
+<span class="kt">string</span> <span class="n">c</span> <span class="p">=</span> <span class="s">&quot;hello&quot;</span><span class="p">;</span>
+<span class="n">a</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="n">a</span> <span class="p">=</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ToInt32</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>3.2.3. 문자열<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
+<p>연결:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">string</span> <span class="n">s</span> <span class="p">=</span> <span class="s">&quot;hello&quot;</span> <span class="p">+</span> <span class="s">&quot;world&quot;</span>
+</pre></div>
+</div>
+<p>Escape sequence는 특수문자를 나타낼때 사용한다.</p>
+<p>문자열에서 Escape sequence를 사용하고 않고 문자 그대로를 사용하고 싶다면 <em>&#64;</em> 을 문자, 문자열 리터럴 앞에 붙이면 된다.</p>
+<p>정규표현식 예시는 다음과 같다.:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">textToTest</span> <span class="p">=</span> <span class="s">&quot;hell0 w0rld&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>3.2.4. 배열<a class="headerlink" href="#id6" title="제목 주소">¶</a></h3>
+<p>System.Array의 메서드와 필드를 사용할 수 있다.</p>
+<p>예시:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="p">[]</span> <span class="n">ar</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Int</span><span class="p">[</span><span class="m">10</span><span class="p">];</span>
+<span class="kt">int</span><span class="p">[]</span> <span class="n">ar1</span> <span class="p">=</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">};</span>
+<span class="kt">int</span><span class="p">[,]</span> <span class="n">ar2</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">];</span>
+<span class="kt">int</span><span class="p">[,]</span> <span class="n">ar3</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">]{{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">},{</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">}};</span>
+<span class="kt">int</span><span class="p">[,]</span> <span class="n">ar4</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[,]{{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">},{</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">}};</span>
+</pre></div>
+</div>
+<p>정렬:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="p">.</span><span class="n">Sort</span><span class="p">(</span><span class="n">ar1</span><span class="p">);</span> <span class="c1">//Call static method</span>
+</pre></div>
+</div>
+<p>복사:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">ar1</span><span class="p">.</span><span class="n">Clone</span><span class="p">();</span> <span class="c1">//Call instance method</span>
+</pre></div>
+</div>
+<p>기타:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="p">.</span><span class="n">Clear</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="n">ar</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>3.2.5. 클래스<a class="headerlink" href="#id7" title="제목 주소">¶</a></h3>
+<div class="section" id="id8">
+<h4>3.2.5.1. 메서드<a class="headerlink" href="#id8" title="제목 주소">¶</a></h4>
+<p>클래스에서 계산이나 특정 동작을 수행하는 코드를 뜻한다.</p>
+<p>매개변수를 전달하는 방법이 3가지 있다.</p>
+<ul class="simple">
+<li><strong>값 매개변수(value parameter)</strong> : 기본값을 명시함으로써 선택적(optional) 매개변수를 사용할 수 있다.</li>
+<li><strong>참조 매개변수(reference parameter)</strong> : 결과값이 여러개 일때 사용(입력,출력값을 모두 사용할때)</li>
+<li><strong>출력 매개변수(output paramter)</strong> : 결과값이 여러개일때 사용(호출자가 전달한 매개변수의 값이 중요하지 않을때, 함수 종료 시 출력 매개변수를 할당해야 함, 다른 매개변수와 달리 초기값이 없어도 됨)</li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h4>3.2.5.2. 메서드 오버로드<a class="headerlink" href="#id9" title="제목 주소">¶</a></h4>
+<p>유일한 메서드 시그니처를 바탕으로 같은 메서드 이름을 사용할 수 있는 특징을 뜻한다.</p>
+</div>
+<div class="section" id="id10">
+<h4>3.2.5.3. 명명된 인자<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
+<p>다음과 같이 인자에 이름을 붙여서 사용할 수 있다.:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">StopService</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="n">serviceID</span><span class="p">:</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h4>3.2.5.4. 예외처리<a class="headerlink" href="#id11" title="제목 주소">¶</a></h4>
+<p>예시:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">{</span>
+  <span class="kt">string</span> <span class="n">a</span> <span class="p">=</span> <span class="s">&quot;12345x&quot;</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ToInt32</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="c1">//예외 발생</span>
+<span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">){</span>
+  <span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="s">&quot;Error: &quot;</span> <span class="p">+</span> <span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h2>3.3. References<a class="headerlink" href="#references" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li>C# 스펙: <a class="reference external" href="https://msdn.microsoft.com/en-us/library/ms228593.aspx">https://msdn.microsoft.com/en-us/library/ms228593.aspx</a></li>
+<li>파라미터: <a class="reference external" href="https://msdn.microsoft.com/en-us/library/0f66670z.aspx">https://msdn.microsoft.com/en-us/library/0f66670z.aspx</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">3. C# 기초</a><ul>
+<li><a class="reference internal" href="#id1">3.1. 네이밍 컨벤션</a></li>
+<li><a class="reference internal" href="#id2">3.2. 자료형</a><ul>
+<li><a class="reference internal" href="#id3">3.2.1. 값 형식</a></li>
+<li><a class="reference internal" href="#id4">3.2.2. 형변환</a></li>
+<li><a class="reference internal" href="#id5">3.2.3. 문자열</a></li>
+<li><a class="reference internal" href="#id6">3.2.4. 배열</a></li>
+<li><a class="reference internal" href="#id7">3.2.5. 클래스</a><ul>
+<li><a class="reference internal" href="#id8">3.2.5.1. 메서드</a></li>
+<li><a class="reference internal" href="#id9">3.2.5.2. 메서드 오버로드</a></li>
+<li><a class="reference internal" href="#id10">3.2.5.3. 명명된 인자</a></li>
+<li><a class="reference internal" href="#id11">3.2.5.4. 예외처리</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">3.3. References</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="netframework_index.html">.Net Framework</a><ul>
+      <li>Previous: <a href="netframework_terms.html" title="이전 장">2. 용어</a></li>
+      <li>Next: <a href="../python/python_index.html" title="다음 장">Python</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/netframework/netframework_c_sharp.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/netframework/netframework_c_sharp.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

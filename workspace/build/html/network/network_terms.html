@@ -17,8 +17,7 @@
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -28,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
+    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="네트워크" href="network_index.html" />
     <link rel="next" title="2. 프로토콜" href="network_basic.html" />
     <link rel="prev" title="네트워크" href="network_index.html" />
    
@@ -45,8 +46,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="id1">
-<h1>1. 용어<a class="headerlink" href="#id1" title="제목 주소">¶</a></h1>
+  <div class="section" id="network-terms">
+<span id="id1"></span><h1>1. 용어<a class="headerlink" href="#network-terms" title="제목 주소">¶</a></h1>
 <div class="section" id="id2">
 <h2>1.1. 베어메탈 클라우드<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <p>베어메탈 클라우드란 서버로 할당받아서 사용할 수 있는 인프라이다. 오픈스택과 다르게 하나의 서버자체를 제공하는 형식이다. DDoS나 악성코드 실험등을 할 수 있는 환경으로 사용한다. 또한 사용자는 스스로 다양한 토폴로지를 구성할 수 있다.</p>
@@ -55,12 +56,12 @@
 <h2>1.2. 가상 호스팅<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <p>하나의 웹 어플리케이션에서 다른 도메인을 처리하는 것을 뜻한다. HOST 필드값을 분석하여 서브 도메인의 종류에 따라 그에 맞는 서비스를 제공한다. 여러대의 서버를 둘 수 없을때 사용할 수 있다.</p>
 </div>
-<div class="section" id="network-terms">
-<span id="id4"></span><h2>1.3. 블로킹 기법<a class="headerlink" href="#network-terms" title="제목 주소">¶</a></h2>
+<div class="section" id="id4">
+<span id="id5"></span><h2>1.3. 블로킹 기법<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
 <p><strong>블로킹 기법이란</strong> 어떤 작업을 요청(시스템 콜)한 후 결과가 나올때까지 스레드 문맥이 I/O큐에서 기다리는 것을 뜻한다.</p>
 </div>
-<div class="section" id="id5">
-<span id="id6"></span><h2>1.4. 논블로킹 기법<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
+<div class="section" id="id6">
+<span id="id7"></span><h2>1.4. 논블로킹 기법<a class="headerlink" href="#id6" title="제목 주소">¶</a></h2>
 <p><strong>논블로킹 기법이란</strong> 작업을 요청한 후 바로 결과가 나오길 기대하지 않으며 다른작업을 하다가 알림을 받는 구조이다.</p>
 </div>
 <div class="section" id="smb">
@@ -84,8 +85,8 @@
 <li><a class="reference internal" href="#">1. 용어</a><ul>
 <li><a class="reference internal" href="#id2">1.1. 베어메탈 클라우드</a></li>
 <li><a class="reference internal" href="#id3">1.2. 가상 호스팅</a></li>
-<li><a class="reference internal" href="#network-terms">1.3. 블로킹 기법</a></li>
-<li><a class="reference internal" href="#id5">1.4. 논블로킹 기법</a></li>
+<li><a class="reference internal" href="#id4">1.3. 블로킹 기법</a></li>
+<li><a class="reference internal" href="#id6">1.4. 논블로킹 기법</a></li>
 <li><a class="reference internal" href="#smb">1.5. SMB</a></li>
 <li><a class="reference internal" href="#nfs">1.6. NFS</a></li>
 </ul>
@@ -105,7 +106,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/network/network_terms.rst.txt"
+      <li><a href="../_sources/network/network_terms.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -127,11 +128,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="../_sources/network/network_terms.rst.txt"
+      <a href="../_sources/network/network_terms.txt"
           rel="nofollow">Page source</a>
     </div>
 
