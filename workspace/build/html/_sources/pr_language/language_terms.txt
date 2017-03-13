@@ -11,8 +11,8 @@
 
 `문맥 자유 문법은 4개의 튜플로 정의된다. <https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions>`_ 
 
-- **유한 집합.** 비단말 문자 또는 변수(nonterminal charactor or varibale), variable은 구문 분류(syntatic category)
-- **유한 집합.** 실제 문장을 구성하는 단말 문자(terminal charactor)
+- **비단말 문자의 유한 집합.** 비단말 문자 또는 변수(nonterminal charactor or varibale), variable은 구문 분류(syntatic category)
+- **단말 문자의 유한 집합.** 실제 문장을 구성하는 단말 문자(terminal charactor)
 - **관계.** 비단말 -> (단말+비단말)* 
 - **시작 심볼.** 전체 문장 또는 프로그램
 
@@ -39,7 +39,7 @@ BNF는 파생규칙의 집합이며 다음과 같이 작성한다.::
 확장된 배커스 정규형 (Extended Backus–Naur form)
 ================================================
 
-EBNF는 프로그래밍 언어와 같은 형식 언어를 형식적으로 표현하기 위한 메타문법이다. EBNF는 CFG와 같이 생성규칙의 집합이다. `이곳 <http://standards.iso.org/ittf/PubliclyAvailableStandards/s026153_ISO_IEC_14977_1996(E).zip>`_ 에서 EBNF 표준을 확인할 수 있다.
+EBNF는 BNF을 확장한 국제표준 메타언어이다. `이곳 <http://standards.iso.org/ittf/PubliclyAvailableStandards/s026153_ISO_IEC_14977_1996(E).zip>`_ 에서 EBNF 표준을 확인할 수 있다.
 
 문법, 구문론(Syntax)
 ====================
@@ -55,6 +55,11 @@ EBNF는 프로그래밍 언어와 같은 형식 언어를 형식적으로 표현
 ====================
 
 `메타문법 <https://en.wikipedia.org/wiki/Metasyntax>`_ 은 메타언어에서 사용 가능한 문장의 조합이나 구조를 나타내는 문법이다.
+
+형식적인 정의(Formal definition)
+============================
+
+프로그래밍 문법, 형식적인 문법을 뜻할때 사용하는 말이다. 예를들면 시스템에서 사용하는 명령어등이 있다.
 
 매개변수, 인자값
 ================
