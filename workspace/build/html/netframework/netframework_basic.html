@@ -86,10 +86,136 @@
 <p>ildasm을 통해 타입정보 및 참조정보를 확인할 수 있다.</p>
 <p>[VS2013용 개발자 명령 프롬프트] - ildasm 실행</p>
 </div>
-<div class="section" id="linq-language-integrated-query">
-<h2>1.5. LINQ(Language Integrated Query)<a class="headerlink" href="#linq-language-integrated-query" title="제목 주소">¶</a></h2>
+<div class="section" id="id3">
+<h2>1.5. 단위 테스트<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<ol class="arabic simple">
+<li>테스트 프로젝트를 추가해야한다.</li>
+</ol>
 <ul class="simple">
-<li><strong>LINQ to Object.</strong> 객체에서 데이터 조회</li>
+<li>[솔루션] -&gt; [추가] -&gt; 테스트 프로젝트 추가</li>
+</ul>
+<ol class="arabic simple" start="2">
+<li>다른 프로젝트를 테스트하기 위해서 참조를 추가를 해야한다.</li>
+</ol>
+<ul class="simple">
+<li>[참조 추가] -&gt; [솔루션] -&gt; [프로젝트] -&gt; 프로젝트 선택</li>
+</ul>
+<ol class="arabic simple" start="3">
+<li>테스트 실행</li>
+</ol>
+<ul class="simple">
+<li>[테스트] -&gt; [실행] -&gt; 테스트 선택</li>
+</ul>
+</div>
+<div class="section" id="dll">
+<h2>1.6. DLL 만들기<a class="headerlink" href="#dll" title="제목 주소">¶</a></h2>
+<p>클래스 라이브러리 프로젝트를 만들어서 DLL을 만들 수 있다.</p>
+</div>
+<div class="section" id="tasklist">
+<h2>1.7. TaskList<a class="headerlink" href="#tasklist" title="제목 주소">¶</a></h2>
+<p>TaskList를 이용해서 Visual Studio에서 진행할 작업을 넣을 수 있다.</p>
+</div>
+<div class="section" id="file-i-o">
+<h2>1.8. FILE I/O<a class="headerlink" href="#file-i-o" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li><strong>File.</strong> 정적 메서드를 멤버로 갖음</li>
+<li><strong>FileInfo.</strong> 인스턴스화 해서 사용함</li>
+<li><strong>Directory.</strong> 정적 메서드를 멤버로 갖음</li>
+<li><strong>DirectoryInfo.</strong> 인스턴스화 해서 사용함</li>
+<li><strong>Path.</strong> 패스 유틸리티 클래스</li>
+<li><strong>FileStream.</strong> 이미지나 사운드 파일</li>
+<li><strong>StreamReader/StreamWriter.</strong> 텍스트 파일</li>
+<li><strong>BinaryReader/BinaryWriter.</strong> 바이너리 파일</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>1.9. 직렬화<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
+<p>[Serializable] 이라는 속성을 이용해 객체 직렬화가 가능하다. 바이너리, XML, Json등으로 직렬화가 가능하다.</p>
+<ul class="simple">
+<li><strong>BinaryFormatter.</strong> 바이너리 데이터로 직렬화</li>
+<li><strong>SoapFormatter.</strong> SOAP 형식의 데이터로 직렬화</li>
+<li><strong>DataContractJsonSerializer.</strong> Json 형식의 데이터로 직렬화</li>
+</ul>
+</div>
+<div class="section" id="xml">
+<h2>1.10. XML 처리<a class="headerlink" href="#xml" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li><strong>XmlTextReader/XmlTextWriter.</strong></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>1.11. 데이터베이스<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li><strong>ADO.NET class.</strong></li>
+<li><strong>ADO.NET Entity Framework.</strong></li>
+<li><strong>LINQ to SQL.</strong></li>
+</ul>
+<div class="section" id="ado-net-entity-framework">
+<h3>1.11.1. ADO.NET Entity Framework<a class="headerlink" href="#ado-net-entity-framework" title="제목 주소">¶</a></h3>
+<p><strong>데이터 기반(Data oriented) 소프트웨어를 개발할때</strong> 필요한 기술의 집합이다.</p>
+<p>ADO.NET 엔터티 추가</p>
+<ul class="simple">
+<li>[새 항목] - [데이터] - [ADO.NET 엔터티 데이터 모델] - [데이터베이스의 EF Designer] - DB 연결 정보 입력 및 테이블 선택</li>
+</ul>
+<p>엔터티를 추가하면 edmx 라는 파일이 생성되고 이 파일에서 객체 - 테이블의 관계를 확인할 수 있다. 모델 클래스도 같이 생성된다.</p>
+<p>간단하게 엔터티 인스턴스를 만들어서 데이터를 조회할 수 있다.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MyEntity</span> <span class="n">e</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MyEntity</span><span class="p">();</span>
+<span class="n">var</span> <span class="n">result</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">Employees</span><span class="o">.</span><span class="n">FirstOrDefault</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>데이터 저장:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">FirstName</span> <span class="o">=</span> <span class="s2">&quot;Choe&quot;</span><span class="p">;</span>
+<span class="n">db</span><span class="o">.</span><span class="n">SaveChnages</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="http">
+<h3>1.11.2. 간단한 HTTP 통신<a class="headerlink" href="#http" title="제목 주소">¶</a></h3>
+<p>HTTP 요청:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HttpWebRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">WebRequest</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="s2">&quot;http://www.naver.com&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">HttpWebRequest</span><span class="p">;</span>
+<span class="n">HttpWebResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GetResponse</span><span class="p">()</span> <span class="k">as</span> <span class="n">HttpWebResponse</span><span class="p">;</span>
+<span class="o">//</span><span class="n">Response</span>
+<span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Stream</span> <span class="n">s</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">GetResponseStream</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="wcf-windows-communication-foundation">
+<h3>1.11.3. WCF(Windows Communication Foundation)<a class="headerlink" href="#wcf-windows-communication-foundation" title="제목 주소">¶</a></h3>
+<p>응용 프로그램에서 여러 컴퓨터와 비동기적으로 통신할 수 있도록 해주는 프레임워크이다.</p>
+<p>WCF로 여러가지 서비스를 구성할 수 있다.</p>
+<ul class="simple">
+<li>WCF Service</li>
+<li>WCF Data Service</li>
+</ul>
+<div class="section" id="wcf-data-service-ado-net-data-services">
+<h4>1.11.3.1. WCF Data Service(ADO.NET Data Services)<a class="headerlink" href="#wcf-data-service-ado-net-data-services" title="제목 주소">¶</a></h4>
+<p>REST를 사용하여 WWW을 통해 데이터를 제공하는 하나의 컴포넌트이다.</p>
+<p>절차</p>
+<ol class="arabic simple">
+<li>먼저 ASP.NET 웹 프로젝트를 만들어야 한다.</li>
+<li>새 항목 추가 - WCF Data Service를 추가한다.</li>
+<li>새 항목 추가 - ADO.NET 엔터티 데이터 모델 추가한다.</li>
+<li>DataService의 타입 파라미터로 생성된 엔터티 타입을 전달한다.</li>
+<li>InitializeService 메서드에서 권한 설정을 한다.</li>
+<li>오퍼레이션(메서드)을 생성하고 <em>SetServiceOperationAccessRule</em> 에서 메서드를 등록한다. (메서드 생성시 적절한 속성(attribute)을 줘야한다. [WebGet], [SingleResult])</li>
+</ol>
+</div>
+<div class="section" id="wcf-client">
+<h4>1.11.3.2. WCF Client<a class="headerlink" href="#wcf-client" title="제목 주소">¶</a></h4>
+<p>WCF Data Service 접속</p>
+<ol class="arabic simple">
+<li>Winform 프로젝트 생성</li>
+<li>서비스 참조 추가</li>
+<li>네임스페이스 추가</li>
+<li>LINQ 쿼리로 데이터 조회</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="reference">
+<h2>1.12. Reference<a class="headerlink" href="#reference" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li>WCF Data Service : <a class="reference external" href="https://msdn.microsoft.com/en-us/library/cc668792(v=vs.110).aspx">https://msdn.microsoft.com/en-us/library/cc668792(v=vs.110).aspx</a></li>
 </ul>
 </div>
 </div>
@@ -107,7 +233,23 @@
 <li><a class="reference internal" href="#id1">1.2. 메모리 구조</a></li>
 <li><a class="reference internal" href="#id2">1.3. 로깅, 추적 및 성능 진단</a></li>
 <li><a class="reference internal" href="#il">1.4. IL 디스어셈블러</a></li>
-<li><a class="reference internal" href="#linq-language-integrated-query">1.5. LINQ(Language Integrated Query)</a></li>
+<li><a class="reference internal" href="#id3">1.5. 단위 테스트</a></li>
+<li><a class="reference internal" href="#dll">1.6. DLL 만들기</a></li>
+<li><a class="reference internal" href="#tasklist">1.7. TaskList</a></li>
+<li><a class="reference internal" href="#file-i-o">1.8. FILE I/O</a></li>
+<li><a class="reference internal" href="#id4">1.9. 직렬화</a></li>
+<li><a class="reference internal" href="#xml">1.10. XML 처리</a></li>
+<li><a class="reference internal" href="#id5">1.11. 데이터베이스</a><ul>
+<li><a class="reference internal" href="#ado-net-entity-framework">1.11.1. ADO.NET Entity Framework</a></li>
+<li><a class="reference internal" href="#http">1.11.2. 간단한 HTTP 통신</a></li>
+<li><a class="reference internal" href="#wcf-windows-communication-foundation">1.11.3. WCF(Windows Communication Foundation)</a><ul>
+<li><a class="reference internal" href="#wcf-data-service-ado-net-data-services">1.11.3.1. WCF Data Service(ADO.NET Data Services)</a></li>
+<li><a class="reference internal" href="#wcf-client">1.11.3.2. WCF Client</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reference">1.12. Reference</a></li>
 </ul>
 </li>
 </ul>

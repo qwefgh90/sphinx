@@ -7,7 +7,7 @@
 문맥 자유 문법(Context-free grammar)
 ===================================
 
-문맥 자유 문법은 모든 가능한 문자열을 표시하기 위한 :ref:`production_rules` 의 집합이다.
+문맥 자유 문법은 모든 가능한 문자열을 표시하기 위한 :ref:`production_rules` 의 집합이다. 또한 형식문법(Formal Grammar)의 한 종류이다.
 
 `문맥 자유 문법은 4개의 튜플로 정의된다. <https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions>`_ 
 

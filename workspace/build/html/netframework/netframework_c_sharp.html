@@ -52,7 +52,7 @@
 <div class="section" id="id1">
 <h2>3.1. 네이밍 컨벤션<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
 <p>1. PascalCasing Convention
-- all <strong>public</strong> member, type, namespace</p>
+- <strong>all public member</strong>, type, namespace</p>
 <p>2. camelCasing Convention
 - parameter names</p>
 </div>
@@ -98,7 +98,7 @@
 </div>
 <div class="section" id="id4">
 <h3>3.2.2. 형변환<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
-<p>형변환은 반드시 <em>Type Cast Operator</em> 나 메서드를 이용해서 명시적으로 형변환을 해야한다.:</p>
+<p>형변환은 반드시 <em>Type Cast Operator</em> 나 메서드를 이용해서 명시적으로 형변환을 해야한다. 참조 타입의 경우 xas 키워드를 사용해서 변환할 수 있다.:</p>
 <div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="n">b</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">b</span><span class="p">;</span>
 <span class="kt">string</span> <span class="n">c</span> <span class="p">=</span> <span class="s">&quot;hello&quot;</span><span class="p">;</span>
@@ -110,15 +110,11 @@
 <div class="section" id="id5">
 <h3>3.2.3. 문자열<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
 <p>연결:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">string</span> <span class="n">s</span> <span class="p">=</span> <span class="s">&quot;hello&quot;</span> <span class="p">+</span> <span class="s">&quot;world&quot;</span>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">string</span> <span class="n">s</span> <span class="p">=</span> <span class="s">&quot;hello&quot;</span> <span class="p">+</span> <span class="s">&quot;world&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Escape sequence는 특수문자를 나타낼때 사용한다.</p>
 <p>문자열에서 Escape sequence를 사용하고 않고 문자 그대로를 사용하고 싶다면 <em>&#64;</em> 을 문자, 문자열 리터럴 앞에 붙이면 된다.</p>
-<p>정규표현식 예시는 다음과 같다.:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">textToTest</span> <span class="p">=</span> <span class="s">&quot;hell0 w0rld&quot;</span><span class="p">;</span>
-</pre></div>
-</div>
 </div>
 <div class="section" id="id6">
 <h3>3.2.4. 배열<a class="headerlink" href="#id6" title="제목 주소">¶</a></h3>
@@ -148,7 +144,7 @@
 <h3>3.2.5. 클래스<a class="headerlink" href="#id7" title="제목 주소">¶</a></h3>
 <p>클래스는 데이터와 데이터의 연산을 함께 저장하는 데이터 구조이다. (속성, 이벤트, 연산자, 생성자도 갖는다.)</p>
 <ul class="simple">
-<li>정적 클래스: 오직 정적 멤버만 갖는 클래스를 뜻한다.</li>
+<li>정적 클래스: static 한정자(Modifier)를 갖으며 오직 정적 멤버만 갖고 인스턴스 생성이 안되는 클래스를 뜻한다.</li>
 </ul>
 <div class="section" id="id8">
 <h4>3.2.5.1. 생성자<a class="headerlink" href="#id8" title="제목 주소">¶</a></h4>
@@ -164,44 +160,34 @@
 <li><strong>출력 매개변수(output paramter)</strong> : 결과값이 여러개일때 사용(호출자가 전달한 매개변수의 값이 중요하지 않을때, 함수 종료 시 출력 매개변수를 할당해야 함, 다른 매개변수와 달리 초기값이 없어도 됨)</li>
 </ul>
 </div>
+<div class="section" id="extension-method">
+<h4>3.2.5.3. 확장 메서드(Extension method)<a class="headerlink" href="#extension-method" title="제목 주소">¶</a></h4>
+<p>클래스에 없는 기능을 추가할때 사용할 수 있는 멤버이다.</p>
+<p>첫번째 파라미터에 <em>this 한정자를</em> 갖고 포인터는 파라미터 타입으로 사용할 수 없다. 확장 메서드는 제네릭이나 중첩 클래스에서는 사용할 수 없다. 기존의 클래스에 없는 기능을 확장할때 좋다. (스칼라의 암시적 변환과 유사함)</p>
+</div>
 <div class="section" id="properties">
-<h4>3.2.5.3. 속성,프로퍼티(Properties)<a class="headerlink" href="#properties" title="제목 주소">¶</a></h4>
-<p>객체나 클래스의 데이터에 접근할때 사용하는 멤버이다. 사용하는 방법이 필드와 비슷하다. 프로퍼티는 <em>별도의 저장소를 갖고 있지 않으며 항상 접근자(accessors)를 통해서 값에</em> 접근한다.</p>
+<span id="id10"></span><h4>3.2.5.4. 속성,프로퍼티(Properties)<a class="headerlink" href="#properties" title="제목 주소">¶</a></h4>
+<p>객체나 클래스의 데이터에 접근할때 사용하는 멤버이다. 사용하는 방법이 필드와 비슷하다. 프로퍼티는 <strong>별도의 저장소를 갖고 있지 않으며 항상 접근자(accessors)를 통해서 값에</strong> 접근한다.</p>
 <p><em>자동 구현 속성(Automatically implemented properties)</em> 는 숨겨진 필드를 만들고 접근자로 필드를 접근하도록 자동 구현되는 속성이다.</p>
 <p>아래 2개의 클래스는 같은 의미를 지닌다.:</p>
 <div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Point</span> <span class="p">{</span>
-  <span class="k">public</span> <span class="kt">int</span> <span class="n">X</span> <span class="p">=</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//자동 구현</span>
-  <span class="k">public</span> <span class="kt">int</span> <span class="n">Y</span> <span class="p">=</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//자동 구현</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">X</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//자동 구현</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">Y</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//자동 구현</span>
 <span class="p">}</span>
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">Point</span> <span class="p">{</span>
   <span class="k">public</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
   <span class="k">public</span> <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
-  <span class="k">public</span> <span class="kt">int</span> <span class="n">X</span> <span class="p">=</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span> <span class="k">set</span> <span class="p">{</span> <span class="n">x</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
-  <span class="k">public</span> <span class="kt">int</span> <span class="n">Y</span> <span class="p">=</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span> <span class="k">set</span> <span class="p">{</span> <span class="n">y</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">X</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span> <span class="k">set</span> <span class="p">{</span> <span class="n">x</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">Y</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span> <span class="k">set</span> <span class="p">{</span> <span class="n">y</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
 
 <span class="p">}</span>
 </pre></div>
 </div>
 <p><em>자동 구현 속성</em> 은 읽기전용, 쓰기전용이 허락되지 않는다.</p>
 </div>
-<div class="section" id="accessors">
-<h4>3.2.5.4. 접근자(Accessors)<a class="headerlink" href="#accessors" title="제목 주소">¶</a></h4>
-<p>접근자에는 프로퍼티를 읽고 쓸때 실행되는 코드가 정의되어 있다.</p>
-</div>
-<div class="section" id="id10">
-<h4>3.2.5.5. 메서드 오버로드<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
-<p>유일한 메서드 시그니처를 바탕으로 같은 메서드 이름을 사용할 수 있는 특징을 뜻한다.</p>
-</div>
-<div class="section" id="id11">
-<h4>3.2.5.6. 명명된 인자<a class="headerlink" href="#id11" title="제목 주소">¶</a></h4>
-<p>다음과 같이 인자에 이름을 붙여서 사용할 수 있다.:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">StopService</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="n">serviceID</span><span class="p">:</span> <span class="m">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="event">
-<h4>3.2.5.7. 이벤트(Event)<a class="headerlink" href="#event" title="제목 주소">¶</a></h4>
+<div class="section" id="events">
+<h4>3.2.5.5. 이벤트(Events)<a class="headerlink" href="#events" title="제목 주소">¶</a></h4>
 <p>객체나 클래스에서 알림을 주고 싶을때 사용하는 클래스의 멤버이다. 이벤트가 발생할 경우 등록된 <em>이벤트 핸들러(Event Handler)</em> 가 호출된다.</p>
 <p><strong>반드시 이벤트는 대리자(delegate) 타입이여야 한다.</strong>:</p>
 <div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="p">...{</span>
@@ -211,10 +197,18 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="indexers">
+<h4>3.2.5.6. 인덱서(Indexers)<a class="headerlink" href="#indexers" title="제목 주소">¶</a></h4>
+<p>배열과 같이 객체의 데이터를 인덱스를 통해서 접근하도록 해주는 멤버이다. 인덱서는 멤버의 이름이 <strong>[ ] 구분자로 묶인 파라미터 리스트 가 따르는 this</strong> 라는 점을 제외하고 <a class="reference internal" href="#id10"><span class="std std-ref">속성</span></a> 과 유사하다.</p>
+</div>
+<div class="section" id="destructors">
+<h4>3.2.5.7. 소멸자(Destructors)<a class="headerlink" href="#destructors" title="제목 주소">¶</a></h4>
+<p>인스턴스가 제거될때 호출되는 코드를 정의한 멤버이다.</p>
+</div>
 </div>
 <div class="section" id="delegate">
 <h3>3.2.6. 대리자(delegate)<a class="headerlink" href="#delegate" title="제목 주소">¶</a></h3>
-<p>대리자는 <em>1개 이상의 메서드의 참조값과 인스턴스를 함께 저장하는 데이터 타입</em> 이다. 내부적으로 System.Delegate를 상속받은 클래스이다.</p>
+<p>대리자는 <strong>1개 이상의 메서드의 참조값과 인스턴스를 함께 저장하는 데이터 타입</strong> 이다. 내부적으로 System.Delegate를 상속받은 클래스이다.</p>
 <p>대리자는 내부적으로 <strong>호출 리스트(invocation list)</strong> 를 사용하여 1개 이상의 메서드를 저장한다. <em>각각의 메서드는 호출가능한 개체(callable entity)로</em> 불린다. <em>인스턴스 메서드</em> 를 위해 객체와 인스턴스로 구성된 호출가능한 개체를 저장하며 <em>정적 메서드</em> 를 위해서는 메서드로 구성된 호출가능한 개체를 저장한다.</p>
 <p>예시:</p>
 <div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">delegate</span> <span class="k">void</span> <span class="nf">MyDelegate</span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">);</span>
@@ -231,12 +225,74 @@
 <h3>3.2.7. 열거형(Enumeration)<a class="headerlink" href="#enumeration" title="제목 주소">¶</a></h3>
 <p>이름있는 상수를 뜻한다. 열거형은 값 타입의 한 종류이다.</p>
 </div>
-<div class="section" id="id12">
-<h3>3.2.8. 구조체<a class="headerlink" href="#id12" title="제목 주소">¶</a></h3>
+<div class="section" id="id11">
+<h3>3.2.8. 구조체<a class="headerlink" href="#id11" title="제목 주소">¶</a></h3>
 <p>클래스와 유사하게 필드와 함수를 갖는 데이터 타입이다. 클래스와 달리 힙 할당을 하지 않고 참조값이 아닌 <strong>직접 데이터의 구조를 저장</strong> 한다. 기본적으로 구조체는 internal, 필드는 private을 사용한다.</p>
 </div>
+<div class="section" id="id12">
+<h3>3.2.9. 인터페이스<a class="headerlink" href="#id12" title="제목 주소">¶</a></h3>
+<p>인터페이스는 기능에 대한 계약(contract)이다. .NET Remoting, WCF에서 원격 메서드 호출을 위해 인터페이스가 사용된다. 구현을 공개하지 않고 인터페이스만 제공함으로써 보안성도 제공한다.</p>
+<p>보통 <strong>대문자 I</strong> 로 시작한다.</p>
+<p>인터페이스를 구현한 클래스에서 <strong>명시적 또는 암시적으로</strong> 멤버를 구현할 수 있다.</p>
+<p><strong>암시적 구현은</strong> 다음과 같다.:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">interface</span> <span class="n">IBeverage</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="nf">GetTemp</span><span class="p">();</span>
+  <span class="k">void</span> <span class="nf">Paint</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Coffee</span> <span class="p">:</span> <span class="n">IBeverage</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="nf">GetTemp</span><span class="p">(){</span> <span class="k">return</span> <span class="m">0</span><span class="p">;}</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Paint</span><span class="p">()</span>
+  <span class="p">{</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>명시적 구현은</strong> 다음과 같다.:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">interface</span> <span class="n">IBeverage</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="nf">GetTemp</span><span class="p">();</span>
+  <span class="k">void</span> <span class="nf">Paint</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Coffee</span> <span class="p">:</span> <span class="n">IBeverage</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">IBeverage</span><span class="p">.</span><span class="n">GetTemp</span><span class="p">(){</span> <span class="k">return</span> <span class="m">0</span><span class="p">;}</span>
+  <span class="k">void</span> <span class="n">IBeverage</span><span class="p">.</span><span class="n">Paint</span><span class="p">()</span>
+  <span class="p">{</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>인터페이스 멤버의 명시적 구현은 크게 2가지 목적으로 사용된다.</p>
+<ul class="simple">
+<li>인터페이스 멤버의 명시적 구현이 클래스 구현으로 부터 제외되기 때문에, 클래스 사용자 입장에서 인터페이스 메서드가 필요 없을 경우에 유용하다.</li>
+<li>다중 상속을 하였을때 여러개의 동일한 메서드 시그니처를 사용할 수 있다.</li>
+</ul>
+<p>명시적 구현은 <em>인터페이스 인스턴스를</em> 통해서만 호출이 가능하다. 위의 예제에서 Coffee 클래스를 IBeverage 타입으로 형변환 한 뒤 구현된 메서드를 호출할 수 있다. 또한 <em>접근 한정자</em> 를 사용할 수 없다. 그리고 <em>abstract, virtual, override, static</em> 도 사용할 수 없다.</p>
+<p>또한 명시적 구현은 메서드의 전체 이름으로 호출할 수 없다. 따라서 private멤버로 보이지만 <em>인터페이스 인스턴스를</em> 사용하면 public 멤버처럼 접근할 수 있다.</p>
+</div>
+<div class="section" id="accessors">
+<h3>3.2.10. 접근자(Accessors)<a class="headerlink" href="#accessors" title="제목 주소">¶</a></h3>
+<p>접근자에는 프로퍼티를 읽고 쓸때 실행되는 코드가 정의되어 있다.</p>
+</div>
+<div class="section" id="id13">
+<h3>3.2.11. 메서드 오버로드<a class="headerlink" href="#id13" title="제목 주소">¶</a></h3>
+<p>유일한 메서드 시그니처를 바탕으로 같은 메서드 이름을 사용할 수 있는 특징을 뜻한다.</p>
+</div>
+<div class="section" id="id14">
+<h3>3.2.12. 명명된 인자<a class="headerlink" href="#id14" title="제목 주소">¶</a></h3>
+<p>다음과 같이 인자에 이름을 붙여서 사용할 수 있다.:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">StopService</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="n">serviceID</span><span class="p">:</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="accessibility">
-<h3>3.2.9. 접근 한정자(Accessibility)<a class="headerlink" href="#accessibility" title="제목 주소">¶</a></h3>
+<h3>3.2.13. 접근 한정자(Accessibility)<a class="headerlink" href="#accessibility" title="제목 주소">¶</a></h3>
 <ul class="simple">
 <li><strong>public.</strong> 접근에 제한이 없음</li>
 <li><strong>protected.</strong> 파생된 타입이나 현재 클래스에서 접근 가능</li>
@@ -244,14 +300,16 @@
 <li><strong>internal.</strong> 현재 어셈블리에서 접근 가능</li>
 <li><strong>private.</strong> 현재 클래스에서만 접근 가능</li>
 </ul>
-<p>클래스, 구조체와 같은 타입과 네임스페이스는 <em>public</em> 이나 <em>internal</em> 접근 한정자를 사용할 수 있다. 클래스 멤버는 5가지 종류의 접근 한정자를 갖을 수 있다.</p>
-<p>타입은 기본적으로 <em>internal</em> 접근 한정자를 갖는다. (클래스의 멤버로 선언된 타입은 제외)</p>
-<p>클래스 멤버는 기본적으로 <em>private</em> 접근자를 갖는다.</p>
-<p>네임 스페이스는 한정자를 사용할 수 없다.</p>
+<p>클래스, 구조체와 같은 타입은 <em>public</em> 이나 <em>internal</em> 접근 한정자를 사용할 수 있다. 클래스 멤버는 5가지 종류의 접근 한정자를 갖을 수 있다. 네임 스페이스는 한정자를 사용할 수 없다.</p>
+<p><strong>기본 접근 한정자는 다음과 같다.</strong></p>
+<ul class="simple">
+<li>타입은 기본적으로 <em>internal</em> 접근 한정자를 갖는다. (클래스의 멤버로 선언된 타입은 제외)</li>
+<li>클래스 멤버는 기본적으로 <em>private</em> 접근자를 갖는다.</li>
+</ul>
 </div>
 </div>
-<div class="section" id="id13">
-<h2>3.3. 예외처리<a class="headerlink" href="#id13" title="제목 주소">¶</a></h2>
+<div class="section" id="id15">
+<h2>3.3. 예외처리<a class="headerlink" href="#id15" title="제목 주소">¶</a></h2>
 <p>예시:</p>
 <div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">{</span>
   <span class="kt">string</span> <span class="n">a</span> <span class="p">=</span> <span class="s">&quot;12345x&quot;</span><span class="p">;</span>
@@ -262,14 +320,54 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="linq-language-integrated-query">
-<h2>3.4. LINQ(Language Integrated Query)<a class="headerlink" href="#linq-language-integrated-query" title="제목 주소">¶</a></h2>
+<div class="section" id="id16">
+<h2>3.4. 타입 파라미터<a class="headerlink" href="#id16" title="제목 주소">¶</a></h2>
+<p><em>제네릭 타입(generic type)</em>, <em>언바운드 제네릭 타입(unbound generic type), 제네릭 클래스, 제네릭 인터페이스</em> 은 타입 인자를 전달하여 다른 타입을 생성할때 사용된다. 다른 언어에서는 <a class="reference internal" href="../scala/scala_terms.html#id5"><span class="std std-ref">제네릭 클래스/트레이트</span></a> 처럼 해석되기도 한다.</p>
+<p>타입 인자가 전달된 경우 <em>생성된 타입(constructed type)</em> 이라 불린다. 또는 <em>파라미터화된 타입</em> 라고 불린다.</p>
+<p>타입 파라미터는 클래스의 멤버의 타입을 정의하기 위해 클래스에 명시할 수 있다.</p>
+</div>
+<div class="section" id="inheritance">
+<h2>3.5. 상속(Inheritance)<a class="headerlink" href="#inheritance" title="제목 주소">¶</a></h2>
+<p>이미 만들어 놓은 클래스의 멤버를 재사용할때 사용한다. 베이스 클래스로부터 접근 한정자에 상관없이 생성자, 소멸자, 정적 생성자를 제외하고 <strong>모든 멤버를 상속 받는다.</strong> 또한 상속은 전이되기 때문에 베이스 클래스의 베이스 클래스의 멤버도 상속받는다.</p>
+<p>용어</p>
 <ul class="simple">
-<li><strong>LINQ to Object.</strong> 객체에서 데이터 조회</li>
+<li>Super class &lt;-&gt; Sub class (자바)</li>
+<li>Base class &lt;-&gt; Derived class (C++, C#)</li>
+<li>Parent class &lt;-&gt; Child class</li>
 </ul>
+<p>특징</p>
+<ul class="simple">
+<li>파생 클래스를 베이스 클래스 타입으로 바꿀 경우 암시적 변환이 일어난다. 즉 파생클래서의 인스턴스는 베이스 클래스의 타입처럼 다룰 수 있다.</li>
+<li>virtual 클래스를 사용하지 않을 경우 같은 이름과 같은 시그니처를 갖는 메서드를 만들어서 베이스 클래스의 멤버를 <strong>숨길 수(hide)</strong> 있다.</li>
+<li>virtual 키워드를 통해 메서드, 프로퍼티, 인덱서를 재정의 할 수 있다. 이는 <em>다형성(polymorphic)</em> 동작을 할 수 있게 해준다. 즉 메서드를 호출하는 시점의 인스턴스 타입에 따라 실제 호출되는 메서드를 다르게 할 수 있다는 뜻이다.</li>
+</ul>
+<p>재정의(override) 관련 키워드</p>
+<ul class="simple">
+<li>override : 베이스 클래스의 메서드를 <em>오버라이드</em> 할때 사용할 수 있다.</li>
+<li>virtual : 파생 클래스에서 재정의할 경우 메서드를 <em>오버라이드</em> 가능하게 한다. 이 키워드는 <em>다형성 동작을</em> 할 수 있게 한다.</li>
+</ul>
+<div class="section" id="id17">
+<h3>3.5.1. 추상 클래스와 메서드<a class="headerlink" href="#id17" title="제목 주소">¶</a></h3>
+<p>abstract 라는 한정자를 쓸 경우 <em>추상 메서드(abstract method)</em> 라고 불린다. 추상 메서드는 virtual 한정자가 암시적으로 들어가므로 virtual 키워드를 사용할 수 없다.</p>
+<p>추상 메서드는 <em>추상 클래스(abstract class)에서만</em> 선언할 수 있다. 추상 클래스의 추상 클래스가 아닌 파생 클래스는 반드시 추상 메서드를 오버라이드 해야한다.</p>
+</div>
+<div class="section" id="sealed-class">
+<h3>3.5.2. 봉인 클래스(sealed class)<a class="headerlink" href="#sealed-class" title="제목 주소">¶</a></h3>
+<p>sealed 한정자는 파생 클래스를 만들지 못하게 막는다. sealed는 추상 클래스에 사용할 수 없다.</p>
+<p>목적
+- 의도치 않은 상속을 막을 수 있으며 <strong>런타임 최적화를 가능하게 한다.</strong></p>
+</div>
+</div>
+<div class="section" id="statement">
+<h2>3.6. 구문(statement)<a class="headerlink" href="#statement" title="제목 주소">¶</a></h2>
+<div class="section" id="foreach">
+<h3>3.6.1. foreach<a class="headerlink" href="#foreach" title="제목 주소">¶</a></h3>
+<p>foreach는 콜렉션(Collection)의 원소를 열거하고 각 원소를 열거할때마다 내장된 구문을 실행하는 구문이다.</p>
+</div>
 </div>
 <div class="section" id="collection">
-<h2>3.5. Collection<a class="headerlink" href="#collection" title="제목 주소">¶</a></h2>
+<h2>3.7. Collection<a class="headerlink" href="#collection" title="제목 주소">¶</a></h2>
+<p>자주 사용하는 제네릭이다.</p>
 <ul class="simple">
 <li>List&lt;T&gt;</li>
 <li>Dictionary&lt;K,V&gt;</li>
@@ -277,11 +375,50 @@
 <li>Queue&lt;T&gt;</li>
 </ul>
 </div>
-<div class="section" id="references">
-<h2>3.6. References<a class="headerlink" href="#references" title="제목 주소">¶</a></h2>
+<div class="section" id="id18">
+<h2>3.8. 익명 함수 표현<a class="headerlink" href="#id18" title="제목 주소">¶</a></h2>
+<p>예시:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">expr</span>
+<span class="n">param</span> <span class="p">=&gt;</span> <span class="n">expr</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="linq-language-integrated-query">
+<h2>3.9. LINQ(Language Integrated Query)<a class="headerlink" href="#linq-language-integrated-query" title="제목 주소">¶</a></h2>
+<p>LINQ는 에릭 마이어가 만든 C#의 통합 질의 기술들의 집합이다.</p>
+<p>종류</p>
 <ul class="simple">
-<li>C# 스펙: <a class="reference external" href="https://msdn.microsoft.com/en-us/library/ms228593.aspx">https://msdn.microsoft.com/en-us/library/ms228593.aspx</a></li>
-<li>파라미터: <a class="reference external" href="https://msdn.microsoft.com/en-us/library/0f66670z.aspx">https://msdn.microsoft.com/en-us/library/0f66670z.aspx</a></li>
+<li><strong>LINQ to Object.</strong></li>
+<li><strong>LINQ to DataSet.</strong></li>
+<li><strong>LINQ to XML.</strong></li>
+<li><strong>LINQ to Entity.</strong></li>
+<li><strong>LINQ to SQL.</strong></li>
+</ul>
+<div class="section" id="query-expressions">
+<h3>3.9.1. 쿼리 표현(Query Expressions)<a class="headerlink" href="#query-expressions" title="제목 주소">¶</a></h3>
+<p>예시:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">num</span> <span class="p">=</span> <span class="m">1</span>
+<span class="kt">var</span> <span class="n">a</span> <span class="p">=</span> <span class="k">from</span> <span class="n">a</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Employees</span>
+        <span class="k">where</span> <span class="n">a</span><span class="p">.</span><span class="n">id</span> <span class="p">=</span> <span class="n">num</span>
+        <span class="k">select</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="anonymous-type">
+<h3>3.9.2. 익명 타입(Anonymous type)<a class="headerlink" href="#anonymous-type" title="제목 주소">¶</a></h3>
+<p>컴파일러에 의해서 자동 생성되며 프로그럄에서 참조될 수 없는 타입을 뜻한다. 프로퍼티의 이름과 순서가 같을 경우 같은 타입에 대한 인스턴스가 생성된다.</p>
+<p>예시:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">p1</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;Changwon&quot;</span><span class="p">,</span> <span class="n">Country</span> <span class="p">=</span> <span class="s">&quot;Korea&quot;</span> <span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h2>3.10. References<a class="headerlink" href="#references" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li>C# 스펙 : <a class="reference external" href="https://msdn.microsoft.com/en-us/library/ms228593.aspx">https://msdn.microsoft.com/en-us/library/ms228593.aspx</a></li>
+<li>파라미터 : <a class="reference external" href="https://msdn.microsoft.com/en-us/library/0f66670z.aspx">https://msdn.microsoft.com/en-us/library/0f66670z.aspx</a></li>
+<li>LINQ : <a class="reference external" href="https://msdn.microsoft.com/en-us/library/bb308959.aspx">https://msdn.microsoft.com/en-us/library/bb308959.aspx</a></li>
 </ul>
 </div>
 </div>
@@ -304,23 +441,42 @@
 <li><a class="reference internal" href="#id7">3.2.5. 클래스</a><ul>
 <li><a class="reference internal" href="#id8">3.2.5.1. 생성자</a></li>
 <li><a class="reference internal" href="#id9">3.2.5.2. 메서드</a></li>
-<li><a class="reference internal" href="#properties">3.2.5.3. 속성,프로퍼티(Properties)</a></li>
-<li><a class="reference internal" href="#accessors">3.2.5.4. 접근자(Accessors)</a></li>
-<li><a class="reference internal" href="#id10">3.2.5.5. 메서드 오버로드</a></li>
-<li><a class="reference internal" href="#id11">3.2.5.6. 명명된 인자</a></li>
-<li><a class="reference internal" href="#event">3.2.5.7. 이벤트(Event)</a></li>
+<li><a class="reference internal" href="#extension-method">3.2.5.3. 확장 메서드(Extension method)</a></li>
+<li><a class="reference internal" href="#properties">3.2.5.4. 속성,프로퍼티(Properties)</a></li>
+<li><a class="reference internal" href="#events">3.2.5.5. 이벤트(Events)</a></li>
+<li><a class="reference internal" href="#indexers">3.2.5.6. 인덱서(Indexers)</a></li>
+<li><a class="reference internal" href="#destructors">3.2.5.7. 소멸자(Destructors)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#delegate">3.2.6. 대리자(delegate)</a></li>
 <li><a class="reference internal" href="#enumeration">3.2.7. 열거형(Enumeration)</a></li>
-<li><a class="reference internal" href="#id12">3.2.8. 구조체</a></li>
-<li><a class="reference internal" href="#accessibility">3.2.9. 접근 한정자(Accessibility)</a></li>
+<li><a class="reference internal" href="#id11">3.2.8. 구조체</a></li>
+<li><a class="reference internal" href="#id12">3.2.9. 인터페이스</a></li>
+<li><a class="reference internal" href="#accessors">3.2.10. 접근자(Accessors)</a></li>
+<li><a class="reference internal" href="#id13">3.2.11. 메서드 오버로드</a></li>
+<li><a class="reference internal" href="#id14">3.2.12. 명명된 인자</a></li>
+<li><a class="reference internal" href="#accessibility">3.2.13. 접근 한정자(Accessibility)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id13">3.3. 예외처리</a></li>
-<li><a class="reference internal" href="#linq-language-integrated-query">3.4. LINQ(Language Integrated Query)</a></li>
-<li><a class="reference internal" href="#collection">3.5. Collection</a></li>
-<li><a class="reference internal" href="#references">3.6. References</a></li>
+<li><a class="reference internal" href="#id15">3.3. 예외처리</a></li>
+<li><a class="reference internal" href="#id16">3.4. 타입 파라미터</a></li>
+<li><a class="reference internal" href="#inheritance">3.5. 상속(Inheritance)</a><ul>
+<li><a class="reference internal" href="#id17">3.5.1. 추상 클래스와 메서드</a></li>
+<li><a class="reference internal" href="#sealed-class">3.5.2. 봉인 클래스(sealed class)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#statement">3.6. 구문(statement)</a><ul>
+<li><a class="reference internal" href="#foreach">3.6.1. foreach</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#collection">3.7. Collection</a></li>
+<li><a class="reference internal" href="#id18">3.8. 익명 함수 표현</a></li>
+<li><a class="reference internal" href="#linq-language-integrated-query">3.9. LINQ(Language Integrated Query)</a><ul>
+<li><a class="reference internal" href="#query-expressions">3.9.1. 쿼리 표현(Query Expressions)</a></li>
+<li><a class="reference internal" href="#anonymous-type">3.9.2. 익명 타입(Anonymous type)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">3.10. References</a></li>
 </ul>
 </li>
 </ul>
