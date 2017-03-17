@@ -31,7 +31,7 @@ int는 Int32 구조체(struct)이다. string은 System.String의 약어이다.
 값 형식
 -------
 
-상수 필드나 지역 상수로 사용할 수 있으며 simple::
+상수 필드나 지역 상수로 사용할 수 있다. (const는 심플 타입과 문자열 리터럴에 사용 가능)::
 
   const int x = 0; // only used for simple types 
   private readonly string ProductName = "C#"; //computed at compile-time
@@ -63,7 +63,7 @@ signed vs unsigned
 형변환
 -------
 
-형변환은 반드시 *Type Cast Operator* 나 메서드를 이용해서 명시적으로 형변환을 해야한다. 참조 타입의 경우 xas 키워드를 사용해서 변환할 수 있다.::
+형변환은 반드시 *Type Cast Operator* 나 메서드를 이용해서 명시적으로 형변환을 해야한다. 참조 타입의 경우 *as 키워드를* 사용해서 변환할 수 있다.::
   
   long b = 3;
   int a = (int)b;
@@ -382,14 +382,26 @@ Collection
 - Stack<T>
 - Queue<T>
 
-익명 함수 표현
-==============
+익명 함수 표현(anonymous function)
+==================================
 
-예시::
+람다 표현식 (타입이 없어도 가능, 블록문 없이 명령구문을 바로 사용 가능, 괄호 생략 불가)::
 
-  (param) => expr
-  param => expr
 
+  (string s) => { Console.WriteLine(s); }
+  (string s) => Console.WriteLine(s);
+  s => expr
+
+익명 메서드 표현식 (파라미터 리스트에 타입 필요, 블록문이 필요, 괄호 생략 가능)::
+
+  delegate (string s) { Console.WriteLine(s); }
+
+외부변수(Outer variables)
+-------------------------
+
+*외부변수란* 람다 표현식 또는 익멩 메서드 표현식이 포함되어 있는 스코프의 로컬변수, 값 파라미터, 파라미터 배열이다. 익명 함수에서 참조된다면 캡처(captured) 되었다고 한다. 
+
+로컬 변수나 값 파라미터가 캡처(captured)된다면 이는 더이상 고정된 값이 아닌 변경가능한 변수로 바뀐다. 외부변수는 사용된 익명함수가 가비지 컬렉션될때까지 존재한다.
 
 LINQ(Language Integrated Query)
 ===============================
@@ -423,6 +435,46 @@ LINQ는 에릭 마이어가 만든 C#의 통합 질의 기술들의 집합이다
 예시::
 
   var p1 = new { Name = "Changwon", Country = "Korea" };
+
+멀티 태스킹(Multi tasking)
+-------------------------
+
+Task 예시::
+
+  Task task = new Task(new Action(GetCurrentTime));
+  Task task2 = Task.Factory.StartNew(new Action(GetCurrentTime));
+  Task task3 = Task.Run(new Action(GetCurrentTime));
+  Task task4 = Task.Run(GetCurrentTime);
+
+반환값 있는 Task::
+
+  Task<String> task = Task<String>.Run(GetCurrentTime)
+
+UI 업데이트::
+  
+  label1.Dispatcher.BeginInvoke(new Action(() => update(1)));
+
+BackgroundWorker(UI 업데이트 가능)::
+  
+  BackgroundWorker worker = new BackgroundWorker();
+  worker.DoWork += bw_DoWork;
+  worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+
+*lock은* 주어진 객체를 사용해 쓰레드간 상호배재를 하도록 한다. lock구문의 파라미터로 **반드시 레퍼런스 타입이 와야한다.**
+
+lock 구문 예시::
+  
+  lock(object){
+    ...
+  }
+
+  bool __lockWasTaken = false;
+  try{
+    System.Threading.Monitor.Enter(x, ref __lockWasTaken);
+    ...
+  }finally{
+    if(__lockWasTaken) System.Threading.Monitor.Exit(x);
+  }
 
 
 

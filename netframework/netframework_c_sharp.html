@@ -66,7 +66,7 @@
 <p>int는 Int32 구조체(struct)이다. string은 System.String의 약어이다.</p>
 <div class="section" id="id3">
 <h3>3.2.1. 값 형식<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
-<p>상수 필드나 지역 상수로 사용할 수 있으며 simple:</p>
+<p>상수 필드나 지역 상수로 사용할 수 있다. (const는 심플 타입과 문자열 리터럴에 사용 가능):</p>
 <div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// only used for simple types</span>
 <span class="k">private</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">ProductName</span> <span class="p">=</span> <span class="s">&quot;C#&quot;</span><span class="p">;</span> <span class="c1">//computed at compile-time</span>
 </pre></div>
@@ -98,7 +98,7 @@
 </div>
 <div class="section" id="id4">
 <h3>3.2.2. 형변환<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
-<p>형변환은 반드시 <em>Type Cast Operator</em> 나 메서드를 이용해서 명시적으로 형변환을 해야한다. 참조 타입의 경우 xas 키워드를 사용해서 변환할 수 있다.:</p>
+<p>형변환은 반드시 <em>Type Cast Operator</em> 나 메서드를 이용해서 명시적으로 형변환을 해야한다. 참조 타입의 경우 <em>as 키워드를</em> 사용해서 변환할 수 있다.:</p>
 <div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="n">b</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">b</span><span class="p">;</span>
 <span class="kt">string</span> <span class="n">c</span> <span class="p">=</span> <span class="s">&quot;hello&quot;</span><span class="p">;</span>
@@ -375,12 +375,22 @@
 <li>Queue&lt;T&gt;</li>
 </ul>
 </div>
-<div class="section" id="id18">
-<h2>3.8. 익명 함수 표현<a class="headerlink" href="#id18" title="제목 주소">¶</a></h2>
-<p>예시:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">expr</span>
-<span class="n">param</span> <span class="p">=&gt;</span> <span class="n">expr</span>
+<div class="section" id="anonymous-function">
+<h2>3.8. 익명 함수 표현(anonymous function)<a class="headerlink" href="#anonymous-function" title="제목 주소">¶</a></h2>
+<p>람다 표현식 (타입이 없어도 가능, 블록문 없이 명령구문을 바로 사용 가능, 괄호 생략 불가):</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="n">s</span> <span class="p">=&gt;</span> <span class="n">expr</span>
 </pre></div>
+</div>
+<p>익명 메서드 표현식 (파라미터 리스트에 타입 필요, 블록문이 필요, 괄호 생략 가능):</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">delegate</span> <span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="outer-variables">
+<h3>3.8.1. 외부변수(Outer variables)<a class="headerlink" href="#outer-variables" title="제목 주소">¶</a></h3>
+<p><em>외부변수란</em> 람다 표현식 또는 익멩 메서드 표현식이 포함되어 있는 스코프의 로컬변수, 값 파라미터, 파라미터 배열이다. 익명 함수에서 참조된다면 캡처(captured) 되었다고 한다.</p>
+<p>로컬 변수나 값 파라미터가 캡처(captured)된다면 이는 더이상 고정된 값이 아닌 변경가능한 변수로 바뀐다. 외부변수는 사용된 익명함수가 가비지 컬렉션될때까지 존재한다.</p>
 </div>
 </div>
 <div class="section" id="linq-language-integrated-query">
@@ -409,6 +419,45 @@
 <p>컴파일러에 의해서 자동 생성되며 프로그럄에서 참조될 수 없는 타입을 뜻한다. 프로퍼티의 이름과 순서가 같을 경우 같은 타입에 대한 인스턴스가 생성된다.</p>
 <p>예시:</p>
 <div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">p1</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;Changwon&quot;</span><span class="p">,</span> <span class="n">Country</span> <span class="p">=</span> <span class="s">&quot;Korea&quot;</span> <span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="multi-tasking">
+<h3>3.9.3. 멀티 태스킹(Multi tasking)<a class="headerlink" href="#multi-tasking" title="제목 주소">¶</a></h3>
+<p>Task 예시:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">Task</span> <span class="n">task</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Task</span><span class="p">(</span><span class="k">new</span> <span class="n">Action</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">));</span>
+<span class="n">Task</span> <span class="n">task2</span> <span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">StartNew</span><span class="p">(</span><span class="k">new</span> <span class="n">Action</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">));</span>
+<span class="n">Task</span> <span class="n">task3</span> <span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="k">new</span> <span class="n">Action</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">));</span>
+<span class="n">Task</span> <span class="n">task4</span> <span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>반환값 있는 Task:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">Task</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;</span> <span class="n">task</span> <span class="p">=</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;.</span><span class="n">Run</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>UI 업데이트:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">label1</span><span class="p">.</span><span class="n">Dispatcher</span><span class="p">.</span><span class="n">BeginInvoke</span><span class="p">(</span><span class="k">new</span> <span class="n">Action</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">update</span><span class="p">(</span><span class="m">1</span><span class="p">)));</span>
+</pre></div>
+</div>
+<p>BackgroundWorker(UI 업데이트 가능):</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">BackgroundWorker</span> <span class="n">worker</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BackgroundWorker</span><span class="p">();</span>
+<span class="n">worker</span><span class="p">.</span><span class="n">DoWork</span> <span class="p">+=</span> <span class="n">bw_DoWork</span><span class="p">;</span>
+<span class="n">worker</span><span class="p">.</span><span class="n">RunWorkerCompleted</span> <span class="p">+=</span> <span class="n">worker_RunWorkerCompleted</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><em>lock은</em> 주어진 객체를 사용해 쓰레드간 상호배재를 하도록 한다. lock구문의 파라미터로 <strong>반드시 레퍼런스 타입이 와야한다.</strong></p>
+<p>lock 구문 예시:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">lock</span><span class="p">(</span><span class="kt">object</span><span class="p">){</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">__lockWasTaken</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+<span class="k">try</span><span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Monitor</span><span class="p">.</span><span class="n">Enter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="k">ref</span> <span class="n">__lockWasTaken</span><span class="p">);</span>
+  <span class="p">...</span>
+<span class="p">}</span><span class="k">finally</span><span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">__lockWasTaken</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Monitor</span><span class="p">.</span><span class="n">Exit</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -470,10 +519,14 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#collection">3.7. Collection</a></li>
-<li><a class="reference internal" href="#id18">3.8. 익명 함수 표현</a></li>
+<li><a class="reference internal" href="#anonymous-function">3.8. 익명 함수 표현(anonymous function)</a><ul>
+<li><a class="reference internal" href="#outer-variables">3.8.1. 외부변수(Outer variables)</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#linq-language-integrated-query">3.9. LINQ(Language Integrated Query)</a><ul>
 <li><a class="reference internal" href="#query-expressions">3.9.1. 쿼리 표현(Query Expressions)</a></li>
 <li><a class="reference internal" href="#anonymous-type">3.9.2. 익명 타입(Anonymous type)</a></li>
+<li><a class="reference internal" href="#multi-tasking">3.9.3. 멀티 태스킹(Multi tasking)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#references">3.10. References</a></li>

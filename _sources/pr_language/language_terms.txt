@@ -36,7 +36,9 @@ BNF는 파생규칙의 집합이며 다음과 같이 작성한다.::
 
 ::= 은 왼쪽의 심볼이 오른쪽의 표현식으로 치환 될 수 있다는 의미를 갖는다.
 
-확장된 배커스 정규형 (Extended Backus–Naur form)
+.. _language_terms_ebnf:
+
+확장된 배커스 정규형 (Extended Backus–Naur form, EBNF)
 ================================================
 
 EBNF는 BNF을 확장한 국제표준 메타언어이다. `이곳 <http://standards.iso.org/ittf/PubliclyAvailableStandards/s026153_ISO_IEC_14977_1996(E).zip>`_ 에서 EBNF 표준을 확인할 수 있다.
