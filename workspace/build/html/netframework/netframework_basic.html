@@ -85,6 +85,7 @@
 <h2>1.4. IL 디스어셈블러<a class="headerlink" href="#il" title="제목 주소">¶</a></h2>
 <p>ildasm을 통해 타입정보 및 참조정보를 확인할 수 있다.</p>
 <p>[VS2013용 개발자 명령 프롬프트] - ildasm 실행</p>
+<p>[ctrl + M]을 통해 <em>타입 정보를</em> 확인할 수 있다.</p>
 </div>
 <div class="section" id="id3">
 <h2>1.5. 단위 테스트<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
@@ -108,8 +109,62 @@
 </ul>
 </div>
 <div class="section" id="dll">
-<h2>1.6. DLL 만들기<a class="headerlink" href="#dll" title="제목 주소">¶</a></h2>
-<p>클래스 라이브러리 프로젝트를 만들어서 DLL을 만들 수 있다.</p>
+<h2>1.6. DLL<a class="headerlink" href="#dll" title="제목 주소">¶</a></h2>
+<p>종류</p>
+<ul class="simple">
+<li>Assembly(.NET DLL, 클래스 라이브러리, 참조 추가로 사용, ILDASM으로 확인)</li>
+<li>Unmanaged DLL(Win32 API)</li>
+<li>Unmanaged DLL(COM Component, [DllImport]로 사용, regsvr32 zip.dll로 등록되는지 체크) [참조 추가] - [COM] - [형식 라이브러리] - 등록된 DLL을 찾는다.</li>
+</ul>
+<div class="section" id="assembly">
+<h3>1.6.1. 어셈블리(Assembly)<a class="headerlink" href="#assembly" title="제목 주소">¶</a></h3>
+<p>실행 프로그램 또는 DLL 또는 많은 PE파일과 리소스의 단위이다.</p>
+<p>구성</p>
+<ul class="simple">
+<li>Manifest</li>
+<li>MSIL</li>
+<li>Resource</li>
+<li>Type metadata</li>
+</ul>
+<p>종류</p>
+<ul class="simple">
+<li><strong>Private Assembly.</strong> 참조 추가한 프로그램만 사용 가능</li>
+<li><strong>Shares Assembly.</strong> 여러 프로그램에서 사용 가능한 어셈블리이며 GAC에 등록해서 사용할 수 있다. 강력한 이름(Strong name)을 갖는다.</li>
+</ul>
+<p><strong>클래스 라이브러리 프로젝트를 만들어서</strong> DLL을 만들 수 있다.</p>
+<p>프로젝트에서 참조할 DLL 경우</p>
+<ul class="simple">
+<li>기본적으로 시작 프로젝트에서 빌드할때 참조하는 DLL을 복사해온다.</li>
+<li>app.config에 특정 하위폴더에서 찾도록 할 수 있다.</li>
+<li></li>
+</ul>
+<p>강력한 이름(Strong name) 만드는 방법</p>
+<ul class="simple">
+<li>[프로젝트 속성] - [서명] - [강력한 이름 키 파일 선텍] - [빌드]</li>
+</ul>
+</div>
+<div class="section" id="gac-global-assembly-cache">
+<h3>1.6.2. GAC (Global Assembly Cache)<a class="headerlink" href="#gac-global-assembly-cache" title="제목 주소">¶</a></h3>
+<dl class="docutils">
+<dt>명령 ::</dt>
+<dd>[Visual2013용 개발자 명령 프롬프트] 실행
+gacutil -i [DLL Path]
+gacutil -l [DLL Path]</dd>
+</dl>
+</div>
+<div class="section" id="com-component">
+<h3>1.6.3. COM Component<a class="headerlink" href="#com-component" title="제목 주소">¶</a></h3>
+<p>COM Component는 레지스트리에 HKEY_CLASSES_ROOT - [프로그램ID] - [클래스 아이디]로 등록되어서 사용 가능한 DLL이며 Type Library(.tlb)로 타입 정보를 얻을 수 있다. (RegID, CLSID)로 식별된다. 참조 추가할 경우 <em>RCW(Runtime Callable Wrapper)를</em> 통해서 참조한다.</p>
+</div>
+<div class="section" id="win32-api">
+<h3>1.6.4. Win32 API<a class="headerlink" href="#win32-api" title="제목 주소">¶</a></h3>
+<p>반드시 정적 함수로 선언해야하며 타입을 맞게 바꿔줘야한다.</p>
+<p>예시:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">DLLImport</span><span class="p">(</span><span class="s2">&quot;user32.dll&quot;</span><span class="p">,</span> <span class="n">EntryPoint</span><span class="o">=</span><span class="s2">&quot;MessageBox&quot;</span><span class="p">)]</span>
+<span class="n">public</span> <span class="n">static</span> <span class="n">extern</span> <span class="nb">int</span> <span class="n">APIMessageBox</span><span class="p">(</span><span class="nb">int</span> <span class="n">h</span><span class="p">,</span> <span class="n">string</span> <span class="n">text</span><span class="p">,</span> <span class="n">string</span> <span class="n">caption</span><span class="p">,</span> <span class="n">uint</span> <span class="nb">type</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="tasklist">
 <h2>1.7. TaskList<a class="headerlink" href="#tasklist" title="제목 주소">¶</a></h2>
@@ -210,12 +265,17 @@
 <li>LINQ 쿼리로 데이터 조회</li>
 </ol>
 </div>
+<div class="section" id="component">
+<h4>1.11.3.3. 컴포넌트 (Component)<a class="headerlink" href="#component" title="제목 주소">¶</a></h4>
+<p>Component One, DevExpress</p>
+</div>
 </div>
 </div>
 <div class="section" id="reference">
 <h2>1.12. Reference<a class="headerlink" href="#reference" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>WCF Data Service : <a class="reference external" href="https://msdn.microsoft.com/en-us/library/cc668792(v=vs.110).aspx">https://msdn.microsoft.com/en-us/library/cc668792(v=vs.110).aspx</a></li>
+<li>COM Component Excel : <a class="reference external" href="http://net-informations.com/">http://net-informations.com/</a></li>
 </ul>
 </div>
 </div>
@@ -234,7 +294,13 @@
 <li><a class="reference internal" href="#id2">1.3. 로깅, 추적 및 성능 진단</a></li>
 <li><a class="reference internal" href="#il">1.4. IL 디스어셈블러</a></li>
 <li><a class="reference internal" href="#id3">1.5. 단위 테스트</a></li>
-<li><a class="reference internal" href="#dll">1.6. DLL 만들기</a></li>
+<li><a class="reference internal" href="#dll">1.6. DLL</a><ul>
+<li><a class="reference internal" href="#assembly">1.6.1. 어셈블리(Assembly)</a></li>
+<li><a class="reference internal" href="#gac-global-assembly-cache">1.6.2. GAC (Global Assembly Cache)</a></li>
+<li><a class="reference internal" href="#com-component">1.6.3. COM Component</a></li>
+<li><a class="reference internal" href="#win32-api">1.6.4. Win32 API</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#tasklist">1.7. TaskList</a></li>
 <li><a class="reference internal" href="#file-i-o">1.8. FILE I/O</a></li>
 <li><a class="reference internal" href="#id4">1.9. 직렬화</a></li>
@@ -245,6 +311,7 @@
 <li><a class="reference internal" href="#wcf-windows-communication-foundation">1.11.3. WCF(Windows Communication Foundation)</a><ul>
 <li><a class="reference internal" href="#wcf-data-service-ado-net-data-services">1.11.3.1. WCF Data Service(ADO.NET Data Services)</a></li>
 <li><a class="reference internal" href="#wcf-client">1.11.3.2. WCF Client</a></li>
+<li><a class="reference internal" href="#component">1.11.3.3. 컴포넌트 (Component)</a></li>
 </ul>
 </li>
 </ul>

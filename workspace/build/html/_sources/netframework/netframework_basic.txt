@@ -42,6 +42,7 @@ ildasm을 통해 타입정보 및 참조정보를 확인할 수 있다.
 
 [VS2013용 개발자 명령 프롬프트] - ildasm 실행
 
+[ctrl + M]을 통해 *타입 정보를* 확인할 수 있다.
 
 단위 테스트
 ===========
@@ -58,10 +59,67 @@ ildasm을 통해 타입정보 및 참조정보를 확인할 수 있다.
 
 - [테스트] -> [실행] -> 테스트 선택
 
-DLL 만들기
+DLL
 ==========
 
-클래스 라이브러리 프로젝트를 만들어서 DLL을 만들 수 있다.
+
+종류
+
+- Assembly(.NET DLL, 클래스 라이브러리, 참조 추가로 사용, ILDASM으로 확인)
+- Unmanaged DLL(Win32 API)
+- Unmanaged DLL(COM Component, [DllImport]로 사용, regsvr32 zip.dll로 등록되는지 체크) [참조 추가] - [COM] - [형식 라이브러리] - 등록된 DLL을 찾는다.
+
+어셈블리(Assembly)
+------------------
+
+실행 프로그램 또는 DLL 또는 많은 PE파일과 리소스의 단위이다.
+
+구성
+
+- Manifest
+- MSIL
+- Resource
+- Type metadata
+
+종류
+
+- **Private Assembly.** 참조 추가한 프로그램만 사용 가능
+- **Shares Assembly.** 여러 프로그램에서 사용 가능한 어셈블리이며 GAC에 등록해서 사용할 수 있다. 강력한 이름(Strong name)을 갖는다.
+
+**클래스 라이브러리 프로젝트를 만들어서** DLL을 만들 수 있다. 
+
+프로젝트에서 참조할 DLL 경우
+
+- 기본적으로 시작 프로젝트에서 빌드할때 참조하는 DLL을 복사해온다.
+- app.config에 특정 하위폴더에서 찾도록 할 수 있다.
+- 
+
+강력한 이름(Strong name) 만드는 방법
+
+- [프로젝트 속성] - [서명] - [강력한 이름 키 파일 선텍] - [빌드]
+
+GAC (Global Assembly Cache)
+---------------------------
+
+명령 ::
+  [Visual2013용 개발자 명령 프롬프트] 실행
+  gacutil -i [DLL Path]
+  gacutil -l [DLL Path]
+
+COM Component
+-------------
+
+COM Component는 레지스트리에 HKEY_CLASSES_ROOT - [프로그램ID] - [클래스 아이디]로 등록되어서 사용 가능한 DLL이며 Type Library(.tlb)로 타입 정보를 얻을 수 있다. (RegID, CLSID)로 식별된다. 참조 추가할 경우 *RCW(Runtime Callable Wrapper)를* 통해서 참조한다.
+
+Win32 API
+---------
+
+반드시 정적 함수로 선언해야하며 타입을 맞게 바꿔줘야한다.
+
+예시::
+  
+  [DLLImport("user32.dll", EntryPoint="MessageBox")]
+  public static extern int APIMessageBox(int h, string text, string caption, uint type);
 
 TaskList
 ========
@@ -168,8 +226,15 @@ WCF Data Service 접속
 3) 네임스페이스 추가
 4) LINQ 쿼리로 데이터 조회
 
+
+컴포넌트 (Component)
+~~~~~~~~~~~~~~~~~~~~
+
+Component One, DevExpress
+
+
 Reference
 =========
 
 - WCF Data Service : https://msdn.microsoft.com/en-us/library/cc668792(v=vs.110).aspx
-
+- COM Component Excel : http://net-informations.com/
