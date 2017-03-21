@@ -17,7 +17,8 @@
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -27,8 +28,6 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
-    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
-    <link rel="up" title="서버(Server)" href="server_index.html" />
     <link rel="next" title="네트워크" href="../network/network_index.html" />
     <link rel="prev" title="서버(Server)" href="server_index.html" />
    
@@ -46,11 +45,29 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="server-hardware">
-<span id="id1"></span><h1>1. 용어<a class="headerlink" href="#server-hardware" title="제목 주소">¶</a></h1>
+  <div class="section" id="server-terms">
+<span id="id1"></span><h1>1. 용어<a class="headerlink" href="#server-terms" title="제목 주소">¶</a></h1>
 <div class="section" id="m-2">
 <h2>1.1. M.2<a class="headerlink" href="#m-2" title="제목 주소">¶</a></h2>
 <p>M.2는 컴퓨터 확장 카드와 관련된 커넥터를 위한 폼팩터이다. NGFF(Next Generation Form Factor)로 불리운다. M.2는 작고, 가볍고, 슬림하며 노트북이나 태블릿과 같은 소형 장치에 유용하다. M.2는 PCIe 3.0(최대 4레인)와 SATA 3.0, USB 3.0 인터페이스를 지원한다.</p>
+</div>
+<div class="section" id="multi-channel-memory-architecture">
+<h2>1.2. 다중 채널 메모리 구조(Multi-channel memory architecture)<a class="headerlink" href="#multi-channel-memory-architecture" title="제목 주소">¶</a></h2>
+<p>다중 채널 메모리 구조는 DRAM과 메모리 컨트롤러 사이에 채널을 추가함으로써 데이터의 전송속도를 빠르게 하는 기술이다.</p>
+</div>
+<div class="section" id="dual-channel-memory-architecture">
+<h2>1.3. 듀얼 채널 메모리 구조(Dual-channel memory architecture)<a class="headerlink" href="#dual-channel-memory-architecture" title="제목 주소">¶</a></h2>
+<p>듀얼 채널이 허용되는 컨트롤러는 2개의 64비트의 데이터 채널을 이용한다.</p>
+</div>
+<div class="section" id="kib-mib-gib">
+<h2>1.4. 키비, 메비, 기비 바이트(KiB, MiB, GiB<a class="headerlink" href="#kib-mib-gib" title="제목 주소">¶</a></h2>
+<p>기존의 메가 바이트(MB)는 10의 거듭제곱이지만 <strong>키비(KiB), 메비(MiB) ,기비(GiB) 바이트는</strong> 이진 접두어로 사용된다. 따라서 이 단위는 2진 컴퓨터에 더 적절하다고 할 수 있다. 이 용어는 IEC(International Electrotechnical Commission)에 의해 1998년에 정의되었으며 정확하게 2의 거듭제곱을 표현하기 위해 MB를 대체했다. 여기서 정확하게라는 의미는 국제 단위 체계(International System of Units)와 차이를 둔다는 의미이다. 하지만 아직 널리 인정받고 있고 있지 않다.</p>
+</div>
+<div class="section" id="id2">
+<h2>1.5. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li>다중 채널 메모리 구조: <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-channel_memory_architecture">https://en.wikipedia.org/wiki/Multi-channel_memory_architecture</a></li>
+</ul>
 </div>
 </div>
 
@@ -64,6 +81,10 @@
   <ul>
 <li><a class="reference internal" href="#">1. 용어</a><ul>
 <li><a class="reference internal" href="#m-2">1.1. M.2</a></li>
+<li><a class="reference internal" href="#multi-channel-memory-architecture">1.2. 다중 채널 메모리 구조(Multi-channel memory architecture)</a></li>
+<li><a class="reference internal" href="#dual-channel-memory-architecture">1.3. 듀얼 채널 메모리 구조(Dual-channel memory architecture)</a></li>
+<li><a class="reference internal" href="#kib-mib-gib">1.4. 키비, 메비, 기비 바이트(KiB, MiB, GiB</a></li>
+<li><a class="reference internal" href="#id2">1.5. 참조</a></li>
 </ul>
 </li>
 </ul>
@@ -81,7 +102,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/server/server_hardware.txt"
+      <li><a href="../_sources/server/server_hardware.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -103,11 +124,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/server/server_hardware.txt"
+      <a href="../_sources/server/server_hardware.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

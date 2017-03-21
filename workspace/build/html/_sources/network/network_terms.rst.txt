@@ -1,4 +1,4 @@
-.. network_terms:
+.. _network_terms:
 
 ======
  용어
