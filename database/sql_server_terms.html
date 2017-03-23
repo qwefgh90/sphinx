@@ -47,13 +47,13 @@
             
   <div class="section" id="sql-server-key">
 <span id="sql-server-terms"></span><h1>6. SQL Server Key<a class="headerlink" href="#sql-server-key" title="제목 주소">¶</a></h1>
-<div class="section" id="database-master-key">
-<h2>6.1. Database Master Key(마스터 키)<a class="headerlink" href="#database-master-key" title="제목 주소">¶</a></h2>
-<p>마스터 키는 SQL Server의 데이터베이스(Database)에서 인증서의 비밀키나 비대칭 키를 보호하기 위한 대칭키를 뜻한다.</p>
+<div class="section" id="database-master-key-dmk">
+<h2>6.1. Database Master Key(DMK)<a class="headerlink" href="#database-master-key-dmk" title="제목 주소">¶</a></h2>
+<p>마스터 키는 SQL Server의 데이터베이스(Database)에서 인증서의 비밀키나 비대칭 키를 보호하기 위한 대칭키를 뜻한다. 보통 SMK로 암호화된 복사본이 키가 사용되는 데이터베이스에 저장된다. 마스터 키가 SMK로 암호화 되지 않는다면 명시적으로 <em>OPEN MASTER KEY</em> 를 사용해 마스터키를 사용해야한다.</p>
 </div>
-<div class="section" id="service-master-key">
-<h2>6.2. Service Master Key(서비스 마스터 키)<a class="headerlink" href="#service-master-key" title="제목 주소">¶</a></h2>
-<p>Linked Server password, Credential, DMB(Database Master Key)를 암호화 하기 위한 키이다. 이 키는 SQL Server 인스턴스에 의해 생성된다.</p>
+<div class="section" id="service-master-key-smk">
+<h2>6.2. Service Master Key(SMK)<a class="headerlink" href="#service-master-key-smk" title="제목 주소">¶</a></h2>
+<p>서비스 마스터 키는 Linked Server password, Credential, DMB(Database Master Key)를 암호화 하기 위한 키이다. 이 키는 SQL Server 인스턴스에 의해 생성된다.</p>
 </div>
 <div class="section" id="id1">
 <h2>6.3. 참조<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
@@ -72,8 +72,8 @@
   <h3><a href="../index.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">6. SQL Server Key</a><ul>
-<li><a class="reference internal" href="#database-master-key">6.1. Database Master Key(마스터 키)</a></li>
-<li><a class="reference internal" href="#service-master-key">6.2. Service Master Key(서비스 마스터 키)</a></li>
+<li><a class="reference internal" href="#database-master-key-dmk">6.1. Database Master Key(DMK)</a></li>
+<li><a class="reference internal" href="#service-master-key-smk">6.2. Service Master Key(SMK)</a></li>
 <li><a class="reference internal" href="#id1">6.3. 참조</a></li>
 </ul>
 </li>
