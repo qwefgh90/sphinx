@@ -68,6 +68,10 @@ EBNF는 BNF을 확장한 국제표준 메타언어이다. `이곳 <http://standa
 
 함수에서 인자로 참조되는 변수를 매개변수(Parameter)라고 부르며 메서드를 호출할때 함수로 전달하는 값을 인자(Arguments)라고 한다.
 
+모나드(Monad)
+===================
+
+특정한 타입의 값을 저장하거나 특정 연산으로 부터 새로운 타입을 만들어내는 것을 뜻한다.
 
 References
 ==========
@@ -76,6 +80,7 @@ References
 - 배커스 정규형: https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form
 - 확장된 배커스 정규형: https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form
 - [네이버 지식백과] 구문론 [syntax] (실험심리학용어사전, 2008., 시그마프레스㈜): http://terms.naver.com/entry.nhn?docId=271494&cid=41990&categoryId=41990
+- Monad: https://en.wikipedia.org/wiki/Monad_(functional_programming)#Monad_laws
 - ISO/IEC 14977: http://standards.iso.org/ittf/PubliclyAvailableStandards/s026153_ISO_IEC_14977_1996(E).zip
 - 메타문법: https://en.wikipedia.org/wiki/Metasyntax
 - 매개변수 vs 아규먼트: https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments
