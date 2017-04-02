@@ -4,7 +4,7 @@
 	:site_name: Chang docs
 	:title: Java index page
 	:description: This is a Java index page.
-	:keywords: Java, Class, 최창원, 창원
+	:keywords: Java, Class
 
 자바(Java)
 ==================================================
