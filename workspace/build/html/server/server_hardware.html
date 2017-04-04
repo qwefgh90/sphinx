@@ -17,7 +17,8 @@
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -27,8 +28,6 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
-    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
-    <link rel="up" title="서버(Server)" href="server_index.html" />
     <link rel="next" title="네트워크" href="../network/network_index.html" />
     <link rel="prev" title="서버(Server)" href="server_index.html" />
    
@@ -60,13 +59,31 @@
 <h2>1.3. 듀얼 채널 메모리 구조(Dual-channel memory architecture)<a class="headerlink" href="#dual-channel-memory-architecture" title="제목 주소">¶</a></h2>
 <p>듀얼 채널이 허용되는 컨트롤러는 2개의 64비트의 데이터 채널을 이용한다.</p>
 </div>
+<div class="section" id="host-bus-adapter">
+<h2>1.4. 호스트 버스 어댑터(Host bus adapter)<a class="headerlink" href="#host-bus-adapter" title="제목 주소">¶</a></h2>
+<p>호스트 컨트롤러, 호스트 어댑터 등으로 불리며 <strong>서버와 외부 장치간의 연결을 위한 인터페이스를 뜻한다.</strong> SCSI 호스트 어댑터, FC 인터페이스 카드, 네트워크 인터페이스 카드, SATA 컨트롤러 등이 있다.</p>
+</div>
+<div class="section" id="sata-operating-modes">
+<h2>1.5. SATA 컨트롤러 운영 모드(Operating modes)<a class="headerlink" href="#sata-operating-modes" title="제목 주소">¶</a></h2>
+<p>SATA 컨트롤러는 여러가지 운영 모드를 제공한다.</p>
+<ul class="simple">
+<li>PATA(IDE, 에뮬레이션): 레거시 OS에서 SATA 컨트롤러를 사용할 수 있도록 한다.</li>
+<li>AHCI</li>
+<li>RAID: 인텔은 RAID 모드를 권고한다.</li>
+</ul>
+</div>
+<div class="section" id="ahci-advanced-host-controller-interface">
+<h2>1.6. AHCI(Advanced Host Controller Interface)<a class="headerlink" href="#ahci-advanced-host-controller-interface" title="제목 주소">¶</a></h2>
+<p>AHCI는 SATA의 동작을 명시한 기술 표준이다. AHCI는 메모리와 저장 장치 사이에 데이터를 교환을 위한 메모리 구조와 SATA 컨트롤러 프로그래밍 방법을 정의한다.</p>
+</div>
 <div class="section" id="kib-mib-gib">
-<h2>1.4. 키비, 메비, 기비 바이트(KiB, MiB, GiB)<a class="headerlink" href="#kib-mib-gib" title="제목 주소">¶</a></h2>
+<h2>1.7. 키비, 메비, 기비 바이트(KiB, MiB, GiB)<a class="headerlink" href="#kib-mib-gib" title="제목 주소">¶</a></h2>
 <p>기존의 메가 바이트(MB)는 10의 거듭제곱이지만 <strong>키비(KiB), 메비(MiB) ,기비(GiB) 바이트는</strong> 이진 접두어로 사용된다. 따라서 이 단위는 2진 컴퓨터에 더 적절하다고 할 수 있다. 이 용어는 IEC(International Electrotechnical Commission)에 의해 1998년에 정의되었으며 정확하게 2의 거듭제곱을 표현하기 위해 MB를 대체했다. 여기서 정확하게라는 의미는 국제 단위 체계(International System of Units)와 차이를 둔다는 의미이다. 하지만 아직 널리 인정받고 있고 있지 않다.</p>
 </div>
 <div class="section" id="id2">
-<h2>1.5. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<h2>1.8. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <ul class="simple">
+<li>AHCI: <a class="reference external" href="https://en.wikipedia.org/wiki/Advanced_Host_Controller_Interface">https://en.wikipedia.org/wiki/Advanced_Host_Controller_Interface</a></li>
 <li>다중 채널 메모리 구조: <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-channel_memory_architecture">https://en.wikipedia.org/wiki/Multi-channel_memory_architecture</a></li>
 </ul>
 </div>
@@ -84,8 +101,11 @@
 <li><a class="reference internal" href="#m-2">1.1. M.2</a></li>
 <li><a class="reference internal" href="#multi-channel-memory-architecture">1.2. 다중 채널 메모리 구조(Multi-channel memory architecture)</a></li>
 <li><a class="reference internal" href="#dual-channel-memory-architecture">1.3. 듀얼 채널 메모리 구조(Dual-channel memory architecture)</a></li>
-<li><a class="reference internal" href="#kib-mib-gib">1.4. 키비, 메비, 기비 바이트(KiB, MiB, GiB)</a></li>
-<li><a class="reference internal" href="#id2">1.5. 참조</a></li>
+<li><a class="reference internal" href="#host-bus-adapter">1.4. 호스트 버스 어댑터(Host bus adapter)</a></li>
+<li><a class="reference internal" href="#sata-operating-modes">1.5. SATA 컨트롤러 운영 모드(Operating modes)</a></li>
+<li><a class="reference internal" href="#ahci-advanced-host-controller-interface">1.6. AHCI(Advanced Host Controller Interface)</a></li>
+<li><a class="reference internal" href="#kib-mib-gib">1.7. 키비, 메비, 기비 바이트(KiB, MiB, GiB)</a></li>
+<li><a class="reference internal" href="#id2">1.8. 참조</a></li>
 </ul>
 </li>
 </ul>
@@ -103,7 +123,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/server/server_hardware.txt"
+      <li><a href="../_sources/server/server_hardware.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -125,11 +145,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/server/server_hardware.txt"
+      <a href="../_sources/server/server_hardware.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
