@@ -43,6 +43,15 @@ AHCI는 SATA의 동작을 명시한 기술 표준이다. AHCI는 메모리와 �
 
 기존의 메가 바이트(MB)는 10의 거듭제곱이지만 **키비(KiB), 메비(MiB) ,기비(GiB) 바이트는** 이진 접두어로 사용된다. 따라서 이 단위는 2진 컴퓨터에 더 적절하다고 할 수 있다. 이 용어는 IEC(International Electrotechnical Commission)에 의해 1998년에 정의되었으며 정확하게 2의 거듭제곱을 표현하기 위해 MB를 대체했다. 여기서 정확하게라는 의미는 국제 단위 체계(International System of Units)와 차이를 둔다는 의미이다. 하지만 아직 널리 인정받고 있고 있지 않다. 
 
+SMB
+=========
+
+**SMB(Server Message Block)** 는 네트워크 파일 공유 프로토콜이다. CIFS는 SMB의 표현식(dialects) 중 하나이다.
+
+NFS
+==========
+**NFS(Network File System)** 은 컴퓨터 사용자가 네트워크상의 파일에 접근할 때 직접 연결된 스토리지에 접근하는 것 처럼 접근하도록 지원해주는 프로토콜이다.
+
 참조
 ====
 
