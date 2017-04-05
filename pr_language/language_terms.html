@@ -50,16 +50,9 @@
 <div class="section" id="context-free-grammar">
 <h2>1.1. 문맥 자유 문법(Context-free grammar)<a class="headerlink" href="#context-free-grammar" title="제목 주소">¶</a></h2>
 <p>문맥 자유 문법은 모든 가능한 문자열을 표시하기 위한 <a class="reference internal" href="#production-rules"><span class="std std-ref">생성 규칙(Production rules)</span></a> 의 집합이다. 또한 형식적 문법(Formal Grammar)의 한 종류이다.</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions">문맥 자유 문법은 4개의 튜플로 정의된다.</a></p>
-<ul class="simple">
-<li><strong>비단말 문자의 유한 집합.</strong> 비단말 문자 또는 변수(nonterminal charactor or varibale), variable은 구문 분류(syntatic category)</li>
-<li><strong>단말 문자의 유한 집합.</strong> 실제 문장을 구성하는 단말 문자(terminal charactor)</li>
-<li><strong>관계.</strong> 비단말 -&gt; (단말+비단말)*</li>
-<li><strong>시작 심볼.</strong> 전체 문장 또는 프로그램</li>
-</ul>
 </div>
 <div class="section" id="production-rules">
-<span id="id3"></span><h2>1.2. 생성 규칙(Production rules)<a class="headerlink" href="#production-rules" title="제목 주소">¶</a></h2>
+<span id="id2"></span><h2>1.2. 생성 규칙(Production rules)<a class="headerlink" href="#production-rules" title="제목 주소">¶</a></h2>
 <p>생성 규칙은 심볼(Symbol)을 재귀적으로 치환하여 새로운 심볼의 결과를 만드는 재작성 규칙(rewrite rule) 이다.</p>
 </div>
 <div class="section" id="backus-normal-form">
@@ -84,12 +77,8 @@
 <h2>1.6. 문법적 메타언어(Syntactic Metalanguage)<a class="headerlink" href="#syntactic-metalanguage" title="제목 주소">¶</a></h2>
 <p>메타언어란 다른 언어(Language)의 문법(Syntax)을 정의하기 위한 <strong>표기법</strong> 이다. 이때 몇가지의 규칙을 사용하여 문법을 정의하게된다. 시스템에서 사용하는 명령어나 데이터의 포맷 부터 프로그래밍 언어의 문법까지 정의할 수 있다. 대표적인 메타언어로 <a class="reference internal" href="#language-terms-ebnf"><span class="std std-ref">확장된 배커스 정규형 (Extended Backus–Naur form, EBNF)</span></a> 가 있다.</p>
 </div>
-<div class="section" id="metasyntax">
-<h2>1.7. 메타문법(Metasyntax)<a class="headerlink" href="#metasyntax" title="제목 주소">¶</a></h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Metasyntax">메타문법</a> 은 메타언어에서 사용 가능한 문장의 조합이나 구조를 나타내는 문법이다.</p>
-</div>
 <div class="section" id="formal-syntax-definition">
-<h2>1.8. 형식적 문법 정의(Formal syntax definition)<a class="headerlink" href="#formal-syntax-definition" title="제목 주소">¶</a></h2>
+<h2>1.7. 형식적 문법 정의(Formal syntax definition)<a class="headerlink" href="#formal-syntax-definition" title="제목 주소">¶</a></h2>
 <p>언어의 문법에 대한 정의를 뜻한다. 형식적 문법 정의는 크게 3가지 사용법을 갖고 있다.</p>
 <ul class="simple">
 <li>언어의 비 단말 심볼(non-terminal symbols)에 이름을 붙힐때</li>
@@ -97,40 +86,40 @@
 <li>문장에 대한 문법적 구조를 보일때</li>
 </ul>
 </div>
-<div class="section" id="id7">
-<h2>1.9. 매개변수, 인자값<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
+<div class="section" id="id5">
+<h2>1.8. 매개변수, 인자값<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
 <p>함수에서 인자로 참조되는 변수를 매개변수(Parameter)라고 부르며 메서드를 호출할때 함수로 전달하는 값을 인자(Arguments)라고 한다.</p>
 </div>
 <div class="section" id="sequence">
-<h2>1.10. 시퀀스(Sequence)<a class="headerlink" href="#sequence" title="제목 주소">¶</a></h2>
+<h2>1.9. 시퀀스(Sequence)<a class="headerlink" href="#sequence" title="제목 주소">¶</a></h2>
 <p>0개 이상의 항목을 포함하는 순서가 있는 리스트이다. 서브 시퀀스(Subsequence)는 시퀀스 안에 있는 시퀀스를 뜻한다.</p>
 </div>
 <div class="section" id="meta-identifier">
-<h2>1.11. 메타 식별자(Meta-identifier)<a class="headerlink" href="#meta-identifier" title="제목 주소">¶</a></h2>
+<h2>1.10. 메타 식별자(Meta-identifier)<a class="headerlink" href="#meta-identifier" title="제목 주소">¶</a></h2>
 <p>비 단말 심볼(Non-terminal symbol)의 이름을 뜻한다.</p>
 </div>
 <div class="section" id="sentence">
-<h2>1.12. 문장(Sentence)<a class="headerlink" href="#sentence" title="제목 주소">¶</a></h2>
+<h2>1.11. 문장(Sentence)<a class="headerlink" href="#sentence" title="제목 주소">¶</a></h2>
 <p>심볼(Symbols)의 시퀀스를 뜻한다.</p>
 </div>
 <div class="section" id="terminal-symbol">
-<h2>1.13. 단말 심볼(Terminal symbol)<a class="headerlink" href="#terminal-symbol" title="제목 주소">¶</a></h2>
+<h2>1.12. 단말 심볼(Terminal symbol)<a class="headerlink" href="#terminal-symbol" title="제목 주소">¶</a></h2>
 <p>문자들의 시퀀스를 뜻한다. 더이상 쪼갤 수 없다.</p>
 </div>
 <div class="section" id="non-terminal-symbol">
-<h2>1.14. 비 단말 심볼(Non-terminal symbol)<a class="headerlink" href="#non-terminal-symbol" title="제목 주소">¶</a></h2>
+<h2>1.13. 비 단말 심볼(Non-terminal symbol)<a class="headerlink" href="#non-terminal-symbol" title="제목 주소">¶</a></h2>
 <p>언어의 문법적 부분을 뜻한다.</p>
 </div>
 <div class="section" id="syntax-rule">
-<h2>1.15. 문법 규칙(Syntax-rule)<a class="headerlink" href="#syntax-rule" title="제목 주소">¶</a></h2>
+<h2>1.14. 문법 규칙(Syntax-rule)<a class="headerlink" href="#syntax-rule" title="제목 주소">¶</a></h2>
 <p><em>메타 식별자, 정의 심볼(defining-symbol), 정의 리스트(definitions-list)로</em> 구성된다. 1개 이상의 문법 규칙으로 언어의 문법을 정의한다. <strong>정의 리스트(definitions-list)는 |(definition-seperator-symbol)로</strong> 구분된 단일 정의(Single-definition)으로 구분된다.</p>
 </div>
 <div class="section" id="monad">
-<h2>1.16. 모나드(Monad)<a class="headerlink" href="#monad" title="제목 주소">¶</a></h2>
+<h2>1.15. 모나드(Monad)<a class="headerlink" href="#monad" title="제목 주소">¶</a></h2>
 <p>특정한 타입의 값을 저장하거나 특정 연산으로 부터 새로운 타입을 만들어내는 것을 뜻한다.</p>
 </div>
 <div class="section" id="references">
-<h2>1.17. References<a class="headerlink" href="#references" title="제목 주소">¶</a></h2>
+<h2>1.16. References<a class="headerlink" href="#references" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>문맥자유문법: <a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions">https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions</a></li>
 <li>배커스 정규형: <a class="reference external" href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form">https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form</a></li>
@@ -159,17 +148,16 @@
 <li><a class="reference internal" href="#extended-backusnaur-form-ebnf">1.4. 확장된 배커스 정규형 (Extended Backus–Naur form, EBNF)</a></li>
 <li><a class="reference internal" href="#syntax">1.5. 문법, 구문론(Syntax)</a></li>
 <li><a class="reference internal" href="#syntactic-metalanguage">1.6. 문법적 메타언어(Syntactic Metalanguage)</a></li>
-<li><a class="reference internal" href="#metasyntax">1.7. 메타문법(Metasyntax)</a></li>
-<li><a class="reference internal" href="#formal-syntax-definition">1.8. 형식적 문법 정의(Formal syntax definition)</a></li>
-<li><a class="reference internal" href="#id7">1.9. 매개변수, 인자값</a></li>
-<li><a class="reference internal" href="#sequence">1.10. 시퀀스(Sequence)</a></li>
-<li><a class="reference internal" href="#meta-identifier">1.11. 메타 식별자(Meta-identifier)</a></li>
-<li><a class="reference internal" href="#sentence">1.12. 문장(Sentence)</a></li>
-<li><a class="reference internal" href="#terminal-symbol">1.13. 단말 심볼(Terminal symbol)</a></li>
-<li><a class="reference internal" href="#non-terminal-symbol">1.14. 비 단말 심볼(Non-terminal symbol)</a></li>
-<li><a class="reference internal" href="#syntax-rule">1.15. 문법 규칙(Syntax-rule)</a></li>
-<li><a class="reference internal" href="#monad">1.16. 모나드(Monad)</a></li>
-<li><a class="reference internal" href="#references">1.17. References</a></li>
+<li><a class="reference internal" href="#formal-syntax-definition">1.7. 형식적 문법 정의(Formal syntax definition)</a></li>
+<li><a class="reference internal" href="#id5">1.8. 매개변수, 인자값</a></li>
+<li><a class="reference internal" href="#sequence">1.9. 시퀀스(Sequence)</a></li>
+<li><a class="reference internal" href="#meta-identifier">1.10. 메타 식별자(Meta-identifier)</a></li>
+<li><a class="reference internal" href="#sentence">1.11. 문장(Sentence)</a></li>
+<li><a class="reference internal" href="#terminal-symbol">1.12. 단말 심볼(Terminal symbol)</a></li>
+<li><a class="reference internal" href="#non-terminal-symbol">1.13. 비 단말 심볼(Non-terminal symbol)</a></li>
+<li><a class="reference internal" href="#syntax-rule">1.14. 문법 규칙(Syntax-rule)</a></li>
+<li><a class="reference internal" href="#monad">1.15. 모나드(Monad)</a></li>
+<li><a class="reference internal" href="#references">1.16. References</a></li>
 </ul>
 </li>
 </ul>
