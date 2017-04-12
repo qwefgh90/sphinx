@@ -24,14 +24,16 @@ M.2는 컴퓨터 확장 카드와 관련된 커넥터를 위한 폼팩터이다.
 
 호스트 컨트롤러, 호스트 어댑터 등으로 불리며 **서버와 외부 장치간의 연결을 위한 인터페이스를 뜻한다.** SCSI 호스트 어댑터, FC 인터페이스 카드, 네트워크 인터페이스 카드, SATA 컨트롤러 등이 있다.
 
-SATA 컨트롤러 운영 모드(Operating modes)
+SATA 컨트롤러 동작 모드(Operating modes)
 ========================================
 
 SATA 컨트롤러는 여러가지 운영 모드를 제공한다.
 
 - PATA(IDE, 에뮬레이션): 레거시 OS에서 SATA 컨트롤러를 사용할 수 있도록 한다.
-- AHCI
-- RAID: 인텔은 RAID 모드를 권고한다.
+- AHCI: :ref:`AHCI` 만 지원하는 모드이다.
+- RAID: AHCI와 함께 RAID를 지원하는 모드이다. 인텔은 RAID 모드를 권고한다.
+
+.. _ACHI:
 
 AHCI(Advanced Host Controller Interface)
 ========================================
@@ -52,9 +54,27 @@ NFS
 ==========
 **NFS(Network File System)** 은 컴퓨터 사용자가 네트워크상의 파일에 접근할 때 직접 연결된 스토리지에 접근하는 것 처럼 접근하도록 지원해주는 프로토콜이다.
 
+Link Aggregation
+=======================================
+
+링크 어그리게이션 여러개의 네트워크 연결을 묶어 더 높은 대역폭과 링크의 장애를 대비한 복제/중복(redundancy)를 제공하는 기술을 뜻한다. 포괄적인 용어로 *NIC teaming, NIC bonding, port trunking* 등이 사용된다. 이는 IEEE802.3ad에 정의된 :ref:`LACP` 와 같은 표준기술을 포함하며 다양한 솔루션을 포함한다.
+
+.. _LACP:
+
+LACP(Link Aggregation Control Protocol)
+=======================================
+
+*IEEE 802.3ad에* 정의되어 있으며 물리적인 포트를 하나의 논리적인 채널로 묶는 프로토콜을 뜻한다. LACP는 LACP 패킷을 전송하여 협상하므로써 링크 묶음(bundle) 작업을 진행한다. 이때 직접 연결된 장치(스위치) 역시 LACP를 지원해야 한다.
+
+포트(Port)
+=================
+
+포트는 케이블이나 플러그가 연결되는 부분이다. 모니터, 키보드나 다른 장치를 연결하기 위해 사용된다.
+
 참조
 ====
 
 - AHCI: https://en.wikipedia.org/wiki/Advanced_Host_Controller_Interface
 - 다중 채널 메모리 구조: https://en.wikipedia.org/wiki/Multi-channel_memory_architecture
-
+- LACP: https://en.wikipedia.org/wiki/Link_aggregation#Link_Aggregation_Control_Protocol
+- RAID: https://answers.microsoft.com/en-us/windows/forum/windows_8-hardware/what-does-ahci-mode-ide-mode-raid-mode-sata-mean/d622d5cd-41c4-4b84-90ef-cea69aa47089?auth=1
