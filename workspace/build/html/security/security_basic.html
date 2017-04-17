@@ -47,7 +47,7 @@
             
   <div class="section" id="security-basic">
 <span id="id1"></span><h1>1. 정보보안<a class="headerlink" href="#security-basic" title="제목 주소">¶</a></h1>
-<p><em>일부 내용 및 그림의 출처는 구글링 및 인천대학교 컴퓨터 공학부 &#8220;컴퓨터 네트워크 보안&#8221; 강의자료를 참고하였습니다.</em></p>
+<p><em>일부 내용 및 그림의 출처는 인천대학교 컴퓨터 공학부 &#8220;컴퓨터 네트워크 보안&#8221; 강의자료를 참고하였습니다.</em></p>
 <div class="section" id="overview">
 <span id="security-overview"></span><h2>1.1. Overview<a class="headerlink" href="#overview" title="제목 주소">¶</a></h2>
 <div class="section" id="cia">
@@ -127,13 +127,61 @@
 </div>
 </div>
 <div class="section" id="authentication-and-hash">
-<h3>1.2.2. authentication and hash<a class="headerlink" href="#authentication-and-hash" title="제목 주소">¶</a></h3>
+<h3>1.2.2. Authentication and hash<a class="headerlink" href="#authentication-and-hash" title="제목 주소">¶</a></h3>
+<div class="section" id="kerberos">
+<h4>1.2.2.1. Kerberos<a class="headerlink" href="#kerberos" title="제목 주소">¶</a></h4>
+<p>티켓 기반으로 네트워크를 통해 서로를 확인하는 인증 프로토콜을 뜻한다.</p>
+<p>Windows 환경의 커버로스 인증은 <em>KDC(Key Distribution Cente)를</em> 중심으로 진행되며 Windows Server 2003 이후일 경우 커버로스가 기본적으로 사용된다.</p>
+<p><strong>도메인 로그인 절차(Windows Kerberos)</strong></p>
+<ol class="arabic simple">
+<li>사용자의 이름, 도메인 이름, 사용자의 키(user key)로 암호화된 사전 인증 데이터(Pre-authentication data)를 KDC의 AS(authentication service)로 전송한다.</li>
+<li>KDC는 사용자의 키(user key)를 DB에서 읽은 뒤에 암호화된 사전 인증 데이터를 복호화 하고 사용자의 키로 암호화 됐는지 확인한다.</li>
+</ol>
+<p><strong>TGS 접근 및 TGT 티켓, TGS(tickget-granting service) 세션 키 저장</strong></p>
+<ol class="arabic simple" start="3">
+<li>KDC는 TGT(ticket-granting ticket) 이라는 특별한 서비스 티켓(service ticket) 과 및 TGS 세션 키를 사용자에게 전달한다.</li>
+<li>사용자가 전달받은 TGS 세션 키는 사용자 키로 암호화 되었으며 TGT는 TGS 키로 암호화 되어 있다. 이때 <strong>TGS 세션 키를 복호화 한뒤</strong> 저장한다. (이제 TGS 세션 키가 있으므로 사용자 키는 더이상 필요없다.)</li>
+</ol>
+<p><strong>서비스 접근 및 서비스 티켓, 서비스 세션키 저정</strong></p>
+<ol class="arabic simple" start="5">
+<li>사용자가 어떠한 서비스에 접근할때 그 서비스를 위한 서비스 티켓(service ticket)이 있는지 확인하고 없다면 KDC의 TGS를 통해 얻어와야 한다.</li>
+<li>사용자는 접근하려는 컴퓨터 이름, 컴퓨터 도메인, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를 KDC의 TGS로 전송한다.</li>
+<li>KDC는 사용자에게 서비스 세션 키와 서비스 티켓을 전달한다.</li>
+<li>사용자가 전달받은 <strong>서비스 티켓은 시스템 키 또는 서비스 키로 암호화 되어있으며</strong> 서비스 세션 키는 TGS 세션 키로 암호화 되어 있다. 이때 <strong>세션 키를 복호화한 값</strong> 을 저장한다.</li>
+<li>서비스 티켓(service ticket)에는 <strong>사용자 자격증명(User Credentials) 와 세션 키(session key)</strong> 가 포함되어 있다. TGS 티켓도 특별한 서비스 티켓이므로 같은 구조이다.</li>
+</ol>
+<p><strong>LSA와 SAM질의를 통한 사용자 인증</strong></p>
+<ol class="arabic simple" start="10">
+<li>LSA(Local Security Authority)는 Local SAM(Security Account Manager) DB에 접근하여 사용자가 존재하는 그룹이 있는지 어느 정도의 권한을 갖고 있는지 확인한다.</li>
+<li>서비스 티켓으로 부터 추출한 <em>사용자 자격증명(User Credentials)</em> 과 DB쿼리의 결과를 기반으로한 <em>SID를</em> 이용해 <em>사용자 접근 토큰(User&#8217;s Access Token)을</em> 만든다. <strong>로그온 정보가 타당하다면 사용자 접근 토큰을 Winlogon에게 전달한다.</strong></li>
+<li>마지막으로 사용자를 위해 Winlogon 데스크탑 환경과 쉘 프로세스를 실행하며 사용자가 실행하는 프로세스는 사용자 접근 토큰을 상속한다.</li>
+</ol>
+<p><strong>서비스 키를 이용한 사용자 인증</strong></p>
+<ol class="arabic simple" start="11">
+<li>사용자는 서버에 서비스 티켓을 전달한다.</li>
+<li>서버는 서비스 키를 이용해 서비스 티켓을 복호화 하고 <em>사용자 자격증명(User Credentials)</em> 을 이용해 <em>사용자 접근 토큰(User&#8217;s Access Token)</em> 을 만든다.</li>
+</ol>
+<p>* 마지막 서비스 세션키를 이용해 상호 인증을 할 수 있다. 이 세션키로 타임스탬프를 암호화하여 클라이언트에게 보낸다면 클라이언트는 세션키를 확신 할 수 있다.</p>
+<p><a class="reference external" href="https://technet.microsoft.com/en-us/library/cc772815(v=ws.10).aspx">https://technet.microsoft.com/en-us/library/cc772815(v=ws.10).aspx</a> 및 <a class="reference external" href="https://technet.microsoft.com/en-us/library/cc780332(v=ws.10).aspx">https://technet.microsoft.com/en-us/library/cc780332(v=ws.10).aspx</a> 을 읽어보길 추천한다.</p>
+</div>
+<div class="section" id="challengeresponse-authentication">
+<h4>1.2.2.2. Challenge–response authentication<a class="headerlink" href="#challengeresponse-authentication" title="제목 주소">¶</a></h4>
+<p><em>Challenge–response(질문-응답) 인증은</em> 한쪽에서 질문하고 한쪽에서 올바른 답을 제시하는 프로토콜의 집합이다.* 예시로 암호를 물어보고 대답하는 암호 인증(password authentication)이 있다.</p>
+<p>SMB 프로토콜에서 사용되는 NTLM 암호화 방식에서 암호를 인증할때 사용한다.</p>
+<p><em>질문 응답 인증은</em> <strong>비밀키를 전달하는 과정없이</strong> 일회용 난수를 통해 서로가 비밀키를 알고 있다는 사실을 상대방에게 납득시키는 과정을 포함한다. 서버든 클라이언트든 상대방을 납득 시킬때도 사용할 수 있으며 상호 인증 시퀀스를 통해 이것이 가능해진다. 상호 인증 시퀀스는 다음과 같다.</p>
+<ol class="arabic simple">
+<li>서버는 클라이언트에게 임의의 숫자(cryptographic nonce, challenge, sc)를 보낸다.</li>
+<li>클라이언트는 임의의 숫자(cc)를 생성한 뒤 <em>hash(cc + sc + secret key)</em> 와 <em>cc</em> 를 을 보낸다.</li>
+<li>서버는 <em>hash(sc + cc + secret key)</em> 을 보낸다.</li>
+<li>전달 받은 해시값을 이용해 서로가 올바른 비밀키를 갖고 있는지 확인한다.</li>
+</ol>
+</div>
 <div class="section" id="message-authentication">
-<h4>1.2.2.1. Message Authentication<a class="headerlink" href="#message-authentication" title="제목 주소">¶</a></h4>
+<h4>1.2.2.3. Message Authentication<a class="headerlink" href="#message-authentication" title="제목 주소">¶</a></h4>
 <p>MAC(Message Authentication Code)이란 메세지 암호화 없이 메세지의 무결성 검사를 할때 사용된다. 송신측은 암호화 키와 MAC 알고리즘을 바탕으로 메세지를 암호화하고 인증코드를 메세지에 포함시킨다. 수신측은 수신한 메세지를 복호화하여 인증코드와 비교함으로써 메세지에 대한 <em>인증</em> 및 <em>무결성</em> 을 보장한다.</p>
 </div>
 <div class="section" id="hash">
-<h4>1.2.2.2. Hash<a class="headerlink" href="#hash" title="제목 주소">¶</a></h4>
+<h4>1.2.2.4. Hash<a class="headerlink" href="#hash" title="제목 주소">¶</a></h4>
 <p>Hash 함수는 다양한 크기의 메세지를 받아 고정된 크기의 메세지를 만든다. MAC과 달리 비밀키가 필요하지 않다.</p>
 <p>Hash 함수의 요구사항</p>
 <ul class="simple">
@@ -144,7 +192,7 @@
 </ul>
 </div>
 <div class="section" id="message-authentication-using-hash-functions">
-<h4>1.2.2.3. Message Authentication using Hash Functions<a class="headerlink" href="#message-authentication-using-hash-functions" title="제목 주소">¶</a></h4>
+<h4>1.2.2.5. Message Authentication using Hash Functions<a class="headerlink" href="#message-authentication-using-hash-functions" title="제목 주소">¶</a></h4>
 <p>MAC(메세지 인증 코드)에 Hash함수를 사용하여 메세지 인증을 설계하였다.</p>
 <img alt="../_images/auth_using_hash.png" src="../_images/auth_using_hash.png" />
 <p><code class="docutils literal"><span class="pre">(a)Using</span> <span class="pre">conventional</span> <span class="pre">encryption</span></code> 방식은 송신측은 메세지를 해싱한 값을 비밀키로 암호화하여 전달하고 수신측은 복호화한 후 해시값을 비교하는 방식이다.</p>
@@ -398,6 +446,12 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
 <p><em>baselining</em> 은 정상적인 패턴에 대비한 비정상적인 이벤트와 패턴을 정의하는 것이다. 이 부분은 위에서 검토 요소를 선택하는 부분과 비슷한데 먼저 보안 감사 기록으로 부터 네트워크 트래픽, 로그인 로그아웃, 관리자 계정, DHCP 주소 관리, 전체적인 로그 데이터등을 <em>수집</em> 한 후 베이스라인 기법으로 <em>분석</em> 한다. 예를들면 비정상 탐지, 스레시 홀드를 사용하여 분석한다.</p>
 </div>
 </div>
+<div class="section" id="id10">
+<h2>1.12. 참조<a class="headerlink" href="#id10" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li>Challenge–response authentication: <a class="reference external" href="https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication">https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication</a></li>
+</ul>
+</div>
 </div>
 
 
@@ -424,10 +478,12 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
 <li><a class="reference internal" href="#rsa-rivest-shamir-adleman">1.2.1.6. RSA (Rivest, Shamir, Adleman)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#authentication-and-hash">1.2.2. authentication and hash</a><ul>
-<li><a class="reference internal" href="#message-authentication">1.2.2.1. Message Authentication</a></li>
-<li><a class="reference internal" href="#hash">1.2.2.2. Hash</a></li>
-<li><a class="reference internal" href="#message-authentication-using-hash-functions">1.2.2.3. Message Authentication using Hash Functions</a></li>
+<li><a class="reference internal" href="#authentication-and-hash">1.2.2. Authentication and hash</a><ul>
+<li><a class="reference internal" href="#kerberos">1.2.2.1. Kerberos</a></li>
+<li><a class="reference internal" href="#challengeresponse-authentication">1.2.2.2. Challenge–response authentication</a></li>
+<li><a class="reference internal" href="#message-authentication">1.2.2.3. Message Authentication</a></li>
+<li><a class="reference internal" href="#hash">1.2.2.4. Hash</a></li>
+<li><a class="reference internal" href="#message-authentication-using-hash-functions">1.2.2.5. Message Authentication using Hash Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#digital-signature">1.2.3. Digital Signature(전자 서명)</a></li>
@@ -486,6 +542,7 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
 <li><a class="reference internal" href="#security-auditing">1.11.2. Security Auditing (보안 감사)</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#id10">1.12. 참조</a></li>
 </ul>
 </li>
 </ul>

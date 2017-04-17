@@ -4,7 +4,7 @@
 정보보안
 ***********
 
-*일부 내용 및 그림의 출처는 구글링 및 인천대학교 컴퓨터 공학부 "컴퓨터 네트워크 보안" 강의자료를 참고하였습니다.*
+*일부 내용 및 그림의 출처는 인천대학교 컴퓨터 공학부 "컴퓨터 네트워크 보안" 강의자료를 참고하였습니다.*
 
 .. _security_overview:
 
@@ -119,8 +119,64 @@ RSA는 공개키 암호 시스템중 하나로 큰 숫자를 소인수 분해하
 
 RSA를 공격하는 방식에는 무차별 대입 공격, 수학적 공격(소수를 찾는 법), 타임 공격(해독 시간을 분석), 선택된 암호문 공격 등이 있다. 가까운 미래에는 키 사이즈를 1024 ~ 2048 정도로 늘리는 것이 안전하다고 한다.
 
-authentication and hash
+
+Authentication and hash
 -----------------------------
+
+Kerberos
+^^^^^^^^
+
+티켓 기반으로 네트워크를 통해 서로를 확인하는 인증 프로토콜을 뜻한다. 
+
+Windows 환경의 커버로스 인증은 *KDC(Key Distribution Cente)를* 중심으로 진행되며 Windows Server 2003 이후일 경우 커버로스가 기본적으로 사용된다.
+
+**도메인 로그인 절차(Windows Kerberos)**
+
+1) 사용자의 이름, 도메인 이름, 사용자의 키(user key)로 암호화된 사전 인증 데이터(Pre-authentication data)를 KDC의 AS(authentication service)로 전송한다.
+2) KDC는 사용자의 키(user key)를 DB에서 읽은 뒤에 암호화된 사전 인증 데이터를 복호화 하고 사용자의 키로 암호화 됐는지 확인한다.
+
+**TGS 접근 및 TGT 티켓, TGS(tickget-granting service) 세션 키 저장**
+
+3) KDC는 TGT(ticket-granting ticket) 이라는 특별한 서비스 티켓(service ticket) 과 및 TGS 세션 키를 사용자에게 전달한다.
+4) 사용자가 전달받은 TGS 세션 키는 사용자 키로 암호화 되었으며 TGT는 TGS 키로 암호화 되어 있다. 이때 **TGS 세션 키를 복호화 한뒤** 저장한다. (이제 TGS 세션 키가 있으므로 사용자 키는 더이상 필요없다.)
+
+**서비스 접근 및 서비스 티켓, 서비스 세션키 저정**
+
+5) 사용자가 어떠한 서비스에 접근할때 그 서비스를 위한 서비스 티켓(service ticket)이 있는지 확인하고 없다면 KDC의 TGS를 통해 얻어와야 한다.
+6) 사용자는 접근하려는 컴퓨터 이름, 컴퓨터 도메인, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를 KDC의 TGS로 전송한다.
+7) KDC는 사용자에게 서비스 세션 키와 서비스 티켓을 전달한다.
+8) 사용자가 전달받은 **서비스 티켓은 시스템 키 또는 서비스 키로 암호화 되어있으며** 서비스 세션 키는 TGS 세션 키로 암호화 되어 있다. 이때 **세션 키를 복호화한 값** 을 저장한다.
+9) 서비스 티켓(service ticket)에는 **사용자 자격증명(User Credentials) 와 세션 키(session key)** 가 포함되어 있다. TGS 티켓도 특별한 서비스 티켓이므로 같은 구조이다. 
+
+**LSA와 SAM질의를 통한 사용자 인증**
+
+10) LSA(Local Security Authority)는 Local SAM(Security Account Manager) DB에 접근하여 사용자가 존재하는 그룹이 있는지 어느 정도의 권한을 갖고 있는지 확인한다.
+11) 서비스 티켓으로 부터 추출한 *사용자 자격증명(User Credentials)* 과 DB쿼리의 결과를 기반으로한 *SID를* 이용해 *사용자 접근 토큰(User's Access Token)을* 만든다. **로그온 정보가 타당하다면 사용자 접근 토큰을 Winlogon에게 전달한다.**
+12) 마지막으로 사용자를 위해 Winlogon 데스크탑 환경과 쉘 프로세스를 실행하며 사용자가 실행하는 프로세스는 사용자 접근 토큰을 상속한다.
+
+**서비스 키를 이용한 사용자 인증**
+
+11) 사용자는 서버에 서비스 티켓을 전달한다.
+12) 서버는 서비스 키를 이용해 서비스 티켓을 복호화 하고 *사용자 자격증명(User Credentials)* 을 이용해 *사용자 접근 토큰(User's Access Token)* 을 만든다.
+
+\* 마지막 서비스 세션키를 이용해 상호 인증을 할 수 있다. 이 세션키로 타임스탬프를 암호화하여 클라이언트에게 보낸다면 클라이언트는 세션키를 확신 할 수 있다.
+
+https://technet.microsoft.com/en-us/library/cc772815(v=ws.10).aspx 및 https://technet.microsoft.com/en-us/library/cc780332(v=ws.10).aspx 을 읽어보길 추천한다.
+
+Challenge–response authentication
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*Challenge–response(질문-응답) 인증은* 한쪽에서 질문하고 한쪽에서 올바른 답을 제시하는 프로토콜의 집합이다.* 예시로 암호를 물어보고 대답하는 암호 인증(password authentication)이 있다.
+
+SMB 프로토콜에서 사용되는 NTLM 암호화 방식에서 암호를 인증할때 사용한다.
+
+*질문 응답 인증은* **비밀키를 전달하는 과정없이** 일회용 난수를 통해 서로가 비밀키를 알고 있다는 사실을 상대방에게 납득시키는 과정을 포함한다. 서버든 클라이언트든 상대방을 납득 시킬때도 사용할 수 있으며 상호 인증 시퀀스를 통해 이것이 가능해진다. 상호 인증 시퀀스는 다음과 같다.
+
+1) 서버는 클라이언트에게 임의의 숫자(cryptographic nonce, challenge, sc)를 보낸다.
+2) 클라이언트는 임의의 숫자(cc)를 생성한 뒤 *hash(cc + sc + secret key)* 와 *cc* 를 을 보낸다.
+3) 서버는 *hash(sc + cc + secret key)* 을 보낸다.
+4) 전달 받은 해시값을 이용해 서로가 올바른 비밀키를 갖고 있는지 확인한다.
+
 
 Message Authentication
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -503,6 +559,7 @@ Security Auditing (보안 감사)
 
 
 
+참조
+====
 
-
-
+- Challenge–response authentication: https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication
