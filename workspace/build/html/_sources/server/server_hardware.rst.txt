@@ -24,6 +24,7 @@ M.2는 컴퓨터 확장 카드와 관련된 커넥터를 위한 폼팩터이다.
 
 호스트 컨트롤러, 호스트 어댑터 등으로 불리며 **서버와 외부 장치간의 연결을 위한 인터페이스를 뜻한다.** SCSI 호스트 어댑터, FC 인터페이스 카드, 네트워크 인터페이스 카드, SATA 컨트롤러 등이 있다.
 
+
 SATA 컨트롤러 동작 모드(Operating modes)
 ========================================
 
@@ -38,7 +39,30 @@ SATA 컨트롤러는 여러가지 운영 모드를 제공한다.
 AHCI(Advanced Host Controller Interface)
 ========================================
 
-AHCI는 SATA의 동작을 명시한 기술 표준이다. AHCI는 메모리와 저장 장치 사이에 데이터를 교환을 위한 메모리 구조와 SATA 컨트롤러 프로그래밍 방법을 정의한다.
+AHCI는 SATA HBA의 동작을 명시한 인터페이스이다. AHCI는 메모리와 저장 장치 사이에 데이터를 교환을 위한 메모리 구조와 SATA 컨트롤러 프로그래밍 방법을 정의한다.
+
+NVM Express(NVMe)
+=================
+
+드라이버와 비휘발성 메모리 서브시스템(non-volatile memory subsystem) 간의 통신에 사용되는 레지스터 레벨의 인터페이스를 뜻한다. 기존의 AHCI는 저속의 하드디스크를 위해 설계된 인터페이스 이므로 SSD의 성능을 최대한으로 끌어낼 수 없다. 따라서 NVMe와 같은 PCIe 버스를 기반으로 하는 컨트롤러가 개발되었다.
+
+Serial Attached SCSI (SAS)
+==========================
+
+SCSI 저장 장치 간 직렬 전송 프로토콜을 정의한 인터페이스이다. SATA 인터페이스와 호환성을 갖고 있다. 
+
+전송속도
+
+- SAS-2: 6.0 Gbit/s
+- SAS-3: 12.0 Gbit/s
+
+구성요소
+
+- 초기자(initiator): 장치 서비스를 시작하는 클라이언트를 갖는 SCSI 장치(SCSI 프로토콜을 지원하는 장치) 이다. HBA나 온보드 형태로 존재한다.
+- 타겟(target): SCSI 명령을 수신하고 실행을 위해 1개 이상의 논리적인 장치(HDD, RAID)로 전달하는 SCSI 장치이다.
+- 서비스 전달 서브시스템(service delivery subsystem): 초기자와 타겟 사이에서 정보를 전달하는 SCSI I/O 시스템의 부분을 뜻한다.
+- 확장 장치(expander device): 여러개의 SAS 장치(초기자, 타겟)간 통신을 하게 해주는 장치를 뜻한다. 서비스 전달 서브시스템의 구성요소이다.
+
 
 키비, 메비, 기비 바이트(KiB, MiB, GiB)
 =====================================
@@ -78,3 +102,6 @@ LACP(Link Aggregation Control Protocol)
 - 다중 채널 메모리 구조: https://en.wikipedia.org/wiki/Multi-channel_memory_architecture
 - LACP: https://en.wikipedia.org/wiki/Link_aggregation#Link_Aggregation_Control_Protocol
 - RAID: https://answers.microsoft.com/en-us/windows/forum/windows_8-hardware/what-does-ahci-mode-ide-mode-raid-mode-sata-mean/d622d5cd-41c4-4b84-90ef-cea69aa47089?auth=1
+- SAS: http://www.t10.org/drafts.htm#SCSI3_SAS
+- SAS: http://www.seagate.com/staticfiles/support/disc/manuals/Interface%20manuals/100293071c.pdf
+- NVME: http://www.kbench.com/?q=node/149517
