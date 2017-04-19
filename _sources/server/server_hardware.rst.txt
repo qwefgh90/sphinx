@@ -27,8 +27,8 @@ M.2는 컴퓨터 확장 카드와 관련된 커넥터를 위한 폼팩터이다.
 I/O 제어
 ========
 
-IOH(I/O Handler, North bridge): CPU와 고속 장치들(PCIe, Network) 간 통신을 하게하고 이를 제어하는 칩셋이다.
-ICH(I/O Controller Hub, South bridge): 저속의 주변 장치(USB, CD)와 통신을 하게하고 이를 제어하는 칩셋이다.
+- IOH(I/O Handler, North bridge): CPU와 고속 장치들(PCIe, Network) 간 통신을 하게하고 이를 제어하는 칩셋이다.
+- ICH(I/O Controller Hub, South bridge): 저속의 주변 장치(USB, CD)와 통신을 하게하고 이를 제어하는 칩셋이다.
 
 Serial ATA(SATA)
 ================
