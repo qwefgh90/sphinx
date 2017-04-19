@@ -24,11 +24,21 @@ M.2는 컴퓨터 확장 카드와 관련된 커넥터를 위한 폼팩터이다.
 
 호스트 컨트롤러, 호스트 어댑터 등으로 불리며 **서버와 외부 장치간의 연결을 위한 인터페이스를 뜻한다.** SCSI 호스트 어댑터, FC 인터페이스 카드, 네트워크 인터페이스 카드, SATA 컨트롤러 등이 있다.
 
+I/O 제어
+========
+
+IOH(I/O Handler, North bridge): CPU와 고속 장치들(PCIe, Network) 간 통신을 하게하고 이를 제어하는 칩셋이다.
+ICH(I/O Controller Hub, South bridge): 저속의 주변 장치(USB, CD)와 통신을 하게하고 이를 제어하는 칩셋이다.
+
+Serial ATA(SATA)
+================
+
+*SATA(Serial ATA)* 는 HDD, SSD와 같은 저장장치와 직렬로 통신할 수 있는 인터페이스이다.
 
 SATA 컨트롤러 동작 모드(Operating modes)
 ========================================
 
-SATA 컨트롤러는 여러가지 운영 모드를 제공한다.
+SATA 컨트롤러는 여러가지 운영 모드를 제공한다. 
 
 - PATA(IDE, 에뮬레이션): 레거시 OS에서 SATA 컨트롤러를 사용할 수 있도록 한다.
 - AHCI: :ref:`AHCI` 만 지원하는 모드이다.
@@ -39,7 +49,7 @@ SATA 컨트롤러는 여러가지 운영 모드를 제공한다.
 AHCI(Advanced Host Controller Interface)
 ========================================
 
-AHCI는 SATA HBA의 동작을 명시한 인터페이스이다. AHCI는 메모리와 저장 장치 사이에 데이터를 교환을 위한 메모리 구조와 SATA 컨트롤러 프로그래밍 방법을 정의한다.
+AHCI는 SATA HBA의 동작을 명시한 인터페이스이다. AHCI는 핫 스와핑(hot swapping), NCQ(native command queuing)과 같은 고급기능을 사용할 수 있게 한다. AHCI는 하드웨어 설계자와 개발자가 SATA/AHCI 어댑터를 개발할 수 있는 방법을 제시한다.
 
 NVM Express(NVMe)
 =================

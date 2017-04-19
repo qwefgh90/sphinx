@@ -63,8 +63,17 @@
 <h2>1.4. 호스트 버스 어댑터(Host bus adapter)<a class="headerlink" href="#host-bus-adapter" title="제목 주소">¶</a></h2>
 <p>호스트 컨트롤러, 호스트 어댑터 등으로 불리며 <strong>서버와 외부 장치간의 연결을 위한 인터페이스를 뜻한다.</strong> SCSI 호스트 어댑터, FC 인터페이스 카드, 네트워크 인터페이스 카드, SATA 컨트롤러 등이 있다.</p>
 </div>
+<div class="section" id="i-o">
+<h2>1.5. I/O 제어<a class="headerlink" href="#i-o" title="제목 주소">¶</a></h2>
+<p>IOH(I/O Handler, North bridge): CPU와 고속 장치들(PCIe, Network) 간 통신을 하게하고 이를 제어하는 칩셋이다.
+ICH(I/O Controller Hub, South bridge): 저속의 주변 장치(USB, CD)와 통신을 하게하고 이를 제어하는 칩셋이다.</p>
+</div>
+<div class="section" id="serial-ata-sata">
+<h2>1.6. Serial ATA(SATA)<a class="headerlink" href="#serial-ata-sata" title="제목 주소">¶</a></h2>
+<p><em>SATA(Serial ATA)</em> 는 HDD, SSD와 같은 저장장치와 직렬로 통신할 수 있는 인터페이스이다.</p>
+</div>
 <div class="section" id="sata-operating-modes">
-<h2>1.5. SATA 컨트롤러 동작 모드(Operating modes)<a class="headerlink" href="#sata-operating-modes" title="제목 주소">¶</a></h2>
+<h2>1.7. SATA 컨트롤러 동작 모드(Operating modes)<a class="headerlink" href="#sata-operating-modes" title="제목 주소">¶</a></h2>
 <p>SATA 컨트롤러는 여러가지 운영 모드를 제공한다.</p>
 <ul class="simple">
 <li>PATA(IDE, 에뮬레이션): 레거시 OS에서 SATA 컨트롤러를 사용할 수 있도록 한다.</li>
@@ -73,15 +82,15 @@
 </ul>
 </div>
 <div class="section" id="ahci-advanced-host-controller-interface">
-<span id="achi"></span><h2>1.6. AHCI(Advanced Host Controller Interface)<a class="headerlink" href="#ahci-advanced-host-controller-interface" title="제목 주소">¶</a></h2>
-<p>AHCI는 SATA HBA의 동작을 명시한 인터페이스이다. AHCI는 메모리와 저장 장치 사이에 데이터를 교환을 위한 메모리 구조와 SATA 컨트롤러 프로그래밍 방법을 정의한다.</p>
+<span id="achi"></span><h2>1.8. AHCI(Advanced Host Controller Interface)<a class="headerlink" href="#ahci-advanced-host-controller-interface" title="제목 주소">¶</a></h2>
+<p>AHCI는 SATA HBA의 동작을 명시한 인터페이스이다. AHCI는 핫 스와핑(hot swapping), NCQ(native command queuing)과 같은 고급기능을 사용할 수 있게 한다. AHCI는 하드웨어 설계자와 개발자가 SATA/AHCI 어댑터를 개발할 수 있는 방법을 제시한다.</p>
 </div>
 <div class="section" id="nvm-express-nvme">
-<h2>1.7. NVM Express(NVMe)<a class="headerlink" href="#nvm-express-nvme" title="제목 주소">¶</a></h2>
+<h2>1.9. NVM Express(NVMe)<a class="headerlink" href="#nvm-express-nvme" title="제목 주소">¶</a></h2>
 <p>드라이버와 비휘발성 메모리 서브시스템(non-volatile memory subsystem) 간의 통신에 사용되는 레지스터 레벨의 인터페이스를 뜻한다. 기존의 AHCI는 저속의 하드디스크를 위해 설계된 인터페이스 이므로 SSD의 성능을 최대한으로 끌어낼 수 없다. 따라서 NVMe와 같은 PCIe 버스를 기반으로 하는 컨트롤러가 개발되었다.</p>
 </div>
 <div class="section" id="serial-attached-scsi-sas">
-<h2>1.8. Serial Attached SCSI (SAS)<a class="headerlink" href="#serial-attached-scsi-sas" title="제목 주소">¶</a></h2>
+<h2>1.10. Serial Attached SCSI (SAS)<a class="headerlink" href="#serial-attached-scsi-sas" title="제목 주소">¶</a></h2>
 <p>SCSI 저장 장치 간 직렬 전송 프로토콜을 정의한 인터페이스이다. SATA 인터페이스와 호환성을 갖고 있다.</p>
 <p>전송속도</p>
 <ul class="simple">
@@ -97,31 +106,31 @@
 </ul>
 </div>
 <div class="section" id="kib-mib-gib">
-<h2>1.9. 키비, 메비, 기비 바이트(KiB, MiB, GiB)<a class="headerlink" href="#kib-mib-gib" title="제목 주소">¶</a></h2>
+<h2>1.11. 키비, 메비, 기비 바이트(KiB, MiB, GiB)<a class="headerlink" href="#kib-mib-gib" title="제목 주소">¶</a></h2>
 <p>기존의 메가 바이트(MB)는 10의 거듭제곱이지만 <strong>키비(KiB), 메비(MiB) ,기비(GiB) 바이트는</strong> 이진 접두어로 사용된다. 따라서 이 단위는 2진 컴퓨터에 더 적절하다고 할 수 있다. 이 용어는 IEC(International Electrotechnical Commission)에 의해 1998년에 정의되었으며 정확하게 2의 거듭제곱을 표현하기 위해 MB를 대체했다. 여기서 정확하게라는 의미는 국제 단위 체계(International System of Units)와 차이를 둔다는 의미이다. 하지만 아직 널리 인정받고 있고 있지 않다.</p>
 </div>
 <div class="section" id="smb">
-<h2>1.10. SMB<a class="headerlink" href="#smb" title="제목 주소">¶</a></h2>
+<h2>1.12. SMB<a class="headerlink" href="#smb" title="제목 주소">¶</a></h2>
 <p><strong>SMB(Server Message Block)</strong> 는 네트워크 파일 공유 프로토콜이다. CIFS는 SMB의 표현식(dialects) 중 하나이다.</p>
 </div>
 <div class="section" id="nfs">
-<h2>1.11. NFS<a class="headerlink" href="#nfs" title="제목 주소">¶</a></h2>
+<h2>1.13. NFS<a class="headerlink" href="#nfs" title="제목 주소">¶</a></h2>
 <p><strong>NFS(Network File System)</strong> 은 컴퓨터 사용자가 네트워크상의 파일에 접근할 때 직접 연결된 스토리지에 접근하는 것 처럼 접근하도록 지원해주는 프로토콜이다.</p>
 </div>
 <div class="section" id="link-aggregation">
-<h2>1.12. Link Aggregation<a class="headerlink" href="#link-aggregation" title="제목 주소">¶</a></h2>
+<h2>1.14. Link Aggregation<a class="headerlink" href="#link-aggregation" title="제목 주소">¶</a></h2>
 <p>링크 어그리게이션 여러개의 네트워크 연결을 묶어 더 높은 대역폭과 링크의 장애를 대비한 복제/중복(redundancy)를 제공하는 기술을 뜻한다. 포괄적인 용어로 <em>NIC teaming, NIC bonding, port trunking</em> 등이 사용된다. 이는 IEEE802.3ad에 정의된 <a class="reference internal" href="#lacp"><span class="std std-ref">LACP(Link Aggregation Control Protocol)</span></a> 와 같은 표준기술을 포함하며 다양한 솔루션을 포함한다.</p>
 </div>
 <div class="section" id="lacp-link-aggregation-control-protocol">
-<span id="lacp"></span><h2>1.13. LACP(Link Aggregation Control Protocol)<a class="headerlink" href="#lacp-link-aggregation-control-protocol" title="제목 주소">¶</a></h2>
+<span id="lacp"></span><h2>1.15. LACP(Link Aggregation Control Protocol)<a class="headerlink" href="#lacp-link-aggregation-control-protocol" title="제목 주소">¶</a></h2>
 <p><em>IEEE 802.3ad에</em> 정의되어 있으며 물리적인 포트를 하나의 논리적인 채널로 묶는 프로토콜을 뜻한다. LACP는 LACP 패킷을 전송하여 협상하므로써 링크 묶음(bundle) 작업을 진행한다. 이때 직접 연결된 장치(스위치) 역시 LACP를 지원해야 한다.</p>
 </div>
 <div class="section" id="port">
-<h2>1.14. 포트(Port)<a class="headerlink" href="#port" title="제목 주소">¶</a></h2>
+<h2>1.16. 포트(Port)<a class="headerlink" href="#port" title="제목 주소">¶</a></h2>
 <p>포트는 케이블이나 플러그가 연결되는 부분이다. 모니터, 키보드나 다른 장치를 연결하기 위해 사용된다.</p>
 </div>
 <div class="section" id="id2">
-<h2>1.15. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<h2>1.17. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>AHCI: <a class="reference external" href="https://en.wikipedia.org/wiki/Advanced_Host_Controller_Interface">https://en.wikipedia.org/wiki/Advanced_Host_Controller_Interface</a></li>
 <li>다중 채널 메모리 구조: <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-channel_memory_architecture">https://en.wikipedia.org/wiki/Multi-channel_memory_architecture</a></li>
@@ -147,17 +156,19 @@
 <li><a class="reference internal" href="#multi-channel-memory-architecture">1.2. 다중 채널 메모리 구조(Multi-channel memory architecture)</a></li>
 <li><a class="reference internal" href="#dual-channel-memory-architecture">1.3. 듀얼 채널 메모리 구조(Dual-channel memory architecture)</a></li>
 <li><a class="reference internal" href="#host-bus-adapter">1.4. 호스트 버스 어댑터(Host bus adapter)</a></li>
-<li><a class="reference internal" href="#sata-operating-modes">1.5. SATA 컨트롤러 동작 모드(Operating modes)</a></li>
-<li><a class="reference internal" href="#ahci-advanced-host-controller-interface">1.6. AHCI(Advanced Host Controller Interface)</a></li>
-<li><a class="reference internal" href="#nvm-express-nvme">1.7. NVM Express(NVMe)</a></li>
-<li><a class="reference internal" href="#serial-attached-scsi-sas">1.8. Serial Attached SCSI (SAS)</a></li>
-<li><a class="reference internal" href="#kib-mib-gib">1.9. 키비, 메비, 기비 바이트(KiB, MiB, GiB)</a></li>
-<li><a class="reference internal" href="#smb">1.10. SMB</a></li>
-<li><a class="reference internal" href="#nfs">1.11. NFS</a></li>
-<li><a class="reference internal" href="#link-aggregation">1.12. Link Aggregation</a></li>
-<li><a class="reference internal" href="#lacp-link-aggregation-control-protocol">1.13. LACP(Link Aggregation Control Protocol)</a></li>
-<li><a class="reference internal" href="#port">1.14. 포트(Port)</a></li>
-<li><a class="reference internal" href="#id2">1.15. 참조</a></li>
+<li><a class="reference internal" href="#i-o">1.5. I/O 제어</a></li>
+<li><a class="reference internal" href="#serial-ata-sata">1.6. Serial ATA(SATA)</a></li>
+<li><a class="reference internal" href="#sata-operating-modes">1.7. SATA 컨트롤러 동작 모드(Operating modes)</a></li>
+<li><a class="reference internal" href="#ahci-advanced-host-controller-interface">1.8. AHCI(Advanced Host Controller Interface)</a></li>
+<li><a class="reference internal" href="#nvm-express-nvme">1.9. NVM Express(NVMe)</a></li>
+<li><a class="reference internal" href="#serial-attached-scsi-sas">1.10. Serial Attached SCSI (SAS)</a></li>
+<li><a class="reference internal" href="#kib-mib-gib">1.11. 키비, 메비, 기비 바이트(KiB, MiB, GiB)</a></li>
+<li><a class="reference internal" href="#smb">1.12. SMB</a></li>
+<li><a class="reference internal" href="#nfs">1.13. NFS</a></li>
+<li><a class="reference internal" href="#link-aggregation">1.14. Link Aggregation</a></li>
+<li><a class="reference internal" href="#lacp-link-aggregation-control-protocol">1.15. LACP(Link Aggregation Control Protocol)</a></li>
+<li><a class="reference internal" href="#port">1.16. 포트(Port)</a></li>
+<li><a class="reference internal" href="#id2">1.17. 참조</a></li>
 </ul>
 </li>
 </ul>
