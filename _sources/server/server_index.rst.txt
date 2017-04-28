@@ -16,4 +16,6 @@ Contents:
    :numbered: 
 
    server_hardware.rst
+   server_vender.rst
+
 

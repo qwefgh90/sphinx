@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. 상용 서버의 기술적 특징 &#8212; Code Accelerator Document 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="네트워크" href="../network/network_index.html" />
+    <link rel="prev" title="1. 용어" href="server_hardware.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="server-vender">
+<span id="id1"></span><h1>2. 상용 서버의 기술적 특징<a class="headerlink" href="#server-vender" title="제목 주소">¶</a></h1>
+<p>정확한 내용은 참조를 확인해보세요.</p>
+<div class="section" id="eternus-multipath-driver">
+<h2>2.1. ETERNUS Multipath Driver<a class="headerlink" href="#eternus-multipath-driver" title="제목 주소">¶</a></h2>
+<p>ETERNUS DX 계열의 제품은 Multipath Driver과 함께 서버와 스토리지 사이에 고가용성을 제공한다. 경로(Path)란 서버와 스토리지 사이의 물리적 경로를 뜻하는데, 하나의 경로가 실패할 경우 다중 경로 드라이버(Multipath Driver)는 자동적으로 경로를 스위칭하여 무중단을 보장하게 된다.</p>
+<p>또한 I/O 요청을 분산하여 로드밸런싱을 수행할 수도 있다. Windows Server의 장치 관리자에서 FUJISU ETERNUS Multi-Path Disk Device로 보이게 된다.</p>
+</div>
+<div class="section" id="id2">
+<h2>2.2. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<p>ETERNUS Multipath Driver: <a class="reference external" href="http://www.fujitsu.com/global/products/computing/storage/disk/eternus-dx/feature/strsys-b03.html">http://www.fujitsu.com/global/products/computing/storage/disk/eternus-dx/feature/strsys-b03.html</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. 상용 서버의 기술적 특징</a><ul>
+<li><a class="reference internal" href="#eternus-multipath-driver">2.1. ETERNUS Multipath Driver</a></li>
+<li><a class="reference internal" href="#id2">2.2. 참조</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="server_index.html">서버(Server)</a><ul>
+      <li>Previous: <a href="server_hardware.html" title="이전 장">1. 용어</a></li>
+      <li>Next: <a href="../network/network_index.html" title="다음 장">네트워크</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/server/server_vender.rst.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/server/server_vender.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
