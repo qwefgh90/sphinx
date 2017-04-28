@@ -33,7 +33,7 @@ I/O 제어
 Serial ATA(SATA)
 ================
 
-*SATA(Serial ATA)* 는 HDD, SSD와 같은 저장장치와 직렬로 통신할 수 있는 인터페이스이다.
+*SATA(Serial ATA)* 는 HDD, SSD와 같은 저장장치와 직렬로 통신할 수 있는 인터페이스이다. SATA 포트에 데이터 커넥터와 파워 커넥터를 각각 연결하여 SATA HDD를 사용할 수 있다. SATA HDD는 SAS 인터페이스에 사용할 수 있으며 *SFF-8482 커넥터(전원 공급 및 데이터 일체형)을* 이용해 SAS포트에 연결해서 사용할 수 있다. 
 
 SATA 컨트롤러 동작 모드(Operating modes)
 ========================================
@@ -59,7 +59,7 @@ NVM Express(NVMe)
 Serial Attached SCSI (SAS)
 ==========================
 
-SCSI 저장 장치 간 직렬 전송 프로토콜을 정의한 인터페이스이다. SATA 인터페이스와 호환성을 갖고 있다. 
+SCSI 저장 장치 간 직렬 전송 프로토콜을 정의한 인터페이스이다. 반대로 SAS 하드디스크를 SATA 포트에 연결할 수 없다.
 
 전송속도
 
@@ -115,3 +115,4 @@ LACP(Link Aggregation Control Protocol)
 - SAS: http://www.t10.org/drafts.htm#SCSI3_SAS
 - SAS: http://www.seagate.com/staticfiles/support/disc/manuals/Interface%20manuals/100293071c.pdf
 - NVME: http://www.kbench.com/?q=node/149517
+- SFF-8482: http://www.bodnara.co.kr/bbs/article.html?num=94364
