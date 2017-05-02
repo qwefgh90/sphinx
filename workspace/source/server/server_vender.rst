@@ -4,7 +4,7 @@
  상용 서버의 기술적 특징
 =========================
 
-정확한 내용은 참조를 확인해보세요.
+정확한 내용은 참조를 확인해 보시길 바랍니다.
 
 ETERNUS Multipath Driver
 ========================
@@ -13,8 +13,14 @@ ETERNUS DX 계열의 제품은 Multipath Driver과 함께 서버와 스토리지
 
 또한 I/O 요청을 분산하여 로드밸런싱을 수행할 수도 있다. Windows Server의 장치 관리자에서 FUJISU ETERNUS Multi-Path Disk Device로 보이게 된다. 
 
+Dell PowerEdge RAID Controller H710P
+====================================
+
+Dell PowerEdge 서버에 호환되는 RAID 컨트롤러이다. 데이터베이스와 스트리밍용으로 사용할 수 있는 고성능 컨트롤러이다. 8개의 포트(각각 6Gb/s, 서버 내부에 존재) 갖고 있으며 PCIe 2.0 x8 버스에 연결되어 있다.
+
 
 참조
 ====
 
-ETERNUS Multipath Driver: http://www.fujitsu.com/global/products/computing/storage/disk/eternus-dx/feature/strsys-b03.html
+- ETERNUS Multipath Driver: http://www.fujitsu.com/global/products/computing/storage/disk/eternus-dx/feature/strsys-b03.html
+- Dell PowerEdge RAID Controller H710P: http://i.dell.com/sites/doccontent/shared-content/data-sheets/Documents/dell-perc-h710p-spec-sheet.pdf
