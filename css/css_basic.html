@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. CSS 기본 &#8212; Code Accelerator Document 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="2. 용어" href="css_terms.html" />
+    <link rel="prev" title="CSS" href="css_index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="css">
+<h1>1. CSS 기본<a class="headerlink" href="#css" title="제목 주소">¶</a></h1>
+<div class="section" id="id1">
+<h2>1.1. CSS 스펙<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
+<p><span class="xref std std-ref">CSS</span> 는 HTML, XML과 같은 구조화된 문서를 어떻게 화면에 보여줄지 기술하는 언어이다. CSS는 W3C의 CSS 워킹 그룹에서 스펙을 정의하고 있다. <a class="reference external" href="https://www.w3.org/Style/CSS/current-work">CSS 스펙 테이블</a> 을 참조하면 안정화된 스펙들을 묶어 CSS Snapshot 2017로 발표된 것을 확인할 수 있다.</p>
+<p>CSS Level 1과 CSS Level 2는 각각 하나의 스펙 문서로 정의되었지만 <em>CSS Level 3</em> 부터는 Level 2를 기반으로 각 CSS 특징별로 모듈화하여 스펙 문서가 작성되고 있다. 이 모듈은 CSS 2.1의 각 부분을 대체하고 있다.</p>
+</div>
+<div class="section" id="id3">
+<h2>1.2. CSS 기본<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<p>CSS 규칙의 각 부분을 설명하고 있다.:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">h1</span> <span class="p">{</span> <span class="c">/* h1은 셀렉터과 선언들(declarations)로 구성됨  */</span>
+  <span class="k">color</span><span class="p">:</span> <span class="kc">green</span><span class="p">;</span> <span class="c">/* 선언(declaration)은 프로퍼티 이름, 값으로 구성되고 세미콜론으로 구분됨 */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>여러개의 CSS 규칙이 어떻게 마크업에 적용될지는 HTML 스펙에서 정의하고 있다.</p>
+<p>HTML 문서 내에서는 LINK 요소(element)를 이용해 외부 CSS와 연결된다.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">HTML</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">LINK</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;bach.css&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">HEAD</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">BODY</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">BODY</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">HTML</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>STYLE 요소를 사용하면 HTML 문서에 삽입할 수 있다.:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">HTML</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="nt">HEAD</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nt">STYLE</span> <span class="nt">type</span><span class="o">=</span><span class="s2">&quot;text/css&quot;</span><span class="o">&gt;</span>
+         <span class="nt">h1</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">green</span> <span class="p">}</span>
+      <span class="o">&lt;/</span><span class="nt">STYLE</span><span class="o">&gt;</span>
+   <span class="o">&lt;/</span><span class="nt">HEAD</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="nt">BODY</span><span class="o">&gt;</span>
+   <span class="o">&lt;/</span><span class="nt">BODY</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">HTML</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="css-2-1-addressing-model">
+<h3>1.2.1. CSS 2.1 주소 지정 모델 (addressing model)<a class="headerlink" href="#css-2-1-addressing-model" title="제목 주소">¶</a></h3>
+<p>브라우저(user agent)와 문서(document)에서 CSS 2.1 셀렉터(Selector)와 프로퍼티가 나타낼 수 있는 부분은 다음과 같다.</p>
+<ul class="simple">
+<li>요소와 요소들 간의 관계</li>
+<li>각 요소의 특성(attributes)와 그 특성의 값</li>
+<li>몇몇 요소의 일부분</li>
+<li>특정 상태를 갖는 요소(Element)</li>
+<li>몇몇 캔버스(canvas)의 관점</li>
+<li>몇몇 시스템의 정보</li>
+</ul>
+<p>캔버스(canvas)란 미디어에서 서식 구조(formatting structure)가 렌더링되는 공간을 뜻한다.</p>
+</div>
+<div class="section" id="css-2-1-processsing-model">
+<h3>1.2.2. CSS 2.1 처리 모델 (processsing model)<a class="headerlink" href="#css-2-1-processsing-model" title="제목 주소">¶</a></h3>
+<p>브라우저(유저 에이전트)가 CSS와 HTML 문서를 처리하는 절차는 다음과 같다.</p>
+<ol class="arabic simple">
+<li>HTML 문서를 분석하고 문서 트리(Document tree)를 생성한다.</li>
+<li>미디어 타입(media type)을 확인한다. (미디어 타입은 화면, 종이 등이 있음)</li>
+<li>대상이 되는 미디어 타입과 문서와 연관된 모든 스타일시트(style sheets)를 가져온다.</li>
+<li>캐스캐이딩과 상속 매커니즘에 따라 모든 프로퍼티에 값을 할당한다. (이때 대상에 적용 가능한 프로퍼티만)</li>
+<li>문서의 모든 요소에 프로퍼티를 주석으로 표시한다.</li>
+<li>주석이 달린 문서를 기반으로 서식 구조(formatting structure)를 생성한다. 이는 문서 트리와 유사하지만 각 스타일을 적용한 결과물이라 볼 수 있다. 추가적인 정보(이미지 추가)를 더 저장하거나 오히려 문서트리보다 크기가 작을 수 있다.(diplay:none 일 경우 요소를 삭제)</li>
+<li>서식 구조를 대상 매체에 전달한다. (화면에 결과를 출력함)</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>1.3. 참조<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
+<p>CSS Snapshot - <a class="reference external" href="https://www.w3.org/Style/2011/CSS-process">https://www.w3.org/Style/2011/CSS-process</a>
+CSS Processing - <a class="reference external" href="https://www.w3.org/TR/CSS2/intro.html#q2.0">https://www.w3.org/TR/CSS2/intro.html#q2.0</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. CSS 기본</a><ul>
+<li><a class="reference internal" href="#id1">1.1. CSS 스펙</a></li>
+<li><a class="reference internal" href="#id3">1.2. CSS 기본</a><ul>
+<li><a class="reference internal" href="#css-2-1-addressing-model">1.2.1. CSS 2.1 주소 지정 모델 (addressing model)</a></li>
+<li><a class="reference internal" href="#css-2-1-processsing-model">1.2.2. CSS 2.1 처리 모델 (processsing model)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">1.3. 참조</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="css_index.html">CSS</a><ul>
+      <li>Previous: <a href="css_index.html" title="이전 장">CSS</a></li>
+      <li>Next: <a href="css_terms.html" title="다음 장">2. 용어</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/css/css_basic.rst.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/css/css_basic.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
