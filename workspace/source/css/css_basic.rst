@@ -79,5 +79,5 @@ CSS 2.1 처리 모델 (processsing model)
 참조
 ====
 
-CSS Snapshot - https://www.w3.org/Style/2011/CSS-process
-CSS Processing - https://www.w3.org/TR/CSS2/intro.html#q2.0
+- CSS Snapshot - https://www.w3.org/Style/2011/CSS-process
+- CSS Processing - https://www.w3.org/TR/CSS2/intro.html#q2.0
