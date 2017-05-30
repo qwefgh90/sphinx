@@ -75,9 +75,28 @@ CSS 2.1 처리 모델 (processsing model)
 6. 주석이 달린 문서를 기반으로 서식 구조(formatting structure)를 생성한다. 이는 문서 트리와 유사하지만 각 스타일을 적용한 결과물이라 볼 수 있다. 추가적인 정보(이미지 추가)를 더 저장하거나 오히려 문서트리보다 크기가 작을 수 있다.(diplay:none 일 경우 요소를 삭제)
 7. 서식 구조를 대상 매체에 전달한다. (화면에 결과를 출력함)
 
+셀렉터(Selectors)
+=================
+
+**셀렉터는 문서의 요소를 선택하는 패턴이다.** CSS 스타일 프로퍼티를 요소와 연결 시킬때 사용된다. 
+
+셀렉터는 다음의 함수로 표현된다. 각 요소에 표현식을 계산함으로써 해당 요소를 선택할지 안할지 결정한다.::
+
+  표현식 * 요소 -> 참거짓
+
+셀렉터는 다음과 같은 문법을 따른다.(EBNF)::
+
+  셀렉터 = 시퀀스 [콤비네이터 시퀀스]* (* 셀렉터는 시퀀스의 연속이다. *)
+  시퀀스 = [type selector | universal selector] [attribute selector | class selector | id selector | pseudo-class] * (* 시퀀스는 심플 셀렉터(타입, 유니버셜, ...)의 연속이다. *)
+  셀렉터 그룹 = 셀렉터 [, 셀렉터]* (* 각각 셀렉터에 일치하는 요소들의 합을 나타낸다. *)
+
+
+`셀렉터(패턴) 요약 테이블 <https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#selectors>`_ 을 참고하면 좋다.
+
 
 참조
 ====
 
 - CSS Snapshot: https://www.w3.org/Style/2011/CSS-process
 - CSS Processing: https://www.w3.org/TR/CSS2/intro.html#q2.0
+- CSS Selector: https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#selectors
