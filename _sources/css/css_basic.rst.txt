@@ -87,7 +87,7 @@ CSS 2.1 처리 모델 (processsing model)
 셀렉터는 다음과 같은 문법을 따른다.(EBNF)::
 
   셀렉터 = 시퀀스 [콤비네이터 시퀀스]* (* 셀렉터는 시퀀스의 연속이다. *)
-  시퀀스 = [type selector | universal selector] [attribute selector | class selector | id selector | pseudo-class] * (* 시퀀스는 심플 셀렉터(타입, 유니버셜, ...)의 연속이다. *)
+  시퀀스 = [type selector | universal selector] [attribute selector | class selector | id selector | pseudo-class] * | [attribute selector | class selector | id selector | pseudo-class]+ (* 시퀀스는 심플 셀렉터(타입, 유니버셜, ...)의 연속이다. *)
   셀렉터 그룹 = 셀렉터 [, 셀렉터]* (* 각각 셀렉터에 일치하는 요소들의 합을 나타낸다. *)
 
 
