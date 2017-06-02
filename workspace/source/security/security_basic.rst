@@ -119,49 +119,120 @@ RSA는 공개키 암호 시스템중 하나로 큰 숫자를 소인수 분해하
 
 RSA를 공격하는 방식에는 무차별 대입 공격, 수학적 공격(소수를 찾는 법), 타임 공격(해독 시간을 분석), 선택된 암호문 공격 등이 있다. 가까운 미래에는 키 사이즈를 1024 ~ 2048 정도로 늘리는 것이 안전하다고 한다.
 
-
-Authentication and hash
------------------------------
-
 Kerberos
-^^^^^^^^
+--------
 
 티켓 기반으로 네트워크를 통해 서로를 확인하는 인증 프로토콜을 뜻한다. 
 
 Windows 환경의 커버로스 인증은 *KDC(Key Distribution Cente)를* 중심으로 진행되며 Windows Server 2003 이후일 경우 커버로스가 기본적으로 사용된다.
 
-**도메인 로그인 절차(Windows Kerberos)**
+커버로스 인증 사전 작업
+^^^^^^^^^^^^^^^^^^^^^^^
 
-1) 사용자의 이름, 도메인 이름, 사용자의 키(user key)로 암호화된 사전 인증 데이터(Pre-authentication data)를 KDC의 AS(authentication service)로 전송한다.
-2) KDC는 사용자의 키(user key)를 DB에서 읽은 뒤에 암호화된 사전 인증 데이터를 복호화 하고 사용자의 키로 암호화 됐는지 확인한다.
+**Windows 로그온 절차(워크스테이션, 인증방식에 관계 없이)**
 
-**TGS 접근 및 TGT 티켓, TGS(tickget-granting service) 세션 키 저장**
+1) 사용자가 CTRL + ALT + DEL 입력
+2) Winlogon ---호출---> MSGINA.DLL(GINA는 사용자 정보를 수집하고 패키징해서 LSA에 전달하는 책임이 있다)
+3) 로그온 다이얼로그 박스 출력
+4) 사용자는 사용자 이름, 패스워드를 입력한다.
+5) **MSGINA.DLL ---로그온 정보 반환---> Winlogon ---정보전달--->  LSA(Local Security Authority)**
+6) **LSA는 Kerberos 인증 프로토콜을 사용하여 인증을 시작한다.**
 
-3) KDC는 TGT(ticket-granting ticket) 이라는 특별한 서비스 티켓(service ticket) 과 및 TGS 세션 키를 사용자에게 전달한다.
-4) 사용자가 전달받은 TGS 세션 키는 사용자 키로 암호화 되었으며 TGT는 TGS 키로 암호화 되어 있다. 이때 **TGS 세션 키를 복호화 한뒤** 저장한다. (이제 TGS 세션 키가 있으므로 사용자 키는 더이상 필요없다.)
+**사용자 키 생성(LSA)**
 
-**서비스 접근 및 서비스 티켓, 서비스 세션키 저정**
+7) *DES-CBC-MD5 알고리즘을* 이용하여 사용자 패스워드를 암호화 하여 사용자 키(User Key)를 생성한다.
+8) **사용자 키를 사용자 자격증명 캐시(User Credential Cache)에 저장한 뒤** TGT 갱신이나 NTLM 인증을 위해 사용된다.
+9) 위 사용자 정보를 검증하기 위해 **최종적으로 TGT(TGS 입장권)와 Service Ticket(현재 컴퓨터 입장권)을 얻어와야 한다.**
 
-5) 사용자가 어떠한 서비스에 접근할때 그 서비스를 위한 서비스 티켓(service ticket)이 있는지 확인하고 없다면 KDC의 TGS를 통해 얻어와야 한다.
-6) 사용자는 접근하려는 컴퓨터 이름, 컴퓨터 도메인, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를 KDC의 TGS로 전송한다.
-7) KDC는 사용자에게 서비스 세션 키와 서비스 티켓을 전달한다.
-8) 사용자가 전달받은 **서비스 티켓은 시스템 키 또는 서비스 키로 암호화 되어있으며** 서비스 세션 키는 TGS 세션 키로 암호화 되어 있다. 이때 **세션 키를 복호화한 값** 을 저장한다.
-9) 서비스 티켓(service ticket)에는 **사용자 자격증명(User Credentials) 와 세션 키(session key)** 가 포함되어 있다. TGS 티켓도 특별한 서비스 티켓이므로 같은 구조이다. 
+Client와 AS(authentication service)의 메세지 교환
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**LSA와 SAM질의를 통한 사용자 인증**
+**KRB_AS_REQ**
 
-10) LSA(Local Security Authority)는 Local SAM(Security Account Manager) DB에 접근하여 사용자가 존재하는 그룹이 있는지 어느 정도의 권한을 갖고 있는지 확인한다.
-11) 서비스 티켓으로 부터 추출한 *사용자 자격증명(User Credentials)* 과 DB쿼리의 결과를 기반으로한 *SID를* 이용해 *사용자 접근 토큰(User's Access Token)을* 만든다. **로그온 정보가 타당하다면 사용자 접근 토큰을 Winlogon에게 전달한다.**
-12) 마지막으로 사용자를 위해 Winlogon 데스크탑 환경과 쉘 프로세스를 실행하며 사용자가 실행하는 프로세스는 사용자 접근 토큰을 상속한다.
+1) 사용자의 이름, 도메인 이름, 사용자 키(user key)로 암호화된 **사전 인증 데이터(Pre-authentication data)를 KDC의 AS(authentication service)로 전송한다.**
+2) KDC는 사용자의 키(user key)를 계정 DB에서 읽은 뒤에 사용자 키를 생성한다. 사전 인증 데이터를 복호화 하고 사용자의 키로 암호화 됐는지 타임스탬프가 올바른지 확인한다.
 
-**서비스 키를 이용한 사용자 인증**
+**KRB_AS_REP**
 
-11) 사용자는 서버에 서비스 티켓을 전달한다.
-12) 서버는 서비스 키를 이용해 서비스 티켓을 복호화 하고 *사용자 자격증명(User Credentials)* 을 이용해 *사용자 접근 토큰(User's Access Token)* 을 만든다.
+3) KDC는 *TGT(ticket-granting ticket, 특별한 서비스 티켓, TGS 키로 암호화 됨)* 및 *TGS 세션 키(User Key로 암호화 됨)를* 사용자에게 전달한다. **(티켓에도 TGS 세션키가 포함되어 있음, TGS 키와 TGS 세션 키는 다르다. TGS 키는 서버에서 사용)**
+4) 전달받은 TGS 세션 키는 사용자 키로 암호화 되어 있다. 이때 **TGS 세션 키를 복호화 한뒤** 저장한다. (이제 TGS 세션 키가 있으므로 사용자 키는 더이상 필요없다.)
+5) *TGT는* TGS 세션 키와 *인가 데이터(Authorization data, 사용자 SID, 그룹 SID)를* 포함한다. KDC는 TGT를 사용함으로써 사용자가 매번 사전 인증 데이터를 찾아야하는 오버헤드를 없앨 수 있다.
+6) *TGS 세션 키는* TGT가 만료되거나 사용자가 로그오프할때 까지 사용되므로 *로그온 세션 키(logon session key)로* 불리기도 한다.
 
-\* 마지막 서비스 세션키를 이용해 상호 인증을 할 수 있다. 이 세션키로 타임스탬프를 암호화하여 클라이언트에게 보낸다면 클라이언트는 세션키를 확신 할 수 있다.
+Client와 TGS(ticket-granting service)의 메세지 교환
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**KRB_TGS_REQ**
+
+1) 사용자가 어떠한 서비스에 접근할때 그 서비스를 위한 *사용자 자격증명 캐시(User Credential Cache)에* 있는지 확인한다.
+2) 사용자는 접근하려는 **컴퓨터 이름, 도메인 이름, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를** TGS로 전송한다.
+
+**KRB_TGS_REP**
+
+3) KDC는 사용자에게 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.
+4) 세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
+5) 서비스 티켓(Service Ticket)은 *시스템 키(System Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 TGS 세션 키로 암호화 되어 있다.
+6) 서비스 티켓(Service Ticket)은 세션 키와 *사용자 자격증명(User Credential)을* 저장하고 있다.
+
+User Credential을 이용한 사용자 인증
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**사용자 자격증명(User Credential)을 이용한 사용자 인증**
+
+1) LSA는 *시스템 키(System Key)를* 이용해 서비스 티켓(Service Ticket)에서 *인가 데이터(Authorization data, 사용자 자격증명, User Credentials)*, *PAC(privilege attribute certificate)를* 추출한다.
+2) LSA(Local Security Authority)는 Local SAM(Security Account Manager) DB에 접근하여 사용자가 존재하는 그룹이 있는지 어느 정도의 권한을 갖고 있는지 확인한다.
+3) **로그온 정보가 타당하는 것과 함께 DB 질의 결과인 SID 리스트와 PAC를 사용하여** *사용자 접근 토큰(User's Access Token)* 만들고 *핸들(handle)과* 함께 Winlogon에 전달한다.
+4) **마지막으로 사용자를 위해 Winlogon 데스크탑 환경과 쉘 프로세스를 실행하며 사용자가 실행하는 프로세스는 사용자 접근 토큰을 상속받는다.**
+
+다른 리소스 및 서비스 접근
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+서비스 티켓이 로컬 머신이 아닌 **원격 서버(remote server)으로 보내지는 것을 제외하면 인증과정을 위와 유사하다.**
+
+**예를들어 사용자가 로그온한 뒤에 \\\\server\\sharedvolume 접근한다고 가정해보자.**
+
+- 클라이언트와 서버는 어떤 인증을 사용할지 협상(negotiate)을 한다.
+- 클라이언트는 서버로 *서비스 티켓을* 전달한다.
+- 서버는 티켓을 받고 *접근 토큰(access token)* 을 생성한다.
+- 클라이언트는 파일을 요청하는 SMB 블록을 서버에 전달한다.
+- 서버는 파일 권한과 사용자 자격증명을 비교하여 요청을 허가 또는 거부한다.
+
+**KRB_TGS_REQ**
+
+1) 사용자는 접근하려는 **사용자 이름, 서비스 이름, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를** TGS로 전송한다.
+2) KDC는 인증자(Authenticator)를 검증하고 TGT에서 사용자 인가데이터를 뽑아내어 *세션 키(Session key)를* 생성한다.
+
+**KRB_TGS_REP**
+
+3) KDC는 사용자에게 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.
+4) **세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
+5) 서비스 티켓(Service Ticket)은 *서비스 키(Service Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 TGS 세션 키로 암호화 되어 있다.
+6) 서비스 티켓(Service Ticket)은 세션 키와 *사용자 자격증명(User Credential)을* 저장하고 있다.
+
+**KRB_AP_REQ**
+
+7) 클라이언트는 원격 서버에 서비스 티켓, 인증자(Authenticator)을 전달한다.(상호인증 플래그 및 세션 키)
+
+**KRB_AP_REP**
+
+8) 서비스 티켓을 서비스 키(Service key)로 복호화 하여 사용자 인가 데이터(authrization data)및 세션키를 추출한다.
+9) *인증자(Authenticator)*를 복호화 한 뒤 타임스탬프(timestamp)의 유효성을 확인한다.
+10) 상호 인증 플래그가 있다면 서버는 세션 키로 *인증자(Authenticator)의 시간(time)을* 암호화해서 클라이언트에게 전달한다.
+
+**접근 토근(access token) 생성**
+
+11) 서비스 티켓에서 *PAC(privilege attribute certificate)를* 추출하여 이용해 접근 토큰을 생성한다.
+
+기타
+^^^^
+
+- **TGT가 만료되면 KRB_AS_REQ를 통해 다른 TGT와 TGS 세션 키를 요청한다.**
 
 https://technet.microsoft.com/en-us/library/cc772815(v=ws.10).aspx 및 https://technet.microsoft.com/en-us/library/cc780332(v=ws.10).aspx 을 읽어보길 추천한다.
+
+
+Authentication and hash
+-----------------------------
 
 Challenge–response authentication
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
