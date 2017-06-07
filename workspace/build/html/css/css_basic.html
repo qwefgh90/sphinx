@@ -136,7 +136,7 @@
 </ul>
 <div class="section" id="psuedo-classes">
 <h4>1.3.1.1. 의사 클래스(Psuedo-classes)<a class="headerlink" href="#psuedo-classes" title="제목 주소">¶</a></h4>
-<p>DOM 트리 외에 다른 정보를 바탕으로 요소를 선택하는 패턴이다. 항상 <em>콜론:</em> 과 함꼐 의사 클래스의 이름이 온다. (괄호와 함께 값을 전달할 수 도 있음)</p>
+<p>DOM 트리 외에 다른 정보를 바탕으로 요소를 선택하는 패턴이다. 항상 <em>콜론:</em> 과 함께 의사 클래스의 이름이 온다. (괄호와 함께 값을 전달할 수 도 있음)</p>
 <div class="section" id="dynamic-pseudo-classes">
 <h5>1.3.1.1.1. 동적 의사 클래스(Dynamic pseudo-classes)<a class="headerlink" href="#dynamic-pseudo-classes" title="제목 주소">¶</a></h5>
 <p><strong>링크(link)를 위한 의사 클래스</strong></p>
@@ -194,16 +194,114 @@
 </div>
 <div class="section" id="pseudo-elements">
 <h4>1.3.1.2. 의사 요소(Pseudo-elements)<a class="headerlink" href="#pseudo-elements" title="제목 주소">¶</a></h4>
-<p>DOM 언어 명세된 것 이상의 추상화된 요소를 만들때 사용한다.</p>
-</div>
-</div>
+<p>DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용한다. 예를들어 DOM 언어에서는 요소의 내용의 첫번째 문자나 첫 줄을 접근할 수 없으나 의사 요소(Pseudo-elements)는 이것을 선택할 수 있다. 또한 DOM에 존재하지 않는 내용을 선택할 수 있으며 내용을 생성할 수 있다. <strong>의사요소는 :: 와 이름을 구성된다.</strong></p>
+<ul class="simple">
+<li>::first-line : 요소의 첫번째 줄(블록 컨테이너에서 동작)</li>
+<li>::first-letter : 요소의 첫번째 문자</li>
+<li>::before, ::after : 요소의 전, 후</li>
+</ul>
 </div>
 <div class="section" id="id5">
-<h2>1.4. 참조<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
+<h4>1.3.1.3. 콤비네이터<a class="headerlink" href="#id5" title="제목 주소">¶</a></h4>
+<ul class="simple">
+<li>공백 : 자식 요소들</li>
+<li>&gt; : 자식 요소들 중에 부모 바로 밑에 있는 요소</li>
+<li><ul class="first">
+<li>: 2개의 요소가 붙어있으면서 같은 부모를 갖는 요소들</li>
+</ul>
+</li>
+<li>~ : 같은 부모를 갖는 요소들</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h4>1.3.1.4. 셀렉터의 우선순위<a class="headerlink" href="#id6" title="제목 주소">¶</a></h4>
+<p>셀렉터의 우선순위는 <a class="reference external" href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#specificity">링크</a> 를 참조하여 계산 할 수 있다. <strong>요소의 style 속성은 가장 높은 우선순위를 갖는다.</strong></p>
+</div>
+</div>
+</div>
+<div class="section" id="media-queries">
+<h2>1.4. 미디어 쿼리(Media Queries)<a class="headerlink" href="#media-queries" title="제목 주소">¶</a></h2>
+<p>미디어 쿼리는 미디어에 의존적인 스타일을 작성하기 위한 도구이다. 미디어에는 <em>all</em>, <em>screen</em>, <em>print</em> 같은 것이 있다. (HTML4에 정의됨)</p>
+<p><strong>미디어 쿼리는 미디어 타입과 미디어의 조건을 검사하기 위한 0개 이상의 표현식으로 구성된다.</strong></p>
+<p>HTML에서는 다음과 같이 적용할 수 있다.:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">link</span> <span class="nt">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nt">media</span><span class="o">=</span><span class="s2">&quot;screen and (color)&quot;</span> <span class="nt">href</span><span class="o">=</span><span class="s2">&quot;example.css&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p><em>screen and (color)</em> 는 논리 식으로 screen이면서 color screen 일 경우에만 적용되는 스타일을 뜻한다.</p>
+<p>CSS에서는 다음과 같이 적용할 수 있다.:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span>@import url(color.css) screen and (color);
+또는
+@media all and (min-width:500px) { … }
+</pre></div>
+</div>
+<p>not 키워드 및 콤마를 통한 OR 연산을 사용할 수 있다.:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">link</span> <span class="nt">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nt">media</span><span class="o">=</span><span class="s2">&quot;not screen and (color), projection and (color)&quot;</span> <span class="nt">href</span><span class="o">=</span><span class="s2">&quot;example.css&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="media-features">
+<h3>1.4.1. 미디어 특성(Media features)<a class="headerlink" href="#media-features" title="제목 주소">¶</a></h3>
+<p>미디어 특성은 미디어에 대한 요구사항을 표현할때 사용된다.</p>
+<p><em>width 특성은</em> 출력 장치의 표시 영역의 너비를 나타낸다. <em>연속적인 미디어(continuous media)에서는</em> 스크롤 바를 포함한 viewport의 너비와 같으며 <em>페이지 미디어(paged media)에서는</em> 페이지 박스(page box)의 너비를 뜻한다. <em>페이지 미디어에</em> 대한 내용은 다음 <a class="reference external" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/page.html#page-intro">링크</a> 에서 확인할 수 있다.</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span>@media screen and (min-width: 400px) and (max-width: 700px) { … }
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="paged-media-css-2-1">
+<h2>1.5. 페이지 미디어(Paged media, CSS 2.1)<a class="headerlink" href="#paged-media-css-2-1" title="제목 주소">¶</a></h2>
+<p><em>페이지 미디어(Paged media)는</em> 문서의 내용이 1개 이상의 페이지로 분할되는 미디어를 뜻한다. 이는 <em>연속적인 미디어(continuous media)와</em> 다르다. 페이지 미디어를 다루기 위해 CSS 2.1에서는 페이지의 마진(margin)과 어떻게 페이지를 나눌지를 정의할 수 있다.</p>
+<p>브라우저는 문서의 페이지 박스(page box)를 실제 시트(sheet)에 전달한다. 페이지 박스와 실트는 종종 1:1 관계지만 언제나 그렇지는 않다. 단면 인쇄, 양면 인쇄, 여러개의 페이지를 하나의 시트에 올리는 등의 부가적인 특징이 있기 때문이다.</p>
+<p><em>페이지 박스(page box)는</em> 2가지 영역을 포함한다.</p>
+<ul class="simple">
+<li><em>페이지 영역(page area)</em></li>
+<li><em>여백 영역(margin area)</em>: 페이지 영역을 감싸는 영역이다. &#64;page 규칙을 사용하여 지정할 수 있다.</li>
+</ul>
+<div class="section" id="page">
+<h3>1.5.1. &#64;page<a class="headerlink" href="#page" title="제목 주소">¶</a></h3>
+<p>&#64;page는 페이지를 설정할때 사용하는 규칙이며 페이지 셀렉터, 스타일 블록이 따라온다.</p>
+<div class="section" id="id9">
+<h4>1.5.1.1. 페이지 여백<a class="headerlink" href="#id9" title="제목 주소">¶</a></h4>
+<p>margin-top, margin-right, margin-bottom, margin-left &#64;page 규칙에서 사용할 수 있다.:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">page</span> <span class="p">{</span>
+<span class="nt">margin</span><span class="o">:</span> <span class="nt">3cm</span><span class="o">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h4>1.5.1.2. 페이지 선택자<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
+<ul class="simple">
+<li><table class="first docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">first:</th><td class="field-body">이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="page-breaks">
+<h3>1.5.2. 페이지 분할(Page breaks)<a class="headerlink" href="#page-breaks" title="제목 주소">¶</a></h3>
+<p>페이지 분할에 관련하여 요소에 적용할 수 있는 5가지 속성값이 있다. 각 페이지 분할은 페이지 박스에 내용을 채운뒤 DOM 트리의 남은 내용을 새로운 페이지 박스에 채우는 식으로 동작한다.</p>
+<ul class="simple">
+<li>page-break-before: auto | always | avoid | left | right | inherit</li>
+<li>page-break-after: auto | always | avoid | left | right | inherit</li>
+<li>page-break-inside: avoid | auto | inherit</li>
+</ul>
+<p>위 속성들은 블록 요소에만 적용되며 기본적으로 auto로 동작한다. always를 주면 항상 페이지 분할이 발생하고 avoid는 분할이 발생하지 않게 한다.</p>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>1.6. 참조<a class="headerlink" href="#id11" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>CSS Snapshot: <a class="reference external" href="https://www.w3.org/Style/2011/CSS-process">https://www.w3.org/Style/2011/CSS-process</a></li>
 <li>CSS Processing: <a class="reference external" href="https://www.w3.org/TR/CSS2/intro.html#q2.0">https://www.w3.org/TR/CSS2/intro.html#q2.0</a></li>
 <li>CSS Selector: <a class="reference external" href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#selectors">https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#selectors</a></li>
+<li>Paged Media: <a class="reference external" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/page.html#page-intro">https://www.w3.org/TR/2011/REC-CSS2-20110607/page.html#page-intro</a></li>
+<li>Visual formatting model: <a class="reference external" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#block-boxes">https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#block-boxes</a></li>
 </ul>
 </div>
 </div>
@@ -235,11 +333,26 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#pseudo-elements">1.3.1.2. 의사 요소(Pseudo-elements)</a></li>
+<li><a class="reference internal" href="#id5">1.3.1.3. 콤비네이터</a></li>
+<li><a class="reference internal" href="#id6">1.3.1.4. 셀렉터의 우선순위</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id5">1.4. 참조</a></li>
+<li><a class="reference internal" href="#media-queries">1.4. 미디어 쿼리(Media Queries)</a><ul>
+<li><a class="reference internal" href="#media-features">1.4.1. 미디어 특성(Media features)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#paged-media-css-2-1">1.5. 페이지 미디어(Paged media, CSS 2.1)</a><ul>
+<li><a class="reference internal" href="#page">1.5.1. &#64;page</a><ul>
+<li><a class="reference internal" href="#id9">1.5.1.1. 페이지 여백</a></li>
+<li><a class="reference internal" href="#id10">1.5.1.2. 페이지 선택자</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#page-breaks">1.5.2. 페이지 분할(Page breaks)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id11">1.6. 참조</a></li>
 </ul>
 </li>
 </ul>

@@ -107,7 +107,7 @@ CSS 2.1 처리 모델 (processsing model)
 의사 클래스(Psuedo-classes)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-DOM 트리 외에 다른 정보를 바탕으로 요소를 선택하는 패턴이다. 항상 *콜론:* 과 함꼐 의사 클래스의 이름이 온다. (괄호와 함께 값을 전달할 수 도 있음)
+DOM 트리 외에 다른 정보를 바탕으로 요소를 선택하는 패턴이다. 항상 *콜론:* 과 함께 의사 클래스의 이름이 온다. (괄호와 함께 값을 전달할 수 도 있음)
 
 동적 의사 클래스(Dynamic pseudo-classes)
 ++++++++++++++++++++++++++++++++++++++++
@@ -161,7 +161,99 @@ UI 요소 상태 의사 클래스(UI element states pseudo-classes)
 의사 요소(Pseudo-elements)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-DOM 언어 명세된 것 이상의 추상화된 요소를 만들때 사용한다.
+DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용한다. 예를들어 DOM 언어에서는 요소의 내용의 첫번째 문자나 첫 줄을 접근할 수 없으나 의사 요소(Pseudo-elements)는 이것을 선택할 수 있다. 또한 DOM에 존재하지 않는 내용을 선택할 수 있으며 내용을 생성할 수 있다. **의사요소는 \:\: 와 이름을 구성된다.**
+
+- ::first-line : 요소의 첫번째 줄(블록 컨테이너에서 동작)
+- ::first-letter : 요소의 첫번째 문자
+- ::before, ::after : 요소의 전, 후
+
+콤비네이터
+~~~~~~~~~~
+
+- 공백 : 자식 요소들
+- > : 자식 요소들 중에 부모 바로 밑에 있는 요소
+- + : 2개의 요소가 붙어있으면서 같은 부모를 갖는 요소들
+- ~ : 같은 부모를 갖는 요소들
+
+셀렉터의 우선순위
+~~~~~~~~~~~~~~~~~
+
+셀렉터의 우선순위는 `링크 <https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#specificity>`_ 를 참조하여 계산 할 수 있다. **요소의 style 속성은 가장 높은 우선순위를 갖는다.**
+
+미디어 쿼리(Media Queries)
+==========================
+
+미디어 쿼리는 미디어에 의존적인 스타일을 작성하기 위한 도구이다. 미디어에는 *all*, *screen*, *print* 같은 것이 있다. (HTML4에 정의됨)
+
+**미디어 쿼리는 미디어 타입과 미디어의 조건을 검사하기 위한 0개 이상의 표현식으로 구성된다.** 
+
+HTML에서는 다음과 같이 적용할 수 있다.::
+  
+  <link rel="stylesheet" media="screen and (color)" href="example.css" />
+
+*screen and (color)* 는 논리 식으로 screen이면서 color screen 일 경우에만 적용되는 스타일을 뜻한다.
+
+CSS에서는 다음과 같이 적용할 수 있다.::
+
+  @import url(color.css) screen and (color);
+  또는
+  @media all and (min-width:500px) { … }
+
+not 키워드 및 콤마를 통한 OR 연산을 사용할 수 있다.::
+
+  <link rel="stylesheet" media="not screen and (color), projection and (color)" href="example.css" />
+
+미디어 특성(Media features)
+---------------------------
+
+미디어 특성은 미디어에 대한 요구사항을 표현할때 사용된다.
+
+*width 특성은* 출력 장치의 표시 영역의 너비를 나타낸다. *연속적인 미디어(continuous media)에서는* 스크롤 바를 포함한 viewport의 너비와 같으며 *페이지 미디어(paged media)에서는* 페이지 박스(page box)의 너비를 뜻한다. *페이지 미디어에* 대한 내용은 다음 `링크 <https://www.w3.org/TR/2011/REC-CSS2-20110607/page.html#page-intro>`_ 에서 확인할 수 있다. ::
+  
+  @media screen and (min-width: 400px) and (max-width: 700px) { … }
+
+페이지 미디어(Paged media, CSS 2.1)
+===================================
+
+*페이지 미디어(Paged media)는* 문서의 내용이 1개 이상의 페이지로 분할되는 미디어를 뜻한다. 이는 *연속적인 미디어(continuous media)와* 다르다. 페이지 미디어를 다루기 위해 CSS 2.1에서는 페이지의 마진(margin)과 어떻게 페이지를 나눌지를 정의할 수 있다.
+
+브라우저는 문서의 페이지 박스(page box)를 실제 시트(sheet)에 전달한다. 페이지 박스와 실트는 종종 1:1 관계지만 언제나 그렇지는 않다. 단면 인쇄, 양면 인쇄, 여러개의 페이지를 하나의 시트에 올리는 등의 부가적인 특징이 있기 때문이다.
+
+*페이지 박스(page box)는* 2가지 영역을 포함한다.
+
+- *페이지 영역(page area)*
+- *여백 영역(margin area)*: 페이지 영역을 감싸는 영역이다. @page 규칙을 사용하여 지정할 수 있다.
+
+@page
+-----
+
+@page는 페이지를 설정할때 사용하는 규칙이며 페이지 셀렉터, 스타일 블록이 따라온다. 
+
+페이지 여백
+~~~~~~~~~~~
+
+margin-top, margin-right, margin-bottom, margin-left @page 규칙에서 사용할 수 있다.::
+
+  @page {
+  margin: 3cm;
+  }
+
+페이지 선택자
+~~~~~~~~~~~~~
+
+- :first: 이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.
+
+페이지 분할(Page breaks)
+------------------------
+
+페이지 분할에 관련하여 요소에 적용할 수 있는 5가지 속성값이 있다. 각 페이지 분할은 페이지 박스에 내용을 채운뒤 DOM 트리의 남은 내용을 새로운 페이지 박스에 채우는 식으로 동작한다.
+
+- page-break-before: auto | always | avoid | left | right | inherit
+- page-break-after: auto | always | avoid | left | right | inherit
+- page-break-inside: avoid | auto | inherit
+
+위 속성들은 블록 요소에만 적용되며 기본적으로 auto로 동작한다. always를 주면 항상 페이지 분할이 발생하고 avoid는 분할이 발생하지 않게 한다.
+
 
 참조
 ====
@@ -169,3 +261,5 @@ DOM 언어 명세된 것 이상의 추상화된 요소를 만들때 사용한다
 - CSS Snapshot: https://www.w3.org/Style/2011/CSS-process
 - CSS Processing: https://www.w3.org/TR/CSS2/intro.html#q2.0
 - CSS Selector: https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#selectors
+- Paged Media: https://www.w3.org/TR/2011/REC-CSS2-20110607/page.html#page-intro
+- Visual formatting model: https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#block-boxes
