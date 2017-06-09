@@ -4,7 +4,7 @@
 정보보안
 ***********
 
-*일부 내용 및 그림의 출처는 구글링 및 인천대학교 컴퓨터 공학부 "컴퓨터 네트워크 보안" 강의자료를 참고하였습니다.*
+*일부 내용 및 그림의 출처는 인천대학교 컴퓨터 공학부 "컴퓨터 네트워크 보안" 강의자료를 참고하였습니다.*
 
 .. _security_overview:
 
@@ -119,8 +119,135 @@ RSA는 공개키 암호 시스템중 하나로 큰 숫자를 소인수 분해하
 
 RSA를 공격하는 방식에는 무차별 대입 공격, 수학적 공격(소수를 찾는 법), 타임 공격(해독 시간을 분석), 선택된 암호문 공격 등이 있다. 가까운 미래에는 키 사이즈를 1024 ~ 2048 정도로 늘리는 것이 안전하다고 한다.
 
-authentication and hash
+Kerberos
+--------
+
+티켓 기반으로 네트워크를 통해 서로를 확인하는 인증 프로토콜을 뜻한다. 
+
+Windows 환경의 커버로스 인증은 *KDC(Key Distribution Cente)를* 중심으로 진행되며 Windows Server 2003 이후일 경우 커버로스가 기본적으로 사용된다.
+
+커버로스 인증 사전 작업
+^^^^^^^^^^^^^^^^^^^^^^^
+
+**Windows 로그온 절차(워크스테이션, 인증방식에 관계 없이)**
+
+1) 사용자가 CTRL + ALT + DEL 입력
+2) Winlogon ---호출---> MSGINA.DLL(GINA는 사용자 정보를 수집하고 패키징해서 LSA에 전달하는 책임이 있다)
+3) 로그온 다이얼로그 박스 출력
+4) 사용자는 사용자 이름, 패스워드를 입력한다.
+5) **MSGINA.DLL ---로그온 정보 반환---> Winlogon ---정보전달--->  LSA(Local Security Authority)**
+6) **LSA는 Kerberos 인증 프로토콜을 사용하여 인증을 시작한다.**
+
+**사용자 키 생성(LSA)**
+
+7) *DES-CBC-MD5 알고리즘을* 이용하여 사용자 패스워드를 암호화 하여 사용자 키(User Key)를 생성한다.
+8) **사용자 키를 사용자 자격증명 캐시(User Credential Cache)에 저장한 뒤** TGT 갱신이나 NTLM 인증을 위해 사용된다.
+9) 위 사용자 정보를 검증하기 위해 **최종적으로 TGT(TGS 입장권)와 Service Ticket(현재 컴퓨터 입장권)을 얻어와야 한다.**
+
+Client와 AS(authentication service)의 메세지 교환
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**KRB_AS_REQ**
+
+1) 사용자의 이름, 도메인 이름, 사용자 키(user key)로 암호화된 **사전 인증 데이터(Pre-authentication data)를 KDC의 AS(authentication service)로 전송한다.**
+2) KDC는 사용자의 키(user key)를 계정 DB에서 읽은 뒤에 사용자 키를 생성한다. 사전 인증 데이터를 복호화 하고 사용자의 키로 암호화 됐는지 타임스탬프가 올바른지 확인한다.
+
+**KRB_AS_REP**
+
+3) KDC는 *TGT(ticket-granting ticket, 특별한 서비스 티켓, TGS 키로 암호화 됨)* 및 *TGS 세션 키(User Key로 암호화 됨)를* 사용자에게 전달한다. **(티켓에도 TGS 세션키가 포함되어 있음, TGS 키와 TGS 세션 키는 다르다. TGS 키는 서버에서 사용)**
+4) 전달받은 TGS 세션 키는 사용자 키로 암호화 되어 있다. 이때 **TGS 세션 키를 복호화 한뒤** 저장한다. (이제 TGS 세션 키가 있으므로 사용자 키는 더이상 필요없다.)
+5) *TGT는* TGS 세션 키와 *인가 데이터(Authorization data, 사용자 SID, 그룹 SID)를* 포함한다. KDC는 TGT를 사용함으로써 사용자가 매번 사전 인증 데이터를 찾아야하는 오버헤드를 없앨 수 있다.
+6) *TGS 세션 키는* TGT가 만료되거나 사용자가 로그오프할때 까지 사용되므로 *로그온 세션 키(logon session key)로* 불리기도 한다.
+
+Client와 TGS(ticket-granting service)의 메세지 교환
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**KRB_TGS_REQ**
+
+1) 사용자가 어떠한 서비스에 접근할때 그 서비스를 위한 *사용자 자격증명 캐시(User Credential Cache)에* 있는지 확인한다.
+2) 사용자는 접근하려는 **컴퓨터 이름, 도메인 이름, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를** TGS로 전송한다.
+
+**KRB_TGS_REP**
+
+3) KDC는 사용자에게 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.
+4) 세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
+5) 서비스 티켓(Service Ticket)은 *시스템 키(System Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 TGS 세션 키로 암호화 되어 있다.
+6) 서비스 티켓(Service Ticket)은 세션 키와 *사용자 자격증명(User Credential)을* 저장하고 있다.
+
+User Credential을 이용한 사용자 인증
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**사용자 자격증명(User Credential)을 이용한 사용자 인증**
+
+1) LSA는 *시스템 키(System Key)를* 이용해 서비스 티켓(Service Ticket)에서 *인가 데이터(Authorization data, 사용자 자격증명, User Credentials)*, *PAC(privilege attribute certificate)를* 추출한다.
+2) LSA(Local Security Authority)는 Local SAM(Security Account Manager) DB에 접근하여 사용자가 존재하는 그룹이 있는지 어느 정도의 권한을 갖고 있는지 확인한다.
+3) **로그온 정보가 타당하는 것과 함께 DB 질의 결과인 SID 리스트와 PAC를 사용하여** *사용자 접근 토큰(User's Access Token)* 만들고 *핸들(handle)과* 함께 Winlogon에 전달한다.
+4) **마지막으로 사용자를 위해 Winlogon 데스크탑 환경과 쉘 프로세스를 실행하며 사용자가 실행하는 프로세스는 사용자 접근 토큰을 상속받는다.**
+
+다른 리소스 및 서비스 접근
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+서비스 티켓이 로컬 머신이 아닌 **원격 서버(remote server)으로 보내지는 것을 제외하면 인증과정을 위와 유사하다.**
+
+**예를들어 사용자가 로그온한 뒤에 \\\\server\\sharedvolume 접근한다고 가정해보자.**
+
+- 클라이언트와 서버는 어떤 인증을 사용할지 협상(negotiate)을 한다.
+- 클라이언트는 서버로 *서비스 티켓을* 전달한다.
+- 서버는 티켓을 받고 *접근 토큰(access token)* 을 생성한다.
+- 클라이언트는 파일을 요청하는 SMB 블록을 서버에 전달한다.
+- 서버는 파일 권한과 사용자 자격증명을 비교하여 요청을 허가 또는 거부한다.
+
+**KRB_TGS_REQ**
+
+1) 사용자는 접근하려는 **사용자 이름, 서비스 이름, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를** TGS로 전송한다.
+2) KDC는 인증자(Authenticator)를 검증하고 TGT에서 사용자 인가데이터를 뽑아내어 *세션 키(Session key)를* 생성한다.
+
+**KRB_TGS_REP**
+
+3) KDC는 사용자에게 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.
+4) **세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
+5) 서비스 티켓(Service Ticket)은 *서비스 키(Service Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 TGS 세션 키로 암호화 되어 있다.
+6) 서비스 티켓(Service Ticket)은 세션 키와 *사용자 자격증명(User Credential)을* 저장하고 있다.
+
+**KRB_AP_REQ**
+
+7) 클라이언트는 원격 서버에 서비스 티켓, 인증자(Authenticator)을 전달한다.(상호인증 플래그 및 세션 키)
+
+**KRB_AP_REP**
+
+8) 서비스 티켓을 서비스 키(Service key)로 복호화 하여 사용자 인가 데이터(authrization data)및 세션키를 추출한다.
+9) *인증자(Authenticator)*를 복호화 한 뒤 타임스탬프(timestamp)의 유효성을 확인한다.
+10) 상호 인증 플래그가 있다면 서버는 세션 키로 *인증자(Authenticator)의 시간(time)을* 암호화해서 클라이언트에게 전달한다.
+
+**접근 토근(access token) 생성**
+
+11) 서비스 티켓에서 *PAC(privilege attribute certificate)를* 추출하여 이용해 접근 토큰을 생성한다.
+
+기타
+^^^^
+
+- **TGT가 만료되면 KRB_AS_REQ를 통해 다른 TGT와 TGS 세션 키를 요청한다.**
+
+https://technet.microsoft.com/en-us/library/cc772815(v=ws.10).aspx 및 https://technet.microsoft.com/en-us/library/cc780332(v=ws.10).aspx 을 읽어보길 추천한다.
+
+
+Authentication and hash
 -----------------------------
+
+Challenge–response authentication
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*Challenge–response(질문-응답) 인증은* 한쪽에서 질문하고 한쪽에서 올바른 답을 제시하는 프로토콜의 집합이다.* 예시로 암호를 물어보고 대답하는 암호 인증(password authentication)이 있다.
+
+SMB 프로토콜에서 사용되는 NTLM 암호화 방식에서 암호를 인증할때 사용한다.
+
+*질문 응답 인증은* **비밀키를 전달하는 과정없이** 일회용 난수를 통해 서로가 비밀키를 알고 있다는 사실을 상대방에게 납득시키는 과정을 포함한다. 서버든 클라이언트든 상대방을 납득 시킬때도 사용할 수 있으며 상호 인증 시퀀스를 통해 이것이 가능해진다. 상호 인증 시퀀스는 다음과 같다.
+
+1) 서버는 클라이언트에게 임의의 숫자(cryptographic nonce, challenge, sc)를 보낸다.
+2) 클라이언트는 임의의 숫자(cc)를 생성한 뒤 *hash(cc + sc + secret key)* 와 *cc* 를 을 보낸다.
+3) 서버는 *hash(sc + cc + secret key)* 을 보낸다.
+4) 전달 받은 해시값을 이용해 서로가 올바른 비밀키를 갖고 있는지 확인한다.
+
 
 Message Authentication
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -173,7 +300,23 @@ SSL 인증서, 공인인증서와 전자서명
 
 **SSL 인증서는** 서버가 신뢰할 수 있는지 증명할 수 있는 전자인증서이다. 이때 공개키 암호화 방식을 사용하여 사용자 인증과 인증서의 무결성을 증명할 수 있다. :ref:`digital_signature` 을 참고하도록 하자. SSL 인증서는 도메인 정보 ,서버 공개키 등을 저장하고 있다. 이런 인증서 정보로부터 해시값을 만들고 이를 인증기관의 비밀키로 암호화 한 값을 전자서명으로 사용한다. 인증서와 함께 전자서명을 보내서 인증서의 무결성 및 신뢰성을 보장한다. 브라우저는 이미 CA의 비밀키에 대한 공개키를 가지고 있다. CA는 신뢰할 수 있는 제3의 인증기관이다. SSL 인증서의 서버 공개키를 이용하여 전송계층을 암호화할때 사용하는 대칭키를 암호화하여 전송한다.
 
-**공인인증서는** 클라이언트가 신뢰할 수 있는지 증명할 수 있는 전자인증서이다. 공인인증서는 암호화된 개인키와 공개키로 이루어진다. **인증서의 개인키와 공개키는 한 쌍이다.** 패스워드를 입력받아 개인키를 얻어낸뒤 {결재정보, 암호화된 결재정보, 공인인증서}를 전달한다. 먼저 공인인증서의 전자서명 인증 절차에 따라 인증서가 신뢰할 수 있는지 판단한다. 만약 공인인증서를 신뢰할 수 없다면 공개키를 신뢰할 수 있게된다. 수신한 전자서명을 이용해 결재정보가 옳바른지 인증하고 인증에 성공한다면 공인인증서의 역할이 끝나게된다. 
+**공인인증서는** 클라이언트가 신뢰할 수 있는지 증명할 수 있는 전자인증서이다. 공인인증서는 암호화된 개인키와 공개키로 이루어진다. **인증서의 개인키와 공개키는 한 쌍이다.** 패스워드를 입력받아 개인키를 얻어낸뒤 {결재정보, 암호화된 결재정보, 공인인증서}를 전달한다. 먼저 공인인증서의 전자서명 인증 절차에 따라 인증서가 신뢰할 수 있는지 판단한다. 만약 공인인증서를 신뢰할 수 없다면 공개키를 신뢰할 수 있게된다. 수신한 전자서명을 이용해 결재정보가 옳바른지 인증하고 인증에 성공한다면 공인인증서의 역할이 끝나게된다.
+
+인증서 정보
+^^^^^^^^^^^
+
+- DN(Distinguished Name) : 고유 이름으로 불리며 인증서를 발급받는 개인이나 CA를 뜻한다.
+- CN(CommonName) : 가입자의 이름
+- OU(OrganizationalUnit) : 하위 조직명
+- O(Organization) : 조직명
+- C(Country) : 국가
+- CA(certificate authority) : 인증기관이라 부르며 공개키 쌍을 관리하며 인증서를 발급한다.
+
+
+인증서간 서명 매커니즘
+^^^^^^^^^^^^^^^^^^^^^^
+
+인증서는 트리구조를 이루며 인증서끼리 서명하게된다. 인증서의 서명값은 발급자의 비공개키로 서명되어 발급자의 공개키를 통해 검증할 수 있다. 이 발급자의 공개키는 발급자 인증서에 포함되어 있고 이 인증서는 **발급자의 발급자에게** 서명된다. **이렇게 최상위 발급자(인증기관)을 만날때까지 재귀적으로 인증서가 검증된다.** 루트 인증기관(Root CA)은 자체 서명이 되어있다. 일반적으로 브라우저는 유명한 인증 기관의 Root CA 인증서가 기본적으로 설치되어 있다.(Verisign 등)
 
 
 User authentication
@@ -503,6 +646,8 @@ Security Auditing (보안 감사)
 
 
 
+참조
+====
 
-
-
+- Challenge–response authentication: https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication
+- 공인인증서: http://crazia.tistory.com/entry/PKI-PKI-%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90-%EA%B0%84%EB%8B%A8-%EC%84%A4%EB%AA%85

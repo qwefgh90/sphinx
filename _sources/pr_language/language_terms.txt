@@ -9,13 +9,6 @@
 
 문맥 자유 문법은 모든 가능한 문자열을 표시하기 위한 :ref:`production_rules` 의 집합이다. 또한 형식적 문법(Formal Grammar)의 한 종류이다.
 
-`문맥 자유 문법은 4개의 튜플로 정의된다. <https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions>`_ 
-
-- **비단말 문자의 유한 집합.** 비단말 문자 또는 변수(nonterminal charactor or varibale), variable은 구문 분류(syntatic category)
-- **단말 문자의 유한 집합.** 실제 문장을 구성하는 단말 문자(terminal charactor)
-- **관계.** 비단말 -> (단말+비단말)* 
-- **시작 심볼.** 전체 문장 또는 프로그램
-
 .. _production_rules:
 
 생성 규칙(Production rules)
@@ -52,11 +45,6 @@ EBNF는 BNF을 확장한 국제표준 메타언어이다. `이곳 <http://standa
 =========================================
 
 메타언어란 다른 언어(Language)의 문법(Syntax)을 정의하기 위한 **표기법** 이다. 이때 몇가지의 규칙을 사용하여 문법을 정의하게된다. 시스템에서 사용하는 명령어나 데이터의 포맷 부터 프로그래밍 언어의 문법까지 정의할 수 있다. 대표적인 메타언어로 :ref:`language_terms_ebnf` 가 있다.
-
-메타문법(Metasyntax)
-====================
-
-`메타문법 <https://en.wikipedia.org/wiki/Metasyntax>`_ 은 메타언어에서 사용 가능한 문장의 조합이나 구조를 나타내는 문법이다.
 
 형식적 문법 정의(Formal syntax definition)
 ============================
@@ -96,7 +84,12 @@ EBNF는 BNF을 확장한 국제표준 메타언어이다. `이곳 <http://standa
 비 단말 심볼(Non-terminal symbol)
 ==========================
 
-언어의 문법적 부분을 뜻한다. 더이상 쪼갤 수 없다.
+언어의 문법적 부분을 뜻한다.
+
+문법 규칙(Syntax-rule)
+======================
+
+*메타 식별자, 정의 심볼(defining-symbol), 정의 리스트(definitions-list)로* 구성된다. 1개 이상의 문법 규칙으로 언어의 문법을 정의한다. **정의 리스트(definitions-list)는 |(definition-seperator-symbol)로** 구분된 단일 정의(Single-definition)으로 구분된다.
 
 모나드(Monad)
 ===================

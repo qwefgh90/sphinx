@@ -1,4 +1,4 @@
-.. _java_basic:
+.. _css_basic:
 
 .. highlightlang:: css
 
@@ -11,7 +11,7 @@ CSS 스펙
 
 :ref:`CSS` 는 HTML, XML과 같은 구조화된 문서를 어떻게 화면에 보여줄지 기술하는 언어이다. CSS는 W3C의 CSS 워킹 그룹에서 스펙을 정의하고 있다. `CSS 스펙 테이블 <https://www.w3.org/Style/CSS/current-work>`_ 을 참조하면 안정화된 스펙들을 묶어 CSS Snapshot 2017로 발표된 것을 확인할 수 있다.
 
-CSS Level 1과 CSS Level 2는 각각 하나의 스펙 문서로 정의되었지만 *CSS Level 3* 부터는 Level 2를 기반으로 각 CSS 특징별로 모듈화하여 스펙 문서가 작성되고 있다. 이 모듈은 CSS 2.1의 각 부분을 대체하고 있다.
+CSS Level 1과 CSS Level 2는 각각 하나의 스펙 문서로 정의되었지만 *CSS Level 3* 부터는 Level 2를 기반으로 각 CSS 특징별로 모듈화하여 스펙 문서가 작성되고 있다. 각 모듈은 CSS 2.1의 각 부분을 대체하고 있다.
 
 CSS 기본
 ========
@@ -60,7 +60,10 @@ CSS 2.1 주소 지정 모델 (addressing model)
 - 몇몇 캔버스(canvas)의 관점
 - 몇몇 시스템의 정보
 
-캔버스(canvas)란 미디어에서 서식 구조(formatting structure)가 렌더링되는 공간을 뜻한다.
+캔버스
+------
+
+캔버스(canvas)란 미디어에서 서식 구조(formatting structure)가 렌더링되는 공간을 뜻한다. 캔버스의 크기는 무한하지만, 렌더링은 캔버스의 일부분에서만 일어난다. 예를들어 유저 에이전트(브라우저)는 뷰포트의 크기를 기반으로 초기 너비를 설정하고 다른 유저 에이전트(페이지)는 너비와 높이를 제한한다.
 
 CSS 2.1 처리 모델 (processsing model)
 -------------------------------------
@@ -74,6 +77,8 @@ CSS 2.1 처리 모델 (processsing model)
 5. 문서의 모든 요소에 프로퍼티를 주석으로 표시한다.
 6. 주석이 달린 문서를 기반으로 서식 구조(formatting structure)를 생성한다. 이는 문서 트리와 유사하지만 각 스타일을 적용한 결과물이라 볼 수 있다. 추가적인 정보(이미지 추가)를 더 저장하거나 오히려 문서트리보다 크기가 작을 수 있다.(diplay:none 일 경우 요소를 삭제)
 7. 서식 구조를 대상 매체에 전달한다. (화면에 결과를 출력함)
+
+
 
 셀렉터(Selectors)
 =================
@@ -180,6 +185,174 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
 
 셀렉터의 우선순위는 `링크 <https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#specificity>`_ 를 참조하여 계산 할 수 있다. **요소의 style 속성은 가장 높은 우선순위를 갖는다.**
 
+박스 모델(Box model)
+====================
+
+*박스 모델이란* DOM 트리 요소(element)를 위해 생성된 사각형 박스를 나타내는 모델이다. **박스는 콘텐츠(content) 영역, 패딩(paddding), 경계(border), 여백(margin, 여백) 영역으로 구성된다.** 패딩, 경계, 여백영역은 다시 4개의 세그먼트(top, right, bottom, left)로 나눠지며 주변을 엣지(Edge)라 부른다.
+
+- 콘텐츠 엣지(content edge), 내부 엣지(inner edge): 콘텐츠 엣지는 사각형을 둘러싸며, 렌더링된 내용에 의존적이다. 4개의 콘텐츠 엣지는 콘텐츠 박스(content box)를 구성한다.
+- 패딩 엣지(padding edge): 패딩 엣지는 패딩(padding)영역을 감싼다. 만약 패딩의 너비가 0이라면 콘텐츠 엣지와 패딩 엣지는 같다.
+- 경계 엣지(border edge): 경계 엣지는 경계 영역를 둘러싸며, 경계의 너비가 0이면 패딩 엣지와 같다.
+- 여백 엣지(margin edge), 외부 엣지(outer edge): 여백 엣지는 여백 영역을 둘러싸며, 0일 경우 경계 엣지와 같다.
+
+콘텐츠 영역의 너비는 `몇가지 요소 <https://www.w3.org/TR/CSS2/visudet.html>`_ 에 의존적이다.
+
+컨텐츠, 패딩, 경계 영역의 *background 스타일은* 그 요소의 *background 속성에 의해* 결정된다. 여백 영역은 항상 투명이다.
+
+여백 속성(margin properties)
+----------------------------
+
+마진 영역의 너비를 나타낸다.
+
+**margin-top, margin-right, margin-bottom, margin-left, margin은 값으로** `auto <https://www.w3.org/TR/CSS2/visudet.html#Computing_widths_and_margins>`_/길이/퍼센트(컨테이닝 블록의 너비에 비례, 컨테이닝 블록의 너비가 요소 자체에 의존적이라면 공식이 정의되진 않음)을 갖는다. table 타입을 제외한 모든 요소에 적용된다. 길이는 음수가 될 수 있다.
+
+2개 이상의 박스가 겹쳤을 경우 하나의 여백으로 결합될 수 있다. 이를 붕괴(collapse)라 한다. 결합된 여백은 붕괴된 여백(collapsed margin)이라 한다. 수직으로 접한 여백은 붕괴될 수 있으나 수평 여백은 절대 붕괴될 수 없다.
+
+패딩 속성(paddding properties)
+------------------------------
+
+패딩 영역의 너비를 나타낸다.
+
+**padding-top, padding-right, padding-bottom, padding-left, padding은 값으로** 길이/퍼센트(컨테이닝 블록의 너비에 비례, 컨테이닝 블록의 너비가 요소 자체에 의존적이라면 공식이 정의되진 않음)을 갖는다. table-row-group, table-header-group, table-footer-group, table-row, table-column-group, table-column 타입을 제외한 모든 요소에 적용된다. 길이는 음수가 될 수 없다.
+
+경계 속성(border properties, CSS 2.1)
+-------------------------------------
+
+경계 영역의 너비를 나타낸다.
+
+모든 경계 속성은 모든 요소에 적용된다.
+
+**border-top-width, border-right-width, border-bottom-width, border-left-width, border-width은 값으로** thin/medium/thick/길이를 갖는다.
+
+**border-top-style, border-right-style, border-bottom-style, border-left-style, border-style은 값으로** none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset을 갖는다.
+
+**border-top-color, border-right-color, border-bottom-color, border-left-color, border-color은 값으로** 색(color)/transparent를 갖는다.
+
+**border-top, border-right, border-bottom, border-left, border은 값으로** borer-width, border-style, border-top-color를 갖는다. 즉 위의 너비, 스타일, 색상을 한번에 설정한다. 값은 생략될 수 있으나 순서대로 와야한다.
+
+시각적 서식 모델(Visual formatting model)
+=========================================
+
+시각적 서식 모델은 브라우저가 각 미디어를 위해 DOM 트리를 어떻게 처리하는지에 대해 설명한 모델이다. 이 모델에서 박스 모델(box model)의 레이아웃은 다음 항목을 따른다.
+
+- 박스 크기, 타입
+- 위치결정 방식(normal flow, float, absolute positioning)
+- 각 요소와의 관계
+- 외부 정보(뷰 포트 크기, 이미지의 크기)
+
+뷰 포트(viewport)
+-----------------
+
+연속적인 미디어에서 브라우저는 사용자에게 뷰 포트(스크린 위에 표시되는 내용이 영역, 창)를 제공한다. 뷰 포트의 크기가 조정되면 브라우저는 문서의 레이아웃을 변경하게 된다. 뷰 포트의 크기는 *초기 컨테이닝 블록(initial containing block)* 의 크기와 같다. **뷰 포트의 크기가 캔버스보다 작을때에는 브라우저는 스크롤링(scrolling)을 제공한다.**
+
+캔버스 별로 최대 1개의 뷰포트를 갖고, 브라우저는 1개 이상의 캔버스를 렌더링 할 수 있다.(같은 문서에 대한 다른 뷰를 제공할 수 있음)
+
+컨테이닝 블록(Containing blocks)
+--------------------------------
+
+요소의 박스의 위치(position)와 크기(size)는 *컨테이닝 블록* 이라는 사각형 박스의 크기와 관계가 있다. 일반적으로 요소의 박스들은 자식 박스(descendant boxes)의 *컨테이닝 블록* 처럼 사용되며, 이는 이 박스가 자식 박스(descendant boxes)을 위해 컨테이닝 블록을 설정(establish)했다고 한다.
+
+각 박스의 위치는 컨테이닝 블록과 관련 있지만, 컨테이닝 블록안에 갖히지는 않는다. 오버플로우(overflow) 될 수 있다.
+
+박스 타입 제어(Controlling box generation)
+------------------------------------------
+
+생성되는 박스의 타입은 다양하다. 박스의 타입은 시각적 서식 모델에서 이 박스가 어떻게 동작할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 *'display'* 속성이 사용된다.
+
+블록 레벨 요소와 블록 박스
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*블록 레벨 요소(block-level element)는* 시각적으로 블록화된 요소를 뜻한다. (예를들어 paragraphs가 있음)
+
+*블록 레벨 요소(block-level element)로* 만들려면 다음과 같은 속성을 사용하면 된다.::
+
+  display: block
+  display: list-item
+  display: table
+
+*각 블록 레벨 요소(block-level element)는* 자식 박스(descendant box)와 컨텐츠을 포함하는 *제1 블록 레벨 박스(principal block-level box)를* 생성하며, 이것은 어떤 위치결정 방식(any positioning scheme)와 연관된다.
+
+*블록 레벨 박스(block-level box)는* *블록 서식 컨텍스트(block formatting context)에* 참여하는 박스를 뜻한다. 몇몇 블록 레벨 요소는 추가적인 박스를 만들기도한다. (list-item 일 경우)
+
+**테이블 박스(table box), 대체 요소(replaced element)를 제외한 블록 레벨 박스(block-level box)는 블록 컨테이너 박스(block container box)를 뜻한다. 블록 컨테이너 박스는 오직 블록 박스(block boxes)를 갖거나, 또는 인라인 서식 컨텍스트(inline formatting context) 설정하고 인라인 레벨 박스(inline-level boxes)를 포함할 수 있다.**
+
+모든 블록 컨테이너 박스가 블록 레벨 박스는 아니다. 대체 불가 인라인 블록(non-replaced inline block), 대체 불가 테이블 셀(non-replaced table cells)은 블록 컨테이너지만 블록 레벨 박스는 아니다.
+
+블록 레벨 박스이면서 블론 컨테이너 박스일 경우 **블록 박스(block box)라 한다.**
+
+익명 블록 박스(anonymous block box)
++++++++++++++++++++++++++++++++++++
+
+**div와 p가 모두 'display: block' 으로 되었다.**
+
+.. code-block:: html 
+
+  <div>
+    some text
+    <p>more text
+  </div>
+
+
+위의 예에서 div 컨테이너 블록에 둘러 쌓인 *some text* 이란 인라인 컨텐츠는 실제로 *익명 블록 박스로* 둘러 쌓이게 된다.
+
+다르게 말해서, 만약 블록 컨테이너 박스(div를 위해 생성된 것)가 블록 레벨 박스(p요소를 위해)를 갖고 있다면 블록 컨테이너 박스는 **오직 블록 레벨 박스만** 갖도록 강제된다.
+
+다른 예를 보자.
+
+.. code-block:: html 
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+  <HEAD>
+  <TITLE>Anonymous text interrupted by a block</TITLE>
+  <STYLE>
+  p    { display: inline }
+  span { display: block }
+  </STYLE>
+  </HEAD>
+  <BODY>
+  <P>
+  This is anonymous text before the SPAN.
+  <SPAN>This is the content of SPAN.</SPAN>
+  This is anonymous text after the SPAN.
+  </P>
+  </BODY>
+
+반대로 **인라인 박스가 in-flow 블록 레벨 박스를 가졌을때는** 인라인 박스가 **2개의 인라인 박스(비어있는 박스)로 쪼개지며** 익명의 블록 박스가 인라인 박스를 감싸는 형태로 기존의 블록 레벨 박스와 형제가 된다. 인라인 박스가 상대적인 위치에 영향을 받으면 인라인 박스에 포함된 블록 레벨 박스 역시 영향을 받는다.
+
+위의 예에서 인라인 블록 박스가 익명의 인라인 박스로 쪼개지고 블록 박스로 싸여지고, BODY 요소가 블록 컨테이너 박스로 존재하게되고, 2개의 익명 블록 박스와 1개의 블록 레벨 박스를 갖게된다.
+
+익명 블록 박스는 자신을 둘러싸는 블록 컨테이너 박스의 폰트를 상속받는다.
+
+인라인 레벨 요소와 인라인 박스
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**인라인 레벨 요소(inline-level element)는 새로운 블록을 생성하지 않는 요소이다.** 콘텐츠는 줄에 배치된다.(인라인 이미지, 문장 내의 강조된 글자 등등)
+
+*인라인 레벨 요소(inline-level element)로* 만드려면 다음과 같은 속성을 사용하면 된다.::
+
+  display: inline
+  display: inline-table
+  display: inline-block
+
+인라인 레벨 요소는 인라인 레벨 박스(inline-level box)를 만들며 이 박스는 인라인 서식 컨텍스트(inline formatting context)에 참여한다. 
+
+대체될 수 없는 인라인 요소(display: inline)만 *인라인 박스(inline box)를* 생성한다. 인라인 레벨 박스이면서 인라인 박스가 아닐 경우 *아토믹 인라인 레벨 박스(atomic inline-level boxes)라* 불린다. (예를들어 대체 가능한 인라인 레벨 요소, 인라인 블록 요소(display: inline-block), 인라인 테이블 요소(display: inline-table) 등이 있다.)
+
+아토믹 인라인 레벨 박스는 불투명한 싱글 박스로서 *인라인 서식 컨텍스트(inline formatting context)에* 참여한다.
+
+익명 인라인 박스(anonymous inline box)
+++++++++++++++++++++++++++++++++++++++
+
+**블록 컨테이너 요소에 포함된 텍스트(text)는 익명의 인라인 요소처럼 다뤄진다.**::
+
+  <p>Some <em>emphasized</em> text</p>
+
+P는 블록 박스(block box)를 만들며 몇몇 안라인 박스(inline boxes)를 갖고 있다. 인라인 요소 <em>에 의해 인라인 박스가 생기며, **Some과 text의 인라인 박스는 블록 레벨 요소(<p>)에 의해 생성된다.** 이러한 텍스트를 위한 인라인 박스를 익명의 인라인 박스(anonymous inline box)로 부른다. (연관된 인라인 레벨 요소(inline-level element)가 존재하지 않음)
+
+익명 인라인 박스는 부모 블록 박스로 부터 몇몇 속성을 상속받는다. 공백은 *white-space 속성을* 따라 인라인 박스를 갖지 못하고 삭제된다.
+
+.. code-block:: css
+
 미디어 쿼리(Media Queries)
 ==========================
 
@@ -215,7 +388,7 @@ not 키워드 및 콤마를 통한 OR 연산을 사용할 수 있다.::
 페이지 미디어(Paged media, CSS 2.1)
 ===================================
 
-*페이지 미디어(Paged media)는* 문서의 내용이 1개 이상의 페이지로 분할되는 미디어를 뜻한다. 이는 *연속적인 미디어(continuous media)와* 다르다. 페이지 미디어를 다루기 위해 CSS 2.1에서는 페이지의 마진(margin)과 어떻게 페이지를 나눌지를 정의할 수 있다.
+*페이지 미디어(Paged media)는* 문서의 내용이 1개 이상의 페이지로 분할되는 미디어를 뜻한다. 이는 *연속적인 미디어(continuous media)와* 다르다. 페이지 미디어를 다루기 위해 CSS 2.1에서는 페이지의 여백(margin)과 어떻게 페이지를 나눌지를 정의할 수 있다.
 
 브라우저는 문서의 페이지 박스(page box)를 실제 시트(sheet)에 전달한다. 페이지 박스와 실트는 종종 1:1 관계지만 언제나 그렇지는 않다. 단면 인쇄, 양면 인쇄, 여러개의 페이지를 하나의 시트에 올리는 등의 부가적인 특징이 있기 때문이다.
 

@@ -22,6 +22,7 @@ Contents:
    design/design_index.rst
    scala/scala_index.rst
    pr_language/language_index.rst
+   css/css_index.rst
    server/server_index.rst
    network/network_index.rst
    javascript/javascript_index.rst

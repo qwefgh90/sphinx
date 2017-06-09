@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. CSS 기본 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>1. CSS 기본 &mdash; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -17,8 +17,7 @@
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -26,13 +25,12 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="색인" href="../genindex.html" />
-    <link rel="search" title="검색" href="../search.html" />
+    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="CSS" href="css_index.html" />
     <link rel="next" title="2. 용어" href="css_terms.html" />
     <link rel="prev" title="CSS" href="css_index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -50,13 +48,13 @@
 <div class="section" id="id1">
 <h2>1.1. CSS 스펙<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
 <p><a class="reference internal" href="css_terms.html#css"><span class="std std-ref">CSS</span></a> 는 HTML, XML과 같은 구조화된 문서를 어떻게 화면에 보여줄지 기술하는 언어이다. CSS는 W3C의 CSS 워킹 그룹에서 스펙을 정의하고 있다. <a class="reference external" href="https://www.w3.org/Style/CSS/current-work">CSS 스펙 테이블</a> 을 참조하면 안정화된 스펙들을 묶어 CSS Snapshot 2017로 발표된 것을 확인할 수 있다.</p>
-<p>CSS Level 1과 CSS Level 2는 각각 하나의 스펙 문서로 정의되었지만 <em>CSS Level 3</em> 부터는 Level 2를 기반으로 각 CSS 특징별로 모듈화하여 스펙 문서가 작성되고 있다. 이 모듈은 CSS 2.1의 각 부분을 대체하고 있다.</p>
+<p>CSS Level 1과 CSS Level 2는 각각 하나의 스펙 문서로 정의되었지만 <em>CSS Level 3</em> 부터는 Level 2를 기반으로 각 CSS 특징별로 모듈화하여 스펙 문서가 작성되고 있다. 각 모듈은 CSS 2.1의 각 부분을 대체하고 있다.</p>
 </div>
 <div class="section" id="id3">
 <h2>1.2. CSS 기본<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <p>CSS 규칙의 각 부분을 설명하고 있다.:</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">h1</span> <span class="p">{</span> <span class="c">/* h1은 셀렉터과 선언들(declarations)로 구성됨  */</span>
-  <span class="k">color</span><span class="p">:</span> <span class="kc">green</span><span class="p">;</span> <span class="c">/* 선언(declaration)은 프로퍼티 이름, 값으로 구성되고 세미콜론으로 구분됨 */</span>
+  <span class="nb">color</span><span class="o">:</span> <span class="nb">green</span><span class="p">;</span> <span class="c">/* 선언(declaration)은 프로퍼티 이름, 값으로 구성되고 세미콜론으로 구분됨 */</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -75,7 +73,7 @@
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">HTML</span><span class="o">&gt;</span>
    <span class="o">&lt;</span><span class="nt">HEAD</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nt">STYLE</span> <span class="nt">type</span><span class="o">=</span><span class="s2">&quot;text/css&quot;</span><span class="o">&gt;</span>
-         <span class="nt">h1</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">green</span> <span class="p">}</span>
+         <span class="nt">h1</span> <span class="p">{</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">green</span> <span class="p">}</span>
       <span class="o">&lt;/</span><span class="nt">STYLE</span><span class="o">&gt;</span>
    <span class="o">&lt;/</span><span class="nt">HEAD</span><span class="o">&gt;</span>
    <span class="o">&lt;</span><span class="nt">BODY</span><span class="o">&gt;</span>
@@ -94,10 +92,13 @@
 <li>몇몇 캔버스(canvas)의 관점</li>
 <li>몇몇 시스템의 정보</li>
 </ul>
-<p>캔버스(canvas)란 미디어에서 서식 구조(formatting structure)가 렌더링되는 공간을 뜻한다.</p>
+</div>
+<div class="section" id="id4">
+<h3>1.2.2. 캔버스<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
+<p>캔버스(canvas)란 미디어에서 서식 구조(formatting structure)가 렌더링되는 공간을 뜻한다. 캔버스의 크기는 무한하지만, 렌더링은 캔버스의 일부분에서만 일어난다. 예를들어 유저 에이전트(브라우저)는 뷰포트의 크기를 기반으로 초기 너비를 설정하고 다른 유저 에이전트(페이지)는 너비와 높이를 제한한다.</p>
 </div>
 <div class="section" id="css-2-1-processsing-model">
-<h3>1.2.2. CSS 2.1 처리 모델 (processsing model)<a class="headerlink" href="#css-2-1-processsing-model" title="제목 주소">¶</a></h3>
+<h3>1.2.3. CSS 2.1 처리 모델 (processsing model)<a class="headerlink" href="#css-2-1-processsing-model" title="제목 주소">¶</a></h3>
 <p>브라우저(유저 에이전트)가 CSS와 HTML 문서를 처리하는 절차는 다음과 같다.</p>
 <ol class="arabic simple">
 <li>HTML 문서를 분석하고 문서 트리(Document tree)를 생성한다.</li>
@@ -201,8 +202,8 @@
 <li>::before, ::after : 요소의 전, 후</li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h4>1.3.1.3. 콤비네이터<a class="headerlink" href="#id5" title="제목 주소">¶</a></h4>
+<div class="section" id="id6">
+<h4>1.3.1.3. 콤비네이터<a class="headerlink" href="#id6" title="제목 주소">¶</a></h4>
 <ul class="simple">
 <li>공백 : 자식 요소들</li>
 <li>&gt; : 자식 요소들 중에 부모 바로 밑에 있는 요소</li>
@@ -213,14 +214,143 @@
 <li>~ : 같은 부모를 갖는 요소들</li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h4>1.3.1.4. 셀렉터의 우선순위<a class="headerlink" href="#id6" title="제목 주소">¶</a></h4>
+<div class="section" id="id7">
+<h4>1.3.1.4. 셀렉터의 우선순위<a class="headerlink" href="#id7" title="제목 주소">¶</a></h4>
 <p>셀렉터의 우선순위는 <a class="reference external" href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#specificity">링크</a> 를 참조하여 계산 할 수 있다. <strong>요소의 style 속성은 가장 높은 우선순위를 갖는다.</strong></p>
 </div>
 </div>
 </div>
+<div class="section" id="box-model">
+<h2>1.4. 박스 모델(Box model)<a class="headerlink" href="#box-model" title="제목 주소">¶</a></h2>
+<p><em>박스 모델이란</em> DOM 트리 요소(element)를 위해 생성된 사각형 박스를 나타내는 모델이다. <strong>박스는 콘텐츠(content) 영역, 패딩(paddding), 경계(border), 여백(margin, 여백) 영역으로 구성된다.</strong> 패딩, 경계, 여백영역은 다시 4개의 세그먼트(top, right, bottom, left)로 나눠지며 주변을 엣지(Edge)라 부른다.</p>
+<ul class="simple">
+<li>콘텐츠 엣지(content edge), 내부 엣지(inner edge): 콘텐츠 엣지는 사각형을 둘러싸며, 렌더링된 내용에 의존적이다. 4개의 콘텐츠 엣지는 콘텐츠 박스(content box)를 구성한다.</li>
+<li>패딩 엣지(padding edge): 패딩 엣지는 패딩(padding)영역을 감싼다. 만약 패딩의 너비가 0이라면 콘텐츠 엣지와 패딩 엣지는 같다.</li>
+<li>경계 엣지(border edge): 경계 엣지는 경계 영역를 둘러싸며, 경계의 너비가 0이면 패딩 엣지와 같다.</li>
+<li>여백 엣지(margin edge), 외부 엣지(outer edge): 여백 엣지는 여백 영역을 둘러싸며, 0일 경우 경계 엣지와 같다.</li>
+</ul>
+<p>콘텐츠 영역의 너비는 <a class="reference external" href="https://www.w3.org/TR/CSS2/visudet.html">몇가지 요소</a> 에 의존적이다.</p>
+<p>컨텐츠, 패딩, 경계 영역의 <em>background 스타일은</em> 그 요소의 <em>background 속성에 의해</em> 결정된다. 여백 영역은 항상 투명이다.</p>
+<div class="section" id="margin-properties">
+<h3>1.4.1. 여백 속성(margin properties)<a class="headerlink" href="#margin-properties" title="제목 주소">¶</a></h3>
+<p>마진 영역의 너비를 나타낸다.</p>
+<p><strong>margin-top, margin-right, margin-bottom, margin-left, margin은 값으로</strong> <a class="reference external" href="https://www.w3.org/TR/CSS2/visudet.html#Computing_widths_and_margins">auto</a>/길이/퍼센트(컨테이닝 블록의 너비에 비례, 컨테이닝 블록의 너비가 요소 자체에 의존적이라면 공식이 정의되진 않음)을 갖는다. table 타입을 제외한 모든 요소에 적용된다. 길이는 음수가 될 수 있다.</p>
+<p>2개 이상의 박스가 겹쳤을 경우 하나의 여백으로 결합될 수 있다. 이를 붕괴(collapse)라 한다. 결합된 여백은 붕괴된 여백(collapsed margin)이라 한다. 수직으로 접한 여백은 붕괴될 수 있으나 수평 여백은 절대 붕괴될 수 없다.</p>
+</div>
+<div class="section" id="paddding-properties">
+<h3>1.4.2. 패딩 속성(paddding properties)<a class="headerlink" href="#paddding-properties" title="제목 주소">¶</a></h3>
+<p>패딩 영역의 너비를 나타낸다.</p>
+<p><strong>padding-top, padding-right, padding-bottom, padding-left, padding은 값으로</strong> 길이/퍼센트(컨테이닝 블록의 너비에 비례, 컨테이닝 블록의 너비가 요소 자체에 의존적이라면 공식이 정의되진 않음)을 갖는다. table-row-group, table-header-group, table-footer-group, table-row, table-column-group, table-column 타입을 제외한 모든 요소에 적용된다. 길이는 음수가 될 수 없다.</p>
+</div>
+<div class="section" id="border-properties-css-2-1">
+<h3>1.4.3. 경계 속성(border properties, CSS 2.1)<a class="headerlink" href="#border-properties-css-2-1" title="제목 주소">¶</a></h3>
+<p>경계 영역의 너비를 나타낸다.</p>
+<p>모든 경계 속성은 모든 요소에 적용된다.</p>
+<p><strong>border-top-width, border-right-width, border-bottom-width, border-left-width, border-width은 값으로</strong> thin/medium/thick/길이를 갖는다.</p>
+<p><strong>border-top-style, border-right-style, border-bottom-style, border-left-style, border-style은 값으로</strong> none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset을 갖는다.</p>
+<p><strong>border-top-color, border-right-color, border-bottom-color, border-left-color, border-color은 값으로</strong> 색(color)/transparent를 갖는다.</p>
+<p><strong>border-top, border-right, border-bottom, border-left, border은 값으로</strong> borer-width, border-style, border-top-color를 갖는다. 즉 위의 너비, 스타일, 색상을 한번에 설정한다. 값은 생략될 수 있으나 순서대로 와야한다.</p>
+</div>
+</div>
+<div class="section" id="visual-formatting-model">
+<h2>1.5. 시각적 서식 모델(Visual formatting model)<a class="headerlink" href="#visual-formatting-model" title="제목 주소">¶</a></h2>
+<p>시각적 서식 모델은 브라우저가 각 미디어를 위해 DOM 트리를 어떻게 처리하는지에 대해 설명한 모델이다. 이 모델에서 박스 모델(box model)의 레이아웃은 다음 항목을 따른다.</p>
+<ul class="simple">
+<li>박스 크기, 타입</li>
+<li>위치결정 방식(normal flow, float, absolute positioning)</li>
+<li>각 요소와의 관계</li>
+<li>외부 정보(뷰 포트 크기, 이미지의 크기)</li>
+</ul>
+<div class="section" id="viewport">
+<h3>1.5.1. 뷰 포트(viewport)<a class="headerlink" href="#viewport" title="제목 주소">¶</a></h3>
+<p>연속적인 미디어에서 브라우저는 사용자에게 뷰 포트(스크린 위에 표시되는 내용이 영역, 창)를 제공한다. 뷰 포트의 크기가 조정되면 브라우저는 문서의 레이아웃을 변경하게 된다. 뷰 포트의 크기는 <em>초기 컨테이닝 블록(initial containing block)</em> 의 크기와 같다. <strong>뷰 포트의 크기가 캔버스보다 작을때에는 브라우저는 스크롤링(scrolling)을 제공한다.</strong></p>
+<p>캔버스 별로 최대 1개의 뷰포트를 갖고, 브라우저는 1개 이상의 캔버스를 렌더링 할 수 있다.(같은 문서에 대한 다른 뷰를 제공할 수 있음)</p>
+</div>
+<div class="section" id="containing-blocks">
+<h3>1.5.2. 컨테이닝 블록(Containing blocks)<a class="headerlink" href="#containing-blocks" title="제목 주소">¶</a></h3>
+<p>요소의 박스의 위치(position)와 크기(size)는 <em>컨테이닝 블록</em> 이라는 사각형 박스의 크기와 관계가 있다. 일반적으로 요소의 박스들은 자식 박스(descendant boxes)의 <em>컨테이닝 블록</em> 처럼 사용되며, 이는 이 박스가 자식 박스(descendant boxes)을 위해 컨테이닝 블록을 설정(establish)했다고 한다.</p>
+<p>각 박스의 위치는 컨테이닝 블록과 관련 있지만, 컨테이닝 블록안에 갖히지는 않는다. 오버플로우(overflow) 될 수 있다.</p>
+</div>
+<div class="section" id="controlling-box-generation">
+<h3>1.5.3. 박스 타입 제어(Controlling box generation)<a class="headerlink" href="#controlling-box-generation" title="제목 주소">¶</a></h3>
+<p>생성되는 박스의 타입은 다양하다. 박스의 타입은 시각적 서식 모델에서 이 박스가 어떻게 동작할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 <em>&#8216;display&#8217;</em> 속성이 사용된다.</p>
+<div class="section" id="id10">
+<h4>1.5.3.1. 블록 레벨 요소와 블록 박스<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
+<p><em>블록 레벨 요소(block-level element)는</em> 시각적으로 블록화된 요소를 뜻한다. (예를들어 paragraphs가 있음)</p>
+<p><em>블록 레벨 요소(block-level element)로</em> 만들려면 다음과 같은 속성을 사용하면 된다.:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="o">:</span> <span class="nt">block</span>
+<span class="nt">display</span><span class="o">:</span> <span class="nt">list-item</span>
+<span class="nt">display</span><span class="o">:</span> <span class="nt">table</span>
+</pre></div>
+</div>
+<p><em>각 블록 레벨 요소(block-level element)는</em> 자식 박스(descendant box)와 컨텐츠을 포함하는 <em>제1 블록 레벨 박스(principal block-level box)를</em> 생성하며, 이것은 어떤 위치결정 방식(any positioning scheme)와 연관된다.</p>
+<p><em>블록 레벨 박스(block-level box)는</em> <em>블록 서식 컨텍스트(block formatting context)에</em> 참여하는 박스를 뜻한다. 몇몇 블록 레벨 요소는 추가적인 박스를 만들기도한다. (list-item 일 경우)</p>
+<p><strong>테이블 박스(table box), 대체 요소(replaced element)를 제외한 블록 레벨 박스(block-level box)는 블록 컨테이너 박스(block container box)를 뜻한다. 블록 컨테이너 박스는 오직 블록 박스(block boxes)를 갖거나, 또는 인라인 서식 컨텍스트(inline formatting context) 설정하고 인라인 레벨 박스(inline-level boxes)를 포함할 수 있다.</strong></p>
+<p>모든 블록 컨테이너 박스가 블록 레벨 박스는 아니다. 대체 불가 인라인 블록(non-replaced inline block), 대체 불가 테이블 셀(non-replaced table cells)은 블록 컨테이너지만 블록 레벨 박스는 아니다.</p>
+<p>블록 레벨 박스이면서 블론 컨테이너 박스일 경우 <strong>블록 박스(block box)라 한다.</strong></p>
+<div class="section" id="anonymous-block-box">
+<h5>1.5.3.1.1. 익명 블록 박스(anonymous block box)<a class="headerlink" href="#anonymous-block-box" title="제목 주소">¶</a></h5>
+<p><strong>div와 p가 모두 &#8216;display: block&#8217; 으로 되었다.</strong></p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  some text
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>more text
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>위의 예에서 div 컨테이너 블록에 둘러 쌓인 <em>some text</em> 이란 인라인 컨텐츠는 실제로 <em>익명 블록 박스로</em> 둘러 쌓이게 된다.</p>
+<p>다르게 말해서, 만약 블록 컨테이너 박스(div를 위해 생성된 것)가 블록 레벨 박스(p요소를 위해)를 갖고 있다면 블록 컨테이너 박스는 <strong>오직 블록 레벨 박스만</strong> 갖도록 강제된다.</p>
+<p>다른 예를 보자.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
+<span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>Anonymous text interrupted by a block<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">STYLE</span><span class="p">&gt;</span>
+<span class="nt">p</span>    <span class="p">{</span> <span class="nb">display</span><span class="o">:</span> <span class="nb">inline</span> <span class="p">}</span>
+<span class="nt">span</span> <span class="p">{</span> <span class="nb">display</span><span class="o">:</span> <span class="nb">block</span> <span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">STYLE</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">HEAD</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">BODY</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">P</span><span class="p">&gt;</span>
+This is anonymous text before the SPAN.
+<span class="p">&lt;</span><span class="nt">SPAN</span><span class="p">&gt;</span>This is the content of SPAN.<span class="p">&lt;/</span><span class="nt">SPAN</span><span class="p">&gt;</span>
+This is anonymous text after the SPAN.
+<span class="p">&lt;/</span><span class="nt">P</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">BODY</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>반대로 <strong>인라인 박스가 in-flow 블록 레벨 박스를 가졌을때는</strong> 인라인 박스가 <strong>2개의 인라인 박스(비어있는 박스)로 쪼개지며</strong> 익명의 블록 박스가 인라인 박스를 감싸는 형태로 기존의 블록 레벨 박스와 형제가 된다. 인라인 박스가 상대적인 위치에 영향을 받으면 인라인 박스에 포함된 블록 레벨 박스 역시 영향을 받는다.</p>
+<p>위의 예에서 <a href="#id11"><span class="problematic" id="id12">**</span></a>인라인 블록 박스가 익명의 인라인 박스로 쪼개지고 블록 박스로 싸여지고, BODY 요소가 블록 컨테이너 박스로 존재하게되고, 2개의 익명 블록 박스와 1개의 블록 레벨 박스를 갖게된다.</p>
+<p>익명 블록 박스는 자신을 둘러싸는 블록 컨테이너 박스의 폰트를 상속받는다.</p>
+</div>
+</div>
+<div class="section" id="id13">
+<h4>1.5.3.2. 인라인 레벨 요소와 인라인 박스<a class="headerlink" href="#id13" title="제목 주소">¶</a></h4>
+<p><strong>인라인 레벨 요소(inline-level element)는 새로운 블록을 생성하지 않는 요소이다.</strong> 콘텐츠는 줄에 배치된다.(인라인 이미지, 문장 내의 강조된 글자 등등)</p>
+<p><em>인라인 레벨 요소(inline-level element)로</em> 만드려면 다음과 같은 속성을 사용하면 된다.:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="o">:</span> <span class="nt">inline</span>
+<span class="nt">display</span><span class="o">:</span> <span class="nt">inline-table</span>
+<span class="nt">display</span><span class="o">:</span> <span class="nt">inline-block</span>
+</pre></div>
+</div>
+<p>인라인 레벨 요소는 인라인 레벨 박스(inline-level box)를 만들며 이 박스는 인라인 서식 컨텍스트(inline formatting context)에 참여한다.</p>
+<p>대체될 수 없는 인라인 요소(display: inline)만 <em>인라인 박스(inline box)를</em> 생성한다. 인라인 레벨 박스이면서 인라인 박스가 아닐 경우 <em>아토믹 인라인 레벨 박스(atomic inline-level boxes)라</em> 불린다. (예를들어 대체 가능한 인라인 레벨 요소, 인라인 블록 요소(display: inline-block), 인라인 테이블 요소(display: inline-table) 등이 있다.)</p>
+<p>아토믹 인라인 레벨 박스는 불투명한 싱글 박스로서 <em>인라인 서식 컨텍스트(inline formatting context)에</em> 참여한다.</p>
+<div class="section" id="anonymous-inline-box">
+<h5>1.5.3.2.1. 익명 인라인 박스(anonymous inline box)<a class="headerlink" href="#anonymous-inline-box" title="제목 주소">¶</a></h5>
+<p><strong>블록 컨테이너 요소에 포함된 텍스트(text)는 익명의 인라인 요소처럼 다뤄진다.</strong>:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">Some</span> <span class="o">&lt;</span><span class="nt">em</span><span class="o">&gt;</span><span class="nt">emphasized</span><span class="o">&lt;/</span><span class="nt">em</span><span class="o">&gt;</span> <span class="nt">text</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>P는 블록 박스(block box)를 만들며 몇몇 안라인 박스(inline boxes)를 갖고 있다. 인라인 요소 &lt;em&gt;에 의해 인라인 박스가 생기며, <strong>Some과 text의 인라인 박스는 블록 레벨 요소(&lt;p&gt;)에 의해 생성된다.</strong> 이러한 텍스트를 위한 인라인 박스를 익명의 인라인 박스(anonymous inline box)로 부른다. (연관된 인라인 레벨 요소(inline-level element)가 존재하지 않음)</p>
+<p>익명 인라인 박스는 부모 블록 박스로 부터 몇몇 속성을 상속받는다. 공백은 <em>white-space 속성을</em> 따라 인라인 박스를 갖지 못하고 삭제된다.</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="media-queries">
-<h2>1.4. 미디어 쿼리(Media Queries)<a class="headerlink" href="#media-queries" title="제목 주소">¶</a></h2>
+<h2>1.6. 미디어 쿼리(Media Queries)<a class="headerlink" href="#media-queries" title="제목 주소">¶</a></h2>
 <p>미디어 쿼리는 미디어에 의존적인 스타일을 작성하기 위한 도구이다. 미디어에는 <em>all</em>, <em>screen</em>, <em>print</em> 같은 것이 있다. (HTML4에 정의됨)</p>
 <p><strong>미디어 쿼리는 미디어 타입과 미디어의 조건을 검사하기 위한 0개 이상의 표현식으로 구성된다.</strong></p>
 <p>HTML에서는 다음과 같이 적용할 수 있다.:</p>
@@ -239,7 +369,7 @@
 </pre></div>
 </div>
 <div class="section" id="media-features">
-<h3>1.4.1. 미디어 특성(Media features)<a class="headerlink" href="#media-features" title="제목 주소">¶</a></h3>
+<h3>1.6.1. 미디어 특성(Media features)<a class="headerlink" href="#media-features" title="제목 주소">¶</a></h3>
 <p>미디어 특성은 미디어에 대한 요구사항을 표현할때 사용된다.</p>
 <p><em>width 특성은</em> 출력 장치의 표시 영역의 너비를 나타낸다. <em>연속적인 미디어(continuous media)에서는</em> 스크롤 바를 포함한 viewport의 너비와 같으며 <em>페이지 미디어(paged media)에서는</em> 페이지 박스(page box)의 너비를 뜻한다. <em>페이지 미디어에</em> 대한 내용은 다음 <a class="reference external" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/page.html#page-intro">링크</a> 에서 확인할 수 있다.</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span>@media screen and (min-width: 400px) and (max-width: 700px) { … }
@@ -248,8 +378,8 @@
 </div>
 </div>
 <div class="section" id="paged-media-css-2-1">
-<h2>1.5. 페이지 미디어(Paged media, CSS 2.1)<a class="headerlink" href="#paged-media-css-2-1" title="제목 주소">¶</a></h2>
-<p><em>페이지 미디어(Paged media)는</em> 문서의 내용이 1개 이상의 페이지로 분할되는 미디어를 뜻한다. 이는 <em>연속적인 미디어(continuous media)와</em> 다르다. 페이지 미디어를 다루기 위해 CSS 2.1에서는 페이지의 마진(margin)과 어떻게 페이지를 나눌지를 정의할 수 있다.</p>
+<h2>1.7. 페이지 미디어(Paged media, CSS 2.1)<a class="headerlink" href="#paged-media-css-2-1" title="제목 주소">¶</a></h2>
+<p><em>페이지 미디어(Paged media)는</em> 문서의 내용이 1개 이상의 페이지로 분할되는 미디어를 뜻한다. 이는 <em>연속적인 미디어(continuous media)와</em> 다르다. 페이지 미디어를 다루기 위해 CSS 2.1에서는 페이지의 여백(margin)과 어떻게 페이지를 나눌지를 정의할 수 있다.</p>
 <p>브라우저는 문서의 페이지 박스(page box)를 실제 시트(sheet)에 전달한다. 페이지 박스와 실트는 종종 1:1 관계지만 언제나 그렇지는 않다. 단면 인쇄, 양면 인쇄, 여러개의 페이지를 하나의 시트에 올리는 등의 부가적인 특징이 있기 때문이다.</p>
 <p><em>페이지 박스(page box)는</em> 2가지 영역을 포함한다.</p>
 <ul class="simple">
@@ -257,20 +387,20 @@
 <li><em>여백 영역(margin area)</em>: 페이지 영역을 감싸는 영역이다. &#64;page 규칙을 사용하여 지정할 수 있다.</li>
 </ul>
 <div class="section" id="page">
-<h3>1.5.1. &#64;page<a class="headerlink" href="#page" title="제목 주소">¶</a></h3>
+<h3>1.7.1. &#64;page<a class="headerlink" href="#page" title="제목 주소">¶</a></h3>
 <p>&#64;page는 페이지를 설정할때 사용하는 규칙이며 페이지 셀렉터, 스타일 블록이 따라온다.</p>
-<div class="section" id="id9">
-<h4>1.5.1.1. 페이지 여백<a class="headerlink" href="#id9" title="제목 주소">¶</a></h4>
+<div class="section" id="id15">
+<h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
 <p>margin-top, margin-right, margin-bottom, margin-left &#64;page 규칙에서 사용할 수 있다.:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">page</span> <span class="p">{</span>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="k">@page</span> <span class="p">{</span>
 <span class="nt">margin</span><span class="o">:</span> <span class="nt">3cm</span><span class="o">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id10">
-<h4>1.5.1.2. 페이지 선택자<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
-<ul class="simple">
+<div class="section" id="id16">
+<h4>1.7.1.2. 페이지 선택자<a class="headerlink" href="#id16" title="제목 주소">¶</a></h4>
+<ul>
 <li><table class="first docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -284,7 +414,7 @@
 </div>
 </div>
 <div class="section" id="page-breaks">
-<h3>1.5.2. 페이지 분할(Page breaks)<a class="headerlink" href="#page-breaks" title="제목 주소">¶</a></h3>
+<h3>1.7.2. 페이지 분할(Page breaks)<a class="headerlink" href="#page-breaks" title="제목 주소">¶</a></h3>
 <p>페이지 분할에 관련하여 요소에 적용할 수 있는 5가지 속성값이 있다. 각 페이지 분할은 페이지 박스에 내용을 채운뒤 DOM 트리의 남은 내용을 새로운 페이지 박스에 채우는 식으로 동작한다.</p>
 <ul class="simple">
 <li>page-break-before: auto | always | avoid | left | right | inherit</li>
@@ -294,8 +424,8 @@
 <p>위 속성들은 블록 요소에만 적용되며 기본적으로 auto로 동작한다. always를 주면 항상 페이지 분할이 발생하고 avoid는 분할이 발생하지 않게 한다.</p>
 </div>
 </div>
-<div class="section" id="id11">
-<h2>1.6. 참조<a class="headerlink" href="#id11" title="제목 주소">¶</a></h2>
+<div class="section" id="id17">
+<h2>1.8. 참조<a class="headerlink" href="#id17" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>CSS Snapshot: <a class="reference external" href="https://www.w3.org/Style/2011/CSS-process">https://www.w3.org/Style/2011/CSS-process</a></li>
 <li>CSS Processing: <a class="reference external" href="https://www.w3.org/TR/CSS2/intro.html#q2.0">https://www.w3.org/TR/CSS2/intro.html#q2.0</a></li>
@@ -318,7 +448,8 @@
 <li><a class="reference internal" href="#id1">1.1. CSS 스펙</a></li>
 <li><a class="reference internal" href="#id3">1.2. CSS 기본</a><ul>
 <li><a class="reference internal" href="#css-2-1-addressing-model">1.2.1. CSS 2.1 주소 지정 모델 (addressing model)</a></li>
-<li><a class="reference internal" href="#css-2-1-processsing-model">1.2.2. CSS 2.1 처리 모델 (processsing model)</a></li>
+<li><a class="reference internal" href="#id4">1.2.2. 캔버스</a></li>
+<li><a class="reference internal" href="#css-2-1-processsing-model">1.2.3. CSS 2.1 처리 모델 (processsing model)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#selectors">1.3. 셀렉터(Selectors)</a><ul>
@@ -333,26 +464,48 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#pseudo-elements">1.3.1.2. 의사 요소(Pseudo-elements)</a></li>
-<li><a class="reference internal" href="#id5">1.3.1.3. 콤비네이터</a></li>
-<li><a class="reference internal" href="#id6">1.3.1.4. 셀렉터의 우선순위</a></li>
+<li><a class="reference internal" href="#id6">1.3.1.3. 콤비네이터</a></li>
+<li><a class="reference internal" href="#id7">1.3.1.4. 셀렉터의 우선순위</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#media-queries">1.4. 미디어 쿼리(Media Queries)</a><ul>
-<li><a class="reference internal" href="#media-features">1.4.1. 미디어 특성(Media features)</a></li>
+<li><a class="reference internal" href="#box-model">1.4. 박스 모델(Box model)</a><ul>
+<li><a class="reference internal" href="#margin-properties">1.4.1. 여백 속성(margin properties)</a></li>
+<li><a class="reference internal" href="#paddding-properties">1.4.2. 패딩 속성(paddding properties)</a></li>
+<li><a class="reference internal" href="#border-properties-css-2-1">1.4.3. 경계 속성(border properties, CSS 2.1)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#paged-media-css-2-1">1.5. 페이지 미디어(Paged media, CSS 2.1)</a><ul>
-<li><a class="reference internal" href="#page">1.5.1. &#64;page</a><ul>
-<li><a class="reference internal" href="#id9">1.5.1.1. 페이지 여백</a></li>
-<li><a class="reference internal" href="#id10">1.5.1.2. 페이지 선택자</a></li>
+<li><a class="reference internal" href="#visual-formatting-model">1.5. 시각적 서식 모델(Visual formatting model)</a><ul>
+<li><a class="reference internal" href="#viewport">1.5.1. 뷰 포트(viewport)</a></li>
+<li><a class="reference internal" href="#containing-blocks">1.5.2. 컨테이닝 블록(Containing blocks)</a></li>
+<li><a class="reference internal" href="#controlling-box-generation">1.5.3. 박스 타입 제어(Controlling box generation)</a><ul>
+<li><a class="reference internal" href="#id10">1.5.3.1. 블록 레벨 요소와 블록 박스</a><ul>
+<li><a class="reference internal" href="#anonymous-block-box">1.5.3.1.1. 익명 블록 박스(anonymous block box)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#page-breaks">1.5.2. 페이지 분할(Page breaks)</a></li>
+<li><a class="reference internal" href="#id13">1.5.3.2. 인라인 레벨 요소와 인라인 박스</a><ul>
+<li><a class="reference internal" href="#anonymous-inline-box">1.5.3.2.1. 익명 인라인 박스(anonymous inline box)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id11">1.6. 참조</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#media-queries">1.6. 미디어 쿼리(Media Queries)</a><ul>
+<li><a class="reference internal" href="#media-features">1.6.1. 미디어 특성(Media features)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#paged-media-css-2-1">1.7. 페이지 미디어(Paged media, CSS 2.1)</a><ul>
+<li><a class="reference internal" href="#page">1.7.1. &#64;page</a><ul>
+<li><a class="reference internal" href="#id15">1.7.1.1. 페이지 여백</a></li>
+<li><a class="reference internal" href="#id16">1.7.1.2. 페이지 선택자</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#page-breaks">1.7.2. 페이지 분할(Page breaks)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id17">1.8. 참조</a></li>
 </ul>
 </li>
 </ul>
@@ -370,7 +523,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/css/css_basic.rst.txt"
+      <li><a href="../_sources/css/css_basic.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -392,11 +545,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
-      <a href="../_sources/css/css_basic.rst.txt"
+      <a href="../_sources/css/css_basic.txt"
           rel="nofollow">Page source</a>
     </div>
 
