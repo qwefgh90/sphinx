@@ -235,7 +235,7 @@
 <h3>1.4.1. 여백 속성(margin properties)<a class="headerlink" href="#margin-properties" title="제목 주소">¶</a></h3>
 <p>마진 영역의 너비를 나타낸다.</p>
 <p><strong>margin-top, margin-right, margin-bottom, margin-left, margin은 값으로</strong> <a class="reference external" href="https://www.w3.org/TR/CSS2/visudet.html#Computing_widths_and_margins">auto</a>/길이/퍼센트(컨테이닝 블록의 너비에 비례, 컨테이닝 블록의 너비가 요소 자체에 의존적이라면 공식이 정의되진 않음)을 갖는다. table 타입을 제외한 모든 요소에 적용된다. 길이는 음수가 될 수 있다.</p>
-<p>2개 이상의 박스가 겹쳤을 경우 하나의 여백으로 결합될 수 있다. 이를 붕괴(collapse)라 한다. 결합된 여백은 붕괴된 여백(collapsed margin)이라 한다. 수직으로 접한 여백은 붕괴될 수 있으나 수평 여백은 절대 붕괴될 수 없다.</p>
+<p>2개 이상의 박스가 겹쳤을 경우 하나의 여백으로 결합될 수 있다. 이를 접힌다고(collapse) 한다. 결합된 여백은 접힌 여백(collapsed margin)이라 한다. 수직으로 접한 여백은 접힐 수 있으나 수평 여백은 절대 접혀질 수 없다.</p>
 </div>
 <div class="section" id="paddding-properties">
 <h3>1.4.2. 패딩 속성(paddding properties)<a class="headerlink" href="#paddding-properties" title="제목 주소">¶</a></h3>
@@ -285,12 +285,12 @@
 </div>
 <p><em>각 블록 레벨 요소(block-level element)는</em> 자식 박스(descendant box)와 컨텐츠을 포함하는 <em>제1 블록 레벨 박스(principal block-level box)를</em> 생성하며, 이것은 어떤 위치결정 방식(any positioning scheme)와 연관된다.</p>
 <p><em>블록 레벨 박스(block-level box)는</em> <em>블록 서식 컨텍스트(block formatting context)에</em> 참여하는 박스를 뜻한다. 몇몇 블록 레벨 요소는 추가적인 박스를 만들기도한다. (list-item 일 경우)</p>
-<p><strong>테이블 박스(table box), 대체 요소(replaced element)를 제외한 블록 레벨 박스(block-level box)는 블록 컨테이너 박스(block container box)를 뜻한다. 블록 컨테이너 박스는 오직 블록 박스(block boxes)를 갖거나, 또는 인라인 서식 컨텍스트(inline formatting context) 설정하고 인라인 레벨 박스(inline-level boxes)를 포함할 수 있다.</strong></p>
+<p><strong>테이블 박스(table box), 대체 요소(replaced element)를 제외한 블록 레벨 박스(block-level box)는 블록 컨테이너 박스(block container box)를 뜻한다.</strong> 블록 컨테이너 박스는 오직 블록 레벨 박스(block-level box)를 갖거나, 또는 인라인 서식 컨텍스트(inline formatting context) 설정하고 인라인 레벨 박스(inline-level boxes)만 포함할 수 있다.</p>
 <p>모든 블록 컨테이너 박스가 블록 레벨 박스는 아니다. 대체 불가 인라인 블록(non-replaced inline block), 대체 불가 테이블 셀(non-replaced table cells)은 블록 컨테이너지만 블록 레벨 박스는 아니다.</p>
-<p>블록 레벨 박스이면서 블론 컨테이너 박스일 경우 <strong>블록 박스(block box)라 한다.</strong></p>
+<p>블록 레벨 박스이면서 블록 컨테이너 박스일 경우 <strong>블록 박스(block box)라 한다.</strong></p>
 <div class="section" id="anonymous-block-box">
 <h5>1.5.3.1.1. 익명 블록 박스(anonymous block box)<a class="headerlink" href="#anonymous-block-box" title="제목 주소">¶</a></h5>
-<p><strong>div와 p가 모두 &#8216;display: block&#8217; 으로 되었다.</strong></p>
+<p><strong>div와 p 모두 &#8216;display: block&#8217; 스타일이 적용 되었다.</strong></p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
   some text
   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>more text
@@ -317,13 +317,13 @@ This is anonymous text after the SPAN.
 <span class="p">&lt;/</span><span class="nt">BODY</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>반대로 <strong>인라인 박스가 in-flow 블록 레벨 박스를 가졌을때는</strong> 인라인 박스가 <strong>2개의 인라인 박스(비어있는 박스)로 쪼개지며</strong> 익명의 블록 박스가 인라인 박스를 감싸는 형태로 기존의 블록 레벨 박스와 형제가 된다. 인라인 박스가 상대적인 위치에 영향을 받으면 인라인 박스에 포함된 블록 레벨 박스 역시 영향을 받는다.</p>
-<p>위의 예에서 <a href="#id11"><span class="problematic" id="id12">**</span></a>인라인 블록 박스가 익명의 인라인 박스로 쪼개지고 블록 박스로 싸여지고, BODY 요소가 블록 컨테이너 박스로 존재하게되고, 2개의 익명 블록 박스와 1개의 블록 레벨 박스를 갖게된다.</p>
+<p>반대로 <strong>인라인 박스가 in-flow 블록 레벨 박스를 가졌을때는</strong> 인라인 박스가 <strong>2개의 익명 블록 박스(비어있는 박스)로 쪼개지며,</strong> 익명의 블록 박스가 다른 블록 박스를 감싸는 형태로 기존의 블록 레벨 박스와 형제가 된다. 인라인 박스가 상대적인 위치에 영향을 받으면 인라인 박스 안에 위치한 블록 레벨 박스 역시 영향을 받는다.</p>
+<p>위의 예에서 인라인 박스가 익명의 블록 박스로 쪼개지고, BODY 요소는 블록 컨테이너 박스로 존재하면서 2개의 익명 블록 박스와 1개의 블록 레벨 박스를 갖게된다.</p>
 <p>익명 블록 박스는 자신을 둘러싸는 블록 컨테이너 박스의 폰트를 상속받는다.</p>
 </div>
 </div>
-<div class="section" id="id13">
-<h4>1.5.3.2. 인라인 레벨 요소와 인라인 박스<a class="headerlink" href="#id13" title="제목 주소">¶</a></h4>
+<div class="section" id="id11">
+<h4>1.5.3.2. 인라인 레벨 요소와 인라인 박스<a class="headerlink" href="#id11" title="제목 주소">¶</a></h4>
 <p><strong>인라인 레벨 요소(inline-level element)는 새로운 블록을 생성하지 않는 요소이다.</strong> 콘텐츠는 줄에 배치된다.(인라인 이미지, 문장 내의 강조된 글자 등등)</p>
 <p><em>인라인 레벨 요소(inline-level element)로</em> 만드려면 다음과 같은 속성을 사용하면 된다.:</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="o">:</span> <span class="nt">inline</span>
@@ -331,7 +331,7 @@ This is anonymous text after the SPAN.
 <span class="nt">display</span><span class="o">:</span> <span class="nt">inline-block</span>
 </pre></div>
 </div>
-<p>인라인 레벨 요소는 인라인 레벨 박스(inline-level box)를 만들며 이 박스는 인라인 서식 컨텍스트(inline formatting context)에 참여한다.</p>
+<p>인라인 레벨 요소는 <em>인라인 레벨 박스(inline-level box)를</em> 만들며, 이 박스는 <em>인라인 서식 컨텍스트(inline formatting context)에</em> 참여한다.</p>
 <p>대체될 수 없는 인라인 요소(display: inline)만 <em>인라인 박스(inline box)를</em> 생성한다. 인라인 레벨 박스이면서 인라인 박스가 아닐 경우 <em>아토믹 인라인 레벨 박스(atomic inline-level boxes)라</em> 불린다. (예를들어 대체 가능한 인라인 레벨 요소, 인라인 블록 요소(display: inline-block), 인라인 테이블 요소(display: inline-table) 등이 있다.)</p>
 <p>아토믹 인라인 레벨 박스는 불투명한 싱글 박스로서 <em>인라인 서식 컨텍스트(inline formatting context)에</em> 참여한다.</p>
 <div class="section" id="anonymous-inline-box">
@@ -342,10 +342,70 @@ This is anonymous text after the SPAN.
 </div>
 <p>P는 블록 박스(block box)를 만들며 몇몇 안라인 박스(inline boxes)를 갖고 있다. 인라인 요소 &lt;em&gt;에 의해 인라인 박스가 생기며, <strong>Some과 text의 인라인 박스는 블록 레벨 요소(&lt;p&gt;)에 의해 생성된다.</strong> 이러한 텍스트를 위한 인라인 박스를 익명의 인라인 박스(anonymous inline box)로 부른다. (연관된 인라인 레벨 요소(inline-level element)가 존재하지 않음)</p>
 <p>익명 인라인 박스는 부모 블록 박스로 부터 몇몇 속성을 상속받는다. 공백은 <em>white-space 속성을</em> 따라 인라인 박스를 갖지 못하고 삭제된다.</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span>
-</pre></div>
 </div>
 </div>
+<div class="section" id="display">
+<h4>1.5.3.3. display 속성<a class="headerlink" href="#display" title="제목 주소">¶</a></h4>
+<ul class="simple">
+<li>block: 요소가 블록 박스를 생성하게 한다.</li>
+<li>inline-block: 요소가 인라인 블록 컨테이너(inline-level block container box)를 생성하게 한다. 요소는 아토믹 인라인 레벨 박스(atomic inline-level box)로 포맷팅되며, 내부 적으로 블록 박스(block box)로 포매팅된다.</li>
+<li>inline: 요소가 1개 이상의 인라인 박스(inline box)를 반들게 한다.</li>
+<li>list-item: 요소가 제1 블록 박스(principal block)와 마커 박스(marker box)를 생성하게 한다.</li>
+<li>none: 요소를 서식 구조에 나타나지 않게 한다.</li>
+<li>table, inline-table, table-row-group, table-column, table-column-group, table-header-group, table-footer-group, table-row, table-cell, and table-caption: 요소가 테이블 요소처럼 행동하게 한다.</li>
+</ul>
+<p>위치 고정이거나 플로팅된 요소를 제외하고 위에 명시된 값이 적용된다.</p>
+<p>display의 초기값이 inline 일지라도 <strong>유저 에이전트의 기본 스타일 시트가 값을 오버라이드 할 수 있다.</strong></p>
+</div>
+</div>
+<div class="section" id="positioning-schemes">
+<h3>1.5.4. 위치 결정 방식(Positioning schemes)<a class="headerlink" href="#positioning-schemes" title="제목 주소">¶</a></h3>
+<p>위치결정 방식에 따라 박스의 위치가 결정된다.</p>
+<ol class="arabic simple">
+<li>노멀 플로우(Normal flow). <em>노멀 플로우(normal flow)은</em> 블록레벨 박스(block-level boxes)의 <em>블록 포매팅(block formatting)</em>, 인라인 레벨 박스(inline-level boxes)의 <em>인라인 포매팅(inline formatting)</em>, 블록 레벨이나 인라인 레벨 박스의 <em>상대 위치결정(relative positioning)</em> 을 포함한다.</li>
+<li>플롯(Floats). 먼저 노멀 플로우를 따른 후, 박스는 왼쪽이나 오른쪽으로 이동된다.</li>
+<li>절대 위치 결정(Absolute positioning). 노멀 플로우로 부터 완전히 제거되며, <em>컨테이닝 블록(containing block)에</em> 따라 위치가 결정된다.</li>
+</ol>
+<p>요소가 플롯되거나, 절대적으로 위치가 결정된다면 <strong>요소가 플로우 밖에(out of flow) 있다고 한다.</strong> 요소가 플로우 밖에 있지 않다면 반대로 플로우 안에 있다고(in-flow) 한다.</p>
+<div class="section" id="position">
+<h4>1.5.4.1. position 속성<a class="headerlink" href="#position" title="제목 주소">¶</a></h4>
+<ul class="simple">
+<li>static: 노멀 플로우에 따라 박스가 위치한다.</li>
+<li>relative: 노멀 플로우에 따라 위치가 결정된 뒤 노멀 포지션의 상대 위치로 이동한다.</li>
+<li>absolute: 박스의 컨테이닝 블록에서 오프셋 만큼 이동한다. top, right, bottom, left 값과 같이 사용된다.</li>
+<li>fixed: 절대 위치를 따라 위치가 결정된 뒤, <strong>몇몇 미디어 타입(handheld, projection, screen, tty, tv)에서 스크롤 되지않으며 뷰포트에 고정된다.</strong> print 미디어 타입에서는 박스가 모든 페이지에서 렌더링 된다.</li>
+</ul>
+</div>
+<div class="section" id="top-right-bottom-left">
+<h4>1.5.4.2. top, right, bottom, left 속성<a class="headerlink" href="#top-right-bottom-left" title="제목 주소">¶</a></h4>
+<p>위치(position) 속성이 static이 아닐 경우, 요소는 위치 결정 요소(positioned element)라 불리우고, 이 요소는 위치 결정 박스(positioned box)를 만들고 4가지 속성에 따라 박스의 위치를 결정한다.</p>
+<ul class="simple">
+<li>top: <em>절대 위치 박스(absolutely positioned box)가</em> 컨테이닝 블록의 탑 엣지 아래로 얼마나 떨어질지 결정하는 속성이다. 상대 위치 박스(relatively positioned box)가 그 박스의 탑 엣지로 부터 얼마나 떨어질지 결정하는 속성이다.</li>
+<li>right, bottom, left: top과 유사하다.</li>
+</ul>
+<p>값은 다음과 같다.</p>
+<ul class="simple">
+<li>length: 고정된 거리</li>
+<li>percentage: 컨테이닝 블록의 너비나 높이에 비례한 값</li>
+<li>auto</li>
+</ul>
+</div>
+</div>
+<div class="section" id="normal-flow">
+<h3>1.5.5. 노멀 플로우(Normal flow)<a class="headerlink" href="#normal-flow" title="제목 주소">¶</a></h3>
+<p>노멀 플로우에서는 박스는 서식 컨텍스트(formatting context)에 따라 블록, 인라인 또는 그외의 상태가 될 수 있다. <strong>블록 레벨 박스는 블록 서식 컨텍스트(block formatting context)에 참여하고, 인라인 레벨 박스는 인라인 서식 컨텍스트(inline formatting context)에 참여한다.</strong></p>
+<div class="section" id="block-formatting-context">
+<h4>1.5.5.1. 블록 서식 컨텍스트(Block formatting context)<a class="headerlink" href="#block-formatting-context" title="제목 주소">¶</a></h4>
+<p>플롯 또는 절대 위치 요소, <em>블록 박스가 아닌 블록 컨테이너(인라인 블록, 테이블 셀, 테이블 캡션),</em> overflow 블록 박스는 새로운 블록 서식 컨텍스트(new block formatting context)를 만든다.</p>
+<p>블록 서식 컨텍스트에서 박스는 컨테이닝 블록의 꼭대기부터 수직으로 배치된다. 2개의 형제 박스간 수직 거리는 <em>margin 속성에</em> 의해 결정된다. 인접한 블록 박스의 수직 여백(margin)은 접히게(collapse)된다.</p>
+<p>블록 서식 컨텍스트에서 각 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙게된다.</p>
+</div>
+<div class="section" id="inline-formatting-context">
+<h4>1.5.5.2. 인라인 서식 컨텍스트(Inline formatting context)<a class="headerlink" href="#inline-formatting-context" title="제목 주소">¶</a></h4>
+<p>박스는 수평으로 위치하게 되며 컨테이닝 블록의 꼭대기에서 시작한다. 수평 여백, 경계, 패딩은 박스 사이에서 적용된다. 한 줄을 형성하는 박스를 포함하는 사각형 공간을 라인 박스(line box)라 한다.</p>
+<p>라인 박스의 너비는 컨테이닝 블록과 float 속성에 따라 결정된다. 라인 박스의 높이는 <a class="reference external" href="https://www.w3.org/TR/CSS2/visudet.html#line-height">링크</a> 에 있는 알고리즘에 따라 결정된다.</p>
+<p>라인 박스는 언제나 모든 박스를 수용할 만큼 높아야 한다. 그러나 가장 큰 박스보다 더 클 수 있다. 라인 박스보다 <em>어떤 박스 B</em> 가 더 작다면 B의 수직 정렬은 <em>vertical-align 속성을</em> 따른다. 인라인 레벨 박스를 하나의 라인 박스에 담을 수 없다면 수직으로 위치한 여러개의 라인 박스로 분산시킨다. <strong>문장(paragraph)는 라인 박스의 스택으로 볼 수 있다.</strong></p>
+<p>일반적으로 라인 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙어 있다. (오른쪽 엣지도 마찬가지) 그러나, 플로팅 박스는 컨테이닝 블록의 엣지와 라인 박스의 엣지 사이에 올 수 있다. 비록 라인 박스들이 같은 너비를 갖는다고 할지라도, 만약에 플롯때문에 수평 공간이 줄어든다면 너비는 달라질 수 있다.</p>
 </div>
 </div>
 </div>
@@ -389,8 +449,8 @@ This is anonymous text after the SPAN.
 <div class="section" id="page">
 <h3>1.7.1. &#64;page<a class="headerlink" href="#page" title="제목 주소">¶</a></h3>
 <p>&#64;page는 페이지를 설정할때 사용하는 규칙이며 페이지 셀렉터, 스타일 블록이 따라온다.</p>
-<div class="section" id="id15">
-<h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
+<div class="section" id="id14">
+<h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id14" title="제목 주소">¶</a></h4>
 <p>margin-top, margin-right, margin-bottom, margin-left &#64;page 규칙에서 사용할 수 있다.:</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="k">@page</span> <span class="p">{</span>
 <span class="nt">margin</span><span class="o">:</span> <span class="nt">3cm</span><span class="o">;</span>
@@ -398,18 +458,10 @@ This is anonymous text after the SPAN.
 </pre></div>
 </div>
 </div>
-<div class="section" id="id16">
-<h4>1.7.1.2. 페이지 선택자<a class="headerlink" href="#id16" title="제목 주소">¶</a></h4>
-<ul>
-<li><table class="first docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">first:</th><td class="field-body">이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.</td>
-</tr>
-</tbody>
-</table>
-</li>
+<div class="section" id="id15">
+<h4>1.7.1.2. 페이지 선택자<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
+<ul class="simple">
+<li>:first: 이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.</li>
 </ul>
 </div>
 </div>
@@ -424,8 +476,8 @@ This is anonymous text after the SPAN.
 <p>위 속성들은 블록 요소에만 적용되며 기본적으로 auto로 동작한다. always를 주면 항상 페이지 분할이 발생하고 avoid는 분할이 발생하지 않게 한다.</p>
 </div>
 </div>
-<div class="section" id="id17">
-<h2>1.8. 참조<a class="headerlink" href="#id17" title="제목 주소">¶</a></h2>
+<div class="section" id="id16">
+<h2>1.8. 참조<a class="headerlink" href="#id16" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>CSS Snapshot: <a class="reference external" href="https://www.w3.org/Style/2011/CSS-process">https://www.w3.org/Style/2011/CSS-process</a></li>
 <li>CSS Processing: <a class="reference external" href="https://www.w3.org/TR/CSS2/intro.html#q2.0">https://www.w3.org/TR/CSS2/intro.html#q2.0</a></li>
@@ -484,10 +536,21 @@ This is anonymous text after the SPAN.
 <li><a class="reference internal" href="#anonymous-block-box">1.5.3.1.1. 익명 블록 박스(anonymous block box)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id13">1.5.3.2. 인라인 레벨 요소와 인라인 박스</a><ul>
+<li><a class="reference internal" href="#id11">1.5.3.2. 인라인 레벨 요소와 인라인 박스</a><ul>
 <li><a class="reference internal" href="#anonymous-inline-box">1.5.3.2.1. 익명 인라인 박스(anonymous inline box)</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#display">1.5.3.3. display 속성</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#positioning-schemes">1.5.4. 위치 결정 방식(Positioning schemes)</a><ul>
+<li><a class="reference internal" href="#position">1.5.4.1. position 속성</a></li>
+<li><a class="reference internal" href="#top-right-bottom-left">1.5.4.2. top, right, bottom, left 속성</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#normal-flow">1.5.5. 노멀 플로우(Normal flow)</a><ul>
+<li><a class="reference internal" href="#block-formatting-context">1.5.5.1. 블록 서식 컨텍스트(Block formatting context)</a></li>
+<li><a class="reference internal" href="#inline-formatting-context">1.5.5.2. 인라인 서식 컨텍스트(Inline formatting context)</a></li>
 </ul>
 </li>
 </ul>
@@ -498,14 +561,14 @@ This is anonymous text after the SPAN.
 </li>
 <li><a class="reference internal" href="#paged-media-css-2-1">1.7. 페이지 미디어(Paged media, CSS 2.1)</a><ul>
 <li><a class="reference internal" href="#page">1.7.1. &#64;page</a><ul>
-<li><a class="reference internal" href="#id15">1.7.1.1. 페이지 여백</a></li>
-<li><a class="reference internal" href="#id16">1.7.1.2. 페이지 선택자</a></li>
+<li><a class="reference internal" href="#id14">1.7.1.1. 페이지 여백</a></li>
+<li><a class="reference internal" href="#id15">1.7.1.2. 페이지 선택자</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#page-breaks">1.7.2. 페이지 분할(Page breaks)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id17">1.8. 참조</a></li>
+<li><a class="reference internal" href="#id16">1.8. 참조</a></li>
 </ul>
 </li>
 </ul>

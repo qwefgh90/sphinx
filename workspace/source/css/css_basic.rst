@@ -206,7 +206,7 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
 
 **margin-top, margin-right, margin-bottom, margin-left, margin은 값으로** `auto <https://www.w3.org/TR/CSS2/visudet.html#Computing_widths_and_margins>`_/길이/퍼센트(컨테이닝 블록의 너비에 비례, 컨테이닝 블록의 너비가 요소 자체에 의존적이라면 공식이 정의되진 않음)을 갖는다. table 타입을 제외한 모든 요소에 적용된다. 길이는 음수가 될 수 있다.
 
-2개 이상의 박스가 겹쳤을 경우 하나의 여백으로 결합될 수 있다. 이를 붕괴(collapse)라 한다. 결합된 여백은 붕괴된 여백(collapsed margin)이라 한다. 수직으로 접한 여백은 붕괴될 수 있으나 수평 여백은 절대 붕괴될 수 없다.
+2개 이상의 박스가 겹쳤을 경우 하나의 여백으로 결합될 수 있다. 이를 접힌다고(collapse) 한다. 결합된 여백은 접힌 여백(collapsed margin)이라 한다. 수직으로 접한 여백은 접힐 수 있으나 수평 여백은 절대 접혀질 수 없다.
 
 패딩 속성(paddding properties)
 ------------------------------
@@ -274,16 +274,16 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
 
 *블록 레벨 박스(block-level box)는* *블록 서식 컨텍스트(block formatting context)에* 참여하는 박스를 뜻한다. 몇몇 블록 레벨 요소는 추가적인 박스를 만들기도한다. (list-item 일 경우)
 
-**테이블 박스(table box), 대체 요소(replaced element)를 제외한 블록 레벨 박스(block-level box)는 블록 컨테이너 박스(block container box)를 뜻한다. 블록 컨테이너 박스는 오직 블록 박스(block boxes)를 갖거나, 또는 인라인 서식 컨텍스트(inline formatting context) 설정하고 인라인 레벨 박스(inline-level boxes)를 포함할 수 있다.**
+**테이블 박스(table box), 대체 요소(replaced element)를 제외한 블록 레벨 박스(block-level box)는 블록 컨테이너 박스(block container box)를 뜻한다.** 블록 컨테이너 박스는 오직 블록 레벨 박스(block-level box)를 갖거나, 또는 인라인 서식 컨텍스트(inline formatting context) 설정하고 인라인 레벨 박스(inline-level boxes)만 포함할 수 있다.
 
 모든 블록 컨테이너 박스가 블록 레벨 박스는 아니다. 대체 불가 인라인 블록(non-replaced inline block), 대체 불가 테이블 셀(non-replaced table cells)은 블록 컨테이너지만 블록 레벨 박스는 아니다.
 
-블록 레벨 박스이면서 블론 컨테이너 박스일 경우 **블록 박스(block box)라 한다.**
+블록 레벨 박스이면서 블록 컨테이너 박스일 경우 **블록 박스(block box)라 한다.**
 
 익명 블록 박스(anonymous block box)
 +++++++++++++++++++++++++++++++++++
 
-**div와 p가 모두 'display: block' 으로 되었다.**
+**div와 p 모두 'display: block' 스타일이 적용 되었다.**
 
 .. code-block:: html 
 
@@ -317,9 +317,9 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
   </P>
   </BODY>
 
-반대로 **인라인 박스가 in-flow 블록 레벨 박스를 가졌을때는** 인라인 박스가 **2개의 인라인 박스(비어있는 박스)로 쪼개지며** 익명의 블록 박스가 인라인 박스를 감싸는 형태로 기존의 블록 레벨 박스와 형제가 된다. 인라인 박스가 상대적인 위치에 영향을 받으면 인라인 박스에 포함된 블록 레벨 박스 역시 영향을 받는다.
+반대로 **인라인 박스가 in-flow 블록 레벨 박스를 가졌을때는** 인라인 박스가 **2개의 익명 블록 박스(비어있는 박스)로 쪼개지며,** 익명의 블록 박스가 다른 블록 박스를 감싸는 형태로 기존의 블록 레벨 박스와 형제가 된다. 인라인 박스가 상대적인 위치에 영향을 받으면 인라인 박스 안에 위치한 블록 레벨 박스 역시 영향을 받는다.
 
-위의 예에서 인라인 블록 박스가 익명의 인라인 박스로 쪼개지고 블록 박스로 싸여지고, BODY 요소가 블록 컨테이너 박스로 존재하게되고, 2개의 익명 블록 박스와 1개의 블록 레벨 박스를 갖게된다.
+위의 예에서 인라인 박스가 익명의 블록 박스로 쪼개지고, BODY 요소는 블록 컨테이너 박스로 존재하면서 2개의 익명 블록 박스와 1개의 블록 레벨 박스를 갖게된다.
 
 익명 블록 박스는 자신을 둘러싸는 블록 컨테이너 박스의 폰트를 상속받는다.
 
@@ -334,7 +334,7 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
   display: inline-table
   display: inline-block
 
-인라인 레벨 요소는 인라인 레벨 박스(inline-level box)를 만들며 이 박스는 인라인 서식 컨텍스트(inline formatting context)에 참여한다. 
+인라인 레벨 요소는 *인라인 레벨 박스(inline-level box)를* 만들며, 이 박스는 *인라인 서식 컨텍스트(inline formatting context)에* 참여한다. 
 
 대체될 수 없는 인라인 요소(display: inline)만 *인라인 박스(inline box)를* 생성한다. 인라인 레벨 박스이면서 인라인 박스가 아닐 경우 *아토믹 인라인 레벨 박스(atomic inline-level boxes)라* 불린다. (예를들어 대체 가능한 인라인 레벨 요소, 인라인 블록 요소(display: inline-block), 인라인 테이블 요소(display: inline-table) 등이 있다.)
 
@@ -351,7 +351,78 @@ P는 블록 박스(block box)를 만들며 몇몇 안라인 박스(inline boxes)
 
 익명 인라인 박스는 부모 블록 박스로 부터 몇몇 속성을 상속받는다. 공백은 *white-space 속성을* 따라 인라인 박스를 갖지 못하고 삭제된다.
 
-.. code-block:: css
+display 속성
+~~~~~~~~~~~~
+
+- block: 요소가 블록 박스를 생성하게 한다.
+- inline-block: 요소가 인라인 블록 컨테이너(inline-level block container box)를 생성하게 한다. 요소는 아토믹 인라인 레벨 박스(atomic inline-level box)로 포맷팅되며, 내부 적으로 블록 박스(block box)로 포매팅된다.
+- inline: 요소가 1개 이상의 인라인 박스(inline box)를 반들게 한다.
+- list-item: 요소가 제1 블록 박스(principal block)와 마커 박스(marker box)를 생성하게 한다.
+- none: 요소를 서식 구조에 나타나지 않게 한다.
+- table, inline-table, table-row-group, table-column, table-column-group, table-header-group, table-footer-group, table-row, table-cell, and table-caption: 요소가 테이블 요소처럼 행동하게 한다.
+
+위치 고정이거나 플로팅된 요소를 제외하고 위에 명시된 값이 적용된다.
+
+display의 초기값이 inline 일지라도 **유저 에이전트의 기본 스타일 시트가 값을 오버라이드 할 수 있다.**
+
+위치 결정 방식(Positioning schemes)
+-----------------------------------
+
+위치결정 방식에 따라 박스의 위치가 결정된다.
+
+1. 노멀 플로우(Normal flow). *노멀 플로우(normal flow)은* 블록레벨 박스(block-level boxes)의 *블록 포매팅(block formatting)*, 인라인 레벨 박스(inline-level boxes)의 *인라인 포매팅(inline formatting)*, 블록 레벨이나 인라인 레벨 박스의 *상대 위치결정(relative positioning)* 을 포함한다. 
+2. 플롯(Floats). 먼저 노멀 플로우를 따른 후, 박스는 왼쪽이나 오른쪽으로 이동된다.
+3. 절대 위치 결정(Absolute positioning). 노멀 플로우로 부터 완전히 제거되며, *컨테이닝 블록(containing block)에* 따라 위치가 결정된다.
+
+요소가 플롯되거나, 절대적으로 위치가 결정된다면 **요소가 플로우 밖에(out of flow) 있다고 한다.** 요소가 플로우 밖에 있지 않다면 반대로 플로우 안에 있다고(in-flow) 한다.
+
+position 속성
+~~~~~~~~~~~~~
+
+- static: 노멀 플로우에 따라 박스가 위치한다.
+- relative: 노멀 플로우에 따라 위치가 결정된 뒤 노멀 포지션의 상대 위치로 이동한다.
+- absolute: 박스의 컨테이닝 블록에서 오프셋 만큼 이동한다. top, right, bottom, left 값과 같이 사용된다.
+- fixed: 절대 위치를 따라 위치가 결정된 뒤, **몇몇 미디어 타입(handheld, projection, screen, tty, tv)에서 스크롤 되지않으며 뷰포트에 고정된다.** print 미디어 타입에서는 박스가 모든 페이지에서 렌더링 된다.
+
+top, right, bottom, left 속성
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+위치(position) 속성이 static이 아닐 경우, 요소는 위치 결정 요소(positioned element)라 불리우고, 이 요소는 위치 결정 박스(positioned box)를 만들고 4가지 속성에 따라 박스의 위치를 결정한다.
+
+- top: *절대 위치 박스(absolutely positioned box)가* 컨테이닝 블록의 탑 엣지 아래로 얼마나 떨어질지 결정하는 속성이다. 상대 위치 박스(relatively positioned box)가 그 박스의 탑 엣지로 부터 얼마나 떨어질지 결정하는 속성이다.
+- right, bottom, left: top과 유사하다.
+
+값은 다음과 같다.
+
+- length: 고정된 거리
+- percentage: 컨테이닝 블록의 너비나 높이에 비례한 값
+- auto
+
+노멀 플로우(Normal flow)
+------------------------
+
+노멀 플로우에서는 박스는 서식 컨텍스트(formatting context)에 따라 블록, 인라인 또는 그외의 상태가 될 수 있다. **블록 레벨 박스는 블록 서식 컨텍스트(block formatting context)에 참여하고, 인라인 레벨 박스는 인라인 서식 컨텍스트(inline formatting context)에 참여한다.**
+
+블록 서식 컨텍스트(Block formatting context)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+플롯 또는 절대 위치 요소, *블록 박스가 아닌 블록 컨테이너(인라인 블록, 테이블 셀, 테이블 캡션),* overflow 블록 박스는 새로운 블록 서식 컨텍스트(new block formatting context)를 만든다. 
+
+블록 서식 컨텍스트에서 박스는 컨테이닝 블록의 꼭대기부터 수직으로 배치된다. 2개의 형제 박스간 수직 거리는 *margin 속성에* 의해 결정된다. 인접한 블록 박스의 수직 여백(margin)은 접히게(collapse)된다.
+
+블록 서식 컨텍스트에서 각 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙게된다.
+
+인라인 서식 컨텍스트(Inline formatting context)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+박스는 수평으로 위치하게 되며 컨테이닝 블록의 꼭대기에서 시작한다. 수평 여백, 경계, 패딩은 박스 사이에서 적용된다. 한 줄을 형성하는 박스를 포함하는 사각형 공간을 라인 박스(line box)라 한다.
+
+라인 박스의 너비는 컨테이닝 블록과 float 속성에 따라 결정된다. 라인 박스의 높이는 `링크 <https://www.w3.org/TR/CSS2/visudet.html#line-height>`_ 에 있는 알고리즘에 따라 결정된다.
+
+라인 박스는 언제나 모든 박스를 수용할 만큼 높아야 한다. 그러나 가장 큰 박스보다 더 클 수 있다. 라인 박스보다 *어떤 박스 B* 가 더 작다면 B의 수직 정렬은 *vertical-align 속성을* 따른다. 인라인 레벨 박스를 하나의 라인 박스에 담을 수 없다면 수직으로 위치한 여러개의 라인 박스로 분산시킨다. **문장(paragraph)는 라인 박스의 스택으로 볼 수 있다.**
+
+일반적으로 라인 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙어 있다. (오른쪽 엣지도 마찬가지) 그러나, 플로팅 박스는 컨테이닝 블록의 엣지와 라인 박스의 엣지 사이에 올 수 있다. 비록 라인 박스들이 같은 너비를 갖는다고 할지라도, 만약에 플롯때문에 수평 공간이 줄어든다면 너비는 달라질 수 있다.
+
 
 미디어 쿼리(Media Queries)
 ==========================
@@ -414,7 +485,7 @@ margin-top, margin-right, margin-bottom, margin-left @page 규칙에서 사용�
 페이지 선택자
 ~~~~~~~~~~~~~
 
-- :first: 이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.
+- \:first: 이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.
 
 페이지 분할(Page breaks)
 ------------------------
