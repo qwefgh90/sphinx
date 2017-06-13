@@ -263,7 +263,7 @@
 </ul>
 <div class="section" id="viewport">
 <h3>1.5.1. 뷰 포트(viewport)<a class="headerlink" href="#viewport" title="제목 주소">¶</a></h3>
-<p>연속적인 미디어에서 브라우저는 사용자에게 뷰 포트(스크린 위에 표시되는 내용이 영역, 창)를 제공한다. 뷰 포트의 크기가 조정되면 브라우저는 문서의 레이아웃을 변경하게 된다. 뷰 포트의 크기는 <em>초기 컨테이닝 블록(initial containing block)</em> 의 크기와 같다. <strong>뷰 포트의 크기가 캔버스보다 작을때에는 브라우저는 스크롤링(scrolling)을 제공한다.</strong></p>
+<p>연속적인 미디어에서 브라우저는 사용자에게 뷰 포트(스크린 위에 표시되는 영역, 창)를 제공한다. 뷰 포트의 크기가 조정되면 브라우저는 문서의 레이아웃을 변경하게 된다. 뷰 포트의 크기는 <em>초기 컨테이닝 블록(initial containing block)</em> 의 크기와 같다. <strong>뷰 포트의 크기가 캔버스보다 작을때에는 브라우저는 스크롤링(scrolling)을 제공한다.</strong></p>
 <p>캔버스 별로 최대 1개의 뷰포트를 갖고, 브라우저는 1개 이상의 캔버스를 렌더링 할 수 있다.(같은 문서에 대한 다른 뷰를 제공할 수 있음)</p>
 </div>
 <div class="section" id="containing-blocks">
@@ -405,8 +405,69 @@ This is anonymous text after the SPAN.
 <p>박스는 수평으로 위치하게 되며 컨테이닝 블록의 꼭대기에서 시작한다. 수평 여백, 경계, 패딩은 박스 사이에서 적용된다. 한 줄을 형성하는 박스를 포함하는 사각형 공간을 라인 박스(line box)라 한다.</p>
 <p>라인 박스의 너비는 컨테이닝 블록과 float 속성에 따라 결정된다. 라인 박스의 높이는 <a class="reference external" href="https://www.w3.org/TR/CSS2/visudet.html#line-height">링크</a> 에 있는 알고리즘에 따라 결정된다.</p>
 <p>라인 박스는 언제나 모든 박스를 수용할 만큼 높아야 한다. 그러나 가장 큰 박스보다 더 클 수 있다. 라인 박스보다 <em>어떤 박스 B</em> 가 더 작다면 B의 수직 정렬은 <em>vertical-align 속성을</em> 따른다. 인라인 레벨 박스를 하나의 라인 박스에 담을 수 없다면 수직으로 위치한 여러개의 라인 박스로 분산시킨다. <strong>문장(paragraph)는 라인 박스의 스택으로 볼 수 있다.</strong></p>
-<p>일반적으로 라인 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙어 있다. (오른쪽 엣지도 마찬가지) 그러나, 플로팅 박스는 컨테이닝 블록의 엣지와 라인 박스의 엣지 사이에 올 수 있다. 비록 라인 박스들이 같은 너비를 갖는다고 할지라도, 만약에 플롯때문에 수평 공간이 줄어든다면 너비는 달라질 수 있다.</p>
+<p>일반적으로 라인 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙어 있다. (오른쪽 엣지도 마찬가지) 그러나, 플로팅 박스는 컨테이닝 블록의 엣지와 라인 박스의 엣지 사이에 올 수 있다. 비록 라인 박스들이 컨테이닝 박스와 같은 너비를 갖는다고 할지라도, 플롯(float) 때문에 수평 공간이 줄어든다면 너비는 달라질 수 있다. 같은 인라인 서식 컨텍스트에 있는 라인 박스들의 높이는 다양하게 존재한다. (어떤 라인 박스는 이미지 어떤 라인 박스는 텍스트를 갖고 있음)</p>
+<p><strong>인라인 레벨 박스(inline-level box)의 전체 너비가 이를 포함하는 라인 박스보다 작을 경우, 라인 박스 안에 수평 배치는 text-align에 의해 결정된다.</strong> 만약에 <em>text-align: justify 속성을</em> 갖는다면 유저 에이전트는 인라인 박스안의 단어와 공간을 팽창시킨다.</p>
+<p>인라인 박스(inline box)가 라인 박스(line box)의 너비를 초과한다면 몇개의 박스로 쪼개지며, 이 박스들은 몇개의 라인 박스에 분산 배치되게 된다. 만약 인라인 박스가 쪼개질 수 없다면(인라인 박스가 단일 문자를 포함, 라인 브레이크를 허용하지 않는 문자, 인라인 박스가 white-space: nowrap, pre의 영향을 받을 경우) 인라인 박스를 <em>오버플로우(overflow)</em> 하게 된다.</p>
+<p>인라인 박스가 쪼개지면, 쪼개진 박스 사이에서 여백, 패팅, 경계에 대한 시각적 효과는 없어지게 된다.</p>
+<p>라인 박스는 인라인 레벨 컨텐츠를 보관하기 위해 생성된다. 텍스트, 공백, 인라인 요소, 패딩, 경계, 인 플로우 컨텐츠를 포함하지 않고 개행으로 끝나지 않는 <em>라인 박스(line box)는</em> 높이 0 라인 박스로 처리되며 존재하지 않게된다.</p>
+<p>예제1</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">P</span><span class="p">&gt;</span>Several <span class="p">&lt;</span><span class="nt">EM</span><span class="p">&gt;</span>emphasized words<span class="p">&lt;/</span><span class="nt">EM</span><span class="p">&gt;</span> appear
+<span class="p">&lt;</span><span class="nt">STRONG</span><span class="p">&gt;</span>in this<span class="p">&lt;/</span><span class="nt">STRONG</span><span class="p">&gt;</span> sentence, dear.<span class="p">&lt;/</span><span class="nt">P</span><span class="p">&gt;</span>
+</pre></div>
 </div>
+<p>블록 박스 P는 5개의 인라인 박스를 포함하며 그 중 3개가 익명 인라인 박스이다.</p>
+<ul class="simple">
+<li>익명 인라인 박스: &#8220;Several&#8221;</li>
+<li>EM: &#8220;emphasized words&#8221;</li>
+<li>익명: &#8220;appear&#8221;</li>
+<li>STRONG: &#8220;in this&#8221;</li>
+<li>익명: &#8220;sentence, dear.&#8221;</li>
+</ul>
+<p>문장(paragraph)를 구성하기 위해 유저 에이전트는 5개의 박스를 라인 박스위에 놓는다. 이 예에서 P요소를 위해 생성된 박스는 라인 박스를 위한 컨테이닝 블록이 된다. 만약 컨테이닝 블록이 충분히 넓다면, 모든 인라인 박스는 하나의 라인 박스안에 놓이게 된다.</p>
+<p>그렇지 않다면 인라인 박스는 여러개의 라인 박스에 분산된다.</p>
+<div class="line-block">
+<div class="line">Several emphasized words appear</div>
+<div class="line">in this sentence, dear.</div>
+</div>
+<p>또는</p>
+<div class="line-block">
+<div class="line">Several emphasized</div>
+<div class="line">words appear in this</div>
+<div class="line">sentence, dear.</div>
+</div>
+<p>위의 2번째 예에서 em 박스는 2개의 em박스로 쪼개지며, 각 나눠진 2개의 박스사이 구간에 여백, 경계, 패딩, 텍스트 데코레이션은 아무런 효과를 갖지 못한다.</p>
+<p>예제2</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
+<span class="p">&lt;</span><span class="nt">HTML</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>Example of inline flow on several lines<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">STYLE</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span>
+      <span class="nt">EM</span> <span class="p">{</span>
+        <span class="nb">padding</span><span class="o">:</span> <span class="m">2px</span><span class="p">;</span>
+        <span class="nb">margin</span><span class="o">:</span> <span class="m">1em</span><span class="p">;</span>
+        <span class="nb">border-width</span><span class="o">:</span> <span class="nb">medium</span><span class="p">;</span>
+        <span class="nb">border-style</span><span class="o">:</span> <span class="nb">dashed</span><span class="p">;</span>
+        <span class="nb">line-height</span><span class="o">:</span> <span class="m">2.4em</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">STYLE</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">HEAD</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">BODY</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">P</span><span class="p">&gt;</span>Several <span class="p">&lt;</span><span class="nt">EM</span><span class="p">&gt;</span>emphasized words<span class="p">&lt;/</span><span class="nt">EM</span><span class="p">&gt;</span> appear here.<span class="p">&lt;/</span><span class="nt">P</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">BODY</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">HTML</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h4>1.5.5.3. 상대적 위치 결정<a class="headerlink" href="#id13" title="제목 주소">¶</a></h4>
+<p>일단 박스가 노멀 플로우나 플롯을 따라 배치되면, 이 포지션으로 부터 상대적으로 이동할 수 있다. 이것을 상대적인 위치 결정이라고 한다. <strong>어떤 박스가 상대적으로 위치가 결정되더라도 밀접한 박스의 위치에 주지 않는다.</strong> 즉 상대적 위치 결정은 박스들 간의 오버랩을 허용한다. 그러나 상대적인 위치로 결정될 경우 overflow:auto, overflow:scroll 박스를 오버플로우하게 하며, 유저 에이전트는 스크롤 바 생성을 통해 사용자가 이 컨텐츠에 접근하도록 허락한다.</p>
+<p>상대적으로 위치한 박스는 자신의 노멀 플로우(normal flow) 사이즈를 유지한다. (라인 브레이크와 박스를 위한 공간은 그대로)</p>
+</div>
+</div>
+<div class="section" id="float">
+<h3>1.5.6. 플롯(Float)<a class="headerlink" href="#float" title="제목 주소">¶</a></h3>
+<p><strong>플롯은 현재 라인(current line)에서 왼쪽 또는 오른쪽으로 이동된 박스(floated box, floating box)를 뜻한다. 플롯 박스는 왼쪽 또는 오른쪽 엣지가 컨테이닝 블록의 엣지와 만날때 까지 이동된다.</strong> 콘텐츠는 왼쪽으로 플롯된 박스의 오른쪽 면에 배치되고 오른쪽으로 플롯된 박스의 왼쪽 면에 배치된다. 플롯(float) 속성은 플롯 행동을 제어한다.</p>
+<p>만약 라인 박스라면, 플롯된 박스의 꼭대기는 라인 박스의 꼭대기에 맞게 정렬된다.</p>
 </div>
 </div>
 <div class="section" id="media-queries">
@@ -449,8 +510,8 @@ This is anonymous text after the SPAN.
 <div class="section" id="page">
 <h3>1.7.1. &#64;page<a class="headerlink" href="#page" title="제목 주소">¶</a></h3>
 <p>&#64;page는 페이지를 설정할때 사용하는 규칙이며 페이지 셀렉터, 스타일 블록이 따라온다.</p>
-<div class="section" id="id14">
-<h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id14" title="제목 주소">¶</a></h4>
+<div class="section" id="id15">
+<h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
 <p>margin-top, margin-right, margin-bottom, margin-left &#64;page 규칙에서 사용할 수 있다.:</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="k">@page</span> <span class="p">{</span>
 <span class="nt">margin</span><span class="o">:</span> <span class="nt">3cm</span><span class="o">;</span>
@@ -458,8 +519,8 @@ This is anonymous text after the SPAN.
 </pre></div>
 </div>
 </div>
-<div class="section" id="id15">
-<h4>1.7.1.2. 페이지 선택자<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
+<div class="section" id="id16">
+<h4>1.7.1.2. 페이지 선택자<a class="headerlink" href="#id16" title="제목 주소">¶</a></h4>
 <ul class="simple">
 <li>:first: 이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.</li>
 </ul>
@@ -476,8 +537,8 @@ This is anonymous text after the SPAN.
 <p>위 속성들은 블록 요소에만 적용되며 기본적으로 auto로 동작한다. always를 주면 항상 페이지 분할이 발생하고 avoid는 분할이 발생하지 않게 한다.</p>
 </div>
 </div>
-<div class="section" id="id16">
-<h2>1.8. 참조<a class="headerlink" href="#id16" title="제목 주소">¶</a></h2>
+<div class="section" id="id17">
+<h2>1.8. 참조<a class="headerlink" href="#id17" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>CSS Snapshot: <a class="reference external" href="https://www.w3.org/Style/2011/CSS-process">https://www.w3.org/Style/2011/CSS-process</a></li>
 <li>CSS Processing: <a class="reference external" href="https://www.w3.org/TR/CSS2/intro.html#q2.0">https://www.w3.org/TR/CSS2/intro.html#q2.0</a></li>
@@ -551,8 +612,10 @@ This is anonymous text after the SPAN.
 <li><a class="reference internal" href="#normal-flow">1.5.5. 노멀 플로우(Normal flow)</a><ul>
 <li><a class="reference internal" href="#block-formatting-context">1.5.5.1. 블록 서식 컨텍스트(Block formatting context)</a></li>
 <li><a class="reference internal" href="#inline-formatting-context">1.5.5.2. 인라인 서식 컨텍스트(Inline formatting context)</a></li>
+<li><a class="reference internal" href="#id13">1.5.5.3. 상대적 위치 결정</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#float">1.5.6. 플롯(Float)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#media-queries">1.6. 미디어 쿼리(Media Queries)</a><ul>
@@ -561,14 +624,14 @@ This is anonymous text after the SPAN.
 </li>
 <li><a class="reference internal" href="#paged-media-css-2-1">1.7. 페이지 미디어(Paged media, CSS 2.1)</a><ul>
 <li><a class="reference internal" href="#page">1.7.1. &#64;page</a><ul>
-<li><a class="reference internal" href="#id14">1.7.1.1. 페이지 여백</a></li>
-<li><a class="reference internal" href="#id15">1.7.1.2. 페이지 선택자</a></li>
+<li><a class="reference internal" href="#id15">1.7.1.1. 페이지 여백</a></li>
+<li><a class="reference internal" href="#id16">1.7.1.2. 페이지 선택자</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#page-breaks">1.7.2. 페이지 분할(Page breaks)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id16">1.8. 참조</a></li>
+<li><a class="reference internal" href="#id17">1.8. 참조</a></li>
 </ul>
 </li>
 </ul>
