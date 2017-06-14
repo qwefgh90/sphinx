@@ -45,6 +45,7 @@
             
   <div class="section" id="css">
 <h1>1. CSS 기본<a class="headerlink" href="#css" title="제목 주소">¶</a></h1>
+<p>CSS 스펙 문서를 기반으로 작성된 문서입니다.</p>
 <div class="section" id="id1">
 <h2>1.1. CSS 스펙<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
 <p><a class="reference internal" href="css_terms.html#css"><span class="std std-ref">CSS</span></a> 는 HTML, XML과 같은 구조화된 문서를 어떻게 화면에 보여줄지 기술하는 언어이다. CSS는 W3C의 CSS 워킹 그룹에서 스펙을 정의하고 있다. <a class="reference external" href="https://www.w3.org/Style/CSS/current-work">CSS 스펙 테이블</a> 을 참조하면 안정화된 스펙들을 묶어 CSS Snapshot 2017로 발표된 것을 확인할 수 있다.</p>
@@ -466,8 +467,25 @@ This is anonymous text after the SPAN.
 </div>
 <div class="section" id="float">
 <h3>1.5.6. 플롯(Float)<a class="headerlink" href="#float" title="제목 주소">¶</a></h3>
-<p><strong>플롯은 현재 라인(current line)에서 왼쪽 또는 오른쪽으로 이동된 박스(floated box, floating box)를 뜻한다. 플롯 박스는 왼쪽 또는 오른쪽 엣지가 컨테이닝 블록의 엣지와 만날때 까지 이동된다.</strong> 콘텐츠는 왼쪽으로 플롯된 박스의 오른쪽 면에 배치되고 오른쪽으로 플롯된 박스의 왼쪽 면에 배치된다. 플롯(float) 속성은 플롯 행동을 제어한다.</p>
-<p>만약 라인 박스라면, 플롯된 박스의 꼭대기는 라인 박스의 꼭대기에 맞게 정렬된다.</p>
+<p><strong>플롯은 현재 라인(current line)에서 왼쪽 또는 오른쪽으로 이동된 박스(floated box, floating box)를 뜻한다. 플롯 박스는 왼쪽 또는 오른쪽 엣지가 컨테이닝 블록의 엣지와 만날때 까지 이동된다.</strong> 만약 라인 박스라면, 플롯된 박스의 꼭대기(top)는 라인 박스의 꼭대기(top)에 맞게 정렬된다. 플롯(float) 속성은 플롯 행동을 제어한다.</p>
+<p>콘텐츠는 왼쪽으로 플롯된 박스(left-floated box)의 오른쪽 면에 배치되고 오른쪽으로 플롯된 박스(right-floated box)의 왼쪽 면에 배치된다. 플롯은 플로우(flow)가 아니기 때문에, 플롯 왼쪽이나 오른쪽에 생성된 블록 박스는 수직으로 배치되고(왼쪽이나 오른쪽 편에서), 라인 박스는 플롯 박스가 차지한 공간을 제외한 만큼의 너비를 사용한다.</p>
+<p>축약된 라인 박스는 내용을 담지 못할 정도로 작을 경우, 라인박스는 내용을 담을때 까지 아래로 이동(downward) 된다. 플롯 박스(floated box)의 왼쪽에 내용이 있다면 플롯의 반대편에 내용이 배치되게 된다. <strong>즉, 인라인 레벨 박스 뒤에 남는 라인 박스 공간에 왼쪽 플롯 박스가 배치가능 하다면, 그 라인 위에 배치되고 라인 박스의 꼭대기에 맞게 정렬되며, 라인 위의 인라인 박스는 플롯의 오른쪽으로 이동된다.</strong></p>
+<p>플롯 박스의 여백은 주변 박스의 여백과 접히지 않는다. 플롯은 노멀 플로우에서 다른 박스를 오버랩할 수 있는데, 이 경우 플롯은 위치가 결정되지 않은 인 플로우 블록 앞에 위치한다.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+  <span class="nt">p</span> <span class="p">{</span> <span class="nb">border</span><span class="o">:</span> <span class="nb">solid</span> <span class="nb">aqua</span><span class="p">;}</span>
+<span class="nt">img</span> <span class="p">{</span> <span class="nb">float</span><span class="o">:</span> <span class="nb">left</span><span class="p">;</span> <span class="nb">width</span><span class="o">:</span> <span class="m">3em</span><span class="p">;</span> <span class="nb">height</span><span class="o">:</span> <span class="m">6em</span><span class="p">;</span> <span class="nb">border</span><span class="o">:</span> <span class="nb">solid</span> <span class="nb">blue</span><span class="p">;</span> <span class="nb">margin-left</span><span class="o">:</span><span class="m">0px</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:12em&quot;</span><span class="p">&gt;</span>
+  is tt ic as d sdf
+  asdfasdf we we we w
+    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>hell wrold wrold wrold wrold wrold wrold wrold wrold <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>위 예에서 인라인 레벨 박스의 남는 공간에 플롯 박스가 위치하게 되며, 블록 박스는 플롯된 박스 오른쪽에 위치한다. <strong>블록요소에 clear: left 속성을 줄 경우 플롯 옆에 콘텐츠가 오는 것을 막을 수 있다.</strong></p>
 </div>
 </div>
 <div class="section" id="media-queries">
