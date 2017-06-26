@@ -20,3 +20,4 @@ Contents:
    sql_basic.rst
    sql_basic2.rst
    sql_optimize.rst
+   sql_server_terms.rst

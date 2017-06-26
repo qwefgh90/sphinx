@@ -10,7 +10,7 @@
 <meta content="This is a Server index page." name="description" />
 <meta content="서버, Server, 최창원, 창원" name="keywords" />
 
-    <title>서버(Server) &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>서버(Server) &mdash; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -29,14 +29,11 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="색인" href="../genindex.html" />
-    <link rel="search" title="검색" href="../search.html" />
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
     <link rel="next" title="1. 용어" href="server_hardware.html" />
-    <link rel="prev" title="1. 용어" href="../pr_language/language_terms.html" />
+    <link rel="prev" title="2. 용어" href="../css/css_terms.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -56,6 +53,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="server_hardware.html">1. 용어</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="server_hardware.html#m-2">1.1. M.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#multi-channel-memory-architecture">1.2. 다중 채널 메모리 구조(Multi-channel memory architecture)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#dual-channel-memory-architecture">1.3. 듀얼 채널 메모리 구조(Dual-channel memory architecture)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#host-bus-adapter">1.4. 호스트 버스 어댑터(Host bus adapter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#i-o">1.5. I/O 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#serial-ata-sata">1.6. Serial ATA(SATA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#sata-operating-modes">1.7. SATA 컨트롤러 동작 모드(Operating modes)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#ahci-advanced-host-controller-interface">1.8. AHCI(Advanced Host Controller Interface)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#nvm-express-nvme">1.9. NVM Express(NVMe)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#serial-attached-scsi-sas">1.10. Serial Attached SCSI (SAS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#kib-mib-gib">1.11. 키비, 메비, 기비 바이트(KiB, MiB, GiB)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#smb">1.12. SMB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#nfs">1.13. NFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#link-aggregation">1.14. Link Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#lacp-link-aggregation-control-protocol">1.15. LACP(Link Aggregation Control Protocol)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#port">1.16. 포트(Port)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#id2">1.17. 참조</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="server_vender.html">2. 상용 서버의 기술적 특징</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="server_vender.html#eternus-multipath-driver">2.1. ETERNUS Multipath Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_vender.html#dell-poweredge-raid-controller-h710p">2.2. Dell PowerEdge RAID Controller H710P</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_vender.html#id2">2.3. 참조</a></li>
 </ul>
 </li>
 </ul>
@@ -71,7 +90,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../pr_language/language_terms.html" title="이전 장">1. 용어</a></li>
+      <li>Previous: <a href="../css/css_terms.html" title="이전 장">2. 용어</a></li>
       <li>Next: <a href="server_hardware.html" title="다음 장">1. 용어</a></li>
   </ul></li>
 </ul>
@@ -101,8 +120,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
       <a href="../_sources/server/server_index.txt"
