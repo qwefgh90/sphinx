@@ -467,10 +467,28 @@ This is anonymous text after the SPAN.
 </div>
 <div class="section" id="float">
 <h3>1.5.6. 플롯(Float)<a class="headerlink" href="#float" title="제목 주소">¶</a></h3>
-<p><strong>플롯은 현재 라인(current line)에서 왼쪽 또는 오른쪽으로 이동된 박스(floated box, floating box)를 뜻한다. 플롯 박스는 왼쪽 또는 오른쪽 엣지가 컨테이닝 블록의 엣지와 만날때 까지 이동된다.</strong> 만약 라인 박스라면, 플롯된 박스의 꼭대기(top)는 라인 박스의 꼭대기(top)에 맞게 정렬된다. 플롯(float) 속성은 플롯 행동을 제어한다.</p>
-<p>콘텐츠는 왼쪽으로 플롯된 박스(left-floated box)의 오른쪽 면에 배치되고 오른쪽으로 플롯된 박스(right-floated box)의 왼쪽 면에 배치된다. 플롯은 플로우(flow)가 아니기 때문에, 플롯 왼쪽이나 오른쪽에 생성된 블록 박스는 수직으로 배치되고(왼쪽이나 오른쪽 편에서), 라인 박스는 플롯 박스가 차지한 공간을 제외한 만큼의 너비를 사용한다.</p>
-<p>축약된 라인 박스는 내용을 담지 못할 정도로 작을 경우, 라인박스는 내용을 담을때 까지 아래로 이동(downward) 된다. 플롯 박스(floated box)의 왼쪽에 내용이 있다면 플롯의 반대편에 내용이 배치되게 된다. <strong>즉, 인라인 레벨 박스 뒤에 남는 라인 박스 공간에 왼쪽 플롯 박스가 배치가능 하다면, 그 라인 위에 배치되고 라인 박스의 꼭대기에 맞게 정렬되며, 라인 위의 인라인 박스는 플롯의 오른쪽으로 이동된다.</strong></p>
-<p>플롯 박스의 여백은 주변 박스의 여백과 접히지 않는다. 플롯은 노멀 플로우에서 다른 박스를 오버랩할 수 있는데, 이 경우 플롯은 위치가 결정되지 않은 인 플로우 블록 앞에 위치한다.</p>
+<p><strong>플롯은 현재 라인(current line)에서 왼쪽 또는 오른쪽으로 이동된 박스(floated box, floating box)를 뜻한다. 플롯 박스는 왼쪽 또는 오른쪽 엣지가 컨테이닝 블록의 엣지나 다른 플롯 박스의 외부 엣지를 만날때 까지 이동된다.</strong> 만약 라인 박스라면, 플롯된 박스의 꼭대기(top)는 라인 박스의 꼭대기(top)에 맞게 정렬된다. 플롯(float) 속성은 플롯 행동을 제어한다.</p>
+<p>콘텐츠는 왼쪽으로 플롯된 박스(left-floated box)의 오른쪽 면에 배치되고 오른쪽으로 플롯된 박스(right-floated box)의 왼쪽 면에 배치된다. 플롯은 인-플로우(in-flow)가 아니기 때문에, 플롯 왼쪽이나 오른쪽에 생성된 블록 박스는 블록 박스끼리 수직으로 배치되고(물론 왼쪽이나 오른쪽 편에 위치하면서), 라인 박스는 플롯 박스가 차지한 공간을 제외한 만큼의 너비를 사용한다.</p>
+<p>축약된 라인 박스는 내용을 담지 못할 정도로 작을 경우, 라인박스는 내용을 담을때 까지 아래로 이동(downward) 된다. <strong>플롯 박스(floated box)의 왼쪽에 내용이 있다면 플롯의 반대편에 내용이 배치되게 된다.</strong></p>
+<p>테이블 경계 박스, 블록 레벨 대체 요소, 노멀 플로우 (새로운 블록 포매팅 컨텍스트를 만드는, overflow 속성 같이)는 플롯 박스의 여백에 오버랩 되지 않는다.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
+<span class="p">&lt;</span><span class="nt">HTML</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>Float example<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">STYLE</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span>
+      <span class="nt">IMG</span> <span class="p">{</span> <span class="nb">float</span><span class="o">:</span> <span class="nb">left</span><span class="p">;</span> <span class="nb">height</span><span class="o">:</span> <span class="m">2em</span><span class="p">;</span> <span class="nb">width</span><span class="o">:</span> <span class="m">2em</span><span class="p">;</span> <span class="nb">border</span><span class="o">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#999999</span><span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">STYLE</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">HEAD</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">BODY</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:9em&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">IMG</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Some sample text Hello world<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">BODY</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">HTML</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>플롯 박스 오른쪽의 <strong>라인 박스의 너비는 플롯 박스에 의해 줄어들며,</strong> 플롯 박스 오른쪽을 벗어나게 되면, p 요소에 의해 생성된 컨테이닝 박스의 너비를 따르게 된다.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
   <span class="nt">p</span> <span class="p">{</span> <span class="nb">border</span><span class="o">:</span> <span class="nb">solid</span> <span class="nb">aqua</span><span class="p">;}</span>
 <span class="nt">img</span> <span class="p">{</span> <span class="nb">float</span><span class="o">:</span> <span class="nb">left</span><span class="p">;</span> <span class="nb">width</span><span class="o">:</span> <span class="m">3em</span><span class="p">;</span> <span class="nb">height</span><span class="o">:</span> <span class="m">6em</span><span class="p">;</span> <span class="nb">border</span><span class="o">:</span> <span class="nb">solid</span> <span class="nb">blue</span><span class="p">;</span> <span class="nb">margin-left</span><span class="o">:</span><span class="m">0px</span><span class="p">;</span> <span class="p">}</span>
@@ -485,7 +503,7 @@ This is anonymous text after the SPAN.
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>위 예에서 인라인 레벨 박스의 남는 공간에 플롯 박스가 위치하게 되며, 블록 박스는 플롯된 박스 오른쪽에 위치한다. <strong>블록요소에 clear: left 속성을 줄 경우 플롯 옆에 콘텐츠가 오는 것을 막을 수 있다.</strong></p>
+<p>위 예에서 라인 박스에 플롯 박스가 공간을 차지하고 위치하게 되며, 블록 박스는 플롯된 박스 오른쪽에 위치한다. <strong>블록요소에 clear: left 속성을 줄 경우 플롯 오른쪽에 박스가 위치하는 것을 막을 수 있다.</strong></p>
 <div class="section" id="id14">
 <h4>1.5.6.1. 플롯 속성<a class="headerlink" href="#id14" title="제목 주소">¶</a></h4>
 <p>float 속성은 박스를 어느쪽 이동시킬지 결정한다. 절대적으로 위치가 결정되지(absolutely positioned) 않은 박스를 생성하는 요소에만 적용된다. 3개의 값을 갖는다.</p>
