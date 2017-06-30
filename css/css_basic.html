@@ -404,7 +404,7 @@ This is anonymous text after the SPAN.
 <div class="section" id="inline-formatting-context">
 <h4>1.5.5.2. 인라인 서식 컨텍스트(Inline formatting context)<a class="headerlink" href="#inline-formatting-context" title="제목 주소">¶</a></h4>
 <p>박스는 수평으로 위치하게 되며 컨테이닝 블록의 꼭대기에서 시작한다. 수평 여백, 경계, 패딩은 박스 사이에서 적용된다. 한 줄을 형성하는 박스를 포함하는 사각형 공간을 라인 박스(line box)라 한다.</p>
-<p>라인 박스의 너비는 컨테이닝 블록과 float 속성에 따라 결정된다. 라인 박스의 높이는 <a class="reference external" href="https://www.w3.org/TR/CSS2/visudet.html#line-height">링크</a> 에 있는 알고리즘에 따라 결정된다.</p>
+<p>라인 박스의 너비는 컨테이닝 블록과 float 속성에 따라 결정된다. 라인 박스의 높이는 <a class="reference external" href="https://www.w3.org/TR/CSS2/visudet.html#line-height">다음 알고리즘에</a> 따라 결정된다.</p>
 <p>라인 박스는 언제나 모든 박스를 수용할 만큼 높아야 한다. 그러나 가장 큰 박스보다 더 클 수 있다. 라인 박스보다 <em>어떤 박스 B</em> 가 더 작다면 B의 수직 정렬은 <em>vertical-align 속성을</em> 따른다. 인라인 레벨 박스를 하나의 라인 박스에 담을 수 없다면 수직으로 위치한 여러개의 라인 박스로 분산시킨다. <strong>문장(paragraph)는 라인 박스의 스택으로 볼 수 있다.</strong></p>
 <p>일반적으로 라인 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙어 있다. (오른쪽 엣지도 마찬가지) 그러나, 플로팅 박스는 컨테이닝 블록의 엣지와 라인 박스의 엣지 사이에 올 수 있다. 비록 라인 박스들이 컨테이닝 박스와 같은 너비를 갖는다고 할지라도, 플롯(float) 때문에 수평 공간이 줄어든다면 너비는 달라질 수 있다. 같은 인라인 서식 컨텍스트에 있는 라인 박스들의 높이는 다양하게 존재한다. (어떤 라인 박스는 이미지 어떤 라인 박스는 텍스트를 갖고 있음)</p>
 <p><strong>인라인 레벨 박스(inline-level box)의 전체 너비가 이를 포함하는 라인 박스보다 작을 경우, 라인 박스 안에 수평 배치는 text-align에 의해 결정된다.</strong> 만약에 <em>text-align: justify 속성을</em> 갖는다면 유저 에이전트는 인라인 박스안의 단어와 공간을 팽창시킨다.</p>
@@ -486,6 +486,28 @@ This is anonymous text after the SPAN.
 </pre></div>
 </div>
 <p>위 예에서 인라인 레벨 박스의 남는 공간에 플롯 박스가 위치하게 되며, 블록 박스는 플롯된 박스 오른쪽에 위치한다. <strong>블록요소에 clear: left 속성을 줄 경우 플롯 옆에 콘텐츠가 오는 것을 막을 수 있다.</strong></p>
+<div class="section" id="id14">
+<h4>1.5.6.1. 플롯 속성<a class="headerlink" href="#id14" title="제목 주소">¶</a></h4>
+<p>float 속성은 박스를 어느쪽 이동시킬지 결정한다. 절대적으로 위치가 결정되지(absolutely positioned) 않은 박스를 생성하는 요소에만 적용된다. 3개의 값을 갖는다.</p>
+<ul class="simple">
+<li>left: 왼쪽에 떠있는 블록 박스를 생성한다.</li>
+<li>right</li>
+<li>none</li>
+</ul>
+<p>유저 에이전트는 루트 요소를 none으로 다룬다.</p>
+<p>float을 다루는 규칙들은 다음과 같다.</p>
+<ol class="arabic simple">
+<li><strong>왼쪽에 플로팅된 박스의</strong> 왼쪽 외부 엣지는 <strong>컨테이닝 블록의</strong> 왼쪽 엣지가 아니다. 오른쪽에 플로팅된 박스도 동일하다.</li>
+<li>현재 박스가 왼쪽으로 플로팅 되었고 앞에 위치한 동일한 박스가 더 있다면, <strong>현재 박스의 왼쪽 외부 엣지는 앞선 박스의 오른쪽 외부 엣지 위치하거나,</strong> 위쪽 면이 앞선 박스의 밑에 위치해야 한다.</li>
+<li>왼쪽 플로팅 박스의 오른쪽 외부 엣지는 <strong>오른쪽 플로팅 박스의 왼쪽 엣지의 오른쪽 면에</strong> 위치할 수 없다.</li>
+<li>플로팅 박스의 외부 위쪽 면은 컨테이닝 블록의 위쪽 면의 위쪽에 위치할 수 없다.</li>
+<li>플로팅 박스의 외부 위쪽 면은 <strong>앞선 블록들의 외부 위쪽보다</strong> 높이 위치할 수 없다.</li>
+<li>플로팅 박스의 외부 위쪽 면은 앞선 박스를 포함하는 <strong>라인 박스의</strong> 위쪽 면 보다 높이 위치할 수 없다.</li>
+<li>앞선 플로팅 박스가 있는 왼쪽 플로팅 박스의 오른쪽 외부 엣지는 <strong>컨테이닝 블록의 오른쪽 엣지의 오른쪽을 넘어설 수 없다.</strong></li>
+<li>플로팅 박스는 가능한한 높게 위치한다.</li>
+<li>왼쪽 플로팅 박스는 가능한한 왼쪽에 위치하며, 오른쪽 플로팅 박스는 가능한 오른쪽에 위치한다.</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="section" id="media-queries">
@@ -528,8 +550,8 @@ This is anonymous text after the SPAN.
 <div class="section" id="page">
 <h3>1.7.1. &#64;page<a class="headerlink" href="#page" title="제목 주소">¶</a></h3>
 <p>&#64;page는 페이지를 설정할때 사용하는 규칙이며 페이지 셀렉터, 스타일 블록이 따라온다.</p>
-<div class="section" id="id15">
-<h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
+<div class="section" id="id16">
+<h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id16" title="제목 주소">¶</a></h4>
 <p>margin-top, margin-right, margin-bottom, margin-left &#64;page 규칙에서 사용할 수 있다.:</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="k">@page</span> <span class="p">{</span>
 <span class="nt">margin</span><span class="o">:</span> <span class="nt">3cm</span><span class="o">;</span>
@@ -537,8 +559,8 @@ This is anonymous text after the SPAN.
 </pre></div>
 </div>
 </div>
-<div class="section" id="id16">
-<h4>1.7.1.2. 페이지 선택자<a class="headerlink" href="#id16" title="제목 주소">¶</a></h4>
+<div class="section" id="id17">
+<h4>1.7.1.2. 페이지 선택자<a class="headerlink" href="#id17" title="제목 주소">¶</a></h4>
 <ul class="simple">
 <li>:first: 이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.</li>
 </ul>
@@ -555,8 +577,8 @@ This is anonymous text after the SPAN.
 <p>위 속성들은 블록 요소에만 적용되며 기본적으로 auto로 동작한다. always를 주면 항상 페이지 분할이 발생하고 avoid는 분할이 발생하지 않게 한다.</p>
 </div>
 </div>
-<div class="section" id="id17">
-<h2>1.8. 참조<a class="headerlink" href="#id17" title="제목 주소">¶</a></h2>
+<div class="section" id="id18">
+<h2>1.8. 참조<a class="headerlink" href="#id18" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>CSS Snapshot: <a class="reference external" href="https://www.w3.org/Style/2011/CSS-process">https://www.w3.org/Style/2011/CSS-process</a></li>
 <li>CSS Processing: <a class="reference external" href="https://www.w3.org/TR/CSS2/intro.html#q2.0">https://www.w3.org/TR/CSS2/intro.html#q2.0</a></li>
@@ -633,7 +655,10 @@ This is anonymous text after the SPAN.
 <li><a class="reference internal" href="#id13">1.5.5.3. 상대적 위치 결정</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#float">1.5.6. 플롯(Float)</a></li>
+<li><a class="reference internal" href="#float">1.5.6. 플롯(Float)</a><ul>
+<li><a class="reference internal" href="#id14">1.5.6.1. 플롯 속성</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#media-queries">1.6. 미디어 쿼리(Media Queries)</a><ul>
@@ -642,14 +667,14 @@ This is anonymous text after the SPAN.
 </li>
 <li><a class="reference internal" href="#paged-media-css-2-1">1.7. 페이지 미디어(Paged media, CSS 2.1)</a><ul>
 <li><a class="reference internal" href="#page">1.7.1. &#64;page</a><ul>
-<li><a class="reference internal" href="#id15">1.7.1.1. 페이지 여백</a></li>
-<li><a class="reference internal" href="#id16">1.7.1.2. 페이지 선택자</a></li>
+<li><a class="reference internal" href="#id16">1.7.1.1. 페이지 여백</a></li>
+<li><a class="reference internal" href="#id17">1.7.1.2. 페이지 선택자</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#page-breaks">1.7.2. 페이지 분할(Page breaks)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id17">1.8. 참조</a></li>
+<li><a class="reference internal" href="#id18">1.8. 참조</a></li>
 </ul>
 </li>
 </ul>
