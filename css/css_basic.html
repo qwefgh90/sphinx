@@ -526,6 +526,201 @@ This is anonymous text after the SPAN.
 <li>왼쪽 플로팅 박스는 가능한한 왼쪽에 위치하며, 오른쪽 플로팅 박스는 가능한 오른쪽에 위치한다.</li>
 </ol>
 </div>
+<div class="section" id="clear">
+<h4>1.5.6.2. clear 속성<a class="headerlink" href="#clear" title="제목 주소">¶</a></h4>
+<p>요소의 박스가 양쪽 면의 플롯 박스와 인접하지 않게 해주는 속성이다.</p>
+<ul class="simple">
+<li>left</li>
+<li>right</li>
+<li>both</li>
+<li>none</li>
+</ul>
+</div>
+</div>
+<div class="section" id="absolute-positioning">
+<h3>1.5.7. 절대 위치 결정(Absolute positioning)<a class="headerlink" href="#absolute-positioning" title="제목 주소">¶</a></h3>
+<p>절대적으로 위치 결정된 모델에서 박스는 컨테이닝 비례하여 간격이 결정되며, 완전히 노멀 플로우에서 제거된 박스이다. 이 박스는 노멀 플로우 자식 박스나 위치 결정된 자식을 위해 (고정되지 않은) <strong>새로운 컨테이닝 블록을 생성한다.</strong> 그러나 <strong>이 절대 위치 결정된 요소의 내용은 다른 박스와 같은 흐름(flow)를 갖지 않는다.</strong> 다른 박스의 내용을 가린다. (오버래핑 박스의 스택 레벨에 의존)</p>
+<p>CSS 2.1 스펙에서 절대 위치 결정된 요소(박스)란 position 속성의 값으로 <em>absolute</em>, <em>fixed</em> 를 갖는 요소를 뜻한다.</p>
+<div class="section" id="fixed-positioning">
+<h4>1.5.7.1. 고정 위치 결정(Fixed positioning)<a class="headerlink" href="#fixed-positioning" title="제목 주소">¶</a></h4>
+<p><em>고정 위치 결정은</em> 절대 위치 결정의 한 종류이다. 고정 위치 결정된 박스의 특징은 <strong>이 박스를 위한 컨테이닝 박스가 viewport에 의해 생성된다는</strong> 것이다. <strong>연속적인 미디어에서 고정된 박스들은 문서가 스크롤 되더라도 움직이지 않는다.</strong> 이것은 고정된 배경 이미지와 유사하다. <strong>페이지 미디어에서는 이런 박스가 모든 페이지에 반복된다.</strong> 이것은 페이지의 시그니처를 표시할때 유용하다. 이 박스가 페이지보다 더 클 경우 잘리게 된다.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
+<span class="p">&lt;</span><span class="nt">HTML</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>A frame document with CSS 2.1<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">STYLE</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">media</span><span class="o">=</span><span class="s">&quot;screen&quot;</span><span class="p">&gt;</span>
+      <span class="nt">BODY</span> <span class="p">{</span> <span class="nb">height</span><span class="o">:</span> <span class="m">8.5in</span> <span class="p">}</span> <span class="c">/* Required for percentage heights below */</span>
+      <span class="nn">#header</span> <span class="p">{</span>
+        <span class="nb">position</span><span class="o">:</span> <span class="nb">fixed</span><span class="p">;</span>
+        <span class="nb">width</span><span class="o">:</span> <span class="m">100%</span><span class="p">;</span>
+        <span class="nb">height</span><span class="o">:</span> <span class="m">15%</span><span class="p">;</span>
+        <span class="nb">top</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="nb">right</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="nb">bottom</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
+        <span class="nb">left</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nn">#sidebar</span> <span class="p">{</span>
+        <span class="nb">position</span><span class="o">:</span> <span class="nb">fixed</span><span class="p">;</span>
+        <span class="nb">width</span><span class="o">:</span> <span class="m">10em</span><span class="p">;</span>
+        <span class="nb">height</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
+        <span class="nb">top</span><span class="o">:</span> <span class="m">15%</span><span class="p">;</span>
+        <span class="nb">right</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
+        <span class="nb">bottom</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
+        <span class="nb">left</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nn">#main</span> <span class="p">{</span>
+        <span class="nb">position</span><span class="o">:</span> <span class="nb">fixed</span><span class="p">;</span>
+        <span class="nb">width</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
+        <span class="nb">height</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
+        <span class="nb">top</span><span class="o">:</span> <span class="m">15%</span><span class="p">;</span>
+        <span class="nb">right</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="nb">bottom</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
+        <span class="nb">left</span><span class="o">:</span> <span class="m">10em</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nn">#footer</span> <span class="p">{</span>
+        <span class="nb">position</span><span class="o">:</span> <span class="nb">fixed</span><span class="p">;</span>
+        <span class="nb">width</span><span class="o">:</span> <span class="m">100%</span><span class="p">;</span>
+        <span class="nb">height</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
+        <span class="nb">top</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
+        <span class="nb">right</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="nb">bottom</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="nb">left</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">STYLE</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">HEAD</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">BODY</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">DIV</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;header&quot;</span><span class="p">&gt;</span> header  <span class="p">&lt;/</span><span class="nt">DIV</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">DIV</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;sidebar&quot;</span><span class="p">&gt;</span> sidebar  <span class="p">&lt;/</span><span class="nt">DIV</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">DIV</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;main&quot;</span><span class="p">&gt;</span> main  <span class="p">&lt;/</span><span class="nt">DIV</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">DIV</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;footer&quot;</span><span class="p">&gt;</span> footer  <span class="p">&lt;/</span><span class="nt">DIV</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">BODY</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">HTML</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="display-position-float">
+<h4>1.5.7.2. display, position, float의 관계<a class="headerlink" href="#display-position-float" title="제목 주소">¶</a></h4>
+<p>3개의 속성은 박스 생성 및 레이아웃에 영향을 미친다.</p>
+<p><strong>display, position, float</strong> 다음과 같이 상호작용한다.</p>
+<ol class="arabic simple">
+<li>display가 none일 경우 position과 float은 적용되지 않는다. 요소는 박스를 생성하지 않는다.</li>
+<li><strong>position이</strong> <em>absolute</em> 나 <em>fixed</em> 일 경우, float은 none이 되며 display는 아래의 테이블을 따른다. 박스의 위치는 top, right, bottom, left 속성과 컨테이닝 블록에 의해 결정된다.</li>
+<li><strong>float이</strong> <em>none</em> 이 아니라면, 박스는 플로팅되며 display는 아래 테이블을 따른다.</li>
+<li>요소가 루트 요소일 경우 display는 아래의 테이블을 따른다. (list-item이 block이 될지, list-item이 될지는 미정, CSS 2.1)</li>
+<li>모든 경우가 아닐 경우, display 요소는 아래를 따른다.</li>
+</ol>
+<p><strong>명시된 값(Specified value) -&gt; 계산된 값(Computed value)</strong></p>
+<ul class="simple">
+<li>inline-table -&gt; table</li>
+<li>inline, table-row-group, table-column, table-column-group, table-header-group, table-footer-group, table-row, table-cell, table-caption, inline-block -&gt; block</li>
+<li>others -&gt; same as specified</li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h4>1.5.7.3. 노멀 플로우, 플롯, 절대 위치 결정 비교<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
+<p>노멀 플로우 예시:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nt">DOCTYPE</span> <span class="nt">HTML</span> <span class="nt">PUBLIC</span> <span class="s2">&quot;-//W3C//DTD HTML 4.01//EN&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">HTML</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nt">HEAD</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nt">STYLE</span><span class="o">&gt;</span>
+  <span class="nt">body</span> <span class="p">{</span> <span class="nb">display</span><span class="o">:</span> <span class="nb">block</span><span class="p">;</span> <span class="nb">font-size</span><span class="o">:</span><span class="m">12px</span><span class="p">;</span> <span class="nb">line-height</span><span class="o">:</span> <span class="m">200%</span><span class="p">;</span>
+         <span class="nb">width</span><span class="o">:</span> <span class="m">400px</span><span class="p">;</span> <span class="nb">height</span><span class="o">:</span> <span class="m">400px</span> <span class="p">}</span>
+  <span class="nt">p</span>    <span class="p">{</span> <span class="nb">display</span><span class="o">:</span> <span class="nb">block</span> <span class="p">}</span>
+  <span class="nt">span</span> <span class="p">{</span> <span class="nb">display</span><span class="o">:</span> <span class="nb">inline</span> <span class="p">}</span>
+  <span class="o">&lt;/</span><span class="nt">STYLE</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nt">TITLE</span><span class="o">&gt;</span><span class="nt">Comparison</span> <span class="nt">of</span> <span class="nt">positioning</span> <span class="nt">schemes</span><span class="o">&lt;/</span><span class="nt">TITLE</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="nt">HEAD</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nt">BODY</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nt">P</span><span class="o">&gt;</span><span class="nt">Beginning</span> <span class="nt">of</span> <span class="nt">body</span> <span class="nt">contents</span><span class="o">.</span>
+      <span class="o">&lt;</span><span class="nt">SPAN</span> <span class="nt">id</span><span class="o">=</span><span class="s2">&quot;outer&quot;</span><span class="o">&gt;</span> <span class="nt">Start</span> <span class="nt">of</span> <span class="nt">outer</span> <span class="nt">contents</span><span class="o">.</span>
+      <span class="o">&lt;</span><span class="nt">SPAN</span> <span class="nt">id</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="o">&gt;</span> <span class="nt">Inner</span> <span class="nt">contents</span><span class="o">.&lt;/</span><span class="nt">SPAN</span><span class="o">&gt;</span>
+      <span class="nt">End</span> <span class="nt">of</span> <span class="nt">outer</span> <span class="nt">contents</span><span class="o">.&lt;/</span><span class="nt">SPAN</span><span class="o">&gt;</span>
+      <span class="nt">End</span> <span class="nt">of</span> <span class="nt">body</span> <span class="nt">contents</span><span class="o">.</span>
+    <span class="o">&lt;/</span><span class="nt">P</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="nt">BODY</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">HTML</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>위 예시에서 P는 익명 인라인 텍스트와 2개의 SPAN 요소를 갖는다. 따라서 모든 요소는 인라인 포매팅 컨텍스트를 따라서 배치되며 컨테이닝 블록은 P요소에 의해 생성된다.</p>
+<p>상대 위치 결정 예시:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nn">#outer</span> <span class="p">{</span> <span class="nb">position</span><span class="o">:</span> <span class="nb">relative</span><span class="p">;</span> <span class="nb">top</span><span class="o">:</span> <span class="m">-12px</span><span class="p">;</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span> <span class="p">}</span>
+<span class="nn">#inner</span> <span class="p">{</span> <span class="nb">position</span><span class="o">:</span> <span class="nb">relative</span><span class="p">;</span> <span class="nb">top</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">blue</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>outer 요소의 텍스트는 노멀 플로우를 따라 배치되고 -12px 만큼 위로 이동된다. inner 요소는 outer 스타일의 -12px와 inner 스타일의 12px의 영향을 받아 제자리에 위치하게 된다. 만약 <strong>-24px라는 값이 세팅된다면</strong> 다른 텍스트와 겹칠 수 있다.</p>
+<p>박스 플로팅 예시:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nn">#outer</span> <span class="p">{</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span> <span class="p">}</span>
+<span class="nn">#inner</span> <span class="p">{</span> <span class="nb">float</span><span class="o">:</span> <span class="nb">right</span><span class="p">;</span> <span class="nb">width</span><span class="o">:</span> <span class="m">130px</span><span class="p">;</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">blue</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>inner 박스는 플로팅 밖으로 당겨져 오른쪽으로 플로팅된다. 플로팅 박스의 왼쪽의 라인 박스는 축약된다.</p>
+<p>절대 위치 결정 예시:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nn">#outer</span> <span class="p">{</span>
+    <span class="nb">position</span><span class="o">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nb">top</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span> <span class="nb">left</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nb">width</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nn">#inner</span> <span class="p">{</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">blue</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>outer 박스는 이 박스의 컨테이닝 블록 안에 위치한다. <strong>위치 결정된 박스의 컨테이닝 블록은 근처에 위치한 위치 결정(positioned)된 부모에 의해 형성된다. (만약 존재하지 않는다면 초기 컨테이닝 블록(initial containing block이 됨)</strong> outer 박스의 꼭대기는 컨테이닝 박스의 꼭대기의 200px 밑에 위치하고 왼쪽에서 200px 이동한 위치에 왼쪽 면이 위치한다. outer의 자식 박스는 이것의 부모를 기준으로 정상적으로 배치된다.</p>
+<p>절대 위치 결정된 박스가 상대적으로 위치 결정된 박스의 자식일 경우의 예시:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nn">#outer</span> <span class="p">{</span>
+  <span class="nb">position</span><span class="o">:</span> <span class="nb">relative</span><span class="p">;</span>
+  <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span>
+<span class="p">}</span>
+<span class="nn">#inner</span> <span class="p">{</span>
+  <span class="nb">position</span><span class="o">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nb">top</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span> <span class="nb">left</span><span class="o">:</span> <span class="m">-100px</span><span class="p">;</span>
+  <span class="nb">height</span><span class="o">:</span> <span class="m">130px</span><span class="p">;</span> <span class="nb">width</span><span class="o">:</span> <span class="m">130px</span><span class="p">;</span>
+  <span class="nb">color</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>부모 outer 박스는 실제로 offset 이 적용되지 않았음에도 불구하고, position 속성이 relative 라는 것은 이 박스가 위치 결정된(positioned) 자식을 위해 컨테이닝 블록을 생성하겠다는 뜻이다.</strong> outer 박스가 몇개의 줄에 걸쳐 쪼개진 인라인 박스이기 때문에, <strong>첫번째 인라인 박스의 top과 left 엣지에 top과 left 오프셋이 적용된다.</strong></p>
+<p>outer 박스가 위치 결정되지 않았다면:</p>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nn">#outer</span> <span class="p">{</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span> <span class="p">}</span>
+<span class="nn">#inner</span> <span class="p">{</span>
+  <span class="nb">position</span><span class="o">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nb">top</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span> <span class="nb">left</span><span class="o">:</span> <span class="m">-100px</span><span class="p">;</span>
+  <span class="nb">height</span><span class="o">:</span> <span class="m">130px</span><span class="p">;</span> <span class="nb">width</span><span class="o">:</span> <span class="m">130px</span><span class="p">;</span>
+  <span class="nb">color</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>inner의 컨테이닝 블록은 초기 컨테이닝 블록이 된다.</p>
+</div>
+</div>
+<div class="section" id="id16">
+<h3>1.5.8. 계층화된 표현<a class="headerlink" href="#id16" title="제목 주소">¶</a></h3>
+<div class="section" id="z-index">
+<h4>1.5.8.1. z-index 속성<a class="headerlink" href="#z-index" title="제목 주소">¶</a></h4>
+<p>위치가 결정된 박스를 위해 z-index는 다음을 명시한다:</p>
+<ol class="arabic simple">
+<li>현재 스태킹(stacking) 컨텍스트에서 박스의 스택 수준</li>
+<li>박스가 스태킹(stacking) 컨텍스트를 구성할지 말지</li>
+</ol>
+<p>값은 다음 의미를 갖는다.</p>
+<ul class="simple">
+<li><strong>숫자.</strong> 스태킹 컨텍스트에서 박스의 스택 레벨을 뜻한다. 또한 새로운 스태킹 컨텍스트를 생성한다.</li>
+<li><strong>auth.</strong> 현재 스태킹 컨텍스트에서 스택 레벨은 0이다. 루트 요소가 아니라면 박스는 새로운 스태킹 컨텍스트를 만들지 않는다.</li>
+</ul>
+<p>CSS 2.1에서 박스는 3개의 위치로 표현된다. 수평, 수직 위치와 함께, z축 위치가 있다.  z축 위치는 박스가 오버랩될때와 관련있다. 이 섹션은 어떻게 박스가 Z축을 따라 위치하게 되는지를 설명한다.</p>
+<p>렌더링 트리가 캔버스위에 그려지는 순서는 스태킹(stacking) 컨텍스트에 의해 묘사된다. 스태킹 컨텍스트는 부모의 스태킹 컨텍스트로부터 원자성을 띄며, 다른 스태킹 박스는 이 박스들 사이에 오지 않을 것이다.</p>
+<p>각각의 박스는 하나의 스태킹 컨텍스트에 속한다. 스태킹 컨텍스트의 각각 위치 결정된 박스는 스택 레벨(숫자)을 갖는다. 같은 스태킹 컨텍스트에 있는 다른 스택 레벨에 상대적이다. <strong>높은 스택 레벨을 갖는 박스는 언제나 낮은 레벨의 박스보다 위에 위치한다.</strong> 음의 레벨을 갖을 수 있으며, 같은 스택 레벨을 갖는 박스는 DOM 트리의 순서를 따른다.</p>
+<p>루트 요소는 루트 스태킹 컨텍스트를 형성한다. 다른 스태킹 컨텍스트는 다른 위치 결정된 요소(auto가 아닌 z-index 값을 갖는)에 의해 생성된다.</p>
+<p>각각의 스태킹 컨텍스트 안에서, 뒤에서 부터 앞으로 다음의 계층이 그려진다.</p>
+<ol class="arabic simple">
+<li>스태킹 컨텍스트를 형성하는 요소의 배경(background)과 경계</li>
+<li>음의 스택 레벨을 갖는 자식 스태킹 컨텍스트</li>
+<li>in-flow, non-inline-level, non-positioned 후손</li>
+<li>non-positioned floats</li>
+<li>인라인 테이블, 인라인 블록을 포함한 in-flow, inline-level, non-positioned 자식</li>
+<li>스택 레벨이 0인 자식 스태킹 컨텍스트나 스택 레벨이 0인 후손</li>
+<li>양의 레벨을 갖는 자식 스태킹 컨텍스트</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="section" id="media-queries">
@@ -568,8 +763,8 @@ This is anonymous text after the SPAN.
 <div class="section" id="page">
 <h3>1.7.1. &#64;page<a class="headerlink" href="#page" title="제목 주소">¶</a></h3>
 <p>&#64;page는 페이지를 설정할때 사용하는 규칙이며 페이지 셀렉터, 스타일 블록이 따라온다.</p>
-<div class="section" id="id16">
-<h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id16" title="제목 주소">¶</a></h4>
+<div class="section" id="id18">
+<h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id18" title="제목 주소">¶</a></h4>
 <p>margin-top, margin-right, margin-bottom, margin-left &#64;page 규칙에서 사용할 수 있다.:</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="k">@page</span> <span class="p">{</span>
 <span class="nt">margin</span><span class="o">:</span> <span class="nt">3cm</span><span class="o">;</span>
@@ -577,8 +772,8 @@ This is anonymous text after the SPAN.
 </pre></div>
 </div>
 </div>
-<div class="section" id="id17">
-<h4>1.7.1.2. 페이지 선택자<a class="headerlink" href="#id17" title="제목 주소">¶</a></h4>
+<div class="section" id="id19">
+<h4>1.7.1.2. 페이지 선택자<a class="headerlink" href="#id19" title="제목 주소">¶</a></h4>
 <ul class="simple">
 <li>:first: 이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.</li>
 </ul>
@@ -595,8 +790,8 @@ This is anonymous text after the SPAN.
 <p>위 속성들은 블록 요소에만 적용되며 기본적으로 auto로 동작한다. always를 주면 항상 페이지 분할이 발생하고 avoid는 분할이 발생하지 않게 한다.</p>
 </div>
 </div>
-<div class="section" id="id18">
-<h2>1.8. 참조<a class="headerlink" href="#id18" title="제목 주소">¶</a></h2>
+<div class="section" id="id20">
+<h2>1.8. 참조<a class="headerlink" href="#id20" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>CSS Snapshot: <a class="reference external" href="https://www.w3.org/Style/2011/CSS-process">https://www.w3.org/Style/2011/CSS-process</a></li>
 <li>CSS Processing: <a class="reference external" href="https://www.w3.org/TR/CSS2/intro.html#q2.0">https://www.w3.org/TR/CSS2/intro.html#q2.0</a></li>
@@ -675,6 +870,17 @@ This is anonymous text after the SPAN.
 </li>
 <li><a class="reference internal" href="#float">1.5.6. 플롯(Float)</a><ul>
 <li><a class="reference internal" href="#id14">1.5.6.1. 플롯 속성</a></li>
+<li><a class="reference internal" href="#clear">1.5.6.2. clear 속성</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#absolute-positioning">1.5.7. 절대 위치 결정(Absolute positioning)</a><ul>
+<li><a class="reference internal" href="#fixed-positioning">1.5.7.1. 고정 위치 결정(Fixed positioning)</a></li>
+<li><a class="reference internal" href="#display-position-float">1.5.7.2. display, position, float의 관계</a></li>
+<li><a class="reference internal" href="#id15">1.5.7.3. 노멀 플로우, 플롯, 절대 위치 결정 비교</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id16">1.5.8. 계층화된 표현</a><ul>
+<li><a class="reference internal" href="#z-index">1.5.8.1. z-index 속성</a></li>
 </ul>
 </li>
 </ul>
@@ -685,14 +891,14 @@ This is anonymous text after the SPAN.
 </li>
 <li><a class="reference internal" href="#paged-media-css-2-1">1.7. 페이지 미디어(Paged media, CSS 2.1)</a><ul>
 <li><a class="reference internal" href="#page">1.7.1. &#64;page</a><ul>
-<li><a class="reference internal" href="#id16">1.7.1.1. 페이지 여백</a></li>
-<li><a class="reference internal" href="#id17">1.7.1.2. 페이지 선택자</a></li>
+<li><a class="reference internal" href="#id18">1.7.1.1. 페이지 여백</a></li>
+<li><a class="reference internal" href="#id19">1.7.1.2. 페이지 선택자</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#page-breaks">1.7.2. 페이지 분할(Page breaks)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id18">1.8. 참조</a></li>
+<li><a class="reference internal" href="#id20">1.8. 참조</a></li>
 </ul>
 </li>
 </ul>

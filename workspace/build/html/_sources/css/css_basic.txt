@@ -565,6 +565,217 @@ float을 다루는 규칙들은 다음과 같다.
 8. 플로팅 박스는 가능한한 높게 위치한다.
 9. 왼쪽 플로팅 박스는 가능한한 왼쪽에 위치하며, 오른쪽 플로팅 박스는 가능한 오른쪽에 위치한다.
 
+clear 속성
+~~~~~~~~~~
+
+요소의 박스가 양쪽 면의 플롯 박스와 인접하지 않게 해주는 속성이다.
+
+- left
+- right
+- both
+- none
+
+절대 위치 결정(Absolute positioning)
+------------------------------------
+
+절대적으로 위치 결정된 모델에서 박스는 컨테이닝 비례하여 간격이 결정되며, 완전히 노멀 플로우에서 제거된 박스이다. 이 박스는 노멀 플로우 자식 박스나 위치 결정된 자식을 위해 (고정되지 않은) **새로운 컨테이닝 블록을 생성한다.** 그러나 **이 절대 위치 결정된 요소의 내용은 다른 박스와 같은 흐름(flow)를 갖지 않는다.** 다른 박스의 내용을 가린다. (오버래핑 박스의 스택 레벨에 의존)
+
+CSS 2.1 스펙에서 절대 위치 결정된 요소(박스)란 position 속성의 값으로 *absolute*, *fixed* 를 갖는 요소를 뜻한다.
+
+고정 위치 결정(Fixed positioning)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*고정 위치 결정은* 절대 위치 결정의 한 종류이다. 고정 위치 결정된 박스의 특징은 **이 박스를 위한 컨테이닝 박스가 viewport에 의해 생성된다는** 것이다. **연속적인 미디어에서 고정된 박스들은 문서가 스크롤 되더라도 움직이지 않는다.** 이것은 고정된 배경 이미지와 유사하다. **페이지 미디어에서는 이런 박스가 모든 페이지에 반복된다.** 이것은 페이지의 시그니처를 표시할때 유용하다. 이 박스가 페이지보다 더 클 경우 잘리게 된다.
+
+.. code-block:: html
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+  <HTML>
+    <HEAD>
+      <TITLE>A frame document with CSS 2.1</TITLE>
+      <STYLE type="text/css" media="screen">
+        BODY { height: 8.5in } /* Required for percentage heights below */
+        #header {
+          position: fixed;
+          width: 100%;
+          height: 15%;
+          top: 0;
+          right: 0;
+          bottom: auto;
+          left: 0;
+        }
+        #sidebar {
+          position: fixed;
+          width: 10em;
+          height: auto;
+          top: 15%;
+          right: auto;
+          bottom: 100px;
+          left: 0;
+        }
+        #main {
+          position: fixed;
+          width: auto;
+          height: auto;
+          top: 15%;
+          right: 0;
+          bottom: 100px;
+          left: 10em;
+        }
+        #footer {
+          position: fixed;
+          width: 100%;
+          height: 100px;
+          top: auto;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+      </STYLE>
+    </HEAD>
+    <BODY>
+      <DIV id="header"> header  </DIV>
+      <DIV id="sidebar"> sidebar  </DIV>
+      <DIV id="main"> main  </DIV>
+      <DIV id="footer"> footer  </DIV>
+    </BODY>
+  </HTML>
+
+display, position, float의 관계
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+3개의 속성은 박스 생성 및 레이아웃에 영향을 미친다.
+
+**display, position, float** 다음과 같이 상호작용한다.
+
+1. display가 none일 경우 position과 float은 적용되지 않는다. 요소는 박스를 생성하지 않는다.
+2. **position이** *absolute* 나 *fixed* 일 경우, float은 none이 되며 display는 아래의 테이블을 따른다. 박스의 위치는 top, right, bottom, left 속성과 컨테이닝 블록에 의해 결정된다.
+3. **float이** *none* 이 아니라면, 박스는 플로팅되며 display는 아래 테이블을 따른다.
+4. 요소가 루트 요소일 경우 display는 아래의 테이블을 따른다. (list-item이 block이 될지, list-item이 될지는 미정, CSS 2.1)
+5. 모든 경우가 아닐 경우, display 요소는 아래를 따른다.
+
+**명시된 값(Specified value) -> 계산된 값(Computed value)**
+
+- inline-table -> table 
+- inline, table-row-group, table-column, table-column-group, table-header-group, table-footer-group, table-row, table-cell, table-caption, inline-block -> block 
+- others -> same as specified
+
+노멀 플로우, 플롯, 절대 위치 결정 비교
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+노멀 플로우 예시::
+  
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+  <HTML>
+    <HEAD>
+    <STYLE>
+    body { display: block; font-size:12px; line-height: 200%; 
+           width: 400px; height: 400px }
+    p    { display: block }
+    span { display: inline }
+    </STYLE>
+      <TITLE>Comparison of positioning schemes</TITLE>
+    </HEAD>
+    <BODY>
+      <P>Beginning of body contents.
+        <SPAN id="outer"> Start of outer contents.
+        <SPAN id="inner"> Inner contents.</SPAN>
+        End of outer contents.</SPAN>
+        End of body contents.
+      </P>
+    </BODY>
+  </HTML>
+
+위 예시에서 P는 익명 인라인 텍스트와 2개의 SPAN 요소를 갖는다. 따라서 모든 요소는 인라인 포매팅 컨텍스트를 따라서 배치되며 컨테이닝 블록은 P요소에 의해 생성된다.
+
+상대 위치 결정 예시::
+
+  #outer { position: relative; top: -12px; color: red }
+  #inner { position: relative; top: 12px; color: blue }
+
+outer 요소의 텍스트는 노멀 플로우를 따라 배치되고 -12px 만큼 위로 이동된다. inner 요소는 outer 스타일의 -12px와 inner 스타일의 12px의 영향을 받아 제자리에 위치하게 된다. 만약 **-24px라는 값이 세팅된다면** 다른 텍스트와 겹칠 수 있다.
+
+박스 플로팅 예시::
+
+  #outer { color: red }
+  #inner { float: right; width: 130px; color: blue }
+
+inner 박스는 플로팅 밖으로 당겨져 오른쪽으로 플로팅된다. 플로팅 박스의 왼쪽의 라인 박스는 축약된다.
+
+절대 위치 결정 예시::
+
+  #outer { 
+      position: absolute; 
+      top: 200px; left: 200px; 
+      width: 200px; 
+      color: red;
+  }
+  #inner { color: blue }
+
+outer 박스는 이 박스의 컨테이닝 블록 안에 위치한다. **위치 결정된 박스의 컨테이닝 블록은 근처에 위치한 위치 결정(positioned)된 부모에 의해 형성된다. (만약 존재하지 않는다면 초기 컨테이닝 블록(initial containing block이 됨)** outer 박스의 꼭대기는 컨테이닝 박스의 꼭대기의 200px 밑에 위치하고 왼쪽에서 200px 이동한 위치에 왼쪽 면이 위치한다. outer의 자식 박스는 이것의 부모를 기준으로 정상적으로 배치된다.
+
+절대 위치 결정된 박스가 상대적으로 위치 결정된 박스의 자식일 경우의 예시::
+
+  #outer { 
+    position: relative; 
+    color: red 
+  }
+  #inner { 
+    position: absolute; 
+    top: 200px; left: -100px; 
+    height: 130px; width: 130px; 
+    color: blue;
+  }
+
+**부모 outer 박스는 실제로 offset 이 적용되지 않았음에도 불구하고, position 속성이 relative 라는 것은 이 박스가 위치 결정된(positioned) 자식을 위해 컨테이닝 블록을 생성하겠다는 뜻이다.** outer 박스가 몇개의 줄에 걸쳐 쪼개진 인라인 박스이기 때문에, **첫번째 인라인 박스의 top과 left 엣지에 top과 left 오프셋이 적용된다.** 
+
+outer 박스가 위치 결정되지 않았다면::
+
+  #outer { color: red }
+  #inner {
+    position: absolute; 
+    top: 200px; left: -100px; 
+    height: 130px; width: 130px; 
+    color: blue;
+  }
+
+inner의 컨테이닝 블록은 초기 컨테이닝 블록이 된다. 
+
+계층화된 표현
+-------------
+
+z-index 속성
+~~~~~~~~~~~~
+
+위치가 결정된 박스를 위해 z-index는 다음을 명시한다::
+  
+1. 현재 스태킹(stacking) 컨텍스트에서 박스의 스택 수준
+2. 박스가 스태킹(stacking) 컨텍스트를 구성할지 말지
+
+값은 다음 의미를 갖는다.
+
+- **숫자.** 스태킹 컨텍스트에서 박스의 스택 레벨을 뜻한다. 또한 새로운 스태킹 컨텍스트를 생성한다.
+- **auth.** 현재 스태킹 컨텍스트에서 스택 레벨은 0이다. 루트 요소가 아니라면 박스는 새로운 스태킹 컨텍스트를 만들지 않는다.
+
+CSS 2.1에서 박스는 3개의 위치로 표현된다. 수평, 수직 위치와 함께, z축 위치가 있다.  z축 위치는 박스가 오버랩될때와 관련있다. 이 섹션은 어떻게 박스가 Z축을 따라 위치하게 되는지를 설명한다.
+
+렌더링 트리가 캔버스위에 그려지는 순서는 스태킹(stacking) 컨텍스트에 의해 묘사된다. 스태킹 컨텍스트는 부모의 스태킹 컨텍스트로부터 원자성을 띄며, 다른 스태킹 박스는 이 박스들 사이에 오지 않을 것이다.
+
+각각의 박스는 하나의 스태킹 컨텍스트에 속한다. 스태킹 컨텍스트의 각각 위치 결정된 박스는 스택 레벨(숫자)을 갖는다. 같은 스태킹 컨텍스트에 있는 다른 스택 레벨에 상대적이다. **높은 스택 레벨을 갖는 박스는 언제나 낮은 레벨의 박스보다 위에 위치한다.** 음의 레벨을 갖을 수 있으며, 같은 스택 레벨을 갖는 박스는 DOM 트리의 순서를 따른다. 
+
+루트 요소는 루트 스태킹 컨텍스트를 형성한다. 다른 스태킹 컨텍스트는 다른 위치 결정된 요소(auto가 아닌 z-index 값을 갖는)에 의해 생성된다.
+
+각각의 스태킹 컨텍스트 안에서, 뒤에서 부터 앞으로 다음의 계층이 그려진다. 
+
+1. 스태킹 컨텍스트를 형성하는 요소의 배경(background)과 경계
+2. 음의 스택 레벨을 갖는 자식 스태킹 컨텍스트
+3. in-flow, non-inline-level, non-positioned 후손
+4. non-positioned floats
+5. 인라인 테이블, 인라인 블록을 포함한 in-flow, inline-level, non-positioned 자식
+6. 스택 레벨이 0인 자식 스태킹 컨텍스트나 스택 레벨이 0인 후손
+7. 양의 레벨을 갖는 자식 스태킹 컨텍스트
+
+
 
 
 미디어 쿼리(Media Queries)
