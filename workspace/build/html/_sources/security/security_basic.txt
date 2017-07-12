@@ -156,7 +156,7 @@ Client와 AS(authentication service)의 메세지 교환
 
 3) KDC는 *TGT(ticket-granting ticket, 특별한 서비스 티켓, TGS 키로 암호화 됨)* 및 *TGS 세션 키(User Key로 암호화 됨)를* 사용자에게 전달한다. **(티켓에도 TGS 세션키가 포함되어 있음, TGS 키와 TGS 세션 키는 다르다. TGS 키는 서버에서 사용)**
 4) 전달받은 TGS 세션 키는 사용자 키로 암호화 되어 있다. 이때 **TGS 세션 키를 복호화 한뒤** 저장한다. (이제 TGS 세션 키가 있으므로 사용자 키는 더이상 필요없다.)
-5) *TGT는* TGS 세션 키와 *인가 데이터(Authorization data, 사용자 SID, 그룹 SID)를* 포함한다. KDC는 TGT를 사용함으로써 사용자가 매번 사전 인증 데이터를 찾아야하는 오버헤드를 없앨 수 있다.
+5) *TGT는* TGS 세션 키와 *인가 데이터(Authorization data, User credentials)(사용자 SID, 보안 그룹의 SID, 유니버셜 그룹)를* 포함한다. KDC는 TGT를 사용함으로써 사용자가 매번 사전 인증 데이터를 찾아야하는 오버헤드를 없앨 수 있다.
 6) *TGS 세션 키는* TGT가 만료되거나 사용자가 로그오프할때 까지 사용되므로 *로그온 세션 키(logon session key)로* 불리기도 한다.
 
 Client와 TGS(ticket-granting service)의 메세지 교환
@@ -172,7 +172,7 @@ Client와 TGS(ticket-granting service)의 메세지 교환
 3) KDC는 사용자에게 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.
 4) 세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
 5) 서비스 티켓(Service Ticket)은 *시스템 키(System Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 TGS 세션 키로 암호화 되어 있다.
-6) 서비스 티켓(Service Ticket)은 세션 키와 *사용자 자격증명(User Credential)을* 저장하고 있다.
+6) 서비스 티켓(Service Ticket)은 세션 키와 *인가 데이터(Authorization data, TGT 복사본)(사용자 SID, 보안 그룹의 SID, 유니버셜 그룹)을* 저장하고 있다.
 
 User Credential을 이용한 사용자 인증
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -205,7 +205,7 @@ User Credential을 이용한 사용자 인증
 **KRB_TGS_REP**
 
 3) KDC는 사용자에게 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.
-4) **세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
+4) 세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
 5) 서비스 티켓(Service Ticket)은 *서비스 키(Service Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 TGS 세션 키로 암호화 되어 있다.
 6) 서비스 티켓(Service Ticket)은 세션 키와 *사용자 자격증명(User Credential)을* 저장하고 있다.
 
@@ -216,7 +216,7 @@ User Credential을 이용한 사용자 인증
 **KRB_AP_REP**
 
 8) 서비스 티켓을 서비스 키(Service key)로 복호화 하여 사용자 인가 데이터(authrization data)및 세션키를 추출한다.
-9) *인증자(Authenticator)*를 복호화 한 뒤 타임스탬프(timestamp)의 유효성을 확인한다.
+9) *인증자(Authenticator)를* 복호화 한 뒤 타임스탬프(timestamp)의 유효성을 확인한다.
 10) 상호 인증 플래그가 있다면 서버는 세션 키로 *인증자(Authenticator)의 시간(time)을* 암호화해서 클라이언트에게 전달한다.
 
 **접근 토근(access token) 생성**
