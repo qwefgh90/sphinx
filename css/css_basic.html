@@ -96,7 +96,7 @@
 </div>
 <div class="section" id="id4">
 <h3>1.2.2. 캔버스<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
-<p>캔버스(canvas)란 미디어에서 서식 구조(formatting structure)가 렌더링되는 공간을 뜻한다. 캔버스의 크기는 무한하지만, 렌더링은 캔버스의 일부분에서만 일어난다. 예를들어 유저 에이전트(브라우저)는 뷰포트의 크기를 기반으로 초기 너비를 설정하고 다른 유저 에이전트(페이지)는 너비와 높이를 제한한다.</p>
+<p>캔버스(canvas)란 미디어에서 포맷팅 구조(formatting structure)가 렌더링되는 공간을 뜻한다. 캔버스의 크기는 무한하지만, 렌더링은 캔버스의 일부분에서만 일어난다. 예를들어 유저 에이전트(브라우저)는 뷰포트의 크기를 기반으로 초기 너비를 설정하고 다른 유저 에이전트(페이지)는 너비와 높이를 제한한다.</p>
 </div>
 <div class="section" id="css-2-1-processsing-model">
 <h3>1.2.3. CSS 2.1 처리 모델 (processsing model)<a class="headerlink" href="#css-2-1-processsing-model" title="제목 주소">¶</a></h3>
@@ -107,8 +107,8 @@
 <li>대상이 되는 미디어 타입과 문서와 연관된 모든 스타일시트(style sheets)를 가져온다.</li>
 <li>캐스캐이딩과 상속 매커니즘에 따라 모든 프로퍼티에 값을 할당한다. (이때 대상에 적용 가능한 프로퍼티만)</li>
 <li>문서의 모든 요소에 프로퍼티를 주석으로 표시한다.</li>
-<li>주석이 달린 문서를 기반으로 서식 구조(formatting structure)를 생성한다. 이는 문서 트리와 유사하지만 각 스타일을 적용한 결과물이라 볼 수 있다. 추가적인 정보(이미지 추가)를 더 저장하거나 오히려 문서트리보다 크기가 작을 수 있다.(diplay:none 일 경우 요소를 삭제)</li>
-<li>서식 구조를 대상 매체에 전달한다. (화면에 결과를 출력함)</li>
+<li>주석이 달린 문서를 기반으로 포맷팅 구조(formatting structure)를 생성한다. 이는 문서 트리와 유사하지만 각 스타일을 적용한 결과물이라 볼 수 있다. 추가적인 정보(이미지 추가)를 더 저장하거나 오히려 문서트리보다 크기가 작을 수 있다.(diplay:none 일 경우 요소를 삭제)</li>
+<li>포맷팅 구조를 대상 매체에 전달한다. (화면에 결과를 출력함)</li>
 </ol>
 </div>
 </div>
@@ -254,8 +254,8 @@
 </div>
 </div>
 <div class="section" id="visual-formatting-model">
-<h2>1.5. 시각적 서식 모델(Visual formatting model)<a class="headerlink" href="#visual-formatting-model" title="제목 주소">¶</a></h2>
-<p>시각적 서식 모델은 브라우저가 각 미디어를 위해 DOM 트리를 어떻게 처리하는지에 대해 설명한 모델이다. 이 모델에서 박스 모델(box model)의 레이아웃은 다음 항목을 따른다.</p>
+<h2>1.5. 비주얼 포맷팅 모델(Visual formatting model)<a class="headerlink" href="#visual-formatting-model" title="제목 주소">¶</a></h2>
+<p>비주얼 포맷팅 모델은 브라우저가 각 미디어를 위해 DOM 트리를 어떻게 처리하는지에 대해 설명한 모델이다. 이 모델에서 박스 모델(box model)의 레이아웃은 다음 항목을 따른다.</p>
 <ul class="simple">
 <li>박스 크기, 타입</li>
 <li>위치결정 방식(normal flow, float, absolute positioning)</li>
@@ -264,17 +264,17 @@
 </ul>
 <div class="section" id="viewport">
 <h3>1.5.1. 뷰 포트(viewport)<a class="headerlink" href="#viewport" title="제목 주소">¶</a></h3>
-<p>연속적인 미디어에서 브라우저는 사용자에게 뷰 포트(스크린 위에 표시되는 영역, 창)를 제공한다. 뷰 포트의 크기가 조정되면 브라우저는 문서의 레이아웃을 변경하게 된다. 뷰 포트의 크기는 <em>초기 컨테이닝 블록(initial containing block)</em> 의 크기와 같다. <strong>뷰 포트의 크기가 캔버스보다 작을때에는 브라우저는 스크롤링(scrolling)을 제공한다.</strong></p>
-<p>캔버스 별로 최대 1개의 뷰포트를 갖고, 브라우저는 1개 이상의 캔버스를 렌더링 할 수 있다.(같은 문서에 대한 다른 뷰를 제공할 수 있음)</p>
+<p>연속적인 미디어에서 브라우저는 사용자가 문서를 찾을 수 있는 뷰 포트(스크린 위에 표시되는 영역, 창)를 제공한다. 뷰 포트의 크기가 조정되면 브라우저는 문서의 레이아웃을 변경하게 된다. <strong>뷰 포트의 크기가 캔버스보다 작을때에는 브라우저는 스크롤링(scrolling)을 제공해야 한다.</strong></p>
+<p>캔버스 별로 최대 1개의 뷰포트를 갖고, 유저 에이전트는 1개 이상의 캔버스를 렌더링 할 수 있다.(같은 문서에 대한 다른 뷰를 제공할 수 있음)</p>
 </div>
 <div class="section" id="containing-blocks">
 <h3>1.5.2. 컨테이닝 블록(Containing blocks)<a class="headerlink" href="#containing-blocks" title="제목 주소">¶</a></h3>
-<p>요소의 박스의 위치(position)와 크기(size)는 <em>컨테이닝 블록</em> 이라는 사각형 박스의 크기와 관계가 있다. 일반적으로 요소의 박스들은 자식 박스(descendant boxes)의 <em>컨테이닝 블록</em> 처럼 사용되며, 이는 이 박스가 자식 박스(descendant boxes)을 위해 컨테이닝 블록을 설정(establish)했다고 한다.</p>
-<p>각 박스의 위치는 컨테이닝 블록과 관련 있지만, 컨테이닝 블록안에 갖히지는 않는다. 오버플로우(overflow) 될 수 있다.</p>
+<p>많은 박스의 위치(position)와 크기(size)는 <em>컨테이닝 블록</em> 이라는 사각형 박스의 엣지와 관계가 있다. 일반적으로 생성된 박스들은 자식 박스(descendant boxes)의 <em>컨테이닝 블록(containing block)</em> 처럼 사용되며, 이는 이 <em>박스(box)가</em> 자식 박스(descendant boxes)을 위해 <em>컨테이닝 블록(containing block)</em> 을 설정(establish)했다고 한다.</p>
+<p>각 박스의 위치는 컨테이닝 블록과 관련 있지만, 컨테이닝 블록안에 갖히지는(confined) 않는다. 즉, 오버플로우(overflow) 될 수 있다.</p>
 </div>
 <div class="section" id="controlling-box-generation">
 <h3>1.5.3. 박스 타입 제어(Controlling box generation)<a class="headerlink" href="#controlling-box-generation" title="제목 주소">¶</a></h3>
-<p>생성되는 박스의 타입은 다양하다. 박스의 타입은 시각적 서식 모델에서 이 박스가 어떻게 동작할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 <em>&#8216;display&#8217;</em> 속성이 사용된다.</p>
+<p>박스의 타입은 비주얼 포맷팅 모델에서 이 박스가 어떻게 행동할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 <em>&#8216;display&#8217;</em> 속성이 사용된다.</p>
 <div class="section" id="id10">
 <h4>1.5.3.1. 블록 레벨 요소와 블록 박스<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
 <p><em>블록 레벨 요소(block-level element)는</em> 시각적으로 블록화된 요소를 뜻한다. (예를들어 paragraphs가 있음)</p>
@@ -284,11 +284,18 @@
 <span class="nt">display</span><span class="o">:</span> <span class="nt">table</span>
 </pre></div>
 </div>
-<p><em>각 블록 레벨 요소(block-level element)는</em> 자식 박스(descendant box)와 컨텐츠을 포함하는 <em>제1 블록 레벨 박스(principal block-level box)를</em> 생성하며, 이것은 어떤 위치결정 방식(any positioning scheme)와 연관된다.</p>
-<p><em>블록 레벨 박스(block-level box)는</em> <em>블록 서식 컨텍스트(block formatting context)에</em> 참여하는 박스를 뜻한다. 몇몇 블록 레벨 요소는 추가적인 박스를 만들기도한다. (list-item 일 경우)</p>
-<p><strong>테이블 박스(table box), 대체 요소(replaced element)를 제외한 블록 레벨 박스(block-level box)는 블록 컨테이너 박스(block container box)를 뜻한다.</strong> 블록 컨테이너 박스는 오직 블록 레벨 박스(block-level box)를 갖거나, 또는 인라인 서식 컨텍스트(inline formatting context) 설정하고 인라인 레벨 박스(inline-level boxes)만 포함할 수 있다.</p>
-<p>모든 블록 컨테이너 박스가 블록 레벨 박스는 아니다. 대체 불가 인라인 블록(non-replaced inline block), 대체 불가 테이블 셀(non-replaced table cells)은 블록 컨테이너지만 블록 레벨 박스는 아니다.</p>
-<p>블록 레벨 박스이면서 블록 컨테이너 박스일 경우 <strong>블록 박스(block box)라 한다.</strong></p>
+<p><em>각 블록 레벨 요소(block-level element)는</em> 자식 박스(descendant box)와 컨텐츠을 포함하는 <em>제1 블록 레벨 박스(principal block-level box)를</em> 생성하며, 이것은 위치결정 방식(any positioning scheme)와 연관된다.</p>
+<p><em>블록 레벨 박스(block-level box)는</em> <em>블록 포맷팅 컨텍스트(block formatting context)에</em> 참여한다. 몇몇 블록 레벨 요소는 제1 블렉 레벨 박스뿐만 아니라 추가적인 박스를 만들기도한다. (list-item 일 경우)</p>
+<p><strong>테이블 박스(table box), 대체 요소(replaced element)를 제외한</strong> 블록 레벨 박스(block-level box)는 <em>블록 컨테이너 박스(block container box)이다.</em></p>
+<p><em>블록 컨테이너 박스(block container box)는</em> 오직 블록 레벨 박스(block-level box)만 포함하거나, 또는 인라인 포맷팅 컨텍스트(inline formatting context) 설정하고 인라인 레벨 박스(inline-level boxes)만 포함할 수 있다.</p>
+<p>모든 블록 컨테이너 박스가 블록 레벨 박스는 아니다. <strong>대체 불가 인라인 블록(non-replaced inline block), 대체 불가 테이블 셀(non-replaced table cells)은 블록 컨테이너(block container box)지만</strong> 블록 레벨 박스는 아니다.</p>
+<p>블록 레벨 박스이면서 <em>블록 컨테이너 박스일</em> 경우 <em>블록 박스(block box)라 한다.</em></p>
+<p>정리해보면 다음과 같다.</p>
+<ul class="simple">
+<li><strong>블록 레벨 박스.</strong> 블록 레벨 요소가 생성</li>
+<li><strong>블록 컨테이너 박스.</strong> 특정 블록 레벨 박스, 대체 불가 인라인 블록 및 테이블 셀</li>
+<li><strong>블록 박스.</strong> 특정 블록 레벨 박스이면서 블록 레벨 박스</li>
+</ul>
 <div class="section" id="anonymous-block-box">
 <h5>1.5.3.1.1. 익명 블록 박스(anonymous block box)<a class="headerlink" href="#anonymous-block-box" title="제목 주소">¶</a></h5>
 <p><strong>div와 p 모두 &#8216;display: block&#8217; 스타일이 적용 되었다.</strong></p>
@@ -298,8 +305,8 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>위의 예에서 div 컨테이너 블록에 둘러 쌓인 <em>some text</em> 이란 인라인 컨텐츠는 실제로 <em>익명 블록 박스로</em> 둘러 쌓이게 된다.</p>
-<p>다르게 말해서, 만약 블록 컨테이너 박스(div를 위해 생성된 것)가 블록 레벨 박스(p요소를 위해)를 갖고 있다면 블록 컨테이너 박스는 <strong>오직 블록 레벨 박스만</strong> 갖도록 강제된다.</p>
+<p>위의 예에서 div의 블록 컨테이너 박스는 인라인 컨텐츠(inline content)와 블록 컨텐츠(block content)를 모두 포함한다. <em>some text</em> 이란 인라인 컨텐츠(inline content)는 실제로 <em>익명 블록 박스로</em> 둘러 쌓이게 된다.</p>
+<p>다르게 말해서, 만약 블록 컨테이너 박스(div를 위해 생성된 것)가 블록 레벨 박스(p요소의 박스)를 갖고 있다면, <strong>블록 컨테이너 박스는 오직 블록 레벨 박스만</strong> 갖도록 강제된다.</p>
 <p>다른 예를 보자.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
 <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
@@ -332,9 +339,9 @@ This is anonymous text after the SPAN.
 <span class="nt">display</span><span class="o">:</span> <span class="nt">inline-block</span>
 </pre></div>
 </div>
-<p>인라인 레벨 요소는 <em>인라인 레벨 박스(inline-level box)를</em> 만들며, 이 박스는 <em>인라인 서식 컨텍스트(inline formatting context)에</em> 참여한다.</p>
+<p>인라인 레벨 요소는 <em>인라인 레벨 박스(inline-level box)를</em> 만들며, 이 박스는 <em>인라인 포맷팅 컨텍스트(inline formatting context)에</em> 참여한다.</p>
 <p>대체될 수 없는 인라인 요소(display: inline)만 <em>인라인 박스(inline box)를</em> 생성한다. 인라인 레벨 박스이면서 인라인 박스가 아닐 경우 <em>아토믹 인라인 레벨 박스(atomic inline-level boxes)라</em> 불린다. (예를들어 대체 가능한 인라인 레벨 요소, 인라인 블록 요소(display: inline-block), 인라인 테이블 요소(display: inline-table) 등이 있다.)</p>
-<p>아토믹 인라인 레벨 박스는 불투명한 싱글 박스로서 <em>인라인 서식 컨텍스트(inline formatting context)에</em> 참여한다.</p>
+<p>아토믹 인라인 레벨 박스는 불투명한 싱글 박스로서 <em>인라인 포맷팅 컨텍스트(inline formatting context)에</em> 참여한다.</p>
 <div class="section" id="anonymous-inline-box">
 <h5>1.5.3.2.1. 익명 인라인 박스(anonymous inline box)<a class="headerlink" href="#anonymous-inline-box" title="제목 주소">¶</a></h5>
 <p><strong>블록 컨테이너 요소에 포함된 텍스트(text)는 익명의 인라인 요소처럼 다뤄진다.</strong>:</p>
@@ -349,10 +356,10 @@ This is anonymous text after the SPAN.
 <h4>1.5.3.3. display 속성<a class="headerlink" href="#display" title="제목 주소">¶</a></h4>
 <ul class="simple">
 <li>block: 요소가 블록 박스를 생성하게 한다.</li>
-<li>inline-block: 요소가 인라인 블록 컨테이너(inline-level block container box)를 생성하게 한다. 요소는 아토믹 인라인 레벨 박스(atomic inline-level box)로 포맷팅되며, 내부 적으로 블록 박스(block box)로 포매팅된다.</li>
+<li>inline-block: 요소가 인라인 블록 컨테이너(inline-level block container box)를 생성하게 한다. 요소는 아토믹 인라인 레벨 박스(atomic inline-level box)로 포맷팅되며, 내부 적으로 블록 박스(block box)로 포맷팅된다.</li>
 <li>inline: 요소가 1개 이상의 인라인 박스(inline box)를 반들게 한다.</li>
 <li>list-item: 요소가 제1 블록 박스(principal block)와 마커 박스(marker box)를 생성하게 한다.</li>
-<li>none: 요소를 서식 구조에 나타나지 않게 한다.</li>
+<li>none: 요소를 포맷팅 구조에 나타나지 않게 한다.</li>
 <li>table, inline-table, table-row-group, table-column, table-column-group, table-header-group, table-footer-group, table-row, table-cell, and table-caption: 요소가 테이블 요소처럼 행동하게 한다.</li>
 </ul>
 <p>위치 고정이거나 플로팅된 요소를 제외하고 위에 명시된 값이 적용된다.</p>
@@ -363,7 +370,7 @@ This is anonymous text after the SPAN.
 <h3>1.5.4. 위치 결정 방식(Positioning schemes)<a class="headerlink" href="#positioning-schemes" title="제목 주소">¶</a></h3>
 <p>위치결정 방식에 따라 박스의 위치가 결정된다.</p>
 <ol class="arabic simple">
-<li>노멀 플로우(Normal flow). <em>노멀 플로우(normal flow)은</em> 블록레벨 박스(block-level boxes)의 <em>블록 포매팅(block formatting)</em>, 인라인 레벨 박스(inline-level boxes)의 <em>인라인 포매팅(inline formatting)</em>, 블록 레벨이나 인라인 레벨 박스의 <em>상대 위치결정(relative positioning)</em> 을 포함한다.</li>
+<li>노멀 플로우(Normal flow). <em>노멀 플로우(normal flow)은</em> 블록레벨 박스(block-level boxes)의 <em>블록 포맷팅(block formatting)</em>, 인라인 레벨 박스(inline-level boxes)의 <em>인라인 포맷팅(inline formatting)</em>, 블록 레벨이나 인라인 레벨 박스의 <em>상대 위치결정(relative positioning)</em> 을 포함한다.</li>
 <li>플롯(Floats). 먼저 노멀 플로우를 따른 후, 박스는 왼쪽이나 오른쪽으로 이동된다.</li>
 <li>절대 위치 결정(Absolute positioning). 노멀 플로우로 부터 완전히 제거되며, <em>컨테이닝 블록(containing block)에</em> 따라 위치가 결정된다.</li>
 </ol>
@@ -394,19 +401,19 @@ This is anonymous text after the SPAN.
 </div>
 <div class="section" id="normal-flow">
 <h3>1.5.5. 노멀 플로우(Normal flow)<a class="headerlink" href="#normal-flow" title="제목 주소">¶</a></h3>
-<p>노멀 플로우에서는 박스는 서식 컨텍스트(formatting context)에 따라 블록, 인라인 또는 그외의 상태가 될 수 있다. <strong>블록 레벨 박스는 블록 서식 컨텍스트(block formatting context)에 참여하고, 인라인 레벨 박스는 인라인 서식 컨텍스트(inline formatting context)에 참여한다.</strong></p>
+<p>노멀 플로우에서는 박스는 포맷팅 컨텍스트(formatting context)에 따라 블록, 인라인 또는 그외의 상태가 될 수 있다. <strong>블록 레벨 박스는 블록 포맷팅 컨텍스트(block formatting context)에 참여하고, 인라인 레벨 박스는 인라인 포맷팅 컨텍스트(inline formatting context)에 참여한다.</strong></p>
 <div class="section" id="block-formatting-context">
-<h4>1.5.5.1. 블록 서식 컨텍스트(Block formatting context)<a class="headerlink" href="#block-formatting-context" title="제목 주소">¶</a></h4>
-<p>플롯 또는 절대 위치 요소, <em>블록 박스가 아닌 블록 컨테이너(인라인 블록, 테이블 셀, 테이블 캡션),</em> overflow 블록 박스는 새로운 블록 서식 컨텍스트(new block formatting context)를 만든다.</p>
-<p>블록 서식 컨텍스트에서 박스는 컨테이닝 블록의 꼭대기부터 수직으로 배치된다. 2개의 형제 박스간 수직 거리는 <em>margin 속성에</em> 의해 결정된다. 인접한 블록 박스의 수직 여백(margin)은 접히게(collapse)된다.</p>
-<p>블록 서식 컨텍스트에서 각 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙게된다.</p>
+<h4>1.5.5.1. 블록 포맷팅 컨텍스트(Block formatting context)<a class="headerlink" href="#block-formatting-context" title="제목 주소">¶</a></h4>
+<p>플롯 또는 절대 위치 요소, <em>블록 박스가 아닌 블록 컨테이너(인라인 블록, 테이블 셀, 테이블 캡션),</em> overflow 블록 박스는 새로운 블록 포맷팅 컨텍스트(new block formatting context)를 만든다.</p>
+<p>블록 포맷팅 컨텍스트에서 박스는 컨테이닝 블록의 꼭대기부터 수직으로 배치된다. 2개의 형제 박스간 수직 거리는 <em>margin 속성에</em> 의해 결정된다. 인접한 블록 박스의 수직 여백(margin)은 접히게(collapse)된다.</p>
+<p>블록 포맷팅 컨텍스트에서 각 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙게된다.</p>
 </div>
 <div class="section" id="inline-formatting-context">
-<h4>1.5.5.2. 인라인 서식 컨텍스트(Inline formatting context)<a class="headerlink" href="#inline-formatting-context" title="제목 주소">¶</a></h4>
+<h4>1.5.5.2. 인라인 포맷팅 컨텍스트(Inline formatting context)<a class="headerlink" href="#inline-formatting-context" title="제목 주소">¶</a></h4>
 <p>박스는 수평으로 위치하게 되며 컨테이닝 블록의 꼭대기에서 시작한다. 수평 여백, 경계, 패딩은 박스 사이에서 적용된다. 한 줄을 형성하는 박스를 포함하는 사각형 공간을 라인 박스(line box)라 한다.</p>
 <p>라인 박스의 너비는 컨테이닝 블록과 float 속성에 따라 결정된다. 라인 박스의 높이는 <a class="reference external" href="https://www.w3.org/TR/CSS2/visudet.html#line-height">다음 알고리즘에</a> 따라 결정된다.</p>
 <p>라인 박스는 언제나 모든 박스를 수용할 만큼 높아야 한다. 그러나 가장 큰 박스보다 더 클 수 있다. 라인 박스보다 <em>어떤 박스 B</em> 가 더 작다면 B의 수직 정렬은 <em>vertical-align 속성을</em> 따른다. 인라인 레벨 박스를 하나의 라인 박스에 담을 수 없다면 수직으로 위치한 여러개의 라인 박스로 분산시킨다. <strong>문장(paragraph)는 라인 박스의 스택으로 볼 수 있다.</strong></p>
-<p>일반적으로 라인 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙어 있다. (오른쪽 엣지도 마찬가지) 그러나, 플로팅 박스는 컨테이닝 블록의 엣지와 라인 박스의 엣지 사이에 올 수 있다. 비록 라인 박스들이 컨테이닝 박스와 같은 너비를 갖는다고 할지라도, 플롯(float) 때문에 수평 공간이 줄어든다면 너비는 달라질 수 있다. 같은 인라인 서식 컨텍스트에 있는 라인 박스들의 높이는 다양하게 존재한다. (어떤 라인 박스는 이미지 어떤 라인 박스는 텍스트를 갖고 있음)</p>
+<p>일반적으로 라인 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙어 있다. (오른쪽 엣지도 마찬가지) 그러나, 플로팅 박스는 컨테이닝 블록의 엣지와 라인 박스의 엣지 사이에 올 수 있다. 비록 라인 박스들이 컨테이닝 박스와 같은 너비를 갖는다고 할지라도, 플롯(float) 때문에 수평 공간이 줄어든다면 너비는 달라질 수 있다. 같은 인라인 포맷팅 컨텍스트에 있는 라인 박스들의 높이는 다양하게 존재한다. (어떤 라인 박스는 이미지 어떤 라인 박스는 텍스트를 갖고 있음)</p>
 <p><strong>인라인 레벨 박스(inline-level box)의 전체 너비가 이를 포함하는 라인 박스보다 작을 경우, 라인 박스 안에 수평 배치는 text-align에 의해 결정된다.</strong> 만약에 <em>text-align: justify 속성을</em> 갖는다면 유저 에이전트는 인라인 박스안의 단어와 공간을 팽창시킨다.</p>
 <p>인라인 박스(inline box)가 라인 박스(line box)의 너비를 초과한다면 몇개의 박스로 쪼개지며, 이 박스들은 몇개의 라인 박스에 분산 배치되게 된다. 만약 인라인 박스가 쪼개질 수 없다면(인라인 박스가 단일 문자를 포함, 라인 브레이크를 허용하지 않는 문자, 인라인 박스가 white-space: nowrap, pre의 영향을 받을 경우) 인라인 박스를 <em>오버플로우(overflow)</em> 하게 된다.</p>
 <p>인라인 박스가 쪼개지면, 쪼개진 박스 사이에서 여백, 패팅, 경계에 대한 시각적 효과는 없어지게 된다.</p>
@@ -470,7 +477,7 @@ This is anonymous text after the SPAN.
 <p><strong>플롯은 현재 라인(current line)에서 왼쪽 또는 오른쪽으로 이동된 박스(floated box, floating box)를 뜻한다. 플롯 박스는 왼쪽 또는 오른쪽 엣지가 컨테이닝 블록의 엣지나 다른 플롯 박스의 외부 엣지를 만날때 까지 이동된다.</strong> 만약 라인 박스라면, 플롯된 박스의 꼭대기(top)는 라인 박스의 꼭대기(top)에 맞게 정렬된다. 플롯(float) 속성은 플롯 행동을 제어한다.</p>
 <p>콘텐츠는 왼쪽으로 플롯된 박스(left-floated box)의 오른쪽 면에 배치되고 오른쪽으로 플롯된 박스(right-floated box)의 왼쪽 면에 배치된다. 플롯은 인-플로우(in-flow)가 아니기 때문에, 플롯 왼쪽이나 오른쪽에 생성된 블록 박스는 블록 박스끼리 수직으로 배치되고(물론 왼쪽이나 오른쪽 편에 위치하면서), 라인 박스는 플롯 박스가 차지한 공간을 제외한 만큼의 너비를 사용한다.</p>
 <p>축약된 라인 박스는 내용을 담지 못할 정도로 작을 경우, 라인박스는 내용을 담을때 까지 아래로 이동(downward) 된다. <strong>플롯 박스(floated box)의 왼쪽에 내용이 있다면 플롯의 반대편에 내용이 배치되게 된다.</strong></p>
-<p>테이블 경계 박스, 블록 레벨 대체 요소, 노멀 플로우 (새로운 블록 포매팅 컨텍스트를 만드는, overflow 속성 같이)는 플롯 박스의 여백에 오버랩 되지 않는다.</p>
+<p>테이블 경계 박스, 블록 레벨 대체 요소, 노멀 플로우 (새로운 블록 포맷팅 컨텍스트를 만드는, overflow 속성 같이)는 플롯 박스의 여백에 오버랩 되지 않는다.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
 <span class="p">&lt;</span><span class="nt">HTML</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
@@ -641,7 +648,7 @@ This is anonymous text after the SPAN.
 <span class="o">&lt;/</span><span class="nt">HTML</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>위 예시에서 P는 익명 인라인 텍스트와 2개의 SPAN 요소를 갖는다. 따라서 모든 요소는 인라인 포매팅 컨텍스트를 따라서 배치되며 컨테이닝 블록은 P요소에 의해 생성된다.</p>
+<p>위 예시에서 P는 익명 인라인 텍스트와 2개의 SPAN 요소를 갖는다. 따라서 모든 요소는 인라인 포맷팅 컨텍스트를 따라서 배치되며 컨테이닝 블록은 P요소에 의해 생성된다.</p>
 <p>상대 위치 결정 예시:</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="nn">#outer</span> <span class="p">{</span> <span class="nb">position</span><span class="o">:</span> <span class="nb">relative</span><span class="p">;</span> <span class="nb">top</span><span class="o">:</span> <span class="m">-12px</span><span class="p">;</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span> <span class="p">}</span>
 <span class="nn">#inner</span> <span class="p">{</span> <span class="nb">position</span><span class="o">:</span> <span class="nb">relative</span><span class="p">;</span> <span class="nb">top</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">blue</span> <span class="p">}</span>
@@ -842,7 +849,7 @@ This is anonymous text after the SPAN.
 <li><a class="reference internal" href="#border-properties-css-2-1">1.4.3. 경계 속성(border properties, CSS 2.1)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#visual-formatting-model">1.5. 시각적 서식 모델(Visual formatting model)</a><ul>
+<li><a class="reference internal" href="#visual-formatting-model">1.5. 비주얼 포맷팅 모델(Visual formatting model)</a><ul>
 <li><a class="reference internal" href="#viewport">1.5.1. 뷰 포트(viewport)</a></li>
 <li><a class="reference internal" href="#containing-blocks">1.5.2. 컨테이닝 블록(Containing blocks)</a></li>
 <li><a class="reference internal" href="#controlling-box-generation">1.5.3. 박스 타입 제어(Controlling box generation)</a><ul>
@@ -863,8 +870,8 @@ This is anonymous text after the SPAN.
 </ul>
 </li>
 <li><a class="reference internal" href="#normal-flow">1.5.5. 노멀 플로우(Normal flow)</a><ul>
-<li><a class="reference internal" href="#block-formatting-context">1.5.5.1. 블록 서식 컨텍스트(Block formatting context)</a></li>
-<li><a class="reference internal" href="#inline-formatting-context">1.5.5.2. 인라인 서식 컨텍스트(Inline formatting context)</a></li>
+<li><a class="reference internal" href="#block-formatting-context">1.5.5.1. 블록 포맷팅 컨텍스트(Block formatting context)</a></li>
+<li><a class="reference internal" href="#inline-formatting-context">1.5.5.2. 인라인 포맷팅 컨텍스트(Inline formatting context)</a></li>
 <li><a class="reference internal" href="#id13">1.5.5.3. 상대적 위치 결정</a></li>
 </ul>
 </li>

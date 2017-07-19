@@ -66,7 +66,7 @@ CSS 2.1 주소 지정 모델 (addressing model)
 캔버스
 ------
 
-캔버스(canvas)란 미디어에서 서식 구조(formatting structure)가 렌더링되는 공간을 뜻한다. 캔버스의 크기는 무한하지만, 렌더링은 캔버스의 일부분에서만 일어난다. 예를들어 유저 에이전트(브라우저)는 뷰포트의 크기를 기반으로 초기 너비를 설정하고 다른 유저 에이전트(페이지)는 너비와 높이를 제한한다.
+캔버스(canvas)란 미디어에서 포맷팅 구조(formatting structure)가 렌더링되는 공간을 뜻한다. 캔버스의 크기는 무한하지만, 렌더링은 캔버스의 일부분에서만 일어난다. 예를들어 유저 에이전트(브라우저)는 뷰포트의 크기를 기반으로 초기 너비를 설정하고 다른 유저 에이전트(페이지)는 너비와 높이를 제한한다.
 
 CSS 2.1 처리 모델 (processsing model)
 -------------------------------------
@@ -78,8 +78,8 @@ CSS 2.1 처리 모델 (processsing model)
 3. 대상이 되는 미디어 타입과 문서와 연관된 모든 스타일시트(style sheets)를 가져온다.
 4. 캐스캐이딩과 상속 매커니즘에 따라 모든 프로퍼티에 값을 할당한다. (이때 대상에 적용 가능한 프로퍼티만)
 5. 문서의 모든 요소에 프로퍼티를 주석으로 표시한다.
-6. 주석이 달린 문서를 기반으로 서식 구조(formatting structure)를 생성한다. 이는 문서 트리와 유사하지만 각 스타일을 적용한 결과물이라 볼 수 있다. 추가적인 정보(이미지 추가)를 더 저장하거나 오히려 문서트리보다 크기가 작을 수 있다.(diplay:none 일 경우 요소를 삭제)
-7. 서식 구조를 대상 매체에 전달한다. (화면에 결과를 출력함)
+6. 주석이 달린 문서를 기반으로 포맷팅 구조(formatting structure)를 생성한다. 이는 문서 트리와 유사하지만 각 스타일을 적용한 결과물이라 볼 수 있다. 추가적인 정보(이미지 추가)를 더 저장하거나 오히려 문서트리보다 크기가 작을 수 있다.(diplay:none 일 경우 요소를 삭제)
+7. 포맷팅 구조를 대상 매체에 전달한다. (화면에 결과를 출력함)
 
 
 
@@ -233,10 +233,10 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
 
 **border-top, border-right, border-bottom, border-left, border은 값으로** borer-width, border-style, border-top-color를 갖는다. 즉 위의 너비, 스타일, 색상을 한번에 설정한다. 값은 생략될 수 있으나 순서대로 와야한다.
 
-시각적 서식 모델(Visual formatting model)
+비주얼 포맷팅 모델(Visual formatting model)
 =========================================
 
-시각적 서식 모델은 브라우저가 각 미디어를 위해 DOM 트리를 어떻게 처리하는지에 대해 설명한 모델이다. 이 모델에서 박스 모델(box model)의 레이아웃은 다음 항목을 따른다.
+비주얼 포맷팅 모델은 브라우저가 각 미디어를 위해 DOM 트리를 어떻게 처리하는지에 대해 설명한 모델이다. 이 모델에서 박스 모델(box model)의 레이아웃은 다음 항목을 따른다.
 
 - 박스 크기, 타입
 - 위치결정 방식(normal flow, float, absolute positioning)
@@ -246,21 +246,21 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
 뷰 포트(viewport)
 -----------------
 
-연속적인 미디어에서 브라우저는 사용자에게 뷰 포트(스크린 위에 표시되는 영역, 창)를 제공한다. 뷰 포트의 크기가 조정되면 브라우저는 문서의 레이아웃을 변경하게 된다. 뷰 포트의 크기는 *초기 컨테이닝 블록(initial containing block)* 의 크기와 같다. **뷰 포트의 크기가 캔버스보다 작을때에는 브라우저는 스크롤링(scrolling)을 제공한다.**
+연속적인 미디어에서 브라우저는 사용자가 문서를 찾을 수 있는 뷰 포트(스크린 위에 표시되는 영역, 창)를 제공한다. 뷰 포트의 크기가 조정되면 브라우저는 문서의 레이아웃을 변경하게 된다. **뷰 포트의 크기가 캔버스보다 작을때에는 브라우저는 스크롤링(scrolling)을 제공해야 한다.**
 
-캔버스 별로 최대 1개의 뷰포트를 갖고, 브라우저는 1개 이상의 캔버스를 렌더링 할 수 있다.(같은 문서에 대한 다른 뷰를 제공할 수 있음)
+캔버스 별로 최대 1개의 뷰포트를 갖고, 유저 에이전트는 1개 이상의 캔버스를 렌더링 할 수 있다.(같은 문서에 대한 다른 뷰를 제공할 수 있음)
 
 컨테이닝 블록(Containing blocks)
 --------------------------------
 
-요소의 박스의 위치(position)와 크기(size)는 *컨테이닝 블록* 이라는 사각형 박스의 크기와 관계가 있다. 일반적으로 요소의 박스들은 자식 박스(descendant boxes)의 *컨테이닝 블록* 처럼 사용되며, 이는 이 박스가 자식 박스(descendant boxes)을 위해 컨테이닝 블록을 설정(establish)했다고 한다.
+많은 박스의 위치(position)와 크기(size)는 *컨테이닝 블록* 이라는 사각형 박스의 엣지와 관계가 있다. 일반적으로 생성된 박스들은 자식 박스(descendant boxes)의 *컨테이닝 블록(containing block)* 처럼 사용되며, 이는 이 *박스(box)가* 자식 박스(descendant boxes)을 위해 *컨테이닝 블록(containing block)* 을 설정(establish)했다고 한다.
 
-각 박스의 위치는 컨테이닝 블록과 관련 있지만, 컨테이닝 블록안에 갖히지는 않는다. 오버플로우(overflow) 될 수 있다.
+각 박스의 위치는 컨테이닝 블록과 관련 있지만, 컨테이닝 블록안에 갖히지는(confined) 않는다. 즉, 오버플로우(overflow) 될 수 있다.
 
 박스 타입 제어(Controlling box generation)
 ------------------------------------------
 
-생성되는 박스의 타입은 다양하다. 박스의 타입은 시각적 서식 모델에서 이 박스가 어떻게 동작할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 *'display'* 속성이 사용된다.
+박스의 타입은 비주얼 포맷팅 모델에서 이 박스가 어떻게 행동할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 *'display'* 속성이 사용된다.
 
 블록 레벨 요소와 블록 박스
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -273,15 +273,24 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
   display: list-item
   display: table
 
-*각 블록 레벨 요소(block-level element)는* 자식 박스(descendant box)와 컨텐츠을 포함하는 *제1 블록 레벨 박스(principal block-level box)를* 생성하며, 이것은 어떤 위치결정 방식(any positioning scheme)와 연관된다.
 
-*블록 레벨 박스(block-level box)는* *블록 서식 컨텍스트(block formatting context)에* 참여하는 박스를 뜻한다. 몇몇 블록 레벨 요소는 추가적인 박스를 만들기도한다. (list-item 일 경우)
+*각 블록 레벨 요소(block-level element)는* 자식 박스(descendant box)와 컨텐츠을 포함하는 *제1 블록 레벨 박스(principal block-level box)를* 생성하며, 이것은 위치결정 방식(any positioning scheme)와 연관된다.
 
-**테이블 박스(table box), 대체 요소(replaced element)를 제외한 블록 레벨 박스(block-level box)는 블록 컨테이너 박스(block container box)를 뜻한다.** 블록 컨테이너 박스는 오직 블록 레벨 박스(block-level box)를 갖거나, 또는 인라인 서식 컨텍스트(inline formatting context) 설정하고 인라인 레벨 박스(inline-level boxes)만 포함할 수 있다.
+*블록 레벨 박스(block-level box)는* *블록 포맷팅 컨텍스트(block formatting context)에* 참여한다. 몇몇 블록 레벨 요소는 제1 블렉 레벨 박스뿐만 아니라 추가적인 박스를 만들기도한다. (list-item 일 경우)
 
-모든 블록 컨테이너 박스가 블록 레벨 박스는 아니다. 대체 불가 인라인 블록(non-replaced inline block), 대체 불가 테이블 셀(non-replaced table cells)은 블록 컨테이너지만 블록 레벨 박스는 아니다.
+**테이블 박스(table box), 대체 요소(replaced element)를 제외한** 블록 레벨 박스(block-level box)는 *블록 컨테이너 박스(block container box)이다.*
 
-블록 레벨 박스이면서 블록 컨테이너 박스일 경우 **블록 박스(block box)라 한다.**
+*블록 컨테이너 박스(block container box)는* 오직 블록 레벨 박스(block-level box)만 포함하거나, 또는 인라인 포맷팅 컨텍스트(inline formatting context) 설정하고 인라인 레벨 박스(inline-level boxes)만 포함할 수 있다.
+
+모든 블록 컨테이너 박스가 블록 레벨 박스는 아니다. **대체 불가 인라인 블록(non-replaced inline block), 대체 불가 테이블 셀(non-replaced table cells)은 블록 컨테이너(block container box)지만** 블록 레벨 박스는 아니다.
+
+블록 레벨 박스이면서 *블록 컨테이너 박스일* 경우 *블록 박스(block box)라 한다.*
+
+정리해보면 다음과 같다.
+
+- **블록 레벨 박스.** 블록 레벨 요소가 생성
+- **블록 컨테이너 박스.** 특정 블록 레벨 박스, 대체 불가 인라인 블록 및 테이블 셀
+- **블록 박스.** 특정 블록 레벨 박스이면서 블록 레벨 박스
 
 익명 블록 박스(anonymous block box)
 +++++++++++++++++++++++++++++++++++
@@ -296,9 +305,9 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
   </div>
 
 
-위의 예에서 div 컨테이너 블록에 둘러 쌓인 *some text* 이란 인라인 컨텐츠는 실제로 *익명 블록 박스로* 둘러 쌓이게 된다.
+위의 예에서 div의 블록 컨테이너 박스는 인라인 컨텐츠(inline content)와 블록 컨텐츠(block content)를 모두 포함한다. *some text* 이란 인라인 컨텐츠(inline content)는 실제로 *익명 블록 박스로* 둘러 쌓이게 된다.
 
-다르게 말해서, 만약 블록 컨테이너 박스(div를 위해 생성된 것)가 블록 레벨 박스(p요소를 위해)를 갖고 있다면 블록 컨테이너 박스는 **오직 블록 레벨 박스만** 갖도록 강제된다.
+다르게 말해서, 만약 블록 컨테이너 박스(div를 위해 생성된 것)가 블록 레벨 박스(p요소의 박스)를 갖고 있다면, **블록 컨테이너 박스는 오직 블록 레벨 박스만** 갖도록 강제된다.
 
 다른 예를 보자.
 
@@ -337,11 +346,11 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
   display: inline-table
   display: inline-block
 
-인라인 레벨 요소는 *인라인 레벨 박스(inline-level box)를* 만들며, 이 박스는 *인라인 서식 컨텍스트(inline formatting context)에* 참여한다. 
+인라인 레벨 요소는 *인라인 레벨 박스(inline-level box)를* 만들며, 이 박스는 *인라인 포맷팅 컨텍스트(inline formatting context)에* 참여한다. 
 
 대체될 수 없는 인라인 요소(display: inline)만 *인라인 박스(inline box)를* 생성한다. 인라인 레벨 박스이면서 인라인 박스가 아닐 경우 *아토믹 인라인 레벨 박스(atomic inline-level boxes)라* 불린다. (예를들어 대체 가능한 인라인 레벨 요소, 인라인 블록 요소(display: inline-block), 인라인 테이블 요소(display: inline-table) 등이 있다.)
 
-아토믹 인라인 레벨 박스는 불투명한 싱글 박스로서 *인라인 서식 컨텍스트(inline formatting context)에* 참여한다.
+아토믹 인라인 레벨 박스는 불투명한 싱글 박스로서 *인라인 포맷팅 컨텍스트(inline formatting context)에* 참여한다.
 
 익명 인라인 박스(anonymous inline box)
 ++++++++++++++++++++++++++++++++++++++
@@ -358,10 +367,10 @@ display 속성
 ~~~~~~~~~~~~
 
 - block: 요소가 블록 박스를 생성하게 한다.
-- inline-block: 요소가 인라인 블록 컨테이너(inline-level block container box)를 생성하게 한다. 요소는 아토믹 인라인 레벨 박스(atomic inline-level box)로 포맷팅되며, 내부 적으로 블록 박스(block box)로 포매팅된다.
+- inline-block: 요소가 인라인 블록 컨테이너(inline-level block container box)를 생성하게 한다. 요소는 아토믹 인라인 레벨 박스(atomic inline-level box)로 포맷팅되며, 내부 적으로 블록 박스(block box)로 포맷팅된다.
 - inline: 요소가 1개 이상의 인라인 박스(inline box)를 반들게 한다.
 - list-item: 요소가 제1 블록 박스(principal block)와 마커 박스(marker box)를 생성하게 한다.
-- none: 요소를 서식 구조에 나타나지 않게 한다.
+- none: 요소를 포맷팅 구조에 나타나지 않게 한다.
 - table, inline-table, table-row-group, table-column, table-column-group, table-header-group, table-footer-group, table-row, table-cell, and table-caption: 요소가 테이블 요소처럼 행동하게 한다.
 
 위치 고정이거나 플로팅된 요소를 제외하고 위에 명시된 값이 적용된다.
@@ -373,7 +382,7 @@ display의 초기값이 inline 일지라도 **유저 에이전트의 기본 스�
 
 위치결정 방식에 따라 박스의 위치가 결정된다.
 
-1. 노멀 플로우(Normal flow). *노멀 플로우(normal flow)은* 블록레벨 박스(block-level boxes)의 *블록 포매팅(block formatting)*, 인라인 레벨 박스(inline-level boxes)의 *인라인 포매팅(inline formatting)*, 블록 레벨이나 인라인 레벨 박스의 *상대 위치결정(relative positioning)* 을 포함한다. 
+1. 노멀 플로우(Normal flow). *노멀 플로우(normal flow)은* 블록레벨 박스(block-level boxes)의 *블록 포맷팅(block formatting)*, 인라인 레벨 박스(inline-level boxes)의 *인라인 포맷팅(inline formatting)*, 블록 레벨이나 인라인 레벨 박스의 *상대 위치결정(relative positioning)* 을 포함한다. 
 2. 플롯(Floats). 먼저 노멀 플로우를 따른 후, 박스는 왼쪽이나 오른쪽으로 이동된다.
 3. 절대 위치 결정(Absolute positioning). 노멀 플로우로 부터 완전히 제거되며, *컨테이닝 블록(containing block)에* 따라 위치가 결정된다.
 
@@ -404,18 +413,18 @@ top, right, bottom, left 속성
 노멀 플로우(Normal flow)
 ------------------------
 
-노멀 플로우에서는 박스는 서식 컨텍스트(formatting context)에 따라 블록, 인라인 또는 그외의 상태가 될 수 있다. **블록 레벨 박스는 블록 서식 컨텍스트(block formatting context)에 참여하고, 인라인 레벨 박스는 인라인 서식 컨텍스트(inline formatting context)에 참여한다.**
+노멀 플로우에서는 박스는 포맷팅 컨텍스트(formatting context)에 따라 블록, 인라인 또는 그외의 상태가 될 수 있다. **블록 레벨 박스는 블록 포맷팅 컨텍스트(block formatting context)에 참여하고, 인라인 레벨 박스는 인라인 포맷팅 컨텍스트(inline formatting context)에 참여한다.**
 
-블록 서식 컨텍스트(Block formatting context)
+블록 포맷팅 컨텍스트(Block formatting context)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-플롯 또는 절대 위치 요소, *블록 박스가 아닌 블록 컨테이너(인라인 블록, 테이블 셀, 테이블 캡션),* overflow 블록 박스는 새로운 블록 서식 컨텍스트(new block formatting context)를 만든다. 
+플롯 또는 절대 위치 요소, *블록 박스가 아닌 블록 컨테이너(인라인 블록, 테이블 셀, 테이블 캡션),* overflow 블록 박스는 새로운 블록 포맷팅 컨텍스트(new block formatting context)를 만든다. 
 
-블록 서식 컨텍스트에서 박스는 컨테이닝 블록의 꼭대기부터 수직으로 배치된다. 2개의 형제 박스간 수직 거리는 *margin 속성에* 의해 결정된다. 인접한 블록 박스의 수직 여백(margin)은 접히게(collapse)된다.
+블록 포맷팅 컨텍스트에서 박스는 컨테이닝 블록의 꼭대기부터 수직으로 배치된다. 2개의 형제 박스간 수직 거리는 *margin 속성에* 의해 결정된다. 인접한 블록 박스의 수직 여백(margin)은 접히게(collapse)된다.
 
-블록 서식 컨텍스트에서 각 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙게된다.
+블록 포맷팅 컨텍스트에서 각 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙게된다.
 
-인라인 서식 컨텍스트(Inline formatting context)
+인라인 포맷팅 컨텍스트(Inline formatting context)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 박스는 수평으로 위치하게 되며 컨테이닝 블록의 꼭대기에서 시작한다. 수평 여백, 경계, 패딩은 박스 사이에서 적용된다. 한 줄을 형성하는 박스를 포함하는 사각형 공간을 라인 박스(line box)라 한다.
@@ -424,7 +433,7 @@ top, right, bottom, left 속성
 
 라인 박스는 언제나 모든 박스를 수용할 만큼 높아야 한다. 그러나 가장 큰 박스보다 더 클 수 있다. 라인 박스보다 *어떤 박스 B* 가 더 작다면 B의 수직 정렬은 *vertical-align 속성을* 따른다. 인라인 레벨 박스를 하나의 라인 박스에 담을 수 없다면 수직으로 위치한 여러개의 라인 박스로 분산시킨다. **문장(paragraph)는 라인 박스의 스택으로 볼 수 있다.**
 
-일반적으로 라인 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙어 있다. (오른쪽 엣지도 마찬가지) 그러나, 플로팅 박스는 컨테이닝 블록의 엣지와 라인 박스의 엣지 사이에 올 수 있다. 비록 라인 박스들이 컨테이닝 박스와 같은 너비를 갖는다고 할지라도, 플롯(float) 때문에 수평 공간이 줄어든다면 너비는 달라질 수 있다. 같은 인라인 서식 컨텍스트에 있는 라인 박스들의 높이는 다양하게 존재한다. (어떤 라인 박스는 이미지 어떤 라인 박스는 텍스트를 갖고 있음)
+일반적으로 라인 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙어 있다. (오른쪽 엣지도 마찬가지) 그러나, 플로팅 박스는 컨테이닝 블록의 엣지와 라인 박스의 엣지 사이에 올 수 있다. 비록 라인 박스들이 컨테이닝 박스와 같은 너비를 갖는다고 할지라도, 플롯(float) 때문에 수평 공간이 줄어든다면 너비는 달라질 수 있다. 같은 인라인 포맷팅 컨텍스트에 있는 라인 박스들의 높이는 다양하게 존재한다. (어떤 라인 박스는 이미지 어떤 라인 박스는 텍스트를 갖고 있음)
 
 **인라인 레벨 박스(inline-level box)의 전체 너비가 이를 포함하는 라인 박스보다 작을 경우, 라인 박스 안에 수평 배치는 text-align에 의해 결정된다.** 만약에 *text-align: justify 속성을* 갖는다면 유저 에이전트는 인라인 박스안의 단어와 공간을 팽창시킨다.
 
@@ -503,7 +512,7 @@ top, right, bottom, left 속성
 
 축약된 라인 박스는 내용을 담지 못할 정도로 작을 경우, 라인박스는 내용을 담을때 까지 아래로 이동(downward) 된다. **플롯 박스(floated box)의 왼쪽에 내용이 있다면 플롯의 반대편에 내용이 배치되게 된다.**
 
-테이블 경계 박스, 블록 레벨 대체 요소, 노멀 플로우 (새로운 블록 포매팅 컨텍스트를 만드는, overflow 속성 같이)는 플롯 박스의 여백에 오버랩 되지 않는다.
+테이블 경계 박스, 블록 레벨 대체 요소, 노멀 플로우 (새로운 블록 포맷팅 컨텍스트를 만드는, overflow 속성 같이)는 플롯 박스의 여백에 오버랩 되지 않는다.
 
 .. code-block:: html
 
@@ -686,7 +695,7 @@ display, position, float의 관계
     </BODY>
   </HTML>
 
-위 예시에서 P는 익명 인라인 텍스트와 2개의 SPAN 요소를 갖는다. 따라서 모든 요소는 인라인 포매팅 컨텍스트를 따라서 배치되며 컨테이닝 블록은 P요소에 의해 생성된다.
+위 예시에서 P는 익명 인라인 텍스트와 2개의 SPAN 요소를 갖는다. 따라서 모든 요소는 인라인 포맷팅 컨텍스트를 따라서 배치되며 컨테이닝 블록은 P요소에 의해 생성된다.
 
 상대 위치 결정 예시::
 
