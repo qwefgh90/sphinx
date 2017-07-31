@@ -9,7 +9,7 @@
 일급 계층 시민(First-class citizen)
 ===================================
 
-프로그래밍 언어에서 `일급 계층 시민 <https://en.wikipedia.org/wiki/First-class_citizen>`_이란 사회 계급에 빗대 인자값, 반환값, 변수 할당에 사용 가능한 존재를 뜻한다. 숫자, 문자열, 배열, 객체, 함수등이 있을 수 있다.
+프로그래밍 언어에서 `일급 계층 시민 <https://en.wikipedia.org/wiki/First-class_citizen>`_ 이란 사회 계급에 빗대 인자값, 반환값, 변수 할당에 사용 가능한 존재를 뜻한다. 숫자, 문자열, 배열, 객체, 함수등이 있을 수 있다.
 
 일급 계층 함수(First-class functions)
 =====================================
@@ -58,6 +58,29 @@
 ========================
 
 표현식 *f(x)가* 모든 x에 대해 참조에 투명하다면 함수 f는 순수 함수(pure function)이다.
+
+예시는 다음과 같다.::
+  
+  def buyCar(c: Card): Car = {
+    val car = new Car()
+    c.charge(car) // 사이드 이펙트
+    car
+  }
+  
+위 함수가 순수함수가 아님을 증명하려면 p가 프로그램이라 할때 p(buyCar(myCard)) == p(new car) 가 동일하게 동작함을 증명해야한다. buyCar() 내부의 charge() 함수가 카드사에 대금을 청구하는 부수효과를 갖고 있으므로 buyCar() 는 순수함수가 아니다.
+
+두번째 예시 다음과 같다.::
+
+  val str1 = builder.toString
+  builder.append("Hello World")
+  val str2 = builder.toString
+  builder.append("It's Appended")
+  val str3 = builder.toString
+  str1 == str2
+  str1 == str3
+
+append()가 순수함수라면 호출한 뒤에 str1과 str2과 str3는 같아야 한다. 하지만 서로 다르므로 순수함수라 할 수 없다. append()는 StringBuilder를 제자리(in place) 조작한다.
+
 
 표현식(expression)
 ==================
