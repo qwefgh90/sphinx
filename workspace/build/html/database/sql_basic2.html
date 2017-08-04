@@ -542,7 +542,17 @@ L3 - GRAND TOTAL</p>
 </div>
 <div class="section" id="window-function">
 <h2>4.6. 윈도우 함수(WINDOW FUNCTION)<a class="headerlink" href="#window-function" title="제목 주소">¶</a></h2>
-<p>윈도우 함수는 <em>분석 함수</em> , <em>순위 함수</em> 로 알려져 있다.</p>
+<p>윈도우 함수는 <strong>함수가 기반으로 하는 쿼리의 결과 집합의 부분 집합을 대상으로 각 행별로 스칼라 값을 계산하여</strong> 출력하는 함수를 뜻한다. <em>분석 함수</em> , <em>순위 함수</em> 로 알려져 있다.</p>
+<p>결과 집합의 부분 집합을 <em>윈도우(Window)</em> 라 한다. 윈도우는 <em>OVER</em> 이라는 절을 기반으로 정의된다.</p>
+<p>예시:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="n">SLEECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">birth</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">id</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">birth</span> <span class="k">ROWS</span>
+<span class="k">BETWEEN</span> <span class="n">UNBOUNDED</span> <span class="n">PRECEDING</span> <span class="k">AND</span> <span class="k">CURRENT</span> <span class="k">ROW</span>
+<span class="p">)</span> <span class="k">AS</span> <span class="n">runval</span>
+</pre></div>
+</div>
+<p>OVER 절에는 윈도우를 설정하는 <strong>파티셔닝(PARTITION), 정렬, 프레임을</strong> 입력받는다. 이 값을 기반으로 윈도우를 세부적으로 설정할 수 있다. <em>파티션 절(PARTITION BY)는</em> 현재 행에서의 값과 동일한 값을 갖는 행들의 집합이다. <em>정렬 절(ORDER BY)은</em> 윈도우내에서 정렬 방식을 설정한다. (쿼리 결과의 출력 순서는 아니다.) <em>윈도우 프레임절(ROWS)은</em> 윈도우 안의 행들의 필터링에 관여한다.</p>
+<p>비어있는 OVER() 절은 전체 집합을 윈도우로 설정한다.</p>
 <div class="section" id="id8">
 <h3>4.6.1. 그룹 내 순위 함수<a class="headerlink" href="#id8" title="제목 주소">¶</a></h3>
 <p>RANK 예시:</p>
