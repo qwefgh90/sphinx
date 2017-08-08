@@ -362,8 +362,8 @@ MAX 예시::
 
 	SELECT MGR, ENAME, SAL
 	FROM ( SELECT MGR, ENAME, SAL, MAX(SAL) OVER (PARTITION BY MGR) AS IV_MAX_SAL
-		   FROM EMP)
-	WHERE SAL = IV_MAX_SAL;
+		   FROM EMP)	
+WHERE SAL = IV_MAX_SAL;
 
 같은 매너지를 가진 사람중 최대 급여를 받는 사원들을 구한다.
 

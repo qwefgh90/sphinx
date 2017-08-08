@@ -16,4 +16,5 @@ Contents:
    :numbered: 
 
    css_basic.rst
+   css_color_background.rst
    css_terms.rst
