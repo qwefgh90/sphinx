@@ -280,7 +280,7 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
 
 **테이블 박스(table box), 대체 요소(replaced element)를 제외한** 블록 레벨 박스(block-level box)는 *블록 컨테이너 박스(block container box)이다.*
 
-*블록 컨테이너 박스(block container box)는* 오직 블록 레벨 박스(block-level box)만 포함하거나, 또는 인라인 포맷팅 컨텍스트(inline formatting context) 설정하고 인라인 레벨 박스(inline-level boxes)만 포함할 수 있다.
+*블록 컨테이너 박스(block container box)는* 오직 블록 레벨 박스(block-level box)만 포함하거나, 또는 인라인 포맷팅 컨텍스트(inline formatting context) 설정하여 인라인 레벨 박스(inline-level boxes)만 포함할 수 있다.
 
 모든 블록 컨테이너 박스가 블록 레벨 박스는 아니다. **대체 불가 인라인 블록(non-replaced inline block), 대체 불가 테이블 셀(non-replaced table cells)은 블록 컨테이너(block container box)지만** 블록 레벨 박스는 아니다.
 
@@ -417,12 +417,12 @@ top, right, bottom, left 속성
 노멀 플로우(Normal flow)
 ------------------------
 
-노멀 플로우에서는 박스는 포맷팅 컨텍스트(formatting context)에 따라 블록, 인라인 또는 그외의 상태가 될 수 있다. **블록 레벨 박스는 블록 포맷팅 컨텍스트(block formatting context)에 참여하고, 인라인 레벨 박스는 인라인 포맷팅 컨텍스트(inline formatting context)에 참여한다.**
+노멀 플로우에서는 박스는 포맷팅 컨텍스트(formatting context)에 따라 블록, 인라인 상태가 될 수 있다. **블록 레벨 박스는 블록 포맷팅 컨텍스트(block formatting context)에 참여하고, 인라인 레벨 박스는 인라인 포맷팅 컨텍스트(inline formatting context)에 참여한다.**
 
 블록 포맷팅 컨텍스트(Block formatting context)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-플롯 또는 절대 위치 요소, *블록 박스가 아닌 블록 컨테이너(인라인 블록, 테이블 셀, 테이블 캡션),* overflow 블록 박스는 새로운 블록 포맷팅 컨텍스트(new block formatting context)를 만든다. 
+플롯 또는 절대 위치 요소, *블록 박스가 아닌 블록 컨테이너(인라인 블록, 테이블 셀, 테이블 캡션),* overflow 블록 박스는 자신의 컨텐츠를 위해 새로운 블록 포맷팅 컨텍스트(new block formatting context)를 만든다. 
 
 블록 포맷팅 컨텍스트에서 박스는 컨테이닝 블록의 꼭대기부터 수직으로 배치된다. 2개의 형제 박스간 수직 거리는 *margin 속성에* 의해 결정된다. 인접한 블록 박스의 수직 여백(margin)은 접히게(collapse)된다.
 
@@ -431,7 +431,7 @@ top, right, bottom, left 속성
 인라인 포맷팅 컨텍스트(Inline formatting context)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-박스는 수평으로 위치하게 되며 컨테이닝 블록의 꼭대기에서 시작한다. 수평 여백, 경계, 패딩은 박스 사이에서 적용된다. 한 줄을 형성하는 박스를 포함하는 사각형 공간을 라인 박스(line box)라 한다.
+박스는 수평으로 위치하게 되며 컨테이닝 블록의 꼭대기에서 시작한다. 수평 여백, 경계, 패딩은 박스 사이에서 적용된다. 한 줄을 형성하며 모여있는 박스들을 포함하는 사각형 공간을 라인 박스(line box)라 한다.
 
 라인 박스의 너비는 컨테이닝 블록과 float 속성에 따라 결정된다. 라인 박스의 높이는 `다음 알고리즘에 <https://www.w3.org/TR/CSS2/visudet.html#line-height>`_ 따라 결정된다.
 
