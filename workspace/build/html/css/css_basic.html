@@ -340,8 +340,13 @@ This is anonymous text after the SPAN.
 </pre></div>
 </div>
 <p>인라인 레벨 요소는 <em>인라인 레벨 박스(inline-level box)를</em> 만들며, 이 박스는 <em>인라인 포맷팅 컨텍스트(inline formatting context)에</em> 참여한다.</p>
-<p>대체될 수 없는 인라인 요소(display: inline)만 <em>인라인 박스(inline box)를</em> 생성한다. 인라인 레벨 박스이면서 인라인 박스가 아닐 경우 <em>아토믹 인라인 레벨 박스(atomic inline-level boxes)라</em> 불린다. (예를들어 대체 가능한 인라인 레벨 요소, 인라인 블록 요소(display: inline-block), 인라인 테이블 요소(display: inline-table) 등이 있다.)</p>
+<p>대체될 수 없는 인라인 요소(display: inline)는 <em>인라인 박스(inline box)를</em> 생성한다. 인라인 레벨 박스이면서 인라인 박스가 아닐 경우 <em>아토믹 인라인 레벨 박스(atomic inline-level boxes)라</em> 불린다. (예를들어 대체 가능한 인라인 레벨 요소, 인라인 블록 요소(display: inline-block), 인라인 테이블 요소(display: inline-table) 등이 있다.)</p>
 <p>아토믹 인라인 레벨 박스는 불투명한 싱글 박스로서 <em>인라인 포맷팅 컨텍스트(inline formatting context)에</em> 참여한다.</p>
+<ul class="simple">
+<li><strong>인라인 레벨 박스.</strong> 인라인 레벨 요소가 생성한다.</li>
+<li><strong>인라인 박스.</strong> 대체될 수 없는 인라인(display:inline) 레벨 요소</li>
+<li><strong>아토믹 인라인 레벨 박스.</strong> 대체 가능한 인라인(display:inline) 레벨 요소, inline-block, inline-table</li>
+</ul>
 <div class="section" id="anonymous-inline-box">
 <h5>1.5.3.2.1. 익명 인라인 박스(anonymous inline box)<a class="headerlink" href="#anonymous-inline-box" title="제목 주소">¶</a></h5>
 <p><strong>블록 컨테이너 요소에 포함된 텍스트(text)는 익명의 인라인 요소처럼 다뤄진다.</strong>:</p>
