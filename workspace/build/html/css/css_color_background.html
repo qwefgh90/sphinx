@@ -82,11 +82,18 @@
 <p>fixed를 할 경우 배경이 뷰포트에 고정된다. <strong>페이지 미디어에서는 페이지 박스에 고정된다.</strong></p>
 <div class="section" id="background-position">
 <h3>2.1.1. background-position<a class="headerlink" href="#background-position" title="제목 주소">¶</a></h3>
+<p>이미지가 배경일 경우 이 속성으로 초기 위치를 결정한다. 값이 하나만 주어졌을 경우에는 두번째 값은 center로 가정된다.</p>
 <ul class="simple">
-<li>&lt;percent&gt;:</li>
-<li>&lt;length&gt;:</li>
-<li>top | left | bottom | right | center</li>
+<li>값이 키워드일 경우 파서가 추론하여 수직, 수평 키워드를 찾는다. 즉 2개의 값이 수직만 오거나 수평만 올 수는 없다.</li>
+<li>값이 키워드가 아닐 경우, 수평, 수직 순서로 값이 사용된다.</li>
 </ul>
+<p>올 수 있는 값의 종류는 다음과 같다.</p>
+<ul class="simple">
+<li>&lt;percent&gt;: 패딩박스안에서 이미지를 이동시킨다.</li>
+<li>&lt;length&gt;:</li>
+<li>top | left | bottom | right | center: 수직 0%, 수평0%, 수직 100%, 수평 100%, 수직 또는 수평 50%</li>
+</ul>
+<p>CSS 2.1에서 <strong>인라인 요소의 배경에 대한 위치 지정은</strong> 정의되지 않았다.</p>
 </div>
 </div>
 </div>

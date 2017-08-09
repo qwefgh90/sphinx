@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>색(Colors)과 배경(Backgrounds) &mdash; Code Accelerator Document 1.0 documentation</title>
+    <title>2. 색(Colors)과 배경(Backgrounds) &mdash; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,6 +26,9 @@
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="CSS" href="css_index.html" />
+    <link rel="next" title="3. 용어" href="css_terms.html" />
+    <link rel="prev" title="1. CSS 기본" href="css_basic.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -41,14 +44,14 @@
           <div class="body" role="main">
             
   <div class="section" id="colors-backgrounds">
-<h1>색(Colors)과 배경(Backgrounds)<a class="headerlink" href="#colors-backgrounds" title="제목 주소">¶</a></h1>
+<h1>2. 색(Colors)과 배경(Backgrounds)<a class="headerlink" href="#colors-backgrounds" title="제목 주소">¶</a></h1>
 <p>&#8216;color&#8217; 속성은 요소의 텍스트 색을 나타낸다.:</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">span</span> <span class="p">{</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span> <span class="p">}</span>
 <span class="nt">span</span> <span class="p">{</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="m">255</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="p">)</span> <span class="p">}</span>
 </pre></div>
 </div>
 <div class="section" id="backgrounds">
-<h2>배경(Backgrounds)<a class="headerlink" href="#backgrounds" title="제목 주소">¶</a></h2>
+<h2>2.1. 배경(Backgrounds)<a class="headerlink" href="#backgrounds" title="제목 주소">¶</a></h2>
 <p>개발자는 배경으로 이미지 또는 색을 지정할 수 있다. 배경은 <strong>content, padding, border 영역까지</strong> 나타낸다. 상속되지 않으며 다른 투명한 배경을 갖는 요소를 비출 수 있다.</p>
 <p>문서의 배경을 HTML 요소대신 BODY 요소에 지정하는 것이 권장된다.  캔버스의 배경을 그릴때 HTML 요소의 스타일이 BACKGROUND-COLOR: TRANSPARENT 이면서 BACKGROUND-IMAGE: NONE일 경우 유저 에이전트는 BODY의 속성을 사용해야 한다.</p>
 <p>예시:</p>
@@ -78,12 +81,19 @@
 </ul>
 <p>fixed를 할 경우 배경이 뷰포트에 고정된다. <strong>페이지 미디어에서는 페이지 박스에 고정된다.</strong></p>
 <div class="section" id="background-position">
-<h3>background-position<a class="headerlink" href="#background-position" title="제목 주소">¶</a></h3>
+<h3>2.1.1. background-position<a class="headerlink" href="#background-position" title="제목 주소">¶</a></h3>
+<p>이미지가 배경일 경우 이 속성으로 초기 위치를 결정한다. 값이 하나만 주어졌을 경우에는 두번째 값은 center로 가정된다.</p>
 <ul class="simple">
-<li>&lt;percent&gt;:</li>
-<li>&lt;length&gt;:</li>
-<li>top | left | bottom | right | center</li>
+<li>값이 키워드일 경우 파서가 추론하여 수직, 수평 키워드를 찾는다. 즉 2개의 값이 수직만 오거나 수평만 올 수는 없다.</li>
+<li>값이 키워드가 아닐 경우, 수평, 수직 순서로 값이 사용된다.</li>
 </ul>
+<p>올 수 있는 값의 종류는 다음과 같다.</p>
+<ul class="simple">
+<li>&lt;percent&gt;: 패딩박스안에서 이미지를 이동시킨다.</li>
+<li>&lt;length&gt;:</li>
+<li>top | left | bottom | right | center: 수직 0%, 수평0%, 수직 100%, 수평 100%, 수직 또는 수평 50%</li>
+</ul>
+<p>CSS 2.1에서 <strong>인라인 요소의 배경에 대한 위치 지정은</strong> 정의되지 않았다.</p>
 </div>
 </div>
 </div>
@@ -96,9 +106,9 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">목차</a></h3>
   <ul>
-<li><a class="reference internal" href="#">색(Colors)과 배경(Backgrounds)</a><ul>
-<li><a class="reference internal" href="#backgrounds">배경(Backgrounds)</a><ul>
-<li><a class="reference internal" href="#background-position">background-position</a></li>
+<li><a class="reference internal" href="#">2. 색(Colors)과 배경(Backgrounds)</a><ul>
+<li><a class="reference internal" href="#backgrounds">2.1. 배경(Backgrounds)</a><ul>
+<li><a class="reference internal" href="#background-position">2.1.1. background-position</a></li>
 </ul>
 </li>
 </ul>
@@ -108,6 +118,10 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="css_index.html">CSS</a><ul>
+      <li>Previous: <a href="css_basic.html" title="이전 장">1. CSS 기본</a></li>
+      <li>Next: <a href="css_terms.html" title="다음 장">3. 용어</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
