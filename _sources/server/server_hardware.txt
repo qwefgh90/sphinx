@@ -128,3 +128,4 @@ LACP(Link Aggregation Control Protocol)
 - SAS: http://www.seagate.com/staticfiles/support/disc/manuals/Interface%20manuals/100293071c.pdf
 - NVME: http://www.kbench.com/?q=node/149517
 - SFF-8482: http://www.bodnara.co.kr/bbs/article.html?num=94364
+- RAID: https://en.wikipedia.org/wiki/RAID
