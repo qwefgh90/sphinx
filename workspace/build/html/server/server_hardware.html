@@ -105,32 +105,42 @@
 <li>확장 장치(expander device): 여러개의 SAS 장치(초기자, 타겟)간 통신을 하게 해주는 장치를 뜻한다. 서비스 전달 서브시스템의 구성요소이다.</li>
 </ul>
 </div>
+<div class="section" id="raid-redundant-array-of-independent-disks">
+<h2>1.11. RAID(Redundant array of independent disks)<a class="headerlink" href="#raid-redundant-array-of-independent-disks" title="제목 주소">¶</a></h2>
+<p>RAID는 디스크 중첩구성(Disk redundancy)이나 성능 향상을 목적으로 <strong>여러개의 물리적 디스크를 하나의 논리적 단위로 묶는 스토리지 가상화 기술이다.</strong> RAID는 소프트웨어 또는 하드웨어 장치로 존재한다.</p>
+<p>디스크 구성 방법은 RAID와 그뒤에 숫자를 붙여서 표현한다.</p>
+<ul class="simple">
+<li><strong>RAID 0:</strong> 미러링이나 패리티없는 스트라이핑 구성이다. 볼륨의 크기는 전체 디스크 크기의 합이다.</li>
+<li><strong>RAID 1:</strong> 패러티나 스트라이핑 없는 미러링 구성이다. 데이터가 동시에 여러개의 디스크에 쓰기된다. 컨트롤러나 소프트웨어에서 성능최적화를 하였다면 RAID의 처리량은 전체 디스크의 처리량의 합과 같지만, 일반적으로 실제 읽기속도는 가장 빠른 드라이브의 읽기 속도보다 느리다. 쓰기시에 여러개의 디스크를 업데이트해야 하므로 필연적으로 느리며, 가장 느린 디스크의 성능 만큼 성능이 저하된다.</li>
+<li><strong>RAID 1+0:</strong> 미러링된 드라이브들을 스트라이핑한 구성이다.</li>
+</ul>
+</div>
 <div class="section" id="kib-mib-gib">
-<h2>1.11. 키비, 메비, 기비 바이트(KiB, MiB, GiB)<a class="headerlink" href="#kib-mib-gib" title="제목 주소">¶</a></h2>
+<h2>1.12. 키비, 메비, 기비 바이트(KiB, MiB, GiB)<a class="headerlink" href="#kib-mib-gib" title="제목 주소">¶</a></h2>
 <p>기존의 메가 바이트(MB)는 10의 거듭제곱이지만 <strong>키비(KiB), 메비(MiB) ,기비(GiB) 바이트는</strong> 이진 접두어로 사용된다. 따라서 이 단위는 2진 컴퓨터에 더 적절하다고 할 수 있다. 이 용어는 IEC(International Electrotechnical Commission)에 의해 1998년에 정의되었으며 정확하게 2의 거듭제곱을 표현하기 위해 MB를 대체했다. 여기서 정확하게라는 의미는 국제 단위 체계(International System of Units)와 차이를 둔다는 의미이다. 하지만 아직 널리 인정받고 있고 있지 않다.</p>
 </div>
 <div class="section" id="smb">
-<h2>1.12. SMB<a class="headerlink" href="#smb" title="제목 주소">¶</a></h2>
+<h2>1.13. SMB<a class="headerlink" href="#smb" title="제목 주소">¶</a></h2>
 <p><strong>SMB(Server Message Block)</strong> 는 네트워크 파일 공유 프로토콜이다. CIFS는 SMB의 표현식(dialects) 중 하나이다.</p>
 </div>
 <div class="section" id="nfs">
-<h2>1.13. NFS<a class="headerlink" href="#nfs" title="제목 주소">¶</a></h2>
+<h2>1.14. NFS<a class="headerlink" href="#nfs" title="제목 주소">¶</a></h2>
 <p><strong>NFS(Network File System)</strong> 은 컴퓨터 사용자가 네트워크상의 파일에 접근할 때 직접 연결된 스토리지에 접근하는 것 처럼 접근하도록 지원해주는 프로토콜이다.</p>
 </div>
 <div class="section" id="link-aggregation">
-<h2>1.14. Link Aggregation<a class="headerlink" href="#link-aggregation" title="제목 주소">¶</a></h2>
+<h2>1.15. Link Aggregation<a class="headerlink" href="#link-aggregation" title="제목 주소">¶</a></h2>
 <p>링크 어그리게이션 여러개의 네트워크 연결을 묶어 더 높은 대역폭과 링크의 장애를 대비한 복제/중복(redundancy)를 제공하는 기술을 뜻한다. 포괄적인 용어로 <em>NIC teaming, NIC bonding, port trunking</em> 등이 사용된다. 이는 IEEE802.3ad에 정의된 <a class="reference internal" href="#lacp"><span class="std std-ref">LACP(Link Aggregation Control Protocol)</span></a> 와 같은 표준기술을 포함하며 다양한 솔루션을 포함한다.</p>
 </div>
 <div class="section" id="lacp-link-aggregation-control-protocol">
-<span id="lacp"></span><h2>1.15. LACP(Link Aggregation Control Protocol)<a class="headerlink" href="#lacp-link-aggregation-control-protocol" title="제목 주소">¶</a></h2>
+<span id="lacp"></span><h2>1.16. LACP(Link Aggregation Control Protocol)<a class="headerlink" href="#lacp-link-aggregation-control-protocol" title="제목 주소">¶</a></h2>
 <p><em>IEEE 802.3ad에</em> 정의되어 있으며 물리적인 포트를 하나의 논리적인 채널로 묶는 프로토콜을 뜻한다. LACP는 LACP 패킷을 전송하여 협상하므로써 링크 묶음(bundle) 작업을 진행한다. 이때 직접 연결된 장치(스위치) 역시 LACP를 지원해야 한다.</p>
 </div>
 <div class="section" id="port">
-<h2>1.16. 포트(Port)<a class="headerlink" href="#port" title="제목 주소">¶</a></h2>
+<h2>1.17. 포트(Port)<a class="headerlink" href="#port" title="제목 주소">¶</a></h2>
 <p>포트는 케이블이나 플러그가 연결되는 부분이다. 모니터, 키보드나 다른 장치를 연결하기 위해 사용된다.</p>
 </div>
 <div class="section" id="id2">
-<h2>1.17. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<h2>1.18. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>AHCI: <a class="reference external" href="https://en.wikipedia.org/wiki/Advanced_Host_Controller_Interface">https://en.wikipedia.org/wiki/Advanced_Host_Controller_Interface</a></li>
 <li>다중 채널 메모리 구조: <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-channel_memory_architecture">https://en.wikipedia.org/wiki/Multi-channel_memory_architecture</a></li>
@@ -163,13 +173,14 @@
 <li><a class="reference internal" href="#ahci-advanced-host-controller-interface">1.8. AHCI(Advanced Host Controller Interface)</a></li>
 <li><a class="reference internal" href="#nvm-express-nvme">1.9. NVM Express(NVMe)</a></li>
 <li><a class="reference internal" href="#serial-attached-scsi-sas">1.10. Serial Attached SCSI (SAS)</a></li>
-<li><a class="reference internal" href="#kib-mib-gib">1.11. 키비, 메비, 기비 바이트(KiB, MiB, GiB)</a></li>
-<li><a class="reference internal" href="#smb">1.12. SMB</a></li>
-<li><a class="reference internal" href="#nfs">1.13. NFS</a></li>
-<li><a class="reference internal" href="#link-aggregation">1.14. Link Aggregation</a></li>
-<li><a class="reference internal" href="#lacp-link-aggregation-control-protocol">1.15. LACP(Link Aggregation Control Protocol)</a></li>
-<li><a class="reference internal" href="#port">1.16. 포트(Port)</a></li>
-<li><a class="reference internal" href="#id2">1.17. 참조</a></li>
+<li><a class="reference internal" href="#raid-redundant-array-of-independent-disks">1.11. RAID(Redundant array of independent disks)</a></li>
+<li><a class="reference internal" href="#kib-mib-gib">1.12. 키비, 메비, 기비 바이트(KiB, MiB, GiB)</a></li>
+<li><a class="reference internal" href="#smb">1.13. SMB</a></li>
+<li><a class="reference internal" href="#nfs">1.14. NFS</a></li>
+<li><a class="reference internal" href="#link-aggregation">1.15. Link Aggregation</a></li>
+<li><a class="reference internal" href="#lacp-link-aggregation-control-protocol">1.16. LACP(Link Aggregation Control Protocol)</a></li>
+<li><a class="reference internal" href="#port">1.17. 포트(Port)</a></li>
+<li><a class="reference internal" href="#id2">1.18. 참조</a></li>
 </ul>
 </li>
 </ul>
