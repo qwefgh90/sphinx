@@ -65,18 +65,54 @@ RDBMS는 업무에서 지속적으로 관찰하는 대상을 찾는 데이터 �
 트랜잭션 격리조건
 =================
 
+**기본적으로 트랜잭션안에서 쓰기 작업을 할 경우 독점 락은 커밋할때까지 유지된다.**
+
 1) READ UNCOMMITTED
 2) READ COMMITTED
 3) REPEATABLE READ
 4) SERIALIZABLE
 
-**READ UNCOMMITTED** 는 INSERT UPDATE를 하고 커밋하지 않더라도 다른 트랜잭션 안에서 바뀐 데이터를 읽을 수 있다. SELECT 문에서 공유락을 걸지 않기 때문에 가능하다. 예를들어 트랜잭션후 INSERT와 UPDATE를 하고 있어도 다른 트랜잭션에서 데이터를 읽을 수 있는 것이다.
+**READ UNCOMMITTED 는 SELECT 문이 공유 락을 얻지 않도록 한다. 반드시 SELECT를 실행하는 트랜잭션에서 격리조건을 변경해야 동작한다.**  즉, 한 트랜잭션에서 INSERT, UPDATE를 하고 커밋하지 않더라도 다른 트랜잭션 안에서 바뀐 데이터를 읽을 수 있다. 이는 커밋되지 않은 변경사항 읽기(dirty read)라 한다.::
 
-**READ COMMITTED** 는 COMMIT 할때 까지 **독점 락(변경한 데이터만 행단위 락)** 을 소유하므로 바뀐 데이터를 읽을 수 없다. 하나의 트랜잭션에서 커밋되기 전에 **공유 락** 을 소유하고 즉시 반환하기 때문에 독점 락과 같이 사용이 불가능하다. 다른 특징으로는 하나의 트랜잭션에서 조회를 할때 다른 트랜잭션에서 그 사이에 INSERT나 UPDATE를 할 수 있다.
+  -- READ UNCOMMITTED 격리 조건을 사용할 경우 SELECT는 항상 성공한다.
+  SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+  SELECT * FROM LIVE_COMMENT
 
-**REPEATABLE READ** 는 COMMIT 할때 까지 **공유 락(조회한 데이터만 행단위 락)** 을 소유하므로 다른 트랜잭션에서 INSERT나 UPDATE를 할 수 없다. 단 락이 걸려 있지 않은 위치에 레코드를 삽입할 수 있다.
+**READ COMMITTED 는 SELECT 문이 공유 락을 얻도록 한다. 단 즉시 반환한다.** 데이터가 다른 트랜잭션의 독점 락으로 잠겨있을 경우 읽지 못하며, 커밋된 이후에 읽을 수 있게된다.::
 
-**SERIALIZABLE** 은 COMMIT 할때 까지 **공유 락** 을 조회한 데이터 뿐만아니라 주변 데이터 까지 걸어버린다. 따라서 다른 트랜잭션에서 INSERT나 UPDATE를 전혀 할 수 없다.
+  -- 다른 트랜잭션에서 INSERT, UPDATE한 뒤 커밋하지 않았을 때 SELECT는 대기한다.
+  SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+  SELECT * FROM LIVE_COMMENT  
+
+**REPEATABLE READ 는 SELECT 문의 공유 락(조회한 데이터만 행단위 락)을 커밋할때까지 소유한다. 즉, 그동안 다른 트랜잭션에서 INSERT나 UPDATE를 할 수 없다.** 단 락이 걸려 있지 않은 위치에 레코드를 삽입할 수 있다. 따라서 다른행에 INSERT 된 데이터를 읽게 되는 팬텀 문제가 발생할 수 있다.::
+
+  -- SELECT가 실행된 뒤에 다른 트랜잭션에서 UPDATE은 대기한다. 즉, 독점 락을 즉시 얻을 수 없다.
+  SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+  BEGIN TRAN;
+  SELECT * FROM LIVE_COMMENT WHERE ID = 1; //항상 같은 결과를 조회함 
+  SELECT * FROM LIVE_COMMENT WHERE ID = 1; //항상 같은 결과를 조회함
+  ...
+  SELECT * FROM LIVE_COMMENT WHERE ID > 0;
+  ...
+  SELECT * FROM LIVE_COMMENT WHERE ID > 0; //항상 같은 결과를 기대할 수 없음
+  ...
+  SELECT * FROM LIVE_COMMENT WHERE ID > 0; //항상 같은 결과를 기대할 수 없음
+  
+
+**SERIALIZABLE 은 COMMIT 할때 까지 공유 락 을 조회한 데이터 뿐만아니라 주변 데이터 까지 걸어버린다.** 또한 REPEATABLE READ의 팬텀 문제를 해결한다.::
+
+  -- SELECT가 실행된 뒤에 다른 트랜잭션에서 INSERT, UPDATE은 대기한다. 즉, 독점 락을 즉시 얻을 수 없다.
+  SET TRANSACTION ISOLATION LEVEL SERIALIZBLE;
+  BEGIN TRAN;
+  SELECT * FROM LIVE_COMMENT;
+
+  ...
+
+  -- 다른 트래잭션에서 INSER, UPDATE시 독점락을 얻을 수 없다.
+  BEGIN TRAN;
+  INSERT INTO LIVE_COMMENT VALUES('135fd', 'Great work');
+  COMMIT;
+
 
 =========
 팬텀 문제
@@ -88,21 +124,23 @@ RDBMS는 업무에서 지속적으로 관찰하는 대상을 찾는 데이터 �
 	
 	트랜잭션 1
 
+    BEGIN TRAN;
 	SELECT ENAME
 	FROM EMPLOYEE
-	WHERE DNO = 1;
+	WHERE DNO > 1;
 
 	트랜잭션 2
-
+    
+    BEGIN TRAN;
 	INSERT INTO EMPLOYEE
 	VALUES(3474, '정희연', '사원', 2106, 1500000, 1);
-
-	트랜잭션 1 (아직 트랜잭션 내부)
+    COMMIT;
+	
+    트랜잭션 1 (아직 트랜잭션 내부)
 
 	SELECT ENAME
 	FROM EMPLOYEE
 	WHERE DNO = 1;
-
 
 ===================================
 물리적 데이터 베이스

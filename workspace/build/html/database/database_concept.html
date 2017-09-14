@@ -86,37 +86,77 @@
 </div>
 <div class="section" id="id7">
 <h2>1.8. 트랜잭션 격리조건<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
+<p><strong>기본적으로 트랜잭션안에서 쓰기 작업을 할 경우 독점 락은 커밋할때까지 유지된다.</strong></p>
 <ol class="arabic simple">
 <li>READ UNCOMMITTED</li>
 <li>READ COMMITTED</li>
 <li>REPEATABLE READ</li>
 <li>SERIALIZABLE</li>
 </ol>
-<p><strong>READ UNCOMMITTED</strong> 는 INSERT UPDATE를 하고 커밋하지 않더라도 다른 트랜잭션 안에서 바뀐 데이터를 읽을 수 있다. SELECT 문에서 공유락을 걸지 않기 때문에 가능하다. 예를들어 트랜잭션후 INSERT와 UPDATE를 하고 있어도 다른 트랜잭션에서 데이터를 읽을 수 있는 것이다.</p>
-<p><strong>READ COMMITTED</strong> 는 COMMIT 할때 까지 <strong>독점 락(변경한 데이터만 행단위 락)</strong> 을 소유하므로 바뀐 데이터를 읽을 수 없다. 하나의 트랜잭션에서 커밋되기 전에 <strong>공유 락</strong> 을 소유하고 즉시 반환하기 때문에 독점 락과 같이 사용이 불가능하다. 다른 특징으로는 하나의 트랜잭션에서 조회를 할때 다른 트랜잭션에서 그 사이에 INSERT나 UPDATE를 할 수 있다.</p>
-<p><strong>REPEATABLE READ</strong> 는 COMMIT 할때 까지 <strong>공유 락(조회한 데이터만 행단위 락)</strong> 을 소유하므로 다른 트랜잭션에서 INSERT나 UPDATE를 할 수 없다. 단 락이 걸려 있지 않은 위치에 레코드를 삽입할 수 있다.</p>
-<p><strong>SERIALIZABLE</strong> 은 COMMIT 할때 까지 <strong>공유 락</strong> 을 조회한 데이터 뿐만아니라 주변 데이터 까지 걸어버린다. 따라서 다른 트랜잭션에서 INSERT나 UPDATE를 전혀 할 수 없다.</p>
+<p><strong>READ UNCOMMITTED 는 SELECT 문이 공유 락을 얻지 않도록 한다. 반드시 SELECT를 실행하는 트랜잭션에서 격리조건을 변경해야 동작한다.</strong>  즉, 한 트랜잭션에서 INSERT, UPDATE를 하고 커밋하지 않더라도 다른 트랜잭션 안에서 바뀐 데이터를 읽을 수 있다. 이는 커밋되지 않은 변경사항 읽기(dirty read)라 한다.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">--</span> <span class="n">READ</span> <span class="n">UNCOMMITTED</span> <span class="n">격리</span> <span class="n">조건을</span> <span class="n">사용할</span> <span class="n">경우</span> <span class="n">SELECT는</span> <span class="n">항상</span> <span class="n">성공한다</span><span class="o">.</span>
+<span class="n">SET</span> <span class="n">TRANSACTION</span> <span class="n">ISOLATION</span> <span class="n">LEVEL</span> <span class="n">READ</span> <span class="n">UNCOMMITTED</span><span class="p">;</span>
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">LIVE_COMMENT</span>
+</pre></div>
+</div>
+<p><strong>READ COMMITTED 는 SELECT 문이 공유 락을 얻도록 한다. 단 즉시 반환한다.</strong> 데이터가 다른 트랜잭션의 독점 락으로 잠겨있을 경우 읽지 못하며, 커밋된 이후에 읽을 수 있게된다.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">--</span> <span class="n">다른</span> <span class="n">트랜잭션에서</span> <span class="n">INSERT</span><span class="p">,</span> <span class="n">UPDATE한</span> <span class="n">뒤</span> <span class="n">커밋하지</span> <span class="n">않았을</span> <span class="n">때</span> <span class="n">SELECT는</span> <span class="n">대기한다</span><span class="o">.</span>
+<span class="n">SET</span> <span class="n">TRANSACTION</span> <span class="n">ISOLATION</span> <span class="n">LEVEL</span> <span class="n">READ</span> <span class="n">COMMITTED</span><span class="p">;</span>
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">LIVE_COMMENT</span>
+</pre></div>
+</div>
+<p><strong>REPEATABLE READ 는 SELECT 문의 공유 락(조회한 데이터만 행단위 락)을 커밋할때까지 소유한다. 즉, 그동안 다른 트랜잭션에서 INSERT나 UPDATE를 할 수 없다.</strong> 단 락이 걸려 있지 않은 위치에 레코드를 삽입할 수 있다. 따라서 다른행에 INSERT 된 데이터를 읽게 되는 팬텀 문제가 발생할 수 있다.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">--</span> <span class="n">SELECT가</span> <span class="n">실행된</span> <span class="n">뒤에</span> <span class="n">다른</span> <span class="n">트랜잭션에서</span> <span class="n">UPDATE은</span> <span class="n">대기한다</span><span class="o">.</span> <span class="n">즉</span><span class="p">,</span> <span class="n">독점</span> <span class="n">락을</span> <span class="n">즉시</span> <span class="n">얻을</span> <span class="n">수</span> <span class="n">없다</span><span class="o">.</span>
+<span class="n">SET</span> <span class="n">TRANSACTION</span> <span class="n">ISOLATION</span> <span class="n">LEVEL</span> <span class="n">REPEATABLE</span> <span class="n">READ</span><span class="p">;</span>
+<span class="n">BEGIN</span> <span class="n">TRAN</span><span class="p">;</span>
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">LIVE_COMMENT</span> <span class="n">WHERE</span> <span class="n">ID</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">//</span><span class="n">항상</span> <span class="n">같은</span> <span class="n">결과를</span> <span class="n">조회함</span>
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">LIVE_COMMENT</span> <span class="n">WHERE</span> <span class="n">ID</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">//</span><span class="n">항상</span> <span class="n">같은</span> <span class="n">결과를</span> <span class="n">조회함</span>
+<span class="o">...</span>
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">LIVE_COMMENT</span> <span class="n">WHERE</span> <span class="n">ID</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="o">...</span>
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">LIVE_COMMENT</span> <span class="n">WHERE</span> <span class="n">ID</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">항상</span> <span class="n">같은</span> <span class="n">결과를</span> <span class="n">기대할</span> <span class="n">수</span> <span class="n">없음</span>
+<span class="o">...</span>
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">LIVE_COMMENT</span> <span class="n">WHERE</span> <span class="n">ID</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">항상</span> <span class="n">같은</span> <span class="n">결과를</span> <span class="n">기대할</span> <span class="n">수</span> <span class="n">없음</span>
+</pre></div>
+</div>
+<p><strong>SERIALIZABLE 은 COMMIT 할때 까지 공유 락 을 조회한 데이터 뿐만아니라 주변 데이터 까지 걸어버린다.</strong> 또한 REPEATABLE READ의 팬텀 문제를 해결한다.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">--</span> <span class="n">SELECT가</span> <span class="n">실행된</span> <span class="n">뒤에</span> <span class="n">다른</span> <span class="n">트랜잭션에서</span> <span class="n">INSERT</span><span class="p">,</span> <span class="n">UPDATE은</span> <span class="n">대기한다</span><span class="o">.</span> <span class="n">즉</span><span class="p">,</span> <span class="n">독점</span> <span class="n">락을</span> <span class="n">즉시</span> <span class="n">얻을</span> <span class="n">수</span> <span class="n">없다</span><span class="o">.</span>
+<span class="n">SET</span> <span class="n">TRANSACTION</span> <span class="n">ISOLATION</span> <span class="n">LEVEL</span> <span class="n">SERIALIZBLE</span><span class="p">;</span>
+<span class="n">BEGIN</span> <span class="n">TRAN</span><span class="p">;</span>
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">LIVE_COMMENT</span><span class="p">;</span>
+
+<span class="o">...</span>
+
+<span class="o">--</span> <span class="n">다른</span> <span class="n">트래잭션에서</span> <span class="n">INSER</span><span class="p">,</span> <span class="n">UPDATE시</span> <span class="n">독점락을</span> <span class="n">얻을</span> <span class="n">수</span> <span class="n">없다</span><span class="o">.</span>
+<span class="n">BEGIN</span> <span class="n">TRAN</span><span class="p">;</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">LIVE_COMMENT</span> <span class="n">VALUES</span><span class="p">(</span><span class="s1">&#39;135fd&#39;</span><span class="p">,</span> <span class="s1">&#39;Great work&#39;</span><span class="p">);</span>
+<span class="n">COMMIT</span><span class="p">;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="id8">
 <h2>1.9. 팬텀 문제<a class="headerlink" href="#id8" title="제목 주소">¶</a></h2>
 <p>위의 <strong>REPEATABLE READ</strong> 설명에서 공유락이 걸려있지 않은 레코드는 삽입할 수 있다고 하였다. SELECT 쿼리가 하나의 트랜잭션에 2번이 실행되고 그 사이에 INSERT 쿼리가 발생할 경우 2번째 SELECT 문에서 새로운 데이터가 검색될 것이다.</p>
 <p>팬텀 문제</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">트랜잭션</span> <span class="mi">1</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="n">트랜잭션</span> <span class="mi">1</span>
 
-<span class="n">SELECT</span> <span class="n">ENAME</span>
-<span class="n">FROM</span> <span class="n">EMPLOYEE</span>
-<span class="n">WHERE</span> <span class="n">DNO</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">BEGIN</span> <span class="n">TRAN</span><span class="p">;</span>
+    <span class="n">SELECT</span> <span class="n">ENAME</span>
+    <span class="n">FROM</span> <span class="n">EMPLOYEE</span>
+    <span class="n">WHERE</span> <span class="n">DNO</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span>
 
-<span class="n">트랜잭션</span> <span class="mi">2</span>
+    <span class="n">트랜잭션</span> <span class="mi">2</span>
 
-<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">EMPLOYEE</span>
-<span class="n">VALUES</span><span class="p">(</span><span class="mi">3474</span><span class="p">,</span> <span class="s1">&#39;정희연&#39;</span><span class="p">,</span> <span class="s1">&#39;사원&#39;</span><span class="p">,</span> <span class="mi">2106</span><span class="p">,</span> <span class="mi">1500000</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">BEGIN</span> <span class="n">TRAN</span><span class="p">;</span>
+    <span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">EMPLOYEE</span>
+    <span class="n">VALUES</span><span class="p">(</span><span class="mi">3474</span><span class="p">,</span> <span class="s1">&#39;정희연&#39;</span><span class="p">,</span> <span class="s1">&#39;사원&#39;</span><span class="p">,</span> <span class="mi">2106</span><span class="p">,</span> <span class="mi">1500000</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">COMMIT</span><span class="p">;</span>
 
 <span class="n">트랜잭션</span> <span class="mi">1</span> <span class="p">(</span><span class="n">아직</span> <span class="n">트랜잭션</span> <span class="n">내부</span><span class="p">)</span>
 
-<span class="n">SELECT</span> <span class="n">ENAME</span>
-<span class="n">FROM</span> <span class="n">EMPLOYEE</span>
-<span class="n">WHERE</span> <span class="n">DNO</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">SELECT</span> <span class="n">ENAME</span>
+    <span class="n">FROM</span> <span class="n">EMPLOYEE</span>
+    <span class="n">WHERE</span> <span class="n">DNO</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
