@@ -1,0 +1,314 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>2. Spring Web MVC &#8212; Code Accelerator Document 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="3. Rest API" href="spring_rest.html" />
+    <link rel="prev" title="1. 스프링 프레임워크" href="spring_basic.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>x.. _spring_web_mvc_intro:</p>
+<div class="section" id="spring-web-mvc">
+<h1>2. Spring Web MVC<a class="headerlink" href="#spring-web-mvc" title="제목 주소">¶</a></h1>
+<p>Servlet API 위에서 동작하는 웹 프레임워크이다.</p>
+<img alt="../_images/dispatcher_servlet.jpg" src="../_images/dispatcher_servlet.jpg" />
+<p>다른 프레임워크와 비슷하게 front controller 패턴을 사용하여 DispatcherServlet에서 요청을 처리하고 실제 작업을 다른 컴포넌트에 위임되는 방식으로 동작한다.</p>
+<img alt="../_images/spring_layer.png" src="../_images/spring_layer.png" />
+<p>Service에 request 객체를 전달하면 안된다. 전달하면 패턴이 깨지게 된다. 전달할 경우 테스트하기 어려워 진다.</p>
+<div class="section" id="dispatcherservlet">
+<h2>2.1. DispatcherServlet<a class="headerlink" href="#dispatcherservlet" title="제목 주소">¶</a></h2>
+<p>프레임워크의 DispatcherServlet은 Servlet 스펙에 따라 생성되어야 한다.</p>
+<p>Servlet이 초기화된 이후 WebApplicationContext가 생성되길 기대하며 RequestContextUtils을 통해 인스턴스를 참조할 수 있다. 반대로 WebApplicationContext에서도 Servlet 또는 ServletContext를 참조할 수 있다.</p>
+<p>Servlet만 이용하여 웹 애플리케이션을 작성할 수 있다. <a class="reference external" href="https://bitbucket.org/directors/myssong/src/832748587d1af7957d20e102de706314542b5cf2/WebContent/WEB-INF/web.xml?at=master&amp;fileviewer=file-view-default">링크</a></p>
+<p>파라미터 목록</p>
+<ul class="simple">
+<li>contextClass: WebApplicationContext 구현 클래스</li>
+<li>contextConfigLocation: WebApplicationContext에 전달될 설정 파일의 위치 (컴마로 구분됨)</li>
+<li>namespace</li>
+</ul>
+<div class="section" id="processsing-sequence">
+<h3>2.1.1. 요청 처리 순서(Processsing Sequence)<a class="headerlink" href="#processsing-sequence" title="제목 주소">¶</a></h3>
+<ol class="arabic simple">
+<li>WebApplicationContext를 찾는다. 그리고 실제 <a class="reference external" href="https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L910">ServletRequest의 속성으로 WebApplicationContext를 바운딩</a> 시킨다. 컨트롤러나 다른 요소가 이를 사용한다고 한다.</li>
+<li>1)과 같은 방식으로 LocaleResolver, ThemeResolver를 바운딩 시킨다.</li>
+<li>MultipartResolver를 명시했다면 HttpServletRequest는 MultipartHttpServletRequest 타입으로 변환될 것이다.</li>
+<li>HandlerMapping의 목록에서 적절한 HandlerMapping을 찾은 뒤, <strong>핸들러와 연관된 실행 체인(Execution chain)을 실행한다.</strong> preprocessors, postprocessors, controllers와 연관되어 있다. 이 과정에서 모델과 렌더링을 준비한다. 또는 뷰를 반환하지않고 응답을 반환할 수 있다.(주석이 있는 controller에서 HandlerAdapter 에서 처리)</li>
+<li>모델이 반환된다면, 뷰가 렌더링될 것이다. 모델을 반환하지 않는다면 뷰가 렌더링 되지않는다. 이미 요청은 처리되었기 때문이다. 여러가지 이유로 <a class="reference external" href="https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L986">preprocessors(HandlerInterceptor)에 의해 처리가 완료될 수 있다.</a></li>
+</ol>
+<p>요청 처리 중 예외가 발생하였을때는 HandlerExceptionResolver 객체가 처리한다.</p>
+</div>
+<div class="section" id="id2">
+<h3>2.1.2. 설정<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
+<p>Servlet 스펙에 따라 <a class="reference external" href="https://github.com/qwefgh90/handyfinder/blob/master/src/main/java/io/github/qwefgh90/handyfinder/springweb/config/ContainerInitializer.java">DispatcherServlet을 설정</a> 할 수 있다.</p>
+<p>아래 두가지의 인터페이스가 사용될 수 있다.</p>
+<ul class="simple">
+<li>WebApplicationInitializer</li>
+<li>AbstractAnnotationConfigDispatcherServletInitializer</li>
+</ul>
+<p>web.xml을 이용한 설정은 다음과 같다. <strong>아래 설정은 Root WebApplicationContext와 Servlet WebApplicationContext를 생성한다.</strong></p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;web-app</span> <span class="na">version=</span><span class="s">&quot;2.5&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee&quot;</span>
+        <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+        <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</span><span class="nt">&gt;</span>
+
+        <span class="c">&lt;!-- The definition of the Root Spring Container shared by all Servlets and Filters --&gt;</span>
+        <span class="nt">&lt;context-param&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>p                       &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</dt>
+<dd><blockquote class="first">
+<div><blockquote>
+<div>&lt;param-value&gt;/WEB-INF/spring/root-context.xml&lt;/param-value&gt;</div></blockquote>
+<p>&lt;/context-param&gt;</p>
+<p>&lt;!-- Creates the Spring Container shared by all Servlets and Filters --&gt;
+&lt;listener&gt;</p>
+<blockquote>
+<div>&lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;</div></blockquote>
+<p>&lt;/listener&gt;</p>
+<p>&lt;!-- Processes application requests --&gt;
+&lt;servlet&gt;</p>
+<blockquote>
+<div><p>&lt;servlet-name&gt;appServlet&lt;/servlet-name&gt;
+&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+&lt;init-param&gt;</p>
+<blockquote>
+<div>&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+&lt;param-value&gt;/WEB-INF/spring/appServlet/servlet-context.xml&lt;/param-value&gt;</div></blockquote>
+<p>&lt;/init-param&gt;
+&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</p>
+</div></blockquote>
+<p>&lt;/servlet&gt;</p>
+<dl class="docutils">
+<dt>&lt;servlet-mapping&gt;</dt>
+<dd>&lt;servlet-name&gt;appServlet&lt;/servlet-name&gt;
+&lt;url-pattern&gt;/&lt;/url-pattern&gt;</dd>
+</dl>
+<p>&lt;/servlet-mapping&gt;</p>
+</div></blockquote>
+<p class="last">&lt;/web-app&gt;</p>
+</dd>
+</dl>
+<p>URL이 <em>/</em> 로 요청이 들어오면 DispatcherServlet이 실행된다. servlet-context.xml 을 블록잡고 command + shift + R (맥 - 이클립스) 을 누르면 해당파일을 열 수 있다.</p>
+<p>servlet_context.xml:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/mvc&quot;</span>
+        <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+        <span class="na">xmlns:beans=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
+        <span class="na">xmlns:context=</span><span class="s">&quot;http://www.springframework.org/schema/context&quot;</span>
+        <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd</span>
+<span class="s">                http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span>
+<span class="s">                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;</span><span class="nt">&gt;</span>
+
+        <span class="c">&lt;!-- DispatcherServlet Context: defines this servlet&#39;s request-processing infrastructure --&gt;</span>
+
+        <span class="c">&lt;!-- Enables the Spring MVC @Controller programming model --&gt;</span>
+        <span class="nt">&lt;annotation-driven</span> <span class="nt">/&gt;</span>
+
+        <span class="c">&lt;!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory --&gt;</span>
+        <span class="nt">&lt;resources</span> <span class="na">mapping=</span><span class="s">&quot;/resources/**&quot;</span> <span class="na">location=</span><span class="s">&quot;/resources/&quot;</span> <span class="nt">/&gt;</span>
+
+        <span class="c">&lt;!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory --&gt;</span>
+        <span class="nt">&lt;beans:bean</span> <span class="na">class=</span><span class="s">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;beans:property</span> <span class="na">name=</span><span class="s">&quot;prefix&quot;</span> <span class="na">value=</span><span class="s">&quot;/WEB-INF/views/&quot;</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;beans:property</span> <span class="na">name=</span><span class="s">&quot;suffix&quot;</span> <span class="na">value=</span><span class="s">&quot;.jsp&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/beans:bean&gt;</span>
+
+        <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&quot;com.chang.spring&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/beans:beans&gt;</span>
+</pre></div>
+</div>
+<p><strong>&lt;context:component-scan base-package=&quot;com.chang.spring&quot; /&gt;</strong> 은 com.chang.spring 하부의 파일들은 xml로 따로 등록하지 않아도 빈을 등록해주겠다는 의미 이다. <strong>InternalResourceViewResolver</strong> 은 JSP를 찾아주는 역할을 한다. ViewResolver 이라 한다.</p>
+</div>
+</div>
+<div class="section" id="webapplicationcontext">
+<h2>2.2. WebApplicationContext<a class="headerlink" href="#webapplicationcontext" title="제목 주소">¶</a></h2>
+<p>WebApplicationContext는 인프라 구성을 위한 몇몇 빈을 가지고 있다. Context가 여러개의 Servlet에서 공유된다면 이러한 빈들 역시 공유될 수 있다. 물론 오버라이드될 수 있다. (예를들면 Repository 또는 Service)</p>
+<p>기본적으로 Root WebApplicationContext가 생성되고 Servlet WebApplicationContext을 자식으로 생성할 수 있다.</p>
+</div>
+<div class="section" id="special-beans">
+<h2>2.3. Special Beans<a class="headerlink" href="#special-beans" title="제목 주소">¶</a></h2>
+<p><strong>DispatcherServlet은 요청을 처리하고 적절하게 응답하는 것을 특별한 객체(Special Beans)에 위임한다.</strong> 이 객체는 Spring 에 의해 관리되며 프레임워크의 인터페이스(계약, Contracts) 구현체이다. Spring Web MVC는 많은 기본 구현체와 함께 인터페이스를 제공한다.</p>
+<p>인터페이스 목록 (계약, Contracts)</p>
+<ul class="simple">
+<li>HandlerMapping</li>
+<li>HandlerAdapter</li>
+<li>ViewResolver</li>
+<li>MultipartResolver</li>
+</ul>
+</div>
+<div class="section" id="annotated-controller">
+<h2>2.4. Annotated Controller(주석이 달린 컨트롤러)<a class="headerlink" href="#annotated-controller" title="제목 주소">¶</a></h2>
+<p>Spring Web MVC는 주석 기반의 프로그래밍 모델을 허용한다. Annotated Controller는 상속을 사용하지 않고, 다양한 시그니처를 갖는 메서드를 포함하며, <strong>주석을 통해 요청 매핑, 요청 입력(Input)을 다룰 수 있는 컴포넌트이다.</strong></p>
+<div class="section" id="controller-stereotype">
+<h3>2.4.1. &#64;Controller stereotype<a class="headerlink" href="#controller-stereotype" title="제목 주소">¶</a></h3>
+<p>스테레오타입(stereotype)은 Spring MVC에서 상투적으로 사용되는 주석(Annotation)을 뜻한다. &#64;Controller 주석이 달린 클래스는 자동으로 탐지되서 컨테이너에 등록되며 웹 컴포넌트 역할을 갖는다.</p>
+<p>&#64;RestController주석의 경우 &#64;Controller와 &#64;ResponseBody 주석을 섞어 놓은 것으로, 모든 메서드가 &#64;ResponseBody 주석을 상속받는다. <strong>메서드에서 응답 몸체를 직접 반환하며 모델-뷰 렌더링과 비교된다.</strong></p>
+</div>
+<div class="section" id="requestmapping">
+<h3>2.4.2. &#64;RequestMapping<a class="headerlink" href="#requestmapping" title="제목 주소">¶</a></h3>
+<p>요청과 컨트롤러 메서드를 연결하는데 사용되는 주석이다. 주로 메서드에 사용되어 요청과 연결되며, 메서드간 공유되는 매핑이 있을때 클래스에 사용되기도 한다.</p>
+<p>패턴 종류
+- ?: 하나의 문자와 매칭
+- <em>: 하나의 경로 세그먼트에서 0개 이상의 문자와 매칭
+- *</em>: 여러개의 경로 세그먼트에서 0개 이상의 문자와 매칭</p>
+<p>method 파라미터
+- &#64;RequestMapping(method=HttpMethod.GET)와 같이 사용</p>
+<p>path 파라미터
+- &quot;/pets&quot; 와 같은 문자열이 온다.</p>
+<p>consumes 파라미터
+- &quot;application/json&quot; 와 같은 미디어 타입(Http 요청의 Content-Type)이 온다.
+- &quot;!application/json&quot; 부정 표현식 가능</p>
+<p>produces 파라미터
+- application/json;charset=UTF-8 (Http 요청의 Accept)</p>
+<p>params 파라미터
+- myParam 존재 검사 또는 myParam=myValue 검사</p>
+<p>headers 파라미터
+- params와 유사</p>
+</div>
+<div class="section" id="pathvariable">
+<h3>2.4.3. &#64;PathVariable<a class="headerlink" href="#pathvariable" title="제목 주소">¶</a></h3>
+<p>&#64;GetMapping(&quot;/owners/{ownerId:[a-z-]+}/pets/{petId}&quot;) 와 같이 URL에 변수(URL variables)가 있을 경우 &#64;PathVariable 주석이 달린 파라미터에 값이 담기게 된다.</p>
+</div>
+<div class="section" id="id4">
+<h3>2.4.4. 설정<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
+<p><a class="reference external" href="https://github.com/qwefgh90/handyfinder/blob/master/src/main/java/io/github/qwefgh90/handyfinder/springweb/config/ServletContext.java#L21">JavaConfig를 사용할 경우 &#64;ComponentScan 주석을</a> 이용해 탐지할 패키지를 지정할 수 있다.</p>
+<p>servlet_context.xml 설정을 다음과 같다.:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
+        <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+        <span class="na">xmlns:p=</span><span class="s">&quot;http://www.springframework.org/schema/p&quot;</span>
+        <span class="na">xmlns:context=</span><span class="s">&quot;http://www.springframework.org/schema/context&quot;</span>
+        <span class="na">xsi:schemaLocation=</span><span class="s">&quot;</span>
+<span class="s">                http://www.springframework.org/schema/beans</span>
+<span class="s">                http://www.springframework.org/schema/beans/spring-beans.xsd</span>
+<span class="s">                http://www.springframework.org/schema/context</span>
+<span class="s">                http://www.springframework.org/schema/context/spring-context.xsd&quot;</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&quot;org.example.web&quot;</span><span class="nt">/&gt;</span>
+
+        <span class="c">&lt;!-- ... --&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>2.5. 참조<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li>Spring Web MVC: <a class="reference external" href="https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html">https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. Spring Web MVC</a><ul>
+<li><a class="reference internal" href="#dispatcherservlet">2.1. DispatcherServlet</a><ul>
+<li><a class="reference internal" href="#processsing-sequence">2.1.1. 요청 처리 순서(Processsing Sequence)</a></li>
+<li><a class="reference internal" href="#id2">2.1.2. 설정</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#webapplicationcontext">2.2. WebApplicationContext</a></li>
+<li><a class="reference internal" href="#special-beans">2.3. Special Beans</a></li>
+<li><a class="reference internal" href="#annotated-controller">2.4. Annotated Controller(주석이 달린 컨트롤러)</a><ul>
+<li><a class="reference internal" href="#controller-stereotype">2.4.1. &#64;Controller stereotype</a></li>
+<li><a class="reference internal" href="#requestmapping">2.4.2. &#64;RequestMapping</a></li>
+<li><a class="reference internal" href="#pathvariable">2.4.3. &#64;PathVariable</a></li>
+<li><a class="reference internal" href="#id4">2.4.4. 설정</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">2.5. 참조</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="spring_index.html">Spring</a><ul>
+      <li>Previous: <a href="spring_basic.html" title="이전 장">1. 스프링 프레임워크</a></li>
+      <li>Next: <a href="spring_rest.html" title="다음 장">3. Rest API</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/spring/spring_web_mvc.rst.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/spring/spring_web_mvc.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
