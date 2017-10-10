@@ -1,41 +1,40 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>1. CSS 기본 &mdash; Code Accelerator Document 1.0 documentation</title>
-    
+    <title>1. CSS 기본 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
-    <link rel="up" title="CSS" href="css_index.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
     <link rel="next" title="2. 색(Colors)과 배경(Backgrounds)" href="css_color_background.html" />
     <link rel="prev" title="CSS" href="css_index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+  
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -55,7 +54,7 @@
 <h2>1.2. CSS 기본<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <p>CSS 규칙의 각 부분을 설명하고 있다.:</p>
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">h1</span> <span class="p">{</span> <span class="c">/* h1은 셀렉터과 선언들(declarations)로 구성됨  */</span>
-  <span class="nb">color</span><span class="o">:</span> <span class="nb">green</span><span class="p">;</span> <span class="c">/* 선언(declaration)은 프로퍼티 이름, 값으로 구성되고 세미콜론으로 구분됨 */</span>
+  <span class="k">color</span><span class="p">:</span> <span class="kc">green</span><span class="p">;</span> <span class="c">/* 선언(declaration)은 프로퍼티 이름, 값으로 구성되고 세미콜론으로 구분됨 */</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -74,7 +73,7 @@
 <div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">HTML</span><span class="o">&gt;</span>
    <span class="o">&lt;</span><span class="nt">HEAD</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nt">STYLE</span> <span class="nt">type</span><span class="o">=</span><span class="s2">&quot;text/css&quot;</span><span class="o">&gt;</span>
-         <span class="nt">h1</span> <span class="p">{</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">green</span> <span class="p">}</span>
+         <span class="nt">h1</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">green</span> <span class="p">}</span>
       <span class="o">&lt;/</span><span class="nt">STYLE</span><span class="o">&gt;</span>
    <span class="o">&lt;/</span><span class="nt">HEAD</span><span class="o">&gt;</span>
    <span class="o">&lt;</span><span class="nt">BODY</span><span class="o">&gt;</span>
@@ -133,7 +132,7 @@
 <li>타입 셀렉터(Type selector) : 타입의 이름을 사용해 요소를 선택하는 패턴이다.</li>
 <li>유니버셜 셀렉터(Universal selector) : 어떠한 타입이든 상관없이 선택하는 패턴이다.</li>
 <li>애트리뷰트 셀렉터(Attribute selectors) : 요소의 속성을 사용해 요소를 선택하는 패턴이다. 부가적으로 다양한 종류의 패턴을 지원한다.</li>
-<li>클래스 셀렉터(Class selectors) : Attribute selector로 class attribute를 선택하는 것과 같다. <strong>&#8221;.&#8221;</strong> 고 함께 매칭할 클래스 이름을 입력하면 관련된 요소들을 선택할 수 있다. (.bird와 class~=bird 는 같음, 연속으로 클래스 셀렉터를 주면 모두 포함할때만 동작)</li>
+<li>클래스 셀렉터(Class selectors) : Attribute selector로 class attribute를 선택하는 것과 같다. <strong>&quot;.&quot;</strong> 고 함께 매칭할 클래스 이름을 입력하면 관련된 요소들을 선택할 수 있다. (.bird와 class~=bird 는 같음, 연속으로 클래스 셀렉터를 주면 모두 포함할때만 동작)</li>
 <li>ID 셀렉터(ID selectors) : 요소의 식별자(id attribute)로 요소를 선택하는 패턴이다. (#red, red를 값으로 갖는 요소를 선택)</li>
 </ul>
 <div class="section" id="psuedo-classes">
@@ -274,7 +273,7 @@
 </div>
 <div class="section" id="controlling-box-generation">
 <h3>1.5.3. 박스 타입 제어(Controlling box generation)<a class="headerlink" href="#controlling-box-generation" title="제목 주소">¶</a></h3>
-<p>박스의 타입은 비주얼 포맷팅 모델에서 이 박스가 어떻게 행동할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 <em>&#8216;display&#8217;</em> 속성이 사용된다.</p>
+<p>박스의 타입은 비주얼 포맷팅 모델에서 이 박스가 어떻게 행동할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 <em>'display'</em> 속성이 사용된다.</p>
 <div class="section" id="id10">
 <h4>1.5.3.1. 블록 레벨 요소와 블록 박스<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
 <p><em>블록 레벨 요소(block-level element)는</em> 시각적으로 블록화된 요소를 뜻한다. (예를들어 paragraphs가 있음)</p>
@@ -298,7 +297,7 @@
 </ul>
 <div class="section" id="anonymous-block-box">
 <h5>1.5.3.1.1. 익명 블록 박스(anonymous block box)<a class="headerlink" href="#anonymous-block-box" title="제목 주소">¶</a></h5>
-<p><strong>div와 p 모두 &#8216;display: block&#8217; 스타일이 적용 되었다.</strong></p>
+<p><strong>div와 p 모두 'display: block' 스타일이 적용 되었다.</strong></p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
   some text
   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>more text
@@ -312,8 +311,8 @@
 <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>Anonymous text interrupted by a block<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">STYLE</span><span class="p">&gt;</span>
-<span class="nt">p</span>    <span class="p">{</span> <span class="nb">display</span><span class="o">:</span> <span class="nb">inline</span> <span class="p">}</span>
-<span class="nt">span</span> <span class="p">{</span> <span class="nb">display</span><span class="o">:</span> <span class="nb">block</span> <span class="p">}</span>
+<span class="nt">p</span>    <span class="p">{</span> <span class="k">display</span><span class="p">:</span> <span class="kc">inline</span> <span class="p">}</span>
+<span class="nt">span</span> <span class="p">{</span> <span class="k">display</span><span class="p">:</span> <span class="kc">block</span> <span class="p">}</span>
 <span class="p">&lt;/</span><span class="nt">STYLE</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">HEAD</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">BODY</span><span class="p">&gt;</span>
@@ -430,11 +429,11 @@ This is anonymous text after the SPAN.
 </div>
 <p>블록 박스 P는 5개의 인라인 박스를 포함하며 그 중 3개가 익명 인라인 박스이다.</p>
 <ul class="simple">
-<li>익명 인라인 박스: &#8220;Several&#8221;</li>
-<li>EM: &#8220;emphasized words&#8221;</li>
-<li>익명: &#8220;appear&#8221;</li>
-<li>STRONG: &#8220;in this&#8221;</li>
-<li>익명: &#8220;sentence, dear.&#8221;</li>
+<li>익명 인라인 박스: &quot;Several&quot;</li>
+<li>EM: &quot;emphasized words&quot;</li>
+<li>익명: &quot;appear&quot;</li>
+<li>STRONG: &quot;in this&quot;</li>
+<li>익명: &quot;sentence, dear.&quot;</li>
 </ul>
 <p>문장(paragraph)를 구성하기 위해 유저 에이전트는 5개의 박스를 라인 박스위에 놓는다. 이 예에서 P요소를 위해 생성된 박스는 라인 박스를 위한 컨테이닝 블록이 된다. 만약 컨테이닝 블록이 충분히 넓다면, 모든 인라인 박스는 하나의 라인 박스안에 놓이게 된다.</p>
 <p>그렇지 않다면 인라인 박스는 여러개의 라인 박스에 분산된다.</p>
@@ -456,11 +455,11 @@ This is anonymous text after the SPAN.
     <span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>Example of inline flow on several lines<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">STYLE</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span>
       <span class="nt">EM</span> <span class="p">{</span>
-        <span class="nb">padding</span><span class="o">:</span> <span class="m">2px</span><span class="p">;</span>
-        <span class="nb">margin</span><span class="o">:</span> <span class="m">1em</span><span class="p">;</span>
-        <span class="nb">border-width</span><span class="o">:</span> <span class="nb">medium</span><span class="p">;</span>
-        <span class="nb">border-style</span><span class="o">:</span> <span class="nb">dashed</span><span class="p">;</span>
-        <span class="nb">line-height</span><span class="o">:</span> <span class="m">2.4em</span><span class="p">;</span>
+        <span class="k">padding</span><span class="p">:</span> <span class="mi">2</span><span class="kt">px</span><span class="p">;</span>
+        <span class="k">margin</span><span class="p">:</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+        <span class="k">border-width</span><span class="p">:</span> <span class="kc">medium</span><span class="p">;</span>
+        <span class="k">border-style</span><span class="p">:</span> <span class="kc">dashed</span><span class="p">;</span>
+        <span class="k">line-height</span><span class="p">:</span> <span class="mf">2.4</span><span class="kt">em</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">&lt;/</span><span class="nt">STYLE</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">HEAD</span><span class="p">&gt;</span>
@@ -488,7 +487,7 @@ This is anonymous text after the SPAN.
   <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>Float example<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">STYLE</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span>
-      <span class="nt">IMG</span> <span class="p">{</span> <span class="nb">float</span><span class="o">:</span> <span class="nb">left</span><span class="p">;</span> <span class="nb">height</span><span class="o">:</span> <span class="m">2em</span><span class="p">;</span> <span class="nb">width</span><span class="o">:</span> <span class="m">2em</span><span class="p">;</span> <span class="nb">border</span><span class="o">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#999999</span><span class="p">}</span>
+      <span class="nt">IMG</span> <span class="p">{</span> <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span> <span class="k">height</span><span class="p">:</span> <span class="mi">2</span><span class="kt">em</span><span class="p">;</span> <span class="k">width</span><span class="p">:</span> <span class="mi">2</span><span class="kt">em</span><span class="p">;</span> <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#999999</span><span class="p">}</span>
     <span class="p">&lt;/</span><span class="nt">STYLE</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">HEAD</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">BODY</span><span class="p">&gt;</span>
@@ -502,8 +501,8 @@ This is anonymous text after the SPAN.
 </div>
 <p>플롯 박스 오른쪽의 <strong>라인 박스의 너비는 플롯 박스에 의해 줄어들며,</strong> 플롯 박스 오른쪽을 벗어나게 되면, p 요소에 의해 생성된 컨테이닝 박스의 너비를 따르게 된다.</p>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-  <span class="nt">p</span> <span class="p">{</span> <span class="nb">border</span><span class="o">:</span> <span class="nb">solid</span> <span class="nb">aqua</span><span class="p">;}</span>
-<span class="nt">img</span> <span class="p">{</span> <span class="nb">float</span><span class="o">:</span> <span class="nb">left</span><span class="p">;</span> <span class="nb">width</span><span class="o">:</span> <span class="m">3em</span><span class="p">;</span> <span class="nb">height</span><span class="o">:</span> <span class="m">6em</span><span class="p">;</span> <span class="nb">border</span><span class="o">:</span> <span class="nb">solid</span> <span class="nb">blue</span><span class="p">;</span> <span class="nb">margin-left</span><span class="o">:</span><span class="m">0px</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">p</span> <span class="p">{</span> <span class="k">border</span><span class="p">:</span> <span class="kc">solid</span> <span class="kc">aqua</span><span class="p">;}</span>
+<span class="nt">img</span> <span class="p">{</span> <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span> <span class="k">width</span><span class="p">:</span> <span class="mi">3</span><span class="kt">em</span><span class="p">;</span> <span class="k">height</span><span class="p">:</span> <span class="mi">6</span><span class="kt">em</span><span class="p">;</span> <span class="k">border</span><span class="p">:</span> <span class="kc">solid</span> <span class="kc">blue</span><span class="p">;</span> <span class="k">margin-left</span><span class="p">:</span><span class="mi">0</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
   <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
 
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:12em&quot;</span><span class="p">&gt;</span>
@@ -561,42 +560,42 @@ This is anonymous text after the SPAN.
   <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>A frame document with CSS 2.1<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">STYLE</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">media</span><span class="o">=</span><span class="s">&quot;screen&quot;</span><span class="p">&gt;</span>
-      <span class="nt">BODY</span> <span class="p">{</span> <span class="nb">height</span><span class="o">:</span> <span class="m">8.5in</span> <span class="p">}</span> <span class="c">/* Required for percentage heights below */</span>
-      <span class="nn">#header</span> <span class="p">{</span>
-        <span class="nb">position</span><span class="o">:</span> <span class="nb">fixed</span><span class="p">;</span>
-        <span class="nb">width</span><span class="o">:</span> <span class="m">100%</span><span class="p">;</span>
-        <span class="nb">height</span><span class="o">:</span> <span class="m">15%</span><span class="p">;</span>
-        <span class="nb">top</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
-        <span class="nb">right</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
-        <span class="nb">bottom</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
-        <span class="nb">left</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+      <span class="nt">BODY</span> <span class="p">{</span> <span class="k">height</span><span class="p">:</span> <span class="mf">8.5</span><span class="kt">in</span> <span class="p">}</span> <span class="c">/* Required for percentage heights below */</span>
+      <span class="p">#</span><span class="nn">header</span> <span class="p">{</span>
+        <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
+        <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+        <span class="k">height</span><span class="p">:</span> <span class="mi">15</span><span class="kt">%</span><span class="p">;</span>
+        <span class="k">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">bottom</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+        <span class="k">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
       <span class="p">}</span>
-      <span class="nn">#sidebar</span> <span class="p">{</span>
-        <span class="nb">position</span><span class="o">:</span> <span class="nb">fixed</span><span class="p">;</span>
-        <span class="nb">width</span><span class="o">:</span> <span class="m">10em</span><span class="p">;</span>
-        <span class="nb">height</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
-        <span class="nb">top</span><span class="o">:</span> <span class="m">15%</span><span class="p">;</span>
-        <span class="nb">right</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
-        <span class="nb">bottom</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
-        <span class="nb">left</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+      <span class="p">#</span><span class="nn">sidebar</span> <span class="p">{</span>
+        <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
+        <span class="k">width</span><span class="p">:</span> <span class="mi">10</span><span class="kt">em</span><span class="p">;</span>
+        <span class="k">height</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+        <span class="k">top</span><span class="p">:</span> <span class="mi">15</span><span class="kt">%</span><span class="p">;</span>
+        <span class="k">right</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+        <span class="k">bottom</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+        <span class="k">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
       <span class="p">}</span>
-      <span class="nn">#main</span> <span class="p">{</span>
-        <span class="nb">position</span><span class="o">:</span> <span class="nb">fixed</span><span class="p">;</span>
-        <span class="nb">width</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
-        <span class="nb">height</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
-        <span class="nb">top</span><span class="o">:</span> <span class="m">15%</span><span class="p">;</span>
-        <span class="nb">right</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
-        <span class="nb">bottom</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
-        <span class="nb">left</span><span class="o">:</span> <span class="m">10em</span><span class="p">;</span>
+      <span class="p">#</span><span class="nn">main</span> <span class="p">{</span>
+        <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
+        <span class="k">width</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+        <span class="k">height</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+        <span class="k">top</span><span class="p">:</span> <span class="mi">15</span><span class="kt">%</span><span class="p">;</span>
+        <span class="k">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">bottom</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+        <span class="k">left</span><span class="p">:</span> <span class="mi">10</span><span class="kt">em</span><span class="p">;</span>
       <span class="p">}</span>
-      <span class="nn">#footer</span> <span class="p">{</span>
-        <span class="nb">position</span><span class="o">:</span> <span class="nb">fixed</span><span class="p">;</span>
-        <span class="nb">width</span><span class="o">:</span> <span class="m">100%</span><span class="p">;</span>
-        <span class="nb">height</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
-        <span class="nb">top</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
-        <span class="nb">right</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
-        <span class="nb">bottom</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
-        <span class="nb">left</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+      <span class="p">#</span><span class="nn">footer</span> <span class="p">{</span>
+        <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
+        <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+        <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+        <span class="k">top</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+        <span class="k">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">bottom</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">&lt;/</span><span class="nt">STYLE</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">HEAD</span><span class="p">&gt;</span>
@@ -635,10 +634,10 @@ This is anonymous text after the SPAN.
 <span class="o">&lt;</span><span class="nt">HTML</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="nt">HEAD</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="nt">STYLE</span><span class="o">&gt;</span>
-  <span class="nt">body</span> <span class="p">{</span> <span class="nb">display</span><span class="o">:</span> <span class="nb">block</span><span class="p">;</span> <span class="nb">font-size</span><span class="o">:</span><span class="m">12px</span><span class="p">;</span> <span class="nb">line-height</span><span class="o">:</span> <span class="m">200%</span><span class="p">;</span>
-         <span class="nb">width</span><span class="o">:</span> <span class="m">400px</span><span class="p">;</span> <span class="nb">height</span><span class="o">:</span> <span class="m">400px</span> <span class="p">}</span>
-  <span class="nt">p</span>    <span class="p">{</span> <span class="nb">display</span><span class="o">:</span> <span class="nb">block</span> <span class="p">}</span>
-  <span class="nt">span</span> <span class="p">{</span> <span class="nb">display</span><span class="o">:</span> <span class="nb">inline</span> <span class="p">}</span>
+  <span class="nt">body</span> <span class="p">{</span> <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span> <span class="k">font-size</span><span class="p">:</span><span class="mi">12</span><span class="kt">px</span><span class="p">;</span> <span class="k">line-height</span><span class="p">:</span> <span class="mi">200</span><span class="kt">%</span><span class="p">;</span>
+         <span class="k">width</span><span class="p">:</span> <span class="mi">400</span><span class="kt">px</span><span class="p">;</span> <span class="k">height</span><span class="p">:</span> <span class="mi">400</span><span class="kt">px</span> <span class="p">}</span>
+  <span class="nt">p</span>    <span class="p">{</span> <span class="k">display</span><span class="p">:</span> <span class="kc">block</span> <span class="p">}</span>
+  <span class="nt">span</span> <span class="p">{</span> <span class="k">display</span><span class="p">:</span> <span class="kc">inline</span> <span class="p">}</span>
   <span class="o">&lt;/</span><span class="nt">STYLE</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="nt">TITLE</span><span class="o">&gt;</span><span class="nt">Comparison</span> <span class="nt">of</span> <span class="nt">positioning</span> <span class="nt">schemes</span><span class="o">&lt;/</span><span class="nt">TITLE</span><span class="o">&gt;</span>
   <span class="o">&lt;/</span><span class="nt">HEAD</span><span class="o">&gt;</span>
@@ -655,49 +654,49 @@ This is anonymous text after the SPAN.
 </div>
 <p>위 예시에서 P는 익명 인라인 텍스트와 2개의 SPAN 요소를 갖는다. 따라서 모든 요소는 인라인 포맷팅 컨텍스트를 따라서 배치되며 컨테이닝 블록은 P요소에 의해 생성된다.</p>
 <p>상대 위치 결정 예시:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nn">#outer</span> <span class="p">{</span> <span class="nb">position</span><span class="o">:</span> <span class="nb">relative</span><span class="p">;</span> <span class="nb">top</span><span class="o">:</span> <span class="m">-12px</span><span class="p">;</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span> <span class="p">}</span>
-<span class="nn">#inner</span> <span class="p">{</span> <span class="nb">position</span><span class="o">:</span> <span class="nb">relative</span><span class="p">;</span> <span class="nb">top</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">blue</span> <span class="p">}</span>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span> <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span> <span class="k">top</span><span class="p">:</span> <span class="mi">-12</span><span class="kt">px</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span> <span class="p">}</span>
+<span class="p">#</span><span class="nn">inner</span> <span class="p">{</span> <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span> <span class="k">top</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="kc">blue</span> <span class="p">}</span>
 </pre></div>
 </div>
 <p>outer 요소의 텍스트는 노멀 플로우를 따라 배치되고 -12px 만큼 위로 이동된다. inner 요소는 outer 스타일의 -12px와 inner 스타일의 12px의 영향을 받아 제자리에 위치하게 된다. 만약 <strong>-24px라는 값이 세팅된다면</strong> 다른 텍스트와 겹칠 수 있다.</p>
 <p>박스 플로팅 예시:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nn">#outer</span> <span class="p">{</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span> <span class="p">}</span>
-<span class="nn">#inner</span> <span class="p">{</span> <span class="nb">float</span><span class="o">:</span> <span class="nb">right</span><span class="p">;</span> <span class="nb">width</span><span class="o">:</span> <span class="m">130px</span><span class="p">;</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">blue</span> <span class="p">}</span>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span> <span class="p">}</span>
+<span class="p">#</span><span class="nn">inner</span> <span class="p">{</span> <span class="k">float</span><span class="p">:</span> <span class="kc">right</span><span class="p">;</span> <span class="k">width</span><span class="p">:</span> <span class="mi">130</span><span class="kt">px</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="kc">blue</span> <span class="p">}</span>
 </pre></div>
 </div>
 <p>inner 박스는 플로팅 밖으로 당겨져 오른쪽으로 플로팅된다. 플로팅 박스의 왼쪽의 라인 박스는 축약된다.</p>
 <p>절대 위치 결정 예시:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nn">#outer</span> <span class="p">{</span>
-    <span class="nb">position</span><span class="o">:</span> <span class="nb">absolute</span><span class="p">;</span>
-    <span class="nb">top</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span> <span class="nb">left</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span>
-    <span class="nb">width</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span>
-    <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span>
+    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+    <span class="k">top</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span> <span class="k">left</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+    <span class="k">width</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+    <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nn">#inner</span> <span class="p">{</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">blue</span> <span class="p">}</span>
+<span class="p">#</span><span class="nn">inner</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">blue</span> <span class="p">}</span>
 </pre></div>
 </div>
 <p>outer 박스는 이 박스의 컨테이닝 블록 안에 위치한다. <strong>위치 결정된 박스의 컨테이닝 블록은 근처에 위치한 위치 결정(positioned)된 부모에 의해 형성된다. (만약 존재하지 않는다면 초기 컨테이닝 블록(initial containing block이 됨)</strong> outer 박스의 꼭대기는 컨테이닝 박스의 꼭대기의 200px 밑에 위치하고 왼쪽에서 200px 이동한 위치에 왼쪽 면이 위치한다. outer의 자식 박스는 이것의 부모를 기준으로 정상적으로 배치된다.</p>
 <p>절대 위치 결정된 박스가 상대적으로 위치 결정된 박스의 자식일 경우의 예시:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nn">#outer</span> <span class="p">{</span>
-  <span class="nb">position</span><span class="o">:</span> <span class="nb">relative</span><span class="p">;</span>
-  <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span>
+  <span class="k">color</span><span class="p">:</span> <span class="kc">red</span>
 <span class="p">}</span>
-<span class="nn">#inner</span> <span class="p">{</span>
-  <span class="nb">position</span><span class="o">:</span> <span class="nb">absolute</span><span class="p">;</span>
-  <span class="nb">top</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span> <span class="nb">left</span><span class="o">:</span> <span class="m">-100px</span><span class="p">;</span>
-  <span class="nb">height</span><span class="o">:</span> <span class="m">130px</span><span class="p">;</span> <span class="nb">width</span><span class="o">:</span> <span class="m">130px</span><span class="p">;</span>
-  <span class="nb">color</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+<span class="p">#</span><span class="nn">inner</span> <span class="p">{</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+  <span class="k">top</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span> <span class="k">left</span><span class="p">:</span> <span class="mi">-100</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">130</span><span class="kt">px</span><span class="p">;</span> <span class="k">width</span><span class="p">:</span> <span class="mi">130</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">color</span><span class="p">:</span> <span class="kc">blue</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>부모 outer 박스는 실제로 offset 이 적용되지 않았음에도 불구하고, position 속성이 relative 라는 것은 이 박스가 위치 결정된(positioned) 자식을 위해 컨테이닝 블록을 생성하겠다는 뜻이다.</strong> outer 박스가 몇개의 줄에 걸쳐 쪼개진 인라인 박스이기 때문에, <strong>첫번째 인라인 박스의 top과 left 엣지에 top과 left 오프셋이 적용된다.</strong></p>
 <p>outer 박스가 위치 결정되지 않았다면:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nn">#outer</span> <span class="p">{</span> <span class="nb">color</span><span class="o">:</span> <span class="nb">red</span> <span class="p">}</span>
-<span class="nn">#inner</span> <span class="p">{</span>
-  <span class="nb">position</span><span class="o">:</span> <span class="nb">absolute</span><span class="p">;</span>
-  <span class="nb">top</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span> <span class="nb">left</span><span class="o">:</span> <span class="m">-100px</span><span class="p">;</span>
-  <span class="nb">height</span><span class="o">:</span> <span class="m">130px</span><span class="p">;</span> <span class="nb">width</span><span class="o">:</span> <span class="m">130px</span><span class="p">;</span>
-  <span class="nb">color</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span> <span class="p">}</span>
+<span class="p">#</span><span class="nn">inner</span> <span class="p">{</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+  <span class="k">top</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span> <span class="k">left</span><span class="p">:</span> <span class="mi">-100</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">130</span><span class="kt">px</span><span class="p">;</span> <span class="k">width</span><span class="p">:</span> <span class="mi">130</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">color</span><span class="p">:</span> <span class="kc">blue</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -778,7 +777,7 @@ This is anonymous text after the SPAN.
 <div class="section" id="id18">
 <h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id18" title="제목 주소">¶</a></h4>
 <p>margin-top, margin-right, margin-bottom, margin-left &#64;page 규칙에서 사용할 수 있다.:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="k">@page</span> <span class="p">{</span>
+<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">page</span> <span class="p">{</span>
 <span class="nt">margin</span><span class="o">:</span> <span class="nt">3cm</span><span class="o">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -928,7 +927,7 @@ This is anonymous text after the SPAN.
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/css/css_basic.txt"
+      <li><a href="../_sources/css/css_basic.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -950,11 +949,11 @@ This is anonymous text after the SPAN.
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/css/css_basic.txt"
+      <a href="../_sources/css/css_basic.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

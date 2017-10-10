@@ -1,4 +1,5 @@
-.. _java_basic:
+
+.. _css_basic:
 
 .. highlightlang:: css
 
@@ -6,12 +7,14 @@
  CSS 기본
 ==========
 
+CSS 스펙 문서를 기반으로 작성된 문서입니다.
+
 CSS 스펙
 ========
 
 :ref:`CSS` 는 HTML, XML과 같은 구조화된 문서를 어떻게 화면에 보여줄지 기술하는 언어이다. CSS는 W3C의 CSS 워킹 그룹에서 스펙을 정의하고 있다. `CSS 스펙 테이블 <https://www.w3.org/Style/CSS/current-work>`_ 을 참조하면 안정화된 스펙들을 묶어 CSS Snapshot 2017로 발표된 것을 확인할 수 있다.
 
-CSS Level 1과 CSS Level 2는 각각 하나의 스펙 문서로 정의되었지만 *CSS Level 3* 부터는 Level 2를 기반으로 각 CSS 특징별로 모듈화하여 스펙 문서가 작성되고 있다. 이 모듈은 CSS 2.1의 각 부분을 대체하고 있다.
+CSS Level 1과 CSS Level 2는 각각 하나의 스펙 문서로 정의되었지만 *CSS Level 3* 부터는 Level 2를 기반으로 각 CSS 특징별로 모듈화하여 스펙 문서가 작성되고 있다. 각 모듈은 CSS 2.1의 각 부분을 대체하고 있다.
 
 CSS 기본
 ========
@@ -60,7 +63,10 @@ CSS 2.1 주소 지정 모델 (addressing model)
 - 몇몇 캔버스(canvas)의 관점
 - 몇몇 시스템의 정보
 
-캔버스(canvas)란 미디어에서 서식 구조(formatting structure)가 렌더링되는 공간을 뜻한다.
+캔버스
+------
+
+캔버스(canvas)란 미디어에서 포맷팅 구조(formatting structure)가 렌더링되는 공간을 뜻한다. 캔버스의 크기는 무한하지만, 렌더링은 캔버스의 일부분에서만 일어난다. 예를들어 유저 에이전트(브라우저)는 뷰포트의 크기를 기반으로 초기 너비를 설정하고 다른 유저 에이전트(페이지)는 너비와 높이를 제한한다.
 
 CSS 2.1 처리 모델 (processsing model)
 -------------------------------------
@@ -72,8 +78,10 @@ CSS 2.1 처리 모델 (processsing model)
 3. 대상이 되는 미디어 타입과 문서와 연관된 모든 스타일시트(style sheets)를 가져온다.
 4. 캐스캐이딩과 상속 매커니즘에 따라 모든 프로퍼티에 값을 할당한다. (이때 대상에 적용 가능한 프로퍼티만)
 5. 문서의 모든 요소에 프로퍼티를 주석으로 표시한다.
-6. 주석이 달린 문서를 기반으로 서식 구조(formatting structure)를 생성한다. 이는 문서 트리와 유사하지만 각 스타일을 적용한 결과물이라 볼 수 있다. 추가적인 정보(이미지 추가)를 더 저장하거나 오히려 문서트리보다 크기가 작을 수 있다.(diplay:none 일 경우 요소를 삭제)
-7. 서식 구조를 대상 매체에 전달한다. (화면에 결과를 출력함)
+6. 주석이 달린 문서를 기반으로 포맷팅 구조(formatting structure)를 생성한다. 이는 문서 트리와 유사하지만 각 스타일을 적용한 결과물이라 볼 수 있다. 추가적인 정보(이미지 추가)를 더 저장하거나 오히려 문서트리보다 크기가 작을 수 있다.(diplay:none 일 경우 요소를 삭제)
+7. 포맷팅 구조를 대상 매체에 전달한다. (화면에 결과를 출력함)
+
+
 
 셀렉터(Selectors)
 =================
@@ -105,7 +113,7 @@ CSS 2.1 처리 모델 (processsing model)
 - ID 셀렉터(ID selectors) : 요소의 식별자(id attribute)로 요소를 선택하는 패턴이다. (#red, red를 값으로 갖는 요소를 선택)
 
 의사 클래스(Psuedo-classes)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 DOM 트리 외에 다른 정보를 바탕으로 요소를 선택하는 패턴이다. 항상 *콜론:* 과 함께 의사 클래스의 이름이 온다. (괄호와 함께 값을 전달할 수 도 있음)
 
@@ -180,6 +188,609 @@ DOM 언어 명세된 것 이상의 추상화된 DOM 트리를 만들때 사용�
 
 셀렉터의 우선순위는 `링크 <https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#specificity>`_ 를 참조하여 계산 할 수 있다. **요소의 style 속성은 가장 높은 우선순위를 갖는다.**
 
+박스 모델(Box model)
+====================
+
+*박스 모델이란* DOM 트리 요소(element)를 위해 생성된 사각형 박스를 나타내는 모델이다. **박스는 콘텐츠(content) 영역, 패딩(paddding), 경계(border), 여백(margin, 여백) 영역으로 구성된다.** 패딩, 경계, 여백영역은 다시 4개의 세그먼트(top, right, bottom, left)로 나눠지며 주변을 엣지(Edge)라 부른다.
+
+- 콘텐츠 엣지(content edge), 내부 엣지(inner edge): 콘텐츠 엣지는 사각형을 둘러싸며, 렌더링된 내용에 의존적이다. 4개의 콘텐츠 엣지는 콘텐츠 박스(content box)를 구성한다.
+- 패딩 엣지(padding edge): 패딩 엣지는 패딩(padding)영역을 감싼다. 만약 패딩의 너비가 0이라면 콘텐츠 엣지와 패딩 엣지는 같다.
+- 경계 엣지(border edge): 경계 엣지는 경계 영역를 둘러싸며, 경계의 너비가 0이면 패딩 엣지와 같다.
+- 여백 엣지(margin edge), 외부 엣지(outer edge): 여백 엣지는 여백 영역을 둘러싸며, 0일 경우 경계 엣지와 같다.
+
+콘텐츠 영역의 너비는 `몇가지 요소 <https://www.w3.org/TR/CSS2/visudet.html>`_ 에 의존적이다.
+
+컨텐츠, 패딩, 경계 영역의 *background 스타일은* 그 요소의 *background 속성에 의해* 결정된다. 여백 영역은 항상 투명이다.
+
+여백 속성(margin properties)
+----------------------------
+
+마진 영역의 너비를 나타낸다.
+
+**margin-top, margin-right, margin-bottom, margin-left, margin은 값으로** `auto <https://www.w3.org/TR/CSS2/visudet.html#Computing_widths_and_margins>`_/길이/퍼센트(컨테이닝 블록의 너비에 비례, 컨테이닝 블록의 너비가 요소 자체에 의존적이라면 공식이 정의되진 않음)을 갖는다. table 타입을 제외한 모든 요소에 적용된다. 길이는 음수가 될 수 있다.
+
+2개 이상의 박스가 겹쳤을 경우 하나의 여백으로 결합될 수 있다. 이를 접힌다고(collapse) 한다. 결합된 여백은 접힌 여백(collapsed margin)이라 한다. 수직으로 접한 여백은 접힐 수 있으나 수평 여백은 절대 접혀질 수 없다.
+
+패딩 속성(paddding properties)
+------------------------------
+
+패딩 영역의 너비를 나타낸다.
+
+**padding-top, padding-right, padding-bottom, padding-left, padding은 값으로** 길이/퍼센트(컨테이닝 블록의 너비에 비례, 컨테이닝 블록의 너비가 요소 자체에 의존적이라면 공식이 정의되진 않음)을 갖는다. table-row-group, table-header-group, table-footer-group, table-row, table-column-group, table-column 타입을 제외한 모든 요소에 적용된다. 길이는 음수가 될 수 없다.
+
+경계 속성(border properties, CSS 2.1)
+-------------------------------------
+
+경계 영역의 너비를 나타낸다.
+
+모든 경계 속성은 모든 요소에 적용된다.
+
+**border-top-width, border-right-width, border-bottom-width, border-left-width, border-width은 값으로** thin/medium/thick/길이를 갖는다.
+
+**border-top-style, border-right-style, border-bottom-style, border-left-style, border-style은 값으로** none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset을 갖는다.
+
+**border-top-color, border-right-color, border-bottom-color, border-left-color, border-color은 값으로** 색(color)/transparent를 갖는다.
+
+**border-top, border-right, border-bottom, border-left, border은 값으로** borer-width, border-style, border-top-color를 갖는다. 즉 위의 너비, 스타일, 색상을 한번에 설정한다. 값은 생략될 수 있으나 순서대로 와야한다.
+
+비주얼 포맷팅 모델(Visual formatting model)
+===========================================
+
+비주얼 포맷팅 모델은 브라우저가 각 미디어를 위해 DOM 트리를 어떻게 처리하는지에 대해 설명한 모델이다. 이 모델에서 박스 모델(box model)의 레이아웃은 다음 항목을 따른다.
+
+- 박스 크기, 타입
+- 위치결정 방식(normal flow, float, absolute positioning)
+- 각 요소와의 관계
+- 외부 정보(뷰 포트 크기, 이미지의 크기)
+
+뷰 포트(viewport)
+-----------------
+
+연속적인 미디어에서 브라우저는 사용자가 문서를 찾을 수 있는 뷰 포트(스크린 위에 표시되는 영역, 창)를 제공한다. 뷰 포트의 크기가 조정되면 브라우저는 문서의 레이아웃을 변경하게 된다. **뷰 포트의 크기가 캔버스보다 작을때에는 브라우저는 스크롤링(scrolling)을 제공해야 한다.**
+
+캔버스 별로 최대 1개의 뷰포트를 갖고, 유저 에이전트는 1개 이상의 캔버스를 렌더링 할 수 있다.(같은 문서에 대한 다른 뷰를 제공할 수 있음)
+
+컨테이닝 블록(Containing blocks)
+--------------------------------
+
+많은 박스의 위치(position)와 크기(size)는 *컨테이닝 블록* 이라는 사각형 박스의 엣지와 관계가 있다. 일반적으로 생성된 박스들은 자식 박스(descendant boxes)의 *컨테이닝 블록(containing block)* 처럼 사용되며, 이는 이 *박스(box)가* 자식 박스(descendant boxes)을 위해 *컨테이닝 블록(containing block)* 을 설정(establish)했다고 한다.
+
+각 박스의 위치는 컨테이닝 블록과 관련 있지만, 컨테이닝 블록안에 갖히지는(confined) 않는다. 즉, 오버플로우(overflow) 될 수 있다.
+
+박스 타입 제어(Controlling box generation)
+------------------------------------------
+
+박스의 타입은 비주얼 포맷팅 모델에서 이 박스가 어떻게 행동할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 *'display'* 속성이 사용된다.
+
+블록 레벨 요소와 블록 박스
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*블록 레벨 요소(block-level element)는* 시각적으로 블록화된 요소를 뜻한다. (예를들어 paragraphs가 있음)
+
+*블록 레벨 요소(block-level element)로* 만들려면 다음과 같은 속성을 사용하면 된다.::
+
+  display: block
+  display: list-item
+  display: table
+
+
+*각 블록 레벨 요소(block-level element)는* 자식 박스(descendant box)와 컨텐츠을 포함하는 *제1 블록 레벨 박스(principal block-level box)를* 생성하며, 이것은 위치결정 방식(any positioning scheme)와 연관된다.
+
+*블록 레벨 박스(block-level box)는* *블록 포맷팅 컨텍스트(block formatting context)에* 참여한다. 몇몇 블록 레벨 요소는 제1 블렉 레벨 박스뿐만 아니라 추가적인 박스를 만들기도한다. (list-item 일 경우)
+
+**테이블 박스(table box), 대체 요소(replaced element)를 제외한** 블록 레벨 박스(block-level box)는 *블록 컨테이너 박스(block container box)이다.*
+
+*블록 컨테이너 박스(block container box)는* 오직 블록 레벨 박스(block-level box)만 포함하거나, 또는 인라인 포맷팅 컨텍스트(inline formatting context) 설정하여 인라인 레벨 박스(inline-level boxes)만 포함할 수 있다.
+
+모든 블록 컨테이너 박스가 블록 레벨 박스는 아니다. **대체 불가 인라인 블록(non-replaced inline block), 대체 불가 테이블 셀(non-replaced table cells)은 블록 컨테이너(block container box)지만** 블록 레벨 박스는 아니다.
+
+블록 레벨 박스이면서 *블록 컨테이너 박스일* 경우 *블록 박스(block box)라 한다.*
+
+정리해보면 다음과 같다.
+
+- **블록 레벨 박스.** 블록 레벨 요소가 생성
+- **블록 컨테이너 박스.** 특정 블록 레벨 박스, 대체 불가 인라인 블록 및 테이블 셀
+- **블록 박스.** 블록 레벨 박스이면서 블록 컨테이너 박스
+
+익명 블록 박스(anonymous block box)
++++++++++++++++++++++++++++++++++++
+
+**div와 p 모두 'display: block' 스타일이 적용 되었다.**
+
+.. code-block:: html 
+
+  <div>
+    some text
+    <p>more text
+  </div>
+
+
+위의 예에서 div의 블록 컨테이너 박스는 인라인 컨텐츠(inline content)와 블록 컨텐츠(block content)를 모두 포함한다. *some text* 이란 인라인 컨텐츠(inline content)는 실제로 *익명 블록 박스로* 둘러 쌓이게 된다.
+
+다르게 말해서, 만약 블록 컨테이너 박스(div를 위해 생성된 것)가 블록 레벨 박스(p요소의 박스)를 갖고 있다면, **블록 컨테이너 박스는 오직 블록 레벨 박스만** 갖도록 강제된다.
+
+다른 예를 보자.
+
+.. code-block:: html 
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+  <HEAD>
+  <TITLE>Anonymous text interrupted by a block</TITLE>
+  <STYLE>
+  p    { display: inline }
+  span { display: block }
+  </STYLE>
+  </HEAD>
+  <BODY>
+  <P>
+  This is anonymous text before the SPAN.
+  <SPAN>This is the content of SPAN.</SPAN>
+  This is anonymous text after the SPAN.
+  </P>
+  </BODY>
+
+반대로 **인라인 박스가 in-flow 블록 레벨 박스를 가졌을때는** 인라인 박스가 **2개의 익명 블록 박스(비어있는 박스)로 쪼개지며,** 익명의 블록 박스가 다른 블록 박스를 감싸는 형태로 기존의 블록 레벨 박스와 형제가 된다. 인라인 박스가 상대적인 위치에 영향을 받으면 인라인 박스 안에 위치한 블록 레벨 박스 역시 영향을 받는다.
+
+위의 예에서 인라인 박스가 익명의 블록 박스로 쪼개지고, BODY 요소는 블록 컨테이너 박스로 존재하면서 2개의 익명 블록 박스와 1개의 블록 레벨 박스를 갖게된다.
+
+익명 블록 박스는 자신을 둘러싸는 블록 컨테이너 박스의 폰트를 상속받는다.
+
+인라인 레벨 요소와 인라인 박스
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**인라인 레벨 요소(inline-level element)는 새로운 블록을 생성하지 않는 요소이다.** 콘텐츠는 줄에 배치된다.(인라인 이미지, 문장 내의 강조된 글자 등등)
+
+*인라인 레벨 요소(inline-level element)로* 만드려면 다음과 같은 속성을 사용하면 된다.::
+
+  display: inline
+  display: inline-table
+  display: inline-block
+
+인라인 레벨 요소는 *인라인 레벨 박스(inline-level box)를* 만들며, 이 박스는 *인라인 포맷팅 컨텍스트(inline formatting context)에* 참여한다. 
+
+대체될 수 없는 인라인 요소(display: inline)는 *인라인 박스(inline box)를* 생성한다. 인라인 레벨 박스이면서 인라인 박스가 아닐 경우 *아토믹 인라인 레벨 박스(atomic inline-level boxes)라* 불린다. (예를들어 대체 가능한 인라인 레벨 요소, 인라인 블록 요소(display: inline-block), 인라인 테이블 요소(display: inline-table) 등이 있다.)
+
+아토믹 인라인 레벨 박스는 불투명한 싱글 박스로서 *인라인 포맷팅 컨텍스트(inline formatting context)에* 참여한다.
+
+- **인라인 레벨 박스.** 인라인 레벨 요소가 생성한다.
+- **인라인 박스.** 대체될 수 없는 인라인(display:inline) 레벨 요소
+- **아토믹 인라인 레벨 박스.** 대체 가능한 인라인(display:inline) 레벨 요소, inline-block, inline-table
+
+익명 인라인 박스(anonymous inline box)
+++++++++++++++++++++++++++++++++++++++
+
+**블록 컨테이너 요소에 포함된 텍스트(text)는 익명의 인라인 요소처럼 다뤄진다.**::
+
+  <p>Some <em>emphasized</em> text</p>
+
+P는 블록 박스(block box)를 만들며 몇몇 안라인 박스(inline boxes)를 갖고 있다. 인라인 요소 <em>에 의해 인라인 박스가 생기며, **Some과 text의 인라인 박스는 블록 레벨 요소(<p>)에 의해 생성된다.** 이러한 텍스트를 위한 인라인 박스를 익명의 인라인 박스(anonymous inline box)로 부른다. (연관된 인라인 레벨 요소(inline-level element)가 존재하지 않음)
+
+익명 인라인 박스는 부모 블록 박스로 부터 몇몇 속성을 상속받는다. 공백은 *white-space 속성을* 따라 인라인 박스를 갖지 못하고 삭제된다.
+
+display 속성
+~~~~~~~~~~~~
+
+- block: 요소가 블록 박스를 생성하게 한다.
+- inline-block: 요소가 인라인 블록 컨테이너(inline-level block container box)를 생성하게 한다. 요소는 아토믹 인라인 레벨 박스(atomic inline-level box)로 포맷팅되며, 내부 적으로 블록 박스(block box)로 포맷팅된다.
+- inline: 요소가 1개 이상의 인라인 박스(inline box)를 반들게 한다.
+- list-item: 요소가 제1 블록 박스(principal block)와 마커 박스(marker box)를 생성하게 한다.
+- none: 요소를 포맷팅 구조에 나타나지 않게 한다.
+- table, inline-table, table-row-group, table-column, table-column-group, table-header-group, table-footer-group, table-row, table-cell, and table-caption: 요소가 테이블 요소처럼 행동하게 한다.
+
+위치 고정이거나 플로팅된 요소를 제외하고 위에 명시된 값이 적용된다.
+
+display의 초기값이 inline 일지라도 **유저 에이전트의 기본 스타일 시트가 값을 오버라이드 할 수 있다.**
+
+위치 결정 방식(Positioning schemes)
+-----------------------------------
+
+위치결정 방식에 따라 박스의 위치가 결정된다.
+
+1. 노멀 플로우(Normal flow). *노멀 플로우(normal flow)은* 블록레벨 박스(block-level boxes)의 *블록 포맷팅(block formatting)*, 인라인 레벨 박스(inline-level boxes)의 *인라인 포맷팅(inline formatting)*, 블록 레벨이나 인라인 레벨 박스의 *상대 위치결정(relative positioning)* 을 포함한다. 
+2. 플롯(Floats). 먼저 노멀 플로우를 따른 후, 박스는 왼쪽이나 오른쪽으로 이동된다.
+3. 절대 위치 결정(Absolute positioning). 노멀 플로우로 부터 완전히 제거되며, *컨테이닝 블록(containing block)에* 따라 위치가 결정된다.
+
+요소가 플롯되거나, 절대적으로 위치가 결정된다면 **요소가 플로우 밖에(out of flow) 있다고 한다.** 요소가 플로우 밖에 있지 않다면 반대로 플로우 안에 있다고(in-flow) 한다.
+
+position 속성
+~~~~~~~~~~~~~
+
+- static: 노멀 플로우에 따라 박스가 위치한다.
+- relative: 노멀 플로우에 따라 위치가 결정된 뒤 노멀 포지션의 상대 위치로 이동한다.
+- absolute: 박스의 컨테이닝 블록에서 오프셋 만큼 이동한다. top, right, bottom, left 값과 같이 사용된다.
+- fixed: 절대 위치를 따라 위치가 결정된 뒤, **몇몇 미디어 타입(handheld, projection, screen, tty, tv)에서 스크롤 되지않으며 뷰포트에 고정된다.** print 미디어 타입에서는 박스가 모든 페이지에서 렌더링 된다.
+
+top, right, bottom, left 속성
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+위치(position) 속성이 static이 아닐 경우, 요소는 위치 결정 요소(positioned element)라 불리우고, 이 요소는 위치 결정 박스(positioned box)를 만들고 4가지 속성에 따라 박스의 위치를 결정한다.
+
+- top: *절대 위치 박스(absolutely positioned box)가* 컨테이닝 블록의 탑 엣지 아래로 얼마나 떨어질지 결정하는 속성이다. 상대 위치 박스(relatively positioned box)가 그 박스의 탑 엣지로 부터 얼마나 떨어질지 결정하는 속성이다.
+- right, bottom, left: top과 유사하다.
+
+값은 다음과 같다.
+
+- length: 고정된 거리
+- percentage: 컨테이닝 블록의 너비나 높이에 비례한 값
+- auto
+
+노멀 플로우(Normal flow)
+------------------------
+
+노멀 플로우에서는 박스는 포맷팅 컨텍스트(formatting context)에 따라 블록, 인라인 상태가 될 수 있다. **블록 레벨 박스는 블록 포맷팅 컨텍스트(block formatting context)에 참여하고, 인라인 레벨 박스는 인라인 포맷팅 컨텍스트(inline formatting context)에 참여한다.**
+
+블록 포맷팅 컨텍스트(Block formatting context)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+플롯 또는 절대 위치 요소, *블록 박스가 아닌 블록 컨테이너(인라인 블록, 테이블 셀, 테이블 캡션),* overflow 블록 박스는 자신의 컨텐츠를 위해 새로운 블록 포맷팅 컨텍스트(new block formatting context)를 만든다. 
+
+블록 포맷팅 컨텍스트에서 박스는 컨테이닝 블록의 꼭대기부터 수직으로 배치된다. 2개의 형제 박스간 수직 거리는 *margin 속성에* 의해 결정된다. 인접한 블록 박스의 수직 여백(margin)은 접히게(collapse)된다.
+
+블록 포맷팅 컨텍스트에서 각 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙게된다.
+
+인라인 포맷팅 컨텍스트(Inline formatting context)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+박스는 수평으로 위치하게 되며 컨테이닝 블록의 꼭대기에서 시작한다. 수평 여백, 경계, 패딩은 박스 사이에서 적용된다. 한 줄을 형성하며 모여있는 박스들을 포함하는 사각형 공간을 라인 박스(line box)라 한다.
+
+라인 박스의 너비는 컨테이닝 블록과 float 속성에 따라 결정된다. 라인 박스의 높이는 `다음 알고리즘에 <https://www.w3.org/TR/CSS2/visudet.html#line-height>`_ 따라 결정된다.
+
+라인 박스는 언제나 모든 박스를 수용할 만큼 높아야 한다. 그러나 가장 큰 박스보다 더 클 수 있다. 라인 박스보다 *어떤 박스 B* 가 더 작다면 B의 수직 정렬은 *vertical-align 속성을* 따른다. 인라인 레벨 박스를 하나의 라인 박스에 담을 수 없다면 수직으로 위치한 여러개의 라인 박스로 분산시킨다. **문장(paragraph)는 라인 박스의 스택으로 볼 수 있다.**
+
+일반적으로 라인 박스의 왼쪽 엣지는 컨테이닝 블록의 왼쪽 엣지와 붙어 있다. (오른쪽 엣지도 마찬가지) 그러나, 플로팅 박스는 컨테이닝 블록의 엣지와 라인 박스의 엣지 사이에 올 수 있다. 비록 라인 박스들이 컨테이닝 박스와 같은 너비를 갖는다고 할지라도, 플롯(float) 때문에 수평 공간이 줄어든다면 너비는 달라질 수 있다. 같은 인라인 포맷팅 컨텍스트에 있는 라인 박스들의 높이는 다양하게 존재한다. (어떤 라인 박스는 이미지 어떤 라인 박스는 텍스트를 갖고 있음)
+
+**인라인 레벨 박스(inline-level box)의 전체 너비가 이를 포함하는 라인 박스보다 작을 경우, 라인 박스 안에 수평 배치는 text-align에 의해 결정된다.** 만약에 *text-align: justify 속성을* 갖는다면 유저 에이전트는 인라인 박스안의 단어와 공간을 팽창시킨다.
+
+인라인 박스(inline box)가 라인 박스(line box)의 너비를 초과한다면 몇개의 박스로 쪼개지며, 이 박스들은 몇개의 라인 박스에 분산 배치되게 된다. 만약 인라인 박스가 쪼개질 수 없다면(인라인 박스가 단일 문자를 포함, 라인 브레이크를 허용하지 않는 문자, 인라인 박스가 white-space: nowrap, pre의 영향을 받을 경우) 인라인 박스를 *오버플로우(overflow)* 하게 된다.
+
+인라인 박스가 쪼개지면, 쪼개진 박스 사이에서 여백, 패팅, 경계에 대한 시각적 효과는 없어지게 된다.
+
+라인 박스는 인라인 레벨 컨텐츠를 보관하기 위해 생성된다. 텍스트, 공백, 인라인 요소, 패딩, 경계, 인 플로우 컨텐츠를 포함하지 않고 개행으로 끝나지 않는 *라인 박스(line box)는* 높이 0 라인 박스로 처리되며 존재하지 않게된다.
+
+예제1
+
+.. code-block:: html 
+
+  <P>Several <EM>emphasized words</EM> appear
+  <STRONG>in this</STRONG> sentence, dear.</P>
+
+블록 박스 P는 5개의 인라인 박스를 포함하며 그 중 3개가 익명 인라인 박스이다. 
+
+- 익명 인라인 박스: "Several"
+- EM: "emphasized words"
+- 익명: "appear"
+- STRONG: "in this"
+- 익명: "sentence, dear."
+
+문장(paragraph)를 구성하기 위해 유저 에이전트는 5개의 박스를 라인 박스위에 놓는다. 이 예에서 P요소를 위해 생성된 박스는 라인 박스를 위한 컨테이닝 블록이 된다. 만약 컨테이닝 블록이 충분히 넓다면, 모든 인라인 박스는 하나의 라인 박스안에 놓이게 된다.
+
+그렇지 않다면 인라인 박스는 여러개의 라인 박스에 분산된다.
+
+| Several emphasized words appear
+| in this sentence, dear.
+
+또는 
+
+| Several emphasized  
+| words appear in this 
+| sentence, dear.
+
+위의 2번째 예에서 em 박스는 2개의 em박스로 쪼개지며, 각 나눠진 2개의 박스사이 구간에 여백, 경계, 패딩, 텍스트 데코레이션은 아무런 효과를 갖지 못한다.
+
+예제2
+
+.. code-block:: html 
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+  <HTML>
+    <HEAD>
+      <TITLE>Example of inline flow on several lines</TITLE>
+      <STYLE type="text/css">
+        EM {
+          padding: 2px; 
+          margin: 1em;
+          border-width: medium;
+          border-style: dashed;
+          line-height: 2.4em;
+        }
+      </STYLE>
+    </HEAD>
+    <BODY>
+      <P>Several <EM>emphasized words</EM> appear here.</P>
+    </BODY>
+  </HTML>
+
+상대적 위치 결정
+~~~~~~~~~~~~~~~~
+
+일단 박스가 노멀 플로우나 플롯을 따라 배치되면, 이 포지션으로 부터 상대적으로 이동할 수 있다. 이것을 상대적인 위치 결정이라고 한다. **어떤 박스가 상대적으로 위치가 결정되더라도 밀접한 박스의 위치에 주지 않는다.** 즉 상대적 위치 결정은 박스들 간의 오버랩을 허용한다. 그러나 상대적인 위치로 결정될 경우 overflow:auto, overflow:scroll 박스를 오버플로우하게 하며, 유저 에이전트는 스크롤 바 생성을 통해 사용자가 이 컨텐츠에 접근하도록 허락한다.
+
+상대적으로 위치한 박스는 자신의 노멀 플로우(normal flow) 사이즈를 유지한다. (라인 브레이크와 박스를 위한 공간은 그대로)
+
+플롯(Float)
+-----------
+
+**플롯은 현재 라인(current line)에서 왼쪽 또는 오른쪽으로 이동된 박스(floated box, floating box)를 뜻한다. 플롯 박스는 왼쪽 또는 오른쪽 엣지가 컨테이닝 블록의 엣지나 다른 플롯 박스의 외부 엣지를 만날때 까지 이동된다.** 만약 라인 박스라면, 플롯된 박스의 꼭대기(top)는 라인 박스의 꼭대기(top)에 맞게 정렬된다. 플롯(float) 속성은 플롯 행동을 제어한다.
+
+콘텐츠는 왼쪽으로 플롯된 박스(left-floated box)의 오른쪽 면에 배치되고 오른쪽으로 플롯된 박스(right-floated box)의 왼쪽 면에 배치된다. 플롯은 인-플로우(in-flow)가 아니기 때문에, 플롯 왼쪽이나 오른쪽에 생성된 블록 박스는 블록 박스끼리 수직으로 배치되고(물론 왼쪽이나 오른쪽 편에 위치하면서), 라인 박스는 플롯 박스가 차지한 공간을 제외한 만큼의 너비를 사용한다.
+
+축약된 라인 박스는 내용을 담지 못할 정도로 작을 경우, 라인박스는 내용을 담을때 까지 아래로 이동(downward) 된다. **플롯 박스(floated box)의 왼쪽에 내용이 있다면 플롯의 반대편에 내용이 배치되게 된다.**
+
+테이블 경계 박스, 블록 레벨 대체 요소, 노멀 플로우 (새로운 블록 포맷팅 컨텍스트를 만드는, overflow 속성 같이)는 플롯 박스의 여백에 오버랩 되지 않는다.
+
+.. code-block:: html
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+  <HTML>
+    <HEAD>
+      <TITLE>Float example</TITLE>
+      <STYLE type="text/css">
+        IMG { float: left; height: 2em; width: 2em; border: 1px solid #999999}
+      </STYLE>
+    </HEAD>
+    <BODY>
+      <div style="width:9em">
+        <IMG>
+        <span>Some sample text Hello world</span>
+      </div>
+    </BODY>
+  </HTML>
+
+플롯 박스 오른쪽의 **라인 박스의 너비는 플롯 박스에 의해 줄어들며,** 플롯 박스 오른쪽을 벗어나게 되면, p 요소에 의해 생성된 컨테이닝 박스의 너비를 따르게 된다.
+
+.. code-block:: html
+
+  <html><style>
+    p { border: solid aqua;}
+  img { float: left; width: 3em; height: 6em; border: solid blue; margin-left:0px; }
+    </style><body>
+  
+    <div style="width:12em">
+    is tt ic as d sdf
+    asdfasdf we we we w
+      <img src="" alt="" /> 
+      <p>hell wrold wrold wrold wrold wrold wrold wrold wrold </p>
+    </div>
+  </body></html>
+
+위 예에서 라인 박스에 플롯 박스가 공간을 차지하고 위치하게 되며, 블록 박스는 플롯된 박스 오른쪽에 위치한다. **블록요소에 clear: left 속성을 줄 경우 플롯 오른쪽에 박스가 위치하는 것을 막을 수 있다.**
+
+플롯 속성
+~~~~~~~~~
+
+float 속성은 박스를 어느쪽 이동시킬지 결정한다. 절대적으로 위치가 결정되지(absolutely positioned) 않은 박스를 생성하는 요소에만 적용된다. 3개의 값을 갖는다.
+
+- left: 왼쪽에 떠있는 블록 박스를 생성한다.
+- right
+- none
+
+유저 에이전트는 루트 요소를 none으로 다룬다. 
+
+float을 다루는 규칙들은 다음과 같다.
+
+1. **왼쪽에 플로팅된 박스의** 왼쪽 외부 엣지는 **컨테이닝 블록의** 왼쪽 엣지가 아니다. 오른쪽에 플로팅된 박스도 동일하다.
+2. 현재 박스가 왼쪽으로 플로팅 되었고 앞에 위치한 동일한 박스가 더 있다면, **현재 박스의 왼쪽 외부 엣지는 앞선 박스의 오른쪽 외부 엣지 위치하거나,** 위쪽 면이 앞선 박스의 밑에 위치해야 한다.
+3. 왼쪽 플로팅 박스의 오른쪽 외부 엣지는 **오른쪽 플로팅 박스의 왼쪽 엣지의 오른쪽 면에** 위치할 수 없다.
+4. 플로팅 박스의 외부 위쪽 면은 컨테이닝 블록의 위쪽 면의 위쪽에 위치할 수 없다.
+5. 플로팅 박스의 외부 위쪽 면은 **앞선 블록들의 외부 위쪽보다** 높이 위치할 수 없다.
+6. 플로팅 박스의 외부 위쪽 면은 앞선 박스를 포함하는 **라인 박스의** 위쪽 면 보다 높이 위치할 수 없다.
+7. 앞선 플로팅 박스가 있는 왼쪽 플로팅 박스의 오른쪽 외부 엣지는 **컨테이닝 블록의 오른쪽 엣지의 오른쪽을 넘어설 수 없다.**
+8. 플로팅 박스는 가능한한 높게 위치한다.
+9. 왼쪽 플로팅 박스는 가능한한 왼쪽에 위치하며, 오른쪽 플로팅 박스는 가능한 오른쪽에 위치한다.
+
+clear 속성
+~~~~~~~~~~
+
+요소의 박스가 양쪽 면의 플롯 박스와 인접하지 않게 해주는 속성이다.
+
+- left
+- right
+- both
+- none
+
+절대 위치 결정(Absolute positioning)
+------------------------------------
+
+절대적으로 위치 결정된 모델에서 박스는 컨테이닝 비례하여 간격이 결정되며, 완전히 노멀 플로우에서 제거된 박스이다. 이 박스는 노멀 플로우 자식 박스나 위치 결정된 자식을 위해 (고정되지 않은) **새로운 컨테이닝 블록을 생성한다.** 그러나 **이 절대 위치 결정된 요소의 내용은 다른 박스와 같은 흐름(flow)를 갖지 않는다.** 다른 박스의 내용을 가린다. (오버래핑 박스의 스택 레벨에 의존)
+
+CSS 2.1 스펙에서 절대 위치 결정된 요소(박스)란 position 속성의 값으로 *absolute*, *fixed* 를 갖는 요소를 뜻한다.
+
+고정 위치 결정(Fixed positioning)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*고정 위치 결정은* 절대 위치 결정의 한 종류이다. 고정 위치 결정된 박스의 특징은 **이 박스를 위한 컨테이닝 박스가 viewport에 의해 생성된다는** 것이다. **연속적인 미디어에서 고정된 박스들은 문서가 스크롤 되더라도 움직이지 않는다.** 이것은 고정된 배경 이미지와 유사하다. **페이지 미디어에서는 이런 박스가 모든 페이지에 반복된다.** 이것은 페이지의 시그니처를 표시할때 유용하다. 이 박스가 페이지보다 더 클 경우 잘리게 된다.
+
+.. code-block:: html
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+  <HTML>
+    <HEAD>
+      <TITLE>A frame document with CSS 2.1</TITLE>
+      <STYLE type="text/css" media="screen">
+        BODY { height: 8.5in } /* Required for percentage heights below */
+        #header {
+          position: fixed;
+          width: 100%;
+          height: 15%;
+          top: 0;
+          right: 0;
+          bottom: auto;
+          left: 0;
+        }
+        #sidebar {
+          position: fixed;
+          width: 10em;
+          height: auto;
+          top: 15%;
+          right: auto;
+          bottom: 100px;
+          left: 0;
+        }
+        #main {
+          position: fixed;
+          width: auto;
+          height: auto;
+          top: 15%;
+          right: 0;
+          bottom: 100px;
+          left: 10em;
+        }
+        #footer {
+          position: fixed;
+          width: 100%;
+          height: 100px;
+          top: auto;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+      </STYLE>
+    </HEAD>
+    <BODY>
+      <DIV id="header"> header  </DIV>
+      <DIV id="sidebar"> sidebar  </DIV>
+      <DIV id="main"> main  </DIV>
+      <DIV id="footer"> footer  </DIV>
+    </BODY>
+  </HTML>
+
+display, position, float의 관계
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+3개의 속성은 박스 생성 및 레이아웃에 영향을 미친다.
+
+**display, position, float** 다음과 같이 상호작용한다.
+
+1. display가 none일 경우 position과 float은 적용되지 않는다. 요소는 박스를 생성하지 않는다.
+2. **position이** *absolute* 나 *fixed* 일 경우, float은 none이 되며 display는 아래의 테이블을 따른다. 박스의 위치는 top, right, bottom, left 속성과 컨테이닝 블록에 의해 결정된다.
+3. **float이** *none* 이 아니라면, 박스는 플로팅되며 display는 아래 테이블을 따른다.
+4. 요소가 루트 요소일 경우 display는 아래의 테이블을 따른다. (list-item이 block이 될지, list-item이 될지는 미정, CSS 2.1)
+5. 모든 경우가 아닐 경우, display 요소는 아래를 따른다.
+
+**명시된 값(Specified value) -> 계산된 값(Computed value)**
+
+- inline-table -> table 
+- inline, table-row-group, table-column, table-column-group, table-header-group, table-footer-group, table-row, table-cell, table-caption, inline-block -> block 
+- others -> same as specified
+
+노멀 플로우, 플롯, 절대 위치 결정 비교
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+노멀 플로우 예시::
+  
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+  <HTML>
+    <HEAD>
+    <STYLE>
+    body { display: block; font-size:12px; line-height: 200%; 
+           width: 400px; height: 400px }
+    p    { display: block }
+    span { display: inline }
+    </STYLE>
+      <TITLE>Comparison of positioning schemes</TITLE>
+    </HEAD>
+    <BODY>
+      <P>Beginning of body contents.
+        <SPAN id="outer"> Start of outer contents.
+        <SPAN id="inner"> Inner contents.</SPAN>
+        End of outer contents.</SPAN>
+        End of body contents.
+      </P>
+    </BODY>
+  </HTML>
+
+위 예시에서 P는 익명 인라인 텍스트와 2개의 SPAN 요소를 갖는다. 따라서 모든 요소는 인라인 포맷팅 컨텍스트를 따라서 배치되며 컨테이닝 블록은 P요소에 의해 생성된다.
+
+상대 위치 결정 예시::
+
+  #outer { position: relative; top: -12px; color: red }
+  #inner { position: relative; top: 12px; color: blue }
+
+outer 요소의 텍스트는 노멀 플로우를 따라 배치되고 -12px 만큼 위로 이동된다. inner 요소는 outer 스타일의 -12px와 inner 스타일의 12px의 영향을 받아 제자리에 위치하게 된다. 만약 **-24px라는 값이 세팅된다면** 다른 텍스트와 겹칠 수 있다.
+
+박스 플로팅 예시::
+
+  #outer { color: red }
+  #inner { float: right; width: 130px; color: blue }
+
+inner 박스는 플로팅 밖으로 당겨져 오른쪽으로 플로팅된다. 플로팅 박스의 왼쪽의 라인 박스는 축약된다.
+
+절대 위치 결정 예시::
+
+  #outer { 
+      position: absolute; 
+      top: 200px; left: 200px; 
+      width: 200px; 
+      color: red;
+  }
+  #inner { color: blue }
+
+outer 박스는 이 박스의 컨테이닝 블록 안에 위치한다. **위치 결정된 박스의 컨테이닝 블록은 근처에 위치한 위치 결정(positioned)된 부모에 의해 형성된다. (만약 존재하지 않는다면 초기 컨테이닝 블록(initial containing block이 됨)** outer 박스의 꼭대기는 컨테이닝 박스의 꼭대기의 200px 밑에 위치하고 왼쪽에서 200px 이동한 위치에 왼쪽 면이 위치한다. outer의 자식 박스는 이것의 부모를 기준으로 정상적으로 배치된다.
+
+절대 위치 결정된 박스가 상대적으로 위치 결정된 박스의 자식일 경우의 예시::
+
+  #outer { 
+    position: relative; 
+    color: red 
+  }
+  #inner { 
+    position: absolute; 
+    top: 200px; left: -100px; 
+    height: 130px; width: 130px; 
+    color: blue;
+  }
+
+**부모 outer 박스는 실제로 offset 이 적용되지 않았음에도 불구하고, position 속성이 relative 라는 것은 이 박스가 위치 결정된(positioned) 자식을 위해 컨테이닝 블록을 생성하겠다는 뜻이다.** outer 박스가 몇개의 줄에 걸쳐 쪼개진 인라인 박스이기 때문에, **첫번째 인라인 박스의 top과 left 엣지에 top과 left 오프셋이 적용된다.** 
+
+outer 박스가 위치 결정되지 않았다면::
+
+  #outer { color: red }
+  #inner {
+    position: absolute; 
+    top: 200px; left: -100px; 
+    height: 130px; width: 130px; 
+    color: blue;
+  }
+
+inner의 컨테이닝 블록은 초기 컨테이닝 블록이 된다. 
+
+계층화된 표현
+-------------
+
+z-index 속성
+~~~~~~~~~~~~
+
+위치가 결정된 박스를 위해 z-index는 다음을 명시한다::
+  
+1. 현재 스태킹(stacking) 컨텍스트에서 박스의 스택 레벨
+2. 박스가 스태킹(stacking) 컨텍스트를 생성할지 말지
+
+값은 다음 의미를 갖는다.
+
+- **숫자.** 스태킹 컨텍스트에서 박스의 스택 레벨을 뜻한다. **또한 새로운 스태킹 컨텍스트를 생성한다.**
+- **auto.** 기본 값이다. 현재 스태킹 컨텍스트에서 스택 레벨은 0이다. **루트 요소가 아니라면 박스는 새로운 스태킹 컨텍스트를 만들지 않는다.**
+
+CSS 2.1에서 박스는 3개의 위치로 표현된다. 수평, 수직 위치와 함께, z축 위치가 있다. z축 위치는 박스간의 오버랩과 관련있다.
+
+렌더링 트리가 캔버스위에 그려지는 순서는 스태킹(stacking) 컨텍스트에 의해 묘사된다. 스태킹 컨텍스트는 다른 스태킹 컨텍스트를 포함할 수 있으며, 부모의 스태킹 컨텍스트로부터 원자성을 띈다. 즉 다른 스태킹 컨텍스트의 박스가 현재 스태킹 컨텍스트의 박스 사이에 올 수 없다.
+
+각각의 박스는 하나의 스태킹 컨텍스트에 속한다. 스태킹 컨텍스트의 각각 위치 결정된 박스는 스택 레벨(숫자)을 갖는다. 이 스택레벨은 Z축 위치를 결정하는 부분이다. **높은 스택 레벨을 갖는 박스는 언제나 낮은 레벨의 박스보다 사용자에 가까이 위치한다.** 음의 레벨을 갖을 수 있으며, 같은 스택 레벨을 갖는 박스는 DOM 트리의 순서를 따른다. 
+
+루트 요소는 루트 스태킹 컨텍스트를 형성한다. 다른 스태킹 컨텍스트는 다른 위치 결정된 요소(auto가 아닌 z-index 값을 갖는)에 의해 생성된다.
+
+각각의 스태킹 컨텍스트 안에서, 뒤에서 부터 앞으로 다음의 계층이 그려진다. 
+
+1. 스태킹 컨텍스트를 형성하는 요소의 배경(background)과 경계
+2. 음의 스택 레벨을 갖는 자식 스태킹 컨텍스트
+3. in-flow, non-inline-level, non-positioned 후손
+4. non-positioned floats
+5. 인라인 테이블, 인라인 블록을 포함한 in-flow, inline-level, non-positioned 자식
+6. 스택 레벨이 0인 자식 스태킹 컨텍스트나 스택 레벨이 0인 위치 결정된 후손
+7. 양의 레벨을 갖는 자식 스태킹 컨텍스트
+
+
+
+
 미디어 쿼리(Media Queries)
 ==========================
 
@@ -215,7 +826,7 @@ not 키워드 및 콤마를 통한 OR 연산을 사용할 수 있다.::
 페이지 미디어(Paged media, CSS 2.1)
 ===================================
 
-*페이지 미디어(Paged media)는* 문서의 내용이 1개 이상의 페이지로 분할되는 미디어를 뜻한다. 이는 *연속적인 미디어(continuous media)와* 다르다. 페이지 미디어를 다루기 위해 CSS 2.1에서는 페이지의 마진(margin)과 어떻게 페이지를 나눌지를 정의할 수 있다.
+*페이지 미디어(Paged media)는* 문서의 내용이 1개 이상의 페이지로 분할되는 미디어를 뜻한다. 이는 *연속적인 미디어(continuous media)와* 다르다. 페이지 미디어를 다루기 위해 CSS 2.1에서는 페이지의 여백(margin)과 어떻게 페이지를 나눌지를 정의할 수 있다.
 
 브라우저는 문서의 페이지 박스(page box)를 실제 시트(sheet)에 전달한다. 페이지 박스와 실트는 종종 1:1 관계지만 언제나 그렇지는 않다. 단면 인쇄, 양면 인쇄, 여러개의 페이지를 하나의 시트에 올리는 등의 부가적인 특징이 있기 때문이다.
 
@@ -241,7 +852,7 @@ margin-top, margin-right, margin-bottom, margin-left @page 규칙에서 사용�
 페이지 선택자
 ~~~~~~~~~~~~~
 
-- :first: 이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.
+- \:first: 이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.
 
 페이지 분할(Page breaks)
 ------------------------

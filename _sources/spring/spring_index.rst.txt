@@ -16,6 +16,7 @@ Contents:
    :numbered: 
 
    spring_basic.rst
+   spring_web_mvc.rst
    spring_rest.rst
    design_pattern.rst
    tomcat.rst

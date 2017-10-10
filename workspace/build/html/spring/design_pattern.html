@@ -1,38 +1,38 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>3. 디자인 패턴 &mdash; Code Accelerator Document 1.0 documentation</title>
-    
+    <title>4. 디자인 패턴 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -41,9 +41,9 @@
           <div class="body" role="main">
             
   <div class="section" id="design-pattern">
-<span id="id1"></span><h1>3. 디자인 패턴<a class="headerlink" href="#design-pattern" title="제목 주소">¶</a></h1>
+<span id="id1"></span><h1>4. 디자인 패턴<a class="headerlink" href="#design-pattern" title="제목 주소">¶</a></h1>
 <div class="section" id="id2">
-<h2>3.1. 전략 패턴<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<h2>4.1. 전략 패턴<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <p>스프링은 전략 패턴을 사용한다. 전략 패턴에 대해 알아보자. 예를들어 인턴, 대리, 부장이라는 Employee를 상속받은 객체가 있고 각 객체에 다른 월급을 주고 싶을때 전략 패턴이 사용된다. 이때 Salary라는 인터페이스를 연관(Association) 시킨 후 Salary를 상속 받은 Salty, Generous중 하나를 주입하는 것이다. 각 클래스의 의미는 Salty는 적은 월급 Generous는 일반적인 월급이라고 할 수 있다. 이는 전략을 주입하는것과 비슷하다.</p>
 <p>이처럼 조건에 따라 다른 전략을 사용하고 싶을때 사용하는 패턴이다. <a class="reference external" href="http://deliboy.tistory.com/entry/Strategy-Pattern-%EC%A0%84%EB%9E%B5-%ED%8C%A8%ED%84%B4">참고</a></p>
 <img alt="../_images/strategy.png" src="../_images/strategy.png" />
@@ -58,8 +58,8 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">목차</a></h3>
   <ul>
-<li><a class="reference internal" href="#">3. 디자인 패턴</a><ul>
-<li><a class="reference internal" href="#id2">3.1. 전략 패턴</a></li>
+<li><a class="reference internal" href="#">4. 디자인 패턴</a><ul>
+<li><a class="reference internal" href="#id2">4.1. 전략 패턴</a></li>
 </ul>
 </li>
 </ul>
@@ -73,7 +73,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/spring/design_pattern.txt"
+      <li><a href="../_sources/spring/design_pattern.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -95,11 +95,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/spring/design_pattern.txt"
+      <a href="../_sources/spring/design_pattern.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

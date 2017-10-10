@@ -73,6 +73,18 @@ SCSI 저장 장치 간 직렬 전송 프로토콜을 정의한 인터페이스�
 - 서비스 전달 서브시스템(service delivery subsystem): 초기자와 타겟 사이에서 정보를 전달하는 SCSI I/O 시스템의 부분을 뜻한다.
 - 확장 장치(expander device): 여러개의 SAS 장치(초기자, 타겟)간 통신을 하게 해주는 장치를 뜻한다. 서비스 전달 서브시스템의 구성요소이다.
 
+RAID(Redundant array of independent disks)
+==========================================
+
+RAID는 디스크 중첩구성(Disk redundancy)이나 성능 향상을 목적으로 **여러개의 물리적 디스크를 하나의 논리적 단위로 묶는 스토리지 가상화 기술이다.** RAID는 소프트웨어 또는 하드웨어 장치로 존재한다.
+
+디스크 구성 방법은 RAID와 그뒤에 숫자를 붙여서 표현한다.
+
+- **RAID 0:** 미러링이나 패리티없는 스트라이핑 구성이다. 볼륨의 크기는 전체 디스크 크기의 합이다.
+- **RAID 1:** 패러티나 스트라이핑 없는 미러링 구성이다. 데이터가 동시에 여러개의 디스크에 쓰기된다. 컨트롤러나 소프트웨어에서 성능최적화를 하였다면 RAID의 처리량은 전체 디스크의 처리량의 합과 같지만, 일반적으로 실제 읽기속도는 가장 빠른 드라이브의 읽기 속도보다 느리다. 쓰기시에 여러개의 디스크를 업데이트해야 하므로 필연적으로 느리며, 가장 느린 디스크의 성능 만큼 성능이 저하된다.
+- **RAID 1+0:** 미러링된 드라이브들을 스트라이핑한 구성이다.
+
+
 
 키비, 메비, 기비 바이트(KiB, MiB, GiB)
 =====================================
@@ -116,3 +128,4 @@ LACP(Link Aggregation Control Protocol)
 - SAS: http://www.seagate.com/staticfiles/support/disc/manuals/Interface%20manuals/100293071c.pdf
 - NVME: http://www.kbench.com/?q=node/149517
 - SFF-8482: http://www.bodnara.co.kr/bbs/article.html?num=94364
+- RAID: https://en.wikipedia.org/wiki/RAID

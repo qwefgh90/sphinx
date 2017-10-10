@@ -1,18 +1,15 @@
 ﻿.. _spring_basic_intro:
 
-*********************
-객체지향 스프링
-*********************
+*****************
+스프링 프레임워크
+*****************
 
 .. _spring_understanding:
 
 
 허광남 씨의 `스프링 학습자료 <https://www.youtube.com/watch?v=3SqDXVKlq8c&list=PLDMPhWe3CfpbjrwHAkMx7rERhm98o766w&index=1>`_ 링크 입니다. `슬라이드 쉐어 <http://www.slideshare.net/kenu>`_ 입니다.
-	
-왜 스프링을 써야하는가?
-=======================
 
-엔터프라이즈에 적합하며 프레임워크와 어노테이션의 도움을 받아 개발을 쉽게 할 수 있다고 생각합니다. (EJB가 있으면 Servlet에서 DB에 바로 접근하지 못하고 EJB를 통해서 가야한다. EJB 없이도 많은 기능을 구현할 수 있다.)
+의존성 주입(Dependency injection)과 객체 관리를 위한 컨테이너(Spring IoC Container)를 제공하며 엔터프라이즈에서 필요한 다양한 모듈을 포함하는 프레임워크이다..
 
 작업환경 및 과정
 -----------------------
@@ -36,94 +33,16 @@
 
 .. image:: image/spring_arch.gif
 
-Spring JDBC - 스프링에서 제공해주는 JDBC
-ORM - 비지니스가 변하면 데이터도 변할 필요가 있어서 생긴 모듈(하이버네이트도 있다)
-JMS - 자바 서버끼리 데이터를 주고 받을 수 있는 표준
-OXM - Object와 XML을 연관 시켜주는 모듈
-Beans - POJO를 관리해줌
-Core - Bean을 관리해줌, IOC 컨테이너
-Context - Application Context, Web Application Context
-Expression Language - 표준 자바에 확장된 문법
-Instrumentation - 클래스 파일을 쪼개고 다시 조립할 수 있는 기술, Point cut, Advise 시 필요 함
+- Spring JDBC - 스프링에서 제공해주는 JDBC
+- ORM - 비지니스가 변하면 데이터도 변할 필요가 있어서 생긴 모듈(하이버네이트도 있다)
+- JMS - 자바 서버끼리 데이터를 주고 받을 수 있는 표준
+- OXM - Object와 XML을 연관 시켜주는 모듈
+- Beans - POJO를 관리해줌
+- Core - Bean을 관리해줌, IOC 컨테이너
+- Context - Application Context, Web Application Context
+- Expression Language - 표준 자바에 확장된 문법
+- Instrumentation - 클래스 파일을 쪼개고 다시 조립할 수 있는 기술, Point cut, Advise 시 필요 함
 
-.. image:: image/spring_layer.png
-
-Service에 request 객체를 전달하면 안된다. 전달하면 패턴이 깨지게 된다. 전달할 경우 테스트하기 어려워 진다. 
-
-.. image:: image/dispatcher_servlet.jpg
-
-XML 파일
----------------
-
-.. highlight:: xml
-
-web.xml::
-
-	<?xml version="1.0" encoding="UTF-8"?>
-	<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-
-		<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
-		<context-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/root-context.xml</param-value>
-		</context-param>
-		
-		<!-- Creates the Spring Container shared by all Servlets and Filters -->
-		<listener>
-			<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-		</listener>
-
-		<!-- Processes application requests -->
-		<servlet>
-			<servlet-name>appServlet</servlet-name>
-			<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-			<init-param>
-				<param-name>contextConfigLocation</param-name>
-				<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
-			</init-param>
-			<load-on-startup>1</load-on-startup>
-		</servlet>
-			
-		<servlet-mapping>
-			<servlet-name>appServlet</servlet-name>
-			<url-pattern>/</url-pattern>
-		</servlet-mapping>
-
-	</web-app>
-
-URL이 */* 로 요청이 들어오면 DispatcherServlet이 실행된다. servlet-context.xml 을 블록잡고 command + shift + R (맥 - 이클립스) 을 누르면 해당파일을 열 수 있다.
-
-servlet_context.xml::
-
-	<?xml version="1.0" encoding="UTF-8"?>
-	<beans:beans xmlns="http://www.springframework.org/schema/mvc"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns:beans="http://www.springframework.org/schema/beans"
-		xmlns:context="http://www.springframework.org/schema/context"
-		xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
-		<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-		
-		<!-- Enables the Spring MVC @Controller programming model -->
-		<annotation-driven />
-
-		<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-		<resources mapping="/resources/**" location="/resources/" />
-
-		<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-		<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-			<beans:property name="prefix" value="/WEB-INF/views/" />
-			<beans:property name="suffix" value=".jsp" />
-		</beans:bean>
-		
-		<context:component-scan base-package="com.chang.spring" />
-	</beans:beans>
-
-**<context:component-scan base-package="com.chang.spring" />** 은 com.chang.spring 하부의 파일들은 xml로 따로 등록하지 않아도 빈을 등록해주겠다는 의미 이다. **InternalResourceViewResolver** 은 JSP를 찾아주는 역할을 한다. ViewResolver 이라 한다. 
 
 .. _applicationcontext_work:
 
@@ -132,48 +51,17 @@ servlet_context.xml::
 
 왜 *어플리케이션 컨텍스트* 가 빈 팩토리보다 뛰어난가? DaoFactory는 객체를 생성하고 DB 커넥션 코드가 포함된 클래스임에 반해 어플리케이션 컨텍스트는 IoC를 적용해서 관리할 모든 오브젝트에 대한 생성과 관계설정을 담당한다. 결론적으로 어플리케이션 컨텍스트를 사용하면 DaoFactory를 알 필요 없이 이는 일관된 방식으로 빈 객체를 사용할 수 있다. 또한 다양한 검색기능을 제공해주고 종합적인 :term:`IoC` 기능을 제공해 준다.
 
-용어 정리
---------–----
+용어
+----
 
-빈:
 
-- 스프링이 IoC 방식으로 관리하는 객체라는 뜻이다.
-
-POJO(Plain Old Java Object):
-
-- 상속 관계가 없는 프레임 워크나 자바 모델을 따르지 않는 클래스의 객체를 뜻한다. 프레임워크에 무겁게 종속된 객체에 반발하여 만든 용어라고 한다. 대표적으로 스프링 프레임워크는 POJO방식에 속한다. 스프링은 Servlet을 상속하지 않고 구현할 수 있다. 코드가 간결해지는 장점이 있다. `POJO 위키 <http://ko.wikipedia.org/wiki/Plain_Old_Java_Object>`_
-
-IOC(제어의 역전)
-
-- 
-
-DI(의존 역전)
-
-- 
-
-AOP
-
-- 
-
-Portable Service Abstract(PSA)
-
-- JBOSS, Web Logic, Tomcat, Jeus 와 같은 모든 서버에서 다 동작 시킬 수 있다.
-
-빈 팩토리:
-
-- IoC를 담당하는 핵심 컨테이너를 가르킨다.
-
-어플리케이션 컨텍스트:
-
-- 스프링에서 IoC를 담당하는 핵심 컨테이너로 빈 팩토리를 상속하여 구현하였다.
-
-설정정보/설정 메타정보:
-
-- 어플리케이션 컨텍스트가 IoC를 적용하기 위해 사용하는 메타정보이다. 애노테이션이 사용된다.
-
-컨테이너 또는 IoC 컨테이너:
-
-- 스프링, 스프링 컨테이너, 어플리케이션 컨테이나, 빈 팩토리 등 의미는 같으나 다양한 용어로 불린다.
+- 빈즈(Beans): 스프링 애플리케이션에서 관리되는 객체를 부르는 말이다.
+- POJO(Plain Old Java Object): 상속 관계가 없는 프레임 워크나 자바 모델을 따르지 않는 클래스의 객체를 뜻한다. 프레임워크에 무겁게 종속된 객체에 반발하여 만든 용어라고 한다. 대표적으로 스프링 프레임워크는 POJO방식에 속한다. 스프링은 Servlet을 상속하지 않고 구현할 수 있다. 코드가 간결해지는 장점이 있다. `POJO 위키 <http://ko.wikipedia.org/wiki/Plain_Old_Java_Object>`_
+- Portable Service Abstract(PSA): JBOSS, Web Logic, Tomcat, Jeus 와 같은 모든 서버에서 다 동작 시킬 수 있다.
+- 빈 팩토리: IoC를 담당하는 핵심 컨테이너를 가르킨다.
+- 어플리케이션 컨텍스트: 스프링에서 IoC를 담당하는 핵심 컨테이너로 빈 팩토리를 상속하여 구현하였다.
+- 설정정보/설정 메타정보: 어플리케이션 컨텍스트가 IoC를 적용하기 위해 사용하는 메타정보이다. 애노테이션이 사용된다.
+- 컨테이너 또는 IoC 컨테이너: 스프링, 스프링 컨테이너, 어플리케이션 컨테이나, 빈 팩토리 등 의미는 같으나 다양한 용어로 불린다.
 
 .. _applicationcontext_singleton:
 
@@ -237,3 +125,7 @@ mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포�
 	</plugin>
 
 
+참조
+====
+
+- 스프링 핵심: https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#_footnote_1
