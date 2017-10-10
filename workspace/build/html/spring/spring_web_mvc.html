@@ -88,42 +88,34 @@
 
         <span class="c">&lt;!-- The definition of the Root Spring Container shared by all Servlets and Filters --&gt;</span>
         <span class="nt">&lt;context-param&gt;</span>
+                <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+                <span class="nt">&lt;param-value&gt;</span>/WEB-INF/spring/root-context.xml<span class="nt">&lt;/param-value&gt;</span>
+        <span class="nt">&lt;/context-param&gt;</span>
+
+        <span class="c">&lt;!-- Creates the Spring Container shared by all Servlets and Filters --&gt;</span>
+        <span class="nt">&lt;listener&gt;</span>
+                <span class="nt">&lt;listener-class&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="nt">&lt;/listener-class&gt;</span>
+        <span class="nt">&lt;/listener&gt;</span>
+
+        <span class="c">&lt;!-- Processes application requests --&gt;</span>
+        <span class="nt">&lt;servlet&gt;</span>
+                <span class="nt">&lt;servlet-name&gt;</span>appServlet<span class="nt">&lt;/servlet-name&gt;</span>
+                <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+                <span class="nt">&lt;init-param&gt;</span>
+                        <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+                        <span class="nt">&lt;param-value&gt;</span>/WEB-INF/spring/appServlet/servlet-context.xml<span class="nt">&lt;/param-value&gt;</span>
+                <span class="nt">&lt;/init-param&gt;</span>
+                <span class="nt">&lt;load-on-startup&gt;</span>1<span class="nt">&lt;/load-on-startup&gt;</span>
+        <span class="nt">&lt;/servlet&gt;</span>
+
+        <span class="nt">&lt;servlet-mapping&gt;</span>
+                <span class="nt">&lt;servlet-name&gt;</span>appServlet<span class="nt">&lt;/servlet-name&gt;</span>
+                <span class="nt">&lt;url-pattern&gt;</span>/<span class="nt">&lt;/url-pattern&gt;</span>
+        <span class="nt">&lt;/servlet-mapping&gt;</span>
+
+<span class="nt">&lt;/web-app&gt;</span>
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>p                       &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</dt>
-<dd><blockquote class="first">
-<div><blockquote>
-<div>&lt;param-value&gt;/WEB-INF/spring/root-context.xml&lt;/param-value&gt;</div></blockquote>
-<p>&lt;/context-param&gt;</p>
-<p>&lt;!-- Creates the Spring Container shared by all Servlets and Filters --&gt;
-&lt;listener&gt;</p>
-<blockquote>
-<div>&lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;</div></blockquote>
-<p>&lt;/listener&gt;</p>
-<p>&lt;!-- Processes application requests --&gt;
-&lt;servlet&gt;</p>
-<blockquote>
-<div><p>&lt;servlet-name&gt;appServlet&lt;/servlet-name&gt;
-&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
-&lt;init-param&gt;</p>
-<blockquote>
-<div>&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
-&lt;param-value&gt;/WEB-INF/spring/appServlet/servlet-context.xml&lt;/param-value&gt;</div></blockquote>
-<p>&lt;/init-param&gt;
-&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</p>
-</div></blockquote>
-<p>&lt;/servlet&gt;</p>
-<dl class="docutils">
-<dt>&lt;servlet-mapping&gt;</dt>
-<dd>&lt;servlet-name&gt;appServlet&lt;/servlet-name&gt;
-&lt;url-pattern&gt;/&lt;/url-pattern&gt;</dd>
-</dl>
-<p>&lt;/servlet-mapping&gt;</p>
-</div></blockquote>
-<p class="last">&lt;/web-app&gt;</p>
-</dd>
-</dl>
 <p>URL이 <em>/</em> 로 요청이 들어오면 DispatcherServlet이 실행된다. servlet-context.xml 을 블록잡고 command + shift + R (맥 - 이클립스) 을 누르면 해당파일을 열 수 있다.</p>
 <p>servlet_context.xml:</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>

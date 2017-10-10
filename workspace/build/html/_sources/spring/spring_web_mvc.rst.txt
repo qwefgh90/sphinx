@@ -67,7 +67,7 @@ web.xml을 이용한 설정은 다음과 같다. **아래 설정은 Root WebAppl
 
 		<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 		<context-param>
-p			<param-name>contextConfigLocation</param-name>
+			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/root-context.xml</param-value>
 		</context-param>
 		
