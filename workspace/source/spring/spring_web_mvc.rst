@@ -1,4 +1,4 @@
-x.. _spring_web_mvc_intro:
+.. _spring_web_mvc_intro:
 
 *********************
 Spring Web MVC
