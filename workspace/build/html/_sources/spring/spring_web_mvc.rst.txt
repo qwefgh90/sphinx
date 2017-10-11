@@ -165,6 +165,10 @@ Spring Web MVC는 주석 기반의 프로그래밍 모델을 허용한다. Annot
 
 요청과 컨트롤러 메서드를 연결하는데 사용되는 주석이다. 주로 메서드에 사용되어 요청과 연결되며, 메서드간 공유되는 매핑이 있을때 클래스에 사용되기도 한다.
 
+**인자로 사용 가능한 타입은** `다음과 <https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-arguments>`_ 같다.
+
+**반환 타입은** `다음과<https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-return-types>`_ 같다.
+
 패턴 종류
 - ?: 하나의 문자와 매칭
 - *: 하나의 경로 세그먼트에서 0개 이상의 문자와 매칭
@@ -189,13 +193,98 @@ params 파라미터
 headers 파라미터
 - params와 유사
 
+메서드 파라미터에 사용되는 주석
+===============================
 
-
+요청의 어떤 부분과 메서드 파라미터를 연결시킬때 사용한다. Java 8부터 java.util.Optional<A>을 파라미터 타입으로 쓸 수 있다.
 
 @PathVariable
-=============
+-------------
+
+URL 변수와 메서드 파라미터를 바인딩할때 사용하는 주석이다.
 
 @GetMapping("/owners/{ownerId:[a-z-]+}/pets/{petId}") 와 같이 URL에 변수(URL variables)가 있을 경우 @PathVariable 주석이 달린 파라미터에 값이 담기게 된다.
+
+@RequestParam
+-------------
+
+요청 파라미터를 메서드 파라미터에 바인딩 시킬때 사용하는 주석이다. 
+
+*@RequestParam(name="pid", required=false) int pid* 와 같은 형태로 사용되며, String타입이 아닐경우 자동으로 타입을 변환해준다. MultiValueMap<String, String> 이나 Map<String,String> 이 타입으로 사용될 경우 모든 요청 파라미터가 바인딩된다.
+
+@RequestBody
+------------
+
+요청 바디를 메서드 파라미터에 바인딩 시킬때 사용하는 주석이다. 메서드 파라미터에 사용되며 HttpMessageConverter에 의해 요청 바디가 메서드 파라미터로 변환된다. RequestMappingHandlerAdapter는 @RequestBody 주석을 지원한다.
+
+@ResponseBody
+-------------
+
+반환 값을 응답 몸체와 바인딩할때 사용하는 주석이다.
+
+HttpEntity<T>
+-------------
+
+@RequestBody, @ResponseBody와 유사하다. 몸체에 접근할 수 있을 뿐만 아니라, 헤더에 접근할 수 있다. **주석없이 요청, 응답에 사용할 수 있으며 응답 시에는 ResponseEntity<T>라는 서브클래스가 사용된다.** 다른 주석처럼 HttpMessageConverter를 사용해서 몸체와 객체를 변환한다.
+
+예시는 다음 `링크에 <https://github.com/qwefgh90/handyfinder/blob/master/src/main/java/io/github/qwefgh90/handyfinder/springweb/controller/RootController.java#L81>`_ 있다.
+
+@ModelAttribute (메서드)
+------------------------
+
+**메서드 주석으로** 사용할 수 있으며, 같은 Controller안의 @RequestMapping이 호출되기 전에 1개 이상의 속성을 Model에 추가할 때 사용된다. @ModelAttribute 주석이 달린 메서드는 @RequestMapping이 호출되기 전에 모두 호출된다.
+
+아래 예시와 가지 2가지 스타일을 사용할 수 있다
+
+.. highlight:: java
+
+예시1::
+
+    @ModelAttribute
+    public Account addAccount(@RequestParam String number) {
+            return accountManager.findAccount(number);
+    }
+
+위 메서드는 **반환 값을 값으로 갖고 암묵적으로 account라는 이름(타입)을 갖는 속성을** 모델에 추가한다. @ModelAttribute의 인자를 주어 이름을 지정할 수 있다.
+
+예시2::
+
+    @ModelAttribute
+    public void populateModel(@RequestParam String number, Model model) {
+            model.addAttribute(accountManager.findAccount(number));
+            // add more ...
+    }
+
+Model을 인자로 받아서 여러개의 속성을 추가할떄 사용한다.
+
+@ModelAttribute (메서드 인자)
+-----------------------------
+
+모델의 속성과 메서드 인자를 바인딩 시킬때 사용할 수 있다.
+
+예시::
+
+    @PostMapping("/owners/{ownerId}/pets/{petId}/edit")
+    public String processSubmit(@ModelAttribute Pet pet) { }
+
+위 Pet의 인스턴스는 여러가지 위치에 있는 값과 바인딩 될 수 있다.
+
+- @SessionAttribute로 인해 생성된 값 (여러 요청사이에서 유지됨)
+- **메서드에 사용된 @ModelAttribute로 인해 생성된 값**
+- **URI 변수 또는 요청 파라미터와** 타입 컨버터로 인해 생성된 값 (@ModelAttibute("need") 문자열 인자가 필요함, URL 변수 또는 파라미터를 미리 등록된 Converter<String,B>를 사용하여 타입 B로 변환됨)
+- 디폴트 생성자로 생성한 객체
+
+@ModelAttribute뒤에 BindingResult 타입을 사용해서 ModelAttibute 변환 결과를 알 수 있다.
+
+HttpMessageConverter
+====================
+
+요청 몸체를 객체로 변환하거나 객체를 응답 몸체로 변환할때 사용하는 인터페이스이다. 자바 설정은 `다음과 <https://github.com/qwefgh90/handyfinder/blob/master/src/main/java/io/github/qwefgh90/handyfinder/springweb/config/ServletContext.java>`_ 같다.
+
+@RestController stereotype
+==========================
+
+@ResponseBody와 @Controller을 섞은 주석이다. Spring Web MVC를 이용해 Rest API를 만들때 사용한다.
 
 
 설정

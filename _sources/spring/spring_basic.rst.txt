@@ -9,7 +9,7 @@
 
 허광남 씨의 `스프링 학습자료 <https://www.youtube.com/watch?v=3SqDXVKlq8c&list=PLDMPhWe3CfpbjrwHAkMx7rERhm98o766w&index=1>`_ 링크 입니다. `슬라이드 쉐어 <http://www.slideshare.net/kenu>`_ 입니다.
 
-의존성 주입(Dependency injection)과 객체 관리를 위한 컨테이너(Spring IoC Container)를 제공하며 엔터프라이즈에서 필요한 다양한 모듈을 포함하는 프레임워크이다..
+Spring Framework는 의존성 주입(Dependency injection)과 객체 관리를 위한 컨테이너(Spring IoC Container)를 제공하며 엔터프라이즈에서 필요한 다양한 모듈을 포함하는 프레임워크이다.
 
 작업환경 및 과정
 -----------------------
