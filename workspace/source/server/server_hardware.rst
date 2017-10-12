@@ -117,6 +117,11 @@ LACP(Link Aggregation Control Protocol)
 
 포트는 케이블이나 플러그가 연결되는 부분이다. 모니터, 키보드나 다른 장치를 연결하기 위해 사용된다.
 
+Fibre Channel Adapter
+=====================
+
+서버와 SAN의 연결을 제공하는 어댑터이다.
+
 참조
 ====
 

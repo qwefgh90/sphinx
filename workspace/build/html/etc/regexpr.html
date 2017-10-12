@@ -1,40 +1,41 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1. Regexpr cheat sheet &#8212; Code Accelerator Document 1.0 documentation</title>
+    
+    <title>1. Regexpr cheat sheet &mdash; Code Accelerator Document 1.0 documentation</title>
+    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="색인" href="../genindex.html" />
-    <link rel="search" title="검색" href="../search.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="달리 분류되지 않음" href="etc_index.html" />
     <link rel="next" title="2. 차세대통합정보시스템 구축 사례" href="mis.html" />
     <link rel="prev" title="달리 분류되지 않음" href="etc_index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-  
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body>
+  <body role="document">
   
 
     <div class="document">
@@ -70,10 +71,10 @@
 <p>그룹 지정 (capturing / non-capturing)</p>
 <ul class="simple">
 <li>(ab){2} : ab를 하나의 그룹으로 보고 abab에 매칭된다.</li>
-<li>(ab){2} (\1) : &quot;abab ab&quot;에 매칭된다. 괄호는 값을 저장한다. <strong>캡처링이라는 특징을 갖는다. 이는 \1 ~ \9를 사용하여 항목을 검색할 수 있다.</strong></li>
+<li>(ab){2} (\1) : &#8220;abab ab&#8221;에 매칭된다. 괄호는 값을 저장한다. <strong>캡처링이라는 특징을 갖는다. 이는 \1 ~ \9를 사용하여 항목을 검색할 수 있다.</strong></li>
 <li>(?:pattern) : 패턴의 일부가 매칭되는가? data(?:apple|kiwi)은 dataapple 또는 datakiwi에 매칭된다. <strong>(캡처링하지 않는다.)</strong></li>
-<li>(?=p1)(?=p2) : look-ahead 방식으로 미리 검색해서 패턴에 일치할 경우만 계속 검색을 진행할때 사용한다. 문자열에 p1 패턴이 왔는가? 왔다면 p2 패턴이 왔는가? 동시에 여러개의 패턴을 적용할 수 있다. <strong>positive lookahead 방식이다.</strong> <strong>ex) 문자열 조사에 앞서 '_'가 존재한다면 진행하지 않음 ^(?=[^_])[0-9a-zA-Z_]+&#64;[a-zA-Z]+.[a-zA-Z]+</strong></li>
-<li>(?!p1)(?!p2) : look-ahead 방식으로 미리 검색해서 패턴에 일치하지 않을 경우만 계속 검색을 진행할때 사용한다. 문자열에 p1 패턴이 아니여야하고 p2 패턴이 아니여야 한다. <strong>negative lookahead 방식이다.</strong> <strong>ex) 문자열 조사에 앞서 '_'가 존재한다면 진행하지 않음 ^(?![_])[0-9a-zA-Z_]+&#64;[a-zA-Z]+.[a-zA-Z]+</strong></li>
+<li>(?=p1)(?=p2) : look-ahead 방식으로 미리 검색해서 패턴에 일치할 경우만 계속 검색을 진행할때 사용한다. 문자열에 p1 패턴이 왔는가? 왔다면 p2 패턴이 왔는가? 동시에 여러개의 패턴을 적용할 수 있다. <strong>positive lookahead 방식이다.</strong> <strong>ex) 문자열 조사에 앞서 &#8216;_&#8217;가 존재한다면 진행하지 않음 ^(?=[^_])[0-9a-zA-Z_]+&#64;[a-zA-Z]+.[a-zA-Z]+</strong></li>
+<li>(?!p1)(?!p2) : look-ahead 방식으로 미리 검색해서 패턴에 일치하지 않을 경우만 계속 검색을 진행할때 사용한다. 문자열에 p1 패턴이 아니여야하고 p2 패턴이 아니여야 한다. <strong>negative lookahead 방식이다.</strong> <strong>ex) 문자열 조사에 앞서 &#8216;_&#8217;가 존재한다면 진행하지 않음 ^(?![_])[0-9a-zA-Z_]+&#64;[a-zA-Z]+.[a-zA-Z]+</strong></li>
 </ul>
 </div>
 
@@ -96,7 +97,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/etc/regexpr.rst.txt"
+      <li><a href="../_sources/etc/regexpr.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -118,11 +119,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
-      <a href="../_sources/etc/regexpr.rst.txt"
+      <a href="../_sources/etc/regexpr.txt"
           rel="nofollow">Page source</a>
     </div>
 

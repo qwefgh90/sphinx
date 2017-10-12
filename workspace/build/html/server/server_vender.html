@@ -1,40 +1,41 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>2. 상용 서버의 기술적 특징 &#8212; Code Accelerator Document 1.0 documentation</title>
+    
+    <title>2. 상용 서버의 기술적 특징 &mdash; Code Accelerator Document 1.0 documentation</title>
+    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="색인" href="../genindex.html" />
-    <link rel="search" title="검색" href="../search.html" />
-    <link rel="next" title="네트워크" href="../network/network_index.html" />
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="서버(Server)" href="server_index.html" />
+    <link rel="next" title="Spring" href="../spring/spring_index.html" />
     <link rel="prev" title="1. 용어" href="server_hardware.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-  
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body>
+  <body role="document">
   
 
     <div class="document">
@@ -58,12 +59,17 @@
 <h2>2.3. ServerRAID M5014<a class="headerlink" href="#serverraid-m5014" title="제목 주소">¶</a></h2>
 <p>IBM System x를 위한 RAID 컨트롤러이다. 8개의 SAS/SATA 포트를 갖고 있으며 각 포트당 6Gbps만큼의 대역폭을 갖고 있다. SAS/SATA 드라이브를 32개 까지 연결 할 수 있다.</p>
 </div>
+<div class="section" id="qlogic-2700-series">
+<h2>2.4. QLogic 2700 Series<a class="headerlink" href="#qlogic-2700-series" title="제목 주소">¶</a></h2>
+<p>6세대(32Gb line rate) Fibre Channel Adapter이다. PCI 슬롯에 연결되며 single(x8), dual(x8), quad(x16)개의 포트를 제공한다. 장치관리자의 저장소 컨트롤러에서 QLogic Fibre Channel Adapter로 인식된다.</p>
+</div>
 <div class="section" id="id2">
-<h2>2.4. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<h2>2.5. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>ETERNUS Multipath Driver: <a class="reference external" href="http://www.fujitsu.com/global/products/computing/storage/disk/eternus-dx/feature/strsys-b03.html">http://www.fujitsu.com/global/products/computing/storage/disk/eternus-dx/feature/strsys-b03.html</a></li>
 <li>Dell PowerEdge RAID Controller H710P: <a class="reference external" href="http://i.dell.com/sites/doccontent/shared-content/data-sheets/Documents/dell-perc-h710p-spec-sheet.pdf">http://i.dell.com/sites/doccontent/shared-content/data-sheets/Documents/dell-perc-h710p-spec-sheet.pdf</a></li>
 <li>ServerRAID M5014: <a class="reference external" href="http://www.scsi4me.com/ibm-serveraid-m5014-8-port-6-gbps-sas-2-0-sas-sata-raid-controller.html">http://www.scsi4me.com/ibm-serveraid-m5014-8-port-6-gbps-sas-2-0-sas-sata-raid-controller.html</a></li>
+<li>QLogic: <a class="reference external" href="http://www.qlogic.com/Products/adapters/Pages/FibreChannelAdapters.aspx">http://www.qlogic.com/Products/adapters/Pages/FibreChannelAdapters.aspx</a></li>
 </ul>
 </div>
 </div>
@@ -80,7 +86,8 @@
 <li><a class="reference internal" href="#eternus-multipath-driver">2.1. ETERNUS Multipath Driver</a></li>
 <li><a class="reference internal" href="#dell-poweredge-raid-controller-h710p">2.2. Dell PowerEdge RAID Controller H710P</a></li>
 <li><a class="reference internal" href="#serverraid-m5014">2.3. ServerRAID M5014</a></li>
-<li><a class="reference internal" href="#id2">2.4. 참조</a></li>
+<li><a class="reference internal" href="#qlogic-2700-series">2.4. QLogic 2700 Series</a></li>
+<li><a class="reference internal" href="#id2">2.5. 참조</a></li>
 </ul>
 </li>
 </ul>
@@ -90,7 +97,7 @@
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="server_index.html">서버(Server)</a><ul>
       <li>Previous: <a href="server_hardware.html" title="이전 장">1. 용어</a></li>
-      <li>Next: <a href="../network/network_index.html" title="다음 장">네트워크</a></li>
+      <li>Next: <a href="../spring/spring_index.html" title="다음 장">Spring</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -98,7 +105,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/server/server_vender.rst.txt"
+      <li><a href="../_sources/server/server_vender.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -120,11 +127,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
-      <a href="../_sources/server/server_vender.rst.txt"
+      <a href="../_sources/server/server_vender.txt"
           rel="nofollow">Page source</a>
     </div>
 

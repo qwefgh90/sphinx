@@ -1,7 +1,7 @@
 .. _spring_rest:
 
 =============
-Spring MVC 
+Rest API
 =============
 
 ------
