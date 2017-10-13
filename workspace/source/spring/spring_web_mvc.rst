@@ -232,7 +232,7 @@ HttpEntity<T>
 @ModelAttribute (메서드)
 ------------------------
 
-**메서드 주석으로** 사용할 수 있으며, 같은 Controller안의 @RequestMapping이 호출되기 전에 1개 이상의 속성을 Model에 추가할 때 사용된다. @ModelAttribute 주석이 달린 메서드는 @RequestMapping이 호출되기 전에 모두 호출된다.
+**메서드 주석으로** 사용할 수 있으며, 같은 Controller안의 @RequestMapping이 호출되기 전에 1개 이상의 속성을 Model에 추가할 때 사용된다. 주로 자주 사용하는 속성을 모델에 저장할때 많이 사용된다. @ModelAttribute 주석이 달린 메서드는 @RequestMapping이 호출되기 전에 모두 호출된다.
 
 아래 예시와 가지 2가지 스타일을 사용할 수 있다
 
@@ -275,6 +275,39 @@ Model을 인자로 받아서 여러개의 속성을 추가할떄 사용한다.
 - 디폴트 생성자로 생성한 객체
 
 @ModelAttribute뒤에 BindingResult 타입을 사용해서 ModelAttibute 변환 결과를 알 수 있다.
+
+@SessionAttributes (클래스)
+---------------------------
+
+세션에 특성을 저장하도록 해주는 주석이다. 인자로 저장된 특성의 타입이나 이름이 온다. **@ModelAttribute로 만든 특성을 그대로 세션에 저장하는 개념이다.**
+
+
+@SessionAttributes (메서드 인자)
+--------------------------------
+
+이미 저장된 세션 특성을 메서드 인자에 바인딩 시킬때 사용한다. 주로 필터에 의해 추가된 값이다.
+
+@RequestAttribute (메서드 인자)
+-------------------------------
+
+요청 속성을 메서드 인자에 바인딩 시킬때 사용한다. 주로 필터나 인터셉터에 의해 추가된 값이다.
+
+@CookieValue
+------------
+
+쿠키를 메서드 파라미터에 바인딩 시킬때 사용한다. @CookieValue("JSESSIONID") 와 같이 사용된다.
+
+@RequestHeader
+--------------
+
+헤더를 메서드 파라미터에 바인딩 시킬때 사용한다. @RequestHeader("Keep-Alive") 와 같이 사용된다. Map<String,String>, MultiValueMap<String, String>, HttpHeaders 타입을 사용하면 모든 헤더가 바인딩 된다.
+
+비동기 요청 처리(Asynchronous Request Processing)
+-------------------------------------------------
+
+Spring Web MVC 3.2 부터는 Servlet 3 기반의 비동기 요청 처리를 지원하며 **Callable<T>를 반환할 수 있다.** TaskExecutor 의 도움으로 다른 스레드에서 실행된다. Servlet Container Thread는 종료되고 반환되어 다시 다른 요청을 처리하게 된다.
+
+**DeferredResult<T>를** 반환할 수도 있다. 요청에 대한 처리는 다른 스레드에서 처리될 수 있다. 심지어 Spring Web MVC에서 관리되지 않는 스레드에서 처리할 수도 있다. 예를들면 JMS 메세지나 예약된 작업과 같은 외부 이벤트에 대한 결과가 반환될 수 있다.
 
 HttpMessageConverter
 ====================
