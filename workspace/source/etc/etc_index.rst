@@ -19,4 +19,5 @@ Contents:
    :numbered:
 
    regexpr.rst
+   git.rst
    mis.rst
