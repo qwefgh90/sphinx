@@ -60,8 +60,9 @@
 <li>젠킨스 -&gt; 프로젝트 -&gt; ssh 서버 선택 -&gt; 업로드 할 파일 입력 (**/*.war) -&gt; 빌드 후 실행할 명령어 추가 (*.war를 webapps로 복사하는 명령 등)</li>
 </ul>
 <p>서버에서 빌드 및 톰캣 실행할 경우 mvn package tomcat7:run 를 사용하면 편하다.</p>
+</div>
 <div class="section" id="id5">
-<h3>1.1.1. 스프링의 이해<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
+<h2>1.2. 스프링의 이해<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
 <p>스프링 프레임워크의 기본 컨셉은 DI, AOP, Portable Service Abstract라고 한다. 스프링빈은 스프링 컨테이너가 생성, 사용등을 제어해주는 객체이다. 어플리케이션 컨텍스트는 스프링 컨테이너에서 빈을 생성하는 빈 팩토리이다. DaoFactory라는 객체가 있다면 &#64;Configuration과 &#64;Bean이라는 애노테이션을 사용하여 어플리케이션 컨텍스트가 사용할 정보라는 것을 표시한다.</p>
 <img alt="../_images/spring_arch.gif" src="../_images/spring_arch.gif" />
 <ul class="simple">
@@ -75,14 +76,12 @@
 <li>Expression Language - 표준 자바에 확장된 문법</li>
 <li>Instrumentation - 클래스 파일을 쪼개고 다시 조립할 수 있는 기술, Point cut, Advise 시 필요 함</li>
 </ul>
-</div>
-</div>
 <div class="section" id="applicationcontext-work">
-<span id="id6"></span><h2>1.2. 어플리케이션 컨텍스트 동작방식<a class="headerlink" href="#applicationcontext-work" title="제목 주소">¶</a></h2>
-<p>왜 <em>어플리케이션 컨텍스트</em> 가 빈 팩토리보다 뛰어난가? DaoFactory는 객체를 생성하고 DB 커넥션 코드가 포함된 클래스임에 반해 어플리케이션 컨텍스트는 IoC를 적용해서 관리할 모든 오브젝트에 대한 생성과 관계설정을 담당한다. 결론적으로 어플리케이션 컨텍스트를 사용하면 DaoFactory를 알 필요 없이 이는 일관된 방식으로 빈 객체를 사용할 수 있다. 또한 다양한 검색기능을 제공해주고 종합적인 <span class="xref std std-term">IoC</span> 기능을 제공해 준다.</p>
+<span id="id6"></span><h3>1.2.1. 어플리케이션 컨텍스트 동작방식<a class="headerlink" href="#applicationcontext-work" title="제목 주소">¶</a></h3>
+<p>왜 <em>어플리케이션 컨텍스트(ApplicationContext)</em> 가 빈 팩토리보다 뛰어난가? DaoFactory는 객체를 생성하고 DB 커넥션 코드가 포함된 클래스임에 반해 어플리케이션 컨텍스트는 IoC를 적용해서 관리할 모든 오브젝트에 대한 생성과 관계설정을 담당한다. 결론적으로 어플리케이션 컨텍스트를 사용하면 DaoFactory를 알 필요 없이 이는 일관된 방식으로 빈 객체를 사용할 수 있다. 또한 다양한 검색기능을 제공해주고 종합적인 <span class="xref std std-term">IoC</span> 기능을 제공해 준다.</p>
 </div>
 <div class="section" id="id7">
-<h2>1.3. 용어<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
+<h3>1.2.2. 용어<a class="headerlink" href="#id7" title="제목 주소">¶</a></h3>
 <ul class="simple">
 <li>빈즈(Beans): 스프링 애플리케이션에서 관리되는 객체를 부르는 말이다.</li>
 <li>POJO(Plain Old Java Object): 상속 관계가 없는 프레임 워크나 자바 모델을 따르지 않는 클래스의 객체를 뜻한다. 프레임워크에 무겁게 종속된 객체에 반발하여 만든 용어라고 한다. 대표적으로 스프링 프레임워크는 POJO방식에 속한다. 스프링은 Servlet을 상속하지 않고 구현할 수 있다. 코드가 간결해지는 장점이 있다. <a class="reference external" href="http://ko.wikipedia.org/wiki/Plain_Old_Java_Object">POJO 위키</a></li>
@@ -94,32 +93,101 @@
 </ul>
 </div>
 <div class="section" id="applicationcontext-singleton">
-<span id="id8"></span><h2>1.4. 어플리케이션 컨텍스트와 싱글톤 객체<a class="headerlink" href="#applicationcontext-singleton" title="제목 주소">¶</a></h2>
+<span id="id8"></span><h3>1.2.3. 어플리케이션 컨텍스트와 싱글톤 객체<a class="headerlink" href="#applicationcontext-singleton" title="제목 주소">¶</a></h3>
 <p>서버 어플리케이션에서 매번 클라이언트 요청마다 새로운 객체를 만들어 데이터를 엑세스한다면 자원 낭비가 심할 것이다. 따라서 어플리케이션 컨테스트는 빈을 생성할때 싱글톤 객체를 반환한다. 하지만 서버 어플리케이션에서 싱글톤 패턴을 사용한 객체는 여러개 생길 수 있다. 예를들어 분산된 JVM의 경우 그럴 수 있다. 또한 싱글톤 객체는 private로서 상속이 불가능하다. 따라서 스프링에선 <span class="xref std std-term">싱글톤 레지스트리</span> 를 제공한다. 일반적인 클래스를 싱글톤으로 사용할 수 있게 하는 스프링의 중요한 기능이다.</p>
 <p>싱글톤 방식으로 사용될 클래스를 설계할때 멀티스레드 환경에서 동작할 것을 고려하여 설계하여야 한다. 하지만 싱글톤을 사용할 수 있다고 해서 컨테이너가 삭제하기 전까지 사용할 수 있는 싱글톤 스코프만 존재하는것은 아니다. 요청 스코프, 세션 스코프, 프로토타입 스코프 등도 사용할 수 있다.</p>
 </div>
 <div class="section" id="di">
-<h2>1.5. 의존관계 주입(DI)<a class="headerlink" href="#di" title="제목 주소">¶</a></h2>
+<h3>1.2.4. 의존관계 주입(DI)<a class="headerlink" href="#di" title="제목 주소">¶</a></h3>
 <p>컨테이너에서 객체의 레퍼런스를 전달받고 그 레퍼런스와 다른 객체들 사이의 의존관계를 만들어 주는 것 이것을 의존관계 주입이라고 한다. 이때 의존한다는 뜻은 예를들어 2개의 클래스가 A &#8212;&gt; B 와 같은 관계를 가지고 있을때 A클래스는 B클래스에 의존하고 있고 B클래스는 A클래스에 의존하고 있지 않다라고 한다.</p>
 <p>2개의 클래스가 서로 의존관계를 생성할때 인터페이스에 의존하게 된다면 인터페이스를 구현하는 실제 클래스와의 의존관계가 느슨해져서 다른 한쪽의 변화로 부터 자유롭다. 런타임에 실제 클래스가 인스턴스화 된다면 그 객체를 <span class="xref std std-term">의존 오브젝트</span> 라고 한다.</p>
 <p>의존관계를 주입을 하는 역할을 가진 DaoFactory는 DI 컨테이너가 된다. DaoFactory가 UserDao라는 DAO를 만들때 DB연결 객체를 주입하게된다.</p>
 <p>애노테이션이 아닌 XML 설정파일을 활용하여 의존관계 주입을 할 수 있다.</p>
+</div>
+</div>
+<div class="section" id="applicationcontext">
+<h2>1.3. 애플리케이션 컨텍스트(ApplicationContext)<a class="headerlink" href="#applicationcontext" title="제목 주소">¶</a></h2>
 <div class="section" id="id9">
-<h3>1.5.1. 테스트 컨텍스트 프레임워크<a class="headerlink" href="#id9" title="제목 주소">¶</a></h3>
-<p>일반적으로 단위 테스트는 프로그램에서 작은 기능이 정상적으로 동작하는지 확인하는 테스트이다. 이런 단위테스트는 좀더 긴 테스트를 진행하기전에 돌려봄으로써 테스트를 더 효율적으로 만들어 준다. JUNIT은 스프링 테스트를 배우기 위해 알고 있어야 한다. DAO를 테스트하고 싶을 때에는 &#64;Autowired로 객체를 주입받아 테스트를 진행한다. 쿼리 테스트를 위해서는 롤백 테스트 또는 사본 디비를 사용하면 된다. &#64;ContextConfiguration 과 &#64;RunWith(SpringJUnitClassRunner.class) 를 테스트 클래스 위에 입력하고 테스트 메서드를 쓰면 테스트가 동작한다.</p>
+<h3>1.3.1. 주석 기반의 컨테이너 설정<a class="headerlink" href="#id9" title="제목 주소">¶</a></h3>
+<p>CommonAnnotationBeanPostProcessor은 아래 주석을 처리할 수 있다.</p>
+<div class="section" id="resource">
+<h4>1.3.1.1. &#64;Resource<a class="headerlink" href="#resource" title="제목 주소">¶</a></h4>
+<p>필드나 Setter 메서드에 빈을 주입할때 사용하는 주석이다. JSR-250 스펙에 존재한다.</p>
+<p>다음과 같이 사용할 경우:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;maxThreadsCount&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>name 속성을 해석해서 빈을 찾는다. by-name 시멘틱으로 처리한다. 이름이 주어지지 않을 경우 필드 이름, Setter 메서드를 사용한다.</p>
+<p><strong>명확한 이름이 없을 경우, 타입으로 찾는다. 이러한 점은 &#64;Autowired와 유사하다.</strong></p>
+</div>
+<div class="section" id="postconstruct-predestroy">
+<h4>1.3.1.2. &#64;PostConstruct, &#64;PreDestroy<a class="headerlink" href="#postconstruct-predestroy" title="제목 주소">¶</a></h4>
+<p>Spring 라이프 사이클에 호출될 메서드를 지정할때 사용하는 주석이다. JSR-250에 존재한다.</p>
+</div>
+<div class="section" id="component-controller-service-repository">
+<h4>1.3.1.3. &#64;Component, &#64;Controller, &#64;Service, &#64;Repository<a class="headerlink" href="#component-controller-service-repository" title="제목 주소">¶</a></h4>
+<p>stereotype(상투적으로 사용되는) 주석이며 &#64;Component가 가장 일반적인 주석이고, 나머지 주석은 좀더 특별한 용도로 사용된다. pointcut에도 사용될 수 있다.</p>
+</div>
+<div class="section" id="componentscan">
+<h4>1.3.1.4. &#64;ComponentScan<a class="headerlink" href="#componentscan" title="제목 주소">¶</a></h4>
+<p>stereotype 주석이 사용된 클래스를 찾아 뒤 빈으로 등록할때 사용하는 주석이다. &#64;Configuration 주석 아래에 사용할 수 있다. 인자로 basePackages에 클래스의 부모 패키지를 받는다.</p>
+<p>JavaConfig를 사용할때</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@Configuration</span>
+<span class="nd">@ComponentScan</span><span class="p">(</span><span class="n">basePackages</span> <span class="o">=</span> <span class="s2">&quot;org.example&quot;</span><span class="p">)</span>
+<span class="n">public</span> <span class="k">class</span> <span class="nc">AppConfig</span>  <span class="p">{</span>
+           <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>XML을 사용할때:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+        xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+
+        &lt;context:component-scan base-package=&quot;org.example&quot;/&gt;
+
+&lt;/beans&gt;
+</pre></div>
+</div>
+<p>위 xml 요소는 암묵적으로 &lt;context:annotation-config&gt;를 포함한다.</p>
+</div>
+<div class="section" id="autowired">
+<h4>1.3.1.5. &#64;Autowired<a class="headerlink" href="#autowired" title="제목 주소">¶</a></h4>
+<p>필드나 메서드 인자에 빈을 바인딩 시킬때 사용하는 주석이다. &#64;Qualifier로 이름을 지정할 수 있다.</p>
+</div>
+<div class="section" id="qualifier">
+<h4>1.3.1.6. &#64;Qualifier<a class="headerlink" href="#qualifier" title="제목 주소">¶</a></h4>
+<p>&#64;Qualifier는 정교하게 빈을 선택할 수 있도록 도와주는 주석이다. 필드나 메서드 인자, 생성자 인자에 위치할 수 있다.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@Autowired</span>
+<span class="n">public</span> <span class="n">void</span> <span class="n">prepare</span><span class="p">(</span><span class="nd">@Qualifier</span><span class="p">(</span><span class="s2">&quot;main&quot;</span><span class="p">)</span><span class="n">MovieCatalog</span> <span class="n">movieCatalog</span><span class="p">,</span>
+                <span class="n">CustomerPreferenceDao</span> <span class="n">customerPreferenceDao</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">movieCatalog</span> <span class="o">=</span> <span class="n">movieCatalog</span><span class="p">;</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">customerPreferenceDao</span> <span class="o">=</span> <span class="n">customerPreferenceDao</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="id10">
-<h2>1.6. 쿼리 테스트<a class="headerlink" href="#id10" title="제목 주소">¶</a></h2>
+<h2>1.4. 테스트 컨텍스트 프레임워크<a class="headerlink" href="#id10" title="제목 주소">¶</a></h2>
+<p>일반적으로 단위 테스트는 프로그램에서 작은 기능이 정상적으로 동작하는지 확인하는 테스트이다. 이런 단위테스트는 좀더 긴 테스트를 진행하기전에 돌려봄으로써 테스트를 더 효율적으로 만들어 준다. JUNIT은 스프링 테스트를 배우기 위해 알고 있어야 한다. DAO를 테스트하고 싶을 때에는 &#64;Autowired로 객체를 주입받아 테스트를 진행한다. 쿼리 테스트를 위해서는 롤백 테스트 또는 사본 디비를 사용하면 된다. &#64;ContextConfiguration 과 &#64;RunWith(SpringJUnitClassRunner.class) 를 테스트 클래스 위에 입력하고 테스트 메서드를 쓰면 테스트가 동작한다.</p>
+<div class="section" id="id11">
+<h3>1.4.1. 쿼리 테스트<a class="headerlink" href="#id11" title="제목 주소">¶</a></h3>
 <p>&#64;Transactional 어노테이션을 사용하면 강제 롤백 옵션이 포함되어 있다. setRollbackOnly()가 호출되는것과 동일하다고 한다.</p>
+</div>
+</div>
 <div class="section" id="maven">
-<h3>1.6.1. Maven<a class="headerlink" href="#maven" title="제목 주소">¶</a></h3>
+<h2>1.5. Maven<a class="headerlink" href="#maven" title="제목 주소">¶</a></h2>
 <p>소스 의존성 및 쉬운 레파지토리를 다운받게 해주며 컴파일과 배포 자동화를 지원해준다.</p>
 <p>메이븐의 라이프 사이클은 프로그램을 컴파일하고 배포하기 까지의 단계들을 뜻한다. 라이프 사이클은 여러개의 Phase로 이루어져 있고 각 Phase는 메이븐이 무슨일을 할지 목표만 가르키고 있다. 이 목표를 Goal이라고 한다. Goal은 메이븐에서 작업 명령의 단위이다.</p>
-</div>
-</div>
 <div class="section" id="goal">
-<h2>1.7. Goal<a class="headerlink" href="#goal" title="제목 주소">¶</a></h2>
+<h3>1.5.1. Goal<a class="headerlink" href="#goal" title="제목 주소">¶</a></h3>
 <p>mvn compile: 컴파일 한다.
 mvn package: 컴파일 후 jar 또는 war 패키지를 생성한다.
 mvn install: jar또는 war를 로컬 저장소에 복사한다.
@@ -139,12 +207,13 @@ mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포�
 &lt;/plugin&gt;
 </pre></div>
 </div>
-<div class="section" id="id11">
-<h3>1.7.1. 참조<a class="headerlink" href="#id11" title="제목 주소">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>1.6. 참조<a class="headerlink" href="#id12" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>스프링 핵심: <a class="reference external" href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#_footnote_1">https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#_footnote_1</a></li>
 </ul>
-</div>
 </div>
 </div>
 
@@ -157,25 +226,35 @@ mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포�
   <h3><a href="../index.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">1. 스프링 프레임워크</a><ul>
-<li><a class="reference internal" href="#id4">1.1. 작업환경 및 과정</a><ul>
-<li><a class="reference internal" href="#id5">1.1.1. 스프링의 이해</a></li>
+<li><a class="reference internal" href="#id4">1.1. 작업환경 및 과정</a></li>
+<li><a class="reference internal" href="#id5">1.2. 스프링의 이해</a><ul>
+<li><a class="reference internal" href="#applicationcontext-work">1.2.1. 어플리케이션 컨텍스트 동작방식</a></li>
+<li><a class="reference internal" href="#id7">1.2.2. 용어</a></li>
+<li><a class="reference internal" href="#applicationcontext-singleton">1.2.3. 어플리케이션 컨텍스트와 싱글톤 객체</a></li>
+<li><a class="reference internal" href="#di">1.2.4. 의존관계 주입(DI)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#applicationcontext-work">1.2. 어플리케이션 컨텍스트 동작방식</a></li>
-<li><a class="reference internal" href="#id7">1.3. 용어</a></li>
-<li><a class="reference internal" href="#applicationcontext-singleton">1.4. 어플리케이션 컨텍스트와 싱글톤 객체</a></li>
-<li><a class="reference internal" href="#di">1.5. 의존관계 주입(DI)</a><ul>
-<li><a class="reference internal" href="#id9">1.5.1. 테스트 컨텍스트 프레임워크</a></li>
+<li><a class="reference internal" href="#applicationcontext">1.3. 애플리케이션 컨텍스트(ApplicationContext)</a><ul>
+<li><a class="reference internal" href="#id9">1.3.1. 주석 기반의 컨테이너 설정</a><ul>
+<li><a class="reference internal" href="#resource">1.3.1.1. &#64;Resource</a></li>
+<li><a class="reference internal" href="#postconstruct-predestroy">1.3.1.2. &#64;PostConstruct, &#64;PreDestroy</a></li>
+<li><a class="reference internal" href="#component-controller-service-repository">1.3.1.3. &#64;Component, &#64;Controller, &#64;Service, &#64;Repository</a></li>
+<li><a class="reference internal" href="#componentscan">1.3.1.4. &#64;ComponentScan</a></li>
+<li><a class="reference internal" href="#autowired">1.3.1.5. &#64;Autowired</a></li>
+<li><a class="reference internal" href="#qualifier">1.3.1.6. &#64;Qualifier</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id10">1.6. 쿼리 테스트</a><ul>
-<li><a class="reference internal" href="#maven">1.6.1. Maven</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#goal">1.7. Goal</a><ul>
-<li><a class="reference internal" href="#id11">1.7.1. 참조</a></li>
+<li><a class="reference internal" href="#id10">1.4. 테스트 컨텍스트 프레임워크</a><ul>
+<li><a class="reference internal" href="#id11">1.4.1. 쿼리 테스트</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#maven">1.5. Maven</a><ul>
+<li><a class="reference internal" href="#goal">1.5.1. Goal</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id12">1.6. 참조</a></li>
 </ul>
 </li>
 </ul>

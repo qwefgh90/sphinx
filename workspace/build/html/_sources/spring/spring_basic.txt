@@ -12,7 +12,7 @@
 Spring Framework는 의존성 주입(Dependency injection)과 객체 관리를 위한 컨테이너(Spring IoC Container)를 제공하며 엔터프라이즈에서 필요한 다양한 모듈을 포함하는 프레임워크이다.
 
 작업환경 및 과정
------------------------
+================
 
 - STS(Spring Tool Suit 사용) -> New -> Spring Project (Spring MVC) -> 프로젝트 생성
 - https://cloud.digitalocean.com/ 서버 호스팅 -> Droplet 생성 (Ubuntu)
@@ -47,9 +47,9 @@ Spring Framework는 의존성 주입(Dependency injection)과 객체 관리를 �
 .. _applicationcontext_work:
 
 어플리케이션 컨텍스트 동작방식
----------------------------------
+------------------------------
 
-왜 *어플리케이션 컨텍스트* 가 빈 팩토리보다 뛰어난가? DaoFactory는 객체를 생성하고 DB 커넥션 코드가 포함된 클래스임에 반해 어플리케이션 컨텍스트는 IoC를 적용해서 관리할 모든 오브젝트에 대한 생성과 관계설정을 담당한다. 결론적으로 어플리케이션 컨텍스트를 사용하면 DaoFactory를 알 필요 없이 이는 일관된 방식으로 빈 객체를 사용할 수 있다. 또한 다양한 검색기능을 제공해주고 종합적인 :term:`IoC` 기능을 제공해 준다.
+왜 *어플리케이션 컨텍스트(ApplicationContext)* 가 빈 팩토리보다 뛰어난가? DaoFactory는 객체를 생성하고 DB 커넥션 코드가 포함된 클래스임에 반해 어플리케이션 컨텍스트는 IoC를 적용해서 관리할 모든 오브젝트에 대한 생성과 관계설정을 담당한다. 결론적으로 어플리케이션 컨텍스트를 사용하면 DaoFactory를 알 필요 없이 이는 일관된 방식으로 빈 객체를 사용할 수 있다. 또한 다양한 검색기능을 제공해주고 종합적인 :term:`IoC` 기능을 제공해 준다.
 
 용어
 ----
@@ -82,6 +82,86 @@ Spring Framework는 의존성 주입(Dependency injection)과 객체 관리를 �
 의존관계를 주입을 하는 역할을 가진 DaoFactory는 DI 컨테이너가 된다. DaoFactory가 UserDao라는 DAO를 만들때 DB연결 객체를 주입하게된다. 
 
 애노테이션이 아닌 XML 설정파일을 활용하여 의존관계 주입을 할 수 있다.
+
+애플리케이션 컨텍스트(ApplicationContext)
+=========================================
+
+주석 기반의 컨테이너 설정
+-------------------------
+
+CommonAnnotationBeanPostProcessor은 아래 주석을 처리할 수 있다.
+
+@Resource
+~~~~~~~~~
+
+필드나 Setter 메서드에 빈을 주입할때 사용하는 주석이다. JSR-250 스펙에 존재한다. 
+
+다음과 같이 사용할 경우::
+
+   @Resource(name="maxThreadsCount")
+
+name 속성을 해석해서 빈을 찾는다. by-name 시멘틱으로 처리한다. 이름이 주어지지 않을 경우 필드 이름, Setter 메서드를 사용한다. 
+
+**명확한 이름이 없을 경우, 타입으로 찾는다. 이러한 점은 @Autowired와 유사하다.**
+
+
+@PostConstruct, @PreDestroy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Spring 라이프 사이클에 호출될 메서드를 지정할때 사용하는 주석이다. JSR-250에 존재한다.
+
+@Component, @Controller, @Service, @Repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+stereotype(상투적으로 사용되는) 주석이며 @Component가 가장 일반적인 주석이고, 나머지 주석은 좀더 특별한 용도로 사용된다. pointcut에도 사용될 수 있다.
+
+@ComponentScan
+~~~~~~~~~~~~~~
+
+stereotype 주석이 사용된 클래스를 찾아 뒤 빈으로 등록할때 사용하는 주석이다. @Configuration 주석 아래에 사용할 수 있다. 인자로 basePackages에 클래스의 부모 패키지를 받는다.
+
+JavaConfig를 사용할때 ::
+
+    @Configuration
+    @ComponentScan(basePackages = "org.example")
+    public class AppConfig  {
+               ...
+    }
+
+XML을 사용할때::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:context="http://www.springframework.org/schema/context"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/context
+                    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+            <context:component-scan base-package="org.example"/>
+    
+    </beans>
+
+위 xml 요소는 암묵적으로 <context:annotation-config>를 포함한다.
+
+@Autowired
+~~~~~~~~~~
+
+필드나 메서드 인자에 빈을 바인딩 시킬때 사용하는 주석이다. @Qualifier로 이름을 지정할 수 있다.
+
+@Qualifier
+~~~~~~~~~~
+
+@Qualifier는 정교하게 빈을 선택할 수 있도록 도와주는 주석이다. 필드나 메서드 인자, 생성자 인자에 위치할 수 있다.::
+
+    @Autowired
+    public void prepare(@Qualifier("main")MovieCatalog movieCatalog,
+                    CustomerPreferenceDao customerPreferenceDao) {
+            this.movieCatalog = movieCatalog;
+            this.customerPreferenceDao = customerPreferenceDao;
+    }
+
 
 테스트 컨텍스트 프레임워크
 ==================================
