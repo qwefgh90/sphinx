@@ -40,7 +40,7 @@ Staged인 파일을 비교할때는 *git diff --staged 를* 사용한다.
     git rebase master
     # master로 HEAD를 바꾼뒤 fast-forward한다.
     git checkout master
-    git merge experiment 
+    git merge feature-1
  
 히스토리를 선형적으로 정리할 수 있다는 장점이 있으며, 갈라져 나온 브랜치가 계속 관리되는 브랜치가 아닐때 rebase를 사용하면 좋다. 
 **단 merge로 생성한 commit을 서버에 push한 뒤 다시 로컬에서 rebase로 정리한 뒤 commit을 하면 그 사이에 작업한 다른 개발자의 결과물은 이전 병합 commit을 가르키게 되므로 히스토리가 꼬이게 된다.**
