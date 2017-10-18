@@ -51,12 +51,69 @@
 <p><strong>전략 패턴</strong> 이란 클래스의 여러가지 동작을 표현하기 위해 다양한 종류의 클래스를 상속하지 않고 전략 인터페이스에만 의존하여 전략을 선택할 수 있는 디자인 기법이다. 알고리즘을 독립시키는 패턴을 뜻한다.</p>
 <p><strong>전략 패턴의 특징은 코드의 중복없이 알고리즘을 재사용할 수 있다는 것이다.</strong></p>
 </div>
+<div class="section" id="mvc">
+<h2>2.2. MVC 패턴<a class="headerlink" href="#mvc" title="제목 주소">¶</a></h2>
+<p>프로그램을 크게 Model, View, Controller 구성요소로 나누는 패턴이다.</p>
+<ul class="simple">
+<li>Model은 데이터를 수정하거나 어떤 동작을 수행할 수 있다.</li>
+<li>View는 Model에서 데이터를 읽어와서 사용자에게 보여준다.</li>
+<li>Controller는 사용자의 요청을 처리하기위해 Model의 상태를 바꾼다.</li>
+</ul>
+<p>이외에도 Service 계층을 두고 1개 이상의 모델과 함께 특정 작업을 처리하기도 한다.</p>
+</div>
+<div class="section" id="isp-interface-segregation-principle">
+<h2>2.3. ISP(Interface Segregation Principle)<a class="headerlink" href="#isp-interface-segregation-principle" title="제목 주소">¶</a></h2>
+<p>자신의 서브 클래스 때문에 <strong>원치 않은 상속과 사용하지 않는 메소드에</strong> 강제로 의존하지 않아야 한다. 이는 인터페이스를 분리하고 다중 상속이나, <strong>Adapter를 통해 분리된 인터페이스의 서브 클래스간 통신을 하게하여 해결할 수 있다.</strong></p>
+<p>그 예제로 Door, Timer 문제나 Shape, TextShape, TextView 문제가 있다.</p>
+</div>
+<div class="section" id="dependency-injection">
+<h2>2.4. 의존성 주입 패턴(Dependency injection)<a class="headerlink" href="#dependency-injection" title="제목 주소">¶</a></h2>
+<p><strong>의존성 주입은</strong> 객체에서 의존 객체 생성에 대한 관심을 분리하고 외부에서 의존성을 주입하는 패턴을 뜻한다. 의존성은 외부(사용자, 프레임워크, 라이브러리)에서 선택 및 생성되어 생성자나 setter를 통해 주입된다.</p>
+<p>사용자가 직접 의존성을 생성할 경우 <em>객체 그래프(object graph)가</em> 필요하다. 그래프를 직접 만드는 것은 시간이 필요하며, 에러가 발생하기 쉽고, 테스팅 하기 어렵게 한다. Spring, Guice 같은 프레임워크는 이를 제공한다.</p>
+<p><strong>단순하게 생각해도 아래의 Consumer 클래스를 선언할때, 그 객체의 의존성을 생성해야하고 의존성의 의존성 객체도 생성해야한다. 사용하기 너무 불편하다. 객체의 라이프 타임도 관리가 안된다.</strong>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">D</span><span class="p">{</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">C</span><span class="p">{</span>
+  <span class="n">D</span> <span class="n">d</span><span class="p">;</span>
+  <span class="n">public</span> <span class="n">C</span><span class="p">(</span><span class="n">D</span> <span class="n">d</span><span class="p">){</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">B</span><span class="p">{</span>
+  <span class="n">C</span> <span class="n">c</span><span class="p">;</span>
+  <span class="n">public</span> <span class="n">A</span><span class="p">(</span><span class="n">C</span> <span class="n">c</span><span class="p">){</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+  <span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+  <span class="n">public</span> <span class="n">A</span><span class="p">(</span><span class="n">B</span> <span class="n">b</span><span class="p">){</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Consumer</span><span class="p">{</span>
+  <span class="n">void</span> <span class="n">consume</span><span class="p">(){</span>
+    <span class="n">C</span> <span class="n">c</span> <span class="o">=</span> <span class="n">new</span> <span class="n">C</span><span class="p">(</span><span class="n">new</span> <span class="n">D</span><span class="p">())</span>
+    <span class="n">B</span> <span class="n">b</span> <span class="o">=</span> <span class="n">new</span> <span class="n">B</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+    <span class="n">A</span> <span class="n">a</span> <span class="o">=</span> <span class="n">new</span> <span class="n">A</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">use</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>DI 패턴은 <strong>아예 클래스 내부에서 객체를 생성하는 Compile-time dependency를 사용하거나, 주입할 스태틱 객체를 갖는 팩토리 클래스를 만드는</strong> 패턴을 대체합니다.</p>
+</div>
 <div class="section" id="id3">
-<h2>2.2. 위임 패턴<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<h2>2.5. 위임 패턴<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <p>다른 객체에 일을 위임하는 설계 패턴을 뜻한다. 안드로이드에서 터치이벤트를 처리하기 위해 버튼의 구체적인 역할을 OnClickListener에 위임하였다.</p>
 </div>
 <div class="section" id="id4">
-<h2>2.3. 팩토리 메서드 패턴<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
+<h2>2.6. 팩토리 메서드 패턴<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
 <p><a class="reference external" href="http://www.oodesign.com/factory-method-pattern.html">팩토리 메서드 패턴</a></p>
 <p>객체를 사용하는 측에서 사용하려는 클래스의 인터페이스만 정의하며 실제로 어떤 객체를 생성할지 구체적인 팩토리 메서드에 맡기는 패턴이다. 예를들어 워드에서 특별한 형식의 문서를 만들때 그 타입만 넘겨주면 타입에 관련된 구체적인 클래스를 반환한다.</p>
 <p>장점</p>
@@ -71,7 +128,7 @@
 </ul>
 </div>
 <div class="section" id="id6">
-<h2>2.4. 템플릿 메서드 패턴<a class="headerlink" href="#id6" title="제목 주소">¶</a></h2>
+<h2>2.7. 템플릿 메서드 패턴<a class="headerlink" href="#id6" title="제목 주소">¶</a></h2>
 <p>부모 클래스에서 메서드 호출의 흐름을 제어하고 자식 클래스에서 구체적인 내용을 작성하는 패턴이다. 예를들어 HTML문서를 생성할때 템플릿 메서드를 활용하면 좋다. 템플릿 메서드에서 head, body 등의 필요한 태그를 생성하는 함수를 이용해 흐름을 작성한다.</p>
 <p>장점</p>
 <ul class="simple">
@@ -80,11 +137,18 @@
 </ul>
 </div>
 <div class="section" id="id7">
-<h2>2.5. 옵저버 패턴<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
+<h2>2.8. 옵저버 패턴<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
 <p>다른 객체의 변화를 관찰하는 패턴이다. 콜백패턴이라고 불리기도 한다.</p>
 <p>장점</p>
 <ul class="simple">
 <li>객체의 변화를 감지할 수 있다.</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2>2.9. 참조<a class="headerlink" href="#id8" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li>DI Motivation: <a class="reference external" href="https://github.com/google/guice/wiki/Motivation">https://github.com/google/guice/wiki/Motivation</a></li>
+<li>DI: <a class="reference external" href="https://github.com/google/guice/wiki/GettingStarted">https://github.com/google/guice/wiki/GettingStarted</a></li>
 </ul>
 </div>
 </div>
@@ -99,10 +163,14 @@
   <ul>
 <li><a class="reference internal" href="#">2. 디자인 패턴</a><ul>
 <li><a class="reference internal" href="#id2">2.1. 전략 패턴</a></li>
-<li><a class="reference internal" href="#id3">2.2. 위임 패턴</a></li>
-<li><a class="reference internal" href="#id4">2.3. 팩토리 메서드 패턴</a></li>
-<li><a class="reference internal" href="#id6">2.4. 템플릿 메서드 패턴</a></li>
-<li><a class="reference internal" href="#id7">2.5. 옵저버 패턴</a></li>
+<li><a class="reference internal" href="#mvc">2.2. MVC 패턴</a></li>
+<li><a class="reference internal" href="#isp-interface-segregation-principle">2.3. ISP(Interface Segregation Principle)</a></li>
+<li><a class="reference internal" href="#dependency-injection">2.4. 의존성 주입 패턴(Dependency injection)</a></li>
+<li><a class="reference internal" href="#id3">2.5. 위임 패턴</a></li>
+<li><a class="reference internal" href="#id4">2.6. 팩토리 메서드 패턴</a></li>
+<li><a class="reference internal" href="#id6">2.7. 템플릿 메서드 패턴</a></li>
+<li><a class="reference internal" href="#id7">2.8. 옵저버 패턴</a></li>
+<li><a class="reference internal" href="#id8">2.9. 참조</a></li>
 </ul>
 </li>
 </ul>
