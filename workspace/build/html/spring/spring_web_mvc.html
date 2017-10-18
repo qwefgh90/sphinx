@@ -176,7 +176,7 @@
 <h3>2.4.2. &#64;RequestMapping<a class="headerlink" href="#requestmapping" title="제목 주소">¶</a></h3>
 <p>요청과 컨트롤러 메서드를 연결하는데 사용되는 주석이다. 주로 메서드에 사용되어 요청과 연결되며, 메서드간 공유되는 매핑이 있을때 클래스에 사용되기도 한다.</p>
 <p><strong>인자로 사용 가능한 타입은</strong> <a class="reference external" href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-arguments">다음과</a> 같다.</p>
-<p><strong>반환 타입은</strong> <a href="#id11"><span class="problematic" id="id12">`다음과&lt;https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-return-types&gt;`_</span></a> 같다.</p>
+<p><strong>반환 타입은</strong> <a href="#id12"><span class="problematic" id="id13">`다음과&lt;https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-return-types&gt;`_</span></a> 같다.</p>
 <p>패턴 종류
 - ?: 하나의 문자와 매칭
 - <em>: 하나의 경로 세그먼트에서 0개 이상의 문자와 매칭
@@ -223,7 +223,7 @@
 </div>
 <div class="section" id="modelattribute">
 <h4>2.4.3.6. &#64;ModelAttribute (메서드)<a class="headerlink" href="#modelattribute" title="제목 주소">¶</a></h4>
-<p><strong>메서드 주석으로</strong> 사용할 수 있으며, 같은 Controller안의 &#64;RequestMapping이 호출되기 전에 1개 이상의 속성을 Model에 추가할 때 사용된다. &#64;ModelAttribute 주석이 달린 메서드는 &#64;RequestMapping이 호출되기 전에 모두 호출된다.</p>
+<p><strong>메서드 주석으로</strong> 사용할 수 있으며, 같은 Controller안의 &#64;RequestMapping이 호출되기 전에 1개 이상의 속성을 Model에 추가할 때 사용된다. 주로 자주 사용하는 속성을 모델에 저장할때 많이 사용된다. &#64;ModelAttribute 주석이 달린 메서드는 &#64;RequestMapping이 호출되기 전에 모두 호출된다.</p>
 <p>아래 예시와 가지 2가지 스타일을 사용할 수 있다</p>
 <p>예시1:</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@ModelAttribute</span>
@@ -260,6 +260,31 @@
 </ul>
 <p>&#64;ModelAttribute뒤에 BindingResult 타입을 사용해서 ModelAttibute 변환 결과를 알 수 있다.</p>
 </div>
+<div class="section" id="sessionattributes">
+<h4>2.4.3.8. &#64;SessionAttributes (클래스)<a class="headerlink" href="#sessionattributes" title="제목 주소">¶</a></h4>
+<p>세션에 특성을 저장하도록 해주는 주석이다. 인자로 저장된 특성의 타입이나 이름이 온다. <strong>&#64;ModelAttribute로 만든 특성을 그대로 세션에 저장하는 개념이다.</strong></p>
+</div>
+<div class="section" id="id8">
+<h4>2.4.3.9. &#64;SessionAttributes (메서드 인자)<a class="headerlink" href="#id8" title="제목 주소">¶</a></h4>
+<p>이미 저장된 세션 특성을 메서드 인자에 바인딩 시킬때 사용한다. 주로 필터에 의해 추가된 값이다.</p>
+</div>
+<div class="section" id="requestattribute">
+<h4>2.4.3.10. &#64;RequestAttribute (메서드 인자)<a class="headerlink" href="#requestattribute" title="제목 주소">¶</a></h4>
+<p>요청 속성을 메서드 인자에 바인딩 시킬때 사용한다. 주로 필터나 인터셉터에 의해 추가된 값이다.</p>
+</div>
+<div class="section" id="cookievalue">
+<h4>2.4.3.11. &#64;CookieValue<a class="headerlink" href="#cookievalue" title="제목 주소">¶</a></h4>
+<p>쿠키를 메서드 파라미터에 바인딩 시킬때 사용한다. &#64;CookieValue(&#8220;JSESSIONID&#8221;) 와 같이 사용된다.</p>
+</div>
+<div class="section" id="requestheader">
+<h4>2.4.3.12. &#64;RequestHeader<a class="headerlink" href="#requestheader" title="제목 주소">¶</a></h4>
+<p>헤더를 메서드 파라미터에 바인딩 시킬때 사용한다. &#64;RequestHeader(&#8220;Keep-Alive&#8221;) 와 같이 사용된다. Map&lt;String,String&gt;, MultiValueMap&lt;String, String&gt;, HttpHeaders 타입을 사용하면 모든 헤더가 바인딩 된다.</p>
+</div>
+<div class="section" id="asynchronous-request-processing">
+<h4>2.4.3.13. 비동기 요청 처리(Asynchronous Request Processing)<a class="headerlink" href="#asynchronous-request-processing" title="제목 주소">¶</a></h4>
+<p>Spring Web MVC 3.2 부터는 Servlet 3 기반의 비동기 요청 처리를 지원하며 <strong>Callable&lt;T&gt;를 반환할 수 있다.</strong> TaskExecutor 의 도움으로 다른 스레드에서 실행된다. Servlet Container Thread는 종료되고 반환되어 다시 다른 요청을 처리하게 된다.</p>
+<p><strong>DeferredResult&lt;T&gt;를</strong> 반환할 수도 있다. 요청에 대한 처리는 다른 스레드에서 처리될 수 있다. 심지어 Spring Web MVC에서 관리되지 않는 스레드에서 처리할 수도 있다. 예를들면 JMS 메세지나 예약된 작업과 같은 외부 이벤트에 대한 결과가 반환될 수 있다.</p>
+</div>
 </div>
 <div class="section" id="httpmessageconverter">
 <h3>2.4.4. HttpMessageConverter<a class="headerlink" href="#httpmessageconverter" title="제목 주소">¶</a></h3>
@@ -269,8 +294,8 @@
 <h3>2.4.5. &#64;RestController stereotype<a class="headerlink" href="#restcontroller-stereotype" title="제목 주소">¶</a></h3>
 <p>&#64;ResponseBody와 &#64;Controller을 섞은 주석이다. Spring Web MVC를 이용해 Rest API를 만들때 사용한다.</p>
 </div>
-<div class="section" id="id9">
-<h3>2.4.6. 설정<a class="headerlink" href="#id9" title="제목 주소">¶</a></h3>
+<div class="section" id="id10">
+<h3>2.4.6. 설정<a class="headerlink" href="#id10" title="제목 주소">¶</a></h3>
 <p><a class="reference external" href="https://github.com/qwefgh90/handyfinder/blob/master/src/main/java/io/github/qwefgh90/handyfinder/springweb/config/ServletContext.java#L21">JavaConfig를 사용할 경우 &#64;ComponentScan 주석을</a> 이용해 탐지할 패키지를 지정할 수 있다.</p>
 <p>servlet_context.xml 설정을 다음과 같다.:</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="o">?&gt;</span>
@@ -292,8 +317,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id10">
-<h2>2.5. 참조<a class="headerlink" href="#id10" title="제목 주소">¶</a></h2>
+<div class="section" id="id11">
+<h2>2.5. 참조<a class="headerlink" href="#id11" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>Spring Web MVC: <a class="reference external" href="https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html">https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html</a></li>
 </ul>
@@ -327,14 +352,20 @@
 <li><a class="reference internal" href="#httpentity-t">2.4.3.5. HttpEntity&lt;T&gt;</a></li>
 <li><a class="reference internal" href="#modelattribute">2.4.3.6. &#64;ModelAttribute (메서드)</a></li>
 <li><a class="reference internal" href="#id7">2.4.3.7. &#64;ModelAttribute (메서드 인자)</a></li>
+<li><a class="reference internal" href="#sessionattributes">2.4.3.8. &#64;SessionAttributes (클래스)</a></li>
+<li><a class="reference internal" href="#id8">2.4.3.9. &#64;SessionAttributes (메서드 인자)</a></li>
+<li><a class="reference internal" href="#requestattribute">2.4.3.10. &#64;RequestAttribute (메서드 인자)</a></li>
+<li><a class="reference internal" href="#cookievalue">2.4.3.11. &#64;CookieValue</a></li>
+<li><a class="reference internal" href="#requestheader">2.4.3.12. &#64;RequestHeader</a></li>
+<li><a class="reference internal" href="#asynchronous-request-processing">2.4.3.13. 비동기 요청 처리(Asynchronous Request Processing)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#httpmessageconverter">2.4.4. HttpMessageConverter</a></li>
 <li><a class="reference internal" href="#restcontroller-stereotype">2.4.5. &#64;RestController stereotype</a></li>
-<li><a class="reference internal" href="#id9">2.4.6. 설정</a></li>
+<li><a class="reference internal" href="#id10">2.4.6. 설정</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id10">2.5. 참조</a></li>
+<li><a class="reference internal" href="#id11">2.5. 참조</a></li>
 </ul>
 </li>
 </ul>
