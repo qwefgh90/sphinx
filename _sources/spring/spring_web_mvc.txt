@@ -40,7 +40,14 @@ Servlet만 이용하여 웹 애플리케이션을 작성할 수 있다. `링크 
 
 2) 1)과 같은 방식으로 LocaleResolver, ThemeResolver를 바운딩 시킨다.
 3) MultipartResolver를 명시했다면 HttpServletRequest는 MultipartHttpServletRequest 타입으로 변환될 것이다. 
-4) HandlerMapping의 목록에서 적절한 HandlerMapping을 찾은 뒤, **핸들러와 연관된 실행 체인(Execution chain)을 실행한다.** preprocessors, postprocessors, controllers와 연관되어 있다. 이 과정에서 모델과 렌더링을 준비한다. 또는 뷰를 반환하지않고 응답을 반환할 수 있다.(주석이 있는 controller에서 HandlerAdapter 에서 처리)
+4) HandlerMapping의 목록에서 적절한 HandlerMapping을 찾은 뒤 핸들러의 **HandlerExecutionChain(Object(핸들러), HandlerInterceptor)을** 반환한다.
+
+- preprocessors(`applyPreHandle로 호출<https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L986>`_)
+- controllers(핸들러와 연관된 HandlerAdapter를 이용해 핸들러를 요청에 적용)
+- postprocessors(applyPostHandle로 호출)
+
+이 과정에서 모델과 렌더링을 준비한다. 또는 뷰를 반환하지않고 응답을 반환할 수 있다.
+
 5) 모델이 반환된다면, 뷰가 렌더링될 것이다. 모델을 반환하지 않는다면 뷰가 렌더링 되지않는다. 이미 요청은 처리되었기 때문이다. 여러가지 이유로 `preprocessors(HandlerInterceptor)에 의해 처리가 완료될 수 있다. <https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L986>`_
 
 요청 처리 중 예외가 발생하였을때는 HandlerExceptionResolver 객체가 처리한다.
@@ -342,6 +349,36 @@ servlet_context.xml 설정을 다음과 같다.::
    
            <!-- ... -->
    </beans>
+
+==============
+HandlerMapping
+==============
+
+사용자의 요청을 적절한 핸들러와 매핑시켜주는 인터페이스를 뜻한다.
+
+@Controller와 @ReuqestMapping 주석이 등장하면서 RequestMappingHandlerMapping 객체가 자동으로 @ReuqestMapping 주석이 달린 메서드를 찾아서 핸들러로 사용한다. RequestMappingHandlerMapping 객체는 interceptors 속성을 포함할 수 있다.
+
+HandlerInterceptor
+==================
+
+특정 요청에 부가적인 기능을 추가할때 사용하는 인터페이스이다. 아래와 같은 3가지 메서드를 사용해 부가적인 처리할 수 있다.
+
+- preHandle(...) : 핸들러 실행 전 호출 (특별히 boolean 타입을 반환할 수 있으며 false인 경우 처리를 끝낸다.)
+- postHandle(...) : 핸들러 실행 후 호출
+- afterCompletion(...) : 요청을 완전히 처리한 뒤 호출
+
+postHandle과 @ResponseBody 그리고 ResponseEntity
+------------------------------------------------
+
+@ReponseBody또는 ResponseEntity 특성 상 postHandle() 메서드와 잘 어울릴 수 없다. 바로 응답을 기록하기 때문에 postHandle()에서 응답을 변경(헤더를 추가하는 작업 등)하는 것은 불가능하다. 대신에 ResponseBodyAdvice를 구현하고 @ControllerAdvice을 선언하는 것은 가능하다.
+
+============
+ViewResolver
+============
+
+JSP와 같은 뷰 기술을 다루며, 뷰 이름과 뷰를 연결해주는 인터페이스이다. 보통 핸들러에서 논리적인 뷰 이름을 반환한 뒤 ViewResolver가 실제 View와 연결시켜준다.
+
+**UrlBasedViewResolver는 간단한 ViewResolver로 논리적인 뷰 이름으로 저장된 리소스를 찾을때 사용한다.**
 
 ======
  참조
