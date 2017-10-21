@@ -1,41 +1,40 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>2. JVM &mdash; Code Accelerator Document 1.0 documentation</title>
-    
+    <title>2. JVM &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
-    <link rel="up" title="자바(Java)" href="java_index.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
     <link rel="next" title="설계(Design)" href="../design/design_index.html" />
     <link rel="prev" title="1. 자바 기본" href="java_basic.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+  
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -72,8 +71,25 @@
 <p><strong>실행 엔진(Execution Engine)</strong> 은 런타임 데이터 영역의 실행코드를 해석하고 실행한다. <strong>실행 엔진은 인터프리터와 JIT(Just-In-Time)</strong> 으로 구성된다. JVM 인터프리터라고 불리는 이유는 바로 실행시간에 자바 바이트코드를 기계어로 해석하기 때문이다. JIT는 자주 사용되는 코드나 메서드를 기계어로 번역해놓는다. 실행 엔진은 JIT가 변환한 기계어를 통해 빠르게 프로그램을 실행 시킬 수 있다.</p>
 <p><strong>Native method interface</strong> 는 네이티브 메소드를 실행하기위해 네이티브 라이브러리와 연결하는 역할을 하는 인터페이스이다.</p>
 </div>
+<div class="section" id="id3">
+<h2>2.4. JVM 튜닝<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<p>몇몇 가지 중요한 옵션은 아래와 같다.</p>
+<ul class="simple">
+<li>-Xmx: 애플리케이션에서 사용할 수 있는 최대 힙 사이즈이다.</li>
+<li>-Xms: 애플리케이션의 시작 힙 사이즈이다.</li>
+<li>-XX:NewRatio: New generation 공간의 비율을 정할 수 있다. <a href="#id4"><span class="problematic" id="id5">*</span></a>heap x (1 / (1 + ratio))*만큼을 New에 할당한다.</li>
+<li>-XX:NewSize: 초기 New generation 공간의 크기이다.</li>
+<li>-XX:MaxNewSize: New generation 공간의 최대 크기이다.</li>
+</ul>
+<p><strong>NewRatio는 애플리케이션의 속성에 따라 적절하게 튜닝되어야 한다.</strong></p>
+<ul class="simple">
+<li>오래 살아남는 객체가 많을 경우, NewRatio를 키워서 Old generation 공간의 크기를 늘려야한다. 이는 상대적으로 Major GC를 줄일 수 있다.</li>
+<li>짧게만 사는 객체가 많을 경우 NewRatio의 크기를 줄이는 것이 좋고, 이는 결국 Major GC를 줄일 수 있다.</li>
+<li>일반적으로 NewRatio는 2~3을 사용한다.</li>
+</ul>
+</div>
 <div class="section" id="garbage-collection">
-<h2>2.4. 가비지 컬렉션(Garbage Collection)<a class="headerlink" href="#garbage-collection" title="제목 주소">¶</a></h2>
+<h2>2.5. 가비지 컬렉션(Garbage Collection)<a class="headerlink" href="#garbage-collection" title="제목 주소">¶</a></h2>
 <p><a class="reference external" href="https://plumbr.eu/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc">가비지 컬렉션 발생은 언제 일어나는가?</a></p>
 <p>가비지 컬렉션이란 더이상 참조되지 않는 객체의 메모리를 해제하는 것을 뜻한다. Eden Space가 꽉차거나 활당 비율이 높을때는 Minor GC, Old Space가 가득차면 Full GC가 발생한다.</p>
 <p><strong>가비지 컬렉션 과정</strong></p>
@@ -86,8 +102,8 @@
 <ol class="arabic simple">
 <li>프로그래머가 System.gc()를 호출하는 코드를 작성하면 시스템의 성능을 저하시키므로 반드시 지양해야한다.</li>
 </ol>
-<div class="section" id="id4">
-<h3>2.4.1. 가비지 컬렉션 원리<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
+<div class="section" id="id7">
+<h3>2.5.1. 가비지 컬렉션 원리<a class="headerlink" href="#id7" title="제목 주소">¶</a></h3>
 <p><a class="reference external" href="https://blog.codecentric.de/en/2012/08/useful-jvm-flags-part-5-young-generation-garbage-collection/">가비지 컬렉션 좋은 글</a></p>
 <p><strong>weak generational hypothesis</strong> 를 기반으로 구현되었다. 이 이론은 두가지를 가정하고 있다.</p>
 <ol class="arabic simple">
@@ -102,7 +118,7 @@
 </ul>
 </div>
 <div class="section" id="young-young-space">
-<h3>2.4.2. Young 영역 (Young Space)<a class="headerlink" href="#young-young-space" title="제목 주소">¶</a></h3>
+<h3>2.5.2. Young 영역 (Young Space)<a class="headerlink" href="#young-young-space" title="제목 주소">¶</a></h3>
 <p>Young 영역은 새로운 객체들이 저장되는 곳이며 저장된 대부분의 객체가 금세 접근 불가능 상태로 바뀌는 영역이다. Young 영역은 <strong>에덴(Eden), 2개의 생존(Survivor)으로 나눠진다.</strong> 에덴 영역과 생존 영역에서 가비지 컬렉션이 일어나며 오래된 객체는 Old Space로 보낸다.</p>
 <p>새로운 객체는 <strong>에덴 영역</strong> 에 위치하게된다.</p>
 <ul class="simple">
@@ -114,7 +130,7 @@
 </ul>
 </div>
 <div class="section" id="old-old-space">
-<h3>2.4.3. Old 영역 (Old Space)<a class="headerlink" href="#old-old-space" title="제목 주소">¶</a></h3>
+<h3>2.5.3. Old 영역 (Old Space)<a class="headerlink" href="#old-old-space" title="제목 주소">¶</a></h3>
 <p><strong>Old 영역이 가득차게되면 GC가 발생한다.(Major GC or Full GC)</strong> 알고리즘 종류에는 Serial GC, Parallel GC, Parallel Old GC, CMS GC, G1 GC등이 있다. 서비스에 사용되는 WAS의 스레드 개수와 인스턴스 개수에 따라 알고리즘을 선택해는것이 좋다.</p>
 </div>
 </div>
@@ -132,10 +148,11 @@
 <li><a class="reference internal" href="#open-jdk">2.1. Open JDK 라이센스</a></li>
 <li><a class="reference internal" href="#java-bytecode">2.2. Java bytecode</a></li>
 <li><a class="reference internal" href="#id1">2.3. JVM 구조</a></li>
-<li><a class="reference internal" href="#garbage-collection">2.4. 가비지 컬렉션(Garbage Collection)</a><ul>
-<li><a class="reference internal" href="#id4">2.4.1. 가비지 컬렉션 원리</a></li>
-<li><a class="reference internal" href="#young-young-space">2.4.2. Young 영역 (Young Space)</a></li>
-<li><a class="reference internal" href="#old-old-space">2.4.3. Old 영역 (Old Space)</a></li>
+<li><a class="reference internal" href="#id3">2.4. JVM 튜닝</a></li>
+<li><a class="reference internal" href="#garbage-collection">2.5. 가비지 컬렉션(Garbage Collection)</a><ul>
+<li><a class="reference internal" href="#id7">2.5.1. 가비지 컬렉션 원리</a></li>
+<li><a class="reference internal" href="#young-young-space">2.5.2. Young 영역 (Young Space)</a></li>
+<li><a class="reference internal" href="#old-old-space">2.5.3. Old 영역 (Old Space)</a></li>
 </ul>
 </li>
 </ul>
@@ -155,7 +172,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/java/java_jvm.txt"
+      <li><a href="../_sources/java/java_jvm.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -177,11 +194,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/java/java_jvm.txt"
+      <a href="../_sources/java/java_jvm.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

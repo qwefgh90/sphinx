@@ -64,11 +64,11 @@ RTT란 HTTP요청을 하고 응답을 수신할때 까지 걸리는 시간이다
  컨텐츠 타입
 =============
 
--------------------
+-------------------------
 multipart/form-data
--------------------
+-------------------------
 
-multipart/form-data는 경계(boundary)로 구분된 연속된 데이터를 나타내는 형식을 뜻한다.
+*multipart/form-data는* 경계(boundary)로 구분된 연속된 데이터를 나타내는 형식을 뜻한다. 주로 POST 메서드일때 사용된다.
 
 경계(boundary)는 HTTP 헤더 뒤에 **"--"와 "경계값"으로** 이루어진 시퀀스이며 구분자이다.
 
@@ -77,6 +77,8 @@ multipart/form-data는 경계(boundary)로 구분된 연속된 데이터를 나�
   Content-Type: multipart/form-data; boundary=-------------------12345678912345\r\n
 
 경계(boundary)는 바디의 시작(~~\r\n), 파트 사이(\r\n~~\r\n), 마지막(\r\n~~\r\n에 위치한다. 또한 경계값은 각 파트의 데이터에 포함되지 않는 값으로 구성되어야 한다.
+
+
 
 파트(Part)
 ==========
@@ -94,6 +96,13 @@ multipart/form-data는 경계(boundary)로 구분된 연속된 데이터를 나�
 또한 각 파트는 *Content-Type 헤더* 를 포함할 수 있다.(text/plain, application/octet-stream, 등등)::
 
   Content-Type: application/pdf
+
+
+---------------------------------
+application/x-www-form-urlencoded
+---------------------------------
+
+*application/x-www-form-urlencoded는* 여러개의 key,value 쌍을 전송할때 사용된다. 알파벳이 아닌 문자는 퍼센트 인코딩되어 전송되며 POST 메서드일때 사용된다.
 
 ===========
  Stateless

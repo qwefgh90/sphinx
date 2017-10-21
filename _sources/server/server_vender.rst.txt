@@ -18,9 +18,20 @@ Dell PowerEdge RAID Controller H710P
 
 Dell PowerEdge 서버에 호환되는 RAID 컨트롤러이다. 데이터베이스와 스트리밍용으로 사용할 수 있는 고성능 컨트롤러이다. 8개의 포트(각각 6Gb/s, 서버 내부에 존재) 갖고 있으며 PCIe 2.0 x8 버스에 연결되어 있다.
 
+ServerRAID M5014
+================
+
+IBM System x를 위한 RAID 컨트롤러이다. 8개의 SAS/SATA 포트를 갖고 있으며 각 포트당 6Gbps만큼의 대역폭을 갖고 있다. SAS/SATA 드라이브를 32개 까지 연결 할 수 있다.
+
+QLogic 2700 Series
+==================
+
+6세대(32Gb line rate) Fibre Channel Adapter이다. PCI 슬롯에 연결되며 single(x8), dual(x8), quad(x16)개의 포트를 제공한다. 장치관리자의 저장소 컨트롤러에서 QLogic Fibre Channel Adapter로 인식된다.
 
 참조
 ====
 
 - ETERNUS Multipath Driver: http://www.fujitsu.com/global/products/computing/storage/disk/eternus-dx/feature/strsys-b03.html
 - Dell PowerEdge RAID Controller H710P: http://i.dell.com/sites/doccontent/shared-content/data-sheets/Documents/dell-perc-h710p-spec-sheet.pdf
+- ServerRAID M5014: http://www.scsi4me.com/ibm-serveraid-m5014-8-port-6-gbps-sas-2-0-sas-sata-raid-controller.html
+- QLogic: http://www.qlogic.com/Products/adapters/Pages/FibreChannelAdapters.aspx
