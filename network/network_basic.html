@@ -1,30 +1,34 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>2. 프로토콜 &#8212; Code Accelerator Document 1.0 documentation</title>
+    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
+    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="네트워크" href="network_index.html" />
     <link rel="next" title="3. TCP" href="network_tcp.html" />
     <link rel="prev" title="1. 용어" href="network_terms.html" />
    
@@ -34,7 +38,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body>
+  <body role="document">
   
 
     <div class="document">
@@ -50,9 +54,25 @@
 <span id="id2"></span><h2>2.1. 어플리케이션 계층<a class="headerlink" href="#index-2" title="제목 주소">¶</a></h2>
 <p>네트워크로 연결된 어플리케이션 간에 데이터를 주고받기 위한 프로토콜이다. 어플리케이션 계층에서의 정보를 메세지(message)라고 부른다.</p>
 <p><strong>대표적인 프로토콜은 다음과 같다. SMTP(25), TELNET(23), FTP(20,21(제어))</strong></p>
+<div class="section" id="dns">
+<span id="index-3"></span><h3>2.1.1. DNS<a class="headerlink" href="#dns" title="제목 주소">¶</a></h3>
+<p>DNS 프로토콜은 호스트 이름을 IP주소로 변환하는 프로토콜이다.</p>
+<p>일반적으로 재귀적인 그리고 반복적인 질의를 한다.</p>
+<p>예시는 다음과 같다. 회사내 DNS 서버가 dns.mycom.com 이라고 가정하자.</p>
+<ol class="arabic simple">
+<li>사내 애플리케이션이 dns.mycom.com에 www.naver.com의 IP를 질의한다. (재귀적)</li>
+<li><strong>로컬 DNS 서버는 애플리케이션을 대신하여 루트 DNS 서버에 질의한다.</strong> (반복적)</li>
+<li>루트 DNS 서버는 com을 인식하고 com에 대한 책임을 가진 TLD DNS 서버의 IP 주소를 응답한다.</li>
+<li><strong>로컬 DNS 서버는 TLD DNS 서버에 질의한다.</strong> (반복적)</li>
+<li>TLD DNS 서버는 naver.com를 인식하고 이를 책임지는 책임 DNS 서버의 IP 주소를 응답한다.</li>
+<li><strong>로컬 DNS 서버는 책임 DNS 서버에 질의한다.</strong> (반복적)</li>
+<li>책임 NDS 서버는 www.naver.com의 IP 주소를 응답한다.</li>
+</ol>
 </div>
-<div class="section" id="index-3">
-<span id="id3"></span><h2>2.2. 트랜스포트 계층<a class="headerlink" href="#index-3" title="제목 주소">¶</a></h2>
+<p>7) 책임 NDS 서버는 www.naver.com의 IP 주소를 응답한다.</p>
+</div>
+<div class="section" id="id3">
+<h2>2.2. 트랜스포트 계층<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <p>클라이언트와 서버 어플리케이션 간에 어플리케이션 계층의 메세지를 전송하는 서비스를 제공하는 프로토콜이다. TCP와 UDP라는 전송 프로토콜이 있으며 이들은 어플리케이션 계층 메세지를 전달한다. 트랜스포트 계층의 정보를 <strong>세그먼트</strong> 라고 한다.</p>
 <p><strong>세그먼트</strong> 는 가장 간단한 경우에 어플리케이션 계층의 메세지 + 트랜스포트 계층 헤더 정보를 갖게 된다. 세그먼트에는 기본적으로 수신측 어플리케이션 정보(포트)와 오류 검출 비트를 포함한다. 트랜스포트 계층은 어플리케이션 계층의 메세지를 포함하고 있지만 <strong>메세지를 잘게 조각낼 수 있기 때문에 실제로 여러개의 세그먼트가 생성</strong> 될 수 있다. 여러개로 분할된다면 수신측에서 세그먼트롤 다시 조립해야 한다.</p>
 <div class="section" id="tcp">
@@ -162,8 +182,11 @@
   <h3><a href="../index.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">2. 프로토콜</a><ul>
-<li><a class="reference internal" href="#index-2">2.1. 어플리케이션 계층</a></li>
-<li><a class="reference internal" href="#index-3">2.2. 트랜스포트 계층</a><ul>
+<li><a class="reference internal" href="#index-2">2.1. 어플리케이션 계층</a><ul>
+<li><a class="reference internal" href="#dns">2.1.1. DNS</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">2.2. 트랜스포트 계층</a><ul>
 <li><a class="reference internal" href="#tcp">2.2.1. TCP</a></li>
 <li><a class="reference internal" href="#udp">2.2.2. UDP</a></li>
 </ul>
@@ -205,7 +228,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/network/network_basic.rst.txt"
+      <li><a href="../_sources/network/network_basic.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -227,11 +250,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="../_sources/network/network_basic.rst.txt"
+      <a href="../_sources/network/network_basic.txt"
           rel="nofollow">Page source</a>
     </div>
 

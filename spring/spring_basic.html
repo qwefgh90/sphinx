@@ -1,30 +1,34 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <title>1. 스프링 프레임워크 &#8212; Code Accelerator Document 1.0 documentation</title>
+    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
+    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Spring" href="spring_index.html" />
     <link rel="next" title="2. Spring Web MVC" href="spring_web_mvc.html" />
     <link rel="prev" title="Spring" href="spring_index.html" />
    
@@ -34,7 +38,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body>
+  <body role="document">
   
 
     <div class="document">
@@ -98,7 +102,7 @@
 </div>
 <div class="section" id="di">
 <h3>1.2.4. 의존관계 주입(DI)<a class="headerlink" href="#di" title="제목 주소">¶</a></h3>
-<p>컨테이너에서 객체의 레퍼런스를 전달받고 그 레퍼런스와 다른 객체들 사이의 의존관계를 만들어 주는 것 이것을 의존관계 주입이라고 한다. 이때 의존한다는 뜻은 예를들어 2개의 클래스가 A ---&gt; B 와 같은 관계를 가지고 있을때 A클래스는 B클래스에 의존하고 있고 B클래스는 A클래스에 의존하고 있지 않다라고 한다.</p>
+<p>컨테이너에서 객체의 레퍼런스를 전달받고 그 레퍼런스와 다른 객체들 사이의 의존관계를 만들어 주는 것 이것을 의존관계 주입이라고 한다. 이때 의존한다는 뜻은 예를들어 2개의 클래스가 A &#8212;&gt; B 와 같은 관계를 가지고 있을때 A클래스는 B클래스에 의존하고 있고 B클래스는 A클래스에 의존하고 있지 않다라고 한다.</p>
 <p>2개의 클래스가 서로 의존관계를 생성할때 인터페이스에 의존하게 된다면 인터페이스를 구현하는 실제 클래스와의 의존관계가 느슨해져서 다른 한쪽의 변화로 부터 자유롭다. 런타임에 실제 클래스가 인스턴스화 된다면 그 객체를 <span class="xref std std-term">의존 오브젝트</span> 라고 한다.</p>
 <p>의존관계를 주입을 하는 역할을 가진 DaoFactory는 DI 컨테이너가 된다. DaoFactory가 UserDao라는 DAO를 만들때 DB연결 객체를 주입하게된다.</p>
 <p>애노테이션이 아닌 XML 설정파일을 활용하여 의존관계 주입을 할 수 있다.</p>
@@ -271,7 +275,7 @@ mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포�
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/spring/spring_basic.rst.txt"
+      <li><a href="../_sources/spring/spring_basic.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -293,11 +297,11 @@ mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포�
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="../_sources/spring/spring_basic.rst.txt"
+      <a href="../_sources/spring/spring_basic.txt"
           rel="nofollow">Page source</a>
     </div>
 
