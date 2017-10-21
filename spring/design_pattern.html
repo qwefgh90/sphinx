@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. 디자인 패턴 &mdash; Code Accelerator Document 1.0 documentation</title>
+    <title>4. 디자인 패턴 &mdash; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,6 +26,9 @@
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Spring" href="spring_index.html" />
+    <link rel="next" title="5. 톰캣" href="tomcat.html" />
+    <link rel="prev" title="3. Rest API" href="spring_rest.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -41,9 +44,9 @@
           <div class="body" role="main">
             
   <div class="section" id="design-pattern">
-<span id="id1"></span><h1>3. 디자인 패턴<a class="headerlink" href="#design-pattern" title="제목 주소">¶</a></h1>
+<span id="id1"></span><h1>4. 디자인 패턴<a class="headerlink" href="#design-pattern" title="제목 주소">¶</a></h1>
 <div class="section" id="id2">
-<h2>3.1. 전략 패턴<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<h2>4.1. 전략 패턴<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <p>스프링은 전략 패턴을 사용한다. 전략 패턴에 대해 알아보자. 예를들어 인턴, 대리, 부장이라는 Employee를 상속받은 객체가 있고 각 객체에 다른 월급을 주고 싶을때 전략 패턴이 사용된다. 이때 Salary라는 인터페이스를 연관(Association) 시킨 후 Salary를 상속 받은 Salty, Generous중 하나를 주입하는 것이다. 각 클래스의 의미는 Salty는 적은 월급 Generous는 일반적인 월급이라고 할 수 있다. 이는 전략을 주입하는것과 비슷하다.</p>
 <p>이처럼 조건에 따라 다른 전략을 사용하고 싶을때 사용하는 패턴이다. <a class="reference external" href="http://deliboy.tistory.com/entry/Strategy-Pattern-%EC%A0%84%EB%9E%B5-%ED%8C%A8%ED%84%B4">참고</a></p>
 <img alt="../_images/strategy.png" src="../_images/strategy.png" />
@@ -58,8 +61,8 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">목차</a></h3>
   <ul>
-<li><a class="reference internal" href="#">3. 디자인 패턴</a><ul>
-<li><a class="reference internal" href="#id2">3.1. 전략 패턴</a></li>
+<li><a class="reference internal" href="#">4. 디자인 패턴</a><ul>
+<li><a class="reference internal" href="#id2">4.1. 전략 패턴</a></li>
 </ul>
 </li>
 </ul>
@@ -67,6 +70,10 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="spring_index.html">Spring</a><ul>
+      <li>Previous: <a href="spring_rest.html" title="이전 장">3. Rest API</a></li>
+      <li>Next: <a href="tomcat.html" title="다음 장">5. 톰캣</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

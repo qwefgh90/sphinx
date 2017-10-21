@@ -40,7 +40,14 @@ Servlet만 이용하여 웹 애플리케이션을 작성할 수 있다. `링크 
 
 2) 1)과 같은 방식으로 LocaleResolver, ThemeResolver를 바운딩 시킨다.
 3) MultipartResolver를 명시했다면 HttpServletRequest는 MultipartHttpServletRequest 타입으로 변환될 것이다. 
-4) HandlerMapping의 목록에서 적절한 HandlerMapping을 찾은 뒤, **핸들러와 연관된 실행 체인(Execution chain)을 실행한다.** preprocessors, postprocessors, controllers와 연관되어 있다. 이 과정에서 모델과 렌더링을 준비한다. 또는 뷰를 반환하지않고 응답을 반환할 수 있다.(주석이 있는 controller에서 HandlerAdapter 에서 처리)
+4) HandlerMapping의 목록에서 적절한 HandlerMapping을 찾은 뒤 핸들러의 **HandlerExecutionChain(Object(핸들러), HandlerInterceptor)을** 반환한다.
+
+- preprocessors(`applyPreHandle로 호출<https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L986>`_)
+- controllers(핸들러와 연관된 HandlerAdapter를 이용해 핸들러를 요청에 적용)
+- postprocessors(applyPostHandle로 호출)
+
+이 과정에서 모델과 렌더링을 준비한다. 또는 뷰를 반환하지않고 응답을 반환할 수 있다.
+
 5) 모델이 반환된다면, 뷰가 렌더링될 것이다. 모델을 반환하지 않는다면 뷰가 렌더링 되지않는다. 이미 요청은 처리되었기 때문이다. 여러가지 이유로 `preprocessors(HandlerInterceptor)에 의해 처리가 완료될 수 있다. <https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L986>`_
 
 요청 처리 중 예외가 발생하였을때는 HandlerExceptionResolver 객체가 처리한다.
@@ -232,7 +239,7 @@ HttpEntity<T>
 @ModelAttribute (메서드)
 ------------------------
 
-**메서드 주석으로** 사용할 수 있으며, 같은 Controller안의 @RequestMapping이 호출되기 전에 1개 이상의 속성을 Model에 추가할 때 사용된다. @ModelAttribute 주석이 달린 메서드는 @RequestMapping이 호출되기 전에 모두 호출된다.
+**메서드 주석으로** 사용할 수 있으며, 같은 Controller안의 @RequestMapping이 호출되기 전에 1개 이상의 속성을 Model에 추가할 때 사용된다. 주로 자주 사용하는 속성을 모델에 저장할때 많이 사용된다. @ModelAttribute 주석이 달린 메서드는 @RequestMapping이 호출되기 전에 모두 호출된다.
 
 아래 예시와 가지 2가지 스타일을 사용할 수 있다
 
@@ -276,6 +283,39 @@ Model을 인자로 받아서 여러개의 속성을 추가할떄 사용한다.
 
 @ModelAttribute뒤에 BindingResult 타입을 사용해서 ModelAttibute 변환 결과를 알 수 있다.
 
+@SessionAttributes (클래스)
+---------------------------
+
+세션에 특성을 저장하도록 해주는 주석이다. 인자로 저장된 특성의 타입이나 이름이 온다. **@ModelAttribute로 만든 특성을 그대로 세션에 저장하는 개념이다.**
+
+
+@SessionAttributes (메서드 인자)
+--------------------------------
+
+이미 저장된 세션 특성을 메서드 인자에 바인딩 시킬때 사용한다. 주로 필터에 의해 추가된 값이다.
+
+@RequestAttribute (메서드 인자)
+-------------------------------
+
+요청 속성을 메서드 인자에 바인딩 시킬때 사용한다. 주로 필터나 인터셉터에 의해 추가된 값이다.
+
+@CookieValue
+------------
+
+쿠키를 메서드 파라미터에 바인딩 시킬때 사용한다. @CookieValue("JSESSIONID") 와 같이 사용된다.
+
+@RequestHeader
+--------------
+
+헤더를 메서드 파라미터에 바인딩 시킬때 사용한다. @RequestHeader("Keep-Alive") 와 같이 사용된다. Map<String,String>, MultiValueMap<String, String>, HttpHeaders 타입을 사용하면 모든 헤더가 바인딩 된다.
+
+비동기 요청 처리(Asynchronous Request Processing)
+-------------------------------------------------
+
+Spring Web MVC 3.2 부터는 Servlet 3 기반의 비동기 요청 처리를 지원하며 **Callable<T>를 반환할 수 있다.** TaskExecutor 의 도움으로 다른 스레드에서 실행된다. Servlet Container Thread는 종료되고 반환되어 다시 다른 요청을 처리하게 된다.
+
+**DeferredResult<T>를** 반환할 수도 있다. 요청에 대한 처리는 다른 스레드에서 처리될 수 있다. 심지어 Spring Web MVC에서 관리되지 않는 스레드에서 처리할 수도 있다. 예를들면 JMS 메세지나 예약된 작업과 같은 외부 이벤트에 대한 결과가 반환될 수 있다.
+
 HttpMessageConverter
 ====================
 
@@ -309,6 +349,36 @@ servlet_context.xml 설정을 다음과 같다.::
    
            <!-- ... -->
    </beans>
+
+==============
+HandlerMapping
+==============
+
+사용자의 요청을 적절한 핸들러와 매핑시켜주는 인터페이스를 뜻한다.
+
+@Controller와 @ReuqestMapping 주석이 등장하면서 RequestMappingHandlerMapping 객체가 자동으로 @ReuqestMapping 주석이 달린 메서드를 찾아서 핸들러로 사용한다. RequestMappingHandlerMapping 객체는 interceptors 속성을 포함할 수 있다.
+
+HandlerInterceptor
+==================
+
+특정 요청에 부가적인 기능을 추가할때 사용하는 인터페이스이다. 아래와 같은 3가지 메서드를 사용해 부가적인 처리할 수 있다.
+
+- preHandle(...) : 핸들러 실행 전 호출 (특별히 boolean 타입을 반환할 수 있으며 false인 경우 처리를 끝낸다.)
+- postHandle(...) : 핸들러 실행 후 호출
+- afterCompletion(...) : 요청을 완전히 처리한 뒤 호출
+
+postHandle과 @ResponseBody 그리고 ResponseEntity
+------------------------------------------------
+
+@ReponseBody또는 ResponseEntity 특성 상 postHandle() 메서드와 잘 어울릴 수 없다. 바로 응답을 기록하기 때문에 postHandle()에서 응답을 변경(헤더를 추가하는 작업 등)하는 것은 불가능하다. 대신에 ResponseBodyAdvice를 구현하고 @ControllerAdvice을 선언하는 것은 가능하다.
+
+============
+ViewResolver
+============
+
+JSP와 같은 뷰 기술을 다루며, 뷰 이름과 뷰를 연결해주는 인터페이스이다. 보통 핸들러에서 논리적인 뷰 이름을 반환한 뒤 ViewResolver가 실제 View와 연결시켜준다.
+
+**UrlBasedViewResolver는 간단한 ViewResolver로 논리적인 뷰 이름으로 저장된 리소스를 찾을때 사용한다.**
 
 ======
  참조
