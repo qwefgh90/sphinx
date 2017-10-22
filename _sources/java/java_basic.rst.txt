@@ -87,6 +87,8 @@ notifyAll() vs notify()
 자바 Generic
 ====================================
 
+클래스나 인터페이스가 타입 파라미터를 받을 수 있도록 하는 문법이다. Generic class 또는 Generic interface를 뜻한다. :ref:`scala_terms_제네릭_클래스` 를 확인해보자.
+
 타입 제거 (Type Erasure)
 ========================
 

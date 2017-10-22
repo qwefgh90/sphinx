@@ -1,34 +1,30 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>4. SQL 활용 &#8212; Code Accelerator Document 1.0 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
-    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
-    <link rel="up" title="데이터베이스" href="database_index.html" />
     <link rel="next" title="5. SQL 최적화 및 성능 튜닝" href="sql_optimize.html" />
     <link rel="prev" title="3. SQL 기본" href="sql_basic.html" />
    
@@ -38,7 +34,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -142,7 +138,7 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>A</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>B</td>
 <td>A</td>
@@ -182,7 +178,7 @@ CONNECT BY PRIOR 사원 = 관리자;
 <tbody valign="top">
 <tr class="row-even"><td>1</td>
 <td>A</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>0</td>
 </tr>
 <tr class="row-odd"><td>2</td>
@@ -196,12 +192,12 @@ CONNECT BY PRIOR 사원 = 관리자;
 <td>0</td>
 </tr>
 <tr class="row-odd"><td>3</td>
-<td>&#8212;D</td>
+<td>---D</td>
 <td>C</td>
 <td>1</td>
 </tr>
 <tr class="row-even"><td>3</td>
-<td>&#8212;D</td>
+<td>---D</td>
 <td>C</td>
 <td>1</td>
 </tr>
@@ -233,16 +229,16 @@ ORDER BY E1.사원
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>A</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>B</td>
 <td>A</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>C</td>
 <td>A</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>D</td>
 <td>C</td>
@@ -371,7 +367,7 @@ ORDER BY E1.사원
 <td>2450</td>
 </tr>
 <tr class="row-even"><td>ACCOUNTING</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>2</td>
 <td>3750</td>
 </tr>
@@ -386,7 +382,7 @@ ORDER BY E1.사원
 <td>2850</td>
 </tr>
 <tr class="row-odd"><td>SALES</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>4
 6</td>
 <td>3800
@@ -612,7 +608,7 @@ L3 - GRAND TOTAL</p>
 <li>RATIO_TO_REPORT : SUM 칼럼에 대한 행별 칼럼 값의 비율</li>
 <li>PERCENT_RANK : 랭킹이 몇 번째 쯤 있는지 0~1 사이 값으로 출력하는 함수</li>
 <li>CUME_DIST : 현재 행보다 작거나 같은 건수에 대한 누적백분율을 구함</li>
-<li>NTILE : 정렬한 후 인자 값만큼의 그룹으로 나눈다. (&#8216;4&#8217;면 4개로 쪼갬)</li>
+<li>NTILE : 정렬한 후 인자 값만큼의 그룹으로 나눈다. ('4'면 4개로 쪼갬)</li>
 </ul>
 </div>
 </div>
@@ -817,7 +813,7 @@ END;
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/database/sql_basic2.txt"
+      <li><a href="../_sources/database/sql_basic2.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -839,11 +835,11 @@ END;
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/database/sql_basic2.txt"
+      <a href="../_sources/database/sql_basic2.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
