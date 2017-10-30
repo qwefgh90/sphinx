@@ -4,12 +4,12 @@
 인터넷 프로토콜 보안
 ***************************
 
-SSL (Secure Socket Layer)
----------------------------------
+SSL/TLS (Secure Socket Layer, Transport Layer Security)
+-------------------------------------------------------
 
-TCP를 사용하여 종단 간 (end to end) 신뢰할 수 있는 통신을 제공하는 암호화 프로토콜이다. SSL은 기본적으로 connection과 session라는 용어를 분리한다. 
+TCP를 사용하여 종단 간 (end to end) 암호화 통신을 할 수 있게 하는 프로토콜이다. TLS는 SSL의 새로운 이름이고 TLS 1.0은 SSL 3.1과 같다.
 
-connection은 서버의 자원을 요청할때 연결되는 무수히 많은 TCP 연결을 뜻한다. session 같은 경우는 클라이언트와 서버 간의 연결로서 서로 인증을 위해 생성된 보안 키 값이다. 이때 session은 session이 생성된 이후의 모든 connection에서 사용될 수 있는 보안 키 값을 뜻한다.
+SSL은 기본적으로 connection과 session라는 용어를 분리한다. connection은 서버의 자원을 요청할때 연결되는 무수히 많은 TCP 연결을 뜻한다. session 같은 경우는 클라이언트와 서버 간의 연결로서 서로 인증을 위해 생성된 보안 키 값이다. 이때 session은 session이 생성된 이후의 모든 connection에서 사용될 수 있는 보안 키 값을 뜻한다.
 
 다음은 *SSL Stack* 이다. SSL의 주요 구성요소 정도로 볼 수있다.
 
@@ -29,7 +29,7 @@ SSL Handshake protocol 동작 과정이다.
 5) certificate_request 는 server -> client 필요한 경우 인증서 요청
 6) server_hello_done 은 서버에서 보낼 메세지는 모두 보냈다는 의미
 7) certificate 는 server 요청 시 인증서 전송
-8) client_key_exchange 는 pre master key 전송
+8) client_key_exchange 는 pre master key를 서버의 공개키로 암호화하여 전송
 9) certificate_verify 는 요청시 자신이 보낸 인증서가 유효한지 전자서명을 보내는 메세지
 10) change_cipher_spec 는 클라이언트가 다음 메세지 부터 (암호, 키교환, 서명, 압축)방식을 적용 하여 전송하겠다는 메세지. finished 전송
 11) change_cipher_spec 는 위와 마찬가지 의미. 다음 finished 전송
@@ -44,6 +44,11 @@ SSL record protocol
 먼저 메세지 fragmentation은 2^14 바이트로 된다. 그리고 옵션이 설정되있다면 메세지를 압축하고 MAC 코드를 계산한 후 메세지를 암호화 한다. 마지막으로 SSL Record Header를 암호문에 붙인다. SSL Record Header는 content_type, major version, minor version, compressed length 필드를 가지고 있다.
 
 SSL은 종합적으로 대칭키 암호 방식과 MAC을 사용함으로써 기밀성 및 무결성을 보장하는 프로토콜이다.
+
+HTTPS
+^^^^^
+
+암호화된 전송 계층 연결 위에서 HTTP를 사용해 통신을 하는 프로토콜이다. 웹 사이트에 대한 인증을 통해 MITM 공격을 방어하고, 데이터 암호화를 통해 감청으로 부터 안전해진다.
 
 IP Securiy
 --------------------
@@ -86,3 +91,10 @@ Kerberos
 .. image:: image/ker.png
 
 
+참조
+----
+
+- HTTPS and SSL: https://security.stackexchange.com/questions/5126/whats-the-difference-between-ssl-tls-and-https
+- HTTPS: https://en.wikipedia.org/wiki/HTTPS
+- MIMT: https://en.wikipedia.org/wiki/Man-in-the-middle_attack
+- SSL: http://darksoulstory.tistory.com/57
