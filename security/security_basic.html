@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. 정보보안 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>1. 정보보안 &mdash; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,15 +25,12 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="색인" href="../genindex.html" />
-    <link rel="search" title="검색" href="../search.html" />
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
     <link rel="up" title="보안(Security)" href="security_index.html" />
     <link rel="next" title="2. 인터넷 프로토콜 보안" href="security_internet.html" />
     <link rel="prev" title="보안(Security)" href="security_index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -393,14 +390,44 @@
 </div>
 <div class="section" id="dos">
 <h2>1.7. DOS<a class="headerlink" href="#dos" title="제목 주소">¶</a></h2>
-<p>CPU, memory, bandwidth, disk space 자원을 다 소모하게 함으로써 서버를 사용하지 못하게 하는 공격이다. netowrk, system, application과 같은 자원이 있다.</p>
-<p>전통적인 DDoS 공격은 ping flooding을 통한 packet discarded (링크를 혼잡하게 함), 송신 주소를 바꾼 ICMP echo request packets을 전송하는 reflected attack 이 있다.</p>
+<p>CPU, memory, bandwidth, disk space 자원을 다 소모하게 함으로써 정상적으로 서비스를 수행하지 못하게 하는 공격이다. network, system, application과 같은 자원이 있다. 관리자는 DDOS 공격을 방어하기 위해 시스템 자원의 한계점을 알고 있어야 하며, 공격 유행에 따른 차단 정책을 가지고 있어야 한다.</p>
+<div class="section" id="ddos">
+<h3>1.7.1. DDoS 공격 대응 절차 및 목적<a class="headerlink" href="#ddos" title="제목 주소">¶</a></h3>
+<p><a class="reference external" href="https://www.google.co.kr/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwjqnPTs3JnXAhXLnJQKHS6rC7gQFggkMAA&amp;url=https%3A%2F%2Fwww.krcert.or.kr%2Ffiledownload.do%3Fattach_file_seq%3D747%26attach_file_id%3DEpF354.pdf&amp;usg=AOvVaw0bzuG-O0vNIiMngewr04kR">KISA 가이드 라인</a> 에서는 다음과 같은 절차를 권장한다.</p>
+<ol class="arabic simple">
+<li>공격 인지를 위한 체크포인트</li>
+</ol>
+<ul class="simple">
+<li>BPS및 PPS규모를 확인하여 평시와 비교</li>
+<li>웹 서버 로그를 확인하여 특정 페이지 접속 규모 확인</li>
+</ul>
+<ol class="arabic simple" start="2">
+<li>DDoS 공격 유형 파악</li>
+</ol>
+<ul class="simple">
+<li>대역폭 소진(UDP/ICMP Flooding), 연결 자원 부하(HTTP, DB 연결 부하 유발), 웹서버 자원 부하(Syn Flooding등 확인)</li>
+</ul>
+<ol class="arabic simple" start="3">
+<li>공격유형에 따른 차단정책 정의 및 대응</li>
+</ol>
+<ul class="simple">
+<li>UDP/ICMP Flooding: Source IP를 변조하거나 실제 IP를 이용해 UDP/ICMP 패킷을 다량 전송하는 공격. 방화벽이나 라우터에서 프로토콜 차단(Access Control List). 임계 PPS 수치를 유입되는 수치보다 낮게 설정</li>
+<li>Get Flooding 공격 방어: 다량의 HTTP 요청을 하여 웹서버 연결 및 DB 연결에 부하를 일으키는 공격. 출발지 IP 기준으로 임계치를 초과할 경우 IP 차단. 정밀한 검사를 통해 비정상적인 HTTP GET 요청 차단</li>
+<li>Syn Flooding: 다량의 SYN 패킷을 서버로 전달하여 서버의 대기큐(Backlog Queue)를 가득채워 클라이언트 연결 요청을 거부하는 공격. 임계치를 초과할 경우 소스 IP 차단.</li>
+</ul>
+<ol class="arabic simple" start="4">
+<li>사후조치</li>
+</ol>
+<ul class="simple">
+<li>서버 가용성 임계치 분석 후 차단 정책 업데이트</li>
+</ul>
+</div>
 <div class="section" id="source-address-spoofing">
-<h3>1.7.1. Source address spoofing<a class="headerlink" href="#source-address-spoofing" title="제목 주소">¶</a></h3>
+<h3>1.7.2. Source address spoofing<a class="headerlink" href="#source-address-spoofing" title="제목 주소">¶</a></h3>
 <p>계속해서 보면 Source Address spoofing을 통한 공격이 있다. 위조한 주소를 가진 패킷을 만드는 방식이다. ICMP echo request를 이용한 방식이 있다. 다른 방식은 SYN spoofing 공격이다. Source Address를 스푸핑 하여 Syn 패킷을 보냄으로써 Spoofed Client가 SYN,ACK를 받도록 한다.</p>
 </div>
 <div class="section" id="flooding-attacks">
-<h3>1.7.2. Flooding Attacks<a class="headerlink" href="#flooding-attacks" title="제목 주소">¶</a></h3>
+<h3>1.7.3. Flooding Attacks<a class="headerlink" href="#flooding-attacks" title="제목 주소">¶</a></h3>
 <p>프로토콜을 활용하여 대량의 패킷을 보내는 공격이다. 주로 ICMP, UDP, TCP SYN을 사용한다. UDP는 기본 echo service를 위해 사용된다. ICMP desination unreachable packet 이 반환될 경우 DDoS 공격을 예측할 수 있다.</p>
 </div>
 </div>
@@ -631,8 +658,9 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
 </ul>
 </li>
 <li><a class="reference internal" href="#dos">1.7. DOS</a><ul>
-<li><a class="reference internal" href="#source-address-spoofing">1.7.1. Source address spoofing</a></li>
-<li><a class="reference internal" href="#flooding-attacks">1.7.2. Flooding Attacks</a></li>
+<li><a class="reference internal" href="#ddos">1.7.1. DDoS 공격 대응 절차 및 목적</a></li>
+<li><a class="reference internal" href="#source-address-spoofing">1.7.2. Source address spoofing</a></li>
+<li><a class="reference internal" href="#flooding-attacks">1.7.3. Flooding Attacks</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#intrusion-detection-intrusion-detection">1.8. Intrusion detection(Intrusion Detection)</a></li>
@@ -698,8 +726,8 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
       <a href="../_sources/security/security_basic.txt"

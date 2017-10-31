@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. 시큐어 코딩 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>3. 시큐어 코딩 &mdash; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,15 +25,12 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="색인" href="../genindex.html" />
-    <link rel="search" title="검색" href="../search.html" />
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
     <link rel="up" title="보안(Security)" href="security_index.html" />
     <link rel="next" title="ICT" href="../ict/ict_index.html" />
     <link rel="prev" title="2. 인터넷 프로토콜 보안" href="security_internet.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -49,26 +46,111 @@
   <div class="section" id="security-coding">
 <span id="id1"></span><h1>3. 시큐어 코딩<a class="headerlink" href="#security-coding" title="제목 주소">¶</a></h1>
 <p><em>본 자료는 하단의 참조 및 해킹 방어를 위한 JAVA 시큐어코딩을 참고하여 재구성한 내용입니다.</em></p>
+<div class="section" id="owasp-top-10">
+<h2>3.1. OWASP Top 10<a class="headerlink" href="#owasp-top-10" title="제목 주소">¶</a></h2>
+<p>OWASP는 웹 애플리케이션의 보안 향상을 위해 표준, 도구를 제공하는 개방 커뮤니티이다. <strong>OWASP Top 10 애플리케이션 보안 위험은 다음과 같다.</strong></p>
+<div class="section" id="injection">
+<h3>3.1.1. Injection(인젝션)<a class="headerlink" href="#injection" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>정의. <strong>프로그램에 신뢰할 수 없는 데이터를 전송하여</strong> 시스템의 데이터를 조작하거나 장애를 일으키는 위험</li>
+<li>예방. 질의 또는 명령어를 신뢰할 수 없는 데이터와 분리한다.</li>
+<li>예시. 변수 바인딩을 사용 / 특수문자 이스케이핑</li>
+</ul>
+</div>
+<div class="section" id="broken-authentication-and-session-management">
+<h3>3.1.2. Broken Authentication and Session Management(잘못된 인증 및 세션 관리)<a class="headerlink" href="#broken-authentication-and-session-management" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>정의. <strong>관리되지 않는 인증 정보와 관리 취약점을 바탕으로</strong> 다른 사용자로 가장하고 시스템을 제어하는 위험</li>
+<li>예방. OWASP에서 제공하는 가이드라인에 따라 세션을 관리한다.</li>
+<li>예시. XSS 취약점 제거 / 세션 타임아웃 추가 / 인증 정보 URL 노출 제거 / 인증 정보 암호화 전송</li>
+</ul>
+</div>
+<div class="section" id="xss">
+<h3>3.1.3. XSS(크로스 사이트 스크립팅)<a class="headerlink" href="#xss" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>정의. <strong>다른 사용자의 브라우저에 신뢰할 수 없는 데이터를 전송하여</strong> 다른 취약점을 유발하는 위험 (세션 하이재킹, 사이트 변조, 악성 사이트 리다이렉션 등)</li>
+<li>예방. 브라우저 명령어와 신뢰할 수 없는 데이터를 분리한다.</li>
+<li>예시. 모든 신뢰할 수 없는 데이터를 이스케이핑 / sanitizer 라이브러리 적용</li>
+</ul>
+</div>
+<div class="section" id="insecure-direct-object-references">
+<h3>3.1.4. Insecure Direct Object References(안전하지 않는 직접 객체 참조)<a class="headerlink" href="#insecure-direct-object-references" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>정의. <strong>참조값을 변경하여</strong> 권한이 없는 객체에 접근할 수 있는 위험</li>
+<li>예방. DB키 대신 간접 참조를 사용하거나 직접 참조시 접근을 통제한다.</li>
+<li>예시. 자원에 접근 권한이 있는지 확인</li>
+</ul>
+</div>
+<div class="section" id="security-misconfiguration">
+<h3>3.1.5. Security Misconfiguration(보안 설정 오류)<a class="headerlink" href="#security-misconfiguration" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>정의. <strong>샘플 페이지 또는 기본 설정을 활용 하여</strong> 시스템에 침투하는 위험 (관리 콘솔, 디렉토링 리스팅, 스택 추적 허용)</li>
+<li>예방. 불필요한 기능을 제거한다.</li>
+<li>예시. 기본 관리 콘솔 제거 또는 기본 패스워드 변경 / 샘플 페이지 제거</li>
+</ul>
+</div>
+<div class="section" id="sensitive-data-exposure">
+<h3>3.1.6. Sensitive Data Exposure(민감 데이터 노출)<a class="headerlink" href="#sensitive-data-exposure" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>정의. <strong>민감 데이터를 탈취하여</strong> 보호해야할 모든 데이터를 탈취하는 위험</li>
+<li>예방. 민감한 정보를 암호화 하고 강력한 알고리즘을 적용한다.</li>
+<li>예시. bcrypt와 같은 특별한 알고리즘으로 패스워드 보호 / SSL 사용</li>
+</ul>
+</div>
+<div class="section" id="missing-function-level-access-control">
+<h3>3.1.7. Missing Function Level Access Control(기능 수준의 접근 통제 누락)<a class="headerlink" href="#missing-function-level-access-control" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>정의. <strong>URL 조작을 통해</strong> 권한이 없는 기능에 접근할 수 있는 위험</li>
+<li>예방. 서버 쪽에서 인증 및 권한을 검증한다. 단, 룰 갱신이 쉬워야 한다.</li>
+<li>예시. 권한 관리 컴포넌트 개발</li>
+</ul>
+</div>
+<div class="section" id="csrf">
+<h3>3.1.8. CSRF(크로스 사이트 요청 변조)<a class="headerlink" href="#csrf" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>정의. <strong>위조된 HTTP를 요청하여</strong> 사용자의 권한으로 명령을 실행하는 위험</li>
+<li>예방. 예측 불가능한 CSRF 토큰을 포함시켜서 자원을 요청하도록 한다.</li>
+<li>예시. CSRF 토큰 포함 / 재인증 요구</li>
+</ul>
+</div>
+<div class="section" id="components-with-known-vulnerabilities">
+<h3>3.1.9. Components with Known Vulnerabilities(알려진 취약점이 있는 컴포넌트 사용)<a class="headerlink" href="#components-with-known-vulnerabilities" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>정의. <strong>스캐닝을 통해 취약한 컴포넌트를 찾아서</strong> 관련 취약점을 발동시키는 위험</li>
+<li>예방. 공개된 데이터베이스 확인하고 버전을 최신 상태로 유지한다.</li>
+<li>예시. 메일링 리스트, 공개된 데이터베이스 모니터링</li>
+</ul>
+</div>
+<div class="section" id="unvalidated-redirects-and-forwards">
+<h3>3.1.10. Unvalidated Redirects and Forwards(타당하지 않은 리다이렉트 및 포워딩)<a class="headerlink" href="#unvalidated-redirects-and-forwards" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>정의. <strong>신뢰할 수 없는 링크로 리다이렉트 하거나 포워딩 시켜</strong> 사용자를 위험에 빠뜨리거나 시스템의 정보를 노출 시키는 위험</li>
+<li>예방. 사용자 파라미터로 링크를 전송할 수 없도록 한다.</li>
+<li>예시. 파라미터를 사용해야 한다면 서버에서 검증해야 함</li>
+</ul>
+</div>
+</div>
 <div class="section" id="concept">
-<h2>3.1. Concept<a class="headerlink" href="#concept" title="제목 주소">¶</a></h2>
+<h2>3.2. Concept<a class="headerlink" href="#concept" title="제목 주소">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Secure_Coding">시큐어 코딩</a> 이란 보안 취약점에 의한 사고를 방지하기 위한 소프트웨어 개발 방법이다. (예를들어 <strong>각 프로젝트 단계별로 시큐어 코딩을 적용할 수 있다.</strong> ) 결함, 버그, 결점이 있는 로직( <strong>소프트웨어의 약점</strong> )은 소프트웨어 취약점의 주요한 원인이다. 알려진 취약점을 기반으로 보안 전문가들은 대부분의 취약점이 소프트웨어 프로그래밍에서 발견한다는 사실을 알게 되었다. 시큐어코딩 전문가들은 안전하지 않은 코딩 습관을 발견하고 대안책들을 개발자에게 교육함으로써 개발자들이 소프트웨어 개발전에 취약점을 제거하거나 줄이게된다.</p>
+</div>
 <div class="section" id="id3">
-<h3>3.1.1. 안전한 소프트웨어 개발 방법론<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
+<h2>3.3. 안전한 소프트웨어 개발 방법론<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <div class="section" id="id4">
-<h4>3.1.1.1. 흔한 웹 기반 공격 시나리오<a class="headerlink" href="#id4" title="제목 주소">¶</a></h4>
+<h3>3.3.1. 흔한 웹 기반 공격 시나리오<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
 <p>웹 기반 공격은 2가지 패턴을 가지고 있다 첫번재는 DMZ에 놓여있는 웹서버를 공격하는 방법이다. 웹 서버에 웹쉘을 올려서 서버의 임의코드를 실행할 수 있는 권한을 얻는 것이다. 두번째 방법은 내부 사용자를 통해 내부망을 공격하는 방식이다.</p>
 <p><em>웹 어플리케이션 보안이 중요한 이유는 웹을 통해 개개인의 민간한 정보가 전송되기 때문이다. 요즘의 모바일, 데스크탑의 어플리케이션은 주로 HTTP를 통해 서비스된다.</em></p>
 </div>
 <div class="section" id="id5">
-<h4>3.1.1.2. 계층별 보안 솔루션의 한계<a class="headerlink" href="#id5" title="제목 주소">¶</a></h4>
+<h3>3.3.2. 계층별 보안 솔루션의 한계<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
 <p>어플리케이션 보안/ 시스템 보안/ 네트워크 보안/ DB 보안으로 나눠서 솔루션을 통해 보안을 강화할 수 있다. 하지만 네트워크 보안이나 웹 방화벽(어플리케이션 보안)에 의한 보안은 <strong>룰/시그니처 기반</strong> 정책을 가지고 있으므로 코드 레벨의 보안이 중요하다.</p>
 </div>
 <div class="section" id="id6">
-<h4>3.1.1.3. 소프트웨어 보안의 중요성<a class="headerlink" href="#id6" title="제목 주소">¶</a></h4>
+<h3>3.3.3. 소프트웨어 보안의 중요성<a class="headerlink" href="#id6" title="제목 주소">¶</a></h3>
 <p>CMS나 오픈소스, 플랫폼에서 발생한 취약점은 그 소프트웨어를 적용하는 모든 서비스나 소프트웨어의 취약점이 된다. 이러한 소프트웨어 수준의 취약점은 큰 파급력을 갖는다.</p>
 </div>
 <div class="section" id="id7">
-<h4>3.1.1.4. 소프트웨어 해킹 사례<a class="headerlink" href="#id7" title="제목 주소">¶</a></h4>
+<h3>3.3.4. 소프트웨어 해킹 사례<a class="headerlink" href="#id7" title="제목 주소">¶</a></h3>
 <ul class="simple">
 <li>KT의 요금명세서 조회 기능에서 파라미터 조작을 통해 다른 사용자의 요금명세서를 조회하는 사례가 있었다.(파라미터의 고객번호를 A에서 B로 바꾼뒤 쿼리를 실행하여 해킹, 이를 해결하기 위해 로그인한 사용자의 세션값에 맞는 고객정보만 조회되도록 수정 해야함)</li>
 <li>현대캐피탈 - SSL을 이용해 종단간 암화화를 했더라도 소프트웨어 자체에서 암호화되지 않은 로깅을 쌓아서 원본데이터가 노출될 수 있다.</li>
@@ -77,13 +159,13 @@
 </div>
 </div>
 <div class="section" id="cwe-cve-owasp">
-<h3>3.1.2. 소프트웨어 보안 약점/취약점(CWE, CVE, OWASP)<a class="headerlink" href="#cwe-cve-owasp" title="제목 주소">¶</a></h3>
+<h2>3.4. 소프트웨어 보안 약점/취약점(CWE, CVE, OWASP)<a class="headerlink" href="#cwe-cve-owasp" title="제목 주소">¶</a></h2>
 <p>CWE이란 일반적으로 침해사고를 일으킬 수 있는 소프트웨어의 분류체계를 정의한다. CVE란 이미 침해사고가 발생한 소프트웨어의 결함의 히스토리이다. 미국 국토안보부에서 만든 <a class="reference external" href="http://cwe.mitre.org">CWE</a> 에서 일반적인 소프트웨어 약점을 검색할 수 있다. <a class="reference external" href="http://cve.mitre.org">CVE</a> 에서 소프트웨어 취약점(이미 침해사고가 발생한)을 검색할 수 있다. <a class="reference external" href="http://www.sans.org">SANS TOP 25</a> 에서 가장 위험한 소프트웨어 약점 25개를 확인할 수 있다.</p>
 <p>시큐어 코딩 방법은 <a class="reference external" href="https://www.securecoding.cert.org/">https://www.securecoding.cert.org/</a> 과 <strong>행자부 소프트웨어 개발 보안 가이드(7개의 카테고리 47개의 항목 - CERT LEVEL1 + SANS 25)에서 확인할 수 있다. SANS 25를 이용해서 스코어링해서 순서대로 제거해라.</strong></p>
 <p>25개의 CWE를 적용하기 어렵다면 <strong>OWASP TOP 10</strong> 을 사용하여 시큐어 코딩을 적용하자.</p>
 </div>
 <div class="section" id="id8">
-<h3>3.1.3. 소프트웨어 개발보안 방법론<a class="headerlink" href="#id8" title="제목 주소">¶</a></h3>
+<h2>3.5. 소프트웨어 개발보안 방법론<a class="headerlink" href="#id8" title="제목 주소">¶</a></h2>
 <p>SW 개발 보안이란 잠재적인 보안약점을 제거하고 보안을 고려하여 설계, 구현하는 방법이다. 소프트웨어 개발 프로세스는 <strong>요구사항 분석 -&gt; 설계 -&gt; 구현 -&gt; 테스트</strong> 으로 이루어진다. 개발 단계별 시큐어 코딩 적용은 다음과 같다.</p>
 <ul class="simple">
 <li>테스트 단계에서 약점을 진단하지말고 설계단계에서 기능단위로 보안 약점을 도출하면서 설계해야한다.</li>
@@ -91,7 +173,7 @@
 <li>테스트 단계에서는 스캐닝 및 퍼징을 통해 취약점을 찾거나 모의해킹을 통해 취약점을 찾는다.</li>
 </ul>
 <div class="section" id="id9">
-<h4>3.1.3.1. 레퍼런스<a class="headerlink" href="#id9" title="제목 주소">¶</a></h4>
+<h3>3.5.1. 레퍼런스<a class="headerlink" href="#id9" title="제목 주소">¶</a></h3>
 <ul class="simple">
 <li>Microsoft SDL은 표준처럼 사용되고 있다. 이를 적용하여 개발하면 보안 약점을 줄이는데 도움이 될 것이다.</li>
 <li><a class="reference external" href="http://openeg.co.kr/462">CLASP</a> 은 각 활동에 대해 누가 맡을지에 대한 내용을 참조할 때 좋다.</li>
@@ -100,7 +182,7 @@
 <p>소프트웨어 개발 보안 방법론을 적용하면 유지보수 비용이 절감된다. 이제는 시큐어 코딩은 선택이 아니라 필수같다.</p>
 </div>
 <div class="section" id="id10">
-<h4>3.1.3.2. 위협모델링<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
+<h3>3.5.2. 위협모델링<a class="headerlink" href="#id10" title="제목 주소">¶</a></h3>
 <p>위협모델은 요구사항 분석 단계에서( <strong>유즈케이스 다이어그램, 액티비티 다이어그램, DFD</strong> ) 기능 단위로 공격자가 어떻게 공격할 수 있는지 정의한 것이다. 이에 대한 위협분석의 목적은 대응해야할 위협을 파악하고, 어떻게 대응할 수 있는지를 결정하기 위한 체계적인 방법을 제공하는 것이다. 이를 조사하여 설계자에게 전달하는 것은 개발보안에서 중요하다.</p>
 <p>단계는 다음과 같다. (실제로 7단계로 구성되어 있음) <a class="reference external" href="https://msdn.microsoft.com/en-us/library/ff648644.aspx">MS가 제시한 모델링 방법</a>
 <a class="reference external" href="http://openeg.co.kr/378">OPENEG 예시</a></p>
@@ -113,9 +195,9 @@
 </div>
 </div>
 <div class="section" id="id11">
-<h3>3.1.4. 안전한 소프트웨어를 만드는 시큐어 코딩 기법<a class="headerlink" href="#id11" title="제목 주소">¶</a></h3>
+<h2>3.6. 안전한 소프트웨어를 만드는 시큐어 코딩 기법<a class="headerlink" href="#id11" title="제목 주소">¶</a></h2>
 <div class="section" id="sql">
-<h4>3.1.4.1. SQL 인젝션 기본<a class="headerlink" href="#sql" title="제목 주소">¶</a></h4>
+<h3>3.6.1. SQL 인젝션 기본<a class="headerlink" href="#sql" title="제목 주소">¶</a></h3>
 <p>사용자가 쿼리를 조작할 수 있으면 SQL 인젝션이 가능하다.</p>
 <p>String query = &#8220;SELECT * FROM WHERE ID = &#8216; &#8220;+ id + &#8221; &#8216; and bPass = &#8216; &#8220;+ bPass + &#8221; &#8216; &#8220;</p>
 <p>공격 쿼리는 다음고 같다. 아이디/ 비밀번호</p>
@@ -132,27 +214,27 @@
 <p><strong>OWASP의 ESAPI를 이용하여 위험한 문자열을 필터링하거나 동적SQL 대신 정적SQL을 사용하자. 또한 pangolin으로 SQL 인젝션 점검을 할 수 있다.</strong></p>
 </div>
 <div class="section" id="id12">
-<h4>3.1.4.2. 운영체제 명령어 삽입<a class="headerlink" href="#id12" title="제목 주소">¶</a></h4>
+<h3>3.6.2. 운영체제 명령어 삽입<a class="headerlink" href="#id12" title="제목 주소">¶</a></h3>
 <p>서버에서 명령어로 실행되는 경우 침해사고가 발생한다. 꼭 필요한 기능이라면 철저한 유효성 검사 및 명령어를 인덱스화 하여 서버에 전달할 필요가 있다.</p>
 </div>
 <div class="section" id="id13">
-<h4>3.1.4.3. 세션 공격<a class="headerlink" href="#id13" title="제목 주소">¶</a></h4>
+<h3>3.6.3. 세션 공격<a class="headerlink" href="#id13" title="제목 주소">¶</a></h3>
 <ul class="simple">
 <li>세션 ID 분석을 통해 예측 - 서버에서 난수를 사용해서 세션 ID를 생성하므로 일반적으로 어렵다.</li>
 <li>셰션 ID 훔치기 - XSS와 같은 취약점이 있다면 위험할 수 있다.</li>
 <li>세션 ID 고정 - 브라우저에 세션 ID를 고정시킬 수 있는 기능이 있다면 문제가 발생한다.</li>
 </ul>
 </div>
-<div class="section" id="xss">
-<h4>3.1.4.4. XSS (크로스 사이트 스크립트)<a class="headerlink" href="#xss" title="제목 주소">¶</a></h4>
+<div class="section" id="id14">
+<h3>3.6.4. XSS (크로스 사이트 스크립트)<a class="headerlink" href="#id14" title="제목 주소">¶</a></h3>
 <ul class="simple">
 <li>Reflective XSS : 악성스크립트를 GET 파라미터에 포함 시킨 하이퍼 링크를 다른 사용자가 클릭하게 만들어서 악성 스크립트를 실행하는 해킹 방법</li>
 <li>Stored XSS : 악성스크립트를 DB에 저장하는 기능을 이용하여 저장하고 다른 사용자가 그 정보를 이용할때 공격이 일어나는 해킹 방법</li>
 <li>DOM XSS : AJAX 요청에 대한 브라우저에 수신된 데이터를 다시 잘라서 Document에 write하는 작업을 수행하는 경우 사용하는 해킹 방법</li>
 </ul>
 </div>
-<div class="section" id="csrf">
-<h4>3.1.4.5. CSRF (크로스사이트 요청위조)<a class="headerlink" href="#csrf" title="제목 주소">¶</a></h4>
+<div class="section" id="id15">
+<h3>3.6.5. CSRF (크로스사이트 요청위조)<a class="headerlink" href="#id15" title="제목 주소">¶</a></h3>
 <p>상대방이 잘못된 요청을 보내도록 하는 사회공학적 해킹 기법이다. 이를 방어하기 위해서 write.html에서 <strong>CSRF Token(난수)</strong> 을 미리 발급하고 실제 요청할때 토큰을 포함시켜서 보내도록 한다. 여러가지 재인증 기법을 사용하여 막을 수 있다. 이를 WAS의 CSRFInterceptor를 통해 검사하고 비지니스 로직을 수행한다.</p>
 <p>아래는 CSRF 공격 코드의 예시이다. XSS 취약점이 있는 게시판에 삽입하여 CSRF공격을 수행할 수 있다.</p>
 <div class="code html highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
@@ -168,8 +250,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id14">
-<h4>3.1.4.6. 파일 업로드/다운로드 취약점<a class="headerlink" href="#id14" title="제목 주소">¶</a></h4>
+<div class="section" id="id16">
+<h3>3.6.6. 파일 업로드/다운로드 취약점<a class="headerlink" href="#id16" title="제목 주소">¶</a></h3>
 <p>업로드</p>
 <ul class="simple">
 <li>업로드되는 파일의 타입/크기/개수를 제한하지 않고 외부로 부터 접근이 되는 경우</li>
@@ -183,14 +265,13 @@
 <li><strong>파일의 타입체크/사이즈체크/외부에서 접근하지 않는 경로에 저장되도록/파일명 랜덤생성/실행권한을 가지지 않도록</strong></li>
 </ul>
 </div>
-<div class="section" id="id15">
-<h4>3.1.4.7. 기타<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
+<div class="section" id="id17">
+<h3>3.6.7. 기타<a class="headerlink" href="#id17" title="제목 주소">¶</a></h3>
 <p>Servlet 3.0부터 다음 메서드가 강화되면서 HTTP 응답 분할 공격이 어렵다.</p>
 <ul class="simple">
 <li>addCookie()</li>
 <li>setHeader()</li>
 </ul>
-</div>
 </div>
 </div>
 </div>
@@ -204,30 +285,41 @@
   <h3><a href="../index.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">3. 시큐어 코딩</a><ul>
-<li><a class="reference internal" href="#concept">3.1. Concept</a><ul>
-<li><a class="reference internal" href="#id3">3.1.1. 안전한 소프트웨어 개발 방법론</a><ul>
-<li><a class="reference internal" href="#id4">3.1.1.1. 흔한 웹 기반 공격 시나리오</a></li>
-<li><a class="reference internal" href="#id5">3.1.1.2. 계층별 보안 솔루션의 한계</a></li>
-<li><a class="reference internal" href="#id6">3.1.1.3. 소프트웨어 보안의 중요성</a></li>
-<li><a class="reference internal" href="#id7">3.1.1.4. 소프트웨어 해킹 사례</a></li>
+<li><a class="reference internal" href="#owasp-top-10">3.1. OWASP Top 10</a><ul>
+<li><a class="reference internal" href="#injection">3.1.1. Injection(인젝션)</a></li>
+<li><a class="reference internal" href="#broken-authentication-and-session-management">3.1.2. Broken Authentication and Session Management(잘못된 인증 및 세션 관리)</a></li>
+<li><a class="reference internal" href="#xss">3.1.3. XSS(크로스 사이트 스크립팅)</a></li>
+<li><a class="reference internal" href="#insecure-direct-object-references">3.1.4. Insecure Direct Object References(안전하지 않는 직접 객체 참조)</a></li>
+<li><a class="reference internal" href="#security-misconfiguration">3.1.5. Security Misconfiguration(보안 설정 오류)</a></li>
+<li><a class="reference internal" href="#sensitive-data-exposure">3.1.6. Sensitive Data Exposure(민감 데이터 노출)</a></li>
+<li><a class="reference internal" href="#missing-function-level-access-control">3.1.7. Missing Function Level Access Control(기능 수준의 접근 통제 누락)</a></li>
+<li><a class="reference internal" href="#csrf">3.1.8. CSRF(크로스 사이트 요청 변조)</a></li>
+<li><a class="reference internal" href="#components-with-known-vulnerabilities">3.1.9. Components with Known Vulnerabilities(알려진 취약점이 있는 컴포넌트 사용)</a></li>
+<li><a class="reference internal" href="#unvalidated-redirects-and-forwards">3.1.10. Unvalidated Redirects and Forwards(타당하지 않은 리다이렉트 및 포워딩)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#cwe-cve-owasp">3.1.2. 소프트웨어 보안 약점/취약점(CWE, CVE, OWASP)</a></li>
-<li><a class="reference internal" href="#id8">3.1.3. 소프트웨어 개발보안 방법론</a><ul>
-<li><a class="reference internal" href="#id9">3.1.3.1. 레퍼런스</a></li>
-<li><a class="reference internal" href="#id10">3.1.3.2. 위협모델링</a></li>
+<li><a class="reference internal" href="#concept">3.2. Concept</a></li>
+<li><a class="reference internal" href="#id3">3.3. 안전한 소프트웨어 개발 방법론</a><ul>
+<li><a class="reference internal" href="#id4">3.3.1. 흔한 웹 기반 공격 시나리오</a></li>
+<li><a class="reference internal" href="#id5">3.3.2. 계층별 보안 솔루션의 한계</a></li>
+<li><a class="reference internal" href="#id6">3.3.3. 소프트웨어 보안의 중요성</a></li>
+<li><a class="reference internal" href="#id7">3.3.4. 소프트웨어 해킹 사례</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id11">3.1.4. 안전한 소프트웨어를 만드는 시큐어 코딩 기법</a><ul>
-<li><a class="reference internal" href="#sql">3.1.4.1. SQL 인젝션 기본</a></li>
-<li><a class="reference internal" href="#id12">3.1.4.2. 운영체제 명령어 삽입</a></li>
-<li><a class="reference internal" href="#id13">3.1.4.3. 세션 공격</a></li>
-<li><a class="reference internal" href="#xss">3.1.4.4. XSS (크로스 사이트 스크립트)</a></li>
-<li><a class="reference internal" href="#csrf">3.1.4.5. CSRF (크로스사이트 요청위조)</a></li>
-<li><a class="reference internal" href="#id14">3.1.4.6. 파일 업로드/다운로드 취약점</a></li>
-<li><a class="reference internal" href="#id15">3.1.4.7. 기타</a></li>
+<li><a class="reference internal" href="#cwe-cve-owasp">3.4. 소프트웨어 보안 약점/취약점(CWE, CVE, OWASP)</a></li>
+<li><a class="reference internal" href="#id8">3.5. 소프트웨어 개발보안 방법론</a><ul>
+<li><a class="reference internal" href="#id9">3.5.1. 레퍼런스</a></li>
+<li><a class="reference internal" href="#id10">3.5.2. 위협모델링</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#id11">3.6. 안전한 소프트웨어를 만드는 시큐어 코딩 기법</a><ul>
+<li><a class="reference internal" href="#sql">3.6.1. SQL 인젝션 기본</a></li>
+<li><a class="reference internal" href="#id12">3.6.2. 운영체제 명령어 삽입</a></li>
+<li><a class="reference internal" href="#id13">3.6.3. 세션 공격</a></li>
+<li><a class="reference internal" href="#id14">3.6.4. XSS (크로스 사이트 스크립트)</a></li>
+<li><a class="reference internal" href="#id15">3.6.5. CSRF (크로스사이트 요청위조)</a></li>
+<li><a class="reference internal" href="#id16">3.6.6. 파일 업로드/다운로드 취약점</a></li>
+<li><a class="reference internal" href="#id17">3.6.7. 기타</a></li>
 </ul>
 </li>
 </ul>
@@ -269,8 +361,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
       <a href="../_sources/security/security_coding.txt"

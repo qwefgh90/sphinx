@@ -435,9 +435,31 @@ worm 대응책
 DOS
 ==============
 
-CPU, memory, bandwidth, disk space 자원을 다 소모하게 함으로써 서버를 사용하지 못하게 하는 공격이다. netowrk, system, application과 같은 자원이 있다.
+CPU, memory, bandwidth, disk space 자원을 다 소모하게 함으로써 정상적으로 서비스를 수행하지 못하게 하는 공격이다. network, system, application과 같은 자원이 있다. 관리자는 DDOS 공격을 방어하기 위해 시스템 자원의 한계점을 알고 있어야 하며, 공격 유행에 따른 차단 정책을 가지고 있어야 한다.
 
-전통적인 DDoS 공격은 ping flooding을 통한 packet discarded (링크를 혼잡하게 함), 송신 주소를 바꾼 ICMP echo request packets을 전송하는 reflected attack 이 있다.
+DDoS 공격 대응 절차 및 목적
+---------------------------
+
+`KISA 가이드 라인 <https://www.google.co.kr/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjqnPTs3JnXAhXLnJQKHS6rC7gQFggkMAA&url=https%3A%2F%2Fwww.krcert.or.kr%2Ffiledownload.do%3Fattach_file_seq%3D747%26attach_file_id%3DEpF354.pdf&usg=AOvVaw0bzuG-O0vNIiMngewr04kR>`_ 에서는 다음과 같은 절차를 권장한다.
+
+1) 공격 인지를 위한 체크포인트
+
+- BPS및 PPS규모를 확인하여 평시와 비교
+- 웹 서버 로그를 확인하여 특정 페이지 접속 규모 확인
+
+2) DDoS 공격 유형 파악
+
+- 대역폭 소진(UDP/ICMP Flooding), 연결 자원 부하(HTTP, DB 연결 부하 유발), 웹서버 자원 부하(Syn Flooding등 확인)
+
+3) 공격유형에 따른 차단정책 정의 및 대응
+
+- UDP/ICMP Flooding: Source IP를 변조하거나 실제 IP를 이용해 UDP/ICMP 패킷을 다량 전송하는 공격. 방화벽이나 라우터에서 프로토콜 차단(Access Control List). 임계 PPS 수치를 유입되는 수치보다 낮게 설정
+- Get Flooding 공격 방어: 다량의 HTTP 요청을 하여 웹서버 연결 및 DB 연결에 부하를 일으키는 공격. 출발지 IP 기준으로 임계치를 초과할 경우 IP 차단. 정밀한 검사를 통해 비정상적인 HTTP GET 요청 차단
+- Syn Flooding: 다량의 SYN 패킷을 서버로 전달하여 서버의 대기큐(Backlog Queue)를 가득채워 클라이언트 연결 요청을 거부하는 공격. 임계치를 초과할 경우 소스 IP 차단.
+
+4) 사후조치
+
+- 서버 가용성 임계치 분석 후 차단 정책 업데이트
 
 Source address spoofing
 -----------------------

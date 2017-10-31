@@ -202,9 +202,10 @@ NoSQL
 
 RDBMS를 복제(Query off loading)를 통해 확장할 경우 Write연산에 병목이 발생한다. 이를 Master를 2개의 DB로 분산하면 충돌 (무결성 위반이나 인덱스 불일치와 같은 문제) 문제가 발생하므로 분산이 쉽지 않다. 또한 수직 샤딩을 할 경우 관계 테이블을 모아놓지 않으면 특별한 솔루션의 힘을 받지 않는한 JOIN 연산은 어렵다. 이러한 JOIN을 어플리케이션에서 구현해야한다. 반면 NoSQL은 샤딩과 복제를 기본적으로 지원하는 경우가 많다. (MongoDB Auto sharding 지원)
 
+- NoSQL 구문은 SQL에 비해 단순하고 트래픽을 감소시킨다.
+- RDBMS의 쿼리는 트랜잭션 보장을 위해 잠금에 대한 오버헤드가 있으며 처리량이 떨어진다.
 - 분산 RDMS는 비싸다.
 - 단순한 삽입/삭제 연산만 지원하기 때문에 빠른 읽기/쓰기 속도를 가지고 있다.
-- RDBMS의 쿼리는 트랜잭션 보장을 위해 NoSQL의 단순한 연산에 비해 오래걸린다.
 - 고정된 스키마는 인덱스 변환시 문제를 발생시킨다.
 
 새로운 요구사항이 발생했을때 테이블의 칼럼 추가/수정/삭제와 인덱스의 수정은 테이블에 락을 걸기 때문에 문제가 발생한다고 한다. `MySQL에서는 ALTER TABLE시 테이블 WRITE 락이 발생 <http://dev.mysql.com/doc/refman/5.5/en/alter-table.html>`_ , `MySQL에서는 CREATE INDEX를 할때 WRITE 락이 발생 <https://dev.mysql.com/doc/refman/5.0/en/create-index.html>`_ `해결책1 <https://signalvnoise.com/posts/3174-taking-the-pain-out-of-mysql-schema-changes>`_ , `해결책2 <http://devday.tistory.com/2191>`_

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. 용어 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>1. 용어 &mdash; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,15 +25,12 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="색인" href="../genindex.html" />
-    <link rel="search" title="검색" href="../search.html" />
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
     <link rel="up" title="데이터베이스" href="database_index.html" />
     <link rel="next" title="2. 데이터베이스 모델링" href="model_basic.html" />
     <link rel="prev" title="데이터베이스" href="database_index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -206,9 +203,10 @@ RDBMS는 업무에서 지속적으로 관찰하는 대상을 찾는 데이터 �
 </ul>
 <p>RDBMS를 복제(Query off loading)를 통해 확장할 경우 Write연산에 병목이 발생한다. 이를 Master를 2개의 DB로 분산하면 충돌 (무결성 위반이나 인덱스 불일치와 같은 문제) 문제가 발생하므로 분산이 쉽지 않다. 또한 수직 샤딩을 할 경우 관계 테이블을 모아놓지 않으면 특별한 솔루션의 힘을 받지 않는한 JOIN 연산은 어렵다. 이러한 JOIN을 어플리케이션에서 구현해야한다. 반면 NoSQL은 샤딩과 복제를 기본적으로 지원하는 경우가 많다. (MongoDB Auto sharding 지원)</p>
 <ul class="simple">
+<li>NoSQL 구문은 SQL에 비해 단순하고 트래픽을 감소시킨다.</li>
+<li>RDBMS의 쿼리는 트랜잭션 보장을 위해 잠금에 대한 오버헤드가 있으며 처리량이 떨어진다.</li>
 <li>분산 RDMS는 비싸다.</li>
 <li>단순한 삽입/삭제 연산만 지원하기 때문에 빠른 읽기/쓰기 속도를 가지고 있다.</li>
-<li>RDBMS의 쿼리는 트랜잭션 보장을 위해 NoSQL의 단순한 연산에 비해 오래걸린다.</li>
 <li>고정된 스키마는 인덱스 변환시 문제를 발생시킨다.</li>
 </ul>
 <p>새로운 요구사항이 발생했을때 테이블의 칼럼 추가/수정/삭제와 인덱스의 수정은 테이블에 락을 걸기 때문에 문제가 발생한다고 한다. <a class="reference external" href="http://dev.mysql.com/doc/refman/5.5/en/alter-table.html">MySQL에서는 ALTER TABLE시 테이블 WRITE 락이 발생</a> , <a class="reference external" href="https://dev.mysql.com/doc/refman/5.0/en/create-index.html">MySQL에서는 CREATE INDEX를 할때 WRITE 락이 발생</a> <a class="reference external" href="https://signalvnoise.com/posts/3174-taking-the-pain-out-of-mysql-schema-changes">해결책1</a> , <a class="reference external" href="http://devday.tistory.com/2191">해결책2</a></p>
@@ -308,8 +306,8 @@ RDBMS는 업무에서 지속적으로 관찰하는 대상을 찾는 데이터 �
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
       <a href="../_sources/database/database_concept.txt"
