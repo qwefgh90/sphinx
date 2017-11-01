@@ -10,13 +10,13 @@ Git
 
 Untracked - Unmodified - Modified - Staged::
 
-  # 아래 명령어로 Staged로 이동시킬 수 있다.
+  # 아래 명령어로 파일은 Untracked -> Staged 상태로 변경된다.
   git add aa.txt 
   # 상태는 다음과 같이 변한다.
-  # Tracked 파일을 수정할 경우 Untracted -> Unmodified
+  # Tracked 파일을 수정할 경우 Unmodified -> Modified
   # 수정한 파일을 Staged로 올리면 Modified -> Staged
   # Commit을 하면 Staged -> Unmodified
-  # 파일을 삭제하면 Unmodified -> Untracted
+  # 파일을 삭제하면 Unmodified -> Untrackted
 
 ======
  diff

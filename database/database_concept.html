@@ -103,14 +103,26 @@ RDBMS는 업무에서 지속적으로 관찰하는 대상을 찾는 데이터 �
 <h2>1.7. 무결성 제약조건<a class="headerlink" href="#id11" title="제목 주소">¶</a></h2>
 <p>무결성 제약조건이란 데이터베이스가 일관되고 중복없는 데이터를 저장하기위한 규칙을 뜻한다. 도메인 제약조건, 키 제약조건, 기본키 무결성 제약조건, 외래키 무결성 제약조건 등이 있다.</p>
 </div>
+<div class="section" id="stored-procedure">
+<h2>1.8. 저장 프로시저(Stored Procedure)<a class="headerlink" href="#stored-procedure" title="제목 주소">¶</a></h2>
+<p>T-SQL 코드를 감싸는 서버측 루틴이다.</p>
+<p>저장 프로시저의 장점은 다음과 같다.</p>
+<ul class="simple">
+<li>실행 계획을 재사용하므로 성능이 좋다.</li>
+<li>보안 관리가 용이하다.</li>
+<li>유지보수가 용이하다.</li>
+<li>네트워크 트래픽을 줄여준다.</li>
+</ul>
+<p>단점으로는 복잡한 로직 작성하기 위한 문법이 부족하다. 따라서 App 서버에 로직을 작성하고 단순히 CRUD로 사용하기도 한다.</p>
+</div>
 <div class="section" id="lock">
-<h2>1.8. 데이터베이스 락, 로크 (Lock)<a class="headerlink" href="#lock" title="제목 주소">¶</a></h2>
+<h2>1.9. 데이터베이스 락, 로크 (Lock)<a class="headerlink" href="#lock" title="제목 주소">¶</a></h2>
 <p><strong>락이란 하나의 데이터베이스에 여러개의 트랜잭션이 발생했을때 이를 조정하는 역할을 한다.</strong> 각 데이터 항목은 하나의 락과 연관되어 있으며 트랜잭션이 수행을 시작하여 데이터 항목에 접근할 때 마다 락은 <strong>락 테이블</strong> 에 유지된다.</p>
 <p><strong>독점 락(Exclusive lock)</strong> 은 데이터 갱신을 목적으로 접근할때 사용하는 락이다. 이에 반해서 트랜잭션에서 읽을 목적으로 데이터 항목에 접근할 때는 <strong>공유 락(Shared lock)</strong> 을 사용한다.</p>
 <p><strong>현재 걸려있는 락이 독점 락</strong> 이라면 공유 락을 걸 수 없다. <strong>공류 락이나 독점 락</strong> 이 걸려 있는 경우는 독점 락을 걸 수 없다. 오직 <strong>공유 락과 공류 락만 동시에 락을 걸 수 있다.</strong></p>
 </div>
 <div class="section" id="id12">
-<h2>1.9. 트랜잭션 격리조건<a class="headerlink" href="#id12" title="제목 주소">¶</a></h2>
+<h2>1.10. 트랜잭션 격리조건<a class="headerlink" href="#id12" title="제목 주소">¶</a></h2>
 <p><strong>기본적으로 트랜잭션안에서 쓰기 작업을 할 경우 독점 락은 커밋할때까지 유지된다.</strong></p>
 <ol class="arabic simple">
 <li>READ UNCOMMITTED</li>
@@ -160,7 +172,7 @@ RDBMS는 업무에서 지속적으로 관찰하는 대상을 찾는 데이터 �
 </div>
 </div>
 <div class="section" id="id13">
-<h2>1.10. 팬텀 문제<a class="headerlink" href="#id13" title="제목 주소">¶</a></h2>
+<h2>1.11. 팬텀 문제<a class="headerlink" href="#id13" title="제목 주소">¶</a></h2>
 <p>위의 <strong>REPEATABLE READ</strong> 설명에서 공유락이 걸려있지 않은 레코드는 삽입할 수 있다고 하였다. SELECT 쿼리가 하나의 트랜잭션에 2번이 실행되고 그 사이에 INSERT 쿼리가 발생할 경우 2번째 SELECT 문에서 새로운 데이터가 검색될 것이다.</p>
 <p>팬텀 문제</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="n">트랜잭션</span> <span class="mi">1</span>
@@ -186,7 +198,7 @@ RDBMS는 업무에서 지속적으로 관찰하는 대상을 찾는 데이터 �
 </div>
 </div>
 <div class="section" id="id14">
-<h2>1.11. 물리적 데이터 베이스<a class="headerlink" href="#id14" title="제목 주소">¶</a></h2>
+<h2>1.12. 물리적 데이터 베이스<a class="headerlink" href="#id14" title="제목 주소">¶</a></h2>
 <p>데이터베이스의 데이터는 파일, 블록(페이지), 레코드 이라는 구조로 저장된다. <strong>파일은 블록의 집합이며 블록은 레코드의 집합이다.</strong> 파일은 하나의 테이블을 저장할 수도 있고 여러개의 테이블을 저장할 수도 있다. <a class="reference external" href="http://wiki.gurubee.net/pages/viewpage.action?pageId=26739100">블록단위 I/O</a></p>
 <p>데이터베이스 에서는 <strong>블록단위 I/O</strong> 를 수행한다. <strong>그 이유는 Sequential Access가 I/O효율이 좋기 때문이다. 즉 블록 I/O를 하는 이유는 Random Access가 아닌 Sequential Access를 최대한 많이 하려는 노력이다.</strong></p>
 <p>한번의 블록 I/O로 최대한 많은 데이터를 읽어서 성능을 향상 시키는 것이다. <a class="reference external" href="http://ko.wikipedia.org/wiki/NCQ">Native Command Queue와</a>  <a class="reference external" href="http://ko.wikipedia.org/wiki/%EB%B9%84%EC%88%9C%EC%B0%A8%EC%A0%81_%EB%AA%85%EB%A0%B9%EC%96%B4_%EC%B2%98%EB%A6%AC">비순사적 명령어 처리(CPU)</a> 와 비슷한 원리이다.</p>
@@ -194,7 +206,7 @@ RDBMS는 업무에서 지속적으로 관찰하는 대상을 찾는 데이터 �
 <p>파일의 종류에는 <strong>히프 파일(비 순차), 순차 파일</strong> 이 있다. 비 순차 파일은 삽입 시간이 짧고 순차파일은 탐색시간이 짧다고 한다.</p>
 </div>
 <div class="section" id="nosql">
-<h2>1.12. NoSQL<a class="headerlink" href="#nosql" title="제목 주소">¶</a></h2>
+<h2>1.13. NoSQL<a class="headerlink" href="#nosql" title="제목 주소">¶</a></h2>
 <p><a class="reference external" href="http://hochul.net/blog/nosql_mongodb_rdbms_alternative/">참고 할만한 글</a></p>
 <p><strong>Not Only SQL이라는 뜻을 지닌 제품으로 삽입 삭제와 같은 단순한 연산을 제공하면서 분산 확장을 지원하는 데이터베이스를 뜻한다.</strong> 대규모 서비스가 등장하면서 데이터가 쌓이는 속도가 빨라지며 동시에 많은 요청을 처리해야하는 경우가 많아졌다. 기존의 RDMS는 분산을 고려하여 나온 제품이 아니기 때문에 확장성 면에서 NoSQL에 비해 부족하고 삽입/삭제와 같은 단순한 명령에서 NoSQL이 빠른 성능을 보이고 있다.</p>
 <p><strong>NoSQL이 RDBMS에 비해 가지는 장점은 다음과 같다.</strong></p>
@@ -229,7 +241,7 @@ RDBMS는 업무에서 지속적으로 관찰하는 대상을 찾는 데이터 �
 <p>NoSQL은 테이블 디자인이 아닌 쿼리디자인을 먼저한다. 업무에서 필요한 정보에 대한 쿼리를 만들고 쿼리를 바탕으로 저장한 데이터 테이블을 설계한다. 이때 쿼리를 위해 데이터를 중복을 허용해서 테이블을 정의해야한다. 일반적으로 RDBMS처럼 정규화를 하면 성능문제가 발생하게 된다고 한다. (쿼리 지향)</p>
 </div>
 <div class="section" id="id18">
-<h2>1.13. 참조<a class="headerlink" href="#id18" title="제목 주소">¶</a></h2>
+<h2>1.14. 참조<a class="headerlink" href="#id18" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>집합 이론: T-SQL 프로그래밍 입문, 칸토어의 집합에 대한 정의</li>
 </ul>
@@ -261,12 +273,13 @@ RDBMS는 업무에서 지속적으로 관찰하는 대상을 찾는 데이터 �
 </ul>
 </li>
 <li><a class="reference internal" href="#id11">1.7. 무결성 제약조건</a></li>
-<li><a class="reference internal" href="#lock">1.8. 데이터베이스 락, 로크 (Lock)</a></li>
-<li><a class="reference internal" href="#id12">1.9. 트랜잭션 격리조건</a></li>
-<li><a class="reference internal" href="#id13">1.10. 팬텀 문제</a></li>
-<li><a class="reference internal" href="#id14">1.11. 물리적 데이터 베이스</a></li>
-<li><a class="reference internal" href="#nosql">1.12. NoSQL</a></li>
-<li><a class="reference internal" href="#id18">1.13. 참조</a></li>
+<li><a class="reference internal" href="#stored-procedure">1.8. 저장 프로시저(Stored Procedure)</a></li>
+<li><a class="reference internal" href="#lock">1.9. 데이터베이스 락, 로크 (Lock)</a></li>
+<li><a class="reference internal" href="#id12">1.10. 트랜잭션 격리조건</a></li>
+<li><a class="reference internal" href="#id13">1.11. 팬텀 문제</a></li>
+<li><a class="reference internal" href="#id14">1.12. 물리적 데이터 베이스</a></li>
+<li><a class="reference internal" href="#nosql">1.13. NoSQL</a></li>
+<li><a class="reference internal" href="#id18">1.14. 참조</a></li>
 </ul>
 </li>
 </ul>

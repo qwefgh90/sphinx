@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. Regexpr cheat sheet &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>1. Regexpr cheat sheet &mdash; Code Accelerator Document 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,15 +25,12 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="색인" href="../genindex.html" />
-    <link rel="search" title="검색" href="../search.html" />
     <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
     <link rel="up" title="달리 분류되지 않음" href="etc_index.html" />
     <link rel="next" title="2. Git" href="git.html" />
     <link rel="prev" title="달리 분류되지 않음" href="etc_index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -56,6 +53,12 @@
 <li>[1-9] : 1부터 9까지 범위내의 숫자를 뜻한다.</li>
 <li>[a-zA-Z] : a부터 z까지의 하나의 소문자 및 대문자를 뜻한다.</li>
 <li>[^] : ^이후의 괄호 안 문자를 제외한 한 문자이다.</li>
+<li>\d : [0-9]</li>
+<li>\D : [^0-9]</li>
+<li>\s : [ tnrfv]</li>
+<li>\S : [^ tnrfv]</li>
+<li>\w : [a-zA-Z0-9_]</li>
+<li>\W : [^a-zA-Z0-9_]</li>
 </ul>
 <p>반복 횟수 지정</p>
 <ul class="simple">
@@ -66,8 +69,9 @@
 <li>{3,} : {}앞 문자가 3번 이상 반복된다.</li>
 <li>{,10} : {}앞 문자가 10번 이하로 반복된다.</li>
 </ul>
-<p>시작과 끝</p>
+<p>메타문자</p>
 <ul class="simple">
+<li>| : 보기중 하나</li>
 <li>^ : 문자열의 시작</li>
 <li>$ : 문자열의 끝</li>
 </ul>
@@ -122,8 +126,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
       <a href="../_sources/etc/regexpr.txt"
