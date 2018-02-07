@@ -59,8 +59,9 @@ JVM 튜닝
 
 몇몇 가지 중요한 옵션은 아래와 같다.
 
-- -Xmx: 애플리케이션에서 사용할 수 있는 최대 힙 사이즈이다.
-- -Xms: 애플리케이션의 시작 힙 사이즈이다.
+- -Xmx: 최대 힙 사이즈이다.
+- -Xms: 시작 힙 사이즈이다.
+- -Xss: 스레드 스택 크기이다.
 - -XX:NewRatio: New generation 공간의 비율을 정할 수 있다. *heap x (1 / (1 + ratio))*만큼을 New에 할당한다.
 - -XX:NewSize: 초기 New generation 공간의 크기이다.
 - -XX:MaxNewSize: New generation 공간의 최대 크기이다.
@@ -70,7 +71,6 @@ JVM 튜닝
 - 오래 살아남는 객체가 많을 경우, NewRatio를 키워서 Old generation 공간의 크기를 늘려야한다. 이는 상대적으로 Major GC를 줄일 수 있다.
 - 짧게만 사는 객체가 많을 경우 NewRatio의 크기를 줄이는 것이 좋고, 이는 결국 Major GC를 줄일 수 있다.
 - 일반적으로 NewRatio는 2~3을 사용한다.
-
 
 =================================
 가비지 컬렉션(Garbage Collection)
@@ -127,6 +127,20 @@ Old 영역 (Old Space)
 
 **Old 영역이 가득차게되면 GC가 발생한다.(Major GC or Full GC)** 알고리즘 종류에는 Serial GC, Parallel GC, Parallel Old GC, CMS GC, G1 GC등이 있다. 서비스에 사용되는 WAS의 스레드 개수와 인스턴스 개수에 따라 알고리즘을 선택해는것이 좋다.
 
+.. _limit-of-thread:
 
+==================
+스레드 개수의 한계
+==================
 
+사용가능한 스레드의 최대 개수는 시스템 설정과 메모리의 크기와 연관이 있다. 일반적으로 스레드는 OS 스레드와 일대일로 매핑되며 스레드별 스택을 보유하고 있다. 즉 OS 스레드 생성 개수에 제한이 있을 경우 생성이 안될 수 있다.
 
+중요한 부분은 스레드가 스택을 사용한다는 것이다. Java6 (Windows, Linux) 기준 32비트 JVM에서는 **320K** , 64비트 JVM에서는 **1M** 만큼의 스택을 생성한다. **즉, 4GB 메모리를 사용할 때** 64비트 JVM에서는 4000개, 32비트 JVM에서는 약 8000개의 스레드를 생성할 수 있다. 최대 스레드를 확인하는 `예제 <https://gist.github.com/qwefgh90/be371bf645475adda3ff546d43d98c26>`_ 이다.
+
+자바 서버 프로그래밍을 한다면 스레드 대신 SocketServerChannel를 활용하여 커넥션을 다루는 것이 더 효율적이다. SocketServerChannel 관련 `예제 <https://gist.github.com/qwefgh90/9ae28bf23583b8f22f8c0aa26349a78e>`_ 이다.
+
+====
+참조
+====
+
+- 스레드 메모리: http://www.oracle.com/technetwork/java/hotspotfaq-138619.html#threads_oom

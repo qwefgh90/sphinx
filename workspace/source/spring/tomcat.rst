@@ -4,40 +4,25 @@
 톰캣
 ************
 
-==========
-이슈
-==========
+===========
+스레드 설정
+===========
 
-에러 ::
-	java.lang.IllegalStateException: Web app root system property already set to different value: 'webapp.root' = [C:\apache-tomcat-7.0.34\webapps\ROOT\] instead of [C:\apache-tomcat-7.0.34\webapps\SSF\ROOT\] - Choose unique values for the 'webAppRootKey' context-param in your web.xml files!
-	at org.springframework.web.util.WebUtils.setWebAppRootSystemProperty(WebUtils.java:146)
-	at org.springframework.web.util.Log4jWebConfigurer.initLogging(Log4jWebConfigurer.java:118)
-	at org.springframework.web.util.Log4jConfigListener.contextInitialized(Log4jConfigListener.java:47)
-	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4791)
-	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5285)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
-	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
-	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
-	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:633)
-	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:977)
-	at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1655)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
-	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
+스레드 개수의 한계는 다음 :ref:`limit-of-thread` 에서 확인할 수 있다.
 
-	
-다음을 추가함으로써 해결::
+최대 스레드 개수보다 중요한 것은 **적정한 스레드 개수이다.** Servlet Container의 스레드는 주로 **요청을 처리하는 역할을 한다.** 스레드의 개수가 많을 수록 동시에 많은 요청을 처리할 수 있는 것이다. 일반적으로 같이 운영되는 다른 시스템의 가용성을 고려하여 개수를 결정하는 것이 좋다. 실제로 데이터베이스 세션의 개수가 최대 200개라면 200개를 조금 넘도록 설정하는 것이 좋다. 모든 스레드가 데이터베이스에 접근하는 것은 아니기 때문이다. 1대의 서버를 최적으로 설정하고 서버의 개수를 늘리는 방식을 추천한다.
 
-	<context-param>
-           <param-name>webAppRootKey</param-name>
-           <param-value>pa.root</param-value>
-	</context-param>
- 	
+**스레드 설정은 Connector(Service 하위) 요소의 특성(Attribute)으로 설정이 가능하다.**
+
 ====================================
 톰캣 permgen에러
 ====================================
 
 `permgen에러 <http://kim3zz.blog.me/220302150100>`_ 어플리케이션 실행 시 -XX:MaxPermSize=512로 해결가능
+
+====
+참조
+====
+
+- 톰캣 설정: https://tomcat.apache.org/tomcat-7.0-doc/config/http.html
+

@@ -1,0 +1,23 @@
+{
+  "name": "sphinx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "searchindex.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qwefgh90/sphinx.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qwefgh90/sphinx/issues"
+  },
+  "homepage": "https://github.com/qwefgh90/sphinx#readme",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}

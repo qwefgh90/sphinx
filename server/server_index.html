@@ -1,38 +1,35 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta content="Chang docs" name="site_name" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="Chang docs" name="site_name" />
 <meta content="Server index page" name="title" />
 <meta content="This is a Server index page." name="description" />
 <meta content="서버, Server, 최창원, 창원" name="keywords" />
 
     <title>서버(Server) &#8212; Code Accelerator Document 1.0 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
-    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
-    <link rel="next" title="1. 용어" href="server_hardware.html" />
+    <link rel="next" title="1. 용어" href="server_terms.html" />
     <link rel="prev" title="3. 용어" href="../css/css_terms.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -41,7 +38,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -54,26 +51,27 @@
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="server_hardware.html">1. 용어</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#m-2">1.1. M.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#multi-channel-memory-architecture">1.2. 다중 채널 메모리 구조(Multi-channel memory architecture)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#dual-channel-memory-architecture">1.3. 듀얼 채널 메모리 구조(Dual-channel memory architecture)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#host-bus-adapter">1.4. 호스트 버스 어댑터(Host bus adapter)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#i-o">1.5. I/O 제어</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#serial-ata-sata">1.6. Serial ATA(SATA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#sata-operating-modes">1.7. SATA 컨트롤러 동작 모드(Operating modes)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#ahci-advanced-host-controller-interface">1.8. AHCI(Advanced Host Controller Interface)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#nvm-express-nvme">1.9. NVM Express(NVMe)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#serial-attached-scsi-sas">1.10. Serial Attached SCSI (SAS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#raid-redundant-array-of-independent-disks">1.11. RAID(Redundant array of independent disks)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#kib-mib-gib">1.12. 키비, 메비, 기비 바이트(KiB, MiB, GiB)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#smb">1.13. SMB</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#nfs">1.14. NFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#link-aggregation">1.15. Link Aggregation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#lacp-link-aggregation-control-protocol">1.16. LACP(Link Aggregation Control Protocol)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#port">1.17. 포트(Port)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#fibre-channel-adapter">1.18. Fibre Channel Adapter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_hardware.html#id2">1.19. 참조</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_terms.html">1. 용어</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#x86">1.1. 유닉스 서버와 x86서버</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#m-2">1.2. M.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#multi-channel-memory-architecture">1.3. 다중 채널 메모리 구조(Multi-channel memory architecture)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#dual-channel-memory-architecture">1.4. 듀얼 채널 메모리 구조(Dual-channel memory architecture)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#host-bus-adapter">1.5. 호스트 버스 어댑터(Host bus adapter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#i-o">1.6. I/O 제어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#serial-ata-sata">1.7. Serial ATA(SATA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#sata-operating-modes">1.8. SATA 컨트롤러 동작 모드(Operating modes)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#ahci-advanced-host-controller-interface">1.9. AHCI(Advanced Host Controller Interface)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#nvm-express-nvme">1.10. NVM Express(NVMe)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#serial-attached-scsi-sas">1.11. Serial Attached SCSI (SAS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#raid-redundant-array-of-independent-disks">1.12. RAID(Redundant array of independent disks)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#kib-mib-gib">1.13. 키비, 메비, 기비 바이트(KiB, MiB, GiB)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#smb">1.14. SMB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#nfs">1.15. NFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#link-aggregation">1.16. Link Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#lacp-link-aggregation-control-protocol">1.17. LACP(Link Aggregation Control Protocol)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#port">1.18. 포트(Port)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#fibre-channel-adapter">1.19. Fibre Channel Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_terms.html#id2">1.20. 참조</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="server_vender.html">2. 상용 서버의 기술적 특징</a><ul>
@@ -98,14 +96,14 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="../css/css_terms.html" title="이전 장">3. 용어</a></li>
-      <li>Next: <a href="server_hardware.html" title="다음 장">1. 용어</a></li>
+      <li>Next: <a href="server_terms.html" title="다음 장">1. 용어</a></li>
   </ul></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/server/server_index.txt"
+      <li><a href="../_sources/server/server_index.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -127,11 +125,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/server/server_index.txt"
+      <a href="../_sources/server/server_index.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -15,7 +15,7 @@ Contents:
    :maxdepth: 2
    :numbered: 
 
-   server_hardware.rst
+   server_terms.rst
    server_vender.rst
 
 

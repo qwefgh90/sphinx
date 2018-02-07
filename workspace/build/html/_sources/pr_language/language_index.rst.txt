@@ -16,4 +16,5 @@ Contents:
    :numbered: 
 
    language_terms.rst
+   language_ebnf.rst
 

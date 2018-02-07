@@ -2,3 +2,4 @@
 github.sublime-project
 github.sublime-workspace
 workspace/source/**/*.html
+node_modules

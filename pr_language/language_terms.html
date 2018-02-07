@@ -1,34 +1,30 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>1. 용어 &#8212; Code Accelerator Document 1.0 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
-    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
-    <link rel="up" title="프로그래밍 언어(Programming Language)" href="language_index.html" />
     <link rel="next" title="CSS" href="../css/css_index.html" />
     <link rel="prev" title="프로그래밍 언어(Programming Language)" href="language_index.html" />
    
@@ -38,7 +34,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -48,16 +44,22 @@
             
   <div class="section" id="pr-language-terms">
 <span id="id1"></span><h1>1. 용어<a class="headerlink" href="#pr-language-terms" title="제목 주소">¶</a></h1>
-<div class="section" id="context-free-grammar">
-<h2>1.1. 문맥 자유 문법(Context-free grammar)<a class="headerlink" href="#context-free-grammar" title="제목 주소">¶</a></h2>
-<p>문맥 자유 문법은 모든 가능한 문자열을 표시하기 위한 <a class="reference internal" href="#production-rules"><span class="std std-ref">생성 규칙(Production rules)</span></a> 의 집합이다. 또한 형식적 문법(Formal Grammar)의 한 종류이다.</p>
+<div class="section" id="syntactic-metalanguage">
+<h2>1.1. 문법적 메타언어(Syntactic Metalanguage)<a class="headerlink" href="#syntactic-metalanguage" title="제목 주소">¶</a></h2>
+<p>메타언어란 다른 언어의 문법(Syntax)을 정의하기 위한 <strong>표기법</strong> 이다. 이때 몇가지의 <a class="reference internal" href="#production-rules"><span class="std std-ref">생성 규칙(Production rules)</span></a> 을 사용하여 문법을 정의하게된다. 명령어, 데이터의 포맷, 논문의 레퍼런스 부터 프로그래밍 언어의 문법까지 정의할 수 있다.</p>
+<p>대표적인 메타언어로 <a class="reference internal" href="#language-terms-ebnf"><span class="std std-ref">확장된 배커스 정규형 (Extended Backus–Naur form, EBNF)</span></a> 가 있다.</p>
 </div>
 <div class="section" id="production-rules">
 <span id="id2"></span><h2>1.2. 생성 규칙(Production rules)<a class="headerlink" href="#production-rules" title="제목 주소">¶</a></h2>
 <p>생성 규칙은 심볼(Symbol)을 재귀적으로 치환하여 새로운 심볼의 결과를 만드는 재작성 규칙(rewrite rule) 이다.</p>
+<p>생성 규칙은 비단말 심볼(non-terminal symbol)과 이 변환 가능한 형태(forms)로 구성된다.</p>
+</div>
+<div class="section" id="context-free-grammar">
+<h2>1.3. 문맥 자유 문법(Context-free grammar)<a class="headerlink" href="#context-free-grammar" title="제목 주소">¶</a></h2>
+<p>문맥 자유 문법은 모든 가능한 문자열을 표시하기 위한 <a class="reference internal" href="#production-rules"><span class="std std-ref">생성 규칙(Production rules)</span></a> 의 집합이다. 또한 형식적 문법(Formal Grammar)의 한 종류이다.</p>
 </div>
 <div class="section" id="backus-normal-form">
-<h2>1.3. 배커스 정규형(Backus normal form)<a class="headerlink" href="#backus-normal-form" title="제목 주소">¶</a></h2>
+<h2>1.4. 배커스 정규형(Backus normal form)<a class="headerlink" href="#backus-normal-form" title="제목 주소">¶</a></h2>
 <p>배커스 정규형은 문맥 자유 문법을 위한 <strong>표기법</strong> 이다. 배커스 정규형은 주로 프로그래밍 언어의 문법을 묘사하며, <a class="reference external" href="https://en.wikipedia.org/wiki/Metalanguage">메타언어</a> 으로서 구절의 허용 가능한 구조와 문장의 구성과 문장을 묘사한다.</p>
 <p>BNF는 파생규칙의 집합이며 다음과 같이 작성한다.:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">symbol</span><span class="o">&gt;</span> <span class="p">::</span><span class="o">=</span> <span class="n">__expression__</span>
@@ -67,16 +69,12 @@
 <p>::= 은 왼쪽의 심볼이 오른쪽의 표현식으로 치환 될 수 있다는 의미를 갖는다.</p>
 </div>
 <div class="section" id="extended-backusnaur-form-ebnf">
-<span id="language-terms-ebnf"></span><h2>1.4. 확장된 배커스 정규형 (Extended Backus–Naur form, EBNF)<a class="headerlink" href="#extended-backusnaur-form-ebnf" title="제목 주소">¶</a></h2>
+<span id="language-terms-ebnf"></span><h2>1.5. 확장된 배커스 정규형 (Extended Backus–Naur form, EBNF)<a class="headerlink" href="#extended-backusnaur-form-ebnf" title="제목 주소">¶</a></h2>
 <p>EBNF는 BNF을 확장한 국제표준 메타언어이다. <a class="reference external" href="http://standards.iso.org/ittf/PubliclyAvailableStandards/s026153_ISO_IEC_14977_1996(E).zip">이곳</a> 에서 EBNF 표준을 확인할 수 있다.</p>
 </div>
 <div class="section" id="syntax">
-<h2>1.5. 문법, 구문론(Syntax)<a class="headerlink" href="#syntax" title="제목 주소">¶</a></h2>
+<h2>1.6. 문법, 구문론(Syntax)<a class="headerlink" href="#syntax" title="제목 주소">¶</a></h2>
 <p>어떤 문장 구조가 타당한지 나타내는 규칙이다.</p>
-</div>
-<div class="section" id="syntactic-metalanguage">
-<h2>1.6. 문법적 메타언어(Syntactic Metalanguage)<a class="headerlink" href="#syntactic-metalanguage" title="제목 주소">¶</a></h2>
-<p>메타언어란 다른 언어(Language)의 문법(Syntax)을 정의하기 위한 <strong>표기법</strong> 이다. 이때 몇가지의 규칙을 사용하여 문법을 정의하게된다. 시스템에서 사용하는 명령어나 데이터의 포맷 부터 프로그래밍 언어의 문법까지 정의할 수 있다. 대표적인 메타언어로 <a class="reference internal" href="#language-terms-ebnf"><span class="std std-ref">확장된 배커스 정규형 (Extended Backus–Naur form, EBNF)</span></a> 가 있다.</p>
 </div>
 <div class="section" id="programming-language">
 <h2>1.7. 프로그래밍 언어(Programming language)<a class="headerlink" href="#programming-language" title="제목 주소">¶</a></h2>
@@ -105,34 +103,14 @@
 </div>
 <div class="section" id="sequence">
 <h2>1.12. 시퀀스(Sequence)<a class="headerlink" href="#sequence" title="제목 주소">¶</a></h2>
-<p>0개 이상의 항목을 포함하는 순서가 있는 리스트이다. 서브 시퀀스(Subsequence)는 시퀀스 안에 있는 시퀀스를 뜻한다.</p>
-</div>
-<div class="section" id="meta-identifier">
-<h2>1.13. 메타 식별자(Meta-identifier)<a class="headerlink" href="#meta-identifier" title="제목 주소">¶</a></h2>
-<p>비 단말 심볼(Non-terminal symbol)의 이름을 뜻한다.</p>
-</div>
-<div class="section" id="sentence">
-<h2>1.14. 문장(Sentence)<a class="headerlink" href="#sentence" title="제목 주소">¶</a></h2>
-<p>심볼(Symbols)의 시퀀스를 뜻한다.</p>
-</div>
-<div class="section" id="terminal-symbol">
-<h2>1.15. 단말 심볼(Terminal symbol)<a class="headerlink" href="#terminal-symbol" title="제목 주소">¶</a></h2>
-<p>문자들의 시퀀스를 뜻한다. 더이상 쪼갤 수 없다.</p>
-</div>
-<div class="section" id="non-terminal-symbol">
-<h2>1.16. 비 단말 심볼(Non-terminal symbol)<a class="headerlink" href="#non-terminal-symbol" title="제목 주소">¶</a></h2>
-<p>언어의 문법적 부분을 뜻한다.</p>
-</div>
-<div class="section" id="syntax-rule">
-<h2>1.17. 문법 규칙(Syntax-rule)<a class="headerlink" href="#syntax-rule" title="제목 주소">¶</a></h2>
-<p><em>메타 식별자, 정의 심볼(defining-symbol), 정의 리스트(definitions-list)로</em> 구성된다. 1개 이상의 문법 규칙으로 언어의 문법을 정의한다. <strong>정의 리스트(definitions-list)는 |(definition-seperator-symbol)로</strong> 구분된 단일 정의(Single-definition)으로 구분된다.</p>
+<p>시퀀스란 0개 이상의 항목을 포함하는 순서가 있는 리스트이다. 서브 시퀀스(Subsequence)는 시퀀스 안에 있는 시퀀스를 뜻한다.</p>
 </div>
 <div class="section" id="monad">
-<h2>1.18. 모나드(Monad)<a class="headerlink" href="#monad" title="제목 주소">¶</a></h2>
+<h2>1.13. 모나드(Monad)<a class="headerlink" href="#monad" title="제목 주소">¶</a></h2>
 <p>특정한 타입의 값을 저장하거나 특정 연산으로 부터 새로운 타입을 만들어내는 것을 뜻한다.</p>
 </div>
 <div class="section" id="references">
-<h2>1.19. References<a class="headerlink" href="#references" title="제목 주소">¶</a></h2>
+<h2>1.14. References<a class="headerlink" href="#references" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>문맥자유문법: <a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions">https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions</a></li>
 <li>배커스 정규형: <a class="reference external" href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form">https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form</a></li>
@@ -155,25 +133,20 @@
   <h3><a href="../index.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">1. 용어</a><ul>
-<li><a class="reference internal" href="#context-free-grammar">1.1. 문맥 자유 문법(Context-free grammar)</a></li>
+<li><a class="reference internal" href="#syntactic-metalanguage">1.1. 문법적 메타언어(Syntactic Metalanguage)</a></li>
 <li><a class="reference internal" href="#production-rules">1.2. 생성 규칙(Production rules)</a></li>
-<li><a class="reference internal" href="#backus-normal-form">1.3. 배커스 정규형(Backus normal form)</a></li>
-<li><a class="reference internal" href="#extended-backusnaur-form-ebnf">1.4. 확장된 배커스 정규형 (Extended Backus–Naur form, EBNF)</a></li>
-<li><a class="reference internal" href="#syntax">1.5. 문법, 구문론(Syntax)</a></li>
-<li><a class="reference internal" href="#syntactic-metalanguage">1.6. 문법적 메타언어(Syntactic Metalanguage)</a></li>
+<li><a class="reference internal" href="#context-free-grammar">1.3. 문맥 자유 문법(Context-free grammar)</a></li>
+<li><a class="reference internal" href="#backus-normal-form">1.4. 배커스 정규형(Backus normal form)</a></li>
+<li><a class="reference internal" href="#extended-backusnaur-form-ebnf">1.5. 확장된 배커스 정규형 (Extended Backus–Naur form, EBNF)</a></li>
+<li><a class="reference internal" href="#syntax">1.6. 문법, 구문론(Syntax)</a></li>
 <li><a class="reference internal" href="#programming-language">1.7. 프로그래밍 언어(Programming language)</a></li>
 <li><a class="reference internal" href="#formal-language">1.8. 형식 언어(Formal language)</a></li>
 <li><a class="reference internal" href="#metalanguage">1.9. 메타언어(Metalanguage)</a></li>
 <li><a class="reference internal" href="#formal-syntax-definition">1.10. 형식적 문법 정의(Formal syntax definition)</a></li>
 <li><a class="reference internal" href="#id5">1.11. 매개변수, 인자값</a></li>
 <li><a class="reference internal" href="#sequence">1.12. 시퀀스(Sequence)</a></li>
-<li><a class="reference internal" href="#meta-identifier">1.13. 메타 식별자(Meta-identifier)</a></li>
-<li><a class="reference internal" href="#sentence">1.14. 문장(Sentence)</a></li>
-<li><a class="reference internal" href="#terminal-symbol">1.15. 단말 심볼(Terminal symbol)</a></li>
-<li><a class="reference internal" href="#non-terminal-symbol">1.16. 비 단말 심볼(Non-terminal symbol)</a></li>
-<li><a class="reference internal" href="#syntax-rule">1.17. 문법 규칙(Syntax-rule)</a></li>
-<li><a class="reference internal" href="#monad">1.18. 모나드(Monad)</a></li>
-<li><a class="reference internal" href="#references">1.19. References</a></li>
+<li><a class="reference internal" href="#monad">1.13. 모나드(Monad)</a></li>
+<li><a class="reference internal" href="#references">1.14. References</a></li>
 </ul>
 </li>
 </ul>
@@ -191,7 +164,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/pr_language/language_terms.txt"
+      <li><a href="../_sources/pr_language/language_terms.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -213,11 +186,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/pr_language/language_terms.txt"
+      <a href="../_sources/pr_language/language_terms.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

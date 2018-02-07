@@ -1,5 +1,5 @@
 .. operating_system_index:
-5
+
 .. meta::
 	:site_name: Chang docs
 	:title: Operating System index page
@@ -15,4 +15,5 @@ Contents:
    :maxdepth: 2
    :numbered: 
 
+   operating_system_memory.rst
    operating_system.rst

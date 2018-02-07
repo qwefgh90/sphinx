@@ -1,41 +1,40 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>2. JVM &mdash; Code Accelerator Document 1.0 documentation</title>
-    
+    <title>2. JVM &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Code Accelerator Document 1.0 documentation" href="../index.html" />
-    <link rel="up" title="자바(Java)" href="java_index.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
     <link rel="next" title="설계(Design)" href="../design/design_index.html" />
     <link rel="prev" title="1. 자바 기본" href="java_basic.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+  
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -76,8 +75,9 @@
 <h2>2.4. JVM 튜닝<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <p>몇몇 가지 중요한 옵션은 아래와 같다.</p>
 <ul class="simple">
-<li>-Xmx: 애플리케이션에서 사용할 수 있는 최대 힙 사이즈이다.</li>
-<li>-Xms: 애플리케이션의 시작 힙 사이즈이다.</li>
+<li>-Xmx: 최대 힙 사이즈이다.</li>
+<li>-Xms: 시작 힙 사이즈이다.</li>
+<li>-Xss: 스레드 스택 크기이다.</li>
 <li>-XX:NewRatio: New generation 공간의 비율을 정할 수 있다. <a href="#id4"><span class="problematic" id="id5">*</span></a>heap x (1 / (1 + ratio))*만큼을 New에 할당한다.</li>
 <li>-XX:NewSize: 초기 New generation 공간의 크기이다.</li>
 <li>-XX:MaxNewSize: New generation 공간의 최대 크기이다.</li>
@@ -135,6 +135,18 @@
 <p><strong>Old 영역이 가득차게되면 GC가 발생한다.(Major GC or Full GC)</strong> 알고리즘 종류에는 Serial GC, Parallel GC, Parallel Old GC, CMS GC, G1 GC등이 있다. 서비스에 사용되는 WAS의 스레드 개수와 인스턴스 개수에 따라 알고리즘을 선택해는것이 좋다.</p>
 </div>
 </div>
+<div class="section" id="limit-of-thread">
+<span id="id9"></span><h2>2.6. 스레드 개수의 한계<a class="headerlink" href="#limit-of-thread" title="제목 주소">¶</a></h2>
+<p>사용가능한 스레드의 최대 개수는 시스템 설정과 메모리의 크기와 연관이 있다. 일반적으로 스레드는 OS 스레드와 일대일로 매핑되며 스레드별 스택을 보유하고 있다. 즉 OS 스레드 생성 개수에 제한이 있을 경우 생성이 안될 수 있다.</p>
+<p>중요한 부분은 스레드가 스택을 사용한다는 것이다. Java6 (Windows, Linux) 기준 32비트 JVM에서는 <strong>320K</strong> , 64비트 JVM에서는 <strong>1M</strong> 만큼의 스택을 생성한다. <strong>즉, 4GB 메모리를 사용할 때</strong> 64비트 JVM에서는 4000개, 32비트 JVM에서는 약 8000개의 스레드를 생성할 수 있다. 최대 스레드를 확인하는 <a class="reference external" href="https://gist.github.com/qwefgh90/be371bf645475adda3ff546d43d98c26">예제</a> 이다.</p>
+<p>자바 서버 프로그래밍을 한다면 스레드 대신 SocketServerChannel를 활용하여 커넥션을 다루는 것이 더 효율적이다. SocketServerChannel 관련 <a class="reference external" href="https://gist.github.com/qwefgh90/9ae28bf23583b8f22f8c0aa26349a78e">예제</a> 이다.</p>
+</div>
+<div class="section" id="id12">
+<h2>2.7. 참조<a class="headerlink" href="#id12" title="제목 주소">¶</a></h2>
+<ul class="simple">
+<li>스레드 메모리: <a class="reference external" href="http://www.oracle.com/technetwork/java/hotspotfaq-138619.html#threads_oom">http://www.oracle.com/technetwork/java/hotspotfaq-138619.html#threads_oom</a></li>
+</ul>
+</div>
 </div>
 
 
@@ -156,6 +168,8 @@
 <li><a class="reference internal" href="#old-old-space">2.5.3. Old 영역 (Old Space)</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#limit-of-thread">2.6. 스레드 개수의 한계</a></li>
+<li><a class="reference internal" href="#id12">2.7. 참조</a></li>
 </ul>
 </li>
 </ul>
@@ -173,7 +187,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/java/java_jvm.txt"
+      <li><a href="../_sources/java/java_jvm.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -195,11 +209,11 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/java/java_jvm.txt"
+      <a href="../_sources/java/java_jvm.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
