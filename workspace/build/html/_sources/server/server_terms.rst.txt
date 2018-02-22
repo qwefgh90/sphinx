@@ -127,6 +127,26 @@ Fibre Channel Adapter
 
 서버와 SAN의 연결을 제공하는 어댑터이다.
 
+Fiber jumper
+============
+
+LC, SC 등 다른 커넥터와 함께 장치와 장치를 연결하는 선이다. 
+
+UTP 케이블
+==========
+
+일반적으로 컴퓨터 네트워크, 전화에서 사용되는 케이블로, 절연된 2개의 구리선을 꼬아 플라스틱 피복을 입혀 만든 선이다. 
+
+Category 5 cable(Cat 5)
+=======================
+
+컴퓨터 네트워크를 위한 UTP 케이블을 뜻한다.
+
+RJ45
+====
+
+일반적으로 UTP 케이블의 끝부분에 사용되는 커넥터이다.
+
 참조
 ====
 
@@ -139,3 +159,7 @@ Fibre Channel Adapter
 - NVME: http://www.kbench.com/?q=node/149517
 - SFF-8482: http://www.bodnara.co.kr/bbs/article.html?num=94364
 - RAID: https://en.wikipedia.org/wiki/RAID
+- UTP: https://en.wikipedia.org/wiki/Twisted_pair
+- CAT5: https://en.wikipedia.org/wiki/Category_5_cable
+- Fiber jumper: http://searchnetworking.techtarget.com/definition/fiber-jumper
+- RJ45: http://www.dslreports.com/forum/r14519935-UTP-cable-vs-RJ45-cable
