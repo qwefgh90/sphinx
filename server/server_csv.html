@@ -1,0 +1,178 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>3. Cluster Shared Volume (CSV) &#8212; Code Accelerator Document 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="Spring" href="../spring/spring_index.html" />
+    <link rel="prev" title="2. 상용 서버의 기술적 특징" href="server_vender.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cluster-shared-volume-csv">
+<span id="server-csv"></span><h1>3. Cluster Shared Volume (CSV)<a class="headerlink" href="#cluster-shared-volume-csv" title="제목 주소">¶</a></h1>
+<p>여러대의 서버가 하나의 파일시스템(NTFS, ReFS)에 동시에 접근할 수 있도록 해주는 기술이다.</p>
+<p>다음은 CSV에서 사용되는 용어이다.</p>
+<ul class="simple">
+<li>CSV 디스크를 위한 NTFS가 마운트된 노드를 코디네이터 노드라 한다.</li>
+<li>클러스터 디스크가 마운트되지 않은 노드를 데이터 서버(Data Server, DS)라 한다.</li>
+<li>일반적으로 1개의 디스크는 1개의 NTFS 볼륨을 갖는다. 물론 1개의 디스크에 여러개의 볼륨을 생성할 수 있다.</li>
+<li>디스크 소유권을 이전하면 모든 볼륨이 소유자로 이동한다. 단 Storage Space는 예외이다.</li>
+<li>NTFS는 클러스터 파일 시스템이 아니므로 오직 하나의 노드에만 마운트된다.</li>
+<li>CSVFS는 CSV 파일 시스템을 뜻한다.</li>
+</ul>
+<div class="section" id="ntfs-csvflt">
+<h2>3.1. NTFS 볼륨 스택과 CsvFlt 필터<a class="headerlink" href="#ntfs-csvflt" title="제목 주소">¶</a></h2>
+<p>코디네이터 노드에는 CsvFlt.sys 필터가 설치되어 있다. 이 필터는 사용자 모드에서 NTFS에 사용할 수 없도록 NTFS 볼륨을 보호하면서, 동시에 여러 노드가 사용할 수 있도록 NTFS 상태를 조정하고 여러가지 연산을 변환한다.</p>
+</div>
+<div class="section" id="system-ntfs-volume-csvnsflt">
+<h2>3.2. System NTFS Volume 스택과 CsvNSFlt 필터<a class="headerlink" href="#system-ntfs-volume-csvnsflt" title="제목 주소">¶</a></h2>
+<p>일반적으로 이 볼륨과 필터는 모든 노드에 존재한다. 이 필터는 인가되지 않은 접근으로 부터 <strong>C:ClusterStorage</strong> 을 보호한다. 또한 Block Level Redirected IO를 디스크에 전달하도록 도와준다.</p>
+</div>
+<div class="section" id="csv-csv">
+<h2>3.3. CSV 파일 시스템 스택과 CSV 볼륨 매니저<a class="headerlink" href="#csv-csv" title="제목 주소">¶</a></h2>
+<p>CSV 파일 시스템은 볼륨 매니저를 이용하여 여러 볼륨에 붙을 수 있다. CSV 볼륨 매니저는 csvvbus.sys를 뜻한다.</p>
+<div class="section" id="id1">
+<h3>3.3.1. 데이터 흐름<a class="headerlink" href="#id1" title="제목 주소">¶</a></h3>
+</div>
+</div>
+<div class="section" id="metadata">
+<h2>3.4. Metadata<a class="headerlink" href="#metadata" title="제목 주소">¶</a></h2>
+<img alt="../_images/metadata_flow.jpg" src="../_images/metadata_flow.jpg" />
+<p>읽기, 쓰기를 제외한 연산을 메타데이터(Metadata) 연산 이라고한다. 예를들면 파일생성, 파일닫기, 이름변경, 속성변경, 파일삭제, 크기변경 등의 연산이 있다.</p>
+<p>위 그림을 보면 Node1와 Node3은 메타데이터 연산을 SMB를 통해 Node2의 NTFS 스택으로 전달한다. 메타데이터는 언제나 NTFS 스택으로 전달된다. 반면 Node2(코디네이터 노드)의 메타데이터 연산은 같은 위치에 있는 NTFS 스택으로 전달된다.</p>
+</div>
+<div class="section" id="direct-io">
+<h2>3.5. Direct IO<a class="headerlink" href="#direct-io" title="제목 주소">¶</a></h2>
+<img alt="../_images/directio_flow.jpg" src="../_images/directio_flow.jpg" />
+<p>Direct IO는 네트워크를 사용하지 않는 읽기, 쓰기 연산을 뜻한다. CSV에서는 CsvFs에서 CsvVbus를 통해 디스크에 접근한다. Direct IO는 <strong>NTFS 스택을 우회하여</strong> 디스크에 직접 도달한다.</p>
+</div>
+<div class="section" id="block-level-redirected-io">
+<h2>3.6. Block Level Redirected IO<a class="headerlink" href="#block-level-redirected-io" title="제목 주소">¶</a></h2>
+<img alt="../_images/blockredirectedio_flow.jpg" src="../_images/blockredirectedio_flow.jpg" />
+<p>물리적으로 디스크에 연결되어 있지 않은 노드의 경우, 코디네이터 노드로 Redirected IO를 전송하여 읽기, 쓰기 연산을 수행한다. 코디네이터 노드는 오직 시스템 볼륨 NTFS 스택(System Volume NTFS Stack)만 사용하여 Redirected IO를 처리한다. CsvFs가 전송한 Block Level Redirected IO는 CsvNsFlt 필터를 통해 NTFS나 볼륨 스택을 거치지 않고 바로 디스크에 전달된다.</p>
+<p><strong>즉, Block Level Redirected IO는 데이터 서버에서 CsvVBus을 통해 코디네이터 노드로 전달되어 CsvNsFlt의 도움을 받아 Direct IO 처럼 IO가 디스크에 전달된다.</strong></p>
+<p>하지만, 코디네이터 노드는 IO가 발생할 경우 언제나 직접 디스크와 통신한다. 따라서 코디네이터 노드는 Redirected IO가 필요하지 않다. 예외적으로 물리적으로 디스크에 연결된 데이터 서버도 Redirected IO가 필요한 경우가 있다.</p>
+<p>첫번째로 어댑터가 고장나거나, SAN 스위치가 고장난 경우이다. <strong>CsvVbus를 통해 Direct IO를 시도한 뒤 실패하면 코디네이터 노드를 통해 Block Level Redirected IO를 수행할 것이다.</strong> 두번째 경우는 디스크가 미러링된 Storage Space일 경우이다.</p>
+</div>
+<div class="section" id="file-level-redirected-io">
+<h2>3.7. File Level Redirected IO<a class="headerlink" href="#file-level-redirected-io" title="제목 주소">¶</a></h2>
+<img alt="../_images/redirectedio_flow.jpg" src="../_images/redirectedio_flow.jpg" />
+<p>데이터 서버의 CsvFs을 통해 IO를 코디네이터 노드의 NTFS 스택으로 전달하여 디스크를 사용할 수 있도록 하는 모드이다.</p>
+<div class="section" id="id2">
+<h3>3.7.1. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>csv inside out: <a class="reference external" href="https://blogs.msdn.microsoft.com/clustering/2013/12/02/cluster-shared-volume-csv-inside-out/">https://blogs.msdn.microsoft.com/clustering/2013/12/02/cluster-shared-volume-csv-inside-out/</a></li>
+<li>csv state: <a class="reference external" href="https://blogs.msdn.microsoft.com/clustering/2013/12/05/understanding-the-state-of-your-cluster-shared-volumes-in-windows-server-2012-r2/">https://blogs.msdn.microsoft.com/clustering/2013/12/05/understanding-the-state-of-your-cluster-shared-volumes-in-windows-server-2012-r2/</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">3. Cluster Shared Volume (CSV)</a><ul>
+<li><a class="reference internal" href="#ntfs-csvflt">3.1. NTFS 볼륨 스택과 CsvFlt 필터</a></li>
+<li><a class="reference internal" href="#system-ntfs-volume-csvnsflt">3.2. System NTFS Volume 스택과 CsvNSFlt 필터</a></li>
+<li><a class="reference internal" href="#csv-csv">3.3. CSV 파일 시스템 스택과 CSV 볼륨 매니저</a><ul>
+<li><a class="reference internal" href="#id1">3.3.1. 데이터 흐름</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#metadata">3.4. Metadata</a></li>
+<li><a class="reference internal" href="#direct-io">3.5. Direct IO</a></li>
+<li><a class="reference internal" href="#block-level-redirected-io">3.6. Block Level Redirected IO</a></li>
+<li><a class="reference internal" href="#file-level-redirected-io">3.7. File Level Redirected IO</a><ul>
+<li><a class="reference internal" href="#id2">3.7.1. 참조</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="server_index.html">서버(Server)</a><ul>
+      <li>Previous: <a href="server_vender.html" title="이전 장">2. 상용 서버의 기술적 특징</a></li>
+      <li>Next: <a href="../spring/spring_index.html" title="다음 장">Spring</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/server/server_csv.rst.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/server/server_csv.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
