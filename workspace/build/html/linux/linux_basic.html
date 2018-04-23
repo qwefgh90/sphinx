@@ -4,12 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="Chang docs" name="site_name" />
-<meta content="Javascript index page" name="title" />
-<meta content="This is a javascript index page." name="description" />
-<meta content="javascript" name="keywords" />
-
-    <title>Javascript &#8212; Code Accelerator Document 1.0 documentation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Linux 기본 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -29,8 +25,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
-    <link rel="next" title="1. 용어" href="javascript_terms.html" />
-    <link rel="prev" title="5. 네트워크 프로그래밍" href="../network/network_programming.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -46,25 +40,24 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="javascript-index"></span><div class="section" id="javascript">
-<h1>Javascript<a class="headerlink" href="#javascript" title="제목 주소">¶</a></h1>
-<p>Contents:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="javascript_terms.html">1. 용어</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="javascript_terms.html#ecma-script">1.1. ECMA Script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javascript_terms.html#ecma-script-editions">1.2. ECMA Script Editions</a></li>
+  <div class="section" id="linux">
+<span id="linux-basic"></span><h1>Linux 기본<a class="headerlink" href="#linux" title="제목 주소">¶</a></h1>
+<div class="section" id="id1">
+<h2>디스크<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
+<p>리눅스에서 디스크를 부르는 이름은 인식된 순서대로 알파벳을 붙여서 부른다.</p>
+<ul class="simple">
+<li>/dev/sda</li>
+<li>/deb/sdb</li>
+<li>/dev/sdc</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="javascript_browser.html">2. 페이지 로딩 이벤트</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="javascript_browser.html#domcontentloaded">2.1. DOMContentLoaded</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javascript_browser.html#load">2.2. load</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javascript_browser.html#beforeunload">2.3. beforeunload</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javascript_browser.html#unload">2.4. unload</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javascript_browser.html#readystatechange-async-readystate">2.5. readyStateChange 그리고 async, readyState</a></li>
-</ul>
-</li>
-</ul>
+</div>
+<div class="section" id="id2">
+<h2>표준 파티션<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<p>리눅스에는 크게 3가지 종류의 파티션이 있다. 기본 파티션, 확장 파티션, 논리 파티션이다. 기본 또는 확장파티션은 디스크의 이름에 1~4 사이의 숫자를 붙여서 장치로 보이게 된다. 논리 파티션은 확장 파티션위에 생성 가능하며 디스크의 이름에 5 이상의 숫자를 붙여서 장치로 보이게 된다. 예를들면 <em>/dev/sda1</em>, <em>/dev/sda5</em> 이다.</p>
+<p>관련 명령어:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">fdisk</span> <span class="o">-</span><span class="n">l</span><span class="p">:</span> <span class="n">디스크별</span> <span class="n">파티션을</span> <span class="n">확인할</span> <span class="n">수</span> <span class="n">있다</span><span class="o">.</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -73,19 +66,26 @@
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Linux 기본</a><ul>
+<li><a class="reference internal" href="#id1">디스크</a></li>
+<li><a class="reference internal" href="#id2">표준 파티션</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../network/network_programming.html" title="이전 장">5. 네트워크 프로그래밍</a></li>
-      <li>Next: <a href="javascript_terms.html" title="다음 장">1. 용어</a></li>
   </ul></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/javascript/javascript_index.rst.txt"
+      <li><a href="../_sources/linux/linux_basic.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -111,7 +111,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/javascript/javascript_index.rst.txt"
+      <a href="../_sources/linux/linux_basic.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

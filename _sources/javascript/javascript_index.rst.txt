@@ -16,3 +16,4 @@ Contents:
    :numbered: 
 
    javascript_terms.rst
+   javascript_browser.rst

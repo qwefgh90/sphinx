@@ -24,6 +24,7 @@ Contents:
    pr_language/language_index.rst
    css/css_index.rst
    server/server_index.rst
+   linux/linux_index.rst
    spring/spring_index.rst
    network/network_index.rst
    javascript/javascript_index.rst

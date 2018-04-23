@@ -88,12 +88,11 @@
 <span id="id5"></span><h2>2.3. 해시 테이블<a class="headerlink" href="#hash-table" title="제목 주소">¶</a></h2>
 <div class="section" id="hash">
 <span id="index-0"></span><h3>2.3.1. 해시함수와 해시값(Hash)<a class="headerlink" href="#hash" title="제목 주소">¶</a></h3>
-<p><a class="reference external" href="http://ko.wikipedia.org/wiki/%ED%95%B4%EC%8B%9C_%ED%95%A8%EC%88%98">해시 함수 위키피디아</a> <strong>해시함수란 임의의 길이를 갖는 데이터를 일정한 길이를 갖는 값으로 만드는 함수이다. 이때 결과값을 해시, 해시값이라한다.</strong> 해시함수의 특성은 해시값이 다를때 함수의 입력값도 달라야 하는 것이다. (역은 성립안함) 해시테이블에서 사용되는 해시값은 hashCode()의 구현이 따라 달라진다.</p>
-<p><strong>정리해보면 해시값은 일정한 길이를 갖는 해시함수를 통해 계산된 값이라고 할 수 있다.</strong> 해시테이블은 이러한 해시값을 버킷의 길이로 나눈 나머지를 인덱스로 사용해 빠른 접근을 가능하게 한다.</p>
-<p>결론</p>
+<p><a class="reference external" href="http://ko.wikipedia.org/wiki/%ED%95%B4%EC%8B%9C_%ED%95%A8%EC%88%98">해시 함수 위키피디아</a> <strong>해시함수란 임의의 길이를 갖는 데이터를 일정한 길이를 갖는 값으로 만드는 함수이다. 이때 결과값을 해시, 해시값이라한다.</strong> 해시값이 다를때 함수의 입력값도 달라야 한다.</p>
+<p>특히 암호학적 해시는 강한, 약한 충돌 저항성을 요구한다.</p>
 <ul class="simple">
-<li>해시테이블의 성능은 해시함수에 의존한다. 좋은 해시함수 일수록 충돌이 적게 발생한다.</li>
-<li>버킷의 개수가 적다면 해시함수에 관계없이 충돌이 많이 발생할 수 있다.</li>
+<li>강한 충돌 저항성: H(x) = H(y)인 x와 y를 찾는 것이 무시 가능 할 때</li>
+<li>약한 충돌 저항성: x가 주어졌을때 H(x) = H(y)인 y를 찾는 것이 무시 가능 할 때</li>
 </ul>
 </div>
 <div class="section" id="id7">

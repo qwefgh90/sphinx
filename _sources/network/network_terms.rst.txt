@@ -33,7 +33,19 @@
 
 클라이언트의 요청에 대한 처리가 요청 한 뒤에 발생하는 것을 의미한다.
 
+NetBIOS
+=======
+
+근거리 망에 있는 프로그램간 통신을 위한 API이다. 
+
+SMB
+===
+
+파일 공유 및 프린트 공유를 위해 고안된 프로토콜이다. NetBIOS API를 이용해 SMB 명령을 서버에 전달하고 서버측에서도 동일하게 NetBIOS API를 사용하여 통신한다. 그외에도 소켓 API를 사용해서 통신할 수도 있다.
+
 참조
 ====
 
 - 논블로킹: http://www.reactivemanifesto.org/glossary#Message-Driven
+- NetBIOS: https://blogs.msmvps.com/acefekay/2013/03/02/do-i-need-netbios/
+- NetBIOS2: https://www.quora.com/What-is-the-difference-between-NetBIOS-and-SMB
