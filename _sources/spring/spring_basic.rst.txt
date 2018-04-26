@@ -29,7 +29,7 @@ Spring Framework는 의존성 주입(Dependency injection)과 객체 관리를 �
 스프링의 이해
 =======================
 
-스프링 프레임워크의 기본 컨셉은 DI, AOP, Portable Service Abstract라고 한다. 스프링빈은 스프링 컨테이너가 생성, 사용등을 제어해주는 객체이다. 어플리케이션 컨텍스트는 스프링 컨테이너에서 빈을 생성하는 빈 팩토리이다. DaoFactory라는 객체가 있다면 @Configuration과 @Bean이라는 애노테이션을 사용하여 어플리케이션 컨텍스트가 사용할 정보라는 것을 표시한다. 
+스프링 애플리케이션을 구성하며 스프링 컨테이너에 의해 관리되는 객체를 *빈즈* 이라 부른다. **어플리케이션 컨텍스트(ApplicationContext)는 대표적인 스프링 IOC 컨테이너로서 XML, Anotation, Code 등으로 작성된 설정 메타데이터를 기반으로 의존성(Dependency) 그래프를 구성하고 빈즈를 생성하는 등 IOC 컨테이너로서 해야할 일을 한다.**
 
 .. image:: image/spring_arch.gif
 

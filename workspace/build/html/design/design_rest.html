@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>3. 톰캣 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>3. Rest API &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
-    <link rel="next" title="네트워크" href="../network/network_index.html" />
-    <link rel="prev" title="2. Spring Web MVC" href="spring_web_mvc.html" />
+    <link rel="next" title="스칼라(Scala)" href="../scala/scala_index.html" />
+    <link rel="prev" title="2. 디자인 패턴" href="design_pattern.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -42,22 +42,27 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="tomcat">
-<span id="id1"></span><h1>3. 톰캣<a class="headerlink" href="#tomcat" title="제목 주소">¶</a></h1>
-<div class="section" id="id2">
-<h2>3.1. 스레드 설정<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
-<p>스레드 개수의 한계는 다음 <a class="reference internal" href="../java/java_jvm.html#limit-of-thread"><span class="std std-ref">스레드 개수의 한계</span></a> 에서 확인할 수 있다.</p>
-<p>최대 스레드 개수보다 중요한 것은 <strong>적정한 스레드 개수이다.</strong> Servlet Container의 스레드는 주로 <strong>요청을 처리하는 역할을 한다.</strong> 스레드의 개수가 많을 수록 동시에 많은 요청을 처리할 수 있는 것이다. 일반적으로 같이 운영되는 다른 시스템의 가용성을 고려하여 개수를 결정하는 것이 좋다. 실제로 데이터베이스 세션의 개수가 최대 200개라면 200개를 조금 넘도록 설정하는 것이 좋다. 모든 스레드가 데이터베이스에 접근하는 것은 아니기 때문이다. 1대의 서버를 최적으로 설정하고 서버의 개수를 늘리는 방식을 추천한다.</p>
-<p><strong>스레드 설정은 Connector(Service 하위) 요소의 특성(Attribute)으로 설정이 가능하다.</strong></p>
-</div>
-<div class="section" id="permgen">
-<h2>3.2. 톰캣 permgen에러<a class="headerlink" href="#permgen" title="제목 주소">¶</a></h2>
-<p><a class="reference external" href="http://kim3zz.blog.me/220302150100">permgen에러</a> 어플리케이션 실행 시 -XX:MaxPermSize=512로 해결가능</p>
-</div>
-<div class="section" id="id4">
-<h2>3.3. 참조<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
+  <div class="section" id="rest-api">
+<span id="design-rest"></span><h1>3. Rest API<a class="headerlink" href="#rest-api" title="제목 주소">¶</a></h1>
+<div class="section" id="rest-restful-web-service">
+<h2>3.1. Rest(Restful Web Service)<a class="headerlink" href="#rest-restful-web-service" title="제목 주소">¶</a></h2>
+<p>Rest란 분산 시스템을 설계하기 위한 아키텍처 스타일이다. Rest는 표준은 아니지만 몇가지 제약사항을 제시하고 있다. 일반적으로 클라이언트가 웹 리스소(Resource)에 형식적이고 상태가 없는 연산들을 수행할 수 있게 한다.</p>
+<p>RESTFul 아키텍처의 제약조건</p>
+<ol class="arabic simple">
+<li>Client-Server architecture</li>
+<li>Stateless</li>
+<li>Cacheability</li>
+<li>Layered System</li>
+<li>Uniform Interface</li>
+<li>Code-On-Demend(Optional)</li>
+</ol>
 <ul class="simple">
-<li>톰캣 설정: <a class="reference external" href="https://tomcat.apache.org/tomcat-7.0-doc/config/http.html">https://tomcat.apache.org/tomcat-7.0-doc/config/http.html</a></li>
+<li>Client-Server는 클라이언트와 서버의 관심을 분리하여, 서버의 확장성을 높이는 제약이다.</li>
+<li>Stateless는 요청, 응답중에 상태를 저장하지 않아야 한다는 것이다. 요청에 모든 정보를 저장해야 한다.</li>
+<li>Cached는 클라이언트의 요청을 캐시로 제공하여 네트워크를 효율적으로 사용할 수 있게 하는것 이다.</li>
+<li>Layered System은 클라이언트가 서비스를 요청하였을때 어느 서버에 요청하였는지 알 수 없게 하여 서버의 확장성을 높이는 제약이다.</li>
+<li>Uniform Interface는 요청에 자원을 식별할 수 있는 식별자, 행위, Header를 이용해 메시지를 설명, HATEOAS는 요청에 대한 응답에서 클라이언트가 사용할 수 있는 행위에 대해 반환하게 하는 제약이다. <a class="reference external" href="https://www.slideshare.net/trilancer/why-hateoas-1547275">참고자료가 있다.</a></li>
+<li>Code-On-Demend는 서버가 클라이언트가 실행할 수 있는 코드를 주는 것 이다.</li>
 </ul>
 </div>
 </div>
@@ -70,10 +75,8 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">목차</a></h3>
   <ul>
-<li><a class="reference internal" href="#">3. 톰캣</a><ul>
-<li><a class="reference internal" href="#id2">3.1. 스레드 설정</a></li>
-<li><a class="reference internal" href="#permgen">3.2. 톰캣 permgen에러</a></li>
-<li><a class="reference internal" href="#id4">3.3. 참조</a></li>
+<li><a class="reference internal" href="#">3. Rest API</a><ul>
+<li><a class="reference internal" href="#rest-restful-web-service">3.1. Rest(Restful Web Service)</a></li>
 </ul>
 </li>
 </ul>
@@ -81,9 +84,9 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="spring_index.html">Spring</a><ul>
-      <li>Previous: <a href="spring_web_mvc.html" title="이전 장">2. Spring Web MVC</a></li>
-      <li>Next: <a href="../network/network_index.html" title="다음 장">네트워크</a></li>
+  <li><a href="design_index.html">설계(Design)</a><ul>
+      <li>Previous: <a href="design_pattern.html" title="이전 장">2. 디자인 패턴</a></li>
+      <li>Next: <a href="../scala/scala_index.html" title="다음 장">스칼라(Scala)</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -91,7 +94,7 @@
   <div role="note" aria-label="source link">
     <h3>현재 문서</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/spring/tomcat.rst.txt"
+      <li><a href="../_sources/design/design_rest.rst.txt"
             rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
@@ -117,7 +120,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/spring/tomcat.rst.txt"
+      <a href="../_sources/design/design_rest.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

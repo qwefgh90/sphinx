@@ -199,6 +199,16 @@ User Credential을 이용한 사용자 인증
 
 https://technet.microsoft.com/en-us/library/cc772815(v=ws.10).aspx 및 https://technet.microsoft.com/en-us/library/cc780332(v=ws.10).aspx 을 읽어보길 추천한다.
 
+JWT(JSON Web Token)
+-------------------
+
+시스템간 자료를 안잔하게 주고받는 방법을 제공해주는 표준이다. 크게 사용자 인증과 데이터 교환을 위해 사용된다.
+
+토큰은 3가지 부분을 포함하고 있다.
+
+- header
+- payload
+- signature: HMAC으로 생성된 값, 무결성 검증 및 인증에 사용될 수 있다.
 
 참조
 ----
