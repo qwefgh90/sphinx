@@ -56,20 +56,24 @@
 <h2>1.3. 캡슐화 (Encapsulation)<a class="headerlink" href="#encapsulation" title="제목 주소">¶</a></h2>
 <p>캡슐화란 필드와 메서드를 묶고 그것을 외부의 잘못된 접근으로 숨기고 보호하는 개념을 뜻한다.</p>
 </div>
+<div class="section" id="high-level-policy-low-level-implementation">
+<h2>1.4. 높은 수준의 정책(high-level policy)과 낮은 수준의 구현(low-level implementation)<a class="headerlink" href="#high-level-policy-low-level-implementation" title="제목 주소">¶</a></h2>
+<p>정책이란 API나 인터페이스를 뜻한다. 높은 수준의 정책이란 도메인에 더 가까우며 잘 변하지 않으며 API나 인터페이스를 의미한다. 낮은 수준의 구현은 다른 모듈에 의해 특히, 높은 수준의 정책에 의해 사용되는 인터페이스를 뜻한다.</p>
+</div>
 <div class="section" id="responsibility-driven-design">
-<h2>1.4. 책임 주도 설계 (Responsibility-driven design)<a class="headerlink" href="#responsibility-driven-design" title="제목 주소">¶</a></h2>
+<h2>1.5. 책임 주도 설계 (Responsibility-driven design)<a class="headerlink" href="#responsibility-driven-design" title="제목 주소">¶</a></h2>
 <p>각 객체의 행동을 분석하여 이를 클라이언트-서버의 계약으로 접근하여 객체를 추상화하는 설계 테크닉이다.</p>
 </div>
 <div class="section" id="domain-driven-design">
-<h2>1.5. 도메인 주도 설계 (Domain-driven design)<a class="headerlink" href="#domain-driven-design" title="제목 주소">¶</a></h2>
+<h2>1.6. 도메인 주도 설계 (Domain-driven design)<a class="headerlink" href="#domain-driven-design" title="제목 주소">¶</a></h2>
 <p>프로그램이 필요한 분야에서 다뤄야 할 대상, 활동을 중심으로 프로그래밍 설계하는 방법이다. OOP와 유사하다.</p>
 </div>
 <div class="section" id="object-relational-impedance-mismatch">
-<h2>1.6. 객체-관계형 임피던스 불일치 (Object-relational impedance mismatch)<a class="headerlink" href="#object-relational-impedance-mismatch" title="제목 주소">¶</a></h2>
+<h2>1.7. 객체-관계형 임피던스 불일치 (Object-relational impedance mismatch)<a class="headerlink" href="#object-relational-impedance-mismatch" title="제목 주소">¶</a></h2>
 <p>객체지향 프로그래밍에서 RDBMS를 사용할 때 마주할 수 있는 기술적 어려움이다. 데이터베이스 테이블을 객체나 클래스로 매핑해야하기 때문에 기술적으로 어려움이 발생할 수 있다. <strong>임피던스 미스매칭</strong> 은 전자공학의 오디오 시스템의 밸런스 유지를 위한 <a class="reference external" href="http://terms.naver.com/entry.nhn?docId=3340563&amp;cid=40942&amp;categoryId=32827">임피던스 매칭</a> 로 부터 파생되었다.</p>
 </div>
 <div class="section" id="uml">
-<h2>1.7. UML<a class="headerlink" href="#uml" title="제목 주소">¶</a></h2>
+<h2>1.8. UML<a class="headerlink" href="#uml" title="제목 주소">¶</a></h2>
 <p>클래스와 클래스간의 관계를 설계하는 언어이다. 화살표의 방향은 한쪽 클래스를 인식하는 방향으로 그어진다.</p>
 <ul class="simple">
 <li>+ : public</li>
@@ -84,7 +88,7 @@
 </ul>
 </div>
 <div class="section" id="reference">
-<h2>1.8. Reference<a class="headerlink" href="#reference" title="제목 주소">¶</a></h2>
+<h2>1.9. Reference<a class="headerlink" href="#reference" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li><strong>객체지향 프로그래밍.</strong>: <a class="reference external" href="https://en.wikipedia.org/wiki/Object-oriented_programming">https://en.wikipedia.org/wiki/Object-oriented_programming</a></li>
 <li><strong>객임주도설계.</strong>: <a class="reference external" href="https://en.wikipedia.org/wiki/Responsibility-driven_design">https://en.wikipedia.org/wiki/Responsibility-driven_design</a></li>
@@ -105,11 +109,12 @@
 <li><a class="reference internal" href="#design-terms">1.1. 디자인 패턴</a></li>
 <li><a class="reference internal" href="#id3">1.2. 객체지향 프로그래밍</a></li>
 <li><a class="reference internal" href="#encapsulation">1.3. 캡슐화 (Encapsulation)</a></li>
-<li><a class="reference internal" href="#responsibility-driven-design">1.4. 책임 주도 설계 (Responsibility-driven design)</a></li>
-<li><a class="reference internal" href="#domain-driven-design">1.5. 도메인 주도 설계 (Domain-driven design)</a></li>
-<li><a class="reference internal" href="#object-relational-impedance-mismatch">1.6. 객체-관계형 임피던스 불일치 (Object-relational impedance mismatch)</a></li>
-<li><a class="reference internal" href="#uml">1.7. UML</a></li>
-<li><a class="reference internal" href="#reference">1.8. Reference</a></li>
+<li><a class="reference internal" href="#high-level-policy-low-level-implementation">1.4. 높은 수준의 정책(high-level policy)과 낮은 수준의 구현(low-level implementation)</a></li>
+<li><a class="reference internal" href="#responsibility-driven-design">1.5. 책임 주도 설계 (Responsibility-driven design)</a></li>
+<li><a class="reference internal" href="#domain-driven-design">1.6. 도메인 주도 설계 (Domain-driven design)</a></li>
+<li><a class="reference internal" href="#object-relational-impedance-mismatch">1.7. 객체-관계형 임피던스 불일치 (Object-relational impedance mismatch)</a></li>
+<li><a class="reference internal" href="#uml">1.8. UML</a></li>
+<li><a class="reference internal" href="#reference">1.9. Reference</a></li>
 </ul>
 </li>
 </ul>

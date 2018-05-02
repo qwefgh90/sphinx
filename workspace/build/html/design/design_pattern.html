@@ -124,13 +124,24 @@
 <p>다른 객체에 일을 위임하는 설계 패턴을 뜻한다. 안드로이드에서 터치이벤트를 처리하기 위해 버튼의 구체적인 역할을 OnClickListener에 위임하였다.</p>
 </div>
 <div class="section" id="id5">
-<h2>2.8. 팩토리 메서드 패턴<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
-<p><a class="reference external" href="http://www.oodesign.com/factory-method-pattern.html">팩토리 메서드 패턴</a></p>
-<p>객체를 사용하는 측에서 사용하려는 클래스의 인터페이스만 정의하며 실제로 어떤 객체를 생성할지 구체적인 팩토리 메서드에 맡기는 패턴이다. 예를들어 워드에서 특별한 형식의 문서를 만들때 그 타입만 넘겨주면 타입에 관련된 구체적인 클래스를 반환한다.</p>
+<h2>2.8. 퍼사드 패턴<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
+<p>복잡하고 일반적인 모듈에 대한 간단하고 구체적인 인터페이스를 제공할때 주로 사용한다. 이 패턴은 정책을 높은 수준에 적용한다. 또한 이 패턴은 <strong>개발자에게 간단한 인터페이스를 사용하라고 강제한다.</strong> 사용자 입장에서는 복잡한 인터페이스는 퍼사드에 의해 완벽하게 가려지며 보이지 않게 된다.</p>
+<p>예를들어 java.sql 패키지 같은 경우 다양한 클래스로 구성되어 있으며 사용 방법이 복잡하다. 이를 조작하는 DB 클래스를 제공하여 문제를 간단하게 만들 수 있다.</p>
+</div>
+<div class="section" id="id6">
+<h2>2.9. 미디에이터 패턴<a class="headerlink" href="#id6" title="제목 주소">¶</a></h2>
+<p>어떠한 정책을 낮은 수준의 모듈부터 적용하는 패턴이다. 퍼사드 패턴과 달리 강제적이지 않은 방식으로 정책을 적용한다.</p>
+<p>예를들어 스마트폰에서 A라는 모듈에 새로운 메세지가 왔을때 B라는 모듈에 알림이 나타나도록 정책을 적용할 수 있다. 이러한 정책은 선택 가능하다.</p>
+</div>
+<div class="section" id="id7">
+<h2>2.10. 팩토리 패턴<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
+<p><a class="reference external" href="http://www.oodesign.com/factory-method-pattern.html">팩토리 패턴</a></p>
+<p>객체를 사용하는 측에서 사용하려는 클래스의 인터페이스만 정의하며 실제로 어떤 객체를 생성할지 구체적인 팩토리에 맡기는 패턴이다. 예를들어 워드에서 특별한 형식의 문서를 만들때 그 타입만 넘겨주면 타입에 관련된 구체적인 클래스를 반환한다.</p>
 <p>장점</p>
 <ul class="simple">
-<li>단지 인터페이스만 알고 있으면 되기 때문에 클래스와의 강결합을 줄여준다. 어플리케이션과 구체적인 클래스를 분리시킨다. 따라서 코드 수정이 적다.</li>
-<li>팩토리 메서드를 사용하여 내부적으로 수정이 쉬우므로 객체 생성의 다양성을 제공한다.</li>
+<li>단지 인터페이스만 알고 있으면 되기 때문에 클래스와의 강결합을 줄여준다. 어플리케이션과 구체적인 클래스를 분리시킨다. 팩토리 패턴을 적용하면 생성될 객체의 클래스를 수정하여도 상위 모듈의 재컴파일이 필요하지 않다.</li>
+<li>프로젝트 초기에 클래스가 자주 수정될 경우 사용하기 좋다.</li>
+<li>구체적인 팩토리를 여러개 만들어서 용도에 맞게 사용할 수 있다.</li>
 </ul>
 <p>단점 (사용하기 안좋은 경우)</p>
 <ul class="simple">
@@ -138,8 +149,13 @@
 <li>확장이 아닌 결합도를 줄이기 위해 사용하는 패턴이다.</li>
 </ul>
 </div>
-<div class="section" id="id7">
-<h2>2.9. 템플릿 메서드 패턴<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
+<div class="section" id="id9">
+<h2>2.11. 어댑터 패턴<a class="headerlink" href="#id9" title="제목 주소">¶</a></h2>
+<p>낮은 수준의 모듈의 소스코드가 없거나 직접 수정할 수 없을때, 서로 다른 인터페이스를 연결해주는 어댑터를 만들어서 함께 동작하게끔 하는 패턴이다.</p>
+<p>예를들어 상위 수준 정책이 의존하는 추상 인터페이스를 어댑터가 상속하게하고 내부적으로 다른 인터페이스를 사용하게 한다.</p>
+</div>
+<div class="section" id="id10">
+<h2>2.12. 템플릿 메서드 패턴<a class="headerlink" href="#id10" title="제목 주소">¶</a></h2>
 <p>부모 클래스에서 메서드 호출의 흐름을 제어하고 자식 클래스에서 구체적인 내용을 작성하는 패턴이다. 예를들어 HTML문서를 생성할때 템플릿 메서드를 활용하면 좋다. 템플릿 메서드에서 head, body 등의 필요한 태그를 생성하는 함수를 이용해 흐름을 작성한다.</p>
 <p>장점</p>
 <ul class="simple">
@@ -147,16 +163,16 @@
 <li>템플릿 메서드를 이용해 리팩토링이 쉽다.</li>
 </ul>
 </div>
-<div class="section" id="id8">
-<h2>2.10. 옵저버 패턴<a class="headerlink" href="#id8" title="제목 주소">¶</a></h2>
+<div class="section" id="id11">
+<h2>2.13. 옵저버 패턴<a class="headerlink" href="#id11" title="제목 주소">¶</a></h2>
 <p>다른 객체의 변화를 관찰하는 패턴이다. 콜백패턴이라고 불리기도 한다.</p>
 <p>장점</p>
 <ul class="simple">
 <li>객체의 변화를 감지할 수 있다.</li>
 </ul>
 </div>
-<div class="section" id="id9">
-<h2>2.11. 참조<a class="headerlink" href="#id9" title="제목 주소">¶</a></h2>
+<div class="section" id="id12">
+<h2>2.14. 참조<a class="headerlink" href="#id12" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>DI Motivation: <a class="reference external" href="https://github.com/google/guice/wiki/Motivation">https://github.com/google/guice/wiki/Motivation</a></li>
 <li>DI: <a class="reference external" href="https://github.com/google/guice/wiki/GettingStarted">https://github.com/google/guice/wiki/GettingStarted</a></li>
@@ -183,10 +199,13 @@
 <li><a class="reference internal" href="#ioc-inversion-of-control">2.5. IOC(Inversion of Control)</a></li>
 <li><a class="reference internal" href="#di-dependency-injection">2.6. DI(Dependency injection)</a></li>
 <li><a class="reference internal" href="#id4">2.7. 위임 패턴</a></li>
-<li><a class="reference internal" href="#id5">2.8. 팩토리 메서드 패턴</a></li>
-<li><a class="reference internal" href="#id7">2.9. 템플릿 메서드 패턴</a></li>
-<li><a class="reference internal" href="#id8">2.10. 옵저버 패턴</a></li>
-<li><a class="reference internal" href="#id9">2.11. 참조</a></li>
+<li><a class="reference internal" href="#id5">2.8. 퍼사드 패턴</a></li>
+<li><a class="reference internal" href="#id6">2.9. 미디에이터 패턴</a></li>
+<li><a class="reference internal" href="#id7">2.10. 팩토리 패턴</a></li>
+<li><a class="reference internal" href="#id9">2.11. 어댑터 패턴</a></li>
+<li><a class="reference internal" href="#id10">2.12. 템플릿 메서드 패턴</a></li>
+<li><a class="reference internal" href="#id11">2.13. 옵저버 패턴</a></li>
+<li><a class="reference internal" href="#id12">2.14. 참조</a></li>
 </ul>
 </li>
 </ul>
