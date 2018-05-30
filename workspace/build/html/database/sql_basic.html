@@ -490,12 +490,7 @@ DATETIME : 날짜와 시각 정보
 </pre></div>
 </div>
 <p>결과는 같다. 아래 방식은 ANSI/ISO SQL 표준방식이다. 등가조인, 이너조인은 자식 테이블의 FK와 부모 테이블의 PK가 같은 모든 결과를 출력한다. 이는 두 테이블의 교집합의 모든결과라고 할 수 있다.</p>
-<p>INNER JOIN에서 INNER를 생략해도 같은 동작을 하게된다.
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-</div>
-</div>
-<div class="section" id="dbms">
-<h2>3.12. DBMS별 스키마 정보<a class="headerlink" href="#dbms" title="제목 주소">¶</a></h2>
+<p>INNER JOIN에서 INNER를 생략해도 같은 동작을 하게된다.</p>
 <p><em>해킹방어를 위한 JAVA 시큐어코딩</em> 내용을 참조하였습니다.</p>
 <p>MySQL</p>
 <p>INFORMATION_SCHEMA.SCHEMATA : 하나의 스키마는 하나의 데이터베이스다. SCHEMATA는 데이터베이스의 정보를 제공한다.
@@ -507,6 +502,7 @@ sysobjects(sys.objects) : 데이터베이스 내에 만들어진 각 사용자 �
 syscolumns(sys.columns) : 뷰 또는 테이블과 같이 열을 갖고 있는 개체의 각 열에 대한 행을 반환
 systypes(sys.types) : 각 행당 시스템 및 사용자 정의 정보
 sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Microsoft Windows 사용자, Windows 그룹, Microsoft SQL Server 사용자 또는 SQL Server 역할 정보</p>
+</div>
 </div>
 </div>
 
@@ -549,7 +545,6 @@ sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Mic
 <li><a class="reference internal" href="#equi-join-inner-join">3.11.1. EQUI JOIN (INNER JOIN)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#dbms">3.12. DBMS별 스키마 정보</a></li>
 </ul>
 </li>
 </ul>

@@ -165,12 +165,13 @@ DI 패턴은 **아예 클래스 내부에서 객체를 생성하는 Compile-time
 옵저버 패턴
 ===================
 
-다른 객체의 변화를 관찰하는 패턴이다. 콜백패턴이라고 불리기도 한다.
+다른 객체의 변화를 관찰하는 패턴이다. OCP, LSP, DIP 등 3가지 원칙을 만족 시키며 Subject와 Observer로 역할이 나뉘어진다. Subject는 추상 클래스로(구체화를 못 하도록) 다른 객체에 알림을 줄때 사용하는 클래스이며, Observer는 관찰하고 싶을때 사용하는 인터페이스이다.
 
-장점
+동작하는 방식은 pull-model, push-model가 있다. pull-model은 observer에게 전달할 데이터의 종류가 간단할때, push-model은 복잡하거나 단순히 pull-model로는 가져올 수 없을때 사용한다.
 
-- 객체의 변화를 감지할 수 있다.
+.. image:: image/observer-pull.png 
 
+.. image:: image/observer-push.png 
 
 ====
 참조

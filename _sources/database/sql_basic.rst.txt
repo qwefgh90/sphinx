@@ -512,11 +512,6 @@ EQUI JOIN (INNER JOIN)
 결과는 같다. 아래 방식은 ANSI/ISO SQL 표준방식이다. 등가조인, 이너조인은 자식 테이블의 FK와 부모 테이블의 PK가 같은 모든 결과를 출력한다. 이는 두 테이블의 교집합의 모든결과라고 할 수 있다.
 
 INNER JOIN에서 INNER를 생략해도 같은 동작을 하게된다.
-<<<<<<< HEAD
-
-
-DBMS별 스키마 정보
-==================================================
 
 *해킹방어를 위한 JAVA 시큐어코딩* 내용을 참조하였습니다.
 
@@ -533,8 +528,3 @@ sysobjects(sys.objects) : 데이터베이스 내에 만들어진 각 사용자 �
 syscolumns(sys.columns) : 뷰 또는 테이블과 같이 열을 갖고 있는 개체의 각 열에 대한 행을 반환
 systypes(sys.types) : 각 행당 시스템 및 사용자 정의 정보
 sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Microsoft Windows 사용자, Windows 그룹, Microsoft SQL Server 사용자 또는 SQL Server 역할 정보
-
-
-
-=======
->>>>>>> 8586868c859120d342713a1fcc5ea708b31f1927

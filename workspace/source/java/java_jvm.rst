@@ -62,7 +62,7 @@ JVM 튜닝
 - -Xmx: 최대 힙 사이즈이다.
 - -Xms: 시작 힙 사이즈이다.
 - -Xss: 스레드 스택 크기이다.
-- -XX:NewRatio: New generation 공간의 비율을 정할 수 있다. *heap x (1 / (1 + ratio))*만큼을 New에 할당한다.
+- -XX:NewRatio: New generation 공간의 비율을 정할 수 있다. *heap x (1 / (1 + ratio))* 만큼을 New에 할당한다.
 - -XX:NewSize: 초기 New generation 공간의 크기이다.
 - -XX:MaxNewSize: New generation 공간의 최대 크기이다.
 

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>5. 톰캣 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>3. 톰캣 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -26,7 +26,7 @@
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
     <link rel="next" title="네트워크" href="../network/network_index.html" />
-    <link rel="prev" title="4. 디자인 패턴" href="design_pattern.html" />
+    <link rel="prev" title="2. Spring Web MVC" href="spring_web_mvc.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -43,19 +43,19 @@
           <div class="body" role="main">
             
   <div class="section" id="tomcat">
-<span id="id1"></span><h1>5. 톰캣<a class="headerlink" href="#tomcat" title="제목 주소">¶</a></h1>
+<span id="id1"></span><h1>3. 톰캣<a class="headerlink" href="#tomcat" title="제목 주소">¶</a></h1>
 <div class="section" id="id2">
-<h2>5.1. 스레드 설정<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<h2>3.1. 스레드 설정<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <p>스레드 개수의 한계는 다음 <a class="reference internal" href="../java/java_jvm.html#limit-of-thread"><span class="std std-ref">스레드 개수의 한계</span></a> 에서 확인할 수 있다.</p>
 <p>최대 스레드 개수보다 중요한 것은 <strong>적정한 스레드 개수이다.</strong> Servlet Container의 스레드는 주로 <strong>요청을 처리하는 역할을 한다.</strong> 스레드의 개수가 많을 수록 동시에 많은 요청을 처리할 수 있는 것이다. 일반적으로 같이 운영되는 다른 시스템의 가용성을 고려하여 개수를 결정하는 것이 좋다. 실제로 데이터베이스 세션의 개수가 최대 200개라면 200개를 조금 넘도록 설정하는 것이 좋다. 모든 스레드가 데이터베이스에 접근하는 것은 아니기 때문이다. 1대의 서버를 최적으로 설정하고 서버의 개수를 늘리는 방식을 추천한다.</p>
 <p><strong>스레드 설정은 Connector(Service 하위) 요소의 특성(Attribute)으로 설정이 가능하다.</strong></p>
 </div>
 <div class="section" id="permgen">
-<h2>5.2. 톰캣 permgen에러<a class="headerlink" href="#permgen" title="제목 주소">¶</a></h2>
+<h2>3.2. 톰캣 permgen에러<a class="headerlink" href="#permgen" title="제목 주소">¶</a></h2>
 <p><a class="reference external" href="http://kim3zz.blog.me/220302150100">permgen에러</a> 어플리케이션 실행 시 -XX:MaxPermSize=512로 해결가능</p>
 </div>
 <div class="section" id="id4">
-<h2>5.3. 참조<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
+<h2>3.3. 참조<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>톰캣 설정: <a class="reference external" href="https://tomcat.apache.org/tomcat-7.0-doc/config/http.html">https://tomcat.apache.org/tomcat-7.0-doc/config/http.html</a></li>
 </ul>
@@ -70,10 +70,10 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">목차</a></h3>
   <ul>
-<li><a class="reference internal" href="#">5. 톰캣</a><ul>
-<li><a class="reference internal" href="#id2">5.1. 스레드 설정</a></li>
-<li><a class="reference internal" href="#permgen">5.2. 톰캣 permgen에러</a></li>
-<li><a class="reference internal" href="#id4">5.3. 참조</a></li>
+<li><a class="reference internal" href="#">3. 톰캣</a><ul>
+<li><a class="reference internal" href="#id2">3.1. 스레드 설정</a></li>
+<li><a class="reference internal" href="#permgen">3.2. 톰캣 permgen에러</a></li>
+<li><a class="reference internal" href="#id4">3.3. 참조</a></li>
 </ul>
 </li>
 </ul>
@@ -82,7 +82,7 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="spring_index.html">Spring</a><ul>
-      <li>Previous: <a href="design_pattern.html" title="이전 장">4. 디자인 패턴</a></li>
+      <li>Previous: <a href="spring_web_mvc.html" title="이전 장">2. Spring Web MVC</a></li>
       <li>Next: <a href="../network/network_index.html" title="다음 장">네트워크</a></li>
   </ul></li>
   </ul></li>

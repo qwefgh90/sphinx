@@ -578,9 +578,9 @@ L3 - GRAND TOTAL</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">MGR</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">SAL</span>
 <span class="k">FROM</span> <span class="p">(</span> <span class="k">SELECT</span> <span class="n">MGR</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">SAL</span><span class="p">,</span> <span class="k">MAX</span><span class="p">(</span><span class="n">SAL</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">MGR</span><span class="p">)</span> <span class="k">AS</span> <span class="n">IV_MAX_SAL</span>
            <span class="k">FROM</span> <span class="n">EMP</span><span class="p">)</span>
+<span class="k">WHERE</span> <span class="n">SAL</span> <span class="o">=</span> <span class="n">IV_MAX_SAL</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>WHERE SAL = IV_MAX_SAL;</p>
 <p>같은 매너지를 가진 사람중 최대 급여를 받는 사원들을 구한다.</p>
 <p>AVG 예시:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">MGR</span><span class="p">,</span> <span class="n">ENAME</span><span class="p">,</span> <span class="n">HIREDATE</span><span class="p">,</span> <span class="n">SAL</span>

@@ -54,17 +54,18 @@ Class Library
 =============
 
 코드 ::
-  namespace System
-  {
-    class String{}
-    namespace IO
+
+    namespace System
     {
-      class StringWriter
+      class String{}
+      namespace IO
       {
-    
+        class StringWriter
+        {
+      
+        }
       }
     }
-  }
 
 Managed Code, Unmanaged Code
 ============================

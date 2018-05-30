@@ -437,7 +437,7 @@ LINQ는 에릭 마이어가 만든 C#의 통합 질의 기술들의 집합이다
   var p1 = new { Name = "Changwon", Country = "Korea" };
 
 멀티 태스킹(Multi tasking)
--------------------------
+---------------------------
 
 Task 예시::
 

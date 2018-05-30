@@ -2,10 +2,10 @@
 
 
 .. meta::
-:site_name: Chang docs
-:title: etc index page
-:description: This is etc index page.
-:keywords: 
+    :site_name: Chang docs
+    :title: etc index page
+    :description: This is etc index page.
+    :keywords: 
 		    
 
 ==================
