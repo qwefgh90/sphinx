@@ -84,6 +84,19 @@ EBNF는 BNF을 확장한 국제표준 메타언어이다. `이곳 <http://standa
 
 시퀀스란 0개 이상의 항목을 포함하는 순서가 있는 리스트이다. 서브 시퀀스(Subsequence)는 시퀀스 안에 있는 시퀀스를 뜻한다. 
 
+펑터(Functor)
+================
+
+여러가지 자료구조를 캡슐화하고, 일관된 API를 제공하는 자료구조이다.
+
+코드로 다음과 같이 표현됨::
+
+    import java.util.function.Function;
+
+    interface Functor<T> {
+        <R> Functor<R> map(Function<T,R> f);
+    }
+
 모나드(Monad)
 =============
 

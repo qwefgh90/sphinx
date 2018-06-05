@@ -105,12 +105,24 @@
 <h2>1.12. 시퀀스(Sequence)<a class="headerlink" href="#sequence" title="제목 주소">¶</a></h2>
 <p>시퀀스란 0개 이상의 항목을 포함하는 순서가 있는 리스트이다. 서브 시퀀스(Subsequence)는 시퀀스 안에 있는 시퀀스를 뜻한다.</p>
 </div>
+<div class="section" id="functor">
+<h2>1.13. 펑터(Functor)<a class="headerlink" href="#functor" title="제목 주소">¶</a></h2>
+<p>여러가지 자료구조를 캡슐화하고, 일관된 API를 제공하는 자료구조이다.</p>
+<p>코드로 다음과 같이 표현됨:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.util.function.Function</span><span class="p">;</span>
+
+<span class="n">interface</span> <span class="n">Functor</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span> <span class="n">Functor</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span> <span class="nb">map</span><span class="p">(</span><span class="n">Function</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">R</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="monad">
-<h2>1.13. 모나드(Monad)<a class="headerlink" href="#monad" title="제목 주소">¶</a></h2>
+<h2>1.14. 모나드(Monad)<a class="headerlink" href="#monad" title="제목 주소">¶</a></h2>
 <p>특정한 타입의 값을 저장하거나 특정 연산으로 부터 새로운 타입을 만들어내는 것을 뜻한다.</p>
 </div>
 <div class="section" id="references">
-<h2>1.14. References<a class="headerlink" href="#references" title="제목 주소">¶</a></h2>
+<h2>1.15. References<a class="headerlink" href="#references" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>문맥자유문법: <a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions">https://en.wikipedia.org/wiki/Context-free_grammar#Formal_definitions</a></li>
 <li>배커스 정규형: <a class="reference external" href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form">https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form</a></li>
@@ -145,8 +157,9 @@
 <li><a class="reference internal" href="#formal-syntax-definition">1.10. 형식적 문법 정의(Formal syntax definition)</a></li>
 <li><a class="reference internal" href="#id5">1.11. 매개변수, 인자값</a></li>
 <li><a class="reference internal" href="#sequence">1.12. 시퀀스(Sequence)</a></li>
-<li><a class="reference internal" href="#monad">1.13. 모나드(Monad)</a></li>
-<li><a class="reference internal" href="#references">1.14. References</a></li>
+<li><a class="reference internal" href="#functor">1.13. 펑터(Functor)</a></li>
+<li><a class="reference internal" href="#monad">1.14. 모나드(Monad)</a></li>
+<li><a class="reference internal" href="#references">1.15. References</a></li>
 </ul>
 </li>
 </ul>
