@@ -153,8 +153,8 @@ SAN Network
 
 스토리지를 이용하는 네트워크를 뜻한다. 스토리지를 이용하기 위한 대표적인 프로토콜로 iscsi, fc, infinity band이 있다.
 
-**iscsi는** IP 주소를 부여 받아 스토리지에 접근하는 방식인데 일반적이 네트워크 스위치를 그대로 사용할 수 있다.
-**fc는** 장치별 WWN(World Wide Name)를 갖고 SAN 스위치를 사용하여 네트워크를 구성하는 방식이다. 
+**iscsi는** IP 주소를 부여 받아 스토리지에 접근하는 방식인데 보통의 NIC과 네트워크 스위치를 그대로 사용할 수 있다.
+**fc는** 장치별 WWN(World Wide Name)를 갖고 FC Adapter와 SAN 스위치를 사용하여 네트워크를 구성하는 방식이다. FC Adaper 제품으로는 Emulex나 QLogic이 유명하다.
 
 Multipath I/O
 ================
