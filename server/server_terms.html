@@ -64,25 +64,21 @@
 <h2>1.5. 호스트 버스 어댑터(Host bus adapter)<a class="headerlink" href="#host-bus-adapter" title="제목 주소">¶</a></h2>
 <p>호스트 컨트롤러, 호스트 어댑터 등으로 불리며 <strong>서버와 외부 장치간의 연결을 위한 인터페이스를 뜻한다.</strong> SCSI 호스트 어댑터, FC 인터페이스 카드, 네트워크 인터페이스 카드, SATA 컨트롤러 등이 있다.</p>
 </div>
+<div class="section" id="nic-network-interface-card">
+<h2>1.6. 네트워크 인터페이스 카드(NIC, Network Interface Card)<a class="headerlink" href="#nic-network-interface-card" title="제목 주소">¶</a></h2>
+<p>광 케이블 또는 UTP 케이블과 연결되며 이더넷 표준을 따른다.</p>
+<p>대표적인 이더넷 표준에는 Fast Ethernet(100BASE-T 등), Gigabit Ethernet(1000BASE-T, 1000BASE-SX), 10 Gigabit Ethernet(10GBASE-T, 1000BASE-SR)등이 있다.</p>
+</div>
 <div class="section" id="i-o">
-<h2>1.6. I/O 제어<a class="headerlink" href="#i-o" title="제목 주소">¶</a></h2>
+<h2>1.7. I/O 제어<a class="headerlink" href="#i-o" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>IOH(I/O Handler, North bridge): CPU와 고속 장치들(PCIe, Network) 간 통신을 하게하고 이를 제어하는 칩셋이다.</li>
 <li>ICH(I/O Controller Hub, South bridge): 저속의 주변 장치(USB, CD)와 통신을 하게하고 이를 제어하는 칩셋이다.</li>
 </ul>
 </div>
 <div class="section" id="serial-ata-sata">
-<h2>1.7. Serial ATA(SATA)<a class="headerlink" href="#serial-ata-sata" title="제목 주소">¶</a></h2>
+<h2>1.8. Serial ATA(SATA)<a class="headerlink" href="#serial-ata-sata" title="제목 주소">¶</a></h2>
 <p><em>SATA(Serial ATA)</em> 는 HDD, SSD와 같은 저장장치와 직렬로 통신할 수 있는 인터페이스이다. SATA 포트에 데이터 커넥터와 파워 커넥터를 각각 연결하여 SATA HDD를 사용할 수 있다. SATA HDD는 SAS 인터페이스에 사용할 수 있으며 <em>SFF-8482 커넥터(전원 공급 및 데이터 일체형)을</em> 이용해 SAS포트에 연결해서 사용할 수 있다.</p>
-</div>
-<div class="section" id="sata-operating-modes">
-<h2>1.8. SATA 컨트롤러 동작 모드(Operating modes)<a class="headerlink" href="#sata-operating-modes" title="제목 주소">¶</a></h2>
-<p>SATA 컨트롤러는 여러가지 운영 모드를 제공한다.</p>
-<ul class="simple">
-<li>PATA(IDE, 에뮬레이션): 레거시 OS에서 SATA 컨트롤러를 사용할 수 있도록 한다.</li>
-<li>AHCI: <span class="xref std std-ref">AHCI</span> 만 지원하는 모드이다.</li>
-<li>RAID: AHCI와 함께 RAID를 지원하는 모드이다. 인텔은 RAID 모드를 권고한다.</li>
-</ul>
 </div>
 <div class="section" id="ahci-advanced-host-controller-interface">
 <span id="achi"></span><h2>1.9. AHCI(Advanced Host Controller Interface)<a class="headerlink" href="#ahci-advanced-host-controller-interface" title="제목 주소">¶</a></h2>
@@ -118,52 +114,89 @@
 <li><strong>RAID 1+0:</strong> 미러링된 드라이브들을 스트라이핑한 구성이다.</li>
 </ul>
 </div>
+<div class="section" id="sata-operating-modes">
+<h2>1.13. SATA 컨트롤러 동작 모드(Operating modes)<a class="headerlink" href="#sata-operating-modes" title="제목 주소">¶</a></h2>
+<p>SATA 컨트롤러는 여러가지 운영 모드를 제공한다.</p>
+<ul class="simple">
+<li>PATA(IDE, 에뮬레이션): 레거시 OS에서 SATA 컨트롤러를 사용할 수 있도록 한다.</li>
+<li>AHCI: <span class="xref std std-ref">AHCI</span> 만 지원하는 모드이다.</li>
+<li>RAID: AHCI와 함께 RAID를 지원하는 모드이다. 인텔은 RAID 모드를 권고한다.</li>
+</ul>
+</div>
 <div class="section" id="kib-mib-gib">
-<h2>1.13. 키비, 메비, 기비 바이트(KiB, MiB, GiB)<a class="headerlink" href="#kib-mib-gib" title="제목 주소">¶</a></h2>
+<h2>1.14. 키비, 메비, 기비 바이트(KiB, MiB, GiB)<a class="headerlink" href="#kib-mib-gib" title="제목 주소">¶</a></h2>
 <p>기존의 메가 바이트(MB)는 10의 거듭제곱이지만 <strong>키비(KiB), 메비(MiB) ,기비(GiB) 바이트는</strong> 이진 접두어로 사용된다. 따라서 이 단위는 2진 컴퓨터에 더 적절하다고 할 수 있다. 이 용어는 IEC(International Electrotechnical Commission)에 의해 1998년에 정의되었으며 정확하게 2의 거듭제곱을 표현하기 위해 MB를 대체했다. 여기서 정확하게라는 의미는 국제 단위 체계(International System of Units)와 차이를 둔다는 의미이다. 하지만 아직 널리 인정받고 있고 있지 않다.</p>
 </div>
 <div class="section" id="smb">
-<h2>1.14. SMB<a class="headerlink" href="#smb" title="제목 주소">¶</a></h2>
+<h2>1.15. SMB<a class="headerlink" href="#smb" title="제목 주소">¶</a></h2>
 <p><strong>SMB(Server Message Block)</strong> 는 네트워크 파일 공유 프로토콜이다. CIFS는 SMB의 표현식(dialects) 중 하나이다.</p>
 </div>
 <div class="section" id="nfs">
-<h2>1.15. NFS<a class="headerlink" href="#nfs" title="제목 주소">¶</a></h2>
+<h2>1.16. NFS<a class="headerlink" href="#nfs" title="제목 주소">¶</a></h2>
 <p><strong>NFS(Network File System)</strong> 은 컴퓨터 사용자가 네트워크상의 파일에 접근할 때 직접 연결된 스토리지에 접근하는 것 처럼 접근하도록 지원해주는 프로토콜이다.</p>
 </div>
 <div class="section" id="link-aggregation">
-<h2>1.16. Link Aggregation<a class="headerlink" href="#link-aggregation" title="제목 주소">¶</a></h2>
+<h2>1.17. Link Aggregation<a class="headerlink" href="#link-aggregation" title="제목 주소">¶</a></h2>
 <p>링크 어그리게이션 여러개의 네트워크 연결을 묶어 더 높은 대역폭과 링크의 장애를 대비한 복제/중복(redundancy)를 제공하는 기술을 뜻한다. 포괄적인 용어로 <em>NIC teaming, NIC bonding, port trunking</em> 등이 사용된다. 이는 IEEE802.3ad에 정의된 <a class="reference internal" href="#lacp"><span class="std std-ref">LACP(Link Aggregation Control Protocol)</span></a> 와 같은 표준기술을 포함하며 다양한 솔루션을 포함한다.</p>
 </div>
 <div class="section" id="lacp-link-aggregation-control-protocol">
-<span id="lacp"></span><h2>1.17. LACP(Link Aggregation Control Protocol)<a class="headerlink" href="#lacp-link-aggregation-control-protocol" title="제목 주소">¶</a></h2>
+<span id="lacp"></span><h2>1.18. LACP(Link Aggregation Control Protocol)<a class="headerlink" href="#lacp-link-aggregation-control-protocol" title="제목 주소">¶</a></h2>
 <p><em>IEEE 802.3ad에</em> 정의되어 있으며 물리적인 포트를 하나의 논리적인 채널로 묶는 프로토콜을 뜻한다. LACP는 LACP 패킷을 전송하여 협상하므로써 링크 묶음(bundle) 작업을 진행한다. 이때 직접 연결된 장치(스위치) 역시 LACP를 지원해야 한다.</p>
 </div>
 <div class="section" id="port">
-<h2>1.18. 포트(Port)<a class="headerlink" href="#port" title="제목 주소">¶</a></h2>
+<h2>1.19. 포트(Port)<a class="headerlink" href="#port" title="제목 주소">¶</a></h2>
 <p>포트는 케이블이나 플러그가 연결되는 부분이다. 모니터, 키보드나 다른 장치를 연결하기 위해 사용된다.</p>
 </div>
 <div class="section" id="fibre-channel-adapter">
-<h2>1.19. Fibre Channel Adapter<a class="headerlink" href="#fibre-channel-adapter" title="제목 주소">¶</a></h2>
+<h2>1.20. Fibre Channel Adapter<a class="headerlink" href="#fibre-channel-adapter" title="제목 주소">¶</a></h2>
 <p>서버와 SAN의 연결을 제공하는 어댑터이다.</p>
 </div>
 <div class="section" id="fiber-jumper">
-<h2>1.20. Fiber jumper<a class="headerlink" href="#fiber-jumper" title="제목 주소">¶</a></h2>
+<h2>1.21. Fiber jumper<a class="headerlink" href="#fiber-jumper" title="제목 주소">¶</a></h2>
 <p>LC, SC 등 다른 커넥터와 함께 장치와 장치를 연결하는 선이다.</p>
 </div>
+<div class="section" id="lc-connector">
+<h2>1.22. LC Connector<a class="headerlink" href="#lc-connector" title="제목 주소">¶</a></h2>
+<p>광 케이블의 끝부분에 연결되는 커넥터이다. 스토리지, SAN 스위치, NIC등 보편적으로 사용된다. <a class="reference external" href="https://www.amazon.com/Fiber-LC-Connector-Beyondtech-Connectors/dp/B00TDYTH6W/ref=sr_1_5?s=electronics&amp;ie=UTF8&amp;qid=1531048234&amp;sr=1-5&amp;keywords=lc+connector+fiber">이 제품이</a> LC 커넥터이다.</p>
+</div>
+<div class="section" id="sfp-small-form-factor-pluggable">
+<h2>1.23. SFP(Small Form-Factor Pluggable)<a class="headerlink" href="#sfp-small-form-factor-pluggable" title="제목 주소">¶</a></h2>
+<p>전기 신호가와 광학 신호간 신호 변환을 담당한다. 일반적으로 LC Connector가 연결된다.
+<a class="reference external" href="https://www.amazon.com/10Gtek-SFP-10G-SR-Transceiver-10GBASE-SR-300-meter/dp/B00U8Q7946/ref=pd_sim_147_1?_encoding=UTF8&amp;pd_rd_i=B00U8Q7946&amp;pd_rd_r=f875e6b6-829e-11e8-8ef3-63b7862c0680&amp;pd_rd_w=ENy8L&amp;pd_rd_wg=bAbDO&amp;pf_rd_i=desktop-dp-sims&amp;pf_rd_m=ATVPDKIKX0DER&amp;pf_rd_p=7967298517161621930&amp;pf_rd_r=GNX4QVH004PK0MGSCPWT&amp;pf_rd_s=desktop-dp-sims&amp;pf_rd_t=40701&amp;psc=1&amp;refRID=GNX4QVH004PK0MGSCPWT">이 제품이</a> LC 커넥터와 함께 사용되는 SFP 이다.</p>
+</div>
+<div class="section" id="san-network">
+<h2>1.24. SAN Network<a class="headerlink" href="#san-network" title="제목 주소">¶</a></h2>
+<p>스토리지를 이용하는 네트워크를 뜻한다. 스토리지를 이용하기 위한 대표적인 프로토콜로 iscsi, fc, infinity band이 있다.</p>
+<p><strong>iscsi는</strong> IP 주소를 부여 받아 스토리지에 접근하는 방식인데 일반적이 네트워크 스위치를 그대로 사용할 수 있다.
+<strong>fc는</strong> 장치별 WWN(World Wide Name)를 갖고 SAN 스위치를 사용하여 네트워크를 구성하는 방식이다.</p>
+</div>
+<div class="section" id="multipath-i-o">
+<h2>1.25. Multipath I/O<a class="headerlink" href="#multipath-i-o" title="제목 주소">¶</a></h2>
+<p>다중 경로 I/O는 <strong>멀티 컨트롤러를 지원하는 스토리지를</strong> 사용하는 가장 기본적인 방식이다. 2개의 경로를 사용하므로써 안정성을 높인다. 스토리지가 <strong>iscsi 방식을</strong> 사용하는 경우 TCP/IP 네트워크를 사용하므로 서버 입장에서 반드시 2개의 포트(케이블)를 사용할 필요는 없다. 하지만 <strong>fc 방식을</strong> 사용하는 경우 2개의 포트(케이블)를 사용해야 구현 가능하다.</p>
+<p>실제로 서버에 2개의 경로를 붙인다면 서버에서 2개의 장치가 인식되며 Multipath 드라이버에 의해 둘 중 하나의 경로를 이용하는 방식이다.</p>
+</div>
 <div class="section" id="utp">
-<h2>1.21. UTP 케이블<a class="headerlink" href="#utp" title="제목 주소">¶</a></h2>
+<h2>1.26. UTP 케이블<a class="headerlink" href="#utp" title="제목 주소">¶</a></h2>
 <p>일반적으로 컴퓨터 네트워크, 전화에서 사용되는 케이블로, 절연된 2개의 구리선을 꼬아 플라스틱 피복을 입혀 만든 선이다.</p>
 </div>
-<div class="section" id="category-5-cable-cat-5">
-<h2>1.22. Category 5 cable(Cat 5)<a class="headerlink" href="#category-5-cable-cat-5" title="제목 주소">¶</a></h2>
-<p>컴퓨터 네트워크를 위한 UTP 케이블을 뜻한다.</p>
+<div class="section" id="category-5-6-cable-cat-5-6">
+<h2>1.27. Category 5,6 cable(Cat 5,6)<a class="headerlink" href="#category-5-6-cable-cat-5-6" title="제목 주소">¶</a></h2>
+<p>컴퓨터 네트워크를 위한 UTP 케이블을 뜻한다. 일반적으로 CAT 5 는 기가비트 이더넷, CAT 6는 10 기가비트 이더넷 표준에서 사용된다.</p>
 </div>
-<div class="section" id="rj45">
-<h2>1.23. RJ45<a class="headerlink" href="#rj45" title="제목 주소">¶</a></h2>
-<p>일반적으로 UTP 케이블의 끝부분에 사용되는 커넥터이다.</p>
+<div class="section" id="vs-utp">
+<h2>1.28. 광 케이블 vs UTP 케이블<a class="headerlink" href="#vs-utp" title="제목 주소">¶</a></h2>
+<p>광 케이블은 길이가 길더라도 신호 손상이 적지만 UTP 케이블은 신호 손상이 발생한다.</p>
 </div>
-<div class="section" id="id2">
-<h2>1.24. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<div class="section" id="p8c">
+<h2>1.29. 8P8C<a class="headerlink" href="#p8c" title="제목 주소">¶</a></h2>
+<p>일반적으로 UTP 케이블의 끝부분에 사용되는 커넥터이다. 흔히 RJ45라 부르곤 한다.</p>
+</div>
+<div class="section" id="rj45-vs-8p8c">
+<h2>1.30. RJ45 vs 8P8C<a class="headerlink" href="#rj45-vs-8p8c" title="제목 주소">¶</a></h2>
+<p>일반적으로 RJ45는 전화 네트워크에서 사용되며, 컴퓨터 네트워크에서는 외형이 비슷한 8P8C가 사용된다.</p>
+</div>
+<div class="section" id="id4">
+<h2>1.31. 참조<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>AHCI: <a class="reference external" href="https://en.wikipedia.org/wiki/Advanced_Host_Controller_Interface">https://en.wikipedia.org/wiki/Advanced_Host_Controller_Interface</a></li>
 <li>다중 채널 메모리 구조: <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-channel_memory_architecture">https://en.wikipedia.org/wiki/Multi-channel_memory_architecture</a></li>
@@ -196,25 +229,32 @@
 <li><a class="reference internal" href="#multi-channel-memory-architecture">1.3. 다중 채널 메모리 구조(Multi-channel memory architecture)</a></li>
 <li><a class="reference internal" href="#dual-channel-memory-architecture">1.4. 듀얼 채널 메모리 구조(Dual-channel memory architecture)</a></li>
 <li><a class="reference internal" href="#host-bus-adapter">1.5. 호스트 버스 어댑터(Host bus adapter)</a></li>
-<li><a class="reference internal" href="#i-o">1.6. I/O 제어</a></li>
-<li><a class="reference internal" href="#serial-ata-sata">1.7. Serial ATA(SATA)</a></li>
-<li><a class="reference internal" href="#sata-operating-modes">1.8. SATA 컨트롤러 동작 모드(Operating modes)</a></li>
+<li><a class="reference internal" href="#nic-network-interface-card">1.6. 네트워크 인터페이스 카드(NIC, Network Interface Card)</a></li>
+<li><a class="reference internal" href="#i-o">1.7. I/O 제어</a></li>
+<li><a class="reference internal" href="#serial-ata-sata">1.8. Serial ATA(SATA)</a></li>
 <li><a class="reference internal" href="#ahci-advanced-host-controller-interface">1.9. AHCI(Advanced Host Controller Interface)</a></li>
 <li><a class="reference internal" href="#nvm-express-nvme">1.10. NVM Express(NVMe)</a></li>
 <li><a class="reference internal" href="#serial-attached-scsi-sas">1.11. Serial Attached SCSI (SAS)</a></li>
 <li><a class="reference internal" href="#raid-redundant-array-of-independent-disks">1.12. RAID(Redundant array of independent disks)</a></li>
-<li><a class="reference internal" href="#kib-mib-gib">1.13. 키비, 메비, 기비 바이트(KiB, MiB, GiB)</a></li>
-<li><a class="reference internal" href="#smb">1.14. SMB</a></li>
-<li><a class="reference internal" href="#nfs">1.15. NFS</a></li>
-<li><a class="reference internal" href="#link-aggregation">1.16. Link Aggregation</a></li>
-<li><a class="reference internal" href="#lacp-link-aggregation-control-protocol">1.17. LACP(Link Aggregation Control Protocol)</a></li>
-<li><a class="reference internal" href="#port">1.18. 포트(Port)</a></li>
-<li><a class="reference internal" href="#fibre-channel-adapter">1.19. Fibre Channel Adapter</a></li>
-<li><a class="reference internal" href="#fiber-jumper">1.20. Fiber jumper</a></li>
-<li><a class="reference internal" href="#utp">1.21. UTP 케이블</a></li>
-<li><a class="reference internal" href="#category-5-cable-cat-5">1.22. Category 5 cable(Cat 5)</a></li>
-<li><a class="reference internal" href="#rj45">1.23. RJ45</a></li>
-<li><a class="reference internal" href="#id2">1.24. 참조</a></li>
+<li><a class="reference internal" href="#sata-operating-modes">1.13. SATA 컨트롤러 동작 모드(Operating modes)</a></li>
+<li><a class="reference internal" href="#kib-mib-gib">1.14. 키비, 메비, 기비 바이트(KiB, MiB, GiB)</a></li>
+<li><a class="reference internal" href="#smb">1.15. SMB</a></li>
+<li><a class="reference internal" href="#nfs">1.16. NFS</a></li>
+<li><a class="reference internal" href="#link-aggregation">1.17. Link Aggregation</a></li>
+<li><a class="reference internal" href="#lacp-link-aggregation-control-protocol">1.18. LACP(Link Aggregation Control Protocol)</a></li>
+<li><a class="reference internal" href="#port">1.19. 포트(Port)</a></li>
+<li><a class="reference internal" href="#fibre-channel-adapter">1.20. Fibre Channel Adapter</a></li>
+<li><a class="reference internal" href="#fiber-jumper">1.21. Fiber jumper</a></li>
+<li><a class="reference internal" href="#lc-connector">1.22. LC Connector</a></li>
+<li><a class="reference internal" href="#sfp-small-form-factor-pluggable">1.23. SFP(Small Form-Factor Pluggable)</a></li>
+<li><a class="reference internal" href="#san-network">1.24. SAN Network</a></li>
+<li><a class="reference internal" href="#multipath-i-o">1.25. Multipath I/O</a></li>
+<li><a class="reference internal" href="#utp">1.26. UTP 케이블</a></li>
+<li><a class="reference internal" href="#category-5-6-cable-cat-5-6">1.27. Category 5,6 cable(Cat 5,6)</a></li>
+<li><a class="reference internal" href="#vs-utp">1.28. 광 케이블 vs UTP 케이블</a></li>
+<li><a class="reference internal" href="#p8c">1.29. 8P8C</a></li>
+<li><a class="reference internal" href="#rj45-vs-8p8c">1.30. RJ45 vs 8P8C</a></li>
+<li><a class="reference internal" href="#id4">1.31. 참조</a></li>
 </ul>
 </li>
 </ul>
