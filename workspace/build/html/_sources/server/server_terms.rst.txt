@@ -4,6 +4,26 @@
  용어
 ======
 
+GPT
+======
+
+GPT는 파티션 배치(Partition Layout)에 관련된 대한 표준이다. **GUID(globally unique identifiers)** 를 사용하여 파티션을 식별한다. 일반적으로 UEFI 표준에 포함되나 BIOS 시스템에서도 사용된다. 기존에 사용되던 MBR은 2TB(2^32 * 2^9) 이상의 디스크를 인식할 수 없는 문제가 있었다.
+GPT는 64비트 주소 체계를 사용하여 8ZiB(2^64 * 2^9)까지의 디스크 용량을 지원한다.
+
+GPT는 CHS대신 LBA라는 주소 지정 방식을 이용한다. 
+섹터의 크기가 512Bytes라 가정하면 LBA 0번은 보호된 MBR, LBA 1번은 GPT 헤더, LBA 2번 ~ LBA 33번은 파티션 테이블이다. LBA 34번부터 디스크에서 이용가능한 섹터이다.
+
+Cylinder-head-sector(CHS)
+=====================================
+
+CHS은 디스크의 각 데이터 블록의 주소를 표현하는 방법이다. 이 방법을 사용하여 각 섹터를 식별할 수 있게 된다.
+
+
+Logical Block Addressing(LBA)
+====================================
+
+논리 블록 주소 지정은 디스크의 각 데이터 블록를 표현하는 방법이다. GPT, MBR은 LBA를 활용한다.
+
 유닉스 서버와 x86서버
 =====================
 
@@ -159,9 +179,11 @@ SAN Network
 Multipath I/O
 ================
 
-다중 경로 I/O는 **멀티 컨트롤러를 지원하는 스토리지를** 사용하는 가장 기본적인 방식이다. 2개의 경로를 사용하므로써 안정성을 높인다. 스토리지가 **iscsi 방식을** 사용하는 경우 TCP/IP 네트워크를 사용하므로 서버 입장에서 반드시 2개의 포트(케이블)를 사용할 필요는 없다. 하지만 **fc 방식을** 사용하는 경우 2개의 포트(케이블)를 사용해야 구현 가능하다. 
+다중 경로 I/O는 **멀티 컨트롤러를 지원하는 스토리지를** 사용하는 가장 기본적인 방식이다. 2개의 경로를 사용하고 알고리즘을 선택하여 성능, 안정성을 높일 수 있다. 스토리지가 **iscsi 방식을** 사용하는 경우 TCP/IP 네트워크를 사용하므로 서버 입장에서 반드시 2개의 포트(케이블)를 사용할 필요는 없다. 하지만 **fc 방식을** 사용하는 경우 2개의 포트(케이블)를 사용해야 구현 가능하다. 
 
-실제로 서버에 2개의 경로를 붙인다면 서버에서 2개의 장치가 인식되며 Multipath 드라이버에 의해 둘 중 하나의 경로를 이용하는 방식이다.
+실제로 서버에 2개의 경로를 붙인다면 서버에서 2개의 장치가 인식되며 Multipath 드라이버에 의해 둘 중 하나의 경로를 이용하는 방식이다. 
+
+Windows는 Multipath I/O를 기본적으로 지원하며 MPIO라는 프로그램에서 새 장치를 추가하는 방식으로 이용할 수 있다. 예를들어 ISCSI 기반의 Multipath를 사용하고 싶은 경우 iSCSI 장치에 대한 지원을 체크하여 추가하면 된다.
 
 UTP 케이블
 ==========
@@ -206,3 +228,5 @@ RJ45 vs 8P8C
 - CAT5: https://en.wikipedia.org/wiki/Category_5_cable
 - Fiber jumper: http://searchnetworking.techtarget.com/definition/fiber-jumper
 - RJ45: http://www.dslreports.com/forum/r14519935-UTP-cable-vs-RJ45-cable
+- Multipath with iscsi: https://www.synology.com/ko-kr/knowledgebase/DSM/tutorial/Virtualization/How_to_Use_iSCSI_Targets_on_Windows_Computers_with_Multipath_I_O
+- LBA: https://en.wikipedia.org/wiki/Logical_block_addressing
