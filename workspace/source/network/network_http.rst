@@ -112,7 +112,19 @@ application/x-www-form-urlencoded
  쿠키
 ======
 
-이때 쿠키를 사용한다. 쿠키는 영속성 쿠키, 세션 쿠키로 나눠진다. 영속성 쿠키는 디스크에 저장되며 세션 쿠키는 메모리에 저장된다. 브라우저 쿠키는 document 객체의 cookie에 저장된다.
+서버가 사용자한테 전송하는 작은 데이터이며 주로 HTTP에서 상태를 저장할때 사용한다. 쿠키는 영속적인 쿠키, 세션 쿠키로 나눠진다. 영속적인 쿠키는 디스크에 저장되며 세션 쿠키는 메모리에 저장된다. 쿠키는 브라우저의 네트워크 탭이나 document.cookie로 확인할 수 있다. 
+
+최근에는 주로 세션 관리(로그인, 로그아웃) 목적으로 활용된다. 이와는 별개로 개인화, 행동 분석을 위해 활용하기도 했으나, localStorage API로 대체되고 있다.
+
+----------------------
+set-cookie 헤더
+----------------------
+
+set-cookie는 클라이언트에 쿠키를 전달할때 사용하는 헤더이다. set-cookie로 쿠키 전송시 여러가지 속성을 줄 수 있다.
+
+*HttpOnly* 속성을 부여할 경우 쿠키를 document.cookie API로 확인할 수 없다. 이는 XSS 방지를 위한 것이다. *Secure* 속성은 SSL위에서만 쿠키를 전송하도록 강제할 수 있다. *Domain* 속성은 쿠키가 전송될 도메인을 설정할 때 사용한다. Domain 속성이 없을 경우 현재 페이지의 호스트를 기본값으로 사용한다. *Path* 속성은 쿠키가 전송될 경로를 설정할 때 사용한다.::
+
+  Set-Cookie: id=aaaa; Expires=Wed, 1 Feb 2018 01:11:00 GMT; Secure; HttpOnly; Domain=example.com; path=/
 
 ========
  인코딩
@@ -130,3 +142,4 @@ application/x-www-form-urlencoded
 
 - HTTP 스펙: https://tools.ietf.org/html/rfc2616
 - Multipart/form-data: https://tools.ietf.org/html/rfc7578
+- Cookie: https://developer.mozilla.org/ko/docs/Web/HTTP/Cookies

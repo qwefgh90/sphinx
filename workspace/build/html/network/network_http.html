@@ -123,7 +123,15 @@
 </div>
 <div class="section" id="id3">
 <h2>4.5. 쿠키<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
-<p>이때 쿠키를 사용한다. 쿠키는 영속성 쿠키, 세션 쿠키로 나눠진다. 영속성 쿠키는 디스크에 저장되며 세션 쿠키는 메모리에 저장된다. 브라우저 쿠키는 document 객체의 cookie에 저장된다.</p>
+<p>서버가 사용자한테 전송하는 작은 데이터이며 주로 HTTP에서 상태를 저장할때 사용한다. 쿠키는 영속적인 쿠키, 세션 쿠키로 나눠진다. 영속적인 쿠키는 디스크에 저장되며 세션 쿠키는 메모리에 저장된다. 쿠키는 브라우저의 네트워크 탭이나 document.cookie로 확인할 수 있다. 과거에는 사용자 행동을 기록하기 위해서 사용하기도 했으나 최근에는 localStorage API를 더 많이 사용한다.</p>
+<div class="section" id="set-cookie">
+<h3>4.5.1. set-cookie 헤더<a class="headerlink" href="#set-cookie" title="제목 주소">¶</a></h3>
+<p>set-cookie는 클라이언트에 쿠키를 전달할때 사용하는 헤더이다. set-cookie로 쿠키 전송시 여러가지 속성을 줄 수 있다.</p>
+<p><em>HttpOnly</em> 속성을 부여할 경우 쿠키를 document.cookie API로 확인할 수 없다. 이는 XSS 방지를 위한 것이다. <em>Secure</em> 속성은 SSL위에서만 쿠키를 전송하도록 강제할 수 있다. <em>Domain</em> 속성은 쿠키가 전송될 도메인을 설정할 때 사용한다. Domain 속성이 없을 경우 현재 페이지의 호스트를 기본값으로 사용한다. <em>Path</em> 속성은 쿠키가 전송될 경로를 설정할 때 사용한다.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">Cookie</span><span class="p">:</span> <span class="nb">id</span><span class="o">=</span><span class="n">aaaa</span><span class="p">;</span> <span class="n">Expires</span><span class="o">=</span><span class="n">Wed</span><span class="p">,</span> <span class="mi">1</span> <span class="n">Feb</span> <span class="mi">2018</span> <span class="mi">01</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">00</span> <span class="n">GMT</span><span class="p">;</span> <span class="n">Secure</span><span class="p">;</span> <span class="n">HttpOnly</span><span class="p">;</span> <span class="n">Domain</span><span class="o">=</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">;</span> <span class="n">path</span><span class="o">=/</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="id4">
 <h2>4.6. 인코딩<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
@@ -137,6 +145,7 @@
 <ul class="simple">
 <li>HTTP 스펙: <a class="reference external" href="https://tools.ietf.org/html/rfc2616">https://tools.ietf.org/html/rfc2616</a></li>
 <li>Multipart/form-data: <a class="reference external" href="https://tools.ietf.org/html/rfc7578">https://tools.ietf.org/html/rfc7578</a></li>
+<li>Cookie: <a class="reference external" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Cookies">https://developer.mozilla.org/ko/docs/Web/HTTP/Cookies</a></li>
 </ul>
 </div>
 </div>
@@ -161,7 +170,10 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#stateless">4.4. Stateless</a></li>
-<li><a class="reference internal" href="#id3">4.5. 쿠키</a></li>
+<li><a class="reference internal" href="#id3">4.5. 쿠키</a><ul>
+<li><a class="reference internal" href="#set-cookie">4.5.1. set-cookie 헤더</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#id4">4.6. 인코딩</a><ul>
 <li><a class="reference internal" href="#percent-encoding">4.6.1. 퍼센트 인코딩(Percent-Encoding)</a></li>
 </ul>
