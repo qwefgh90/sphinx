@@ -74,13 +74,14 @@
 </div>
 <div class="section" id="ioc-inversion-of-control">
 <h2>2.5. IOC(Inversion of Control)<a class="headerlink" href="#ioc-inversion-of-control" title="제목 주소">¶</a></h2>
-<p><em>제어의 역전은</em> 프로그래머가 작성한 코드를 작성한 코드 내에서 직접 제어하는 것이 아닌 프레임워크가 제어하도록 하는 원칙이다. 프레임워크가 확장성을 갖는 프로그램 뼈대가 될 수 있게 도와준다.</p>
+<p><em>제어의 역전은</em> 프로그래머가 작성한 코드를 작성한 코드 내에서 직접 제어하는 것이 아닌 프레임워크가 제어하도록 하는 원칙이다. 프레임워크가 확장성을 갖는 프로그램 뼈대가 될 수 있게 도와준다. 프레임워크의 기본 특징 중 하나이다.</p>
+<p>일반적으로 프래임워크는 특정 구현체를 생성하고 프로그램에 주입하는 역할을 하기도 한다. 이때 IOC 패턴을 DI 라는 이름으로 부르기도 한다.</p>
 <p><strong>Hollywood's Law의 Don't call us, we'll call you는 IOC의 특징을 잘 설명한다.</strong></p>
 </div>
 <div class="section" id="di-dependency-injection">
 <h2>2.6. DI(Dependency injection)<a class="headerlink" href="#di-dependency-injection" title="제목 주소">¶</a></h2>
 <p><strong>의존성 주입은</strong> 객체에서 의존 객체 생성에 대한 관심을 분리하고 외부에서 의존성을 주입하는 패턴을 뜻한다. 직접 의존성 객체를 생성 및 주입하는 것은 복잡하고, 오류가 발생하기 쉽고, 테스트하기 어렵게 한다. 반면, IOC컨테이너를 통해 의존성을 주입할 경우 특정 클래스에 대한 의존성을 제거할 수 있다. <strong>이는 애플리케이션이 실행되는 다양한 환경에 유연하게 대처할 수 있게 도움을 준다.</strong></p>
-<p>IOC 컨테이너를 이용할 경우 주로 생성자나 setter를 이용해 객체를 주입한다. 메서드의 매개변수로 직접 의존성을 주입하기도 한다. IOC 컨테이너는 대표적으로 Spring, Guice 같은 프레임워크가 있다.</p>
+<p>DI 방법은 크게 3가지가 있다. 인터페이스를 이용하여 주입하거나, 생성자나 setter를 이용하여 주입하는 방법이다. IOC 컨테이너는 대표적으로 Spring, Guice 같은 프레임워크가 있다.</p>
 <p><strong>단순하게 생각해도 아래의 Consumer 클래스를 선언할때, 그 객체의 의존성을 생성해야하고 의존성의 의존성 객체도 생성해야한다. 사용하기 너무 불편하다. 객체의 라이프 타임도 관리가 안된다.</strong>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">D</span><span class="p">{</span>
 <span class="p">}</span>
@@ -117,7 +118,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>DI 패턴은 <strong>아예 클래스 내부에서 객체를 생성하는 Compile-time dependency를 사용하거나, 주입할 스태틱 객체를 갖는 팩토리 클래스를 만드는</strong> 패턴을 대체한다.</p>
+<p>DI 패턴은 <strong>아예 클래스 내부에서 객체를 생성하는 Compile-time dependency를 사용하거나, 주입할 스태틱 객체를 갖는 팩토리 클래스를 만드는</strong> 패턴을 대체한다. DI와 유사한 패턴으로는 Service Locator 패턴이 있다.</p>
 </div>
 <div class="section" id="id4">
 <h2>2.7. 위임 패턴<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
