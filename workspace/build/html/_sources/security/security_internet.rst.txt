@@ -123,7 +123,7 @@ Client와 AS(authentication service)의 메세지 교환
 
 **KRB_AS_REP**
 
-3) KDC는 *TGT(ticket-granting ticket, 특별한 서비스 티켓, TGS 키로 암호화 됨)* 및 *TGS 세션 키(User Key로 암호화 됨)를* 사용자에게 전달한다. **(티켓에도 TGS 세션키가 포함되어 있음, TGS 키와 TGS 세션 키는 다르다. TGS 키는 서버에서 사용)**
+3) KDC는 *TGT(ticket-granting ticket, krbtgt라는 특별한 서비스 티켓, 일부는 TGS 키로 암호화 됨)* 및 *TGS 세션 키(User Key로 암호화 됨)를* 사용자에게 전달한다. **(티켓에도 TGS 세션키가 포함되어 있음, TGS 키와 TGS 세션 키는 다르다. TGS 키는 서버에서 사용)**
 4) 전달받은 TGS 세션 키는 사용자 키로 암호화 되어 있다. 이때 **TGS 세션 키를 복호화 한뒤** 저장한다. (이제 TGS 세션 키가 있으므로 사용자 키는 더이상 필요없다.)
 5) *TGT는* TGS 세션 키와 *인가 데이터(Authorization data, User credentials)(사용자 SID, 보안 그룹의 SID, 유니버셜 그룹)를* 포함한다. KDC는 TGT를 사용함으로써 사용자가 매번 사전 인증 데이터를 찾아야하는 오버헤드를 없앨 수 있다.
 6) *TGS 세션 키는* TGT가 만료되거나 사용자가 로그오프할때 까지 사용되므로 *로그온 세션 키(logon session key)로* 불리기도 한다.
@@ -134,14 +134,15 @@ Client와 TGS(ticket-granting service)의 메세지 교환
 **KRB_TGS_REQ**
 
 1) 사용자가 어떠한 서비스에 접근할때 그 서비스를 위한 *사용자 자격증명 캐시(User Credential Cache)에* 있는지 확인한다.
-2) 사용자는 접근하려는 **컴퓨터 이름, 도메인 이름, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를** TGS로 전송한다.
+2) 사용자는 접근하려는 **컴퓨터 이름, 도메인 이름(realm), TGT(krbtgt라는 특별한 서비스 티켓), TGS 세션 키로 암호화한 인증자(Authenticator)를** TGS로 전송한다.
+3) KDC는 인증자(Authenticator)를 검증하고 *세션 키(Session key)를* 생성한다.
 
 **KRB_TGS_REP**
 
 3) KDC는 사용자에게 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.
-4) 세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
-5) 서비스 티켓(Service Ticket)은 *시스템 키(System Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 TGS 세션 키로 암호화 되어 있다.
-6) 서비스 티켓(Service Ticket)은 세션 키와 *인가 데이터(Authorization data, TGT 복사본)(사용자 SID, 보안 그룹의 SID, 유니버셜 그룹)을* 저장하고 있다.
+4) 서비스 티켓(Service Ticket)의 일부는 *시스템 키(System Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 *TGS 세션 키로* 암호화 되어 있다.
+5) 세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
+6) 서비스 티켓(Service Ticket)은 *세션 키와 인가 데이터(사용자 신원, Authorization data, TGT의 일부분 이였던 데이터)(사용자 SID, 보안 그룹의 SID, 유니버셜 그룹)을* 저장하고 있다.
 
 User Credential을 이용한 사용자 인증
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -169,18 +170,18 @@ User Credential을 이용한 사용자 인증
 **KRB_TGS_REQ**
 
 1) 사용자는 접근하려는 **사용자 이름, 서비스 이름, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를** TGS로 전송한다.
-2) KDC는 인증자(Authenticator)를 검증하고 TGT에서 사용자 인가데이터를 뽑아내어 *세션 키(Session key)를* 생성한다.
+2) KDC는 인증자(Authenticator)를 검증하고 *세션 키(Session key)를* 생성한다.
 
 **KRB_TGS_REP**
 
 3) KDC는 사용자에게 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.
-4) 세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
-5) 서비스 티켓(Service Ticket)은 *서비스 키(Service Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 TGS 세션 키로 암호화 되어 있다.
-6) 서비스 티켓(Service Ticket)은 세션 키와 *사용자 자격증명(User Credential)을* 저장하고 있다.
+4) 서비스 티켓(Service Ticket)의 일부는 *서비스 키(Service Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 *TGS 세션 키로* 암호화 되어 있다.
+5) 세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
+6) 서비스 티켓(Service Ticket)은 *세션 키와 인가 데이터(사용자 신원, Authorization data, TGT의 일부분 이였던 데이터)(사용자 SID, 보안 그룹의 SID, 유니버셜 그룹)을* 저장하고 있다.
 
 **KRB_AP_REQ**
 
-7) 클라이언트는 원격 서버에 서비스 티켓, 인증자(Authenticator)을 전달한다.(상호인증 플래그 및 세션 키)
+7) 클라이언트는 상호인증 플래그, 원격 서버에 서비스 티켓, 인증자(Authenticator)을 전달한다.
 
 **KRB_AP_REP**
 
@@ -195,7 +196,8 @@ User Credential을 이용한 사용자 인증
 기타
 ^^^^
 
-- **TGT가 만료되면 KRB_AS_REQ를 통해 다른 TGT와 TGS 세션 키를 요청한다.**
+- Authenticator(인증자)는 메시지를 인증하거나 또는 메시지를 전송한 시스템을 어떤 시스템인지 증명하는 토큰이다. 쉽게 말하면, HTTP 세션 ID 같은 것이다
+- TGT가 만료되면 KRB_AS_REQ를 통해 다른 TGT와 TGS 세션 키를 요청한다.
 
 https://technet.microsoft.com/en-us/library/cc772815(v=ws.10).aspx 및 https://technet.microsoft.com/en-us/library/cc780332(v=ws.10).aspx 을 읽어보길 추천한다.
 

@@ -80,7 +80,7 @@
 </div>
 <div class="section" id="di-dependency-injection">
 <h2>2.6. DI(Dependency injection)<a class="headerlink" href="#di-dependency-injection" title="제목 주소">¶</a></h2>
-<p><strong>의존성 주입은</strong> 객체에서 의존 객체 생성에 대한 관심을 분리하고 외부에서 의존성을 주입하는 패턴을 뜻한다. 직접 의존성 객체를 생성 및 주입하는 것은 복잡하고, 오류가 발생하기 쉽고, 테스트하기 어렵게 한다. 반면, IOC컨테이너를 통해 의존성을 주입할 경우 특정 클래스에 대한 의존성을 제거할 수 있다. <strong>이는 애플리케이션이 실행되는 다양한 환경에 유연하게 대처할 수 있게 도움을 준다.</strong></p>
+<p><strong>의존성 주입은</strong> 객체에서 의존하는 객체 생성에 대한 관심을 분리하고 외부에서 의존성을 주입하는 패턴을 뜻한다. 직접 의존성 객체를 생성 및 주입하는 것은 복잡하고, 오류가 발생하기 쉽고, 테스트하기 어렵게 한다. 반면, IOC컨테이너를 통해 의존성을 주입할 경우 특정 클래스에 대한 의존성을 제거할 수 있다. <strong>이는 애플리케이션이 실행되는 다양한 환경에 유연하게 대처할 수 있게 도움을 준다.</strong></p>
 <p>DI 방법은 크게 3가지가 있다. 인터페이스를 이용하여 주입하거나, 생성자나 setter를 이용하여 주입하는 방법이다. IOC 컨테이너는 대표적으로 Spring, Guice 같은 프레임워크가 있다.</p>
 <p><strong>단순하게 생각해도 아래의 Consumer 클래스를 선언할때, 그 객체의 의존성을 생성해야하고 의존성의 의존성 객체도 생성해야한다. 사용하기 너무 불편하다. 객체의 라이프 타임도 관리가 안된다.</strong>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">D</span><span class="p">{</span>
@@ -120,22 +120,48 @@
 </div>
 <p>DI 패턴은 <strong>아예 클래스 내부에서 객체를 생성하는 Compile-time dependency를 사용하거나, 주입할 스태틱 객체를 갖는 팩토리 클래스를 만드는</strong> 패턴을 대체한다. DI와 유사한 패턴으로는 Service Locator 패턴이 있다.</p>
 </div>
+<div class="section" id="service-locator">
+<h2>2.7. Service Locator<a class="headerlink" href="#service-locator" title="제목 주소">¶</a></h2>
+<p>DI과 비슷한 용도로 사용되며 일반적으로 서비스 객체를 검색하는데 사용하는 Registry 객체이다. 객체를 주입 받으려면 DI 패턴과 달리 Locator 객체에 의존성을 가져야 한다. 여러가지 방식으로 구현 가능하다. 서비스 객체를 제공하는 메서드를 구현하거나, 기능별 인터페이스를 구현하는 방법과 문자열과 같은 키값을 주어 동적으로 원하는 객체를 가져오는 방법이 있다.</p>
+</div>
+<div class="section" id="di-vs-service-locator">
+<h2>2.8. DI vs Service Locator<a class="headerlink" href="#di-vs-service-locator" title="제목 주소">¶</a></h2>
+<div class="section" id="di">
+<h3>2.8.1. DI 장점<a class="headerlink" href="#di" title="제목 주소">¶</a></h3>
+<p>쉽게 테스트 구현체를 주입할 수 있다.
+객체에 어떤 의존성이 있는지 쉽게 확인할 수 있다. 인터페이스, 메서드, 생성자와  같은 DI 매커니즘을 통해 쉽게 확인 가능하다.</p>
+</div>
 <div class="section" id="id4">
-<h2>2.7. 위임 패턴<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
-<p>다른 객체에 일을 위임하는 설계 패턴을 뜻한다. 안드로이드에서 터치이벤트를 처리하기 위해 버튼의 구체적인 역할을 OnClickListener에 위임하였다.</p>
+<h3>2.8.2. DI 단점<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
+<p>DI는 IOC 개념을 사용하기 때문에 직관적이지 않고 디버깅을 통해 문제를 분석하기 어려운 경우가 있다. 한번 의존성이 구성되면 추가적인 서비스 객체를 가져올 수 없다.</p>
 </div>
 <div class="section" id="id5">
-<h2>2.8. 퍼사드 패턴<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
+<h3>2.8.3. Service Locator 장점<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
+<p>쉽게 테스트 구현체를 등록할 수 있다.
+코드 호출을 통해 직관적이고 명시적으로 객체를 얻어올 수 있다.</p>
+</div>
+<div class="section" id="id6">
+<h3>2.8.4. Service Locator 단점<a class="headerlink" href="#id6" title="제목 주소">¶</a></h3>
+<p>Locator 객체에 의존성을 가져야 하기 때문에 상황에 따라 단점이 될 수 있다. 또한 의존성을 확인하기 위해 Locator의 메서드를 호출하는 소스코드를 찾아야 하는 번거로움이 있다.</p>
+<p>다른 사람이 만드는 애플리케이션에서 <strong>고유의 Locator를 사용하고 있고</strong> 동시에 내가 만든 Locator에 의존하는 클래스를 사용하려 한다면 Adapter로 두개의 Locator 연결해야한다. 이는 Locator의 단숨함을 해칠 수 있다.</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>2.9. 위임 패턴<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
+<p>다른 객체에 일을 위임하는 설계 패턴을 뜻한다. 안드로이드에서 터치이벤트를 처리하기 위해 버튼의 구체적인 역할을 OnClickListener에 위임하였다.</p>
+</div>
+<div class="section" id="id8">
+<h2>2.10. 퍼사드 패턴<a class="headerlink" href="#id8" title="제목 주소">¶</a></h2>
 <p>복잡하고 일반적인 모듈에 대한 간단하고 구체적인 인터페이스를 제공할때 주로 사용한다. 이 패턴은 정책을 높은 수준에 적용한다. 또한 이 패턴은 <strong>개발자에게 간단한 인터페이스를 사용하라고 강제한다.</strong> 사용자 입장에서는 복잡한 인터페이스는 퍼사드에 의해 완벽하게 가려지며 보이지 않게 된다.</p>
 <p>예를들어 java.sql 패키지 같은 경우 다양한 클래스로 구성되어 있으며 사용 방법이 복잡하다. 이를 조작하는 DB 클래스를 제공하여 문제를 간단하게 만들 수 있다.</p>
 </div>
-<div class="section" id="id6">
-<h2>2.9. 미디에이터 패턴<a class="headerlink" href="#id6" title="제목 주소">¶</a></h2>
+<div class="section" id="id9">
+<h2>2.11. 미디에이터 패턴<a class="headerlink" href="#id9" title="제목 주소">¶</a></h2>
 <p>어떠한 정책을 낮은 수준의 모듈부터 적용하는 패턴이다. 퍼사드 패턴과 달리 강제적이지 않은 방식으로 정책을 적용한다.</p>
 <p>예를들어 스마트폰에서 A라는 모듈에 새로운 메세지가 왔을때 B라는 모듈에 알림이 나타나도록 정책을 적용할 수 있다. 이러한 정책은 선택 가능하다.</p>
 </div>
-<div class="section" id="id7">
-<h2>2.10. 팩토리 패턴<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
+<div class="section" id="id10">
+<h2>2.12. 팩토리 패턴<a class="headerlink" href="#id10" title="제목 주소">¶</a></h2>
 <p><a class="reference external" href="http://www.oodesign.com/factory-method-pattern.html">팩토리 패턴</a></p>
 <p>객체를 사용하는 측에서 사용하려는 클래스의 인터페이스만 정의하며 실제로 어떤 객체를 생성할지 구체적인 팩토리에 맡기는 패턴이다. 예를들어 워드에서 특별한 형식의 문서를 만들때 그 타입만 넘겨주면 타입에 관련된 구체적인 클래스를 반환한다.</p>
 <p>장점</p>
@@ -150,13 +176,13 @@
 <li>확장이 아닌 결합도를 줄이기 위해 사용하는 패턴이다.</li>
 </ul>
 </div>
-<div class="section" id="id9">
-<h2>2.11. 어댑터 패턴<a class="headerlink" href="#id9" title="제목 주소">¶</a></h2>
-<p>낮은 수준의 모듈의 소스코드가 없거나 직접 수정할 수 없을때, 서로 다른 인터페이스를 연결해주는 어댑터를 만들어서 함께 동작하게끔 하는 패턴이다.</p>
-<p>예를들어 상위 수준 정책이 의존하는 추상 인터페이스를 어댑터가 상속하게하고 내부적으로 다른 인터페이스를 사용하게 한다.</p>
+<div class="section" id="adapter-pattern">
+<h2>2.13. 어댑터 패턴(Adapter Pattern)<a class="headerlink" href="#adapter-pattern" title="제목 주소">¶</a></h2>
+<p>사용자가 요구하는 인터페이스를 위해 기존 소스코드를 수정하지 않고 사용하고 싶을때, 또는 아예 소스코드가 없을때 어댑터(Adapter)를 이용해 함께 동작하게끔 하는 디자인 패턴이다. 이때 호환성이 없는 객체는 <em>Adaptee라</em> 불린다.</p>
+<p>예를들어 상위 수준 정책이 의존하는 추상 인터페이스를 어댑터가 구현하게하고 내부적으로 다른 호환성이 없는 인터페이스(Adaptee)를 사용하게 한다.</p>
 </div>
-<div class="section" id="id10">
-<h2>2.12. 템플릿 메서드 패턴<a class="headerlink" href="#id10" title="제목 주소">¶</a></h2>
+<div class="section" id="id12">
+<h2>2.14. 템플릿 메서드 패턴<a class="headerlink" href="#id12" title="제목 주소">¶</a></h2>
 <p>부모 클래스에서 메서드 호출의 흐름을 제어하고 자식 클래스에서 구체적인 내용을 작성하는 패턴이다. 예를들어 HTML문서를 생성할때 템플릿 메서드를 활용하면 좋다. 템플릿 메서드에서 head, body 등의 필요한 태그를 생성하는 함수를 이용해 흐름을 작성한다.</p>
 <p>장점</p>
 <ul class="simple">
@@ -164,15 +190,15 @@
 <li>템플릿 메서드를 이용해 리팩토링이 쉽다.</li>
 </ul>
 </div>
-<div class="section" id="id11">
-<h2>2.13. 옵저버 패턴<a class="headerlink" href="#id11" title="제목 주소">¶</a></h2>
+<div class="section" id="id13">
+<h2>2.15. 옵저버 패턴<a class="headerlink" href="#id13" title="제목 주소">¶</a></h2>
 <p>다른 객체의 변화를 관찰하는 패턴이다. OCP, LSP, DIP 등 3가지 원칙을 만족 시키며 Subject와 Observer로 역할이 나뉘어진다. Subject는 추상 클래스로(구체화를 못 하도록) 다른 객체에 알림을 줄때 사용하는 클래스이며, Observer는 관찰하고 싶을때 사용하는 인터페이스이다.</p>
 <p>동작하는 방식은 pull-model, push-model가 있다. pull-model은 observer에게 전달할 데이터의 종류가 간단할때, push-model은 복잡하거나 단순히 pull-model로는 가져올 수 없을때 사용한다.</p>
 <img alt="../_images/observer-pull.png" src="../_images/observer-pull.png" />
 <img alt="../_images/observer-push.png" src="../_images/observer-push.png" />
 </div>
-<div class="section" id="id12">
-<h2>2.14. 참조<a class="headerlink" href="#id12" title="제목 주소">¶</a></h2>
+<div class="section" id="id14">
+<h2>2.16. 참조<a class="headerlink" href="#id14" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>DI Motivation: <a class="reference external" href="https://github.com/google/guice/wiki/Motivation">https://github.com/google/guice/wiki/Motivation</a></li>
 <li>DI: <a class="reference external" href="https://github.com/google/guice/wiki/GettingStarted">https://github.com/google/guice/wiki/GettingStarted</a></li>
@@ -198,14 +224,22 @@
 <li><a class="reference internal" href="#dip-dependency-inversion-principle">2.4. DIP(Dependency Inversion Principle)</a></li>
 <li><a class="reference internal" href="#ioc-inversion-of-control">2.5. IOC(Inversion of Control)</a></li>
 <li><a class="reference internal" href="#di-dependency-injection">2.6. DI(Dependency injection)</a></li>
-<li><a class="reference internal" href="#id4">2.7. 위임 패턴</a></li>
-<li><a class="reference internal" href="#id5">2.8. 퍼사드 패턴</a></li>
-<li><a class="reference internal" href="#id6">2.9. 미디에이터 패턴</a></li>
-<li><a class="reference internal" href="#id7">2.10. 팩토리 패턴</a></li>
-<li><a class="reference internal" href="#id9">2.11. 어댑터 패턴</a></li>
-<li><a class="reference internal" href="#id10">2.12. 템플릿 메서드 패턴</a></li>
-<li><a class="reference internal" href="#id11">2.13. 옵저버 패턴</a></li>
-<li><a class="reference internal" href="#id12">2.14. 참조</a></li>
+<li><a class="reference internal" href="#service-locator">2.7. Service Locator</a></li>
+<li><a class="reference internal" href="#di-vs-service-locator">2.8. DI vs Service Locator</a><ul>
+<li><a class="reference internal" href="#di">2.8.1. DI 장점</a></li>
+<li><a class="reference internal" href="#id4">2.8.2. DI 단점</a></li>
+<li><a class="reference internal" href="#id5">2.8.3. Service Locator 장점</a></li>
+<li><a class="reference internal" href="#id6">2.8.4. Service Locator 단점</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id7">2.9. 위임 패턴</a></li>
+<li><a class="reference internal" href="#id8">2.10. 퍼사드 패턴</a></li>
+<li><a class="reference internal" href="#id9">2.11. 미디에이터 패턴</a></li>
+<li><a class="reference internal" href="#id10">2.12. 팩토리 패턴</a></li>
+<li><a class="reference internal" href="#adapter-pattern">2.13. 어댑터 패턴(Adapter Pattern)</a></li>
+<li><a class="reference internal" href="#id12">2.14. 템플릿 메서드 패턴</a></li>
+<li><a class="reference internal" href="#id13">2.15. 옵저버 패턴</a></li>
+<li><a class="reference internal" href="#id14">2.16. 참조</a></li>
 </ul>
 </li>
 </ul>
