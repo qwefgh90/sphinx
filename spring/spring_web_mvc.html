@@ -69,8 +69,8 @@
 <li>HandlerMapping의 목록에서 적절한 HandlerMapping을 찾은 뒤 핸들러의 <strong>HandlerExecutionChain(Object(핸들러), HandlerInterceptor)을</strong> 반환한다.</li>
 </ol>
 <ul class="simple">
-<li>preprocessors(<a href="#id12"><span class="problematic" id="id13">`applyPreHandle로 호출&lt;https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L986&gt;`_</span></a>)</li>
-<li>controllers(핸들러와 연관된 HandlerAdapter를 이용해 핸들러를 요청에 적용)</li>
+<li>preprocessors(<a class="reference external" href="https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L986">applyPreHandle로 호출</a>)</li>
+<li>controllers(핸들러와 연관된 HandlerAdapter를 이용해 핸들러를 요청에 적용, <a class="reference external" href="https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L1041">handle로 호출</a>)</li>
 <li>postprocessors(applyPostHandle로 호출)</li>
 </ul>
 <p>이 과정에서 모델과 렌더링을 준비한다. 또는 뷰를 반환하지않고 응답을 반환할 수 있다.</p>
@@ -183,7 +183,7 @@
 <h3>2.4.2. &#64;RequestMapping<a class="headerlink" href="#requestmapping" title="제목 주소">¶</a></h3>
 <p>요청과 컨트롤러 메서드를 연결하는데 사용되는 주석이다. 주로 메서드에 사용되어 요청과 연결되며, 메서드간 공유되는 매핑이 있을때 클래스에 사용되기도 한다.</p>
 <p><strong>인자로 사용 가능한 타입은</strong> <a class="reference external" href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-arguments">다음과</a> 같다.</p>
-<p><strong>반환 타입은</strong> <a href="#id14"><span class="problematic" id="id15">`다음과&lt;https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-return-types&gt;`_</span></a> 같다.</p>
+<p><strong>반환 타입은</strong> <a class="reference external" href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-return-types">다음과</a> 같다.</p>
 <p>패턴 종류
 - ?: 하나의 문자와 매칭
 - <em>: 하나의 경로 세그먼트에서 0개 이상의 문자와 매칭
@@ -202,8 +202,8 @@
 <p>headers 파라미터
 - params와 유사</p>
 </div>
-<div class="section" id="id5">
-<h3>2.4.3. 메서드 파라미터에 사용되는 주석<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
+<div class="section" id="id6">
+<h3>2.4.3. 메서드 파라미터에 사용되는 주석<a class="headerlink" href="#id6" title="제목 주소">¶</a></h3>
 <p>요청의 어떤 부분과 메서드 파라미터를 연결시킬때 사용한다. Java 8부터 java.util.Optional&lt;A&gt;을 파라미터 타입으로 쓸 수 있다.</p>
 <div class="section" id="pathvariable">
 <h4>2.4.3.1. &#64;PathVariable<a class="headerlink" href="#pathvariable" title="제목 주소">¶</a></h4>
@@ -250,8 +250,8 @@
 </div>
 <p>Model을 인자로 받아서 여러개의 속성을 추가할떄 사용한다.</p>
 </div>
-<div class="section" id="id7">
-<h4>2.4.3.7. &#64;ModelAttribute (메서드 인자)<a class="headerlink" href="#id7" title="제목 주소">¶</a></h4>
+<div class="section" id="id8">
+<h4>2.4.3.7. &#64;ModelAttribute (메서드 인자)<a class="headerlink" href="#id8" title="제목 주소">¶</a></h4>
 <p>모델의 속성과 메서드 인자를 바인딩 시킬때 사용할 수 있다.</p>
 <p>예시:</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">&quot;/owners/{ownerId}/pets/{petId}/edit&quot;</span><span class="o">)</span>
@@ -271,8 +271,8 @@
 <h4>2.4.3.8. &#64;SessionAttributes (클래스)<a class="headerlink" href="#sessionattributes" title="제목 주소">¶</a></h4>
 <p>세션에 특성을 저장하도록 해주는 주석이다. 인자로 저장된 특성의 타입이나 이름이 온다. <strong>&#64;ModelAttribute로 만든 특성을 그대로 세션에 저장하는 개념이다.</strong></p>
 </div>
-<div class="section" id="id8">
-<h4>2.4.3.9. &#64;SessionAttributes (메서드 인자)<a class="headerlink" href="#id8" title="제목 주소">¶</a></h4>
+<div class="section" id="id9">
+<h4>2.4.3.9. &#64;SessionAttributes (메서드 인자)<a class="headerlink" href="#id9" title="제목 주소">¶</a></h4>
 <p>이미 저장된 세션 특성을 메서드 인자에 바인딩 시킬때 사용한다. 주로 필터에 의해 추가된 값이다.</p>
 </div>
 <div class="section" id="requestattribute">
@@ -301,8 +301,8 @@
 <h3>2.4.5. &#64;RestController stereotype<a class="headerlink" href="#restcontroller-stereotype" title="제목 주소">¶</a></h3>
 <p>&#64;ResponseBody와 &#64;Controller을 섞은 주석이다. Spring Web MVC를 이용해 Rest API를 만들때 사용한다.</p>
 </div>
-<div class="section" id="id10">
-<h3>2.4.6. 설정<a class="headerlink" href="#id10" title="제목 주소">¶</a></h3>
+<div class="section" id="id11">
+<h3>2.4.6. 설정<a class="headerlink" href="#id11" title="제목 주소">¶</a></h3>
 <p><a class="reference external" href="https://github.com/qwefgh90/handyfinder/blob/master/src/main/java/io/github/qwefgh90/handyfinder/springweb/config/ServletContext.java#L21">JavaConfig를 사용할 경우 &#64;ComponentScan 주석을</a> 이용해 탐지할 패키지를 지정할 수 있다.</p>
 <p>servlet_context.xml 설정을 다음과 같다.:</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="o">?&gt;</span>
@@ -347,8 +347,8 @@
 <p>JSP와 같은 뷰 기술을 다루며, 뷰 이름과 뷰를 연결해주는 인터페이스이다. 보통 핸들러에서 논리적인 뷰 이름을 반환한 뒤 ViewResolver가 실제 View와 연결시켜준다.</p>
 <p><strong>UrlBasedViewResolver는 간단한 ViewResolver로 논리적인 뷰 이름으로 저장된 리소스를 찾을때 사용한다.</strong></p>
 </div>
-<div class="section" id="id11">
-<h2>2.7. 참조<a class="headerlink" href="#id11" title="제목 주소">¶</a></h2>
+<div class="section" id="id12">
+<h2>2.7. 참조<a class="headerlink" href="#id12" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>Spring Web MVC: <a class="reference external" href="https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html">https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html</a></li>
 </ul>
@@ -374,16 +374,16 @@
 <li><a class="reference internal" href="#annotated-controller">2.4. Annotated Controller(주석이 달린 컨트롤러)</a><ul>
 <li><a class="reference internal" href="#controller-stereotype">2.4.1. &#64;Controller stereotype</a></li>
 <li><a class="reference internal" href="#requestmapping">2.4.2. &#64;RequestMapping</a></li>
-<li><a class="reference internal" href="#id5">2.4.3. 메서드 파라미터에 사용되는 주석</a><ul>
+<li><a class="reference internal" href="#id6">2.4.3. 메서드 파라미터에 사용되는 주석</a><ul>
 <li><a class="reference internal" href="#pathvariable">2.4.3.1. &#64;PathVariable</a></li>
 <li><a class="reference internal" href="#requestparam">2.4.3.2. &#64;RequestParam</a></li>
 <li><a class="reference internal" href="#requestbody">2.4.3.3. &#64;RequestBody</a></li>
 <li><a class="reference internal" href="#responsebody">2.4.3.4. &#64;ResponseBody</a></li>
 <li><a class="reference internal" href="#httpentity-t">2.4.3.5. HttpEntity&lt;T&gt;</a></li>
 <li><a class="reference internal" href="#modelattribute">2.4.3.6. &#64;ModelAttribute (메서드)</a></li>
-<li><a class="reference internal" href="#id7">2.4.3.7. &#64;ModelAttribute (메서드 인자)</a></li>
+<li><a class="reference internal" href="#id8">2.4.3.7. &#64;ModelAttribute (메서드 인자)</a></li>
 <li><a class="reference internal" href="#sessionattributes">2.4.3.8. &#64;SessionAttributes (클래스)</a></li>
-<li><a class="reference internal" href="#id8">2.4.3.9. &#64;SessionAttributes (메서드 인자)</a></li>
+<li><a class="reference internal" href="#id9">2.4.3.9. &#64;SessionAttributes (메서드 인자)</a></li>
 <li><a class="reference internal" href="#requestattribute">2.4.3.10. &#64;RequestAttribute (메서드 인자)</a></li>
 <li><a class="reference internal" href="#cookievalue">2.4.3.11. &#64;CookieValue</a></li>
 <li><a class="reference internal" href="#requestheader">2.4.3.12. &#64;RequestHeader</a></li>
@@ -392,7 +392,7 @@
 </li>
 <li><a class="reference internal" href="#httpmessageconverter">2.4.4. HttpMessageConverter</a></li>
 <li><a class="reference internal" href="#restcontroller-stereotype">2.4.5. &#64;RestController stereotype</a></li>
-<li><a class="reference internal" href="#id10">2.4.6. 설정</a></li>
+<li><a class="reference internal" href="#id11">2.4.6. 설정</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#handlermapping">2.5. HandlerMapping</a><ul>
@@ -403,7 +403,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#viewresolver">2.6. ViewResolver</a></li>
-<li><a class="reference internal" href="#id11">2.7. 참조</a></li>
+<li><a class="reference internal" href="#id12">2.7. 참조</a></li>
 </ul>
 </li>
 </ul>

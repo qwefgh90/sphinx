@@ -37,13 +37,12 @@ Servlet만 이용하여 웹 애플리케이션을 작성할 수 있다. `링크 
 ====================================
 
 1) WebApplicationContext를 찾는다. 그리고 실제 `ServletRequest의 속성으로 WebApplicationContext를 바운딩 <https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L910>`_ 시킨다. 컨트롤러나 다른 요소가 이를 사용한다고 한다.
-
 2) 1)과 같은 방식으로 LocaleResolver, ThemeResolver를 바운딩 시킨다.
 3) MultipartResolver를 명시했다면 HttpServletRequest는 MultipartHttpServletRequest 타입으로 변환될 것이다. 
 4) HandlerMapping의 목록에서 적절한 HandlerMapping을 찾은 뒤 핸들러의 **HandlerExecutionChain(Object(핸들러), HandlerInterceptor)을** 반환한다.
 
-- preprocessors(`applyPreHandle로 호출<https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L986>`_)
-- controllers(핸들러와 연관된 HandlerAdapter를 이용해 핸들러를 요청에 적용)
+- preprocessors(`applyPreHandle로 호출 <https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L986>`_)
+- controllers(핸들러와 연관된 HandlerAdapter를 이용해 핸들러를 요청에 적용, `handle로 호출 <https://github.com/spring-projects/spring-framework/blob/master/spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java#L1041>`_)
 - postprocessors(applyPostHandle로 호출)
 
 이 과정에서 모델과 렌더링을 준비한다. 또는 뷰를 반환하지않고 응답을 반환할 수 있다.
@@ -174,7 +173,7 @@ Spring Web MVC는 주석 기반의 프로그래밍 모델을 허용한다. Annot
 
 **인자로 사용 가능한 타입은** `다음과 <https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-arguments>`_ 같다.
 
-**반환 타입은** `다음과<https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-return-types>`_ 같다.
+**반환 타입은** `다음과 <https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-return-types>`_ 같다.
 
 패턴 종류
 - ?: 하나의 문자와 매칭
