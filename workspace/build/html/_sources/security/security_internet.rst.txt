@@ -169,19 +169,19 @@ User Credential을 이용한 사용자 인증
 
 **KRB_TGS_REQ**
 
-1) 사용자는 접근하려는 **사용자 이름, 서비스 이름, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를** TGS로 전송한다.
+1) 사용자는 **서비스 이름, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를** TGS로 전송한다. *예를들면 (HTTP/a.company.com, TGT, 암호화된 인증자)를 전송한다.*
 2) KDC는 인증자(Authenticator)를 검증하고 *세션 키(Session key)를* 생성한다.
 
 **KRB_TGS_REP**
 
 3) KDC는 사용자에게 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.
-4) 서비스 티켓(Service Ticket)의 일부는 *서비스 키(Service Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 *TGS 세션 키로* 암호화 되어 있다.
+4) 서비스 티켓(Service Ticket)의 일부는 *서비스 세션 키(Service Key)로* 암호화 되어있다. 서비스 세션 키(Session Key)는 *TGS 세션 키로* 암호화 되어 있다.
 5) 세션 키와 서비스 티켓을 *사용자 자격증명 캐시(User Credential Cache)에* 저장한다.
 6) 서비스 티켓(Service Ticket)은 *세션 키와 인가 데이터(사용자 신원, Authorization data, TGT의 일부분 이였던 데이터)(사용자 SID, 보안 그룹의 SID, 유니버셜 그룹)을* 저장하고 있다.
 
 **KRB_AP_REQ**
 
-7) 클라이언트는 상호인증 플래그, 원격 서버에 서비스 티켓, 인증자(Authenticator)을 전달한다.
+7) 클라이언트는 상호인증 플래그, 원격 서버에 서비스 티켓, 인증자(Authenticator)을 전달한다. *예를들면 (상호인증 플래그(0x20000000), 서비스 티켓, 암호화된 인증자)를 전송한다.*
 
 **KRB_AP_REP**
 

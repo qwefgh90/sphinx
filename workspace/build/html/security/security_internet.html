@@ -186,19 +186,19 @@
 </ul>
 <p><strong>KRB_TGS_REQ</strong></p>
 <ol class="arabic simple">
-<li>사용자는 접근하려는 <strong>사용자 이름, 서비스 이름, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를</strong> TGS로 전송한다.</li>
+<li>사용자는 <strong>서비스 이름, TGT, TGS 세션 키로 암호화한 인증자(Authenticator)를</strong> TGS로 전송한다. <em>예를들면 (HTTP/a.company.com, TGT, 암호화된 인증자)를 전송한다.</em></li>
 <li>KDC는 인증자(Authenticator)를 검증하고 <em>세션 키(Session key)를</em> 생성한다.</li>
 </ol>
 <p><strong>KRB_TGS_REP</strong></p>
 <ol class="arabic simple" start="3">
 <li>KDC는 사용자에게 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.</li>
-<li>서비스 티켓(Service Ticket)의 일부는 <em>서비스 키(Service Key)로</em> 암호화 되어있다. 서비스 세션 키(Session Key)는 <em>TGS 세션 키로</em> 암호화 되어 있다.</li>
+<li>서비스 티켓(Service Ticket)의 일부는 <em>서비스 세션 키(Service Key)로</em> 암호화 되어있다. 서비스 세션 키(Session Key)는 <em>TGS 세션 키로</em> 암호화 되어 있다.</li>
 <li>세션 키와 서비스 티켓을 <em>사용자 자격증명 캐시(User Credential Cache)에</em> 저장한다.</li>
 <li>서비스 티켓(Service Ticket)은 <em>세션 키와 인가 데이터(사용자 신원, Authorization data, TGT의 일부분 이였던 데이터)(사용자 SID, 보안 그룹의 SID, 유니버셜 그룹)을</em> 저장하고 있다.</li>
 </ol>
 <p><strong>KRB_AP_REQ</strong></p>
 <ol class="arabic simple" start="7">
-<li>클라이언트는 상호인증 플래그, 원격 서버에 서비스 티켓, 인증자(Authenticator)을 전달한다.</li>
+<li>클라이언트는 상호인증 플래그, 원격 서버에 서비스 티켓, 인증자(Authenticator)을 전달한다. <em>예를들면 (상호인증 플래그(0x20000000), 서비스 티켓, 암호화된 인증자)를 전송한다.</em></li>
 </ol>
 <p><strong>KRB_AP_REP</strong></p>
 <ol class="arabic simple" start="8">
