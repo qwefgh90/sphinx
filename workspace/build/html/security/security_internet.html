@@ -152,12 +152,12 @@
 <p><strong>KRB_TGS_REQ</strong></p>
 <ol class="arabic simple">
 <li>사용자가 어떠한 서비스에 접근할때 그 서비스를 위한 <em>사용자 자격증명 캐시(User Credential Cache)에</em> 있는지 확인한다.</li>
-<li>사용자는 접근하려는 <strong>컴퓨터 이름, 도메인 이름(realm), TGT(krbtgt라는 특별한 서비스 티켓), TGS 세션 키로 암호화한 인증자(Authenticator)를</strong> TGS로 전송한다.</li>
+<li>사용자는 접근하려는 <strong>컴퓨터/서비스 이름(sname), 도메인 이름(realm), TGT(krbtgt라는 특별한 서비스 티켓), TGS 세션 키로 암호화한 인증자(Authenticator)를</strong> 전송한다.</li>
 <li>KDC는 인증자(Authenticator)를 검증하고 <em>세션 키(Session key)를</em> 생성한다.</li>
 </ol>
 <p><strong>KRB_TGS_REP</strong></p>
 <ol class="arabic simple" start="3">
-<li>KDC는 사용자에게 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.</li>
+<li>KDC는 암호화 된 서비스 세션 키(Session Key)와 서비스 티켓(Service Ticket)을 전달한다.</li>
 <li>서비스 티켓(Service Ticket)의 일부는 <em>시스템 키(System Key)로</em> 암호화 되어있다. 서비스 세션 키(Session Key)는 <em>TGS 세션 키로</em> 암호화 되어 있다.</li>
 <li>세션 키와 서비스 티켓을 <em>사용자 자격증명 캐시(User Credential Cache)에</em> 저장한다.</li>
 <li>서비스 티켓(Service Ticket)은 <em>세션 키와 인가 데이터(사용자 신원, Authorization data, TGT의 일부분 이였던 데이터)(사용자 SID, 보안 그룹의 SID, 유니버셜 그룹)을</em> 저장하고 있다.</li>
