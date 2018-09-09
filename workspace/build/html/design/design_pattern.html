@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>2. 디자인 패턴 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="design-pattern">
@@ -85,7 +78,7 @@
 <p><strong>의존성 주입은</strong> 객체에서 의존하는 객체 생성에 대한 관심을 분리하고 외부에서 의존성을 주입하는 패턴을 뜻한다. 직접 의존성 객체를 생성 및 주입하는 것은 복잡하고, 오류가 발생하기 쉽고, 테스트하기 어렵게 한다. 반면, IOC컨테이너를 통해 의존성을 주입할 경우 특정 클래스에 대한 의존성을 제거할 수 있다. <strong>이는 애플리케이션이 실행되는 다양한 환경에 유연하게 대처할 수 있게 도움을 준다.</strong></p>
 <p>DI 방법은 크게 3가지가 있다. 인터페이스를 이용하여 주입하거나, 생성자나 setter를 이용하여 주입하는 방법이다. IOC 컨테이너는 대표적으로 Spring, Guice 같은 프레임워크가 있다.</p>
 <p><strong>단순하게 생각해도 아래의 Consumer 클래스를 선언할때, 그 객체의 의존성을 생성해야하고 의존성의 의존성 객체도 생성해야한다. 사용하기 너무 불편하다. 객체의 라이프 타임도 관리가 안된다.</strong>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">D</span><span class="p">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">D</span><span class="p">{</span>
 <span class="p">}</span>
 
 <span class="k">class</span> <span class="nc">C</span><span class="p">{</span>
@@ -184,7 +177,7 @@
 <div class="section" id="design-of-a-software-for-the-desk-lamp">
 <h3>2.13.1. 책상 위 스탠드 설계(Design of a software for the desk lamp)<a class="headerlink" href="#design-of-a-software-for-the-desk-lamp" title="제목 주소">¶</a></h3>
 <p>스탠드 내부에서 돌아갈 소프트웨어를 설계할때 어떤 점을 고려해야할까? 1990년에 많은 논쟁이 있었고 많은 사람들이 아이디어를 제시하였고 우월성을 입증하려 노력하였다.</p>
-<img alt="../_images/lamp1.png" src="../_images/lamp1.png" />
+<img alt="design/image/lamp1.png" src="design/image/lamp1.png" />
 <p><strong>단순히 Switch와 Light라는 2가지 객체만 사용할 경우 발생할 수 있는 문제는 다음과 같다.</strong>
 먼저 DIP, OCP라는 원칙을 위배한다. 상위 정책 인터페이스에 의존하는 것이 아니고 구체적인 클래스에 의존하기 떄문이다.
 또한 항상 Light 객체를 끌고 다녀야 하고 Light외에 다른 객체를 제어할 수 있도록 확장하기 어렵다.</p>
@@ -193,7 +186,7 @@
 <div class="section" id="id12">
 <h3>2.13.2. 추상 서버 패턴을 이용한 스탠드 설계<a class="headerlink" href="#id12" title="제목 주소">¶</a></h3>
 <p>추상 서버 패턴은 간단하다. 연관된 클래스를 직접 참조하지 않고 <em>Switchable이라는</em> 인터페이스를 통해 참조하여 의존성 역전(DIP)을 시키는 것이다. 이렇게 되면 OCP 원칙 역시 충족된다.</p>
-<img alt="../_images/lamp2.png" src="../_images/lamp2.png" />
+<img alt="design/image/lamp2.png" src="design/image/lamp2.png" />
 </div>
 <div class="section" id="id13">
 <h3>2.13.3. 인터페이스의 소유<a class="headerlink" href="#id13" title="제목 주소">¶</a></h3>
@@ -230,8 +223,8 @@
 <h2>2.17. 옵저버 패턴<a class="headerlink" href="#id17" title="제목 주소">¶</a></h2>
 <p>다른 객체의 변화를 관찰하는 패턴이다. OCP, LSP, DIP 등 3가지 원칙을 만족 시키며 Subject와 Observer로 역할이 나뉘어진다. Subject는 추상 클래스로(구체화를 못 하도록) 다른 객체에 알림을 줄때 사용하는 클래스이며, Observer는 관찰하고 싶을때 사용하는 인터페이스이다.</p>
 <p>동작하는 방식은 pull-model, push-model가 있다. pull-model은 observer에게 전달할 데이터의 종류가 간단할때, push-model은 복잡하거나 단순히 pull-model로는 가져올 수 없을때 사용한다.</p>
-<img alt="../_images/observer-pull.png" src="../_images/observer-pull.png" />
-<img alt="../_images/observer-push.png" src="../_images/observer-push.png" />
+<img alt="design/image/observer-pull.png" src="design/image/observer-pull.png" />
+<img alt="design/image/observer-push.png" src="design/image/observer-push.png" />
 </div>
 <div class="section" id="id18">
 <h2>2.18. 참조<a class="headerlink" href="#id18" title="제목 주소">¶</a></h2>
@@ -247,48 +240,49 @@
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">2. 디자인 패턴</a><ul>
-<li><a class="reference internal" href="#id2">2.1. 전략 패턴</a></li>
-<li><a class="reference internal" href="#mvc">2.2. MVC 패턴</a></li>
-<li><a class="reference internal" href="#isp-interface-segregation-principle">2.3. ISP(Interface Segregation Principle)</a></li>
-<li><a class="reference internal" href="#dip-dependency-inversion-principle">2.4. DIP(Dependency Inversion Principle)</a></li>
-<li><a class="reference internal" href="#ioc-inversion-of-control">2.5. IOC(Inversion of Control)</a></li>
-<li><a class="reference internal" href="#di-dependency-injection">2.6. DI(Dependency injection)</a></li>
-<li><a class="reference internal" href="#service-locator">2.7. Service Locator</a></li>
-<li><a class="reference internal" href="#di-vs-service-locator">2.8. DI vs Service Locator</a><ul>
-<li><a class="reference internal" href="#di">2.8.1. DI 장점</a></li>
-<li><a class="reference internal" href="#id4">2.8.2. DI 단점</a></li>
-<li><a class="reference internal" href="#id5">2.8.3. Service Locator 장점</a></li>
-<li><a class="reference internal" href="#id6">2.8.4. Service Locator 단점</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="design_index.html">설계(Design)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="design_terms.html">1. 용어</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. 디자인 패턴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_rest.html">3. Rest API</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id7">2.9. 위임 패턴</a></li>
-<li><a class="reference internal" href="#id8">2.10. 퍼사드 패턴</a></li>
-<li><a class="reference internal" href="#id9">2.11. 미디에이터 패턴</a></li>
-<li><a class="reference internal" href="#id10">2.12. 팩토리 패턴</a></li>
-<li><a class="reference internal" href="#abstract-server-pattern">2.13. 추상 서버 패턴(Abstract Server Pattern)</a><ul>
-<li><a class="reference internal" href="#design-of-a-software-for-the-desk-lamp">2.13.1. 책상 위 스탠드 설계(Design of a software for the desk lamp)</a></li>
-<li><a class="reference internal" href="#id12">2.13.2. 추상 서버 패턴을 이용한 스탠드 설계</a></li>
-<li><a class="reference internal" href="#id13">2.13.3. 인터페이스의 소유</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
-</li>
-<li><a class="reference internal" href="#id14">2.14. 인터페이스 변경</a></li>
-<li><a class="reference internal" href="#adapter-pattern">2.15. 어댑터 패턴(Adapter Pattern)</a><ul>
-<li><a class="reference internal" href="#id15">2.15.1. 설계 비용</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id16">2.16. 템플릿 메서드 패턴</a></li>
-<li><a class="reference internal" href="#id17">2.17. 옵저버 패턴</a></li>
-<li><a class="reference internal" href="#id18">2.18. 참조</a></li>
-</ul>
-</li>
-</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -300,21 +294,16 @@
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/design/design_pattern.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -325,8 +314,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/design/design_pattern.rst.txt"

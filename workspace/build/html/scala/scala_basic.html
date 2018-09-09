@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>2. 스칼라 기본 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="id1">
@@ -48,7 +41,7 @@
 <h2>2.1. 제네릭 타입의 변성 및 공변적인 파라미터 타입<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <p><strong>스칼라에서는 타입 파라미터를 통해 다양한 타입 생성을 지원한다.</strong> <a class="reference internal" href="scala_terms.html#id4"><span class="std std-ref">제네릭 클래스/트레이트</span></a> 에 특정 타입을 넘겨주면 파라미터화된 타입을 생성할 수 있다. 파라미터화된 타입이나 평범한 타입(타입 파라미터가 없는)을 사용해 인스턴스를 생성할 수 있다.</p>
 <p>타입 파라미터 예시:</p>
-<div class="highlight-scala"><div class="highlight"><pre><span></span><span class="k">object</span> <span class="nc">Main</span> <span class="k">extends</span> <span class="nc">App</span> <span class="o">{</span>
+<div class="highlight-scala notranslate"><div class="highlight"><pre><span></span><span class="k">object</span> <span class="nc">Main</span> <span class="k">extends</span> <span class="nc">App</span> <span class="o">{</span>
       <span class="k">val</span> <span class="n">q</span> <span class="k">=</span> <span class="nc">Queue</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="mi">7</span><span class="o">).</span><span class="n">enqueue</span><span class="o">(</span><span class="mi">10</span><span class="o">).</span><span class="n">tail</span>
       <span class="n">println</span><span class="o">(</span><span class="n">q</span><span class="o">.</span><span class="n">toString</span><span class="o">)</span>
 <span class="o">}</span>
@@ -72,7 +65,7 @@
 </pre></div>
 </div>
 <p><strong>제네릭 클래스나 트레이트</strong> 는 다음과 같이 정의할 수 있다.:</p>
-<div class="highlight-scala"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Queue</span><span class="o">[</span><span class="kt">T</span><span class="o">]{</span>
+<div class="highlight-scala notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Queue</span><span class="o">[</span><span class="kt">T</span><span class="o">]{</span>
 
 <span class="o">}</span>
 </pre></div>
@@ -81,7 +74,7 @@
 <p><strong>스칼라에서는 기본적으로 타입 파라미터에 대해 무공변성을 갖는다.</strong> 즉 위의 Queue[String]은 Queue[AnyRef]의 서브타입이 아니다. 타입 파라미터 T에 대해 공변성을 띄게하고 싶다면 T앞에 변성표기 <em>+</em> 를 넣어서 공변성을 띄게 할 수 있다. <em>-</em> 를 넣는다면 반공변성을 띄게 된다. 타입 파라미터에 <em>반공변적</em> 이라면 임의의 타입 파라미터 S가 T의 서브타입일때 Queue[T]는 Queue[S]의 서브타입이 된다.</p>
 <p>공변/반공변을 띄게 하는 <strong>+/-</strong> 표기는 <a class="reference internal" href="scala_terms.html#id8"><span class="std std-ref">변성</span></a> 표기 라고 한다.</p>
 <p>공변 타입이 항상 가능하지는 않다. 다음과 같은 설계는 불가능하다.:</p>
-<div class="highlight-scala"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Cell</span><span class="o">[</span><span class="kt">+T</span><span class="o">](</span><span class="n">init</span><span class="k">:</span> <span class="kt">T</span><span class="o">){</span>
+<div class="highlight-scala notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Cell</span><span class="o">[</span><span class="kt">+T</span><span class="o">](</span><span class="n">init</span><span class="k">:</span> <span class="kt">T</span><span class="o">){</span>
       <span class="k">private</span><span class="o">[</span><span class="kt">this</span><span class="o">]</span> <span class="k">var</span> <span class="n">v</span> <span class="k">=</span> <span class="n">init</span>
       <span class="k">def</span> <span class="n">get</span> <span class="k">=</span> <span class="n">v</span>
       <span class="k">def</span> <span class="n">set</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">T</span><span class="o">)</span> <span class="o">{</span> <span class="n">v</span> <span class="k">=</span> <span class="n">x</span> <span class="o">}</span>
@@ -89,7 +82,7 @@
 </pre></div>
 </div>
 <p>위와 같이 변수 재할당이 있는 경우 공변 타입이 가능하지 않다. (실제로 타입 파라미터를 함수의 파라미터로 사용하는 것이 허용되지 않는다.) 예를들어 다음과 같은 코드가 있다고 가정할 경우 문제가 발생한다.:</p>
-<div class="highlight-scala"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">original</span><span class="k">:</span> <span class="kt">Cell</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Cell</span><span class="o">(</span><span class="s">&quot;Hello World&quot;</span><span class="o">)</span>
+<div class="highlight-scala notranslate"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">original</span><span class="k">:</span> <span class="kt">Cell</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Cell</span><span class="o">(</span><span class="s">&quot;Hello World&quot;</span><span class="o">)</span>
 <span class="k">val</span> <span class="n">post</span><span class="k">:</span> <span class="kt">Cell</span><span class="o">[</span><span class="kt">Any</span><span class="o">]</span> <span class="k">=</span> <span class="n">original</span>
 <span class="n">post</span><span class="o">.</span><span class="n">set</span><span class="o">(</span><span class="mi">1234</span><span class="o">)</span>
 <span class="k">val</span> <span class="n">value</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="n">get</span>
@@ -97,7 +90,7 @@
 </div>
 <p>위 코드에서 문제가 되는 부분은 2번째 줄에서 Cell[String] 값을 Cell[Any] 변수에 할당하는 부분이다. 따라서 마지막 4번째 줄에서 String이 아닌 1234를 얻게되므로 이는 프로그램 오류이다. 서브타이핑 관점에서 Cell[String]은 Cell[Any]보다 할 수 있는 것이 적으므로 (Int 타입 set의 파라미터로 넘기는 등) 서브타이핑 관계가 될 수 없다. 이 코드는 컴파일 되지 않는다. <strong>클래스의 공변적 타입 파라미터는 함수의 파라미터로 사용할 수 없다.</strong> (실제로 타입 T인 v라는 변수는 setter/getter 메소드 def v: T, def v_=(x: T)로 취급되므로 var 또한 사용할 수 없다.)</p>
 <p>다음 예제도 타입 건전성을 위반하므로 컴파일 될 수 없다.:</p>
-<div class="highlight-scala"><div class="highlight"><pre><span></span><span class="k">object</span> <span class="nc">TestCovariant</span> <span class="o">{</span>
+<div class="highlight-scala notranslate"><div class="highlight"><pre><span></span><span class="k">object</span> <span class="nc">TestCovariant</span> <span class="o">{</span>
   <span class="k">class</span> <span class="nc">Fruit</span>
   <span class="k">class</span> <span class="nc">Apple</span> <span class="k">extends</span> <span class="nc">Fruit</span>
   <span class="k">class</span> <span class="nc">Orange</span> <span class="k">extends</span> <span class="nc">Fruit</span>
@@ -117,7 +110,7 @@
 </div>
 <p>위와 같이 main문에서 잘못된 서브타이핑으로 문자열을 제곱하는 오류가 발생할 수 도 있다. 이는 Space[Any]가 Space[Int]보다 할 수 있는 것이 많기 때문이다. 즉 리스코프 치환 원칙(Liskov Substitution Principle)에 의해 Space[Int]는 Space[Any]의 서브타입이 될 수 없다. <strong>Space[Int]가 Space[Any]의 모든 연산을 지원하고 인자를 더 적게 요구하고, 더 많은 기능을 제공할 때 Space[Int]는 Space[Any]의 서브타입이 될 수 있다.</strong> 따라서 Space[Int]를 Space[Any]로 서브타이핑 했을때 이런 오류가 발생하는 것이다.</p>
 <p>좀더 제약을 준다면 공변적 타입 파라미터를 함수의 인자로 문제없이 사용할 수 있다. 먼저 <em>파라미터화 된 메소드로 바꾼 뒤 타입 파라미터 U의 하위바운드로 class의 타입파라미터 T를 지정</em> 하는 것이다.:</p>
-<div class="highlight-scala"><div class="highlight"><pre><span></span><span class="k">object</span> <span class="nc">TestCovariant</span> <span class="o">{</span>
+<div class="highlight-scala notranslate"><div class="highlight"><pre><span></span><span class="k">object</span> <span class="nc">TestCovariant</span> <span class="o">{</span>
   <span class="k">class</span> <span class="nc">Fruit</span>
   <span class="k">class</span> <span class="nc">Apple</span> <span class="k">extends</span> <span class="nc">Fruit</span>
   <span class="k">class</span> <span class="nc">Orange</span> <span class="k">extends</span> <span class="nc">Fruit</span>
@@ -138,7 +131,7 @@
 </div>
 <p>Space는 공변적 T를 갖고 있으므로 T의 임의의 슈퍼타입으로 파라미터화된 Space로 서브타이핑할 수 있다. 또한 add를 공통 슈퍼타입을 갖는 다른 타입을 인자로 계속해서 호출할 수 있으며 추가할 수 있다. 결과적으로 Apple만 받는 Space가 아닌 좀더 일반적인 Space 타입이 되었다. 또한 호출할때마다 타입 Space[U]를 반환한다. 변성표기와 하위 바운드를 지정함으로써 더 유연한 모델을 만들 수 있으며 이는 타입 위주 설계(type-driven design)에 유용하다.</p>
 <p>오히려 반 공변적일때는 타입파라미터를 메서드 파라미터로 사용할 수 있다.</p>
-<div class="highlight-scala"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Fruit</span><span class="o">{</span>
+<div class="highlight-scala notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Fruit</span><span class="o">{</span>
   <span class="k">override</span> <span class="k">def</span> <span class="n">toString</span><span class="k">:</span><span class="kt">String</span> <span class="o">=</span> <span class="o">{</span><span class="k">return</span> <span class="s">&quot;Fruit&quot;</span><span class="o">}</span>
 <span class="o">}</span>
 <span class="k">class</span> <span class="nc">Apple</span> <span class="k">extends</span> <span class="nc">Fruit</span><span class="o">{</span>
@@ -164,7 +157,7 @@
 </div>
 <p><strong>Out[Fruit]과 같이 Fruit로 파라미터화된 타입이 실제로 동작할때 Apple과 Orange를 다 받아들일 수 있다.</strong> 즉 Out[Fruit]은 Out[Apple]로 서브타이핑 될 수 있다. 반대로 타입 T에 대해 공변적이라면 Out[Apple]은 Out[Fruit]로 서브타이핑이 되어야 하지만 Out[Apple]은 Out[Fruit]보다 더 적은 타입을 받아들이므로 불가능하다. 이는 <em>리스코프 치환 원칙</em> 과 관련이 있다.</p>
 <p>공변성과 반공변성이 섞여있는 예제는 아래와 같다.:</p>
-<div class="highlight-scala"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="o">(</span><span class="k">val</span> <span class="n">name</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span>
+<div class="highlight-scala notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="o">(</span><span class="k">val</span> <span class="n">name</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span>
 <span class="k">class</span> <span class="nc">Human</span><span class="o">(</span><span class="n">name</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Animal</span><span class="o">(</span><span class="n">name</span><span class="o">)</span>
 
 <span class="k">object</span> <span class="nc">Dict</span><span class="o">{</span>
@@ -185,17 +178,48 @@
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">2. 스칼라 기본</a><ul>
-<li><a class="reference internal" href="#id2">2.1. 제네릭 타입의 변성 및 공변적인 파라미터 타입</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/design_index.html">설계(Design)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="scala_index.html">스칼라(Scala)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="scala_terms.html">1. 용어</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. 스칼라 기본</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -207,21 +231,16 @@
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/scala/scala_basic.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -232,8 +251,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/scala/scala_basic.rst.txt"

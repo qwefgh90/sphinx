@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1. CSS 기본 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="css">
@@ -53,14 +46,14 @@
 <div class="section" id="id3">
 <h2>1.2. CSS 기본<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <p>CSS 규칙의 각 부분을 설명하고 있다.:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">h1</span> <span class="p">{</span> <span class="c">/* h1은 셀렉터과 선언들(declarations)로 구성됨  */</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">h1</span> <span class="p">{</span> <span class="c">/* h1은 셀렉터과 선언들(declarations)로 구성됨  */</span>
   <span class="k">color</span><span class="p">:</span> <span class="kc">green</span><span class="p">;</span> <span class="c">/* 선언(declaration)은 프로퍼티 이름, 값으로 구성되고 세미콜론으로 구분됨 */</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>여러개의 CSS 규칙이 어떻게 마크업에 적용될지는 HTML 스펙에서 정의하고 있다.</p>
 <p>HTML 문서 내에서는 LINK 요소(element)를 이용해 외부 CSS와 연결된다.</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">HTML</span><span class="p">&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">HTML</span><span class="p">&gt;</span>
    <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">LINK</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;bach.css&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span>
    <span class="p">&lt;/</span><span class="nt">HEAD</span><span class="p">&gt;</span>
@@ -70,7 +63,7 @@
 </pre></div>
 </div>
 <p>STYLE 요소를 사용하면 HTML 문서에 삽입할 수 있다.:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">HTML</span><span class="o">&gt;</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">HTML</span><span class="o">&gt;</span>
    <span class="o">&lt;</span><span class="nt">HEAD</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nt">STYLE</span> <span class="nt">type</span><span class="o">=</span><span class="s2">&quot;text/css&quot;</span><span class="o">&gt;</span>
          <span class="nt">h1</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">green</span> <span class="p">}</span>
@@ -115,11 +108,11 @@
 <h2>1.3. 셀렉터(Selectors)<a class="headerlink" href="#selectors" title="제목 주소">¶</a></h2>
 <p><strong>셀렉터는 문서의 요소를 선택하는 패턴이다.</strong> CSS 스타일 프로퍼티를 요소와 연결 시킬때 사용된다.</p>
 <p>셀렉터는 다음의 함수로 표현된다. 각 요소에 표현식을 계산함으로써 해당 요소를 선택할지 안할지 결정한다.:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span>표현식 * 요소 -&gt; 참거짓
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span>표현식 * 요소 -&gt; 참거짓
 </pre></div>
 </div>
 <p>셀렉터는 다음과 같은 문법을 따른다.(EBNF):</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span>셀렉터 = 시퀀스 [콤비네이터 시퀀스]* (* 셀렉터는 시퀀스의 연속이다. *)
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span>셀렉터 = 시퀀스 [콤비네이터 시퀀스]* (* 셀렉터는 시퀀스의 연속이다. *)
 시퀀스 = [type selector | universal selector] [attribute selector | class selector | id selector | pseudo-class] * | [attribute selector | class selector | id selector | pseudo-class]+ (* 시퀀스는 심플 셀렉터(타입, 유니버셜, ...)의 연속이다. *)
 셀렉터 그룹 = 셀렉터 [, 셀렉터]* (* 각각 셀렉터에 일치하는 요소들의 합을 나타낸다. *)
 </pre></div>
@@ -278,7 +271,7 @@
 <h4>1.5.3.1. 블록 레벨 요소와 블록 박스<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
 <p><em>블록 레벨 요소(block-level element)는</em> 시각적으로 블록화된 요소를 뜻한다. (예를들어 paragraphs가 있음)</p>
 <p><em>블록 레벨 요소(block-level element)로</em> 만들려면 다음과 같은 속성을 사용하면 된다.:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="o">:</span> <span class="nt">block</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="o">:</span> <span class="nt">block</span>
 <span class="nt">display</span><span class="o">:</span> <span class="nt">list-item</span>
 <span class="nt">display</span><span class="o">:</span> <span class="nt">table</span>
 </pre></div>
@@ -298,7 +291,7 @@
 <div class="section" id="anonymous-block-box">
 <h5>1.5.3.1.1. 익명 블록 박스(anonymous block box)<a class="headerlink" href="#anonymous-block-box" title="제목 주소">¶</a></h5>
 <p><strong>div와 p 모두 'display: block' 스타일이 적용 되었다.</strong></p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
   some text
   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>more text
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -307,7 +300,7 @@
 <p>위의 예에서 div의 블록 컨테이너 박스는 인라인 컨텐츠(inline content)와 블록 컨텐츠(block content)를 모두 포함한다. <em>some text</em> 이란 인라인 컨텐츠(inline content)는 실제로 <em>익명 블록 박스로</em> 둘러 쌓이게 된다.</p>
 <p>다르게 말해서, 만약 블록 컨테이너 박스(div를 위해 생성된 것)가 블록 레벨 박스(p요소의 박스)를 갖고 있다면, <strong>블록 컨테이너 박스는 오직 블록 레벨 박스만</strong> 갖도록 강제된다.</p>
 <p>다른 예를 보자.</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
 <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>Anonymous text interrupted by a block<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">STYLE</span><span class="p">&gt;</span>
@@ -333,7 +326,7 @@ This is anonymous text after the SPAN.
 <h4>1.5.3.2. 인라인 레벨 요소와 인라인 박스<a class="headerlink" href="#id11" title="제목 주소">¶</a></h4>
 <p><strong>인라인 레벨 요소(inline-level element)는 새로운 블록을 생성하지 않는 요소이다.</strong> 콘텐츠는 줄에 배치된다.(인라인 이미지, 문장 내의 강조된 글자 등등)</p>
 <p><em>인라인 레벨 요소(inline-level element)로</em> 만드려면 다음과 같은 속성을 사용하면 된다.:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="o">:</span> <span class="nt">inline</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="o">:</span> <span class="nt">inline</span>
 <span class="nt">display</span><span class="o">:</span> <span class="nt">inline-table</span>
 <span class="nt">display</span><span class="o">:</span> <span class="nt">inline-block</span>
 </pre></div>
@@ -349,7 +342,7 @@ This is anonymous text after the SPAN.
 <div class="section" id="anonymous-inline-box">
 <h5>1.5.3.2.1. 익명 인라인 박스(anonymous inline box)<a class="headerlink" href="#anonymous-inline-box" title="제목 주소">¶</a></h5>
 <p><strong>블록 컨테이너 요소에 포함된 텍스트(text)는 익명의 인라인 요소처럼 다뤄진다.</strong>:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">Some</span> <span class="o">&lt;</span><span class="nt">em</span><span class="o">&gt;</span><span class="nt">emphasized</span><span class="o">&lt;/</span><span class="nt">em</span><span class="o">&gt;</span> <span class="nt">text</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">Some</span> <span class="o">&lt;</span><span class="nt">em</span><span class="o">&gt;</span><span class="nt">emphasized</span><span class="o">&lt;/</span><span class="nt">em</span><span class="o">&gt;</span> <span class="nt">text</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>P는 블록 박스(block box)를 만들며 몇몇 안라인 박스(inline boxes)를 갖고 있다. 인라인 요소 &lt;em&gt;에 의해 인라인 박스가 생기며, <strong>Some과 text의 인라인 박스는 블록 레벨 요소(&lt;p&gt;)에 의해 생성된다.</strong> 이러한 텍스트를 위한 인라인 박스를 익명의 인라인 박스(anonymous inline box)로 부른다. (연관된 인라인 레벨 요소(inline-level element)가 존재하지 않음)</p>
@@ -423,7 +416,7 @@ This is anonymous text after the SPAN.
 <p>인라인 박스가 쪼개지면, 쪼개진 박스 사이에서 여백, 패팅, 경계에 대한 시각적 효과는 없어지게 된다.</p>
 <p>라인 박스는 인라인 레벨 컨텐츠를 보관하기 위해 생성된다. 텍스트, 공백, 인라인 요소, 패딩, 경계, 인 플로우 컨텐츠를 포함하지 않고 개행으로 끝나지 않는 <em>라인 박스(line box)는</em> 높이 0 라인 박스로 처리되며 존재하지 않게된다.</p>
 <p>예제1</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">P</span><span class="p">&gt;</span>Several <span class="p">&lt;</span><span class="nt">EM</span><span class="p">&gt;</span>emphasized words<span class="p">&lt;/</span><span class="nt">EM</span><span class="p">&gt;</span> appear
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">P</span><span class="p">&gt;</span>Several <span class="p">&lt;</span><span class="nt">EM</span><span class="p">&gt;</span>emphasized words<span class="p">&lt;/</span><span class="nt">EM</span><span class="p">&gt;</span> appear
 <span class="p">&lt;</span><span class="nt">STRONG</span><span class="p">&gt;</span>in this<span class="p">&lt;/</span><span class="nt">STRONG</span><span class="p">&gt;</span> sentence, dear.<span class="p">&lt;/</span><span class="nt">P</span><span class="p">&gt;</span>
 </pre></div>
 </div>
@@ -449,7 +442,7 @@ This is anonymous text after the SPAN.
 </div>
 <p>위의 2번째 예에서 em 박스는 2개의 em박스로 쪼개지며, 각 나눠진 2개의 박스사이 구간에 여백, 경계, 패딩, 텍스트 데코레이션은 아무런 효과를 갖지 못한다.</p>
 <p>예제2</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
 <span class="p">&lt;</span><span class="nt">HTML</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>Example of inline flow on several lines<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
@@ -482,7 +475,7 @@ This is anonymous text after the SPAN.
 <p>콘텐츠는 왼쪽으로 플롯된 박스(left-floated box)의 오른쪽 면에 배치되고 오른쪽으로 플롯된 박스(right-floated box)의 왼쪽 면에 배치된다. 플롯은 인-플로우(in-flow)가 아니기 때문에, 플롯 왼쪽이나 오른쪽에 생성된 블록 박스는 블록 박스끼리 수직으로 배치되고(물론 왼쪽이나 오른쪽 편에 위치하면서), 라인 박스는 플롯 박스가 차지한 공간을 제외한 만큼의 너비를 사용한다.</p>
 <p>축약된 라인 박스는 내용을 담지 못할 정도로 작을 경우, 라인박스는 내용을 담을때 까지 아래로 이동(downward) 된다. <strong>플롯 박스(floated box)의 왼쪽에 내용이 있다면 플롯의 반대편에 내용이 배치되게 된다.</strong></p>
 <p>테이블 경계 박스, 블록 레벨 대체 요소, 노멀 플로우 (새로운 블록 포맷팅 컨텍스트를 만드는, overflow 속성 같이)는 플롯 박스의 여백에 오버랩 되지 않는다.</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
 <span class="p">&lt;</span><span class="nt">HTML</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>Float example<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
@@ -500,7 +493,7 @@ This is anonymous text after the SPAN.
 </pre></div>
 </div>
 <p>플롯 박스 오른쪽의 <strong>라인 박스의 너비는 플롯 박스에 의해 줄어들며,</strong> 플롯 박스 오른쪽을 벗어나게 되면, p 요소에 의해 생성된 컨테이닝 박스의 너비를 따르게 된다.</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
   <span class="nt">p</span> <span class="p">{</span> <span class="k">border</span><span class="p">:</span> <span class="kc">solid</span> <span class="kc">aqua</span><span class="p">;}</span>
 <span class="nt">img</span> <span class="p">{</span> <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span> <span class="k">width</span><span class="p">:</span> <span class="mi">3</span><span class="kt">em</span><span class="p">;</span> <span class="k">height</span><span class="p">:</span> <span class="mi">6</span><span class="kt">em</span><span class="p">;</span> <span class="k">border</span><span class="p">:</span> <span class="kc">solid</span> <span class="kc">blue</span><span class="p">;</span> <span class="k">margin-left</span><span class="p">:</span><span class="mi">0</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
   <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
@@ -555,7 +548,7 @@ This is anonymous text after the SPAN.
 <div class="section" id="fixed-positioning">
 <h4>1.5.7.1. 고정 위치 결정(Fixed positioning)<a class="headerlink" href="#fixed-positioning" title="제목 주소">¶</a></h4>
 <p><em>고정 위치 결정은</em> 절대 위치 결정의 한 종류이다. 고정 위치 결정된 박스의 특징은 <strong>이 박스를 위한 컨테이닝 박스가 viewport에 의해 생성된다는</strong> 것이다. <strong>연속적인 미디어에서 고정된 박스들은 문서가 스크롤 되더라도 움직이지 않는다.</strong> 이것은 고정된 배경 이미지와 유사하다. <strong>페이지 미디어에서는 이런 박스가 모든 페이지에 반복된다.</strong> 이것은 페이지의 시그니처를 표시할때 유용하다. 이 박스가 페이지보다 더 클 경우 잘리게 된다.</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;</span>
 <span class="p">&lt;</span><span class="nt">HTML</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">TITLE</span><span class="p">&gt;</span>A frame document with CSS 2.1<span class="p">&lt;/</span><span class="nt">TITLE</span><span class="p">&gt;</span>
@@ -630,7 +623,7 @@ This is anonymous text after the SPAN.
 <div class="section" id="id15">
 <h4>1.5.7.3. 노멀 플로우, 플롯, 절대 위치 결정 비교<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
 <p>노멀 플로우 예시:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nt">DOCTYPE</span> <span class="nt">HTML</span> <span class="nt">PUBLIC</span> <span class="s2">&quot;-//W3C//DTD HTML 4.01//EN&quot;</span><span class="o">&gt;</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nt">DOCTYPE</span> <span class="nt">HTML</span> <span class="nt">PUBLIC</span> <span class="s2">&quot;-//W3C//DTD HTML 4.01//EN&quot;</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nt">HTML</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="nt">HEAD</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="nt">STYLE</span><span class="o">&gt;</span>
@@ -654,19 +647,19 @@ This is anonymous text after the SPAN.
 </div>
 <p>위 예시에서 P는 익명 인라인 텍스트와 2개의 SPAN 요소를 갖는다. 따라서 모든 요소는 인라인 포맷팅 컨텍스트를 따라서 배치되며 컨테이닝 블록은 P요소에 의해 생성된다.</p>
 <p>상대 위치 결정 예시:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span> <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span> <span class="k">top</span><span class="p">:</span> <span class="mi">-12</span><span class="kt">px</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span> <span class="p">}</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span> <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span> <span class="k">top</span><span class="p">:</span> <span class="mi">-12</span><span class="kt">px</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span> <span class="p">}</span>
 <span class="p">#</span><span class="nn">inner</span> <span class="p">{</span> <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span> <span class="k">top</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="kc">blue</span> <span class="p">}</span>
 </pre></div>
 </div>
 <p>outer 요소의 텍스트는 노멀 플로우를 따라 배치되고 -12px 만큼 위로 이동된다. inner 요소는 outer 스타일의 -12px와 inner 스타일의 12px의 영향을 받아 제자리에 위치하게 된다. 만약 <strong>-24px라는 값이 세팅된다면</strong> 다른 텍스트와 겹칠 수 있다.</p>
 <p>박스 플로팅 예시:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span> <span class="p">}</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span> <span class="p">}</span>
 <span class="p">#</span><span class="nn">inner</span> <span class="p">{</span> <span class="k">float</span><span class="p">:</span> <span class="kc">right</span><span class="p">;</span> <span class="k">width</span><span class="p">:</span> <span class="mi">130</span><span class="kt">px</span><span class="p">;</span> <span class="k">color</span><span class="p">:</span> <span class="kc">blue</span> <span class="p">}</span>
 </pre></div>
 </div>
 <p>inner 박스는 플로팅 밖으로 당겨져 오른쪽으로 플로팅된다. 플로팅 박스의 왼쪽의 라인 박스는 축약된다.</p>
 <p>절대 위치 결정 예시:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span>
     <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
     <span class="k">top</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span> <span class="k">left</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
     <span class="k">width</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
@@ -677,7 +670,7 @@ This is anonymous text after the SPAN.
 </div>
 <p>outer 박스는 이 박스의 컨테이닝 블록 안에 위치한다. <strong>위치 결정된 박스의 컨테이닝 블록은 근처에 위치한 위치 결정(positioned)된 부모에 의해 형성된다. (만약 존재하지 않는다면 초기 컨테이닝 블록(initial containing block이 됨)</strong> outer 박스의 꼭대기는 컨테이닝 박스의 꼭대기의 200px 밑에 위치하고 왼쪽에서 200px 이동한 위치에 왼쪽 면이 위치한다. outer의 자식 박스는 이것의 부모를 기준으로 정상적으로 배치된다.</p>
 <p>절대 위치 결정된 박스가 상대적으로 위치 결정된 박스의 자식일 경우의 예시:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span>
   <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span>
   <span class="k">color</span><span class="p">:</span> <span class="kc">red</span>
 <span class="p">}</span>
@@ -691,7 +684,7 @@ This is anonymous text after the SPAN.
 </div>
 <p><strong>부모 outer 박스는 실제로 offset 이 적용되지 않았음에도 불구하고, position 속성이 relative 라는 것은 이 박스가 위치 결정된(positioned) 자식을 위해 컨테이닝 블록을 생성하겠다는 뜻이다.</strong> outer 박스가 몇개의 줄에 걸쳐 쪼개진 인라인 박스이기 때문에, <strong>첫번째 인라인 박스의 top과 left 엣지에 top과 left 오프셋이 적용된다.</strong></p>
 <p>outer 박스가 위치 결정되지 않았다면:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span> <span class="p">}</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">outer</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="kc">red</span> <span class="p">}</span>
 <span class="p">#</span><span class="nn">inner</span> <span class="p">{</span>
   <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
   <span class="k">top</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span> <span class="k">left</span><span class="p">:</span> <span class="mi">-100</span><span class="kt">px</span><span class="p">;</span>
@@ -708,7 +701,7 @@ This is anonymous text after the SPAN.
 <div class="section" id="z-index">
 <h4>1.5.8.1. z-index 속성<a class="headerlink" href="#z-index" title="제목 주소">¶</a></h4>
 <p>위치가 결정된 박스를 위해 z-index는 다음을 명시한다:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span>1. 현재 스태킹(stacking) 컨텍스트에서 박스의 스택 레벨
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span>1. 현재 스태킹(stacking) 컨텍스트에서 박스의 스택 레벨
 2. 박스가 스태킹(stacking) 컨텍스트를 생성할지 말지
 </pre></div>
 </div>
@@ -739,25 +732,25 @@ This is anonymous text after the SPAN.
 <p>미디어 쿼리는 미디어에 의존적인 스타일을 작성하기 위한 도구이다. 미디어에는 <em>all</em>, <em>screen</em>, <em>print</em> 같은 것이 있다. (HTML4에 정의됨)</p>
 <p><strong>미디어 쿼리는 미디어 타입과 미디어의 조건을 검사하기 위한 0개 이상의 표현식으로 구성된다.</strong></p>
 <p>HTML에서는 다음과 같이 적용할 수 있다.:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">link</span> <span class="nt">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nt">media</span><span class="o">=</span><span class="s2">&quot;screen and (color)&quot;</span> <span class="nt">href</span><span class="o">=</span><span class="s2">&quot;example.css&quot;</span> <span class="o">/&gt;</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">link</span> <span class="nt">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nt">media</span><span class="o">=</span><span class="s2">&quot;screen and (color)&quot;</span> <span class="nt">href</span><span class="o">=</span><span class="s2">&quot;example.css&quot;</span> <span class="o">/&gt;</span>
 </pre></div>
 </div>
 <p><em>screen and (color)</em> 는 논리 식으로 screen이면서 color screen 일 경우에만 적용되는 스타일을 뜻한다.</p>
 <p>CSS에서는 다음과 같이 적용할 수 있다.:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span>@import url(color.css) screen and (color);
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span>@import url(color.css) screen and (color);
 또는
 @media all and (min-width:500px) { … }
 </pre></div>
 </div>
 <p>not 키워드 및 콤마를 통한 OR 연산을 사용할 수 있다.:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">link</span> <span class="nt">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nt">media</span><span class="o">=</span><span class="s2">&quot;not screen and (color), projection and (color)&quot;</span> <span class="nt">href</span><span class="o">=</span><span class="s2">&quot;example.css&quot;</span> <span class="o">/&gt;</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">link</span> <span class="nt">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nt">media</span><span class="o">=</span><span class="s2">&quot;not screen and (color), projection and (color)&quot;</span> <span class="nt">href</span><span class="o">=</span><span class="s2">&quot;example.css&quot;</span> <span class="o">/&gt;</span>
 </pre></div>
 </div>
 <div class="section" id="media-features">
 <h3>1.6.1. 미디어 특성(Media features)<a class="headerlink" href="#media-features" title="제목 주소">¶</a></h3>
 <p>미디어 특성은 미디어에 대한 요구사항을 표현할때 사용된다.</p>
 <p><em>width 특성은</em> 출력 장치의 표시 영역의 너비를 나타낸다. <em>연속적인 미디어(continuous media)에서는</em> 스크롤 바를 포함한 viewport의 너비와 같으며 <em>페이지 미디어(paged media)에서는</em> 페이지 박스(page box)의 너비를 뜻한다. <em>페이지 미디어에</em> 대한 내용은 다음 <a class="reference external" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/page.html#page-intro">링크</a> 에서 확인할 수 있다.</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span>@media screen and (min-width: 400px) and (max-width: 700px) { … }
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span>@media screen and (min-width: 400px) and (max-width: 700px) { … }
 </pre></div>
 </div>
 </div>
@@ -777,7 +770,7 @@ This is anonymous text after the SPAN.
 <div class="section" id="id18">
 <h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id18" title="제목 주소">¶</a></h4>
 <p>margin-top, margin-right, margin-bottom, margin-left &#64;page 규칙에서 사용할 수 있다.:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">page</span> <span class="p">{</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">page</span> <span class="p">{</span>
 <span class="nt">margin</span><span class="o">:</span> <span class="nt">3cm</span><span class="o">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -815,104 +808,49 @@ This is anonymous text after the SPAN.
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">1. CSS 기본</a><ul>
-<li><a class="reference internal" href="#id1">1.1. CSS 스펙</a></li>
-<li><a class="reference internal" href="#id3">1.2. CSS 기본</a><ul>
-<li><a class="reference internal" href="#css-2-1-addressing-model">1.2.1. CSS 2.1 주소 지정 모델 (addressing model)</a></li>
-<li><a class="reference internal" href="#id4">1.2.2. 캔버스</a></li>
-<li><a class="reference internal" href="#css-2-1-processsing-model">1.2.3. CSS 2.1 처리 모델 (processsing model)</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/design_index.html">설계(Design)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="css_index.html">CSS</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. CSS 기본</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_color_background.html">2. 색(Colors)과 배경(Backgrounds)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_terms.html">3. 용어</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#selectors">1.3. 셀렉터(Selectors)</a><ul>
-<li><a class="reference internal" href="#simple-selectors">1.3.1. 심플 셀렉터(Simple Selectors)</a><ul>
-<li><a class="reference internal" href="#psuedo-classes">1.3.1.1. 의사 클래스(Psuedo-classes)</a><ul>
-<li><a class="reference internal" href="#dynamic-pseudo-classes">1.3.1.1.1. 동적 의사 클래스(Dynamic pseudo-classes)</a></li>
-<li><a class="reference internal" href="#target-pseudo-class">1.3.1.1.2. 타겟 의사 클래스(target pseudo-class)</a></li>
-<li><a class="reference internal" href="#language-pseudo-class">1.3.1.1.3. 언어 의사 클래스(language pseudo-class)</a></li>
-<li><a class="reference internal" href="#ui-ui-element-states-pseudo-classes">1.3.1.1.4. UI 요소 상태 의사 클래스(UI element states pseudo-classes)</a></li>
-<li><a class="reference internal" href="#structural-pseudo-classes">1.3.1.1.5. 구조적 의사 클래스(Structural pseudo-classes)</a></li>
-<li><a class="reference internal" href="#negation-pseudo-class">1.3.1.1.6. 부정 의사 클래스(negation pseudo-class)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
-</li>
-<li><a class="reference internal" href="#pseudo-elements">1.3.1.2. 의사 요소(Pseudo-elements)</a></li>
-<li><a class="reference internal" href="#id6">1.3.1.3. 콤비네이터</a></li>
-<li><a class="reference internal" href="#id7">1.3.1.4. 셀렉터의 우선순위</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#box-model">1.4. 박스 모델(Box model)</a><ul>
-<li><a class="reference internal" href="#margin-properties">1.4.1. 여백 속성(margin properties)</a></li>
-<li><a class="reference internal" href="#paddding-properties">1.4.2. 패딩 속성(paddding properties)</a></li>
-<li><a class="reference internal" href="#border-properties-css-2-1">1.4.3. 경계 속성(border properties, CSS 2.1)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#visual-formatting-model">1.5. 비주얼 포맷팅 모델(Visual formatting model)</a><ul>
-<li><a class="reference internal" href="#viewport">1.5.1. 뷰 포트(viewport)</a></li>
-<li><a class="reference internal" href="#containing-blocks">1.5.2. 컨테이닝 블록(Containing blocks)</a></li>
-<li><a class="reference internal" href="#controlling-box-generation">1.5.3. 박스 타입 제어(Controlling box generation)</a><ul>
-<li><a class="reference internal" href="#id10">1.5.3.1. 블록 레벨 요소와 블록 박스</a><ul>
-<li><a class="reference internal" href="#anonymous-block-box">1.5.3.1.1. 익명 블록 박스(anonymous block box)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id11">1.5.3.2. 인라인 레벨 요소와 인라인 박스</a><ul>
-<li><a class="reference internal" href="#anonymous-inline-box">1.5.3.2.1. 익명 인라인 박스(anonymous inline box)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#display">1.5.3.3. display 속성</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#positioning-schemes">1.5.4. 위치 결정 방식(Positioning schemes)</a><ul>
-<li><a class="reference internal" href="#position">1.5.4.1. position 속성</a></li>
-<li><a class="reference internal" href="#top-right-bottom-left">1.5.4.2. top, right, bottom, left 속성</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#normal-flow">1.5.5. 노멀 플로우(Normal flow)</a><ul>
-<li><a class="reference internal" href="#block-formatting-context">1.5.5.1. 블록 포맷팅 컨텍스트(Block formatting context)</a></li>
-<li><a class="reference internal" href="#inline-formatting-context">1.5.5.2. 인라인 포맷팅 컨텍스트(Inline formatting context)</a></li>
-<li><a class="reference internal" href="#id13">1.5.5.3. 상대적 위치 결정</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#float">1.5.6. 플롯(Float)</a><ul>
-<li><a class="reference internal" href="#id14">1.5.6.1. 플롯 속성</a></li>
-<li><a class="reference internal" href="#clear">1.5.6.2. clear 속성</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#absolute-positioning">1.5.7. 절대 위치 결정(Absolute positioning)</a><ul>
-<li><a class="reference internal" href="#fixed-positioning">1.5.7.1. 고정 위치 결정(Fixed positioning)</a></li>
-<li><a class="reference internal" href="#display-position-float">1.5.7.2. display, position, float의 관계</a></li>
-<li><a class="reference internal" href="#id15">1.5.7.3. 노멀 플로우, 플롯, 절대 위치 결정 비교</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id16">1.5.8. 계층화된 표현</a><ul>
-<li><a class="reference internal" href="#z-index">1.5.8.1. z-index 속성</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#media-queries">1.6. 미디어 쿼리(Media Queries)</a><ul>
-<li><a class="reference internal" href="#media-features">1.6.1. 미디어 특성(Media features)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#paged-media-css-2-1">1.7. 페이지 미디어(Paged media, CSS 2.1)</a><ul>
-<li><a class="reference internal" href="#page">1.7.1. &#64;page</a><ul>
-<li><a class="reference internal" href="#id18">1.7.1.1. 페이지 여백</a></li>
-<li><a class="reference internal" href="#id19">1.7.1.2. 페이지 선택자</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#page-breaks">1.7.2. 페이지 분할(Page breaks)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id20">1.8. 참조</a></li>
-</ul>
-</li>
-</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -924,21 +862,16 @@ This is anonymous text after the SPAN.
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/css/css_basic.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -949,8 +882,8 @@ This is anonymous text after the SPAN.
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/css/css_basic.rst.txt"

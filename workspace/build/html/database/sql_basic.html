@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>3. SQL 기본 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="sql">
@@ -59,7 +52,7 @@
 <h2>3.1. DDL(DATA DEFINITION LANGUAGE)<a class="headerlink" href="#ddl-data-definition-language" title="제목 주소">¶</a></h2>
 <p>DDL의 경우 명령어를 실행하는 순간 즉시(AUTO COMMIT) 이 완료된다.</p>
 <p>데이터 유형:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span>CHAR(s) : s만큼의 최대 길이를 고정으로 갖고 데이터가 채워지고 남은 공간은 비어있게 된다.
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CHAR(s) : s만큼의 최대 길이를 고정으로 갖고 데이터가 채워지고 남은 공간은 비어있게 된다.
 VARCHAR(s) : s만큼의 최대 길이를 갖지만 가변길이로 조정되어 할당된 변수의 길이만큼만 적용된다.
 NUMERIC : 정수, 실수 등 숫자 정보
 DATETIME : 날짜와 시각 정보
@@ -69,7 +62,7 @@ DATETIME : 날짜와 시각 정보
 <div class="section" id="create-table">
 <h3>3.1.1. CREATE TABLE 문<a class="headerlink" href="#create-table" title="제목 주소">¶</a></h3>
 <p>생성 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">STUDENT</span><span class="p">(</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">STUDENT</span><span class="p">(</span>
 
 <span class="n">NAME</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
 <span class="n">AGE</span>     <span class="nb">INTEGER</span><span class="p">,</span>
@@ -90,7 +83,7 @@ DATETIME : 날짜와 시각 정보
 </ul>
 <p>생성된 테이블은 DESCRIBE [TABLE_NAME] 을 이용해 확인할 수 있다. (오라클, MYSQL)</p>
 <p>생성 예시2:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">TEAM_TEMP</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">TEAM_TEMP</span>
 <span class="k">AS</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">TEAM</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -99,17 +92,17 @@ DATETIME : 날짜와 시각 정보
 <div class="section" id="alter-table">
 <h3>3.1.2. ALTER TABLE 문<a class="headerlink" href="#alter-table" title="제목 주소">¶</a></h3>
 <p>칼럼 추가 예시(GRADE):</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 <span class="k">ADD</span> <span class="p">(</span><span class="k">COLUMN</span><span class="p">)</span> <span class="n">GRADE</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>칼럼 삭제 예시(GRADE):</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 <span class="k">DROP</span> <span class="k">COLUMN</span> <span class="n">GRADE</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>칼럼 수정 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 <span class="k">MODIFY</span> <span class="p">(</span><span class="k">COLUMN_NAME</span> <span class="n">COLUMN_TYPE</span> <span class="p">[</span><span class="k">DEFAULT</span><span class="p">]</span> <span class="p">[</span><span class="k">NOT</span> <span class="k">NULL</span><span class="p">],</span>
 <span class="n">COLUMN_NAME2</span> <span class="n">COLUMN_TYPE</span> <span class="p">...);</span>
 </pre></div>
@@ -121,17 +114,17 @@ DATETIME : 날짜와 시각 정보
 <li>데이터가 있을 경우 칼럼의 크기를 줄일 수 없으나 NULL이나 비어있을 경우 칼럼의 폭을 줄일 수 있다.</li>
 </ul>
 <p>칼럼 이름 변경:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span>
 <span class="k">RENAME</span> <span class="k">COLUMN</span> <span class="p">[</span><span class="n">OLD_NAME</span><span class="p">]</span> <span class="k">TO</span> <span class="p">[</span><span class="n">NEW_NAME</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>제약 조건 삭제:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 <span class="k">DROP</span> <span class="k">CONSTRAINT</span> <span class="p">[</span><span class="k">CONSTRAINT_NAME</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>제약 조건 추가:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 <span class="k">ADD</span> <span class="k">CONSTRAINT</span> <span class="p">[</span><span class="k">CONSTRAINT_NAME</span><span class="p">]</span> <span class="p">[</span><span class="k">CONSTRAINT</span><span class="p">]</span> <span class="p">...;</span>
 </pre></div>
 </div>
@@ -139,21 +132,21 @@ DATETIME : 날짜와 시각 정보
 <div class="section" id="id1">
 <h3>3.1.3. 테이블명 변경<a class="headerlink" href="#id1" title="제목 주소">¶</a></h3>
 <p>테이블명 변경:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">RENAME</span> <span class="p">[</span><span class="n">OLD_TABLE_NAME</span><span class="p">]</span> <span class="k">TO</span> <span class="p">[</span><span class="n">NEW_TABLE_NAME</span><span class="p">];</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">RENAME</span> <span class="p">[</span><span class="n">OLD_TABLE_NAME</span><span class="p">]</span> <span class="k">TO</span> <span class="p">[</span><span class="n">NEW_TABLE_NAME</span><span class="p">];</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="drop-table">
 <h3>3.1.4. DROP TABLE<a class="headerlink" href="#drop-table" title="제목 주소">¶</a></h3>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">DROP</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="truncate-table">
 <h3>3.1.5. TRUNCATE TABLE<a class="headerlink" href="#truncate-table" title="제목 주소">¶</a></h3>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">TRUNCATE</span> <span class="k">TABLE</span> <span class="n">PLAYER</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">TRUNCATE</span> <span class="k">TABLE</span> <span class="n">PLAYER</span>
 </pre></div>
 </div>
 <p>해당 테이블에 들어있던 모든 행들이 제거되고 저장 공간을 재사용 가능하도록 해제한다.</p>
@@ -165,7 +158,7 @@ DATETIME : 날짜와 시각 정보
 <div class="section" id="insert">
 <h3>3.2.1. INSERT<a class="headerlink" href="#insert" title="제목 주소">¶</a></h3>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">STUDENT</span> <span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">AGE</span><span class="p">,</span> <span class="n">GRADE</span><span class="p">)</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">STUDENT</span> <span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">AGE</span><span class="p">,</span> <span class="n">GRADE</span><span class="p">)</span>
 <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;창원&#39;</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -174,7 +167,7 @@ DATETIME : 날짜와 시각 정보
 <div class="section" id="update">
 <h3>3.2.2. UPDATE<a class="headerlink" href="#update" title="제목 주소">¶</a></h3>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="n">STUDENT</span> <span class="k">SET</span> <span class="n">NAME</span> <span class="o">=</span> <span class="s1">&#39;최창원&#39;</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="n">STUDENT</span> <span class="k">SET</span> <span class="n">NAME</span> <span class="o">=</span> <span class="s1">&#39;최창원&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>SET 칼럼명 = 데이터 순으로 작성 해야하는 것을 이해하자.</p>
@@ -182,11 +175,11 @@ DATETIME : 날짜와 시각 정보
 <div class="section" id="delete">
 <h3>3.2.3. DELETE<a class="headerlink" href="#delete" title="제목 주소">¶</a></h3>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">DELETE</span> <span class="k">FROM</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DELETE</span> <span class="k">FROM</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">[</span><span class="k">ALL</span><span class="o">/</span><span class="k">DISTINCT</span><span class="p">]</span> <span class="n">COLUMN_NAME1</span><span class="p">,</span> <span class="n">COLUMN_NAME2</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">[</span><span class="k">ALL</span><span class="o">/</span><span class="k">DISTINCT</span><span class="p">]</span> <span class="n">COLUMN_NAME1</span><span class="p">,</span> <span class="n">COLUMN_NAME2</span>
 <span class="k">FROM</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -202,13 +195,13 @@ DATETIME : 날짜와 시각 정보
 <li><em>=</em> , <em>*</em> , <em>/</em> , <em>+</em> , <em>-</em> 등이 있다.</li>
 </ul>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">AGE</span> <span class="o">-</span> <span class="n">GRADE</span> <span class="k">AS</span> <span class="s1">&#39;나이-학년&#39;</span> <span class="k">FROM</span> <span class="n">STUDENT</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">AGE</span> <span class="o">-</span> <span class="n">GRADE</span> <span class="k">AS</span> <span class="s1">&#39;나이-학년&#39;</span> <span class="k">FROM</span> <span class="n">STUDENT</span>
 </pre></div>
 </div>
 <p>여기서 AS 는 생략 가능하다. 칼럼끼리의 산술 연산이 가능한 것을 볼 수 있다.</p>
 <p><em>합성 연산자</em> 는 문자와 문자를 합성할 수 있는 연산자이다. (CONCATENATION)</p>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">CONCAT</span> <span class="p">(</span><span class="s1">&#39;이름:&#39;</span> <span class="p">,</span><span class="n">NAME</span><span class="p">)</span> <span class="k">AS</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">STUDENT</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">CONCAT</span> <span class="p">(</span><span class="s1">&#39;이름:&#39;</span> <span class="p">,</span><span class="n">NAME</span><span class="p">)</span> <span class="k">AS</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">STUDENT</span>
 </pre></div>
 </div>
 <p>각 벤더마다 다른 합성 연산자가 존재하지만 공통적으로 <em>CONCAT 함수</em> 를 사용할 수 있다.</p>
@@ -223,7 +216,7 @@ DATETIME : 날짜와 시각 정보
 <li>Durabulity(지속성) : 트랜잭션이 성공적으로 수행되면 그 트랜잭션이 갱신한 데이터베이스의 내용은 영구적으로 저장된다.</li>
 </ul>
 <p>트랜잭션 예시(My SQL):</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">START</span> <span class="n">TRANSACTION</span> <span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">START</span> <span class="n">TRANSACTION</span> <span class="p">;</span>
 
 <span class="k">update</span> <span class="n">student</span> <span class="k">set</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;창창원&#39;</span> <span class="k">WHERE</span> <span class="n">NAME</span> <span class="o">=</span> <span class="s1">&#39;창창&#39;</span><span class="p">;</span>
 
@@ -232,7 +225,7 @@ DATETIME : 날짜와 시각 정보
 </div>
 <p>SQL Server의 경우 START TRANSACTION 대신 BEGIN TRANSACTION 이란 구문을 사용한다. 기본적으로 COMMIT 명령어는 트랜잭션을 완료할 때 ROLLBACK 명령어는 트랜잭션을 취소할 때 사용한다.</p>
 <p>SAVEPOINT 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
 
 <span class="n">SAVEPOINT</span> <span class="n">SV1</span><span class="p">;</span>
 
@@ -243,7 +236,7 @@ DATETIME : 날짜와 시각 정보
 </div>
 <p>트랜잭션 중 원하는 저장점을 정한 후 <em>ROLLBACK TO [저장점]</em> 이란 명령으로 저장점 위치까지만 트랜잭션을 할 수 있다. 저장점 이후 부분은 전혀 반영되지 않는다.</p>
 <p>SAVEPOINT 예시2:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
 
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">STUDENT</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;창원스&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
 
@@ -275,7 +268,7 @@ DATETIME : 날짜와 시각 정보
 <li>OR</li>
 </ol>
 <p>IN 연산자 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">AGE</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">AGE</span>
 <span class="k">FROM</span> <span class="n">STUDENT</span>
 <span class="k">WHERE</span> <span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">AGE</span><span class="p">)</span> <span class="k">IN</span> <span class="p">((</span><span class="s1">&#39;창원&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;창창&#39;</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span>
 </pre></div>
@@ -285,7 +278,7 @@ DATETIME : 날짜와 시각 정보
 <li>ROWNUM, TOP 구문</li>
 </ul>
 <p>ROWNUM은 각 행에 임시로 부여되는 일련번호이다. 원하는 만큼 행을 가져올 수 있다.:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">ROWNUM</span> <span class="o">&lt;=</span> <span class="mi">2</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">ROWNUM</span> <span class="o">&lt;=</span> <span class="mi">2</span>
 <span class="k">SELECT</span> <span class="n">TOP</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">STUDENT</span>
 <span class="k">SELECT</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">LIMIT</span> <span class="mi">2</span>
 </pre></div>
@@ -303,7 +296,7 @@ DATETIME : 날짜와 시각 정보
 </ul>
 <p>* Oracle 함수/ SQL Server함수 표시, 그외 공통함수</p>
 <p>TRIM 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="n">LTRIM</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">LTRIM</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
 <span class="n">RTRIM</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="k">TRIM</span><span class="p">(</span><span class="s1">&#39;x&#39;</span> <span class="k">from</span> <span class="n">name</span><span class="p">)</span>
 </pre></div>
@@ -311,13 +304,13 @@ DATETIME : 날짜와 시각 정보
 <p>LTRIM 및 RTRIM 에서 2번쨰 인자(지울 문자)는 Oracle 에서는 지정할 수 있지만 My-SQL과 SQL Server에서는 사용할 수 없다. 1개의 문자만 입력받으며 공백 제거 만 가능하다. 그리고 RTRIM은 공백제거에도 유용하지만 <em>VARCHAR와 CHAR</em> 비교할 때 용이하게 사용된다.</p>
 <p><em>CEIL</em> , <em>FLOOR</em> 은 각각 숫자보다 크거나 같은 정수를 반환하거나 작거나 같은 최소 정수를 반환한다.</p>
 <p>ROUND 및 TRUNC 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="n">ROUND</span><span class="p">(</span><span class="mi">123</span><span class="p">.</span><span class="mi">345564</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">ROUND</span><span class="p">(</span><span class="mi">123</span><span class="p">.</span><span class="mi">345564</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">TRUNC</span><span class="p">(</span><span class="mi">123</span><span class="p">.</span><span class="mi">434353</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><em>ROUND</em> 는 5번째 자리까지 나타내며 6번째 자리에 반올림이 적용됨, <em>TRUNC</em> 는 3번째 자리까지 나타내고 잘라서 버린다. (MySQL 은 없음)</p>
 <p>날짜 관련 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">select</span> <span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span> <span class="k">from</span> <span class="n">sysdate</span><span class="p">())</span> <span class="k">from</span> <span class="n">student</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span> <span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span> <span class="k">from</span> <span class="n">sysdate</span><span class="p">())</span> <span class="k">from</span> <span class="n">student</span>
 <span class="k">select</span> <span class="n">datepart</span><span class="p">(</span><span class="k">year</span><span class="p">,</span> <span class="n">getdate</span><span class="p">())</span> <span class="k">from</span> <span class="n">student</span>
 </pre></div>
 </div>
@@ -326,7 +319,7 @@ DATETIME : 날짜와 시각 정보
 <div class="section" id="case">
 <h2>3.7. CASE 표현<a class="headerlink" href="#case" title="제목 주소">¶</a></h2>
 <p>CASE 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
 <span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">SAL</span> <span class="o">&gt;</span> <span class="mi">2000</span> <span class="k">THEN</span> <span class="n">SAL</span>
         <span class="k">ELSE</span> <span class="mi">2000</span>
 <span class="k">END</span>
@@ -335,7 +328,7 @@ DATETIME : 날짜와 시각 정보
 </div>
 <p>CASE 문의 예시이다. (MySQL 사용가능)</p>
 <p>CASE 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
 <span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">SAL</span> <span class="o">&gt;</span> <span class="mi">2000</span> <span class="k">THEN</span> <span class="n">SAL</span>
         <span class="k">WHEN</span> <span class="n">SAL</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">THEN</span> <span class="n">SAL</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span>
         <span class="k">ELSE</span> <span class="mi">0</span>
@@ -348,7 +341,7 @@ DATETIME : 날짜와 시각 정보
 <div class="section" id="null">
 <h2>3.8. NULL관련 함수<a class="headerlink" href="#null" title="제목 주소">¶</a></h2>
 <p>ISNULL 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
 <span class="k">ISNULL</span><span class="p">(</span><span class="k">NULL</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">STUDENT</span>
 
 <span class="k">SELECT</span>
@@ -358,13 +351,13 @@ DATETIME : 날짜와 시각 정보
 <p>위의 구문은 MySQL에서 사용된다. 값이 NULL 인지 검사하여 참/거짓을 반환한다. 밑은 SQL Server에서 사용되며 TARGET을 판단하여 오른쪽 값을 반환한다. MySQL에서 사용하고 싶다면 IFNULL(판단값, 값)을 사용하면 된다.</p>
 <p>중요한 점은 SELECT의 결과가 공집합이 나오면 IFNULL이 동작하지 않는다는 점이다. IFNULL은 레코드가 1개 라도 있어야 판단이 수행된다.</p>
 <p>NULLIF 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
 <span class="k">NULLIF</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span><span class="mi">123</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">STDUENT</span>
 </pre></div>
 </div>
 <p>NULLIF의 인자1,2 가 같으면 NULL을 반환 아니면 인자1을 반환한다.</p>
 <p>COALESCE 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
 <span class="n">COALESCE</span><span class="p">(</span><span class="k">NULL</span> <span class="p">,</span> <span class="k">NULL</span> <span class="p">,</span> <span class="mi">123</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">STUDENT</span>
 </pre></div>
 </div>
@@ -393,18 +386,18 @@ DATETIME : 날짜와 시각 정보
 <li>VARIAN(...) : 분산 출력</li>
 </ul>
 <p>예시</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">count</span><span class="p">(</span><span class="n">grade</span><span class="p">),</span> <span class="k">max</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span> <span class="k">from</span> <span class="n">student</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">count</span><span class="p">(</span><span class="n">grade</span><span class="p">),</span> <span class="k">max</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span> <span class="k">from</span> <span class="n">student</span>
 </pre></div>
 </div>
 <p>일반적으로 집계함수는 GROUP BY 절과 같이 사용되지만 위와 같이 테이블 전체가 하나의 그룹이 되는 경우에는 GROUP BY 절 없이 단독으로 사용할 수 있다.</p>
 <p>예시</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">NVL</span><span class="p">(</span><span class="n">MGR</span><span class="p">,</span> <span class="mi">9999</span><span class="p">)</span> <span class="n">MGR</span> <span class="k">FROM</span> <span class="n">EMP</span> <span class="k">WHERE</span> <span class="n">ENAME</span><span class="o">=</span><span class="s1">&#39;JSC&#39;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">NVL</span><span class="p">(</span><span class="n">MGR</span><span class="p">,</span> <span class="mi">9999</span><span class="p">)</span> <span class="n">MGR</span> <span class="k">FROM</span> <span class="n">EMP</span> <span class="k">WHERE</span> <span class="n">ENAME</span><span class="o">=</span><span class="s1">&#39;JSC&#39;</span>
 <span class="k">SELECT</span> <span class="n">IFNULL</span><span class="p">(</span><span class="n">MGR</span><span class="p">,</span> <span class="mi">9999</span><span class="p">)</span> <span class="n">MGR</span> <span class="k">FROM</span> <span class="n">EMP</span> <span class="k">WHERE</span> <span class="n">ENAME</span><span class="o">=</span><span class="s1">&#39;JSC&#39;</span>
 </pre></div>
 </div>
 <p>위 예시는 레코드가 하나도 검색되지 않았을때 NVL이 동작하는지 알 수 있다. 실제로 레코드가 0개라면 NVL은 있으나 마나 공집합을 반환한다.</p>
 <p>다른 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">NVL</span><span class="p">(</span><span class="k">MAX</span><span class="p">(</span><span class="n">MGR</span><span class="p">),</span> <span class="mi">9999</span><span class="p">)</span> <span class="n">MGR</span> <span class="k">FROM</span> <span class="n">EMP</span> <span class="k">WHERE</span> <span class="n">ENAME</span><span class="o">=</span><span class="s1">&#39;JSC&#39;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">NVL</span><span class="p">(</span><span class="k">MAX</span><span class="p">(</span><span class="n">MGR</span><span class="p">),</span> <span class="mi">9999</span><span class="p">)</span> <span class="n">MGR</span> <span class="k">FROM</span> <span class="n">EMP</span> <span class="k">WHERE</span> <span class="n">ENAME</span><span class="o">=</span><span class="s1">&#39;JSC&#39;</span>
 <span class="k">SELECT</span> <span class="n">IFNULL</span><span class="p">(</span><span class="k">MAX</span><span class="p">(</span><span class="n">MGR</span><span class="p">),</span> <span class="mi">9999</span><span class="p">)</span> <span class="n">MGR</span> <span class="k">FROM</span> <span class="n">EMP</span> <span class="k">WHERE</span> <span class="n">ENAME</span><span class="o">=</span><span class="s1">&#39;JSC&#39;</span>
 </pre></div>
 </div>
@@ -414,7 +407,7 @@ DATETIME : 날짜와 시각 정보
 <h3>3.9.2. GROUP BY, HAVING 절<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
 <p>WHERE 절로 일차적인 결과를 가공한 후 각 팀별 데이터를 얻어오고 싶을때 사용할 수 있다. 예를 들면 팀별 선수의 연봉 평균이나 나이등을 얻을 수 있다.</p>
 <p>형식:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">[</span><span class="k">DISTINCT</span><span class="p">]</span> <span class="k">COLUMN</span> <span class="p">[</span><span class="k">ALIAS</span><span class="p">]</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">[</span><span class="k">DISTINCT</span><span class="p">]</span> <span class="k">COLUMN</span> <span class="p">[</span><span class="k">ALIAS</span><span class="p">]</span>
 <span class="k">FROM</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 <span class="p">[</span><span class="k">WHERE</span> <span class="n">CONDITION</span><span class="p">]</span>
 <span class="p">[</span><span class="k">GROUP</span> <span class="k">BY</span> <span class="k">COLUMN</span> <span class="k">OR</span> <span class="n">EXPR</span><span class="p">]</span>
@@ -433,24 +426,24 @@ DATETIME : 날짜와 시각 정보
 <li>HAVING 절은 일반적으로 GROUP BY 절 뒤에 위치한다.</li>
 </ul>
 <p>SQL의 적용순서 (SELECT 조회 시):</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span>SQL문은 기본적으로 FROM, WHERE, GROUP BY, HAVING, SELECT 출력/계산, ORDER BY 순으로 수행된다.
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>SQL문은 기본적으로 FROM, WHERE, GROUP BY, HAVING, SELECT 출력/계산, ORDER BY 순으로 수행된다.
 </pre></div>
 </div>
 <p>위 순서는 옵티마이저가 SQL 문장의 SYNTAX, SEMANTIC 에러를 점검하는 순서이기도 하다. 예를 들면 FROM 절에 정의되지 않은 테이블의 칼럼을 WHERE 절, GROUP BY 절, HAVING 절, SELECT 절, ORDER BY 절에서 사용하면 에러가 발생한다. 그러나 ORDER BY 절에는 SELECT 목록에 나타나지 않은 문자형 항목이 포함될 수 있다. 단, SELECT DISTINCT 를 지정하거나 SQL 문장에 GROUP BY 절이 있거나 또는 SELECT 문에 UNION 연산자가 있으면 열 정의가 SELECT 목록에 표시되어야 한다.</p>
 <p>이 부분은 관계형 데이터베이스가 데이터를 메모리에 올릴 때 행 단위로 모든 칼럼을 가져오게 되므로, SELECT 절에서 ORDER BY 절에서 메모리에 올라와 있는 다른 칼럼의 데이터를 사용할 수 있다.</p>
 <p><a class="reference external" href="http://dayccm.tistory.com/29">SQL 적용순서 참조 사이트</a> 이다. 주의할점은 ORDER BY 시 SELECT 출력/계산 한 이후의 값이 정렬에 사용된다는 점이다.</p>
 <p>GROUP BY 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">GRADE</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">AGE</span> <span class="o">&lt;</span><span class="mi">50</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="p">(</span><span class="n">AGE</span><span class="p">);</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">GRADE</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">AGE</span> <span class="o">&lt;</span><span class="mi">50</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="p">(</span><span class="n">AGE</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>50세 이하인 학생중에서 나이가 같은 사람들 끼리 소그룹을 만든 후 평균 학년을 반환한다는 뜻이다.</p>
 <p>HAVING 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">GRADE</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">AGE</span> <span class="o">&lt;</span><span class="mi">50</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="p">(</span><span class="n">AGE</span><span class="p">)</span> <span class="k">HAVING</span> <span class="k">AVG</span><span class="p">(</span><span class="n">GRADE</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">GRADE</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">AGE</span> <span class="o">&lt;</span><span class="mi">50</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="p">(</span><span class="n">AGE</span><span class="p">)</span> <span class="k">HAVING</span> <span class="k">AVG</span><span class="p">(</span><span class="n">GRADE</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span>
 <span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">GRADE</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">AGE</span> <span class="o">&lt;</span><span class="mi">50</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="p">(</span><span class="n">AGE</span><span class="p">)</span> <span class="k">HAVING</span> <span class="n">GRADE</span> <span class="o">&lt;</span> <span class="mi">3</span>
 </pre></div>
 </div>
 <p>2번째 구문은 틀린 SQL 문이다. GROUP BY에 의해 소그룹이 생성되었을떄 GRADE는 존재하지 않는다. 단 1번째 구문처럼 값을 계산할 수 있다. 반면 나이로 소그룹을 생성했다면 다음과 같은 구문은 사용할 수 있다.:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">AGE</span> <span class="p">,</span><span class="k">AVG</span><span class="p">(</span><span class="n">GRADE</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">AGE</span> <span class="o">&lt;</span><span class="mi">50</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="p">(</span><span class="n">AGE</span><span class="p">)</span> <span class="k">HAVING</span> <span class="n">AGE</span> <span class="o">&gt;</span> <span class="mi">3</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">AGE</span> <span class="p">,</span><span class="k">AVG</span><span class="p">(</span><span class="n">GRADE</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">AGE</span> <span class="o">&lt;</span><span class="mi">50</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="p">(</span><span class="n">AGE</span><span class="p">)</span> <span class="k">HAVING</span> <span class="n">AGE</span> <span class="o">&gt;</span> <span class="mi">3</span>
 </pre></div>
 </div>
 </div>
@@ -459,7 +452,7 @@ DATETIME : 날짜와 시각 정보
 <h2>3.10. ORDER BY 정렬<a class="headerlink" href="#order-by" title="제목 주소">¶</a></h2>
 <p>ORDER BY에 표현식은 집계함수 등이 있다.</p>
 <p>형식:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">[</span><span class="k">DISTINCT</span><span class="p">]</span> <span class="k">COLUMN</span> <span class="p">[</span><span class="k">ALIAS</span><span class="p">]</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">[</span><span class="k">DISTINCT</span><span class="p">]</span> <span class="k">COLUMN</span> <span class="p">[</span><span class="k">ALIAS</span><span class="p">]</span>
 <span class="k">FROM</span> <span class="p">[</span><span class="k">TABLE_NAME</span><span class="p">]</span>
 <span class="p">[</span><span class="k">WHERE</span> <span class="n">CONDITION</span><span class="p">]</span>
 <span class="p">[</span><span class="k">GROUP</span> <span class="k">BY</span> <span class="k">COLUMN</span> <span class="k">OR</span> <span class="n">EXPR</span><span class="p">]</span>
@@ -468,13 +461,13 @@ DATETIME : 날짜와 시각 정보
 </pre></div>
 </div>
 <p>예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">GRADE</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">AGE</span> <span class="k">DESC</span><span class="p">,</span> <span class="n">GRADE</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">GRADE</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">AGE</span> <span class="k">DESC</span><span class="p">,</span> <span class="n">GRADE</span>
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">WHERE</span> <span class="n">GRADE</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">AGE</span><span class="p">,</span> <span class="n">GRADE</span> <span class="k">desc</span>
 </pre></div>
 </div>
 <p>첫번째 구문은 학년이 NULL이 레코드를 나이순으로 내림차순 정렬하고 다시 학년순으로 오름차순 정렬한 예제이다. 두번째 구문은 AGE은 오름차순, GRADE은 내림차순이 적용된다.</p>
 <p>안되는 예시:</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">AGE</span><span class="p">,</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">AGE</span> <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">GRADE</span> <span class="k">DESC</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">AGE</span><span class="p">,</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">STUDENT</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">AGE</span> <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">GRADE</span> <span class="k">DESC</span>
 </pre></div>
 </div>
 <p>GROUP BY를 한 후 ORDER BY나 SELECT 칼럼에 일반 칼럼을 사용하면 에러가 나온다고 한다. 하지만 MySQL에서 해본결과 동작한다. (설명이 틀렸거나 MySQL 대표값을 사용하는 느낌이다.)</p>
@@ -485,7 +478,7 @@ DATETIME : 날짜와 시각 정보
 <div class="section" id="equi-join-inner-join">
 <span id="inner-join"></span><h3>3.11.1. EQUI JOIN (INNER JOIN)<a class="headerlink" href="#equi-join-inner-join" title="제목 주소">¶</a></h3>
 <p>예시</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">A</span><span class="p">,</span><span class="n">B</span> <span class="k">WHERE</span> <span class="n">A</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">ID</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">A</span><span class="p">,</span><span class="n">B</span> <span class="k">WHERE</span> <span class="n">A</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">ID</span>
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">A</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">B</span> <span class="k">ON</span> <span class="n">A</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">ID</span>
 </pre></div>
 </div>
@@ -508,46 +501,52 @@ sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Mic
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">3. SQL 기본</a><ul>
-<li><a class="reference internal" href="#ddl-data-definition-language">3.1. DDL(DATA DEFINITION LANGUAGE)</a><ul>
-<li><a class="reference internal" href="#create-table">3.1.1. CREATE TABLE 문</a></li>
-<li><a class="reference internal" href="#alter-table">3.1.2. ALTER TABLE 문</a></li>
-<li><a class="reference internal" href="#id1">3.1.3. 테이블명 변경</a></li>
-<li><a class="reference internal" href="#drop-table">3.1.4. DROP TABLE</a></li>
-<li><a class="reference internal" href="#truncate-table">3.1.5. TRUNCATE TABLE</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/design_index.html">설계(Design)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="database_index.html">데이터베이스</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="database_concept.html">1. 용어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_basic.html">2. 데이터베이스 모델링</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. SQL 기본</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql_basic2.html">4. SQL 활용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql_optimize.html">5. SQL 최적화 및 성능 튜닝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql_server_terms.html">6. SQL Server Key</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#dml-data-manipulation-language">3.2. DML(DATA MANIPULATION LANGUAGE)</a><ul>
-<li><a class="reference internal" href="#insert">3.2.1. INSERT</a></li>
-<li><a class="reference internal" href="#update">3.2.2. UPDATE</a></li>
-<li><a class="reference internal" href="#delete">3.2.3. DELETE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
-</li>
-<li><a class="reference internal" href="#select">3.3. SELECT, 산술 연산자와 합성 연산자</a></li>
-<li><a class="reference internal" href="#tcl-transaction-control-language">3.4. TCL (TRANSACTION CONTROL LANGUAGE)</a></li>
-<li><a class="reference internal" href="#where">3.5. WHERE 절</a></li>
-<li><a class="reference internal" href="#function">3.6. 함수(FUNCTION)</a></li>
-<li><a class="reference internal" href="#case">3.7. CASE 표현</a></li>
-<li><a class="reference internal" href="#null">3.8. NULL관련 함수</a></li>
-<li><a class="reference internal" href="#group-by-having">3.9. GROUP BY, HAVING 절</a><ul>
-<li><a class="reference internal" href="#id2">3.9.1. 집계함수</a></li>
-<li><a class="reference internal" href="#id3">3.9.2. GROUP BY, HAVING 절</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#order-by">3.10. ORDER BY 정렬</a></li>
-<li><a class="reference internal" href="#join">3.11. 조인(JOIN)</a><ul>
-<li><a class="reference internal" href="#equi-join-inner-join">3.11.1. EQUI JOIN (INNER JOIN)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -559,21 +558,16 @@ sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Mic
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/database/sql_basic.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -584,8 +578,8 @@ sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Mic
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/database/sql_basic.rst.txt"

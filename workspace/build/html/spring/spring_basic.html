@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1. 스프링 프레임워크 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="spring-basic-intro">
@@ -113,7 +106,7 @@
 <h4>1.3.1.1. &#64;Resource<a class="headerlink" href="#resource" title="제목 주소">¶</a></h4>
 <p>필드나 Setter 메서드에 빈을 주입할때 사용하는 주석이다. JSR-250 스펙에 존재한다.</p>
 <p>다음과 같이 사용할 경우:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;maxThreadsCount&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;maxThreadsCount&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>name 속성을 해석해서 빈을 찾는다. by-name 시멘틱으로 처리한다. 이름이 주어지지 않을 경우 필드 이름, Setter 메서드를 사용한다.</p>
@@ -131,7 +124,7 @@
 <h4>1.3.1.4. &#64;ComponentScan<a class="headerlink" href="#componentscan" title="제목 주소">¶</a></h4>
 <p>stereotype 주석이 사용된 클래스를 찾아 뒤 빈으로 등록할때 사용하는 주석이다. &#64;Configuration 주석 아래에 사용할 수 있다. 인자로 basePackages에 클래스의 부모 패키지를 받는다.</p>
 <p>JavaConfig를 사용할때</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@Configuration</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@Configuration</span>
 <span class="nd">@ComponentScan</span><span class="p">(</span><span class="n">basePackages</span> <span class="o">=</span> <span class="s2">&quot;org.example&quot;</span><span class="p">)</span>
 <span class="n">public</span> <span class="k">class</span> <span class="nc">AppConfig</span>  <span class="p">{</span>
            <span class="o">...</span>
@@ -139,7 +132,7 @@
 </pre></div>
 </div>
 <p>XML을 사용할때:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
         xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
@@ -162,7 +155,7 @@
 <div class="section" id="qualifier">
 <h4>1.3.1.6. &#64;Qualifier<a class="headerlink" href="#qualifier" title="제목 주소">¶</a></h4>
 <p>&#64;Qualifier는 정교하게 빈을 선택할 수 있도록 도와주는 주석이다. 필드나 메서드 인자, 생성자 인자에 위치할 수 있다.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@Autowired</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@Autowired</span>
 <span class="n">public</span> <span class="n">void</span> <span class="n">prepare</span><span class="p">(</span><span class="nd">@Qualifier</span><span class="p">(</span><span class="s2">&quot;main&quot;</span><span class="p">)</span><span class="n">MovieCatalog</span> <span class="n">movieCatalog</span><span class="p">,</span>
                 <span class="n">CustomerPreferenceDao</span> <span class="n">customerPreferenceDao</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">this</span><span class="o">.</span><span class="n">movieCatalog</span> <span class="o">=</span> <span class="n">movieCatalog</span><span class="p">;</span>
@@ -192,7 +185,7 @@ mvn package: 컴파일 후 jar 또는 war 패키지를 생성한다.
 mvn install: jar또는 war를 로컬 저장소에 복사한다.
 mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포함하고 있다면 WAS 까지 자동으로 실행한다.</p>
 <p>톰캣 바로 실행:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;plugin&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;plugin&gt;
         &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;
         &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;
         &lt;!-- or if you want to use tomcat 6.x &lt;artifactId&gt;tomcat6-maven-plugin&lt;/artifactId&gt; --&gt;
@@ -218,45 +211,49 @@ mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포�
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">1. 스프링 프레임워크</a><ul>
-<li><a class="reference internal" href="#id4">1.1. 작업환경 및 과정</a></li>
-<li><a class="reference internal" href="#id5">1.2. 스프링의 이해</a><ul>
-<li><a class="reference internal" href="#applicationcontext-work">1.2.1. 어플리케이션 컨텍스트 동작방식</a></li>
-<li><a class="reference internal" href="#id7">1.2.2. 용어</a></li>
-<li><a class="reference internal" href="#applicationcontext-singleton">1.2.3. 어플리케이션 컨텍스트와 싱글톤 객체</a></li>
-<li><a class="reference internal" href="#di">1.2.4. 의존관계 주입(DI)</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/design_index.html">설계(Design)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="spring_index.html">Spring</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. 스프링 프레임워크</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_web_mvc.html">2. Spring Web MVC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomcat.html">3. 톰캣</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#applicationcontext">1.3. 애플리케이션 컨텍스트(ApplicationContext)</a><ul>
-<li><a class="reference internal" href="#id9">1.3.1. 주석 기반의 컨테이너 설정</a><ul>
-<li><a class="reference internal" href="#resource">1.3.1.1. &#64;Resource</a></li>
-<li><a class="reference internal" href="#postconstruct-predestroy">1.3.1.2. &#64;PostConstruct, &#64;PreDestroy</a></li>
-<li><a class="reference internal" href="#component-controller-service-repository">1.3.1.3. &#64;Component, &#64;Controller, &#64;Service, &#64;Repository</a></li>
-<li><a class="reference internal" href="#componentscan">1.3.1.4. &#64;ComponentScan</a></li>
-<li><a class="reference internal" href="#autowired">1.3.1.5. &#64;Autowired</a></li>
-<li><a class="reference internal" href="#qualifier">1.3.1.6. &#64;Qualifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id10">1.4. 테스트 컨텍스트 프레임워크</a><ul>
-<li><a class="reference internal" href="#id11">1.4.1. 쿼리 테스트</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#maven">1.5. Maven</a><ul>
-<li><a class="reference internal" href="#goal">1.5.1. Goal</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id12">1.6. 참조</a></li>
-</ul>
-</li>
-</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -268,21 +265,16 @@ mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포�
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/spring/spring_basic.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -293,8 +285,8 @@ mvn package tomcat:run -: tomcat7-maven-plugin을 빌드 플러그인으로 포�
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/spring/spring_basic.rst.txt"

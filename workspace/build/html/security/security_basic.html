@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1. 정보보안 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="security-basic">
@@ -161,8 +154,8 @@
 <div class="section" id="message-authentication-using-hash-functions">
 <h3>1.3.5. Message Authentication using Hash Functions<a class="headerlink" href="#message-authentication-using-hash-functions" title="제목 주소">¶</a></h3>
 <img alt="../_images/auth_using_hash.png" src="../_images/auth_using_hash.png" />
-<p><code class="docutils literal"><span class="pre">(a)Using</span> <span class="pre">conventional</span> <span class="pre">encryption</span></code> 방식은 송신측은 메세지를 해싱한 값을 비밀키로 암호화하여 전달하고 수신측은 복호화한 후 해시값을 비교하는 방식이다.</p>
-<p><code class="docutils literal"><span class="pre">(c)Using</span> <span class="pre">secret</span> <span class="pre">value</span></code> 방식은 (메세지 + 비밀키)를 해싱하여 값을 만들고 그 값을 메세지에 담아 전달하여 인증하는 방식이다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">(a)Using</span> <span class="pre">conventional</span> <span class="pre">encryption</span></code> 방식은 송신측은 메세지를 해싱한 값을 비밀키로 암호화하여 전달하고 수신측은 복호화한 후 해시값을 비교하는 방식이다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">(c)Using</span> <span class="pre">secret</span> <span class="pre">value</span></code> 방식은 (메세지 + 비밀키)를 해싱하여 값을 만들고 그 값을 메세지에 담아 전달하여 인증하는 방식이다.</p>
 </div>
 <div class="section" id="digital-signature">
 <span id="id6"></span><h3>1.3.6. Digital Signature(전자 서명)<a class="headerlink" href="#digital-signature" title="제목 주소">¶</a></h3>
@@ -203,10 +196,10 @@
 <li>앨리스는 소수 p, 그리고 1과 p-1사이의 g를 선택한뒤 밥과 공유한다.</li>
 <li>앨리스는 정수 a를 선택한다. 밥은 정수 b를 선택한다.</li>
 <li>각자 선택한 정수와 공식을 바탕으로 A와 B를 계산한다.</li>
-<li>공식은 다음과 같다. <span class="math">\(A = g^a\)</span> <em>mod p</em> <span class="math">\(B = g^b\)</span> <em>mod p</em></li>
+<li>공식은 다음과 같다. <span class="math notranslate nohighlight">\(A = g^a\)</span> <em>mod p</em> <span class="math notranslate nohighlight">\(B = g^b\)</span> <em>mod p</em></li>
 <li>서로 A와 B를 교환하고 A와 B와 공식을 바탕으로 비밀키를 계산한다.</li>
-<li>앨리스의 계산식은 다음과 같다. <span class="math">\(B^a\)</span> <em>mod p =</em> <span class="math">\(g^{ab}\)</span> <em>mod p</em></li>
-<li>밥의 계산식은 다음과 같다. <span class="math">\(A^b\)</span> <em>mod p =</em> <span class="math">\(g^{ab}\)</span> <em>mod p</em></li>
+<li>앨리스의 계산식은 다음과 같다. <span class="math notranslate nohighlight">\(B^a\)</span> <em>mod p =</em> <span class="math notranslate nohighlight">\(g^{ab}\)</span> <em>mod p</em></li>
+<li>밥의 계산식은 다음과 같다. <span class="math notranslate nohighlight">\(A^b\)</span> <em>mod p =</em> <span class="math notranslate nohighlight">\(g^{ab}\)</span> <em>mod p</em></li>
 <li>서로 공유된 비밀키로 암호화 통신을 할 수 있다. 또는, 키 유도 함수(key derivation function, KDF)를 통해 새로운 키를 만들 수 있다.</li>
 </ol>
 <p>참고로 모듈러 연산의 곱셈 또는 거듭제곱 시 모듈러 연산은 밖으로 뺄 수 있다.</p>
@@ -414,7 +407,7 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
 <div class="section" id="buffer-overflow">
 <h2>1.10. Buffer Overflow<a class="headerlink" href="#buffer-overflow" title="제목 주소">¶</a></h2>
 <p>버퍼 오버플로우는 할당된 수용량 보다 데이터가 버퍼에 입력되어 다른 정보를 덮어쓰는 것을 말한다. 공격자는 시스템을 충돌내기위해 이러한 조건을 발생 시키거나 시스템의 제어를 얻는 코드를 삽입한다.</p>
-<p>C에서 <code class="xref py py-func docutils literal"><span class="pre">gets()</span></code> 는 데이터의 량을 체크하는 코드를 가지고 있지 않다. 결과적으로 <code class="xref py py-func docutils literal"><span class="pre">gets()</span></code> 를 사용하여 다른 인접한 변수를 덮어쓸 수 있다.</p>
+<p>C에서 <code class="xref py py-func docutils literal notranslate"><span class="pre">gets()</span></code> 는 데이터의 량을 체크하는 코드를 가지고 있지 않다. 결과적으로 <code class="xref py py-func docutils literal notranslate"><span class="pre">gets()</span></code> 를 사용하여 다른 인접한 변수를 덮어쓸 수 있다.</p>
 <p>스택 버퍼 오버플로우는 함수 호출 매커니즘에서 return 복귀 주소를 덮어쓰면서 이루어 진다.</p>
 <p>마지막으로 쉘코드의 주소를 복귀주소로 넣게된다. 쉘코드는 공격자에 의해 작성되었으며 버퍼오버플로우에 의해 저장되곤 한다. 제어를 사용자 인터프리터로 넘긴다.</p>
 <div class="section" id="bof">
@@ -488,102 +481,49 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">1. 정보보안</a><ul>
-<li><a class="reference internal" href="#overview">1.1. Overview</a><ul>
-<li><a class="reference internal" href="#cia">1.1.1. CIA</a></li>
-<li><a class="reference internal" href="#terminology">1.1.2. Terminology</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/design_index.html">설계(Design)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="security_index.html">보안(Security)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. 정보보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_internet.html">2. 인터넷 프로토콜 보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_coding.html">3. 시큐어 코딩</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#pki-public-key-infrastructure">1.2. 공개키 기반 (PKI, Public Key Infrastructure)</a><ul>
-<li><a class="reference internal" href="#digital-certificate">1.2.1. 전자 인증서 (Digital Certificate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
-</li>
-<li><a class="reference internal" href="#cryptographic-tools">1.3. Cryptographic tools</a><ul>
-<li><a class="reference internal" href="#vs">1.3.1. 대칭키 암 vs 공개키 암호</a><ul>
-<li><a class="reference internal" href="#id2">1.3.1.1. 대칭 암호화 방식</a></li>
-<li><a class="reference internal" href="#id3">1.3.1.2. 블록 단위 암호화 방식</a></li>
-<li><a class="reference internal" href="#id4">1.3.1.3. 스트림 암호화 방식</a></li>
-<li><a class="reference internal" href="#id5">1.3.1.4. 공개키 암호화 방식</a></li>
-<li><a class="reference internal" href="#aes-advanced-encryption-standard">1.3.1.5. AES (Advanced Encryption Standard)</a></li>
-<li><a class="reference internal" href="#rsa-rivest-shamir-adleman">1.3.1.6. RSA (Rivest, Shamir, Adleman)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#challengeresponse-authentication">1.3.2. Challenge–response authentication</a></li>
-<li><a class="reference internal" href="#hash">1.3.3. Hash</a></li>
-<li><a class="reference internal" href="#message-authentication">1.3.4. Message Authentication</a></li>
-<li><a class="reference internal" href="#message-authentication-using-hash-functions">1.3.5. Message Authentication using Hash Functions</a></li>
-<li><a class="reference internal" href="#digital-signature">1.3.6. Digital Signature(전자 서명)</a></li>
-<li><a class="reference internal" href="#digital-envelope">1.3.7. Digital envelope(전자 봉투)</a></li>
-<li><a class="reference internal" href="#ssl">1.3.8. SSL 인증서, 공인인증서와 전자서명</a><ul>
-<li><a class="reference internal" href="#id7">1.3.8.1. 인증서 정보</a></li>
-<li><a class="reference internal" href="#id8">1.3.8.2. 인증서간 서명 매커니즘</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#diffie-hellman-key-exchange">1.3.9. Diffie-Hellman Key Exchange (디피-헬만 키 교환)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#user-authentication">1.4. User authentication</a><ul>
-<li><a class="reference internal" href="#salt-with-hash">1.4.1. Salt with hash</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#access-control">1.5. Access control</a><ul>
-<li><a class="reference internal" href="#discretionary-access-control-dac">1.5.1. Discretionary access control (DAC)</a></li>
-<li><a class="reference internal" href="#mandatory-access-control-mac">1.5.2. Mandatory access control (MAC)</a></li>
-<li><a class="reference internal" href="#role-based-access-control-rbac">1.5.3. Role-based access control (RBAC)</a></li>
-<li><a class="reference internal" href="#access-control-structure">1.5.4. Access Control Structure</a></li>
-<li><a class="reference internal" href="#capability-tickets">1.5.5. Capability tickets</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#malicious-software">1.6. Malicious software</a><ul>
-<li><a class="reference internal" href="#virus">1.6.1. virus</a><ul>
-<li><a class="reference internal" href="#id9">1.6.1.1. 바이러스 대응책</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#worm">1.6.2. worm</a><ul>
-<li><a class="reference internal" href="#id10">1.6.2.1. worm 대응책</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#dos">1.7. DOS</a><ul>
-<li><a class="reference internal" href="#ddos">1.7.1. DDoS 공격 대응 절차 및 목적</a></li>
-<li><a class="reference internal" href="#source-address-spoofing">1.7.2. Source address spoofing</a></li>
-<li><a class="reference internal" href="#flooding-attacks">1.7.3. Flooding Attacks</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#intrusion-detection-intrusion-detection">1.8. Intrusion detection(Intrusion Detection)</a></li>
-<li><a class="reference internal" href="#firewall">1.9. Firewall</a><ul>
-<li><a class="reference internal" href="#packet-filtering-firewall">1.9.1. Packet Filtering Firewall</a></li>
-<li><a class="reference internal" href="#stateful-inspection-firewall">1.9.2. Stateful Inspection Firewall</a></li>
-<li><a class="reference internal" href="#application-level-firewall">1.9.3. Application-level Firewall</a></li>
-<li><a class="reference internal" href="#circuit-level-firewall">1.9.4. Circuit-level Firewall</a></li>
-<li><a class="reference internal" href="#location-configuration">1.9.5. Location &amp; Configuration</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#buffer-overflow">1.10. Buffer Overflow</a><ul>
-<li><a class="reference internal" href="#bof">1.10.1. BOF 대비책</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#software-security">1.11. Software security</a><ul>
-<li><a class="reference internal" href="#handling-program-input">1.11.1. handling program input</a></li>
-<li><a class="reference internal" href="#handling-program-output">1.11.2. handling program output</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#risk-assessment">1.12. Risk Assessment (위험평가)</a><ul>
-<li><a class="reference internal" href="#detailed-risk-analysis">1.12.1. Detailed Risk Analysis (상세한 위험 분석)</a></li>
-<li><a class="reference internal" href="#security-auditing">1.12.2. Security Auditing (보안 감사)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id12">1.13. 참조</a></li>
-</ul>
-</li>
-</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -595,21 +535,16 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/security/security_basic.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -620,8 +555,8 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/security/security_basic.rst.txt"

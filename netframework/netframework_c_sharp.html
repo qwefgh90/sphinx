@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>3. C# 기초 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="c">
@@ -63,7 +56,7 @@
 <div class="section" id="id3">
 <h3>3.2.1. 값 형식<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
 <p>상수 필드나 지역 상수로 사용할 수 있다. (const는 심플 타입과 문자열 리터럴에 사용 가능):</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// only used for simple types</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// only used for simple types</span>
 <span class="k">private</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">ProductName</span> <span class="p">=</span> <span class="s">&quot;C#&quot;</span><span class="p">;</span> <span class="c1">//computed at compile-time</span>
 </pre></div>
 </div>
@@ -95,7 +88,7 @@
 <div class="section" id="id4">
 <h3>3.2.2. 형변환<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
 <p>형변환은 반드시 <em>Type Cast Operator</em> 나 메서드를 이용해서 명시적으로 형변환을 해야한다. 참조 타입의 경우 <em>as 키워드를</em> 사용해서 변환할 수 있다.:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="n">b</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="n">b</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">b</span><span class="p">;</span>
 <span class="kt">string</span> <span class="n">c</span> <span class="p">=</span> <span class="s">&quot;hello&quot;</span><span class="p">;</span>
 <span class="n">a</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
@@ -106,7 +99,7 @@
 <div class="section" id="id5">
 <h3>3.2.3. 문자열<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
 <p>연결:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">string</span> <span class="n">s</span> <span class="p">=</span> <span class="s">&quot;hello&quot;</span> <span class="p">+</span> <span class="s">&quot;world&quot;</span><span class="p">;</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span> <span class="n">s</span> <span class="p">=</span> <span class="s">&quot;hello&quot;</span> <span class="p">+</span> <span class="s">&quot;world&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Escape sequence는 특수문자를 나타낼때 사용한다.</p>
@@ -116,7 +109,7 @@
 <h3>3.2.4. 배열<a class="headerlink" href="#id6" title="제목 주소">¶</a></h3>
 <p>System.Array의 메서드와 필드를 사용할 수 있다.</p>
 <p>예시:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="p">[]</span> <span class="n">ar</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Int</span><span class="p">[</span><span class="m">10</span><span class="p">];</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="p">[]</span> <span class="n">ar</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Int</span><span class="p">[</span><span class="m">10</span><span class="p">];</span>
 <span class="kt">int</span><span class="p">[]</span> <span class="n">ar1</span> <span class="p">=</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">};</span>
 <span class="kt">int</span><span class="p">[,]</span> <span class="n">ar2</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">];</span>
 <span class="kt">int</span><span class="p">[,]</span> <span class="n">ar3</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">]{{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">},{</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">}};</span>
@@ -124,15 +117,15 @@
 </pre></div>
 </div>
 <p>정렬:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="p">.</span><span class="n">Sort</span><span class="p">(</span><span class="n">ar1</span><span class="p">);</span> <span class="c1">//Call static method</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="p">.</span><span class="n">Sort</span><span class="p">(</span><span class="n">ar1</span><span class="p">);</span> <span class="c1">//Call static method</span>
 </pre></div>
 </div>
 <p>복사:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">ar1</span><span class="p">.</span><span class="n">Clone</span><span class="p">();</span> <span class="c1">//Call instance method</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="n">ar1</span><span class="p">.</span><span class="n">Clone</span><span class="p">();</span> <span class="c1">//Call instance method</span>
 </pre></div>
 </div>
 <p>기타:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="p">.</span><span class="n">Clear</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="n">ar</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="p">.</span><span class="n">Clear</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="n">ar</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -166,7 +159,7 @@
 <p>객체나 클래스의 데이터에 접근할때 사용하는 멤버이다. 사용하는 방법이 필드와 비슷하다. 프로퍼티는 <strong>별도의 저장소를 갖고 있지 않으며 항상 접근자(accessors)를 통해서 값에</strong> 접근한다.</p>
 <p><em>자동 구현 속성(Automatically implemented properties)</em> 는 숨겨진 필드를 만들고 접근자로 필드를 접근하도록 자동 구현되는 속성이다.</p>
 <p>아래 2개의 클래스는 같은 의미를 지닌다.:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Point</span> <span class="p">{</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Point</span> <span class="p">{</span>
   <span class="k">public</span> <span class="kt">int</span> <span class="n">X</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//자동 구현</span>
   <span class="k">public</span> <span class="kt">int</span> <span class="n">Y</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//자동 구현</span>
 <span class="p">}</span>
@@ -186,7 +179,7 @@
 <h4>3.2.5.5. 이벤트(Events)<a class="headerlink" href="#events" title="제목 주소">¶</a></h4>
 <p>객체나 클래스에서 알림을 주고 싶을때 사용하는 클래스의 멤버이다. 이벤트가 발생할 경우 등록된 <em>이벤트 핸들러(Event Handler)</em> 가 호출된다.</p>
 <p><strong>반드시 이벤트는 대리자(delegate) 타입이여야 한다.</strong>:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="p">...{</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="p">...{</span>
   <span class="k">delegate</span> <span class="k">void</span> <span class="nf">MyEventHandler</span> <span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">);</span><span class="c1">//대리자 선언</span>
   <span class="k">public</span> <span class="k">event</span> <span class="n">MyEventHandler</span> <span class="n">MyClick</span><span class="p">;</span><span class="c1">//대리자 타입의 이벤트 멤버 선언</span>
 <span class="p">}</span>
@@ -207,7 +200,7 @@
 <p>대리자는 <strong>1개 이상의 메서드의 참조값과 인스턴스를 함께 저장하는 데이터 타입</strong> 이다. 내부적으로 System.Delegate를 상속받은 클래스이다.</p>
 <p>대리자는 내부적으로 <strong>호출 리스트(invocation list)</strong> 를 사용하여 1개 이상의 메서드를 저장한다. <em>각각의 메서드는 호출가능한 개체(callable entity)로</em> 불린다. <em>인스턴스 메서드</em> 를 위해 객체와 인스턴스로 구성된 호출가능한 개체를 저장하며 <em>정적 메서드</em> 를 위해서는 메서드로 구성된 호출가능한 개체를 저장한다.</p>
 <p>예시:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">delegate</span> <span class="k">void</span> <span class="nf">MyDelegate</span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">);</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">delegate</span> <span class="k">void</span> <span class="nf">MyDelegate</span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">);</span>
 <span class="n">MyDelegate</span> <span class="n">d</span><span class="p">;</span>
 <span class="n">d</span> <span class="p">+=</span> <span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;Hi &quot;</span> <span class="p">+</span> <span class="n">s</span><span class="p">);</span>
 <span class="n">d</span> <span class="p">+=</span> <span class="k">new</span> <span class="n">MyDelegate</span><span class="p">(</span><span class="n">Hello</span><span class="p">)</span> <span class="c1">// 대리자의 생성자에 메서드를 넣어서 사용할 수 있음</span>
@@ -231,7 +224,7 @@
 <p>보통 <strong>대문자 I</strong> 로 시작한다.</p>
 <p>인터페이스를 구현한 클래스에서 <strong>명시적 또는 암시적으로</strong> 멤버를 구현할 수 있다.</p>
 <p><strong>암시적 구현은</strong> 다음과 같다.:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">interface</span> <span class="n">IBeverage</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">interface</span> <span class="n">IBeverage</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="nf">GetTemp</span><span class="p">();</span>
   <span class="k">void</span> <span class="nf">Paint</span><span class="p">();</span>
@@ -248,7 +241,7 @@
 </pre></div>
 </div>
 <p><strong>명시적 구현은</strong> 다음과 같다.:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">interface</span> <span class="n">IBeverage</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">interface</span> <span class="n">IBeverage</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="nf">GetTemp</span><span class="p">();</span>
   <span class="k">void</span> <span class="nf">Paint</span><span class="p">();</span>
@@ -283,7 +276,7 @@
 <div class="section" id="id14">
 <h3>3.2.12. 명명된 인자<a class="headerlink" href="#id14" title="제목 주소">¶</a></h3>
 <p>다음과 같이 인자에 이름을 붙여서 사용할 수 있다.:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">StopService</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="n">serviceID</span><span class="p">:</span> <span class="m">1</span><span class="p">)</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="n">StopService</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="n">serviceID</span><span class="p">:</span> <span class="m">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -307,7 +300,7 @@
 <div class="section" id="id15">
 <h2>3.3. 예외처리<a class="headerlink" href="#id15" title="제목 주소">¶</a></h2>
 <p>예시:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">{</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">{</span>
   <span class="kt">string</span> <span class="n">a</span> <span class="p">=</span> <span class="s">&quot;12345x&quot;</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ToInt32</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="c1">//예외 발생</span>
 <span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">){</span>
@@ -374,13 +367,13 @@
 <div class="section" id="anonymous-function">
 <h2>3.8. 익명 함수 표현(anonymous function)<a class="headerlink" href="#anonymous-function" title="제목 주소">¶</a></h2>
 <p>람다 표현식 (타입이 없어도 가능, 블록문 없이 명령구문을 바로 사용 가능, 괄호 생략 불가):</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="p">}</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
 <span class="n">s</span> <span class="p">=&gt;</span> <span class="n">expr</span>
 </pre></div>
 </div>
 <p>익명 메서드 표현식 (파라미터 리스트에 타입 필요, 블록문이 필요, 괄호 생략 가능):</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">delegate</span> <span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="p">}</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">delegate</span> <span class="p">(</span><span class="kt">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="p">}</span>
 </pre></div>
 </div>
 <div class="section" id="outer-variables">
@@ -403,7 +396,7 @@
 <div class="section" id="query-expressions">
 <h3>3.9.1. 쿼리 표현(Query Expressions)<a class="headerlink" href="#query-expressions" title="제목 주소">¶</a></h3>
 <p>예시:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">num</span> <span class="p">=</span> <span class="m">1</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">num</span> <span class="p">=</span> <span class="m">1</span>
 <span class="kt">var</span> <span class="n">a</span> <span class="p">=</span> <span class="k">from</span> <span class="n">a</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Employees</span>
         <span class="k">where</span> <span class="n">a</span><span class="p">.</span><span class="n">id</span> <span class="p">=</span> <span class="n">num</span>
         <span class="k">select</span> <span class="n">a</span>
@@ -414,36 +407,36 @@
 <h3>3.9.2. 익명 타입(Anonymous type)<a class="headerlink" href="#anonymous-type" title="제목 주소">¶</a></h3>
 <p>컴파일러에 의해서 자동 생성되며 프로그럄에서 참조될 수 없는 타입을 뜻한다. 프로퍼티의 이름과 순서가 같을 경우 같은 타입에 대한 인스턴스가 생성된다.</p>
 <p>예시:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">p1</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;Changwon&quot;</span><span class="p">,</span> <span class="n">Country</span> <span class="p">=</span> <span class="s">&quot;Korea&quot;</span> <span class="p">};</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">p1</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;Changwon&quot;</span><span class="p">,</span> <span class="n">Country</span> <span class="p">=</span> <span class="s">&quot;Korea&quot;</span> <span class="p">};</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="multi-tasking">
 <h3>3.9.3. 멀티 태스킹(Multi tasking)<a class="headerlink" href="#multi-tasking" title="제목 주소">¶</a></h3>
 <p>Task 예시:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">Task</span> <span class="n">task</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Task</span><span class="p">(</span><span class="k">new</span> <span class="n">Action</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">));</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="n">Task</span> <span class="n">task</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Task</span><span class="p">(</span><span class="k">new</span> <span class="n">Action</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">));</span>
 <span class="n">Task</span> <span class="n">task2</span> <span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">StartNew</span><span class="p">(</span><span class="k">new</span> <span class="n">Action</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">));</span>
 <span class="n">Task</span> <span class="n">task3</span> <span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="k">new</span> <span class="n">Action</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">));</span>
 <span class="n">Task</span> <span class="n">task4</span> <span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>반환값 있는 Task:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">Task</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;</span> <span class="n">task</span> <span class="p">=</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;.</span><span class="n">Run</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">)</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="n">Task</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;</span> <span class="n">task</span> <span class="p">=</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;.</span><span class="n">Run</span><span class="p">(</span><span class="n">GetCurrentTime</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>UI 업데이트:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">label1</span><span class="p">.</span><span class="n">Dispatcher</span><span class="p">.</span><span class="n">BeginInvoke</span><span class="p">(</span><span class="k">new</span> <span class="n">Action</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">update</span><span class="p">(</span><span class="m">1</span><span class="p">)));</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="n">label1</span><span class="p">.</span><span class="n">Dispatcher</span><span class="p">.</span><span class="n">BeginInvoke</span><span class="p">(</span><span class="k">new</span> <span class="n">Action</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">update</span><span class="p">(</span><span class="m">1</span><span class="p">)));</span>
 </pre></div>
 </div>
 <p>BackgroundWorker(UI 업데이트 가능):</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">BackgroundWorker</span> <span class="n">worker</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BackgroundWorker</span><span class="p">();</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="n">BackgroundWorker</span> <span class="n">worker</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BackgroundWorker</span><span class="p">();</span>
 <span class="n">worker</span><span class="p">.</span><span class="n">DoWork</span> <span class="p">+=</span> <span class="n">bw_DoWork</span><span class="p">;</span>
 <span class="n">worker</span><span class="p">.</span><span class="n">RunWorkerCompleted</span> <span class="p">+=</span> <span class="n">worker_RunWorkerCompleted</span><span class="p">;</span>
 </pre></div>
 </div>
 <p><em>lock은</em> 주어진 객체를 사용해 쓰레드간 상호배재를 하도록 한다. lock구문의 파라미터로 <strong>반드시 레퍼런스 타입이 와야한다.</strong></p>
 <p>lock 구문 예시:</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">lock</span><span class="p">(</span><span class="kt">object</span><span class="p">){</span>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">lock</span><span class="p">(</span><span class="kt">object</span><span class="p">){</span>
   <span class="p">...</span>
 <span class="p">}</span>
 
@@ -470,65 +463,49 @@
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">3. C# 기초</a><ul>
-<li><a class="reference internal" href="#id1">3.1. 네이밍 컨벤션</a></li>
-<li><a class="reference internal" href="#id2">3.2. 자료형</a><ul>
-<li><a class="reference internal" href="#id3">3.2.1. 값 형식</a></li>
-<li><a class="reference internal" href="#id4">3.2.2. 형변환</a></li>
-<li><a class="reference internal" href="#id5">3.2.3. 문자열</a></li>
-<li><a class="reference internal" href="#id6">3.2.4. 배열</a></li>
-<li><a class="reference internal" href="#id7">3.2.5. 클래스</a><ul>
-<li><a class="reference internal" href="#id8">3.2.5.1. 생성자</a></li>
-<li><a class="reference internal" href="#id9">3.2.5.2. 메서드</a></li>
-<li><a class="reference internal" href="#extension-method">3.2.5.3. 확장 메서드(Extension method)</a></li>
-<li><a class="reference internal" href="#properties">3.2.5.4. 속성,프로퍼티(Properties)</a></li>
-<li><a class="reference internal" href="#events">3.2.5.5. 이벤트(Events)</a></li>
-<li><a class="reference internal" href="#indexers">3.2.5.6. 인덱서(Indexers)</a></li>
-<li><a class="reference internal" href="#destructors">3.2.5.7. 소멸자(Destructors)</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/design_index.html">설계(Design)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="netframework_index.html">.Net Framework</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="netframework_basic.html">1. .NET Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netframework_terms.html">2. 용어</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. C# 기초</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#delegate">3.2.6. 대리자(delegate)</a></li>
-<li><a class="reference internal" href="#enumeration">3.2.7. 열거형(Enumeration)</a></li>
-<li><a class="reference internal" href="#id11">3.2.8. 구조체</a></li>
-<li><a class="reference internal" href="#id12">3.2.9. 인터페이스</a></li>
-<li><a class="reference internal" href="#accessors">3.2.10. 접근자(Accessors)</a></li>
-<li><a class="reference internal" href="#id13">3.2.11. 메서드 오버로드</a></li>
-<li><a class="reference internal" href="#id14">3.2.12. 명명된 인자</a></li>
-<li><a class="reference internal" href="#accessibility">3.2.13. 접근 한정자(Accessibility)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
-</li>
-<li><a class="reference internal" href="#id15">3.3. 예외처리</a></li>
-<li><a class="reference internal" href="#id16">3.4. 타입 파라미터</a></li>
-<li><a class="reference internal" href="#inheritance">3.5. 상속(Inheritance)</a><ul>
-<li><a class="reference internal" href="#id17">3.5.1. 추상 클래스와 메서드</a></li>
-<li><a class="reference internal" href="#sealed-class">3.5.2. 봉인 클래스(sealed class)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#statement">3.6. 구문(statement)</a><ul>
-<li><a class="reference internal" href="#foreach">3.6.1. foreach</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#collection">3.7. Collection</a></li>
-<li><a class="reference internal" href="#anonymous-function">3.8. 익명 함수 표현(anonymous function)</a><ul>
-<li><a class="reference internal" href="#outer-variables">3.8.1. 외부변수(Outer variables)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#linq-language-integrated-query">3.9. LINQ(Language Integrated Query)</a><ul>
-<li><a class="reference internal" href="#query-expressions">3.9.1. 쿼리 표현(Query Expressions)</a></li>
-<li><a class="reference internal" href="#anonymous-type">3.9.2. 익명 타입(Anonymous type)</a></li>
-<li><a class="reference internal" href="#multi-tasking">3.9.3. 멀티 태스킹(Multi tasking)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#references">3.10. References</a></li>
-</ul>
-</li>
-</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -540,21 +517,16 @@
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/netframework/netframework_c_sharp.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -565,8 +537,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/netframework/netframework_c_sharp.rst.txt"

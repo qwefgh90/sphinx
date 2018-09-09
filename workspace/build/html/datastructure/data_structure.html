@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>2. 자료구조 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="id1">
@@ -98,15 +91,15 @@
 <div class="section" id="id7">
 <h3>2.3.2. 자바 해시 테이블<a class="headerlink" href="#id7" title="제목 주소">¶</a></h3>
 <p>일부 문구를 인용한 사이트로는 NHN의 Helloworld 게시글인 <a class="reference external" href="http://helloworld.naver.com/helloworld/textyle/831311">Java HashMap은 어떻게 동작하는가?</a> 이 있다.</p>
-<p><a class="reference download internal" href="../_downloads/HashMap.java" download=""><code class="xref download docutils literal"><span class="pre">Java</span> <span class="pre">8</span> <span class="pre">HashMap.java</span> <span class="pre">코드</span></code></a></p>
+<p><a class="reference download internal" href="../_downloads/HashMap.java" download=""><code class="xref download docutils literal notranslate"><span class="pre">Java</span> <span class="pre">8</span> <span class="pre">HashMap.java</span> <span class="pre">코드</span></code></a></p>
 <p>Java HashMap은 Java 버전에 따라 개선되고 있는 Java Collection Framework이다. Map 인터페이스를 구현한 구현체이다. <strong>HashMap은</strong> 키에 대한 해시 값을 사용하여 값을 저장하고 조회하며, 키-값 쌍의 개수에 따라 동적으로 증가하는 associate array라고 할 수 있다. <strong>associate array</strong> 는 다른 말로 Map, Dictionary(파이썬), Symbol Table등이 있다고 한다.</p>
 <p>Java HashMap 분석을 통한 <strong>해시테이블</strong> 을 알아보자:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">AbstractMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">AbstractMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span>
 <span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;,</span> <span class="n">Cloneable</span><span class="o">,</span> <span class="n">Serializable</span> <span class="o">{</span>
 </pre></div>
 </div>
 <p>Map.java 인터페이스 함수:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">size</span><span class="o">();</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">size</span><span class="o">();</span>
 <span class="n">Set</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;&gt;</span> <span class="nf">entrySet</span><span class="o">();</span>
 <span class="n">Collection</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="nf">values</span><span class="o">();</span>
 <span class="n">Set</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="nf">keySet</span><span class="o">();</span>
@@ -126,7 +119,7 @@
 <h2>2.4. 데이터 타입 해시와 hashCode에 의존한 Key 생성<a class="headerlink" href="#hashcode-key" title="제목 주소">¶</a></h2>
 <p>인용 사이트에 의하면 Boolean이나 Integer, Long, Double과 같은 숫자객체는 값 자체를 해시값으로 사용할 수 있어서 해시 충돌이 적게 발생하지만 String이나 POJO에 대해서 충돌이 적은 완전한 해시함수를 제작하는 것은 사실상 불가능하다고 한다.</p>
 <p>해시값 생성 예:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
         <span class="n">String</span> <span class="n">stringKey</span> <span class="o">=</span> <span class="s">&quot;Hello World&quot;</span><span class="o">;</span>
         <span class="n">People</span> <span class="n">objectKey1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">People</span><span class="o">();</span>
         <span class="n">People</span> <span class="n">objectKey2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">People</span><span class="o">();</span>
@@ -146,7 +139,7 @@
 </pre></div>
 </div>
 <p>출력 결과:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mi">862545276</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mi">862545276</span>
 <span class="mi">31168322</span>
 <span class="mi">17225372</span>
 <span class="mi">1237</span>
@@ -158,7 +151,7 @@
 </div>
 <p>위를 보니 <strong>Integer 타입은 데이터 자체</strong> 가 <strong>hashCode()로 반환</strong> 되기 때문에 HashMap의 키값으로 사용된다. <strong>Boolean 타입은 위 출력과 같이 고정된 값</strong> 으로 변환된다.</p>
 <p>실제 HashMap에서는 hash()함수를 호출하여 해시값을 생성하게된다. <strong>내부적으로 hashcode()라는 메서드를 사용</strong> 한다. (&gt;&gt;&gt; 연산자는 sign 부호에 상관없이 0으로 채운다):</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span>    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">hash</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">hash</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">h</span><span class="o">;</span>
     <span class="k">return</span> <span class="o">(</span><span class="n">key</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="o">(</span><span class="n">h</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="na">hashCode</span><span class="o">())</span> <span class="o">^</span> <span class="o">(</span><span class="n">h</span> <span class="o">&gt;&gt;&gt;</span> <span class="mi">16</span><span class="o">);</span>
 <span class="o">}</span>
@@ -166,16 +159,16 @@
 </div>
 <p>위 해시함수에서 상위 16비트와 xor 연산하는 단순한 형태의 보조 해시함수를 사용한다.</p>
 <p><a class="reference external" href="http://helloworld.naver.com/helloworld/textyle/831311">Java HashMap은 어떻게 동작하는가?</a> 에 나온 이유를 인용 해보면 다음과 같다.:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">Java</span> <span class="mi">8</span><span class="n">에서는</span> <span class="n">RBTree로</span> <span class="n">충돌을</span> <span class="n">해결하므로</span> <span class="n">성능</span> <span class="n">문제가</span> <span class="n">완화되었음</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">Java</span> <span class="mi">8</span><span class="n">에서는</span> <span class="n">RBTree로</span> <span class="n">충돌을</span> <span class="n">해결하므로</span> <span class="n">성능</span> <span class="n">문제가</span> <span class="n">완화되었음</span>
 <span class="o">-</span> <span class="n">최근의</span> <span class="n">해시함수는</span> <span class="n">균등분포가</span> <span class="n">잘</span> <span class="n">되게</span> <span class="n">만들어지는</span> <span class="n">경향이</span> <span class="n">많아</span> <span class="n">Java</span> <span class="mi">7</span><span class="n">의</span> <span class="n">보조</span> <span class="n">해시</span> <span class="n">함수의</span> <span class="n">효과가</span> <span class="n">낮음</span>
 </pre></div>
 </div>
 <p>Object 클래스의 hashCode():</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">native</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">();</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">native</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">();</span>
 </pre></div>
 </div>
 <p>hashCode는 HashMap을 위해 <strong>객체를 구별</strong> 하기위해 사용되는 함수이다. 일반적으로 hashCode()는 오버라드하여 사용하지만 Object 클래스에 구현되어 있는 함수는 객체의 내부주소를 Integer값으로 바꾸는 식으로 동작한다고 한다.:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span>As much as is reasonably practical, the hashCode method defined by
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>As much as is reasonably practical, the hashCode method defined by
      * class {@code Object} does return distinct integers for distinct
      * objects. (This is typically implemented by converting the internal
      * address of the object into an integer, but this implementation
@@ -188,7 +181,7 @@
 <div class="section" id="id9">
 <h2>2.5. 실제 테이블 해시값 삽입<a class="headerlink" href="#id9" title="제목 주소">¶</a></h2>
 <p>hashCode()의 해시값을 이용해 실제 테이블의 인덱스를 구한다.:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">V</span> <span class="nf">putVal</span><span class="o">(</span><span class="kt">int</span> <span class="n">hash</span><span class="o">,</span> <span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">onlyIfAbsent</span><span class="o">,</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">V</span> <span class="nf">putVal</span><span class="o">(</span><span class="kt">int</span> <span class="n">hash</span><span class="o">,</span> <span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">onlyIfAbsent</span><span class="o">,</span>
            <span class="kt">boolean</span> <span class="n">evict</span><span class="o">)</span> <span class="o">{</span>
 <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">tab</span><span class="o">;</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">p</span><span class="o">;</span> <span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="n">i</span><span class="o">;</span>
 <span class="k">if</span> <span class="o">((</span><span class="n">tab</span> <span class="o">=</span> <span class="n">table</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">tab</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
@@ -202,13 +195,13 @@
 <div class="section" id="id10">
 <h2>2.6. 키가 완전히 동일한 경우 삽입<a class="headerlink" href="#id10" title="제목 주소">¶</a></h2>
 <p>키가 완전히 동일한 경우 (문자열 처럼 참조값이 다르고 내용이 같아도 가능) e라는 변수에 원래 존재하던 노드를 넣고:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">hash</span> <span class="o">==</span> <span class="n">hash</span> <span class="o">&amp;&amp;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">hash</span> <span class="o">==</span> <span class="n">hash</span> <span class="o">&amp;&amp;</span>
         <span class="o">((</span><span class="n">k</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">key</span><span class="o">)</span> <span class="o">==</span> <span class="n">key</span> <span class="o">||</span> <span class="o">(</span><span class="n">key</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">key</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">k</span><span class="o">))))</span>
         <span class="n">e</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
 </pre></div>
 </div>
 <p>아래와 같이 값을 덮어씌운다:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// existing mapping for key</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// existing mapping for key</span>
         <span class="n">V</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
         <span class="k">if</span> <span class="o">(!</span><span class="n">onlyIfAbsent</span> <span class="o">||</span> <span class="n">oldValue</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
             <span class="n">e</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
@@ -222,24 +215,24 @@
 <h2>2.7. 데이터 규모에 따른 해시 크기의 변화 (재해싱)<a class="headerlink" href="#id11" title="제목 주소">¶</a></h2>
 <p>기본적으로 HashMap은 threshold(스레시홀드) 값과 Capicity(해시 테이블 용량)를 갖는다. 디폴트 스레드홀드 값은 현재 용량의 75%정도이다. 통계적으로 해시 테이블 공간 사용률이 70% ~ 80% 에 이르면 성능 저하가 나타나기 시작한다. 따라서 일반적으로 75%정도 데이터가 차게되면 재해싱을 하게된다.</p>
 <p>일반적으로 다음과 같이 해시맵을 생성한다고 가정해 보자.:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Map</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Map</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
 </pre></div>
 </div>
 <p>HashMap 내부에선 다음과 같이 초기화가 일어난다.(정확하게 말하면 데이터를 삽입하면 아래와 같이 상태변이):</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">else</span> <span class="o">{</span>               <span class="c1">// zero initial threshold signifies using defaults</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">else</span> <span class="o">{</span>               <span class="c1">// zero initial threshold signifies using defaults</span>
     <span class="n">newCap</span> <span class="o">=</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">;</span>
     <span class="n">newThr</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">DEFAULT_LOAD_FACTOR</span> <span class="o">*</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">);</span>
 <span class="o">}</span>
 </pre></div>
 </div>
 <p>해시맵에 데이터를 여러번 삽입한다고 가정해보자.:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">900618</span><span class="o">,</span> <span class="s">&quot;최창원&quot;</span><span class="o">);</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">900618</span><span class="o">,</span> <span class="s">&quot;최창원&quot;</span><span class="o">);</span>
 <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">890111</span><span class="o">,</span> <span class="s">&quot;박세호&quot;</span><span class="o">);</span>
 <span class="o">...</span>
 </pre></div>
 </div>
 <p>데이터가 threshold값 이상으로 증가하게 될 경우 resize()가 발생한다.:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
     <span class="k">if</span> <span class="o">(++</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="o">)</span>
         <span class="n">resize</span><span class="o">();</span>
     <span class="n">afterNodeInsertion</span><span class="o">(</span><span class="n">evict</span><span class="o">);</span>
@@ -247,13 +240,13 @@
 </pre></div>
 </div>
 <p>그리고 다음과 같이 threshold와 Capicity를 2배로 증가시킨다.:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">else</span> <span class="k">if</span> <span class="o">((</span><span class="n">newCap</span> <span class="o">=</span> <span class="n">oldCap</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">MAXIMUM_CAPACITY</span> <span class="o">&amp;&amp;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">else</span> <span class="k">if</span> <span class="o">((</span><span class="n">newCap</span> <span class="o">=</span> <span class="n">oldCap</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">MAXIMUM_CAPACITY</span> <span class="o">&amp;&amp;</span>
              <span class="n">oldCap</span> <span class="o">&gt;=</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">)</span>
         <span class="n">newThr</span> <span class="o">=</span> <span class="n">oldThr</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// double threshold</span>
 </pre></div>
 </div>
 <p>결국은 new 키워드를 사용하여 새로운 해시테이블을 생성한 뒤 데이터를 이주시킨다.:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">newTab</span> <span class="o">=</span> <span class="o">(</span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[])</span><span class="k">new</span> <span class="n">Node</span><span class="o">[</span><span class="n">newCap</span><span class="o">];</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">newTab</span> <span class="o">=</span> <span class="o">(</span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[])</span><span class="k">new</span> <span class="n">Node</span><span class="o">[</span><span class="n">newCap</span><span class="o">];</span>
      <span class="n">table</span> <span class="o">=</span> <span class="n">newTab</span><span class="o">;</span>
      <span class="k">if</span> <span class="o">(</span><span class="n">oldTab</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">oldCap</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
@@ -296,8 +289,8 @@
 </div>
 <div class="section" id="b-tree">
 <span id="btree"></span><h1>3. B-Tree<a class="headerlink" href="#b-tree" title="제목 주소">¶</a></h1>
-<p><a class="reference download internal" href="../_downloads/b+.ppt" download=""><code class="xref download docutils literal"><span class="pre">B+트리</span> <span class="pre">자료</span></code></a></p>
-<p><a class="reference download internal" href="../_downloads/btree.ppt" download=""><code class="xref download docutils literal"><span class="pre">B-Tree</span> <span class="pre">및</span> <span class="pre">B+트리</span> <span class="pre">자료</span> <span class="pre">(서울대</span> <span class="pre">자료)</span></code></a></p>
+<p><a class="reference download internal" href="../_downloads/b+.ppt" download=""><code class="xref download docutils literal notranslate"><span class="pre">B+트리</span> <span class="pre">자료</span></code></a></p>
+<p><a class="reference download internal" href="../_downloads/btree.ppt" download=""><code class="xref download docutils literal notranslate"><span class="pre">B-Tree</span> <span class="pre">및</span> <span class="pre">B+트리</span> <span class="pre">자료</span> <span class="pre">(서울대</span> <span class="pre">자료)</span></code></a></p>
 <p><strong>B-Tree</strong> 는 데이터베이스 와 파일 시스템에서 쓰이는 트리의 일종으로 하나의 노드가 가질 수 있는 자식 노드의 개수가 2보다 크고 키-값 쌍을 저장하는 균형잡힌 트리이다. 또한 B-Tree는 엔트리를 정렬된 상태로 저장하며 검색, 삽입, 삭제를 로그시간내에 처리할 수 있는 트리이다.</p>
 <p>특징</p>
 <ul class="simple">
@@ -320,33 +313,51 @@
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">2. 자료구조</a><ul>
-<li><a class="reference internal" href="#id2">2.1. 이진트리</a></li>
-<li><a class="reference internal" href="#bfs-prim">2.2. BFS, Prim, 다익스트라 알고리즘</a></li>
-<li><a class="reference internal" href="#hash-table">2.3. 해시 테이블</a><ul>
-<li><a class="reference internal" href="#hash">2.3.1. 해시함수와 해시값(Hash)</a></li>
-<li><a class="reference internal" href="#id7">2.3.2. 자바 해시 테이블</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/design_index.html">설계(Design)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="datastructure_index.html">알고리즘</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro_to_algorithm.html">1. Introduction to algorithms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. 자료구조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#b-tree">3. B-Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_question.html">4. 알고리즘 문제 모음</a></li>
+<li class="toctree-l2"><a class="reference internal" href="well_known_algorithm.html">5. 잘 알려진 알고리즘 분석</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#hashcode-key">2.4. 데이터 타입 해시와 hashCode에 의존한 Key 생성</a></li>
-<li><a class="reference internal" href="#id9">2.5. 실제 테이블 해시값 삽입</a></li>
-<li><a class="reference internal" href="#id10">2.6. 키가 완전히 동일한 경우 삽입</a></li>
-<li><a class="reference internal" href="#id11">2.7. 데이터 규모에 따른 해시 크기의 변화 (재해싱)</a></li>
-<li><a class="reference internal" href="#id12">2.8. 해시테이블의 충돌 해결법</a><ul>
-<li><a class="reference internal" href="#open-hashing-seperate-chaining">2.8.1. Open Hashing (Seperate Chaining)</a></li>
-<li><a class="reference internal" href="#closed-hashing-open-addressing">2.8.2. Closed Hashing (Open Addressing)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#b-tree">3. B-Tree</a></li>
-</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -358,21 +369,16 @@
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/datastructure/data_structure.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -383,8 +389,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/datastructure/data_structure.rst.txt"

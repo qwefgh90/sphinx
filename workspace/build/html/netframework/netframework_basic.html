@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1. .NET Framework &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="net-framework">
@@ -156,7 +149,7 @@ gacutil -l [DLL Path]</dd>
 <h3>1.6.4. Win32 API<a class="headerlink" href="#win32-api" title="제목 주소">¶</a></h3>
 <p>반드시 정적 함수로 선언해야하며 타입을 맞게 바꿔줘야한다.</p>
 <p>예시:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">DLLImport</span><span class="p">(</span><span class="s2">&quot;user32.dll&quot;</span><span class="p">,</span> <span class="n">EntryPoint</span><span class="o">=</span><span class="s2">&quot;MessageBox&quot;</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">DLLImport</span><span class="p">(</span><span class="s2">&quot;user32.dll&quot;</span><span class="p">,</span> <span class="n">EntryPoint</span><span class="o">=</span><span class="s2">&quot;MessageBox&quot;</span><span class="p">)]</span>
 <span class="n">public</span> <span class="n">static</span> <span class="n">extern</span> <span class="nb">int</span> <span class="n">APIMessageBox</span><span class="p">(</span><span class="nb">int</span> <span class="n">h</span><span class="p">,</span> <span class="n">string</span> <span class="n">text</span><span class="p">,</span> <span class="n">string</span> <span class="n">caption</span><span class="p">,</span> <span class="n">uint</span> <span class="nb">type</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -210,12 +203,12 @@ gacutil -l [DLL Path]</dd>
 </ul>
 <p>엔터티를 추가하면 edmx 라는 파일이 생성되고 이 파일에서 객체 - 테이블의 관계를 확인할 수 있다. 모델 클래스도 같이 생성된다.</p>
 <p>간단하게 엔터티 인스턴스를 만들어서 데이터를 조회할 수 있다.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MyEntity</span> <span class="n">e</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MyEntity</span><span class="p">();</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MyEntity</span> <span class="n">e</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MyEntity</span><span class="p">();</span>
 <span class="n">var</span> <span class="n">result</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">Employees</span><span class="o">.</span><span class="n">FirstOrDefault</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>데이터 저장:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">FirstName</span> <span class="o">=</span> <span class="s2">&quot;Choe&quot;</span><span class="p">;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">FirstName</span> <span class="o">=</span> <span class="s2">&quot;Choe&quot;</span><span class="p">;</span>
 <span class="n">db</span><span class="o">.</span><span class="n">SaveChnages</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -223,7 +216,7 @@ gacutil -l [DLL Path]</dd>
 <div class="section" id="http">
 <h3>1.11.2. 간단한 HTTP 통신<a class="headerlink" href="#http" title="제목 주소">¶</a></h3>
 <p>HTTP 요청:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HttpWebRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">WebRequest</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="s2">&quot;http://www.naver.com&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">HttpWebRequest</span><span class="p">;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HttpWebRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">WebRequest</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="s2">&quot;http://www.naver.com&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">HttpWebRequest</span><span class="p">;</span>
 <span class="n">HttpWebResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GetResponse</span><span class="p">()</span> <span class="k">as</span> <span class="n">HttpWebResponse</span><span class="p">;</span>
 <span class="o">//</span><span class="n">Response</span>
 <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Stream</span> <span class="n">s</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">GetResponseStream</span><span class="p">();</span>
@@ -278,44 +271,49 @@ gacutil -l [DLL Path]</dd>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">1. .NET Framework</a><ul>
-<li><a class="reference internal" href="#app-config">1.1. App.config</a></li>
-<li><a class="reference internal" href="#id1">1.2. 메모리 구조</a></li>
-<li><a class="reference internal" href="#id2">1.3. 로깅, 추적 및 성능 진단</a></li>
-<li><a class="reference internal" href="#il">1.4. IL 디스어셈블러</a></li>
-<li><a class="reference internal" href="#id3">1.5. 단위 테스트</a></li>
-<li><a class="reference internal" href="#dll">1.6. DLL</a><ul>
-<li><a class="reference internal" href="#assembly">1.6.1. 어셈블리(Assembly)</a></li>
-<li><a class="reference internal" href="#gac-global-assembly-cache">1.6.2. GAC (Global Assembly Cache)</a></li>
-<li><a class="reference internal" href="#com-component">1.6.3. COM Component</a></li>
-<li><a class="reference internal" href="#win32-api">1.6.4. Win32 API</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/design_index.html">설계(Design)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="netframework_index.html">.Net Framework</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. .NET Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netframework_terms.html">2. 용어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netframework_c_sharp.html">3. C# 기초</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#tasklist">1.7. TaskList</a></li>
-<li><a class="reference internal" href="#file-i-o">1.8. FILE I/O</a></li>
-<li><a class="reference internal" href="#id4">1.9. 직렬화</a></li>
-<li><a class="reference internal" href="#xml">1.10. XML 처리</a></li>
-<li><a class="reference internal" href="#id5">1.11. 데이터베이스</a><ul>
-<li><a class="reference internal" href="#ado-net-entity-framework">1.11.1. ADO.NET Entity Framework</a></li>
-<li><a class="reference internal" href="#http">1.11.2. 간단한 HTTP 통신</a></li>
-<li><a class="reference internal" href="#wcf-windows-communication-foundation">1.11.3. WCF(Windows Communication Foundation)</a><ul>
-<li><a class="reference internal" href="#wcf-data-service-ado-net-data-services">1.11.3.1. WCF Data Service(ADO.NET Data Services)</a></li>
-<li><a class="reference internal" href="#wcf-client">1.11.3.2. WCF Client</a></li>
-<li><a class="reference internal" href="#component">1.11.3.3. 컴포넌트 (Component)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#reference">1.12. Reference</a></li>
-</ul>
-</li>
-</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -327,21 +325,16 @@ gacutil -l [DLL Path]</dd>
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/netframework/netframework_basic.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -352,8 +345,8 @@ gacutil -l [DLL Path]</dd>
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/netframework/netframework_basic.rst.txt"

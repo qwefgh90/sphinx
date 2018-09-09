@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>3. 시큐어 코딩 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="security-coding">
@@ -236,7 +229,7 @@
 <h3>3.6.5. CSRF (크로스사이트 요청위조)<a class="headerlink" href="#id15" title="제목 주소">¶</a></h3>
 <p>상대방이 잘못된 요청을 보내도록 하는 사회공학적 해킹 기법이다. 이를 방어하기 위해서 write.html에서 <strong>CSRF Token(난수)</strong> 을 미리 발급하고 실제 요청할때 토큰을 포함시켜서 보내도록 한다. 여러가지 재인증 기법을 사용하여 막을 수 있다. 이를 WAS의 CSRFInterceptor를 통해 검사하고 비지니스 로직을 수행한다.</p>
 <p>아래는 CSRF 공격 코드의 예시이다. XSS 취약점이 있는 게시판에 삽입하여 CSRF공격을 수행할 수 있다.</p>
-<div class="code html highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+<div class="code html highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">form</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;display:none&quot;</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;write.do&quot;</span> <span class="n">ENCTYPE</span><span class="o">=</span><span class="s2">&quot;multipart/form-data&quot;</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;subject&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;회비 계좌 확인 요합니다&quot;</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;writer&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;관리자&quot;</span><span class="o">&gt;</span>
@@ -277,53 +270,49 @@
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">3. 시큐어 코딩</a><ul>
-<li><a class="reference internal" href="#owasp-top-10">3.1. OWASP Top 10</a><ul>
-<li><a class="reference internal" href="#injection">3.1.1. Injection(인젝션)</a></li>
-<li><a class="reference internal" href="#broken-authentication-and-session-management">3.1.2. Broken Authentication and Session Management(잘못된 인증 및 세션 관리)</a></li>
-<li><a class="reference internal" href="#xss">3.1.3. XSS(크로스 사이트 스크립팅)</a></li>
-<li><a class="reference internal" href="#insecure-direct-object-references">3.1.4. Insecure Direct Object References(안전하지 않는 직접 객체 참조)</a></li>
-<li><a class="reference internal" href="#security-misconfiguration">3.1.5. Security Misconfiguration(보안 설정 오류)</a></li>
-<li><a class="reference internal" href="#sensitive-data-exposure">3.1.6. Sensitive Data Exposure(민감 데이터 노출)</a></li>
-<li><a class="reference internal" href="#missing-function-level-access-control">3.1.7. Missing Function Level Access Control(기능 수준의 접근 통제 누락)</a></li>
-<li><a class="reference internal" href="#csrf">3.1.8. CSRF(크로스 사이트 요청 변조)</a></li>
-<li><a class="reference internal" href="#components-with-known-vulnerabilities">3.1.9. Components with Known Vulnerabilities(알려진 취약점이 있는 컴포넌트 사용)</a></li>
-<li><a class="reference internal" href="#unvalidated-redirects-and-forwards">3.1.10. Unvalidated Redirects and Forwards(타당하지 않은 리다이렉트 및 포워딩)</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/design_index.html">설계(Design)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="security_index.html">보안(Security)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="security_basic.html">1. 정보보안</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_internet.html">2. 인터넷 프로토콜 보안</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 시큐어 코딩</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#concept">3.2. Concept</a></li>
-<li><a class="reference internal" href="#id3">3.3. 안전한 소프트웨어 개발 방법론</a><ul>
-<li><a class="reference internal" href="#id4">3.3.1. 흔한 웹 기반 공격 시나리오</a></li>
-<li><a class="reference internal" href="#id5">3.3.2. 계층별 보안 솔루션의 한계</a></li>
-<li><a class="reference internal" href="#id6">3.3.3. 소프트웨어 보안의 중요성</a></li>
-<li><a class="reference internal" href="#id7">3.3.4. 소프트웨어 해킹 사례</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
-</li>
-<li><a class="reference internal" href="#cwe-cve-owasp">3.4. 소프트웨어 보안 약점/취약점(CWE, CVE, OWASP)</a></li>
-<li><a class="reference internal" href="#id8">3.5. 소프트웨어 개발보안 방법론</a><ul>
-<li><a class="reference internal" href="#id9">3.5.1. 레퍼런스</a></li>
-<li><a class="reference internal" href="#id10">3.5.2. 위협모델링</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id11">3.6. 안전한 소프트웨어를 만드는 시큐어 코딩 기법</a><ul>
-<li><a class="reference internal" href="#sql">3.6.1. SQL 인젝션 기본</a></li>
-<li><a class="reference internal" href="#id12">3.6.2. 운영체제 명령어 삽입</a></li>
-<li><a class="reference internal" href="#id13">3.6.3. 세션 공격</a></li>
-<li><a class="reference internal" href="#id14">3.6.4. XSS (크로스 사이트 스크립트)</a></li>
-<li><a class="reference internal" href="#id15">3.6.5. CSRF (크로스사이트 요청위조)</a></li>
-<li><a class="reference internal" href="#id16">3.6.6. 파일 업로드/다운로드 취약점</a></li>
-<li><a class="reference internal" href="#id17">3.6.7. 기타</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -335,21 +324,16 @@
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/security/security_coding.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -360,8 +344,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/security/security_coding.rst.txt"

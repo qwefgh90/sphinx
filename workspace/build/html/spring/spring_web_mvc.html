@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>2. Spring Web MVC &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="spring-web-mvc">
@@ -88,7 +81,7 @@
 <li>AbstractAnnotationConfigDispatcherServletInitializer</li>
 </ul>
 <p>web.xml을 이용한 설정은 다음과 같다. <strong>아래 설정은 Root WebApplicationContext와 Servlet WebApplicationContext를 생성한다.</strong></p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;web-app</span> <span class="na">version=</span><span class="s">&quot;2.5&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee&quot;</span>
         <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
         <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</span><span class="nt">&gt;</span>
@@ -125,7 +118,7 @@
 </div>
 <p>URL이 <em>/</em> 로 요청이 들어오면 DispatcherServlet이 실행된다. servlet-context.xml 을 블록잡고 command + shift + R (맥 - 이클립스) 을 누르면 해당파일을 열 수 있다.</p>
 <p>servlet_context.xml:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/mvc&quot;</span>
         <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
         <span class="na">xmlns:beans=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
@@ -233,7 +226,7 @@
 <p><strong>메서드 주석으로</strong> 사용할 수 있으며, 같은 Controller안의 &#64;RequestMapping이 호출되기 전에 1개 이상의 속성을 Model에 추가할 때 사용된다. 주로 자주 사용하는 속성을 모델에 저장할때 많이 사용된다. &#64;ModelAttribute 주석이 달린 메서드는 &#64;RequestMapping이 호출되기 전에 모두 호출된다.</p>
 <p>아래 예시와 가지 2가지 스타일을 사용할 수 있다</p>
 <p>예시1:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@ModelAttribute</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@ModelAttribute</span>
 <span class="kd">public</span> <span class="n">Account</span> <span class="nf">addAccount</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">accountManager</span><span class="o">.</span><span class="na">findAccount</span><span class="o">(</span><span class="n">number</span><span class="o">);</span>
 <span class="o">}</span>
@@ -241,7 +234,7 @@
 </div>
 <p>위 메서드는 <strong>반환 값을 값으로 갖고 암묵적으로 account라는 이름(타입)을 갖는 속성을</strong> 모델에 추가한다. &#64;ModelAttribute의 인자를 주어 이름을 지정할 수 있다.</p>
 <p>예시2:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@ModelAttribute</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@ModelAttribute</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">populateModel</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">number</span><span class="o">,</span> <span class="n">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="n">accountManager</span><span class="o">.</span><span class="na">findAccount</span><span class="o">(</span><span class="n">number</span><span class="o">));</span>
         <span class="c1">// add more ...</span>
@@ -254,7 +247,7 @@
 <h4>2.4.3.7. &#64;ModelAttribute (메서드 인자)<a class="headerlink" href="#id8" title="제목 주소">¶</a></h4>
 <p>모델의 속성과 메서드 인자를 바인딩 시킬때 사용할 수 있다.</p>
 <p>예시:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">&quot;/owners/{ownerId}/pets/{petId}/edit&quot;</span><span class="o">)</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">&quot;/owners/{ownerId}/pets/{petId}/edit&quot;</span><span class="o">)</span>
 <span class="kd">public</span> <span class="n">String</span> <span class="nf">processSubmit</span><span class="o">(</span><span class="nd">@ModelAttribute</span> <span class="n">Pet</span> <span class="n">pet</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
 </pre></div>
 </div>
@@ -305,7 +298,7 @@
 <h3>2.4.6. 설정<a class="headerlink" href="#id11" title="제목 주소">¶</a></h3>
 <p><a class="reference external" href="https://github.com/qwefgh90/handyfinder/blob/master/src/main/java/io/github/qwefgh90/handyfinder/springweb/config/ServletContext.java#L21">JavaConfig를 사용할 경우 &#64;ComponentScan 주석을</a> 이용해 탐지할 패키지를 지정할 수 있다.</p>
 <p>servlet_context.xml 설정을 다음과 같다.:</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="o">?&gt;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="o">?&gt;</span>
 <span class="o">&lt;</span><span class="n">beans</span> <span class="n">xmlns</span><span class="o">=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
         <span class="n">xmlns</span><span class="o">:</span><span class="n">xsi</span><span class="o">=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
         <span class="n">xmlns</span><span class="o">:</span><span class="n">p</span><span class="o">=</span><span class="s">&quot;http://www.springframework.org/schema/p&quot;</span>
@@ -357,56 +350,49 @@
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">2. Spring Web MVC</a><ul>
-<li><a class="reference internal" href="#dispatcherservlet">2.1. DispatcherServlet</a><ul>
-<li><a class="reference internal" href="#processsing-sequence">2.1.1. 요청 처리 순서(Processsing Sequence)</a></li>
-<li><a class="reference internal" href="#id2">2.1.2. 설정</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/design_index.html">설계(Design)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="spring_index.html">Spring</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="spring_basic.html">1. 스프링 프레임워크</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Spring Web MVC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomcat.html">3. 톰캣</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#webapplicationcontext">2.2. WebApplicationContext</a></li>
-<li><a class="reference internal" href="#special-beans">2.3. Special Beans</a></li>
-<li><a class="reference internal" href="#annotated-controller">2.4. Annotated Controller(주석이 달린 컨트롤러)</a><ul>
-<li><a class="reference internal" href="#controller-stereotype">2.4.1. &#64;Controller stereotype</a></li>
-<li><a class="reference internal" href="#requestmapping">2.4.2. &#64;RequestMapping</a></li>
-<li><a class="reference internal" href="#id6">2.4.3. 메서드 파라미터에 사용되는 주석</a><ul>
-<li><a class="reference internal" href="#pathvariable">2.4.3.1. &#64;PathVariable</a></li>
-<li><a class="reference internal" href="#requestparam">2.4.3.2. &#64;RequestParam</a></li>
-<li><a class="reference internal" href="#requestbody">2.4.3.3. &#64;RequestBody</a></li>
-<li><a class="reference internal" href="#responsebody">2.4.3.4. &#64;ResponseBody</a></li>
-<li><a class="reference internal" href="#httpentity-t">2.4.3.5. HttpEntity&lt;T&gt;</a></li>
-<li><a class="reference internal" href="#modelattribute">2.4.3.6. &#64;ModelAttribute (메서드)</a></li>
-<li><a class="reference internal" href="#id8">2.4.3.7. &#64;ModelAttribute (메서드 인자)</a></li>
-<li><a class="reference internal" href="#sessionattributes">2.4.3.8. &#64;SessionAttributes (클래스)</a></li>
-<li><a class="reference internal" href="#id9">2.4.3.9. &#64;SessionAttributes (메서드 인자)</a></li>
-<li><a class="reference internal" href="#requestattribute">2.4.3.10. &#64;RequestAttribute (메서드 인자)</a></li>
-<li><a class="reference internal" href="#cookievalue">2.4.3.11. &#64;CookieValue</a></li>
-<li><a class="reference internal" href="#requestheader">2.4.3.12. &#64;RequestHeader</a></li>
-<li><a class="reference internal" href="#asynchronous-request-processing">2.4.3.13. 비동기 요청 처리(Asynchronous Request Processing)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
-</li>
-<li><a class="reference internal" href="#httpmessageconverter">2.4.4. HttpMessageConverter</a></li>
-<li><a class="reference internal" href="#restcontroller-stereotype">2.4.5. &#64;RestController stereotype</a></li>
-<li><a class="reference internal" href="#id11">2.4.6. 설정</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#handlermapping">2.5. HandlerMapping</a><ul>
-<li><a class="reference internal" href="#handlerinterceptor">2.5.1. HandlerInterceptor</a><ul>
-<li><a class="reference internal" href="#posthandle-responsebody-responseentity">2.5.1.1. postHandle과 &#64;ResponseBody 그리고 ResponseEntity</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#viewresolver">2.6. ViewResolver</a></li>
-<li><a class="reference internal" href="#id12">2.7. 참조</a></li>
-</ul>
-</li>
-</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -418,21 +404,16 @@
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/spring/spring_web_mvc.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -443,8 +424,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/spring/spring_web_mvc.rst.txt"

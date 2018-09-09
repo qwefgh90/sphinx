@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>4. HTTP &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="http">
@@ -61,17 +54,17 @@
 <p>RTT란 HTTP요청을 하고 응답을 수신할때 까지 걸리는 시간이다. 이때 RTT는 전송 지연, 전파 지연, 패킷 큐잉 지연, 패킷 처리 지연을 포함한 시간이다. 위의 경우 2RTT + 응답파일 전송 시간(TCP 3-핸드셰이킹 + HTTP요청 응답 + 응답 파일 전송 시간) 이다.</p>
 <p><strong>지속 연결은 하나의 TCP Connection을 생성하고 그 연결을 통해 모든 요청을 처리하는 것이다.</strong> 기본적으로 하나의 Connection을 통해 여러개의 요청을 파이프라이닝 기법을 활용하여 전송하게 된다.</p>
 <p>지속 연결 헤더:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Connection</span><span class="p">:</span> <span class="n">Keep</span><span class="o">-</span><span class="n">Alive</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Connection</span><span class="p">:</span> <span class="n">Keep</span><span class="o">-</span><span class="n">Alive</span>
 </pre></div>
 </div>
 <p><strong>HTTP 1.0 기준으로 클라이언트에서 지속연결을 원할 때 Keep-Alive를 헤더에 담아서 요청을 보낸다.</strong> 서버는 요청을 받고 역시 헤더에 담아서 응답한다. 이 TCP 커넥션을 통해 다른 요청을 보낼 수 있다. 서버나 클라이언트 측에서 더이상 연결이 필요없다고 판단할 경우 연결을 종료한다.</p>
 <p><strong>HTTP 1.1 기준으로 달리 명시되 있지 않으면 모든 연결은 지속연결로 간주된다.</strong> 하지만 각 서버마다 타임아웃(TIEMOUT)이 존재한다.</p>
 <p>비지속 연결을 하고 싶다면 다음처럼 명시한다.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
 </pre></div>
 </div>
 <p>서버가 지속 연결을 멈추고 싶을때도 사용해라:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
 </pre></div>
 </div>
 <p><strong>지속 연결은 서버 가용성에 문제를 일으킬 수 있으나 RTT(Round trip time)을 감소 시키고 소켓 수를 감소 시킨다.</strong></p>
@@ -91,23 +84,23 @@
 <p><em>multipart/form-data는</em> 경계(boundary)로 구분된 연속된 데이터를 나타내는 형식을 뜻한다. 주로 POST 메서드일때 사용된다.</p>
 <p>경계(boundary)는 HTTP 헤더 뒤에 <strong>&quot;--&quot;와 &quot;경계값&quot;으로</strong> 이루어진 시퀀스이며 구분자이다.</p>
 <p>경계는 <em>Content-Type 헤더</em> 의 <em>boundary</em> 매개변수에 포함된다.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">multipart</span><span class="o">/</span><span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">boundary</span><span class="o">=-------------------</span><span class="mi">12345678912345</span>\<span class="n">r</span>\<span class="n">n</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">multipart</span><span class="o">/</span><span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">boundary</span><span class="o">=-------------------</span><span class="mi">12345678912345</span>\<span class="n">r</span>\<span class="n">n</span>
 </pre></div>
 </div>
 <p>경계(boundary)는 바디의 시작(~~rn), 파트 사이(rn~~rn), 마지막(rn~~rn에 위치한다. 또한 경계값은 각 파트의 데이터에 포함되지 않는 값으로 구성되어야 한다.</p>
 <div class="section" id="part">
 <h4>4.3.1.1. 파트(Part)<a class="headerlink" href="#part" title="제목 주소">¶</a></h4>
 <p>각 파트는 <em>Content-Disposition 헤더</em> 를 포함해야 하며 반드시 name 매개변수를 포함해야한다.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;age&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;age&quot;</span>
 </pre></div>
 </div>
 <p>전송하려는 데이터가 파일이라면 파일의 이름도 포함해야 하며 filename 매개변수를 포함해야한다. 일반적으로 filename 매개변수의 값은 UTF-8로 인코딩되어 전달된다:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;hello.jpeg&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;hello.jpeg&quot;</span>
 </pre></div>
 </div>
 <p><strong>수신 서버나 에이전트는 filename의 유효성이나 중복을 확인하지 않고 맹목적으로 사용해서는 안된다.</strong></p>
 <p>또한 각 파트는 <em>Content-Type 헤더</em> 를 포함할 수 있다.(text/plain, application/octet-stream, 등등):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">pdf</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">pdf</span>
 </pre></div>
 </div>
 </div>
@@ -129,7 +122,7 @@
 <h3>4.5.1. set-cookie 헤더<a class="headerlink" href="#set-cookie" title="제목 주소">¶</a></h3>
 <p>set-cookie는 클라이언트에 쿠키를 전달할때 사용하는 헤더이다. set-cookie로 쿠키 전송시 여러가지 속성을 줄 수 있다.</p>
 <p><em>HttpOnly</em> 속성을 부여할 경우 쿠키를 document.cookie API로 확인할 수 없다. 이는 XSS 방지를 위한 것이다. <em>Secure</em> 속성은 SSL위에서만 쿠키를 전송하도록 강제할 수 있다. <em>Domain</em> 속성은 쿠키가 전송될 도메인을 설정할 때 사용한다. Domain 속성이 없을 경우 현재 페이지의 호스트를 기본값으로 사용한다. <em>Path</em> 속성은 쿠키가 전송될 경로를 설정할 때 사용한다.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">Cookie</span><span class="p">:</span> <span class="nb">id</span><span class="o">=</span><span class="n">aaaa</span><span class="p">;</span> <span class="n">Expires</span><span class="o">=</span><span class="n">Wed</span><span class="p">,</span> <span class="mi">1</span> <span class="n">Feb</span> <span class="mi">2018</span> <span class="mi">01</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">00</span> <span class="n">GMT</span><span class="p">;</span> <span class="n">Secure</span><span class="p">;</span> <span class="n">HttpOnly</span><span class="p">;</span> <span class="n">Domain</span><span class="o">=</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">;</span> <span class="n">path</span><span class="o">=/</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">Cookie</span><span class="p">:</span> <span class="nb">id</span><span class="o">=</span><span class="n">aaaa</span><span class="p">;</span> <span class="n">Expires</span><span class="o">=</span><span class="n">Wed</span><span class="p">,</span> <span class="mi">1</span> <span class="n">Feb</span> <span class="mi">2018</span> <span class="mi">01</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">00</span> <span class="n">GMT</span><span class="p">;</span> <span class="n">Secure</span><span class="p">;</span> <span class="n">HttpOnly</span><span class="p">;</span> <span class="n">Domain</span><span class="o">=</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">;</span> <span class="n">path</span><span class="o">=/</span>
 </pre></div>
 </div>
 </div>
@@ -153,36 +146,51 @@
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">목차</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">4. HTTP</a><ul>
-<li><a class="reference internal" href="#vs">4.1. 지속 연결 vs 비지속 연결</a></li>
-<li><a class="reference internal" href="#id1">4.2. 컨텐츠 압축</a></li>
-<li><a class="reference internal" href="#id2">4.3. 컨텐츠 타입</a><ul>
-<li><a class="reference internal" href="#multipart-form-data">4.3.1. multipart/form-data</a><ul>
-<li><a class="reference internal" href="#part">4.3.1.1. 파트(Part)</a></li>
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/design_index.html">설계(Design)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="network_index.html">네트워크</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="network_terms.html">1. 용어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network_basic.html">2. 프로토콜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network_tcp.html">3. TCP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network_programming.html">5. 네트워크 프로그래밍</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#application-x-www-form-urlencoded">4.3.2. application/x-www-form-urlencoded</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
 </ul>
-</li>
-<li><a class="reference internal" href="#stateless">4.4. Stateless</a></li>
-<li><a class="reference internal" href="#id3">4.5. 쿠키</a><ul>
-<li><a class="reference internal" href="#set-cookie">4.5.1. set-cookie 헤더</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id4">4.6. 인코딩</a><ul>
-<li><a class="reference internal" href="#percent-encoding">4.6.1. 퍼센트 인코딩(Percent-Encoding)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id5">4.7. 참조</a></li>
-</ul>
-</li>
-</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -194,21 +202,16 @@
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>현재 문서</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/network/network_http.rst.txt"
-            rel="nofollow">소스 코드를 보려면</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="바로 가기" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -219,8 +222,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/network/network_http.rst.txt"
