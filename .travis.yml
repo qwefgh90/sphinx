@@ -7,3 +7,6 @@ install:
 script:
   - cd workspace
   - make html
+branches:
+  only:
+  - gh-pages
