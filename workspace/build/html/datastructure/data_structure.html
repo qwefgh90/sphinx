@@ -14,7 +14,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
     <link rel="next" title="4. 알고리즘 문제 모음" href="algorithm_question.html" />
@@ -91,7 +91,7 @@
 <div class="section" id="id7">
 <h3>2.3.2. 자바 해시 테이블<a class="headerlink" href="#id7" title="제목 주소">¶</a></h3>
 <p>일부 문구를 인용한 사이트로는 NHN의 Helloworld 게시글인 <a class="reference external" href="http://helloworld.naver.com/helloworld/textyle/831311">Java HashMap은 어떻게 동작하는가?</a> 이 있다.</p>
-<p><a class="reference download internal" href="../_downloads/HashMap.java" download=""><code class="xref download docutils literal notranslate"><span class="pre">Java</span> <span class="pre">8</span> <span class="pre">HashMap.java</span> <span class="pre">코드</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ca7075c2a6bc77c735b4459e70769700/HashMap.java"><code class="xref download docutils literal notranslate"><span class="pre">Java</span> <span class="pre">8</span> <span class="pre">HashMap.java</span> <span class="pre">코드</span></code></a></p>
 <p>Java HashMap은 Java 버전에 따라 개선되고 있는 Java Collection Framework이다. Map 인터페이스를 구현한 구현체이다. <strong>HashMap은</strong> 키에 대한 해시 값을 사용하여 값을 저장하고 조회하며, 키-값 쌍의 개수에 따라 동적으로 증가하는 associate array라고 할 수 있다. <strong>associate array</strong> 는 다른 말로 Map, Dictionary(파이썬), Symbol Table등이 있다고 한다.</p>
 <p>Java HashMap 분석을 통한 <strong>해시테이블</strong> 을 알아보자:</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">AbstractMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span>
@@ -289,8 +289,8 @@
 </div>
 <div class="section" id="b-tree">
 <span id="btree"></span><h1>3. B-Tree<a class="headerlink" href="#b-tree" title="제목 주소">¶</a></h1>
-<p><a class="reference download internal" href="../_downloads/b+.ppt" download=""><code class="xref download docutils literal notranslate"><span class="pre">B+트리</span> <span class="pre">자료</span></code></a></p>
-<p><a class="reference download internal" href="../_downloads/btree.ppt" download=""><code class="xref download docutils literal notranslate"><span class="pre">B-Tree</span> <span class="pre">및</span> <span class="pre">B+트리</span> <span class="pre">자료</span> <span class="pre">(서울대</span> <span class="pre">자료)</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/637c7e107529ea218171ad116561d3ee/b+.ppt"><code class="xref download docutils literal notranslate"><span class="pre">B+트리</span> <span class="pre">자료</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ba2925f9dfaf320a90c3aeacbf640ac0/btree.ppt"><code class="xref download docutils literal notranslate"><span class="pre">B-Tree</span> <span class="pre">및</span> <span class="pre">B+트리</span> <span class="pre">자료</span> <span class="pre">(서울대</span> <span class="pre">자료)</span></code></a></p>
 <p><strong>B-Tree</strong> 는 데이터베이스 와 파일 시스템에서 쓰이는 트리의 일종으로 하나의 노드가 가질 수 있는 자식 노드의 개수가 2보다 크고 키-값 쌍을 저장하는 균형잡힌 트리이다. 또한 B-Tree는 엔트리를 정렬된 상태로 저장하며 검색, 삽입, 삭제를 로그시간내에 처리할 수 있는 트리이다.</p>
 <p>특징</p>
 <ul class="simple">
@@ -381,6 +381,14 @@
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -389,8 +397,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/datastructure/data_structure.rst.txt"
