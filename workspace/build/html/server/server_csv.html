@@ -64,18 +64,18 @@
 </div>
 <div class="section" id="metadata">
 <h2>3.4. Metadata<a class="headerlink" href="#metadata" title="제목 주소">¶</a></h2>
-<img alt="server/image/metadata_flow.jpg" src="server/image/metadata_flow.jpg" />
+<img alt="../_images/metadata_flow.jpg" src="../_images/metadata_flow.jpg" />
 <p>읽기, 쓰기를 제외한 연산을 메타데이터(Metadata) 연산 이라고한다. 예를들면 파일생성, 파일닫기, 이름변경, 속성변경, 파일삭제, 크기변경 등의 연산이 있다.</p>
 <p>위 그림을 보면 Node1와 Node3은 메타데이터 연산을 SMB를 통해 Node2의 NTFS 스택으로 전달한다. 메타데이터는 언제나 NTFS 스택으로 전달된다. 반면 Node2(코디네이터 노드)의 메타데이터 연산은 같은 위치에 있는 NTFS 스택으로 전달된다.</p>
 </div>
 <div class="section" id="direct-io">
 <h2>3.5. Direct IO<a class="headerlink" href="#direct-io" title="제목 주소">¶</a></h2>
-<img alt="server/image/directio_flow.jpg" src="server/image/directio_flow.jpg" />
+<img alt="../_images/directio_flow.jpg" src="../_images/directio_flow.jpg" />
 <p>Direct IO는 네트워크를 사용하지 않는 읽기, 쓰기 연산을 뜻한다. CSV에서는 CsvFs에서 CsvVbus를 통해 디스크에 접근한다. Direct IO는 <strong>NTFS 스택을 우회하여</strong> 디스크에 직접 도달한다.</p>
 </div>
 <div class="section" id="block-level-redirected-io">
 <h2>3.6. Block Level Redirected IO<a class="headerlink" href="#block-level-redirected-io" title="제목 주소">¶</a></h2>
-<img alt="server/image/blockredirectedio_flow.jpg" src="server/image/blockredirectedio_flow.jpg" />
+<img alt="../_images/blockredirectedio_flow.jpg" src="../_images/blockredirectedio_flow.jpg" />
 <p>물리적으로 디스크에 연결되어 있지 않은 노드의 경우, 코디네이터 노드로 Redirected IO를 전송하여 읽기, 쓰기 연산을 수행한다. 코디네이터 노드는 오직 시스템 볼륨 NTFS 스택(System Volume NTFS Stack)만 사용하여 Redirected IO를 처리한다. CsvFs가 전송한 Block Level Redirected IO는 CsvNsFlt 필터를 통해 NTFS나 볼륨 스택을 거치지 않고 바로 디스크에 전달된다.</p>
 <p><strong>즉, Block Level Redirected IO는 데이터 서버에서 CsvVBus을 통해 코디네이터 노드로 전달되어 CsvNsFlt의 도움을 받아 Direct IO 처럼 IO가 디스크에 전달된다.</strong></p>
 <p>하지만, 코디네이터 노드는 IO가 발생할 경우 언제나 직접 디스크와 통신한다. 따라서 코디네이터 노드는 Redirected IO가 필요하지 않다. 예외적으로 물리적으로 디스크에 연결된 데이터 서버도 Redirected IO가 필요한 경우가 있다.</p>
@@ -83,7 +83,7 @@
 </div>
 <div class="section" id="file-level-redirected-io">
 <h2>3.7. File Level Redirected IO<a class="headerlink" href="#file-level-redirected-io" title="제목 주소">¶</a></h2>
-<img alt="server/image/redirectedio_flow.jpg" src="server/image/redirectedio_flow.jpg" />
+<img alt="../_images/redirectedio_flow.jpg" src="../_images/redirectedio_flow.jpg" />
 <p>데이터 서버의 CsvFs을 통해 IO를 코디네이터 노드의 NTFS 스택으로 전달하여 디스크를 사용할 수 있도록 하는 모드이다.</p>
 <div class="section" id="id2">
 <h3>3.7.1. 참조<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
@@ -163,14 +163,6 @@
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="clearer"></div>
@@ -179,8 +171,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/server/server_csv.rst.txt"
