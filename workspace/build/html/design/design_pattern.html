@@ -177,7 +177,7 @@
 <div class="section" id="design-of-a-software-for-the-desk-lamp">
 <h3>2.13.1. 책상 위 스탠드 설계(Design of a software for the desk lamp)<a class="headerlink" href="#design-of-a-software-for-the-desk-lamp" title="제목 주소">¶</a></h3>
 <p>스탠드 내부에서 돌아갈 소프트웨어를 설계할때 어떤 점을 고려해야할까? 1990년에 많은 논쟁이 있었고 많은 사람들이 아이디어를 제시하였고 우월성을 입증하려 노력하였다.</p>
-<img alt="../_images/lamp1.png" src="../_images/lamp1.png" />
+<img alt="design/image/lamp1.png" src="design/image/lamp1.png" />
 <p><strong>단순히 Switch와 Light라는 2가지 객체만 사용할 경우 발생할 수 있는 문제는 다음과 같다.</strong>
 먼저 DIP, OCP라는 원칙을 위배한다. 상위 정책 인터페이스에 의존하는 것이 아니고 구체적인 클래스에 의존하기 떄문이다.
 또한 항상 Light 객체를 끌고 다녀야 하고 Light외에 다른 객체를 제어할 수 있도록 확장하기 어렵다.</p>
@@ -186,7 +186,7 @@
 <div class="section" id="id12">
 <h3>2.13.2. 추상 서버 패턴을 이용한 스탠드 설계<a class="headerlink" href="#id12" title="제목 주소">¶</a></h3>
 <p>추상 서버 패턴은 간단하다. 연관된 클래스를 직접 참조하지 않고 <em>Switchable이라는</em> 인터페이스를 통해 참조하여 의존성 역전(DIP)을 시키는 것이다. 이렇게 되면 OCP 원칙 역시 충족된다.</p>
-<img alt="../_images/lamp2.png" src="../_images/lamp2.png" />
+<img alt="design/image/lamp2.png" src="design/image/lamp2.png" />
 </div>
 <div class="section" id="id13">
 <h3>2.13.3. 인터페이스의 소유<a class="headerlink" href="#id13" title="제목 주소">¶</a></h3>
@@ -223,8 +223,8 @@
 <h2>2.17. 옵저버 패턴<a class="headerlink" href="#id17" title="제목 주소">¶</a></h2>
 <p>다른 객체의 변화를 관찰하는 패턴이다. OCP, LSP, DIP 등 3가지 원칙을 만족 시키며 Subject와 Observer로 역할이 나뉘어진다. Subject는 추상 클래스로(구체화를 못 하도록) 다른 객체에 알림을 줄때 사용하는 클래스이며, Observer는 관찰하고 싶을때 사용하는 인터페이스이다.</p>
 <p>동작하는 방식은 pull-model, push-model가 있다. pull-model은 observer에게 전달할 데이터의 종류가 간단할때, push-model은 복잡하거나 단순히 pull-model로는 가져올 수 없을때 사용한다.</p>
-<img alt="../_images/observer-pull.png" src="../_images/observer-pull.png" />
-<img alt="../_images/observer-push.png" src="../_images/observer-push.png" />
+<img alt="design/image/observer-pull.png" src="design/image/observer-pull.png" />
+<img alt="design/image/observer-push.png" src="design/image/observer-push.png" />
 </div>
 <div class="section" id="id18">
 <h2>2.18. 참조<a class="headerlink" href="#id18" title="제목 주소">¶</a></h2>
@@ -306,6 +306,14 @@
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -314,8 +322,8 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/design/design_pattern.rst.txt"
