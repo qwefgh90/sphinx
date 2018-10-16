@@ -34,6 +34,7 @@
 Docker
 ==========
 
+<<<<<<< HEAD
 *Docker란 Docker 컨테이너 이미지(container image)를 빌드하고 컨테이너(container)를 실행, 배포할때 사용하는 도구이다.* 
 **Docker는 초기에 소프트웨어 의존성과 인프라를 분리하자는 요구사항을 해결하기 위해 개발되었다.**
 그 결과, Docker는 컨테이너가 인프라에 관계없이 동작하게 도와주며, 컨테이너의 컴퓨팅 자원를 자유롭게 설정할 수 있도록 도와준다.
@@ -74,6 +75,4 @@ Docker 이미지와 컨테이너 기술이 주는 장점은 다음과 같다.
 ============
 
 - Docker 컨테이너: https://www.docker.com/resources/what-container
-
-
 
