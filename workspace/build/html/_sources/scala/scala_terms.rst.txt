@@ -36,7 +36,7 @@
 서브타이핑(Subtyping)
 =====================
 
-`서브타이핑 <https://en.wikipedia.org/wiki/Subtyping>`_ 이란 타입 다형성의 한 종류로서 슈퍼타입(supertpye)과 동작하는 프로그램 요소에서 서브타입(subtype)을 쓸 수 있는 것을 의미한다. 만약 S가 T의 서브타입이라면 서브 타이핑 관계는 **S<: T** 로 나타내고 이는 타입 T가 사용되는 문맥에서 타입 S를 안전하게 사용할 수 있다는 의미를 갖는다.
+`서브타이핑 <https://en.wikipedia.org/wiki/Subtyping>`_ 이란 타입 다형성의 한 종류로서 슈퍼타입(supertpye)과 동작하는 프로그램 요소에서 서브타입(subtype)을 쓸 수 있는 것을 의미한다. 만약 S가 T의 서브타입이라면 서브 타이핑 관계는 **S<: T** 로 나타내고 이는 타입 T가 사용되는 문맥에서 타입 S를 안전하게 사용할 수 있다는 의미를 갖는다. 부모로 치환 가능성이 있을때 서브타입이라 할 수 있다.
 
 .. _scala_terms_변성:
 
@@ -92,3 +92,4 @@ append()가 순수함수라면 호출한 뒤에 str1과 str2과 str3는 같아�
 
 - 표현식: https://en.wikipedia.org/wiki/Expression_(mathematics)
 - 스칼라로 배우는 함수형 프로그래밍(제이펍)
+- 

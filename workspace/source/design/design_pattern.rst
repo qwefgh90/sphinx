@@ -297,3 +297,4 @@ Locator 객체에 의존성을 가져야 하기 때문에 상황에 따라 단�
 - IOC: https://martinfowler.com/bliki/InversionOfControl.html
 - IOC, DI: https://martinfowler.com/articles/injection.html
 - DIP: https://martinfowler.com/articles/dipInTheWild.html#YouMeanDependencyInversionRight
+- 클린 소프트웨어
