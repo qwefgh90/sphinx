@@ -136,6 +136,39 @@ set-cookie는 클라이언트에 쿠키를 전달할때 사용하는 헤더이�
 
 아스키가 아닌 문자와 스페이스, 제어문자등을 인코딩하는 방법을 나타낸 표준이다. 각각의 바이트는 **%ff** 처럼 %와 16진수 시퀀스로 인코딩된다. 예를들어 **"안녕" 이라는 문자열은 %EC%95%88%EB%85%95** 와 같이 인코딩된다. RFC3986에 정의되어 있다.
 
+========================================
+ CORS와 사전인증(preflight)
+========================================
+
+기본적으로 브라우저는 XMLHttpRequest를 이용해 같은 도메인의 자원에만 접근할 수 있다. 이를 *same-origin* 정책이라 한다. same-origin 정책만 존재 했을때는 다른 도메인으로 요청은 항상 실패했다. 개발자들은 다른 도메인에 대한 접근을 허용하는 기술을 벤더사에 요청하였고 CORS라는 기술이 등장하게 되었다.
+
+CORS(Cross-Origin Resource Sharing)는 추가적인 HTTP 헤더를 이용해서 현재 도메인에서 다른 도메인의 자원에 접근할 수 있는지 알려주는 기술이다. CORS는 *Simple Request나 preflight* 방식으로 나눠진다. 
+
+-----------------------------
+Simple Request
+-----------------------------
+
+GET, POST, HEAD, application/x-www-form-urlencoded, multipart/form-data, text/plain 와 같은 헤더가 method와 content-type에 포함되어 있을때 리소스 요청 후 응답으로 **Access-Control-Allow-Origin 헤더를 받아 허용 여부를 결정하는 방식이다.** ::
+
+	Access-Controll-Allow-Origin: * 
+
+위 헤더는 모든 도메인에서의 접근을 허용한다. 발생 조건은 `링크 <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Simple_requests>`_ 에 자세히 나와 있다.
+
+---------------------------------
+preflight
+---------------------------------
+
+GET, POST, HEAD외 다른 값을 method에 포함시켰을때 preflight 요청 후 응답으로 **접근 제어 헤더를 받아 결정하는 방식이다.** 그 이후 리소스 요청이 발생하게 된다. 발생 조건은 `링크 <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Preflighted_requests>`_ 에 자세히 나와 있다. 
+
+대표적으로 사용되는 헤더는 다음과 같다.::
+
+	Access-Control-Allow-Origin: http://a.com
+	Access-Control-Allow-Methods: POST, GET, OPTIONS
+	Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
+	Access-Control-Max-Age: 86400
+
+a.com에서 POST, GET, OPTIONS 메서드 요청을 할 경우 허용하겠다는 의미이다.
+
 ======
  참조
 ======

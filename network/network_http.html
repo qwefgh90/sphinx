@@ -134,8 +134,33 @@
 <p>아스키가 아닌 문자와 스페이스, 제어문자등을 인코딩하는 방법을 나타낸 표준이다. 각각의 바이트는 <strong>%ff</strong> 처럼 %와 16진수 시퀀스로 인코딩된다. 예를들어 <strong>&quot;안녕&quot; 이라는 문자열은 %EC%95%88%EB%85%95</strong> 와 같이 인코딩된다. RFC3986에 정의되어 있다.</p>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>4.7. 참조<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
+<div class="section" id="cors-preflight">
+<h2>4.7. CORS와 사전인증(preflight)<a class="headerlink" href="#cors-preflight" title="제목 주소">¶</a></h2>
+<p>기본적으로 브라우저는 XMLHttpRequest를 이용해 같은 도메인의 자원에만 접근할 수 있다. 이를 <em>same-origin</em> 정책이라 한다. same-origin 정책만 존재 했을때는 다른 도메인으로 요청은 항상 실패했다. 개발자들은 다른 도메인에 대한 접근을 허용하는 기술을 벤더사에 요청하였고 CORS라는 기술이 등장하게 되었다.</p>
+<p>CORS(Cross-Origin Resource Sharing)는 추가적인 HTTP 헤더를 이용해서 현재 도메인에서 다른 도메인의 자원에 접근할 수 있는지 알려주는 기술이다. CORS는 <em>Simple Request나 preflight</em> 방식으로 나눠진다.</p>
+<div class="section" id="simple-request">
+<h3>4.7.1. Simple Request<a class="headerlink" href="#simple-request" title="제목 주소">¶</a></h3>
+<p>GET, POST, HEAD, application/x-www-form-urlencoded, multipart/form-data, text/plain 와 같은 헤더가 method와 content-type에 포함되어 있을때 리소스 요청 후 응답으로 <strong>Access-Control-Allow-Origin 헤더를 받아 허용 여부를 결정하는 방식이다.</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Access</span><span class="o">-</span><span class="n">Controll</span><span class="o">-</span><span class="n">Allow</span><span class="o">-</span><span class="n">Origin</span><span class="p">:</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>위 헤더는 모든 도메인에서의 접근을 허용한다. 발생 조건은 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Simple_requests">링크</a> 에 자세히 나와 있다.</p>
+</div>
+<div class="section" id="preflight">
+<h3>4.7.2. preflight<a class="headerlink" href="#preflight" title="제목 주소">¶</a></h3>
+<p>GET, POST, HEAD외 다른 값을 method에 포함시켰을때 preflight 요청 후 응답으로 <strong>접근 제어 헤더를 받아 결정하는 방식이다.</strong> 그 이후 리소스 요청이 발생하게 된다. 발생 조건은 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Preflighted_requests">링크</a> 에 자세히 나와 있다.</p>
+<p>대표적으로 사용되는 헤더는 다음과 같다.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Access</span><span class="o">-</span><span class="n">Control</span><span class="o">-</span><span class="n">Allow</span><span class="o">-</span><span class="n">Origin</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">a</span><span class="o">.</span><span class="n">com</span>
+<span class="n">Access</span><span class="o">-</span><span class="n">Control</span><span class="o">-</span><span class="n">Allow</span><span class="o">-</span><span class="n">Methods</span><span class="p">:</span> <span class="n">POST</span><span class="p">,</span> <span class="n">GET</span><span class="p">,</span> <span class="n">OPTIONS</span>
+<span class="n">Access</span><span class="o">-</span><span class="n">Control</span><span class="o">-</span><span class="n">Allow</span><span class="o">-</span><span class="n">Headers</span><span class="p">:</span> <span class="n">X</span><span class="o">-</span><span class="n">PINGOTHER</span><span class="p">,</span> <span class="n">Content</span><span class="o">-</span><span class="n">Type</span>
+<span class="n">Access</span><span class="o">-</span><span class="n">Control</span><span class="o">-</span><span class="n">Max</span><span class="o">-</span><span class="n">Age</span><span class="p">:</span> <span class="mi">86400</span>
+</pre></div>
+</div>
+<p>a.com에서 POST, GET, OPTIONS 메서드 요청을 할 경우 허용하겠다는 의미이다.</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>4.8. 참조<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>HTTP 스펙: <a class="reference external" href="https://tools.ietf.org/html/rfc2616">https://tools.ietf.org/html/rfc2616</a></li>
 <li>Multipart/form-data: <a class="reference external" href="https://tools.ietf.org/html/rfc7578">https://tools.ietf.org/html/rfc7578</a></li>
@@ -230,7 +255,7 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
