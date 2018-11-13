@@ -176,3 +176,4 @@ a.com에서 POST, GET, OPTIONS 메서드 요청을 할 경우 허용하겠다는
 - HTTP 스펙: https://tools.ietf.org/html/rfc2616
 - Multipart/form-data: https://tools.ietf.org/html/rfc7578
 - Cookie: https://developer.mozilla.org/ko/docs/Web/HTTP/Cookies
+- CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
