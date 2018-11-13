@@ -158,13 +158,16 @@ GET, POST, HEAD, application/x-www-form-urlencoded, multipart/form-data, text/pl
 preflight
 ---------------------------------
 
-GET, POST, HEAD외 다른 값을 method에 포함시켰을때 preflight 요청 후 응답으로 **접근 제어 헤더를 받아 결정하는 방식이다.** 그 이후 리소스 요청이 발생하게 된다. 발생 조건은 `링크 <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Preflighted_requests>`_ 에 자세히 나와 있다. 
+GET, POST, HEAD외 다른 값을 method에 포함시켰을때 preflight 요청 후 응답으로 **접근 제어 헤더를 받아 결정하는 방식이다.** 그 이후 리소스 요청이 발생하게 된다. 개발자는 preflight를 직접 작성하는 것이 아니고 브라우저가 XMLHttpRequest의 헤더를 기반으로 preflight 요청을 작성한다. 발생 조건은 `링크 <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Preflighted_requests>`_ 에 자세히 나와 있다. 
 
 대표적으로 사용되는 헤더는 다음과 같다.::
 
+	Access-Control-Request-Method: POST
+	Access-Control-Request-Headers: X-HEADER, Content-Type
+
 	Access-Control-Allow-Origin: http://a.com
 	Access-Control-Allow-Methods: POST, GET, OPTIONS
-	Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
+	Access-Control-Allow-Headers: X-HEADER, Content-Type
 	Access-Control-Max-Age: 86400
 
 a.com에서 POST, GET, OPTIONS 메서드 요청을 할 경우 허용하겠다는 의미이다.
