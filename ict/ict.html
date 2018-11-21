@@ -73,7 +73,7 @@ Docker 컨테이너 이미지는 Docker 컨테이너가 되어 Docker Engine위�
 <li>동일한 이미지를 여러번 실행하더라도 외부 환경에 영향을 받지 않고 일관된 동작을 보장</li>
 <li>어떠한 서버에서도 바로 실행 가능. Cloud, Linux, Windows등 가능</li>
 <li>소프트웨어 버전관리가 매우 쉬움</li>
-<li>컨테이너마다 OS가 필요 없으므로 사이즈가 작음 (컨테이너는 호스트 OS의 커널을 공유함)</li>
+<li>컨테이너마다 OS가 필요 없으므로 사이즈가 작음 (컨테이너는 호스트 OS의 커널을 공유하며 COW로 레이어를 공유)</li>
 <li>VM 기술과 유사하게 컨테이너와 외부 환경 그리고 컨테이너간 격리성을 제공</li>
 </ul>
 <p>마지막으로 <em>컨테이너(container)란 소스코드와 관련 의존성을 패키징한 소프트웨어의 표준화된 단위이다.</em> 컨테이너는 Docker Engine 위에서 동작한다.</p>
@@ -88,11 +88,19 @@ Docker 컨테이너 이미지는 Docker 컨테이너가 되어 Docker Engine위�
 <img alt="../_images/vm.png" src="../_images/vm.png" />
 <p>가상머신은 하드웨어를 가상화하여 가상환경을 구성한다. 또한 전체 운영체제가 로딩되므로 기가바이트 정도의 공간을 차지한다. 그리고 가상머신은 컨테이너에 비해 부팅이 느리다.</p>
 </div>
+<div class="section" id="cow-copy-on-write-layer">
+<h3>1.3.2. COW(copy-on-write)와 계층(Layer)<a class="headerlink" href="#cow-copy-on-write-layer" title="제목 주소">¶</a></h3>
+<p>여러 계층이 겹쳐져서 하나의 컨테이너 이미지를 구성한다. 예를들어 스크래치에 OS, 패키지1, 패키지2, 미들웨어1, 바이너리1, 바이너리2가 순서대로 복사될 경우, 복사가 일어날때 마다 계층이 하나씩 생성된다. 각 계층은 이전 계층의 변경 사항이다. 최종적으로 모든 계층이 순서대로 쌓여서 하나의 이미지를 만들어 낸다.</p>
+<p>또한 이미지를 구성하는 모든 계층은 읽기 전용이다. 읽기 전용으로 만듬으로써 서로 다른 이미지가 여러개의 계층을 공유하는 것을 가능하게 한다. 읽기 전용 구조가 아니라면 <strong>A라는 이미지와 B라는 이미지가 내용이 거의 비슷함에도 불구하고 똑같은 풀 복사본을 가지고 있어야 한다.</strong> 또한 컨테이너가 <strong>시작될때 마다 전체 레이어를 복사를 해야한다. 이는 엄청난 오버헤드를 발생시킨다.</strong> <strong>결과적으로, 읽기전용 계층 덕분에 공간을 줄일 수 있으며 부팅 시간도 줄일 수 있게 된다.</strong></p>
+<p>자연스럽게 이런 구조와 맞는것은 COW(copy-on-write) 알고리즘이다. COW는 변경이 발생하면 원본을 복사하여 변경을 적용하는 알고리즘이다. 이미지나 컨테이너에서 어떤 명령에 의해서 파일이 변경될때, 가장 최근의 파일을 복사하고 수정하여 새로운 계층을 생성한다.</p>
+<p><strong>컨테이너는 파일 변경을 위해 Writable Container Layer를 별도로 배치하고, COW 알고리즘에 따라 새로운 파일만 저장한다.</strong> <strong>Dockerfile로 이미지를 생성할때 역시 이러한 알고리즘이 적용 될 것이라 여겨진다.</strong></p>
+</div>
 </div>
 <div class="section" id="id4">
 <h2>1.4. 참조<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>Docker 컨테이너: <a class="reference external" href="https://www.docker.com/resources/what-container">https://www.docker.com/resources/what-container</a></li>
+<li>Docker COW: <a class="reference external" href="https://docs.docker.com/v17.09/engine/userguide/storagedriver/imagesandcontainers/#container-and-layers">https://docs.docker.com/v17.09/engine/userguide/storagedriver/imagesandcontainers/#container-and-layers</a></li>
 </ul>
 </div>
 </div>
