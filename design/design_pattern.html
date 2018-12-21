@@ -181,13 +181,13 @@
 <h2>2.16. 추상 서버 패턴(Abstract Server Pattern)<a class="headerlink" href="#abstract-server-pattern" title="제목 주소">¶</a></h2>
 <p>클래스에 직접 연관을 갖지 않고 중간에 인터페이스를 통해 클래스를 사용하는 패턴을 뜻한다.</p>
 <p>스탠드 내부에서 돌아갈 소프트웨어를 설계할때 어떤 점을 고려해야할까? 1990년에 많은 논쟁이 있었고 많은 사람들이 아이디어를 제시하였고 우월성을 입증하려 노력하였다.</p>
-<img alt="design/image/lamp1.png" src="design/image/lamp1.png" />
+<img alt="../_images/lamp1.PNG" src="../_images/lamp1.PNG" />
 <p><strong>단순히 Switch와 Light라는 2가지 객체만 사용할 경우 발생할 수 있는 문제는 다음과 같다.</strong>
 먼저 DIP, OCP라는 원칙을 위배한다. 상위 정책 인터페이스에 의존하는 것이 아니고 구체적인 클래스에 의존하기 떄문이다.
 또한 항상 Light 객체를 끌고 다녀야 하고 Light외에 다른 객체를 제어할 수 있도록 확장하기 어렵다.</p>
 <p>다른 객체까지 다루기 위해 Switch를 상속받아 확장할 수 도 있지만, Light에 대한 의존성 문제가 여전히 존재하므로 DIP를 위배한다.</p>
 <p>추상 서버 패턴은 간단하다. 연관된 클래스를 직접 참조하지 않고 <em>Switchable이라는</em> 인터페이스를 통해 참조하여 의존성 역전(DIP)을 시키는 것이다. 이렇게 되면 OCP 원칙 역시 충족된다.</p>
-<img alt="design/image/lamp2.png" src="design/image/lamp2.png" />
+<img alt="../_images/lamp2.PNG" src="../_images/lamp2.PNG" />
 <p><strong>인터페이스란 파생 클래스보다 클라이언트와 더 강한 논리적 구속력(연관)을 갖는 개체이다.</strong> 클라이언트는 인터페이스가 반드시 필요하지만, 파생 클래스는 항상 인터페이스와 연관되어 있을 필요는 없다. 이는 인터페이스와 파생 클래스 사이에 논리적 구속력이 상대적으로 약하다고 할 수 있다.</p>
 <p><strong>따라서 인터페이스는 클라이언트의 소유라 할 수 있다.</strong></p>
 <p>어떤 개발자들은 물리적 구속력(상속)이 논리적 구속력보다 강하다고 여기기도 한다. 하지만 논리적 구속력을 더욱 신경 쓰고 설계하였을때 직관적이고 좋은 설계가 나온다.</p>
