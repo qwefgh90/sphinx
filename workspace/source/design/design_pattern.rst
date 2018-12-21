@@ -66,7 +66,10 @@ ISP(Interface Segregation Principle)
 
 *인터페이스 분리 원칙은* 자신의 서브 클래스 때문에 **원치 않은 상속과 사용하지 않는 메소드에** 강제로 의존하지 않아야 한다는 원칙이다. 이는 인터페이스를 분리하고 다중 상속이나, **Adapter를 통해 분리된 인터페이스의 서브 클래스간 통신을 하게하여 해결할 수 있다.**
 
-그 예제로 Door, Timer 문제나 Shape, TextShape, TextView 문제가 있다.
+그 예제로 Door, Timer, TimerClient 문제가 있다. 상황은 Timer에 TimerDoor를 등록하여 울리게 하는 것이다. Door은 TimerClient를 TimerDoor은 TimerClient를 상속해야 한다면 Timer나 TimerClient의 변경이 있을 경우 모든 Door의 자식 타입에 변경의 문제가 발생하게 된다.
+
+
+그 외에는 Shape, TextShape, TextView 문제가 있다.
 
 ===================================
 DIP(Dependency Inversion Principle)
