@@ -13,8 +13,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
     <link rel="next" title="3. Rest API" href="design_rest.html" />
@@ -78,7 +79,7 @@
 <div class="section" id="isp-interface-segregation-principle">
 <h2>2.6. ISP(Interface Segregation Principle)<a class="headerlink" href="#isp-interface-segregation-principle" title="제목 주소">¶</a></h2>
 <p><em>인터페이스 분리 원칙은</em> 자신의 서브 클래스 때문에 <strong>원치 않은 상속과 사용하지 않는 메소드에</strong> 강제로 의존하지 않아야 한다는 원칙이다. 이는 인터페이스를 분리하고 다중 상속이나, <strong>Adapter를 통해 분리된 인터페이스의 서브 클래스간 통신을 하게하여 해결할 수 있다.</strong></p>
-<p>그 예제로 Door, Timer, TimerClient 문제가 있다. 상황은 Timer에 TimerDoor를 등록하여 울리게 하는 것이다. Door은 TimerClient를 TimerDoor은 TimerClient를 상속한다고 가정해보자. TimerDoor은 2개의 기능을 갖고 있는 Door을 상속하게 된다. 이것은 ISP를 위반하며 문제를 일으킨다. Timer나 TimerClient의 변경이 있을 경우 모든 Door의 자식 타입에 변경의 문제가 발생하게 된다. TierClient 인터페이스를 구현할 필요 없이 TimerDoor의 어댑터를 통해 Timeout()이 호출되도록 하거나, 다중 상속으로 해결할 수 있다.</p>
+<p>그 예제로 Door, Timer, TimerClient 문제가 있다. 상황은 Timer에 TimerDoor를 등록하여 울리게 하는 것이다. Door은 TimerClient를 TimerDoor은 Door를 상속한다고 가정해보자. TimerDoor은 2개의 기능을 갖고 있는 Door을 상속하게 된다. 이것은 ISP를 위반하며 문제를 일으킨다. Timer나 TimerClient의 변경이 있을 경우 모든 Door의 자식 타입에 변경의 문제가 발생하게 된다. TierClient 인터페이스를 구현할 필요 없이 TimerDoor의 어댑터를 통해 Timeout()이 호출되도록 하거나, 다중 상속으로 해결할 수 있다.</p>
 <p>그 외에는 Shape, TextShape, TextView 문제가 있다.</p>
 </div>
 <div class="section" id="dip-dependency-inversion-principle">
@@ -318,7 +319,7 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
