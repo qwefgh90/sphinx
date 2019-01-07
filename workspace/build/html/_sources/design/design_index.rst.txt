@@ -18,4 +18,4 @@ Contents:
    design_terms.rst
    design_pattern.rst
    design_rest.rst
-   design_modify.rst
+   design_problem.rst
