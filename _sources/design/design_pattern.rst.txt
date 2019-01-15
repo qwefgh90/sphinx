@@ -287,9 +287,9 @@ Locator 객체에 의존성을 가져야 하기 때문에 상황에 따라 단�
 
 동작하는 방식은 pull-model, push-model가 있다. pull-model은 observer에게 전달할 데이터의 종류가 간단할때, push-model은 복잡하거나 단순히 pull-model로는 가져올 수 없을때 사용한다.
 
-.. image:: image/observer-pull.png 
+.. image:: image/observer-pull.PNG
 
-.. image:: image/observer-push.png 
+.. image:: image/observer-push.PNG 
 
 ====
 참조
