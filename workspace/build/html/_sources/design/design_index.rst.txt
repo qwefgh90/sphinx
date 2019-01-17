@@ -19,3 +19,4 @@ Contents:
    design_pattern.rst
    design_rest.rst
    design_problem.rst
+   design_agile.rst
