@@ -57,7 +57,7 @@ XP는 Agile 방법 중에서 가장 유명한 실천 방법이다.
 - 테스트 코드(TDD) (up to date)
 - 작업 나누기 (Tasks)
 
-테스트 코드는 전체적인 설계를 고민하게 하며 개발자에게 가치 있는 작업이 된다. 또한 시스템의 튜토리얼이 된다. 하나의 산출물이 다양한 목적으로 사용되므로 효율적이다. 
+TDD는 설계를 표현하며, 개발자의 코드를 검증할 수 있으므로 개발자에게 가치 있는 작업이 된다. 또한 시스템의 튜토리얼이 된다. 하나의 산출물이 다양한 목적으로 사용되므로 효율적이다.  
 
 초반에는 사용자 스토리를 기반으로 시스템의 동작과 관련된 모델과 설계에 더 집중하고, DB가 필요한 시점에 DB설계를 시작한다.
 
@@ -80,3 +80,4 @@ XP는 Agile 방법 중에서 가장 유명한 실천 방법이다.
 - agile 설계: http://agilemodeling.com/essays/agileDesign.htm
 - agile 분석: http://agilemodeling.com/essays/iterationModeling.htm
 - 구체적인 설계: http://agilemodeling.com/essays/modelStorming.htm
+- tdd: http://agiledata.org/essays/tdd.html
