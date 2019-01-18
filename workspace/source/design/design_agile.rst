@@ -78,3 +78,5 @@ XP는 Agile 방법 중에서 가장 유명한 실천 방법이다.
 
 - UseCase: https://martinfowler.com/bliki/UseCasesAndStories.html
 - agile 설계: http://agilemodeling.com/essays/agileDesign.htm
+- agile 분석: http://agilemodeling.com/essays/iterationModeling.htm
+- 구체적인 설계: http://agilemodeling.com/essays/modelStorming.htm
