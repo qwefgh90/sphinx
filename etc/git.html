@@ -72,7 +72,7 @@
 <p>히스토리를 선형적으로 정리할 수 있다는 장점이 있으며, 갈라져 나온 브랜치가 계속 관리되는 브랜치가 아닐때 rebase를 사용하면 좋다.
 <strong>단 merge로 생성한 commit을 서버에 push한 뒤 다시 로컬에서 rebase로 정리한 뒤 commit을 하면 그 사이에 작업한 다른 개발자의 결과물은 이전 병합 commit을 가르키게 되므로 히스토리가 꼬이게 된다.</strong></p>
 <p>커밋을 삭제하고 싶을 경우 rebase를 이용해 에디팅 할 수 있다.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">2</span> <span class="c1"># 현재 헤드를 이전 커밋으로 바꾼다. &quot;git reset --hard 해시값&quot; 도 사용 가능</span>
 <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">f</span> <span class="n">origin</span> <span class="n">master</span>
 </pre></div>
 </div>
