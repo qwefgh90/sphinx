@@ -47,7 +47,7 @@ Staged인 파일을 비교할때는 *git diff --staged 를* 사용한다.
 
 커밋을 삭제하고 싶을 경우 rebase를 이용해 에디팅 할 수 있다.::
 
-  git rebase -i HEAD~2 # 현재 헤드를 이전 커밋으로 바꾼다. "git reset --hard 해시값" 도 사용 가능
+  git rebase -i HEAD~2 # 현재 헤드를 이전 커밋으로 바꾼다. "git reset 해시값" 도 사용 가능
   git push -f origin master
  
 =======
@@ -61,6 +61,16 @@ Fast-forward는 commit 포인터를 그대로 **다른 브랜치의 commit 포�
 
 Fast-forward가 가능하지 않을 경우 3-way merge를 수행한다. 공통조상, 현재 브랜치의 커밋, 병합할 브랜치의 커밋을 이용해 병합을 수행한다. commit 포인터를 생성된 commit으로 이동시킨다.
 `3-way merge 알고리즘 <https://blog.npcode.com/2012/09/29/3-way-merge-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%97%90-%EB%8C%80%ED%95%B4/>`_ 에 대해 잘 설명한 링크이다.
+
+========
+Reset
+========
+
+현재 브랜치를 유지한채 HEAD만 이전 커밋으로 이동시킬 수 있다.
+
+git reset --soft HEAD~ : HEAD만 바꾼다. Index나 Working Directory는 그대로 둔다.
+git reset HEAD~ : HEAD를 바꾸고, Index 영역을 HEAD가 가르키는 상태로 바꾼다.
+git reset --hard HEAD~ : HEAD는 바꾸고, Index과 Working Directory 영역을 HEAD가 가르키는 상태로 바꾼다.
 
 ========
  Commit
