@@ -62,6 +62,8 @@ Fast-forward는 commit 포인터를 그대로 **다른 브랜치의 commit 포�
 Fast-forward가 가능하지 않을 경우 3-way merge를 수행한다. 공통조상, 현재 브랜치의 커밋, 병합할 브랜치의 커밋을 이용해 병합을 수행한다. commit 포인터를 생성된 commit으로 이동시킨다.
 `3-way merge 알고리즘 <https://blog.npcode.com/2012/09/29/3-way-merge-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%97%90-%EB%8C%80%ED%95%B4/>`_ 에 대해 잘 설명한 링크이다.
 
+.. image:: img/merge.png
+
 ========
 Reset
 ========
