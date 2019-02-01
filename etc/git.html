@@ -72,7 +72,7 @@
 <p>히스토리를 선형적으로 정리할 수 있다는 장점이 있으며, 갈라져 나온 브랜치가 계속 관리되는 브랜치가 아닐때 rebase를 사용하면 좋다.
 <strong>단 merge로 생성한 commit을 서버에 push한 뒤 다시 로컬에서 rebase로 정리한 뒤 commit을 하면 그 사이에 작업한 다른 개발자의 결과물은 이전 병합 commit을 가르키게 되므로 히스토리가 꼬이게 된다.</strong></p>
 <p>커밋을 삭제하고 싶을 경우 rebase를 이용해 에디팅 할 수 있다.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">2</span> <span class="c1"># 현재 헤드를 이전 커밋으로 바꾼다. &quot;git reset --hard 해시값&quot; 도 사용 가능</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">2</span> <span class="c1"># 현재 헤드를 이전 커밋으로 바꾼다. &quot;git reset 해시값&quot; 도 사용 가능</span>
 <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">f</span> <span class="n">origin</span> <span class="n">master</span>
 </pre></div>
 </div>
@@ -87,10 +87,17 @@
 <p>Fast-forward가 가능하지 않을 경우 3-way merge를 수행한다. 공통조상, 현재 브랜치의 커밋, 병합할 브랜치의 커밋을 이용해 병합을 수행한다. commit 포인터를 생성된 commit으로 이동시킨다.
 <a class="reference external" href="https://blog.npcode.com/2012/09/29/3-way-merge-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%97%90-%EB%8C%80%ED%95%B4/">3-way merge 알고리즘</a> 에 대해 잘 설명한 링크이다.</p>
 </div>
+<div class="section" id="reset">
+<h2>2.5. Reset<a class="headerlink" href="#reset" title="제목 주소">¶</a></h2>
+<p>현재 브랜치를 유지한채 HEAD만 이전 커밋으로 이동시킬 수 있다.</p>
+<p>git reset --soft HEAD~ : HEAD만 바꾼다. Index나 Working Directory는 그대로 둔다.
+git reset HEAD~ : HEAD를 바꾸고, Index 영역을 HEAD가 가르키는 상태로 바꾼다.
+git reset --hard HEAD~ : HEAD는 바꾸고, Index과 Working Directory 영역을 HEAD가 가르키는 상태로 바꾼다.</p>
+</div>
 <div class="section" id="commit">
-<h2>2.5. Commit<a class="headerlink" href="#commit" title="제목 주소">¶</a></h2>
+<h2>2.6. Commit<a class="headerlink" href="#commit" title="제목 주소">¶</a></h2>
 <div class="section" id="id2">
-<h3>2.5.1. 되돌리기<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
+<h3>2.6.1. 되돌리기<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
 <p>실수로 Staged하는 파일을 까먹었다면 --amend로 해결할 수 있다.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;commit missing some files&quot;</span>
 <span class="n">git</span> <span class="n">add</span> <span class="n">forgotten_file</span>
@@ -108,7 +115,7 @@
 </div>
 </div>
 <div class="section" id="stash">
-<h2>2.6. Stash<a class="headerlink" href="#stash" title="제목 주소">¶</a></h2>
+<h2>2.7. Stash<a class="headerlink" href="#stash" title="제목 주소">¶</a></h2>
 <p>Tracked Modified 이거나 Staged 인 파일들을 임시로 저장할 수 있다.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">stash</span> <span class="n">save</span>
 <span class="n">git</span> <span class="n">stash</span> <span class="nb">list</span>
@@ -117,7 +124,7 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h2>2.7. 참조<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<h2>2.8. 참조<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>rebase: <a class="reference external" href="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0">https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0</a></li>
 </ul>
