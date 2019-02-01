@@ -47,7 +47,7 @@ Staged인 파일을 비교할때는 *git diff --staged 를* 사용한다.
 
 커밋을 삭제하고 싶을 경우 rebase를 이용해 에디팅 할 수 있다.::
 
-  git rebase -i HEAD~2
+  git rebase -i HEAD~2 # 현재 헤드를 이전 커밋으로 바꾼다. "git reset --hard 해시값" 도 사용 가능
   git push -f origin master
  
 =======
