@@ -90,10 +90,12 @@
 </div>
 <div class="section" id="reset">
 <h2>2.5. Reset<a class="headerlink" href="#reset" title="제목 주소">¶</a></h2>
-<p>현재 브랜치를 유지한채 HEAD만 이전 커밋으로 이동시킬 수 있다.</p>
-<p>git reset --soft HEAD~ : HEAD만 바꾼다. Index나 Working Directory는 그대로 둔다.
-git reset HEAD~ : HEAD를 바꾸고, Index 영역을 HEAD가 가르키는 상태로 바꾼다.
-git reset --hard HEAD~ : HEAD는 바꾸고, Index과 Working Directory 영역을 HEAD가 가르키는 상태로 바꾼다.</p>
+<p>현재 브랜치를 유지한채 HEAD만 이전 커밋으로 이동시킬 수 있다.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">soft</span> <span class="n">HEAD</span><span class="o">~</span> <span class="p">:</span> <span class="n">HEAD만</span> <span class="n">바꾼다</span><span class="o">.</span> <span class="n">Index나</span> <span class="n">Working</span> <span class="n">Directory는</span> <span class="n">그대로</span> <span class="n">둔다</span><span class="o">.</span>
+<span class="n">git</span> <span class="n">reset</span> <span class="n">HEAD</span><span class="o">~</span> <span class="p">:</span> <span class="n">HEAD를</span> <span class="n">바꾸고</span><span class="p">,</span> <span class="n">Index</span> <span class="n">영역을</span> <span class="n">HEAD가</span> <span class="n">가르키는</span> <span class="n">상태로</span> <span class="n">바꾼다</span><span class="o">.</span>
+<span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">HEAD</span><span class="o">~</span> <span class="p">:</span> <span class="n">HEAD는</span> <span class="n">바꾸고</span><span class="p">,</span> <span class="n">Index과</span> <span class="n">Working</span> <span class="n">Directory</span> <span class="n">영역을</span> <span class="n">HEAD가</span> <span class="n">가르키는</span> <span class="n">상태로</span> <span class="n">바꾼다</span><span class="o">.</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="commit">
 <h2>2.6. Commit<a class="headerlink" href="#commit" title="제목 주소">¶</a></h2>
@@ -128,6 +130,7 @@ git reset --hard HEAD~ : HEAD는 바꾸고, Index과 Working Directory 영역을
 <h2>2.8. 참조<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>rebase: <a class="reference external" href="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0">https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0</a></li>
+<li>reset: <a class="reference external" href="https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Reset-%EB%AA%85%ED%99%95%ED%9E%88-%EC%95%8C%EA%B3%A0-%EA%B0%80%EA%B8%B0">https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Reset-%EB%AA%85%ED%99%95%ED%9E%88-%EC%95%8C%EA%B3%A0-%EA%B0%80%EA%B8%B0</a></li>
 </ul>
 </div>
 </div>
@@ -216,7 +219,7 @@ git reset --hard HEAD~ : HEAD는 바꾸고, Index과 Working Directory 영역을
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

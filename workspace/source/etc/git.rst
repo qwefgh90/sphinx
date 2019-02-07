@@ -68,11 +68,11 @@ Fast-forward가 가능하지 않을 경우 3-way merge를 수행한다. 공통�
 Reset
 ========
 
-현재 브랜치를 유지한채 HEAD만 이전 커밋으로 이동시킬 수 있다.
+현재 브랜치를 유지한채 HEAD만 이전 커밋으로 이동시킬 수 있다.::
 
-git reset --soft HEAD~ : HEAD만 바꾼다. Index나 Working Directory는 그대로 둔다.
-git reset HEAD~ : HEAD를 바꾸고, Index 영역을 HEAD가 가르키는 상태로 바꾼다.
-git reset --hard HEAD~ : HEAD는 바꾸고, Index과 Working Directory 영역을 HEAD가 가르키는 상태로 바꾼다.
+  git reset --soft HEAD~ : HEAD만 바꾼다. Index나 Working Directory는 그대로 둔다.
+  git reset HEAD~ : HEAD를 바꾸고, Index 영역을 HEAD가 가르키는 상태로 바꾼다.
+  git reset --hard HEAD~ : HEAD는 바꾸고, Index과 Working Directory 영역을 HEAD가 가르키는 상태로 바꾼다.
 
 ========
  Commit
@@ -110,3 +110,4 @@ Tracked Modified 이거나 Staged 인 파일들을 임시로 저장할 수 있�
 ======
 
 - rebase: https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0
+- reset: https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Reset-%EB%AA%85%ED%99%95%ED%9E%88-%EC%95%8C%EA%B3%A0-%EA%B0%80%EA%B8%B0
