@@ -68,11 +68,11 @@ Fast-forward가 가능하지 않을 경우 3-way merge를 수행한다. 공통�
 Reset
 ========
 
-현재 브랜치를 유지한채 HEAD만 이전 커밋으로 이동시킬 수 있다.
+현재 브랜치를 유지한채 HEAD만 이전 커밋으로 이동시킬 수 있다.::
 
-- git reset --soft HEAD~ : HEAD만 바꾼다. Index나 Working Directory는 그대로 둔다.
-- git reset HEAD~ : HEAD를 바꾸고, Index 영역을 HEAD가 가르키는 상태로 바꾼다.
-- git reset --hard HEAD~ : HEAD는 바꾸고, Index과 Working Directory 영역을 HEAD가 가르키는 상태로 바꾼다.
+  git reset --soft HEAD~ : HEAD만 바꾼다. Index나 Working Directory는 그대로 둔다.
+  git reset HEAD~ : HEAD를 바꾸고, Index 영역을 HEAD가 가르키는 상태로 바꾼다.
+  git reset --hard HEAD~ : HEAD는 바꾸고, Index과 Working Directory 영역을 HEAD가 가르키는 상태로 바꾼다.
 
 ========
  Commit
