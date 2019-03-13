@@ -93,7 +93,7 @@ Kerberos
 .. image:: image/ker.png
 
 
-티켓 기반으로 네트워크를 통해 서로를 확인하는 인증 프로토콜을 뜻한다. 
+티켓 기반으로 네트워크를 통해 서로를 확인하는 인증 프로토콜을 뜻한다. TCP 88포트를 사용한다.
 
 Windows 환경의 커버로스 인증은 *KDC(Key Distribution Cente)를* 중심으로 진행되며 Windows Server 2003 이후일 경우 커버로스가 기본적으로 사용된다.
 
