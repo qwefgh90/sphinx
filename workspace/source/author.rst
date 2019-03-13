@@ -4,8 +4,7 @@
  관리자 (Author)
 =================
 
-| **최창원 Choe Changwon(28)**
-| \- 010-7314-4993
+| **최창원 Choe Changwon**
 | \- qwefgh90@naver.com
 
 | \- Software Engineer at Korean Aeropsace Research Institude (2015~)
