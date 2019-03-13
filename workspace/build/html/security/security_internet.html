@@ -103,13 +103,13 @@
 <img alt="../_images/pgp.png" src="../_images/pgp.png" />
 </div>
 <div class="section" id="kerberos">
-<h2>2.4. Kerberos<a class="headerlink" href="#kerberos" title="제목 주소">¶</a></h2>
+<span id="id3"></span><h2>2.4. Kerberos<a class="headerlink" href="#kerberos" title="제목 주소">¶</a></h2>
 <p>마지막으로 Kerberos Protocol이다.</p>
 <img alt="../_images/ker.png" src="../_images/ker.png" />
 <p>티켓 기반으로 네트워크를 통해 서로를 확인하는 인증 프로토콜을 뜻한다.</p>
 <p>Windows 환경의 커버로스 인증은 <em>KDC(Key Distribution Cente)를</em> 중심으로 진행되며 Windows Server 2003 이후일 경우 커버로스가 기본적으로 사용된다.</p>
-<div class="section" id="id3">
-<h3>2.4.1. 커버로스 인증 사전 작업<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
+<div class="section" id="id4">
+<h3>2.4.1. 커버로스 인증 사전 작업<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
 <p><strong>Windows 로그온 절차(워크스테이션, 인증방식에 관계 없이)</strong></p>
 <ol class="arabic simple">
 <li>사용자가 CTRL + ALT + DEL 입력</li>
@@ -167,8 +167,8 @@
 <li><strong>마지막으로 사용자를 위해 Winlogon 데스크탑 환경과 쉘 프로세스를 실행하며 사용자가 실행하는 프로세스는 사용자 접근 토큰을 상속받는다.</strong></li>
 </ol>
 </div>
-<div class="section" id="id4">
-<h3>2.4.5. 다른 리소스 및 서비스 접근<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
+<div class="section" id="id5">
+<h3>2.4.5. 다른 리소스 및 서비스 접근<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
 <p>서비스 티켓이 로컬 머신이 아닌 <strong>원격 서버(remote server)으로 보내지는 것을 제외하면 인증과정을 위와 유사하다.</strong></p>
 <p><strong>예를들어 사용자가 로그온한 뒤에 \\server\sharedvolume 접근한다고 가정해보자.</strong></p>
 <ul class="simple">
@@ -205,8 +205,8 @@
 <li>서비스 티켓에서 <em>PAC(privilege attribute certificate)를</em> 추출하여 이용해 접근 토큰을 생성한다.</li>
 </ol>
 </div>
-<div class="section" id="id5">
-<h3>2.4.6. 기타<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
+<div class="section" id="id6">
+<h3>2.4.6. 기타<a class="headerlink" href="#id6" title="제목 주소">¶</a></h3>
 <ul class="simple">
 <li>Authenticator(인증자)는 메시지를 인증하거나 또는 메시지를 전송한 시스템을 어떤 시스템인지 증명하는 토큰이다. 쉽게 말하면, HTTP 세션 ID 같은 것이다</li>
 <li>TGT가 만료되면 KRB_AS_REQ를 통해 다른 TGT와 TGS 세션 키를 요청한다.</li>
@@ -224,8 +224,8 @@
 <li>signature: HMAC으로 생성된 값, 무결성 검증 및 인증에 사용될 수 있다.</li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h2>2.6. 참조<a class="headerlink" href="#id6" title="제목 주소">¶</a></h2>
+<div class="section" id="id7">
+<h2>2.6. 참조<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>HTTPS and SSL: <a class="reference external" href="https://security.stackexchange.com/questions/5126/whats-the-difference-between-ssl-tls-and-https">https://security.stackexchange.com/questions/5126/whats-the-difference-between-ssl-tls-and-https</a></li>
 <li>HTTPS: <a class="reference external" href="https://en.wikipedia.org/wiki/HTTPS">https://en.wikipedia.org/wiki/HTTPS</a></li>
@@ -320,7 +320,7 @@
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
