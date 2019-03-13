@@ -4,7 +4,7 @@
  관리자 (Author)
 =================
 
-| **최창원 Choe Changwon(28)**
+| **최창원 Choe Changwon**
 | \- 010-7314-4993
 | \- qwefgh90@naver.com
 
