@@ -5,7 +5,6 @@
 =================
 
 | **최창원 Choe Changwon**
-| \- 010-7314-4993
 | \- qwefgh90@naver.com
 
 | \- Software Engineer at Korean Aeropsace Research Institude (2015~)
