@@ -83,6 +83,8 @@ S/MIME
 
 .. image:: image/pgp.png
 
+.. _kerberos:
+
 Kerberos
 ---------------
 
