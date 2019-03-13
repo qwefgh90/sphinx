@@ -144,13 +144,13 @@
 <p>기본적으로 Kerberos가 적용되면 NTLM은 사용되지 않는다고 봐야한다.</p>
 <p>인증과정</p>
 <ol class="arabic simple">
-<li>클라이언트는 사용자 키(해시된 암호, 이는 Kerberos에서도 사용됨)를 생성한다.</li>
-<li>클라이언트는 사용자 이름, 도메인 이름을 App 서버에 보낸다.</li>
-<li>서버는 클라이언트에게 난수(challenge, nonce)를 401응답과 함께 보내고, <strong>클라이언트는 사용자 암호와 난수를 이용해 만든 해시를 서버에 보낸다.</strong></li>
-<li>서버는 사용자 이름과 해시값을 도메인 컨트롤러에 보낸다.</li>
-<li>도메인 컨트롤러는 SAM(Security Account Manager)에서 <strong>사용자 암호의 해시를 얻어내어 클라이언트 처럼 난수를 해시로 만든다.</strong></li>
-<li>5번과 3번에서 만들어진 해시를 비교하여, 동일할 경우 인증은 성공한다.</li>
+<li>사용자는 임의 HTTP 요청을 서버에 보낸다. <em>서버는 401응답과 함께</em> <a href="#id6"><span class="problematic" id="id7">`</span></a>WWW-Authenticate: NTLM`이 반환한다.</li>
 </ol>
+<p>2. 클라이언트는 이름, 도메인 이름을 App 서버에 보낸다.
+4. 서버는 클라이언트에게 난수(challenge, nonce)를 <em>401응답과 함께 보내고,</em> <strong>클라이언트는 사용자 키(해시된 암호, 이는 Kerberos에서도 사용됨)를 캐시에 만들고, 사용자 암호와 난수를 이용해 만든 해시를 서버에 보낸다.</strong>
+5. 서버는 사용자 이름과 해시값을 도메인 컨트롤러에 보낸다.
+6. 도메인 컨트롤러는 SAM(Security Account Manager)에서 <strong>사용자 암호의 해시를 얻어내어 클라이언트 처럼 난수를 해시로 만든다.</strong>
+7. 5번과 3번에서 만들어진 해시를 비교하여, 동일할 경우 인증은 성공한다.</p>
 </div>
 <div class="section" id="hash">
 <h3>1.3.4. Hash<a class="headerlink" href="#hash" title="제목 주소">¶</a></h3>
@@ -173,7 +173,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">(c)Using</span> <span class="pre">secret</span> <span class="pre">value</span></code> 방식은 (메세지 + 비밀키)를 해싱하여 값을 만들고 그 값을 메세지에 담아 전달하여 인증하는 방식이다.</p>
 </div>
 <div class="section" id="digital-signature">
-<span id="id6"></span><h3>1.3.7. Digital Signature(전자 서명)<a class="headerlink" href="#digital-signature" title="제목 주소">¶</a></h3>
+<span id="id8"></span><h3>1.3.7. Digital Signature(전자 서명)<a class="headerlink" href="#digital-signature" title="제목 주소">¶</a></h3>
 <p>공개키 암호화 방식을 통해 인증을 하는 방식으로 공개키의 특징을 사용한 것이다. 먼저 메세지를 해싱한 후 그 값을 비밀키로 암호화하여 전송한다. 수신 측은 공개키로 <em>서명 값</em> 을 복호화 하고 해시 값을 비교한다. 해시 함수를 사용한 MAC 방식과 유사하다.</p>
 <p>전자서명은 인증과 무결성을 모두 보증하는 방식이다.</p>
 <img alt="../_images/digital_signature.jpg" src="../_images/digital_signature.jpg" />
@@ -187,8 +187,8 @@
 <h3>1.3.9. SSL 인증서, 공인인증서와 전자서명<a class="headerlink" href="#ssl" title="제목 주소">¶</a></h3>
 <p><strong>SSL 인증서는</strong> 서버가 신뢰할 수 있는지 증명할 수 있는 전자인증서이다. 이때 공개키 암호화 방식을 사용하여 사용자 인증과 인증서의 무결성을 증명할 수 있다. <a class="reference internal" href="#digital-signature"><span class="std std-ref">Digital Signature(전자 서명)</span></a> 을 참고하도록 하자. SSL 인증서는 도메인 정보, 서버 공개키 등을 저장하고 있다. SSL 인증서 정보로부터 해시값을 만들고 이를 CA의 비밀키로 암호화 한 값을 전자서명으로 사용한다. 인증서와 함께 전자서명을 보내서 인증서의 무결성 및 신뢰성을 보장한다. 브라우저는 이미 CA의 비밀키에 대한 공개키를 가지고 있다. CA는 신뢰할 수 있는 제3의 인증기관이다. SSL 인증서의 서버 공개키를 이용하여 전송계층을 암호화할때 사용하는 대칭키를 암호화하여 전송한다.</p>
 <p><strong>공인인증서는</strong> 클라이언트가 신뢰할 수 있는지 증명할 수 있는 전자인증서이다. 공인인증서는 암호화된 개인키와 공개키로 이루어진다. <strong>인증서의 개인키와 공개키는 한 쌍이다.</strong> 패스워드를 입력받아 개인키를 얻어낸뒤 {결재정보, 암호화된 결재정보, 공인인증서}를 전달한다. 먼저 공인인증서의 전자서명 인증 절차에 따라 인증서가 신뢰할 수 있는지 판단한다. 만약 공인인증서를 신뢰할 수 있다면 공개키를 신뢰할 수 있게된다. 수신한 전자서명을 이용해 결재정보가 옳바른지 인증하고 인증에 성공한다면 공인인증서의 역할이 끝나게된다.</p>
-<div class="section" id="id7">
-<h4>1.3.9.1. 인증서 정보<a class="headerlink" href="#id7" title="제목 주소">¶</a></h4>
+<div class="section" id="id9">
+<h4>1.3.9.1. 인증서 정보<a class="headerlink" href="#id9" title="제목 주소">¶</a></h4>
 <ul class="simple">
 <li>DN(Distinguished Name) : 고유 이름으로 불리며 인증서를 발급받는 개인이나 CA를 뜻한다. <strong>아래 필드를 포함한다.</strong></li>
 <li>CN(CommonName) : 가입자의 이름(도메인 명, 소유주 식별정보)</li>
@@ -198,8 +198,8 @@
 <li>CA(certificate authority) : 인증기관이라 부르며 공개키 쌍을 관리하며 인증서를 발급, 저장, 폐기한다.</li>
 </ul>
 </div>
-<div class="section" id="id8">
-<h4>1.3.9.2. 인증서간 서명 매커니즘<a class="headerlink" href="#id8" title="제목 주소">¶</a></h4>
+<div class="section" id="id10">
+<h4>1.3.9.2. 인증서간 서명 매커니즘<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
 <p>인증서는 트리구조를 이루며 인증서끼리 서명하게된다. 인증서의 서명값은 발급자의 비공개키로 서명되어 발급자의 공개키를 통해 검증할 수 있다. 이 발급자의 공개키는 발급자 인증서에 포함되어 있고 이 인증서는 <strong>발급자의 발급자에게</strong> 서명된다. <strong>이렇게 최상위 발급자(인증기관)을 만날때까지 재귀적으로 인증서가 검증된다.</strong> 루트 인증기관(Root CA)은 자체 서명이 되어있다. 일반적으로 브라우저는 유명한 인증 기관의 Root CA 인증서가 기본적으로 설치되어 있다.(Verisign 등)</p>
 </div>
 </div>
@@ -272,8 +272,8 @@
 <li>메타모픽 바이러스 : 반복마다 자기자신의 행동을 바꾸는 바이러스</li>
 </ul>
 <p>바이러스 키트는 초보자도 쉽게 다양한 바이러스를 만들게 해준다. 매크로 바이러스는 플랫폼 독립적이고 문서를 감염시키고 실행되지 않는다. e-mail을 통해 쉽게 퍼지고 파일 시스템 접근 제어가 제한된다.</p>
-<div class="section" id="id9">
-<h4>1.6.1.1. 바이러스 대응책<a class="headerlink" href="#id9" title="제목 주소">¶</a></h4>
+<div class="section" id="id11">
+<h4>1.6.1.1. 바이러스 대응책<a class="headerlink" href="#id11" title="제목 주소">¶</a></h4>
 <p>안티바이러스는 예방, 탐지, 확인, 삭제기능을 가지고 있다.</p>
 <p>안티바이러스 개발방식</p>
 <ul class="simple">
@@ -290,8 +290,8 @@
 <p>웜의 특징으로는 다른 감염될 시스템을 스스로 찾는 것, 원격 시스템과 연결을 맺는 것, 스스로를 원격 시스템에 복사하여 실행되도록 하는 것이다.</p>
 <p>모리스웜은 로버트 모리스에 의해 1988년에 만들어졌다. 모리스웜은 호스트 PC를 찾고 접근권한을 얻으려 했다. 로컬 패스워드 파일을 크래킹하고 UNIX finger 프로토콜의 버그를 발동시키고 디버그 옵션이 걸린 trapdoor(유지보수를 위한 시스템의 구멍)의 버그를 발생시켰다.</p>
 <p>다른 예로 <em>Code Red</em> 는 2001년에 MS IIS에 감염되는 웜바이러스이다. <em>SQL Slammer</em> 는 MS SQL Server에 버퍼오버플로우 공격을 하는 웜이다. 현재 웜 기술은 multiplatform, multiexploit(web server, browser, e-mail, file sharing), 빠른 전파속도, 다형성, 변성, 제로데이를 포함한다.</p>
-<div class="section" id="id10">
-<h4>1.6.2.1. worm 대응책<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
+<div class="section" id="id12">
+<h4>1.6.2.1. worm 대응책<a class="headerlink" href="#id12" title="제목 주소">¶</a></h4>
 <p>대응책의 요구사항으로는 보편성, 시기적절성(timeliness), 탄성, 가용성, 투명성, 많은 커버리지가 있다.</p>
 <p>대응책은 시그니처 기반으로 웜을 필터링하는 방식, 필터기반, 페이로드 분류 기반, 속도를 줄이거나 패킷을 드랍시키는 방식이 있다.</p>
 <img alt="../_images/worm_containment.jpg" src="../_images/worm_containment.jpg" />
@@ -454,7 +454,7 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
 </div>
 </div>
 <div class="section" id="risk-assessment">
-<span id="id11"></span><h2>1.12. Risk Assessment (위험평가)<a class="headerlink" href="#risk-assessment" title="제목 주소">¶</a></h2>
+<span id="id13"></span><h2>1.12. Risk Assessment (위험평가)<a class="headerlink" href="#risk-assessment" title="제목 주소">¶</a></h2>
 <p>위험평가란 IT 인프라의 위험을 확인하고 위험을 완화하는 것을 말한다. 위험평가에는 <em>베이스라인 접근(baseline approach)</em> , <em>경험적 접근(informal approach)</em> , <em>상세한 위험 분석(detailed risk analysis)</em> , <em>복합 접근(combined approach)</em> 가 있다.</p>
 <p>베이스라인 접근은 대부분의 위협을 보호할 수 있는 <em>보안 지침서</em> 를 따르는 방식이다. 산업에서 가장 모범이 되는 형태이다. 경험적 접근은 실용적인 방식으로 위협을 분석 및 접근하는 방식이다.</p>
 <p>상세한 위험 분석은 상세한 위험 평가를 하는 정밀한 종합적인 접근법이다. 마지막으로 복합 접근은 가능한 빨르게 합리적인 방법으로 문제에 접근하는 방법이다.</p>
@@ -481,8 +481,8 @@ Source Address | Source Port | Destination Address | Destination Port | Connecti
 <p><em>baselining</em> 은 정상적인 패턴에 대비한 비정상적인 이벤트와 패턴을 정의하는 것이다. 이 부분은 위에서 검토 요소를 선택하는 부분과 비슷한데 먼저 보안 감사 기록으로 부터 네트워크 트래픽, 로그인 로그아웃, 관리자 계정, DHCP 주소 관리, 전체적인 로그 데이터등을 <em>수집</em> 한 후 베이스라인 기법으로 <em>분석</em> 한다. 예를들면 비정상 탐지, 스레시 홀드를 사용하여 분석한다.</p>
 </div>
 </div>
-<div class="section" id="id12">
-<h2>1.13. 참조<a class="headerlink" href="#id12" title="제목 주소">¶</a></h2>
+<div class="section" id="id14">
+<h2>1.13. 참조<a class="headerlink" href="#id14" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>Challenge–response authentication: <a class="reference external" href="https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication">https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication</a></li>
 <li>공인인증서: <a class="reference external" href="http://crazia.tistory.com/entry/PKI-PKI-%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90-%EA%B0%84%EB%8B%A8-%EC%84%A4%EB%AA%85">http://crazia.tistory.com/entry/PKI-PKI-%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90-%EA%B0%84%EB%8B%A8-%EC%84%A4%EB%AA%85</a></li>
