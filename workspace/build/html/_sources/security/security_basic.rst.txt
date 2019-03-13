@@ -608,3 +608,4 @@ Security Auditing (보안 감사)
 - PKI: https://en.wikipedia.org/wiki/Public_key_infrastructure
 - Diffie-Hellman: https://ko.wikipedia.org/wiki/%EB%94%94%ED%94%BC-%ED%97%AC%EB%A8%BC_%ED%82%A4_%EA%B5%90%ED%99%98
 - 모듈러 연산: https://ko.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/modular-multiplication
+- NTLM: https://blogs.msdn.microsoft.com/chiranth/2013/09/20/ntlm-want-to-know-how-it-works/
