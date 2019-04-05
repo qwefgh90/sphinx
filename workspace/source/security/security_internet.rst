@@ -187,8 +187,8 @@ User Credential을 이용한 사용자 인증
 
 **KRB_AP_REP**
 
-8) 서비스 티켓을 서비스 키(Service key)로 복호화 하여 사용자 인가 데이터(authrization data)및 세션키를 추출한다.
-9) *인증자(Authenticator)를* 복호화 한 뒤 타임스탬프(timestamp)의 유효성을 확인한다.
+8) 서버는 서비스 키(Service key)를 가지고 있다. 서버는 서비스 티켓을 서비스 키로 복호화 하여 사용자 인가 데이터(authrization data)및 **세션키(Session key)를** 추출한다.
+9) *인증자(Authenticator)를* 복호화 한 뒤 타임스탬프(timestamp)가 유효한 시간인지 확인한다. 유효하다면 인증에 성공한 것이다.
 10) 상호 인증 플래그가 있다면 서버는 세션 키로 *인증자(Authenticator)의 시간(time)을* 암호화해서 클라이언트에게 전달한다.
 
 **접근 토근(access token) 생성**

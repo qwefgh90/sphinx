@@ -208,8 +208,8 @@
 </ol>
 <p><strong>KRB_AP_REP</strong></p>
 <ol class="arabic simple" start="8">
-<li>서비스 티켓을 서비스 키(Service key)로 복호화 하여 사용자 인가 데이터(authrization data)및 세션키를 추출한다.</li>
-<li><em>인증자(Authenticator)를</em> 복호화 한 뒤 타임스탬프(timestamp)의 유효성을 확인한다.</li>
+<li>서버는 서비스 키(Service key)를 가지고 있다. 서버는 서비스 티켓을 서비스 키로 복호화 하여 사용자 인가 데이터(authrization data)및 <strong>세션키(Session key)를</strong> 추출한다.</li>
+<li><em>인증자(Authenticator)를</em> 복호화 한 뒤 타임스탬프(timestamp)가 유효한 시간인지 확인한다. 유효하다면 인증에 성공한 것이다.</li>
 <li>상호 인증 플래그가 있다면 서버는 세션 키로 <em>인증자(Authenticator)의 시간(time)을</em> 암호화해서 클라이언트에게 전달한다.</li>
 </ol>
 <p><strong>접근 토근(access token) 생성</strong></p>
