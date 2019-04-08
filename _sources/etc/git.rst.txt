@@ -68,6 +68,19 @@ Staged인 파일을 비교할때는 *git diff --staged 를* 사용한다.
   git rebase --abort   # rebase를 작업을 중단하고 모든 수정을 포기한다.
   git push -f origin master #보통 강제 PUSH는 권장하지 않는다.
  
+커밋을 분리하고 싶을 경우 rebase를 이용해 에디팅 할 수 있다.::
+
+  git rebase -i HEAD~3 #최신의 커밋메시지 3개를 선택하여 커밋을 조작할 수 있는 도구를 제공한다.
+                       #보통 VIM에 어떤 텍스트파일이 열리며 분리하고 싶은 pick으로 시작하는 행을 edit으로 수정하고 닫는다.
+  git reset HEAD~1   #해당 커밋으로 체크아웃되며 바로 현재 HEAD(edit할 대상) 이전으로 돌린다.
+  git add a.txt
+  git commit -m "분리된 첫번째 커밋"
+  git add b.txt
+  git commit -m "분리된 두번째 커밋"
+  git rebase --continue #다음 수정할 커밋으로 진행한다. 더이상 수정할 항목이 없을 경우 수정을 반영한 상태로 rebase 전 상태로 돌아감.
+  git rebase --abort   # rebase를 작업을 중단하고 모든 수정을 포기한다.
+  git push -f origin master #보통 강제 PUSH는 권장하지 않는다.
+ 
 =======
  Merge
 =======
