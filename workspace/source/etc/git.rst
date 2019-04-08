@@ -91,6 +91,7 @@ Git 도구에는 Squash를 위한 여러가지 명령을 제공한다. 대표적
   git commit -m "xxxxx" : **Squash될 커밋의 이전 커밋으로 이동할 경우** 바로 커밋한다.
   git push origin +patch-1 : 원격 저장소에 강제로 푸쉬한다.
 
+그 외에도 `git rebase -i origin/master your-branch` 등으로 Squash를 할 수 있다고 한다.
 
 ========
  Commit
