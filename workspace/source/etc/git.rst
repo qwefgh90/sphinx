@@ -22,9 +22,20 @@ Untracked - Unmodified - Modified - Staged::
  diff
 ======
 
-Modified이나 Staged가 아닌 파일을 비교할때는 *git diff를* 사용한다.
+Modified이나 Staged가 아닌 파일을 비교할때는 `git diff` 를 사용한다.
 
-Staged인 파일을 비교할때는 *git diff --staged 를* 사용한다.
+Staged인 파일을 비교할때는 `git diff --staged` 를 사용한다.
+
+`git diff "shaxxx" "shaxxxxxx"` 로 2개의 커밋을 비교할 수도 있다.
+
+=========
+Branch
+=========
+
+로컬 브랜치 만들면서 원격 브랜치::
+
+  git fetch
+  git checkout branch1
 
 ========
  Rebase

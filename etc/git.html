@@ -65,11 +65,20 @@
 </div>
 <div class="section" id="diff">
 <h2>2.2. diff<a class="headerlink" href="#diff" title="제목 주소">¶</a></h2>
-<p>Modified이나 Staged가 아닌 파일을 비교할때는 <em>git diff를</em> 사용한다.</p>
-<p>Staged인 파일을 비교할때는 <em>git diff --staged 를</em> 사용한다.</p>
+<p>Modified이나 Staged가 아닌 파일을 비교할때는 <cite>git diff</cite> 를 사용한다.</p>
+<p>Staged인 파일을 비교할때는 <cite>git diff --staged</cite> 를 사용한다.</p>
+<p><cite>git diff &quot;shaxxx&quot; &quot;shaxxxxxx&quot;</cite> 로 2개의 커밋을 비교할 수도 있다.</p>
+</div>
+<div class="section" id="branch">
+<h2>2.3. Branch<a class="headerlink" href="#branch" title="제목 주소">¶</a></h2>
+<p>로컬 브랜치 만들면서 원격 브랜치:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">fetch</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">branch1</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="rebase">
-<h2>2.3. Rebase<a class="headerlink" href="#rebase" title="제목 주소">¶</a></h2>
+<h2>2.4. Rebase<a class="headerlink" href="#rebase" title="제목 주소">¶</a></h2>
 <p>갈라져 나온 브랜치(feature-1)에서 작업이 끝났을때 변경사항에 대한 패치를 만들어 합칠 브랜치(master)에 패치를 적용하는 것을 뜻한다. 합칠 브랜치는 Fast-forward 하여 Rebase 한 브랜치가 만든 커밋을 가르킨다.</p>
 <p>명령어는 다음과 같다.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 갈라져 나온 브랜치 (feature-1)</span>
@@ -84,7 +93,7 @@
 <p>히스토리를 선형적으로 정리할 수 있다는 장점이 있으며, 갈라져 나온 브랜치가 계속 관리되는 브랜치가 아닐때 rebase를 사용하면 좋다.
 <strong>단 merge로 생성한 commit을 서버에 push한 뒤 다시 로컬에서 rebase로 정리한 뒤 commit을 하면 그 사이에 작업한 다른 개발자의 결과물은 이전 병합 commit을 가르키게 되므로 히스토리가 꼬이게 된다.</strong></p>
 <div class="section" id="id2">
-<h3>2.3.1. 히스토리 정리하기<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
+<h3>2.4.1. 히스토리 정리하기<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
 <p><strong>커밋 삭제, 순서 변경, 메시지 변경(이전 커밋), 커밋 Squash등을 수행할 수 있다.</strong></p>
 <p><strong>원격에 푸시하기 전에 하는 것을 권장한다. 보통 강제 PUSH는 협업에서 다른 사람의 히스토리를 꼬이게 하므로 권장하지 않는다.</strong></p>
 <p>커밋을 삭제하고 싶을 경우 rebase를 이용해 에디팅 할 수 있다.:</p>
@@ -118,7 +127,7 @@
 </div>
 </div>
 <div class="section" id="merge">
-<h2>2.4. Merge<a class="headerlink" href="#merge" title="제목 주소">¶</a></h2>
+<h2>2.5. Merge<a class="headerlink" href="#merge" title="제목 주소">¶</a></h2>
 <p>Fast-forward는 commit 포인터를 그대로 <strong>다른 브랜치의 commit 포인터로 이동시키는 것이다. 단 이동할 commit의 조상이 현재 브랜치여야 한다.</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
 <span class="n">git</span> <span class="n">merge</span> <span class="n">feature</span><span class="o">-</span><span class="mi">1</span>
@@ -129,7 +138,7 @@
 <img alt="../_images/merge.png" src="../_images/merge.png" />
 </div>
 <div class="section" id="reset">
-<h2>2.5. Reset<a class="headerlink" href="#reset" title="제목 주소">¶</a></h2>
+<h2>2.6. Reset<a class="headerlink" href="#reset" title="제목 주소">¶</a></h2>
 <p>현재 브랜치를 유지한채 HEAD만 이전 커밋으로 이동시킬 수 있다.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">soft</span> <span class="n">HEAD</span><span class="o">~</span> <span class="p">:</span> <span class="n">HEAD만</span> <span class="n">바꾼다</span><span class="o">.</span> <span class="n">Index나</span> <span class="n">Working</span> <span class="n">Directory는</span> <span class="n">그대로</span> <span class="n">둔다</span><span class="o">.</span>
 <span class="n">git</span> <span class="n">reset</span> <span class="n">HEAD</span><span class="o">~</span> <span class="p">:</span> <span class="n">HEAD를</span> <span class="n">바꾸고</span><span class="p">,</span> <span class="n">Index</span> <span class="n">영역을</span> <span class="n">HEAD가</span> <span class="n">가르키는</span> <span class="n">상태로</span> <span class="n">바꾼다</span><span class="o">.</span>
@@ -138,7 +147,7 @@
 </div>
 </div>
 <div class="section" id="squash">
-<h2>2.6. Squash<a class="headerlink" href="#squash" title="제목 주소">¶</a></h2>
+<h2>2.7. Squash<a class="headerlink" href="#squash" title="제목 주소">¶</a></h2>
 <p>Squash는 여러개의 커밋을 정리하는 것을 말한다. 커밋이 각각 존재할 필요가 없을 경우, 하나의 커밋으로 관리되어야 할 경우 Squash를 사용한다.</p>
 <p>Git 도구에는 Squash를 위한 여러가지 명령을 제공한다. 대표적으로 <cite>git reset --soft xxxxxx</cite> 을 이용해서 현재 인덱스를 가지고 과거의 커밋을 수정하는 방법이 있다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">예를들어</span> <span class="mi">3</span><span class="n">개의</span> <span class="n">커밋을</span> <span class="n">하나의</span> <span class="mi">1</span><span class="n">개의</span> <span class="n">커밋으로</span> <span class="n">만들고</span> <span class="n">싶을때</span> <span class="n">다음</span> <span class="n">명령으로</span> <span class="n">작업을</span> <span class="n">진행하면</span> <span class="n">된다</span><span class="o">.</span>
@@ -160,7 +169,7 @@
 </div>
 </div>
 <div class="section" id="commit">
-<h2>2.7. Commit<a class="headerlink" href="#commit" title="제목 주소">¶</a></h2>
+<h2>2.8. Commit<a class="headerlink" href="#commit" title="제목 주소">¶</a></h2>
 <p>실수로 Staged하는 파일을 까먹었다면 --amend로 해결할 수 있다.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;commit missing some files&quot;</span>
 <span class="n">git</span> <span class="n">add</span> <span class="n">forgotten_file</span>
@@ -177,7 +186,7 @@
 </div>
 </div>
 <div class="section" id="stash">
-<h2>2.8. Stash<a class="headerlink" href="#stash" title="제목 주소">¶</a></h2>
+<h2>2.9. Stash<a class="headerlink" href="#stash" title="제목 주소">¶</a></h2>
 <p>Tracked Modified 이거나 Staged 인 파일들을 임시로 저장할 수 있다.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">stash</span> <span class="n">save</span>
 <span class="n">git</span> <span class="n">stash</span> <span class="nb">list</span>
@@ -186,7 +195,7 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h2>2.9. 참조<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<h2>2.10. 참조<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>squash: <a class="reference external" href="https://gist.github.com/patik/b8a9dc5cd356f9f6f980">https://gist.github.com/patik/b8a9dc5cd356f9f6f980</a></li>
 <li>rebase1: <a class="reference external" href="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0">https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0</a></li>
