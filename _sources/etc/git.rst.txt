@@ -32,7 +32,7 @@ Staged인 파일을 비교할때는 `git diff --staged` 를 사용한다.
 Branch
 =========
 
-로컬 브랜치 만들면서 원격 브랜치::
+로컬 브랜치 만들면서 원격 브랜치 연결::
 
   git fetch
   git checkout branch1
