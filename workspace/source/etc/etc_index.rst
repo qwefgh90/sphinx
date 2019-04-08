@@ -5,7 +5,7 @@
     :site_name: Chang docs
     :title: etc index page
     :description: This is etc index page.
-    :keywords: 
+    :keywords: git, github, rebase, reset, push, commit, 형상관리, scm
 		    
 
 ==================
