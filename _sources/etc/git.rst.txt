@@ -45,10 +45,28 @@ Staged인 파일을 비교할때는 *git diff --staged 를* 사용한다.
 히스토리를 선형적으로 정리할 수 있다는 장점이 있으며, 갈라져 나온 브랜치가 계속 관리되는 브랜치가 아닐때 rebase를 사용하면 좋다. 
 **단 merge로 생성한 commit을 서버에 push한 뒤 다시 로컬에서 rebase로 정리한 뒤 commit을 하면 그 사이에 작업한 다른 개발자의 결과물은 이전 병합 commit을 가르키게 되므로 히스토리가 꼬이게 된다.**
 
+---------------------
+히스토리 정리하기
+---------------------
+
+**커밋 삭제, 순서 변경, 메시지 변경(이전 커밋), 커밋 Squash등을 수행할 수 있다.**
+
+**원격에 푸시하기 전에 하는 것을 권장한다. 보통 강제 PUSH는 협업에서 다른 사람의 히스토리를 꼬이게 하므로 권장하지 않는다.**
+
 커밋을 삭제하고 싶을 경우 rebase를 이용해 에디팅 할 수 있다.::
 
-  git rebase -i HEAD~2 # 현재 헤드를 이전 커밋으로 바꾼다. "git reset 해시값" 도 사용 가능
-  git push -f origin master
+  git rebase -i HEAD~3 #최신의 커밋메시지 3개를 선택하여 커밋을 조작할 수 있는 도구를 제공한다. "git reset --hard 해시값" 도 사용 가능
+                       #보통 VIM에 어떤 텍스트파일이 열리며 pick으로 시작하는 문장을 지우면 실제 커밋이 제거된다.
+  git push -f origin master #보통 강제 PUSH는 권장하지 않는다.
+ 
+커밋 메시지를 수정하고 싶을 경우 rebase를 이용해 에디팅 할 수 있다.::
+
+  git rebase -i HEAD~3 #최신의 커밋메시지 3개를 선택하여 커밋을 조작할 수 있는 도구를 제공한다.
+                       #보통 VIM에 어떤 텍스트파일이 열리며 수정하고 싶은 pick으로 시작하는 행을 edit으로 수정하고 닫는다.
+  git commit --amend   #해당 커밋으로 체크아웃되며 --amend 를 이용해 메시지를 수정한다.
+  git rebase --continue #다음 수정할 커밋으로 진행한다. 더이상 수정할 항목이 없을 경우 수정을 반영한 상태로 rebase 전 상태로 돌아감.
+  git rebase --abort   # rebase를 작업을 중단하고 모든 수정을 포기한다.
+  git push -f origin master #보통 강제 PUSH는 권장하지 않는다.
  
 =======
  Merge
@@ -129,5 +147,6 @@ Tracked Modified 이거나 Staged 인 파일들을 임시로 저장할 수 있�
 ======
 
 - squash: https://gist.github.com/patik/b8a9dc5cd356f9f6f980
-- rebase: https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0
+- rebase1: https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0
+- rebase2: https://git-scm.com/book/ko/v1/Git-%EB%8F%84%EA%B5%AC-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EB%8B%A8%EC%9E%A5%ED%95%98%EA%B8%B0
 - reset: https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Reset-%EB%AA%85%ED%99%95%ED%9E%88-%EC%95%8C%EA%B3%A0-%EA%B0%80%EA%B8%B0
