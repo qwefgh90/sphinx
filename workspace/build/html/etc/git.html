@@ -138,7 +138,13 @@
 <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="o">+</span><span class="n">patch</span><span class="o">-</span><span class="mi">1</span> <span class="p">:</span> <span class="n">원격</span> <span class="n">저장소에</span> <span class="n">강제로</span> <span class="n">푸쉬한다</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>그 외에도 <cite>git rebase -i origin/master your-branch</cite> 등으로 Squash를 할 수 있다고 한다.</p>
+<p>그 외에도 <cite>git rebase -i HEAD~5</cite> 으로 Squash를 할 수 있다.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">fetch</span> <span class="p">:</span> <span class="n">로컬</span> <span class="n">컴퓨터에</span> <span class="n">전체</span> <span class="n">브랜치</span> <span class="n">목록을</span> <span class="n">받아온다</span><span class="o">.</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">patch</span><span class="o">-</span><span class="mi">1</span> <span class="p">:</span> <span class="n">특정</span> <span class="n">브랜치로</span> <span class="n">이동한다</span><span class="o">.</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">5</span> <span class="p">:</span> <span class="mi">3</span><span class="n">개를</span> <span class="mi">1</span><span class="n">개로</span> <span class="n">하고</span> <span class="n">싶다면</span> <span class="n">가장</span> <span class="n">부모</span> <span class="n">커밋을</span> <span class="n">pick하고</span> <span class="n">그</span> <span class="n">이후</span> <span class="mi">2</span><span class="n">개를</span> <span class="n">squash로</span> <span class="n">수정한다</span><span class="o">.</span>
+                     <span class="p">:</span> <span class="n">엔터를</span> <span class="n">입력하면</span> <span class="mi">3</span><span class="n">개의</span> <span class="n">커밋</span> <span class="n">메시지를</span> <span class="n">합친</span> <span class="n">메시지가</span> <span class="n">vim에</span> <span class="n">출력되고</span> <span class="n">저장하면</span> <span class="n">squash가</span> <span class="n">완료된다</span><span class="o">.</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="commit">
 <h2>2.7. Commit<a class="headerlink" href="#commit" title="제목 주소">¶</a></h2>

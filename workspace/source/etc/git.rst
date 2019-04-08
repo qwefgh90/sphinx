@@ -109,7 +109,12 @@ Git 도구에는 Squash를 위한 여러가지 명령을 제공한다. 대표적
   git commit -m "xxxxx" : **Squash될 커밋의 이전 커밋으로 이동할 경우** 바로 커밋한다.
   git push origin +patch-1 : 원격 저장소에 강제로 푸쉬한다.
 
-그 외에도 `git rebase -i origin/master your-branch` 등으로 Squash를 할 수 있다고 한다.
+그 외에도 `git rebase -i HEAD~5` 으로 Squash를 할 수 있다.::
+
+  git fetch : 로컬 컴퓨터에 전체 브랜치 목록을 받아온다.
+  git checkout patch-1 : 특정 브랜치로 이동한다.
+  git rebase -i HEAD~5 : 3개를 1개로 하고 싶다면 가장 부모 커밋을 pick하고 그 이후 2개를 squash로 수정한다.
+                       : 엔터를 입력하면 3개의 커밋 메시지를 합친 메시지가 vim에 출력되고 저장하면 squash가 완료된다.
 
 ========
  Commit
