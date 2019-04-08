@@ -74,6 +74,24 @@ Reset
   git reset HEAD~ : HEAD를 바꾸고, Index 영역을 HEAD가 가르키는 상태로 바꾼다.
   git reset --hard HEAD~ : HEAD는 바꾸고, Index과 Working Directory 영역을 HEAD가 가르키는 상태로 바꾼다.
 
+=========
+Squash
+=========
+
+Squash는 여러개의 커밋을 정리하는 것을 말한다. 커밋이 각각 존재할 필요가 없을 경우, 하나의 커밋으로 관리되어야 할 경우 Squash를 사용한다.
+
+Git 도구에는 Squash를 위한 여러가지 명령을 제공한다. 대표적으로 `git reset --soft xxxxxx` 을 이용해서 현재 인덱스를 가지고 과거의 커밋을 수정하는 방법이 있다. ::
+
+  예를들어 3개의 커밋을 하나의 1개의 커밋으로 만들고 싶을때 다음 명령으로 작업을 진행하면 된다.
+  
+  git fetch : 로컬 컴퓨터에 전체 브랜치 목록을 받아온다.
+  git checkout patch-1 : 특정 브랜치로 이동한다.
+  git reset --soft xxxxxx : 특정 커밋으로 이동한다. (Squash될 커밋 또는 그 커밋의 이전 커밋)
+  git commit --amend : **Squash될 커밋 중 첫번째 커밋으로 이동할 경우** 바로 커밋 메시지를 수정하여 커밋한다. 예를들어 Squash할 3개의 커밋중 첫번째 커밋으로 이동한 경우 사용할 수 있다.
+  git commit -m "xxxxx" : **Squash될 커밋의 이전 커밋으로 이동할 경우** 바로 커밋한다.
+  git push origin +patch-1 : 원격 저장소에 강제로 푸쉬한다.
+
+
 ========
  Commit
 ========
@@ -109,5 +127,6 @@ Tracked Modified 이거나 Staged 인 파일들을 임시로 저장할 수 있�
  참조
 ======
 
+- squash: https://gist.github.com/patik/b8a9dc5cd356f9f6f980
 - rebase: https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0
 - reset: https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Reset-%EB%AA%85%ED%99%95%ED%9E%88-%EC%95%8C%EA%B3%A0-%EA%B0%80%EA%B8%B0
