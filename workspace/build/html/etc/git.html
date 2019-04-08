@@ -79,7 +79,9 @@
 </div>
 <div class="section" id="rebase">
 <h2>2.4. Rebase<a class="headerlink" href="#rebase" title="제목 주소">¶</a></h2>
-<p>갈라져 나온 브랜치(feature-1)에서 작업이 끝났을때 변경사항에 대한 패치를 만들어 합칠 브랜치(master)에 패치를 적용하는 것을 뜻한다. 합칠 브랜치는 Fast-forward 하여 Rebase 한 브랜치가 만든 커밋을 가르킨다.</p>
+<p>기존 브랜치의 최신 변경 사항위에 현재 브랜치의 패치를 적용할때 사용한다.</p>
+<p>예를들어 갈라져 나온 브랜치(feature-1)에서 작업이 끝났을때 <strong>기존 브랜치(보통, master)의 최신의 마지막 변경 사항 위에 현 브랜치의 내용을 패치하여</strong> 브랜치의 흔적을 지우고 master에서 작업 된것 처럼 커밋을 정리할때 사용한다.</p>
+<p>이 후 합칠 브랜치로 Checkout 후 merge 명령으로 바로 Fast-forward 하여 Rebase한 브랜치가 만든 마지막 커밋을 가르킨다.</p>
 <p>명령어는 다음과 같다.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 갈라져 나온 브랜치 (feature-1)</span>
 <span class="n">git</span> <span class="n">checkout</span> <span class="n">feature</span><span class="o">-</span><span class="mi">1</span>
