@@ -175,3 +175,4 @@ TDD
 - 구체적인 설계: http://agilemodeling.com/essays/modelStorming.htm
 - tdd: http://agiledata.org/essays/tdd.html
 - User Stories Applied
+- JIRA Agile: https://community.atlassian.com/t5/Jira-Core-questions/epic-vs-story-vs-task/qaq-p/204224
