@@ -125,10 +125,10 @@
 <p><strong>Windows 로그온 절차(워크스테이션, 인증방식에 관계 없이)</strong></p>
 <ol class="arabic simple">
 <li>사용자가 CTRL + ALT + DEL 입력</li>
-<li>Winlogon ---호출---&gt; MSGINA.DLL(GINA는 사용자 정보를 수집하고 패키징해서 LSA에 전달하는 책임이 있다)</li>
+<li>Winlogon —호출—&gt; MSGINA.DLL(GINA는 사용자 정보를 수집하고 패키징해서 LSA에 전달하는 책임이 있다)</li>
 <li>로그온 다이얼로그 박스 출력</li>
 <li>사용자는 사용자 이름, 패스워드를 입력한다.</li>
-<li><strong>MSGINA.DLL ---로그온 정보 반환---&gt; Winlogon ---정보전달---&gt;  LSA(Local Security Authority)</strong></li>
+<li><strong>MSGINA.DLL —로그온 정보 반환—&gt; Winlogon —정보전달—&gt;  LSA(Local Security Authority)</strong></li>
 <li><strong>LSA는 Kerberos 인증 프로토콜을 사용하여 인증을 시작한다.</strong></li>
 </ol>
 <p><strong>사용자 키 생성(LSA)</strong></p>
@@ -175,14 +175,14 @@
 <ol class="arabic simple">
 <li>LSA는 <em>시스템 키(System Key)를</em> 이용해 서비스 티켓(Service Ticket)에서 <em>인가 데이터(Authorization data, 사용자 자격증명, User Credentials)</em>, <em>PAC(privilege attribute certificate)를</em> 추출한다.</li>
 <li>LSA(Local Security Authority)는 Local SAM(Security Account Manager) DB에 접근하여 사용자가 존재하는 그룹이 있는지 어느 정도의 권한을 갖고 있는지 확인한다.</li>
-<li><strong>로그온 정보가 타당하는 것과 함께 DB 질의 결과인 SID 리스트와 PAC를 사용하여</strong> <em>사용자 접근 토큰(User's Access Token)</em> 만들고 <em>핸들(handle)과</em> 함께 Winlogon에 전달한다.</li>
+<li><strong>로그온 정보가 타당하는 것과 함께 DB 질의 결과인 SID 리스트와 PAC를 사용하여</strong> <em>사용자 접근 토큰(User’s Access Token)</em> 만들고 <em>핸들(handle)과</em> 함께 Winlogon에 전달한다.</li>
 <li><strong>마지막으로 사용자를 위해 Winlogon 데스크탑 환경과 쉘 프로세스를 실행하며 사용자가 실행하는 프로세스는 사용자 접근 토큰을 상속받는다.</strong></li>
 </ol>
 </div>
 <div class="section" id="id5">
 <h3>2.4.5. 다른 리소스 및 서비스 접근<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
 <p>서비스 티켓이 로컬 머신이 아닌 <strong>원격 서버(remote server)으로 보내지는 것을 제외하면 인증과정을 위와 유사하다.</strong></p>
-<p><strong>예를들어 사용자가 로그온한 뒤에 \\server\sharedvolume 접근한다고 가정해보자.</strong></p>
+<p><strong>예를들어 사용자가 로그온한 뒤에 \server\sharedvolume 접근한다고 가정해보자.</strong></p>
 <ul class="simple">
 <li>클라이언트와 서버는 어떤 인증을 사용할지 협상(negotiate)을 한다.</li>
 <li>클라이언트는 서버로 <em>서비스 티켓을</em> 전달한다.</li>

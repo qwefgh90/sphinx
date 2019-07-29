@@ -204,17 +204,17 @@
 <div class="section" id="sql">
 <h3>3.6.1. SQL 인젝션 기본<a class="headerlink" href="#sql" title="제목 주소">¶</a></h3>
 <p>사용자가 쿼리를 조작할 수 있으면 SQL 인젝션이 가능하다.</p>
-<p>String query = &quot;SELECT * FROM WHERE ID = ' &quot;+ id + &quot; ' and bPass = ' &quot;+ bPass + &quot; ' &quot;</p>
+<p>String query = 《SELECT * FROM WHERE ID = 〈 《+ id + 》 〈 and bPass = 〈 《+ bPass + 》 〈 《</p>
 <p>공격 쿼리는 다음고 같다. 아이디/ 비밀번호</p>
 <ul class="simple">
-<li>admin'-- / 아무거나</li>
-<li>admin'# / 아무거나</li>
-<li>' or 'a' = 'a / ' or 'a' = 'a</li>
+<li>admin〉– / 아무거나</li>
+<li>admin〉# / 아무거나</li>
+<li>〈 or 〈a〉 = 〈a / 〈 or 〈a〉 = 〈a</li>
 </ul>
-<p>String query = &quot;SELECT * FROM WHERE ID = ' &quot;+ id + &quot; ' &quot;</p>
+<p>String query = 《SELECT * FROM WHERE ID = 〈 《+ id + 》 〈 《</p>
 <p>Mysql DB 정보를 보는 방법은 다음과 같다.</p>
 <ul class="simple">
-<li>' union select schema_name,2,3,4,5,6 from information_schema.schemata#</li>
+<li>〈 union select schema_name,2,3,4,5,6 from information_schema.schemata#</li>
 </ul>
 <p><strong>OWASP의 ESAPI를 이용하여 위험한 문자열을 필터링하거나 동적SQL 대신 정적SQL을 사용하자. 또한 pangolin으로 SQL 인젝션 점검을 할 수 있다.</strong></p>
 </div>

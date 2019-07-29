@@ -61,7 +61,7 @@
 </div>
 <div class="section" id="id4">
 <h3>5.1.2. 루프 불변성<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
-<p>알고리즘은 i=1 ... vsize 만큼 루프를 돌게 된다. <strong>SPT에 존재하는 i-1개의 각각 정점은 시작정점 사이의 최단거리 거리를 저장한다.</strong> 이라는 명제는 항상 참이다.</p>
+<p>알고리즘은 i=1 … vsize 만큼 루프를 돌게 된다. <strong>SPT에 존재하는 i-1개의 각각 정점은 시작정점 사이의 최단거리 거리를 저장한다.</strong> 이라는 명제는 항상 참이다.</p>
 <ol class="arabic simple">
 <li>i = 1 (초기조건) 일때 0개의 정점은 최단거리를 저장하고 있다.</li>
 <li>1 &lt; i &lt; vsize+1 (유지조건) 일때 vsize-1개의 정점은 최단거리를 저장하고 있다.</li>
@@ -74,7 +74,7 @@
 <h2>5.2. Floyd Warshall Algorithm(플로이드 월쉘)<a class="headerlink" href="#floyd-warshall-algorithm" title="제목 주소">¶</a></h2>
 <div class="section" id="id5">
 <h3>5.2.1. 루프 불변성<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
-<p>알고리즘에서 경유 정점 k=1 ... vsize 만큼 루프를 돌게 된다. <strong>모든 i,j에 대해 distant[i][j]는 1 ~ k-1 번째 정점을 경유한 정점중 가장 짧은 최단거리를 저장하게 된다.</strong> 이라는 명제는 항상 참이다.</p>
+<p>알고리즘에서 경유 정점 k=1 … vsize 만큼 루프를 돌게 된다. <strong>모든 i,j에 대해 distant[i][j]는 1 ~ k-1 번째 정점을 경유한 정점중 가장 짧은 최단거리를 저장하게 된다.</strong> 이라는 명제는 항상 참이다.</p>
 <ol class="arabic simple">
 <li>k = 1 (초기조건) 일때 distant[i][j] 1 ~ 0번째 정점을 경유한 정점중 가장 짧은 최단거리를 저장하고 있다.</li>
 <li>1 &lt; k &lt; vsize + 1 (초기조건) 일때 distant[i][j] 1 ~ vsize-1 번째 정점을 경유한 정점중 가장 짧은 최단거리를 저장하고 있다.</li>

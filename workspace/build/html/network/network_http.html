@@ -95,7 +95,7 @@
 <div class="section" id="multipart-form-data">
 <h3>4.3.1. multipart/form-data<a class="headerlink" href="#multipart-form-data" title="제목 주소">¶</a></h3>
 <p><em>multipart/form-data는</em> 경계(boundary)로 구분된 연속된 데이터를 나타내는 형식을 뜻한다. 주로 POST 메서드일때 사용된다.</p>
-<p>경계(boundary)는 HTTP 헤더 뒤에 <strong>&quot;--&quot;와 &quot;경계값&quot;으로</strong> 이루어진 시퀀스이며 구분자이다.</p>
+<p>경계(boundary)는 HTTP 헤더 뒤에 <strong>《–《와 《경계값》으로</strong> 이루어진 시퀀스이며 구분자이다.</p>
 <p>경계는 <em>Content-Type 헤더</em> 의 <em>boundary</em> 매개변수에 포함된다.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">multipart</span><span class="o">/</span><span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">boundary</span><span class="o">=-------------------</span><span class="mi">12345678912345</span>\<span class="n">r</span>\<span class="n">n</span>
 </pre></div>
@@ -144,7 +144,7 @@
 <h2>4.6. 인코딩<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
 <div class="section" id="percent-encoding">
 <h3>4.6.1. 퍼센트 인코딩(Percent-Encoding)<a class="headerlink" href="#percent-encoding" title="제목 주소">¶</a></h3>
-<p>아스키가 아닌 문자와 스페이스, 제어문자등을 인코딩하는 방법을 나타낸 표준이다. 각각의 바이트는 <strong>%ff</strong> 처럼 %와 16진수 시퀀스로 인코딩된다. 예를들어 <strong>&quot;안녕&quot; 이라는 문자열은 %EC%95%88%EB%85%95</strong> 와 같이 인코딩된다. RFC3986에 정의되어 있다.</p>
+<p>아스키가 아닌 문자와 스페이스, 제어문자등을 인코딩하는 방법을 나타낸 표준이다. 각각의 바이트는 <strong>%ff</strong> 처럼 %와 16진수 시퀀스로 인코딩된다. 예를들어 <strong>《안녕》 이라는 문자열은 %EC%95%88%EB%85%95</strong> 와 같이 인코딩된다. RFC3986에 정의되어 있다.</p>
 </div>
 </div>
 <div class="section" id="cors-preflight">

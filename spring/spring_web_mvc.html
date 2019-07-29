@@ -158,7 +158,7 @@
 <span class="nt">&lt;/beans:beans&gt;</span>
 </pre></div>
 </div>
-<p><strong>&lt;context:component-scan base-package=&quot;com.chang.spring&quot; /&gt;</strong> 은 com.chang.spring 하부의 파일들은 xml로 따로 등록하지 않아도 빈을 등록해주겠다는 의미 이다. <strong>InternalResourceViewResolver</strong> 은 JSP를 찾아주는 역할을 한다. ViewResolver 이라 한다.</p>
+<p><strong>&lt;context:component-scan base-package=》com.chang.spring》 /&gt;</strong> 은 com.chang.spring 하부의 파일들은 xml로 따로 등록하지 않아도 빈을 등록해주겠다는 의미 이다. <strong>InternalResourceViewResolver</strong> 은 JSP를 찾아주는 역할을 한다. ViewResolver 이라 한다.</p>
 </div>
 </div>
 <div class="section" id="webapplicationcontext">
@@ -197,10 +197,10 @@
 <p>method 파라미터
 - &#64;RequestMapping(method=HttpMethod.GET)와 같이 사용</p>
 <p>path 파라미터
-- &quot;/pets&quot; 와 같은 문자열이 온다.</p>
+- 《/pets》 와 같은 문자열이 온다.</p>
 <p>consumes 파라미터
-- &quot;application/json&quot; 와 같은 미디어 타입(Http 요청의 Content-Type)이 온다.
-- &quot;!application/json&quot; 부정 표현식 가능</p>
+- 《application/json》 와 같은 미디어 타입(Http 요청의 Content-Type)이 온다.
+- 《!application/json》 부정 표현식 가능</p>
 <p>produces 파라미터
 - application/json;charset=UTF-8 (Http 요청의 Accept)</p>
 <p>params 파라미터
@@ -214,12 +214,12 @@
 <div class="section" id="pathvariable">
 <h4>2.4.3.1. &#64;PathVariable<a class="headerlink" href="#pathvariable" title="제목 주소">¶</a></h4>
 <p>URL 변수와 메서드 파라미터를 바인딩할때 사용하는 주석이다.</p>
-<p>&#64;GetMapping(&quot;/owners/{ownerId:[a-z-]+}/pets/{petId}&quot;) 와 같이 URL에 변수(URL variables)가 있을 경우 &#64;PathVariable 주석이 달린 파라미터에 값이 담기게 된다.</p>
+<p>&#64;GetMapping(《/owners/{ownerId:[a-z-]+}/pets/{petId}》) 와 같이 URL에 변수(URL variables)가 있을 경우 &#64;PathVariable 주석이 달린 파라미터에 값이 담기게 된다.</p>
 </div>
 <div class="section" id="requestparam">
 <h4>2.4.3.2. &#64;RequestParam<a class="headerlink" href="#requestparam" title="제목 주소">¶</a></h4>
 <p>요청 파라미터를 메서드 파라미터에 바인딩 시킬때 사용하는 주석이다.</p>
-<p><em>&#64;RequestParam(name=&quot;pid&quot;, required=false) int pid</em> 와 같은 형태로 사용되며, String타입이 아닐경우 자동으로 타입을 변환해준다. MultiValueMap&lt;String, String&gt; 이나 Map&lt;String,String&gt; 이 타입으로 사용될 경우 모든 요청 파라미터가 바인딩된다.</p>
+<p><em>&#64;RequestParam(name=》pid》, required=false) int pid</em> 와 같은 형태로 사용되며, String타입이 아닐경우 자동으로 타입을 변환해준다. MultiValueMap&lt;String, String&gt; 이나 Map&lt;String,String&gt; 이 타입으로 사용될 경우 모든 요청 파라미터가 바인딩된다.</p>
 </div>
 <div class="section" id="requestbody">
 <h4>2.4.3.3. &#64;RequestBody<a class="headerlink" href="#requestbody" title="제목 주소">¶</a></h4>
@@ -268,7 +268,7 @@
 <ul class="simple">
 <li>&#64;SessionAttribute로 인해 생성된 값 (여러 요청사이에서 유지됨)</li>
 <li><strong>메서드에 사용된 &#64;ModelAttribute로 인해 생성된 값</strong></li>
-<li><strong>URI 변수 또는 요청 파라미터와</strong> 타입 컨버터로 인해 생성된 값 (&#64;ModelAttibute(&quot;need&quot;) 문자열 인자가 필요함, URL 변수 또는 파라미터를 미리 등록된 Converter&lt;String,B&gt;를 사용하여 타입 B로 변환됨)</li>
+<li><strong>URI 변수 또는 요청 파라미터와</strong> 타입 컨버터로 인해 생성된 값 (&#64;ModelAttibute(《need》) 문자열 인자가 필요함, URL 변수 또는 파라미터를 미리 등록된 Converter&lt;String,B&gt;를 사용하여 타입 B로 변환됨)</li>
 <li>디폴트 생성자로 생성한 객체</li>
 </ul>
 <p>&#64;ModelAttribute뒤에 BindingResult 타입을 사용해서 ModelAttibute 변환 결과를 알 수 있다.</p>
@@ -287,11 +287,11 @@
 </div>
 <div class="section" id="cookievalue">
 <h4>2.4.3.11. &#64;CookieValue<a class="headerlink" href="#cookievalue" title="제목 주소">¶</a></h4>
-<p>쿠키를 메서드 파라미터에 바인딩 시킬때 사용한다. &#64;CookieValue(&quot;JSESSIONID&quot;) 와 같이 사용된다.</p>
+<p>쿠키를 메서드 파라미터에 바인딩 시킬때 사용한다. &#64;CookieValue(《JSESSIONID》) 와 같이 사용된다.</p>
 </div>
 <div class="section" id="requestheader">
 <h4>2.4.3.12. &#64;RequestHeader<a class="headerlink" href="#requestheader" title="제목 주소">¶</a></h4>
-<p>헤더를 메서드 파라미터에 바인딩 시킬때 사용한다. &#64;RequestHeader(&quot;Keep-Alive&quot;) 와 같이 사용된다. Map&lt;String,String&gt;, MultiValueMap&lt;String, String&gt;, HttpHeaders 타입을 사용하면 모든 헤더가 바인딩 된다.</p>
+<p>헤더를 메서드 파라미터에 바인딩 시킬때 사용한다. &#64;RequestHeader(《Keep-Alive》) 와 같이 사용된다. Map&lt;String,String&gt;, MultiValueMap&lt;String, String&gt;, HttpHeaders 타입을 사용하면 모든 헤더가 바인딩 된다.</p>
 </div>
 <div class="section" id="asynchronous-request-processing">
 <h4>2.4.3.13. 비동기 요청 처리(Asynchronous Request Processing)<a class="headerlink" href="#asynchronous-request-processing" title="제목 주소">¶</a></h4>
@@ -338,9 +338,9 @@
 <h3>2.5.1. HandlerInterceptor<a class="headerlink" href="#handlerinterceptor" title="제목 주소">¶</a></h3>
 <p>특정 요청에 부가적인 기능을 추가할때 사용하는 인터페이스이다. 아래와 같은 3가지 메서드를 사용해 부가적인 처리할 수 있다.</p>
 <ul class="simple">
-<li>preHandle(...) : 핸들러 실행 전 호출 (특별히 boolean 타입을 반환할 수 있으며 false인 경우 처리를 끝낸다.)</li>
-<li>postHandle(...) : 핸들러 실행 후 호출</li>
-<li>afterCompletion(...) : 요청을 완전히 처리한 뒤 호출</li>
+<li>preHandle(…) : 핸들러 실행 전 호출 (특별히 boolean 타입을 반환할 수 있으며 false인 경우 처리를 끝낸다.)</li>
+<li>postHandle(…) : 핸들러 실행 후 호출</li>
+<li>afterCompletion(…) : 요청을 완전히 처리한 뒤 호출</li>
 </ul>
 <div class="section" id="posthandle-responsebody-responseentity">
 <h4>2.5.1.1. postHandle과 &#64;ResponseBody 그리고 ResponseEntity<a class="headerlink" href="#posthandle-responsebody-responseentity" title="제목 주소">¶</a></h4>

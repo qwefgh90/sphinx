@@ -83,10 +83,10 @@
 <p>그룹 지정 (capturing / non-capturing)</p>
 <ul class="simple">
 <li>(ab){2} : ab를 하나의 그룹으로 보고 abab에 매칭된다.</li>
-<li>(ab){2} (\1) : &quot;abab ab&quot;에 매칭된다. 괄호는 값을 저장한다. <strong>캡처링이라는 특징을 갖는다. 이는 \1 ~ \9를 사용하여 항목을 검색할 수 있다.</strong></li>
+<li>(ab){2} (\1) : 《abab ab》에 매칭된다. 괄호는 값을 저장한다. <strong>캡처링이라는 특징을 갖는다. 이는 \1 ~ \9를 사용하여 항목을 검색할 수 있다.</strong></li>
 <li>(?:pattern) : 패턴의 일부가 매칭되는가? data(?:apple|kiwi)은 dataapple 또는 datakiwi에 매칭된다. <strong>(캡처링하지 않는다.)</strong></li>
-<li>(?=p1)(?=p2) : look-ahead 방식으로 미리 검색해서 패턴에 일치할 경우만 계속 검색을 진행할때 사용한다. 문자열에 p1 패턴이 왔는가? 왔다면 p2 패턴이 왔는가? 동시에 여러개의 패턴을 적용할 수 있다. <strong>positive lookahead 방식이다.</strong> <strong>ex) 문자열 조사에 앞서 '_'가 존재한다면 진행하지 않음 ^(?=[^_])[0-9a-zA-Z_]+&#64;[a-zA-Z]+.[a-zA-Z]+</strong></li>
-<li>(?!p1)(?!p2) : look-ahead 방식으로 미리 검색해서 패턴에 일치하지 않을 경우만 계속 검색을 진행할때 사용한다. 문자열에 p1 패턴이 아니여야하고 p2 패턴이 아니여야 한다. <strong>negative lookahead 방식이다.</strong> <strong>ex) 문자열 조사에 앞서 '_'가 존재한다면 진행하지 않음 ^(?![_])[0-9a-zA-Z_]+&#64;[a-zA-Z]+.[a-zA-Z]+</strong></li>
+<li>(?=p1)(?=p2) : look-ahead 방식으로 미리 검색해서 패턴에 일치할 경우만 계속 검색을 진행할때 사용한다. 문자열에 p1 패턴이 왔는가? 왔다면 p2 패턴이 왔는가? 동시에 여러개의 패턴을 적용할 수 있다. <strong>positive lookahead 방식이다.</strong> <strong>ex) 문자열 조사에 앞서 〈_’가 존재한다면 진행하지 않음 ^(?=[^_])[0-9a-zA-Z_]+&#64;[a-zA-Z]+.[a-zA-Z]+</strong></li>
+<li>(?!p1)(?!p2) : look-ahead 방식으로 미리 검색해서 패턴에 일치하지 않을 경우만 계속 검색을 진행할때 사용한다. 문자열에 p1 패턴이 아니여야하고 p2 패턴이 아니여야 한다. <strong>negative lookahead 방식이다.</strong> <strong>ex) 문자열 조사에 앞서 〈_’가 존재한다면 진행하지 않음 ^(?![_])[0-9a-zA-Z_]+&#64;[a-zA-Z]+.[a-zA-Z]+</strong></li>
 </ul>
 </div>
 

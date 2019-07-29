@@ -303,7 +303,7 @@ DATETIME : 날짜와 시각 정보
 <ul class="simple">
 <li>문자형 함수 : LOWER, UPPER, SUBSTR/SUBSTRING, LENGTH/LEN, LTRIM, RTRIM, TRIM, ASCII</li>
 <li>숫자형 함수 : ABS, MOD, ROUND, TRUNC, SIGN, CHR/CHAR, CEIL/CEILING, FLOOR, EXP, LOG, LN, POWER, SIN, COS, TAN</li>
-<li>날짜형 함수 : SYSDATE/GETDATE, EXTRACT/DATEPART, TO_NUMBER(TO_CHAR(d.'YYYY'|'MM'|'DD')) / YEAD|MONTH|DAY</li>
+<li>날짜형 함수 : SYSDATE/GETDATE, EXTRACT/DATEPART, TO_NUMBER(TO_CHAR(d.〉YYYY〉|〉MM〉|〉DD〉)) / YEAD|MONTH|DAY</li>
 <li>반환형 함수 : TO_NUMBER, TO_CHAR, TO_DATE / CAST, CONVERT</li>
 <li>NULL 관련 함수 : NULL을 처리하기 위한 함수, NVL/ISNULL, NULLIF, COALESCE</li>
 </ul>
@@ -392,11 +392,11 @@ DATETIME : 날짜와 시각 정보
 <li>COUNT(*) : NULL값을 포함한 모든 행의 수를 출력한다.</li>
 <li>COUNT(표현식) : 표현식의 값이 NULL 값인 것을 제외한 행의 수를 출력한다.</li>
 <li>SUM([DISTINCT | ALL] 표현식) : 표현식의 NULL 값을 제외한 합계를 출력한다.</li>
-<li>AVG(...)</li>
-<li>MAX(...) : 최대값 출력(문자,날짜 포함)</li>
-<li>MIN(...) : 최소값 출력(문자,날짜 포함)</li>
-<li>STDDEV(...) : 표준편차 출력</li>
-<li>VARIAN(...) : 분산 출력</li>
+<li>AVG(…)</li>
+<li>MAX(…) : 최대값 출력(문자,날짜 포함)</li>
+<li>MIN(…) : 최소값 출력(문자,날짜 포함)</li>
+<li>STDDEV(…) : 표준편차 출력</li>
+<li>VARIAN(…) : 분산 출력</li>
 </ul>
 <p>예시</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">count</span><span class="p">(</span><span class="n">grade</span><span class="p">),</span> <span class="k">max</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span> <span class="k">from</span> <span class="n">student</span>
@@ -509,6 +509,10 @@ syscolumns(sys.columns) : 뷰 또는 테이블과 같이 열을 갖고 있는 �
 systypes(sys.types) : 각 행당 시스템 및 사용자 정의 정보
 sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Microsoft Windows 사용자, Windows 그룹, Microsoft SQL Server 사용자 또는 SQL Server 역할 정보</p>
 </div>
+</div>
+<div class="section" id="apply">
+<h2>3.12. Apply<a class="headerlink" href="#apply" title="제목 주소">¶</a></h2>
+<p>오른쪽 테이블(파생된 테이블 또는 TVF)을 기준으로 왼쪽 테이블의 정보를 불러올때 사용하는 연산자이다. 표준 SQL 에서는 LATERAL이라 한다.</p>
 </div>
 </div>
 

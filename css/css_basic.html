@@ -138,7 +138,7 @@
 <li>타입 셀렉터(Type selector) : 타입의 이름을 사용해 요소를 선택하는 패턴이다.</li>
 <li>유니버셜 셀렉터(Universal selector) : 어떠한 타입이든 상관없이 선택하는 패턴이다.</li>
 <li>애트리뷰트 셀렉터(Attribute selectors) : 요소의 속성을 사용해 요소를 선택하는 패턴이다. 부가적으로 다양한 종류의 패턴을 지원한다.</li>
-<li>클래스 셀렉터(Class selectors) : Attribute selector로 class attribute를 선택하는 것과 같다. <strong>&quot;.&quot;</strong> 고 함께 매칭할 클래스 이름을 입력하면 관련된 요소들을 선택할 수 있다. (.bird와 class~=bird 는 같음, 연속으로 클래스 셀렉터를 주면 모두 포함할때만 동작)</li>
+<li>클래스 셀렉터(Class selectors) : Attribute selector로 class attribute를 선택하는 것과 같다. <strong>《.》</strong> 고 함께 매칭할 클래스 이름을 입력하면 관련된 요소들을 선택할 수 있다. (.bird와 class~=bird 는 같음, 연속으로 클래스 셀렉터를 주면 모두 포함할때만 동작)</li>
 <li>ID 셀렉터(ID selectors) : 요소의 식별자(id attribute)로 요소를 선택하는 패턴이다. (#red, red를 값으로 갖는 요소를 선택)</li>
 </ul>
 <div class="section" id="psuedo-classes">
@@ -279,7 +279,7 @@
 </div>
 <div class="section" id="controlling-box-generation">
 <h3>1.5.3. 박스 타입 제어(Controlling box generation)<a class="headerlink" href="#controlling-box-generation" title="제목 주소">¶</a></h3>
-<p>박스의 타입은 비주얼 포맷팅 모델에서 이 박스가 어떻게 행동할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 <em>'display'</em> 속성이 사용된다.</p>
+<p>박스의 타입은 비주얼 포맷팅 모델에서 이 박스가 어떻게 행동할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 <em>〈display〉</em> 속성이 사용된다.</p>
 <div class="section" id="id10">
 <h4>1.5.3.1. 블록 레벨 요소와 블록 박스<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
 <p><em>블록 레벨 요소(block-level element)는</em> 시각적으로 블록화된 요소를 뜻한다. (예를들어 paragraphs가 있음)</p>
@@ -303,7 +303,7 @@
 </ul>
 <div class="section" id="anonymous-block-box">
 <h5>1.5.3.1.1. 익명 블록 박스(anonymous block box)<a class="headerlink" href="#anonymous-block-box" title="제목 주소">¶</a></h5>
-<p><strong>div와 p 모두 'display: block' 스타일이 적용 되었다.</strong></p>
+<p><strong>div와 p 모두 〈display: block〉 스타일이 적용 되었다.</strong></p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
   some text
   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>more text
@@ -435,11 +435,11 @@ This is anonymous text after the SPAN.
 </div>
 <p>블록 박스 P는 5개의 인라인 박스를 포함하며 그 중 3개가 익명 인라인 박스이다.</p>
 <ul class="simple">
-<li>익명 인라인 박스: &quot;Several&quot;</li>
-<li>EM: &quot;emphasized words&quot;</li>
-<li>익명: &quot;appear&quot;</li>
-<li>STRONG: &quot;in this&quot;</li>
-<li>익명: &quot;sentence, dear.&quot;</li>
+<li>익명 인라인 박스: 《Several》</li>
+<li>EM: 《emphasized words》</li>
+<li>익명: 《appear》</li>
+<li>STRONG: 《in this》</li>
+<li>익명: 《sentence, dear.》</li>
 </ul>
 <p>문장(paragraph)를 구성하기 위해 유저 에이전트는 5개의 박스를 라인 박스위에 놓는다. 이 예에서 P요소를 위해 생성된 박스는 라인 박스를 위한 컨테이닝 블록이 된다. 만약 컨테이닝 블록이 충분히 넓다면, 모든 인라인 박스는 하나의 라인 박스안에 놓이게 된다.</p>
 <p>그렇지 않다면 인라인 박스는 여러개의 라인 박스에 분산된다.</p>

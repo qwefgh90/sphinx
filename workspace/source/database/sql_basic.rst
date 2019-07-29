@@ -528,3 +528,8 @@ sysobjects(sys.objects) : 데이터베이스 내에 만들어진 각 사용자 �
 syscolumns(sys.columns) : 뷰 또는 테이블과 같이 열을 갖고 있는 개체의 각 열에 대한 행을 반환
 systypes(sys.types) : 각 행당 시스템 및 사용자 정의 정보
 sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Microsoft Windows 사용자, Windows 그룹, Microsoft SQL Server 사용자 또는 SQL Server 역할 정보
+
+Apply
+====================
+
+오른쪽 테이블(파생된 테이블 또는 TVF)을 기준으로 왼쪽 테이블의 정보를 불러올때 사용하는 연산자이다. 표준 SQL 에서는 LATERAL이라 한다.

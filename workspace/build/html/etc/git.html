@@ -66,8 +66,8 @@
 <div class="section" id="diff">
 <h2>2.2. diff<a class="headerlink" href="#diff" title="제목 주소">¶</a></h2>
 <p>Modified이나 Staged가 아닌 파일을 비교할때는 <cite>git diff</cite> 를 사용한다.</p>
-<p>Staged인 파일을 비교할때는 <cite>git diff --staged</cite> 를 사용한다.</p>
-<p><cite>git diff &quot;shaxxx&quot; &quot;shaxxxxxx&quot;</cite> 로 2개의 커밋을 비교할 수도 있다.</p>
+<p>Staged인 파일을 비교할때는 <cite>git diff –staged</cite> 를 사용한다.</p>
+<p><cite>git diff 《shaxxx》 《shaxxxxxx》</cite> 로 2개의 커밋을 비교할 수도 있다.</p>
 </div>
 <div class="section" id="branch">
 <h2>2.3. Branch<a class="headerlink" href="#branch" title="제목 주소">¶</a></h2>
@@ -151,7 +151,7 @@
 <div class="section" id="squash">
 <h2>2.7. Squash<a class="headerlink" href="#squash" title="제목 주소">¶</a></h2>
 <p>Squash는 여러개의 커밋을 정리하는 것을 말한다. 커밋이 각각 존재할 필요가 없을 경우, 하나의 커밋으로 관리되어야 할 경우 Squash를 사용한다.</p>
-<p>Git 도구에는 Squash를 위한 여러가지 명령을 제공한다. 대표적으로 <cite>git reset --soft xxxxxx</cite> 을 이용해서 현재 인덱스를 가지고 과거의 커밋을 수정하는 방법이 있다.</p>
+<p>Git 도구에는 Squash를 위한 여러가지 명령을 제공한다. 대표적으로 <cite>git reset –soft xxxxxx</cite> 을 이용해서 현재 인덱스를 가지고 과거의 커밋을 수정하는 방법이 있다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">예를들어</span> <span class="mi">3</span><span class="n">개의</span> <span class="n">커밋을</span> <span class="n">하나의</span> <span class="mi">1</span><span class="n">개의</span> <span class="n">커밋으로</span> <span class="n">만들고</span> <span class="n">싶을때</span> <span class="n">다음</span> <span class="n">명령으로</span> <span class="n">작업을</span> <span class="n">진행하면</span> <span class="n">된다</span><span class="o">.</span>
 
 <span class="n">git</span> <span class="n">fetch</span> <span class="p">:</span> <span class="n">로컬</span> <span class="n">컴퓨터에</span> <span class="n">전체</span> <span class="n">브랜치</span> <span class="n">목록을</span> <span class="n">받아온다</span><span class="o">.</span>
@@ -172,7 +172,7 @@
 </div>
 <div class="section" id="commit">
 <h2>2.8. Commit<a class="headerlink" href="#commit" title="제목 주소">¶</a></h2>
-<p>실수로 Staged하는 파일을 까먹었다면 --amend로 해결할 수 있다.:</p>
+<p>실수로 Staged하는 파일을 까먹었다면 –amend로 해결할 수 있다.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;commit missing some files&quot;</span>
 <span class="n">git</span> <span class="n">add</span> <span class="n">forgotten_file</span>
 <span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">amend</span>
