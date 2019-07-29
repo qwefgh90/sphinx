@@ -532,4 +532,31 @@ sysusers(sys.database_principals) : 각 행당 데이터베이스 내의 각 Mic
 Apply
 ====================
 
-오른쪽 테이블(파생된 테이블 또는 TVF)을 기준으로 왼쪽 테이블의 정보를 불러올때 사용하는 연산자이다. 표준 SQL 에서는 LATERAL이라 한다.
+오른쪽 테이블(파생된 테이블 또는 TVF) 전체를 왼쪽 테이블의 각 행에 붙일때 사용하는 연산자이다. 이때 파생된 테이블이나 TVF에 왼쪽 테이블을 파라미터로 넘겨서 원하는 데이터만 조회할 수 있게 한다. **표준 SQL 에서는 LATERAL이라 한다.** Apply 연산에는 Cross Apply와 Outer Apply가 존재한다. 
+
+Cross Apply
+--------------------
+
+오른쪽 테이블에 일반 테이블을 쓸 경우 각 행에 오른쪽 테이블을 모두 붙인다. 이는 Cross Join과 기본적으로 동일하다.
+
+오른쪽 테이블이 왼쪽을 매개변수로 받는 파생된 테이블로 만들면, 왼쪽 테이블의 행을 나열하고 해당 조건에 맞는 오른쪽 테이블의 행만 붙인다.
+이는 B에서 A를 Inner Join한 것과 유사하게 동작한다.
+
+예시 ::
+
+	SELECT * DOC AS A APPLY CROSS SELECT * FROM DOC_CONTENT AS B WHERE A.SEQ = B.DOC_SEQ) AS R
+	SELECT * FROM DOC AS A INNER JOIN DOC_CONTENT AS B ON A.SEQ = B.DOC_SEQ
+
+	1 <- (1, A) 1에 붙음
+	1 <- (1, B) 1에 붙음
+	2 <- (2, X) 2에 붙음
+	3 <- (3, Z) 3에 붙음
+	3 <- (3, P) 3에 붙음
+
+B 테이블이 A 테이블의 각행에 붙을때 특정 조건으로 필터되서 붙는다고 생각하면 좋을 것 같다. **주의할 점은** 적용할 행이 없을 경우 어떠한 데이터도 표시하지 않는 것이다.
+
+Outer Apply
+--------------------
+
+Cross Apply와 거의 비슷하게 동작하며, 적용할 행이 없을 경우 NULL을 붙이는 점만 다르다.
+
