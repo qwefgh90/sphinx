@@ -21,3 +21,4 @@ Contents:
    regexpr.rst
    git.rst
    mis.rst
+   etc.rst
