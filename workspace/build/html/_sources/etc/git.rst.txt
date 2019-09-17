@@ -1,5 +1,7 @@
 .. _git_intro:
 
+.. highlightlang:: sh
+
 *****************
 Git
 *****************
@@ -109,6 +111,23 @@ Fast-forward가 가능하지 않을 경우 3-way merge를 수행한다. 공통�
 `3-way merge 알고리즘 <https://blog.npcode.com/2012/09/29/3-way-merge-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%97%90-%EB%8C%80%ED%95%B4/>`_ 에 대해 잘 설명한 링크이다.
 
 .. image:: img/merge.png
+
+===================
+Cherry Pick
+===================
+
+Cherry Pick은 다른 브랜치의 특정 커밋들을 선택하여 현재 브랜치에 적용하고 싶을때 사용하는 명령어이다.
+
+마스터에서 다른 브랜치의 커밋을 적용할 수 있다. 이때 커밋 해시를 이용해야만 한다.::
+
+  git checkout master
+  git cherry-pick commitSha
+
+Cherry Pick 옵션은 다음과 같다.::
+
+  git cherry-pick commitSha -edit       #커밋 메시지를 수정한 뒤 커밋한다.
+  git cherry-pick commitSha --no-commit #커밋을 하지 않고 내용만 붙인다.
+  git cherry-pick commitSha --signoff   #커밋을 하면서 메시지의 끝에 시그니쳐를 붙인다.
 
 ========
 Reset
