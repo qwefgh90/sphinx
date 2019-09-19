@@ -12,7 +12,7 @@
 | \- Incheon University CS (2009~2015)
 
 | **Skills**
-| \- Java, Scala, Javascript, OOP, Design Pattern
+| \- Java, Typescript, Javascript, OOP, Design Pattern
 
 
 | **Works**
