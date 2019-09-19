@@ -20,6 +20,11 @@ Untracked - Unmodified - Modified - Staged::
   # Commit을 하면 Staged -> Unmodified
   # 파일을 삭제하면 Unmodified -> Untrackted
 
+===============
+rev-parse
+===============
+
+
 ======
  diff
 ======
@@ -29,6 +34,8 @@ Modified이나 Staged가 아닌 파일을 비교할때는 `git diff` 를 사용�
 Staged인 파일을 비교할때는 `git diff --staged` 를 사용한다.
 
 `git diff "shaxxx" "shaxxxxxx"` 로 2개의 커밋을 비교할 수도 있다.
+
+또는 `git master~20:pom.xml diff master:pom.xml` 와 같은 명령을 사용해도 된다.
 
 =========
 Branch
