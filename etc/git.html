@@ -63,14 +63,18 @@ git add aa.txt
 </pre></div>
 </div>
 </div>
+<div class="section" id="rev-parse">
+<h2>2.2. rev-parse<a class="headerlink" href="#rev-parse" title="제목 주소">¶</a></h2>
+</div>
 <div class="section" id="diff">
-<h2>2.2. diff<a class="headerlink" href="#diff" title="제목 주소">¶</a></h2>
+<h2>2.3. diff<a class="headerlink" href="#diff" title="제목 주소">¶</a></h2>
 <p>Modified이나 Staged가 아닌 파일을 비교할때는 <cite>git diff</cite> 를 사용한다.</p>
 <p>Staged인 파일을 비교할때는 <cite>git diff –staged</cite> 를 사용한다.</p>
 <p><cite>git diff 《shaxxx》 《shaxxxxxx》</cite> 로 2개의 커밋을 비교할 수도 있다.</p>
+<p>또는 <cite>git master~20:pom.xml diff master:pom.xml</cite> 와 같은 명령을 사용해도 된다.</p>
 </div>
 <div class="section" id="branch">
-<h2>2.3. Branch<a class="headerlink" href="#branch" title="제목 주소">¶</a></h2>
+<h2>2.4. Branch<a class="headerlink" href="#branch" title="제목 주소">¶</a></h2>
 <p>로컬 브랜치 만들면서 원격 브랜치 연결:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git fetch
 git checkout branch1
@@ -78,7 +82,7 @@ git checkout branch1
 </div>
 </div>
 <div class="section" id="rebase">
-<h2>2.4. Rebase<a class="headerlink" href="#rebase" title="제목 주소">¶</a></h2>
+<h2>2.5. Rebase<a class="headerlink" href="#rebase" title="제목 주소">¶</a></h2>
 <p>기존 브랜치의 최신 변경 사항위에 현재 브랜치의 패치를 적용할때 사용한다.</p>
 <p>예를들어 갈라져 나온 브랜치(feature-1)에서 작업이 끝났을때 <strong>기존 브랜치(보통, master)의 최신의 마지막 변경 사항 위에 현 브랜치의 내용을 패치하여</strong> 브랜치의 흔적을 지우고 master에서 작업 된것 처럼 커밋을 정리할때 사용한다.</p>
 <p>이 후 합칠 브랜치로 Checkout 후 merge 명령으로 바로 Fast-forward 하여 Rebase한 브랜치가 만든 마지막 커밋을 가르킨다.</p>
@@ -95,7 +99,7 @@ git merge feature-1
 <p>히스토리를 선형적으로 정리할 수 있다는 장점이 있으며, 갈라져 나온 브랜치가 계속 관리되는 브랜치가 아닐때 rebase를 사용하면 좋다.
 <strong>단 merge로 생성한 commit을 서버에 push한 뒤 다시 로컬에서 rebase로 정리한 뒤 commit을 하면 그 사이에 작업한 다른 개발자의 결과물은 이전 병합 commit을 가르키게 되므로 히스토리가 꼬이게 된다.</strong></p>
 <div class="section" id="id2">
-<h3>2.4.1. 히스토리 정리하기<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
+<h3>2.5.1. 히스토리 정리하기<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
 <p><strong>커밋 삭제, 순서 변경, 메시지 변경(이전 커밋), 커밋 Squash등을 수행할 수 있다.</strong></p>
 <p><strong>원격에 푸시하기 전에 하는 것을 권장한다. 보통 강제 PUSH는 협업에서 다른 사람의 히스토리를 꼬이게 하므로 권장하지 않는다.</strong></p>
 <p>커밋을 삭제하고 싶을 경우 rebase를 이용해 에디팅 할 수 있다.:</p>
@@ -129,7 +133,7 @@ git push -f origin master <span class="c1">#보통 강제 PUSH는 권장하지 �
 </div>
 </div>
 <div class="section" id="merge">
-<h2>2.5. Merge<a class="headerlink" href="#merge" title="제목 주소">¶</a></h2>
+<h2>2.6. Merge<a class="headerlink" href="#merge" title="제목 주소">¶</a></h2>
 <p>Fast-forward는 commit 포인터를 그대로 <strong>다른 브랜치의 commit 포인터로 이동시키는 것이다. 단 이동할 commit의 조상이 현재 브랜치여야 한다.</strong></p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git checkout master
 git merge feature-1
@@ -140,7 +144,7 @@ git merge feature-1
 <img alt="../_images/merge.png" src="../_images/merge.png" />
 </div>
 <div class="section" id="cherry-pick">
-<h2>2.6. Cherry Pick<a class="headerlink" href="#cherry-pick" title="제목 주소">¶</a></h2>
+<h2>2.7. Cherry Pick<a class="headerlink" href="#cherry-pick" title="제목 주소">¶</a></h2>
 <p>Cherry Pick은 다른 브랜치의 특정 커밋들을 선택하여 현재 브랜치에 적용하고 싶을때 사용하는 명령어이다.</p>
 <p>마스터에서 다른 브랜치의 커밋을 적용할 수 있다. 이때 커밋 해시를 이용해야만 한다.:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git checkout master
@@ -155,7 +159,7 @@ git cherry-pick commitSha --signoff   <span class="c1">#커밋을 하면서 메�
 </div>
 </div>
 <div class="section" id="reset">
-<h2>2.7. Reset<a class="headerlink" href="#reset" title="제목 주소">¶</a></h2>
+<h2>2.8. Reset<a class="headerlink" href="#reset" title="제목 주소">¶</a></h2>
 <p>현재 브랜치를 유지한채 HEAD만 이전 커밋으로 이동시킬 수 있다.:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git reset --soft HEAD~ : HEAD만 바꾼다. Index나 Working Directory는 그대로 둔다.
 git reset HEAD~ : HEAD를 바꾸고, Index 영역을 HEAD가 가르키는 상태로 바꾼다.
@@ -164,7 +168,7 @@ git reset --hard HEAD~ : HEAD는 바꾸고, Index과 Working Directory 영역을
 </div>
 </div>
 <div class="section" id="squash">
-<h2>2.8. Squash<a class="headerlink" href="#squash" title="제목 주소">¶</a></h2>
+<h2>2.9. Squash<a class="headerlink" href="#squash" title="제목 주소">¶</a></h2>
 <p>Squash는 여러개의 커밋을 정리하는 것을 말한다. 커밋이 각각 존재할 필요가 없을 경우, 하나의 커밋으로 관리되어야 할 경우 Squash를 사용한다.</p>
 <p>Git 도구에는 Squash를 위한 여러가지 명령을 제공한다. 대표적으로 <cite>git reset –soft xxxxxx</cite> 을 이용해서 현재 인덱스를 가지고 과거의 커밋을 수정하는 방법이 있다.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>예를들어 <span class="m">3</span>개의 커밋을 하나의 <span class="m">1</span>개의 커밋으로 만들고 싶을때 다음 명령으로 작업을 진행하면 된다.
@@ -186,7 +190,7 @@ git rebase -i HEAD~5 : <span class="m">3</span>개를 <span class="m">1</span>�
 </div>
 </div>
 <div class="section" id="commit">
-<h2>2.9. Commit<a class="headerlink" href="#commit" title="제목 주소">¶</a></h2>
+<h2>2.10. Commit<a class="headerlink" href="#commit" title="제목 주소">¶</a></h2>
 <p>실수로 Staged하는 파일을 까먹었다면 –amend로 해결할 수 있다.:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s2">&quot;commit missing some files&quot;</span>
 git add forgotten_file
@@ -203,7 +207,7 @@ git commit --amend
 </div>
 </div>
 <div class="section" id="stash">
-<h2>2.10. Stash<a class="headerlink" href="#stash" title="제목 주소">¶</a></h2>
+<h2>2.11. Stash<a class="headerlink" href="#stash" title="제목 주소">¶</a></h2>
 <p>Tracked Modified 이거나 Staged 인 파일들을 임시로 저장할 수 있다.:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git stash save
 git stash list
@@ -212,7 +216,7 @@ git stash apply
 </div>
 </div>
 <div class="section" id="id3">
-<h2>2.11. 참조<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<h2>2.12. 참조<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>squash: <a class="reference external" href="https://gist.github.com/patik/b8a9dc5cd356f9f6f980">https://gist.github.com/patik/b8a9dc5cd356f9f6f980</a></li>
 <li>rebase1: <a class="reference external" href="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0">https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-Rebase-%ED%95%98%EA%B8%B0</a></li>
