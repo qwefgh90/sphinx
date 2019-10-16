@@ -6,7 +6,7 @@
 Reactive X
 =============
 
-Reactive X 란 스트림을 비동기적이고 함수적인 방식으로 처리할 수 있도록 도와주는 라이브러리이다.
+Reactive X 란 스트림을 비동기적이고 함수적인 방식으로 처리할 수 있도록 도와주는 라이브러리이다. 
 
 예시 `stackblitz<https://stackblitz.com/edit/typescript-xsuqkg?file=index.ts>`_ ::
 
