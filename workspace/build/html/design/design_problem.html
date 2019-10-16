@@ -1,0 +1,186 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>4. 소프트웨어 설계 문제 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="5. 애자일" href="design_agile.html" />
+    <link rel="prev" title="3. Rest API" href="design_rest.html" />
+
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136789982-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136789982-1');
+</script>
+
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="design-modify">
+<span id="id1"></span><h1>4. 소프트웨어 설계 문제<a class="headerlink" href="#design-modify" title="제목 주소">¶</a></h1>
+<div class="section" id="id2">
+<h2>4.1. 변경의 어려움<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<p>새로운 소프트웨어 개발을 시작할때 항상 모든 요구사항을 고려할 수 없다. 새로운 기능을 시연할 때마다 요구사항은 변화할 수 있다.
+우리가 설계를 진행하기 전 인터뷰를 통해 요구사항을 최대한 끌어냈음에도, 고객은 미처 생각 하지 못했던 추상적인 기능이 있을 수 있다.</p>
+<p>모든 프로젝트에서 이러한 변경은 허용될 수 밖에 없다. 변경을 진행하는 과정에서 설계에 따라 변경이 많이 필요할 수도 있고, 적게 필요할 수도 있다.
+어찌됐든 이러한 변경을 불가피할 것이다.</p>
+<p><strong>시스템(기능)을 변경을 할때 크게 3가지 문제가 있다.</strong></p>
+<ul class="simple">
+<li>기능 변경을 할때 생각보다 많은 코드를 수정해야 하는 문제</li>
+<li>기능 변경 후 관련 없는 부분에서 오류가 발생하는 문제</li>
+<li>기능 변경을 할때 기존 설계를 유지하는 것이 설계를 유지하지 않는것 보다 복잡할때</li>
+</ul>
+<div class="section" id="id3">
+<h3>4.1.1. 소프트웨어 경직성<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
+<p>기능 추가나 변경에 의해 소스코드가 변경될 때, 하나의 변경에 의해 수 많은 부수적인 변경이 생길 경우 소스코드에 경직성이라는 안좋은 특성이 있다고 할 수 있다.
+경직성은 소프트웨어 변경을 어렵게 하고 추가적인 비용을 발생시킨다. 잘못된 설계로 인터페이스 수준에서 여러가지 역할을 강제화 하여 경직화될 수 있으며,
+클래스 수준에서 2가지 이상의 책임이 부여될 경우 경직성이 생길 확률이 매우 높아진다.</p>
+<p><strong>물론 변경에 어떻게 일어나느냐에 따라 아무런 경직성의 문제가 없이 개발 및 유지보수가 잘 될 수 있다.</strong>
+하지만 일반적인 소프트웨어의 경우라면 경직성의 문제가 발생할 것이다.</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>4.2. 재사용의 어려움<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
+<p>프로젝트를 할때 일반적으로 낮은 수준부터 다시 개발하는 경우는 없으며, 일반적으로 미리 잘 만들어진 모듈을 재사용 한다.</p>
+<p>같은 시스템 안에서도 특정 모듈이 다른 모듈에서 재사용이 어려울 경우 설계의 문제가 있다고 볼 수 있다.</p>
+<p><strong>시스템(기능)을 재사용 할때 문제가 있다.</strong></p>
+<ul class="simple">
+<li>재사용 하려고 했지만 가능한지 의심되며, 기존 시스템에 강하게 결합되어 재사용하기 어려운 문제</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="design_index.html">설계(Design)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="design_terms.html">1. 용어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html">2. 디자인 패턴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_rest.html">3. Rest API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 소프트웨어 설계 문제</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_agile.html">5. 애자일</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="design_index.html">설계(Design)</a><ul>
+      <li>Previous: <a href="design_rest.html" title="이전 장">3. Rest API</a></li>
+      <li>Next: <a href="design_agile.html" title="다음 장">5. 애자일</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/design/design_problem.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+
+
+  </body>
+</html>
