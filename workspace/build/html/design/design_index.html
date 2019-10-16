@@ -17,30 +17,17 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
     <link rel="next" title="1. 용어" href="design_terms.html" />
     <link rel="prev" title="2. JVM" href="../java/java_jvm.html" />
-
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136789982-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-136789982-1');
-</script>
-
 
   </head><body>
   
@@ -59,56 +46,40 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="design_terms.html">1. 용어</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="design_terms.html#id2">1.1. 디자인 패턴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_terms.html#id4">1.2. 추상화</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_terms.html#id5">1.3. 객체지향 프로그래밍</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_terms.html#id6">1.4. 프레임워크</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_terms.html#id7">1.5. 소프트웨어 설계</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_terms.html#encapsulation">1.6. 캡슐화 (Encapsulation)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_terms.html#high-level-policy-low-level-implementation">1.7. 높은 수준의 정책(high-level policy)과 낮은 수준의 구현(low-level implementation)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_terms.html#responsibility-driven-design">1.8. 책임 주도 설계 (Responsibility-driven design)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_terms.html#domain-driven-design">1.9. 도메인 주도 설계 (Domain-driven design)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_terms.html#object-relational-impedance-mismatch">1.10. 객체-관계형 임피던스 불일치 (Object-relational impedance mismatch)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_terms.html#uml">1.11. UML</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_terms.html#reference">1.12. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_terms.html#id4">1.2. 객체지향 프로그래밍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_terms.html#id5">1.3. 프레임워크</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_terms.html#encapsulation">1.4. 캡슐화 (Encapsulation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_terms.html#high-level-policy-low-level-implementation">1.5. 높은 수준의 정책(high-level policy)과 낮은 수준의 구현(low-level implementation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_terms.html#responsibility-driven-design">1.6. 책임 주도 설계 (Responsibility-driven design)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_terms.html#domain-driven-design">1.7. 도메인 주도 설계 (Domain-driven design)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_terms.html#object-relational-impedance-mismatch">1.8. 객체-관계형 임피던스 불일치 (Object-relational impedance mismatch)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_terms.html#uml">1.9. UML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_terms.html#reference">1.10. Reference</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="design_pattern.html">2. 디자인 패턴</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id2">2.1. 전략 패턴</a></li>
 <li class="toctree-l2"><a class="reference internal" href="design_pattern.html#mvc">2.2. MVC 패턴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#srp-single-reposponsibility-principle">2.3. SRP(Single Reposponsibility Principle)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#ocp-open-closed-principle">2.4. OCP(Open Closed Principle)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#lsp-liskov-substitution-principle">2.5. LSP(Liskov Substitution Principle)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#isp-interface-segregation-principle">2.6. ISP(Interface Segregation Principle)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#dip-dependency-inversion-principle">2.7. DIP(Dependency Inversion Principle)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#ioc-inversion-of-control">2.8. IOC(Inversion of Control)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#di-dependency-injection">2.9. DI(Dependency injection)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#service-locator">2.10. Service Locator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#di-vs-service-locator">2.11. DI vs Service Locator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id5">2.12. 위임 패턴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id6">2.13. 퍼사드 패턴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id7">2.14. 미디에이터 패턴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id8">2.15. 팩토리 패턴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#abstract-server-pattern">2.16. 추상 서버 패턴(Abstract Server Pattern)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id10">2.17. 인터페이스 변경</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#adapter-pattern">2.18. 어댑터 패턴(Adapter Pattern)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id11">2.19. 템플릿 메서드 패턴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id12">2.20. 옵저버 패턴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id13">2.21. 참조</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#isp-interface-segregation-principle">2.3. ISP(Interface Segregation Principle)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#dip-dependency-inversion-principle">2.4. DIP(Dependency Inversion Principle)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#ioc-inversion-of-control">2.5. IOC(Inversion of Control)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#di-dependency-injection">2.6. DI(Dependency injection)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#service-locator">2.7. Service Locator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#di-vs-service-locator">2.8. DI vs Service Locator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id7">2.9. 위임 패턴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id8">2.10. 퍼사드 패턴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id9">2.11. 미디에이터 패턴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id10">2.12. 팩토리 패턴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#abstract-server-pattern">2.13. 추상 서버 패턴(Abstract Server Pattern)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id14">2.14. 인터페이스 변경</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#adapter-pattern">2.15. 어댑터 패턴(Adapter Pattern)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id16">2.16. 템플릿 메서드 패턴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id17">2.17. 옵저버 패턴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_pattern.html#id18">2.18. 참조</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="design_rest.html">3. Rest API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="design_rest.html#rest-restful-web-service">3.1. Rest(Restful Web Service)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="design_problem.html">4. 소프트웨어 설계 문제</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="design_problem.html#id2">4.1. 변경의 어려움</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_problem.html#id4">4.2. 재사용의 어려움</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="design_agile.html">5. 애자일</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="design_agile.html#id2">5.1. 기존의 방법론</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_agile.html#extreme-programming-xp">5.2. Extreme programming(익스트림 프로그래밍, XP)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_agile.html#id13">5.3. 참조</a></li>
 </ul>
 </li>
 </ul>
@@ -139,8 +110,6 @@
 <li class="toctree-l2"><a class="reference internal" href="design_terms.html">1. 용어</a></li>
 <li class="toctree-l2"><a class="reference internal" href="design_pattern.html">2. 디자인 패턴</a></li>
 <li class="toctree-l2"><a class="reference internal" href="design_rest.html">3. Rest API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_problem.html">4. 소프트웨어 설계 문제</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_agile.html">5. 애자일</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
@@ -183,25 +152,16 @@
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-
     <div class="footer">
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/design/design_index.rst.txt"
@@ -211,7 +171,5 @@
     
 
     
-
-
   </body>
 </html>
