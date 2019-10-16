@@ -13,30 +13,17 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
     <link rel="next" title="2. 디자인 패턴" href="design_pattern.html" />
     <link rel="prev" title="설계(Design)" href="design_index.html" />
-
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136789982-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-136789982-1');
-</script>
-
 
   </head><body>
   
@@ -55,45 +42,35 @@
 <p>디자인 패턴이란 개발 시 자주 사용하는 설계 노하우나 코딩 테크닉을 뜻한다.</p>
 </div>
 <div class="section" id="id4">
-<h2>1.2. 추상화<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
-<p>프로그램을 구성하는 각 부분들의 제한되지 않는 가능한 행위의 묶음을 뜻한다. <strong>프로그램을 수정할때 기존의 소스코드를 직접 수정하지 않고, 기능을 추가, 확장할때 사용되는 개념이다.</strong> 즉, 추상화에 의존하면 그 사용법이 변하지 않기 때문에 수정에 닫혀있고 확장에 열려있는 프로그램을 작성할 수 있다.</p>
-</div>
-<div class="section" id="id5">
-<h2>1.3. 객체지향 프로그래밍<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
+<h2>1.2. 객체지향 프로그래밍<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
 <p>프로그램에서 다뤄야할 대상을 객체로 추상화하여 프로그래밍 하는 프로그래밍 패러다임을 뜻한다.</p>
 </div>
-<div class="section" id="id6">
-<h2>1.4. 프레임워크<a class="headerlink" href="#id6" title="제목 주소">¶</a></h2>
+<div class="section" id="id5">
+<h2>1.3. 프레임워크<a class="headerlink" href="#id5" title="제목 주소">¶</a></h2>
 <p>개발자가 비용 효율적으로 프로그램을 작성할 수 있도록 기본적인 뼈대를 제공하고 개발자가 작성한 코드를 제어하는 코드 블록의 집합을 뜻한다. 프로그램의 제어가 개발자에서 프레임워크로 넘어가게된다. 예를들면 안드로이드 프레임워크는 사용자의 입력에 따라 UI를 변경하고 적절한 코드를 실행하는 역할을 한다.</p>
 </div>
-<div class="section" id="id7">
-<h2>1.5. 소프트웨어 설계<a class="headerlink" href="#id7" title="제목 주소">¶</a></h2>
-<p>사용자의 요구사항은 언제나 바뀌고, 시스템은 계속 변하게 된다. 이 과정에서 기존의 설계는 단 몇시간만에 퇴화되게 된다. 우리는 그것을 받아들여야 한다. <em>애자일 관점에서</em>  이러한 설계의 문제점를 받아들이고 다양한 기법을 이용해 극복 해야한다. 지속적으로 변화에 대응할 수 있는 좋은 설계 방법론이다.</p>
-<p>기본적으로 분석 및 설계 과정에서 발생하는 산출물(유즈케이스, 클래스 다이어그램, 논리적 ERD, 시퀀스 다이어그램, 테스트 케이스)들은 요구사항 분석에 도움이 된다. 산출물을 만드는 과정에서 요구사항에 포함되어 있는 숨어있는 추상적인 개념을 찾아낼 수 있다. 또한 <strong>몇몇 산출물은 고객과 대화하는데 큰 도움이 되고, 다른 산출물은 개발자 사이의 대화에 도움이 된다.</strong> 여러번의 분석, 설계를 진행하면서 설계는 진화하게 된다.</p>
-<p>설계 문서는 전체 시스템 설계의 일부분만 표현할 수 있다. <strong>전체 설계를 가장 확실하게 표현하는 것은 소스코드라고 볼 수 있다.</strong> 이후 요구사항 변경으로 인한 설계의 문제점이 발생한 경우, 어떠한 <strong>설계 원칙(SOLID)를 위배하는지</strong> 보고, <strong>적절한 디자인 패턴을 적용하여</strong> 설계를 발전시킬 수 있다.</p>
-</div>
 <div class="section" id="encapsulation">
-<h2>1.6. 캡슐화 (Encapsulation)<a class="headerlink" href="#encapsulation" title="제목 주소">¶</a></h2>
+<h2>1.4. 캡슐화 (Encapsulation)<a class="headerlink" href="#encapsulation" title="제목 주소">¶</a></h2>
 <p>캡슐화란 필드와 메서드를 묶고 그것을 외부의 잘못된 접근으로 숨기고 보호하는 개념을 뜻한다.</p>
 </div>
 <div class="section" id="high-level-policy-low-level-implementation">
-<h2>1.7. 높은 수준의 정책(high-level policy)과 낮은 수준의 구현(low-level implementation)<a class="headerlink" href="#high-level-policy-low-level-implementation" title="제목 주소">¶</a></h2>
+<h2>1.5. 높은 수준의 정책(high-level policy)과 낮은 수준의 구현(low-level implementation)<a class="headerlink" href="#high-level-policy-low-level-implementation" title="제목 주소">¶</a></h2>
 <p>정책이란 API나 인터페이스를 뜻한다. 높은 수준의 정책이란 도메인에 더 가까우며 잘 변하지 않으며 API나 인터페이스를 의미한다. 낮은 수준의 구현은 다른 모듈에 의해 특히, 높은 수준의 정책에 의해 사용되는 인터페이스를 뜻한다.</p>
 </div>
 <div class="section" id="responsibility-driven-design">
-<h2>1.8. 책임 주도 설계 (Responsibility-driven design)<a class="headerlink" href="#responsibility-driven-design" title="제목 주소">¶</a></h2>
+<h2>1.6. 책임 주도 설계 (Responsibility-driven design)<a class="headerlink" href="#responsibility-driven-design" title="제목 주소">¶</a></h2>
 <p>각 객체의 행동을 분석하여 이를 클라이언트-서버의 계약으로 접근하여 객체를 추상화하는 설계 테크닉이다.</p>
 </div>
 <div class="section" id="domain-driven-design">
-<h2>1.9. 도메인 주도 설계 (Domain-driven design)<a class="headerlink" href="#domain-driven-design" title="제목 주소">¶</a></h2>
+<h2>1.7. 도메인 주도 설계 (Domain-driven design)<a class="headerlink" href="#domain-driven-design" title="제목 주소">¶</a></h2>
 <p>프로그램이 필요한 분야에서 다뤄야 할 대상, 활동을 중심으로 프로그래밍 설계하는 방법이다. OOP와 유사하다.</p>
 </div>
 <div class="section" id="object-relational-impedance-mismatch">
-<h2>1.10. 객체-관계형 임피던스 불일치 (Object-relational impedance mismatch)<a class="headerlink" href="#object-relational-impedance-mismatch" title="제목 주소">¶</a></h2>
+<h2>1.8. 객체-관계형 임피던스 불일치 (Object-relational impedance mismatch)<a class="headerlink" href="#object-relational-impedance-mismatch" title="제목 주소">¶</a></h2>
 <p>객체지향 프로그래밍에서 RDBMS를 사용할 때 마주할 수 있는 기술적 어려움이다. 데이터베이스 테이블을 객체나 클래스로 매핑해야하기 때문에 기술적으로 어려움이 발생할 수 있다. <strong>임피던스 미스매칭</strong> 은 전자공학의 오디오 시스템의 밸런스 유지를 위한 <a class="reference external" href="http://terms.naver.com/entry.nhn?docId=3340563&amp;cid=40942&amp;categoryId=32827">임피던스 매칭</a> 로 부터 파생되었다.</p>
 </div>
 <div class="section" id="uml">
-<h2>1.11. UML<a class="headerlink" href="#uml" title="제목 주소">¶</a></h2>
+<h2>1.9. UML<a class="headerlink" href="#uml" title="제목 주소">¶</a></h2>
 <p>클래스와 클래스간의 관계를 설계하는 언어이다. 화살표의 방향은 한쪽 클래스를 인식하는 방향으로 그어진다.</p>
 <ul class="simple">
 <li>+ : public</li>
@@ -108,7 +85,7 @@
 </ul>
 </div>
 <div class="section" id="reference">
-<h2>1.12. Reference<a class="headerlink" href="#reference" title="제목 주소">¶</a></h2>
+<h2>1.10. Reference<a class="headerlink" href="#reference" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li><strong>객체지향 프로그래밍.</strong>: <a class="reference external" href="https://en.wikipedia.org/wiki/Object-oriented_programming">https://en.wikipedia.org/wiki/Object-oriented_programming</a></li>
 <li><strong>객임주도설계.</strong>: <a class="reference external" href="https://en.wikipedia.org/wiki/Responsibility-driven_design">https://en.wikipedia.org/wiki/Responsibility-driven_design</a></li>
@@ -141,8 +118,6 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1. 용어</a></li>
 <li class="toctree-l2"><a class="reference internal" href="design_pattern.html">2. 디자인 패턴</a></li>
 <li class="toctree-l2"><a class="reference internal" href="design_rest.html">3. Rest API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_problem.html">4. 소프트웨어 설계 문제</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design_agile.html">5. 애자일</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
@@ -199,12 +174,11 @@
       </div>
       <div class="clearer"></div>
     </div>
-
     <div class="footer">
       &copy;2017, Choe Changwon.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
@@ -215,7 +189,5 @@
     
 
     
-
-
   </body>
 </html>
