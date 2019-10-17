@@ -20,3 +20,4 @@ Contents:
    design_rest.rst
    design_problem.rst
    design_agile.rst
+   design_reactivex.rst
