@@ -51,7 +51,7 @@
   <div class="section" id="reactive-x">
 <h1>6. Reactive X<a class="headerlink" href="#reactive-x" title="제목 주소">¶</a></h1>
 <p>Reactive X 란 스트림을 비동기적이고 함수적인 방식으로 처리할 수 있도록 도와주는 라이브러리이다.</p>
-<p>예시 <a href="#id1"><span class="problematic" id="id2">`stackblitz&lt;https://stackblitz.com/edit/typescript-xsuqkg?file=index.ts&gt;`_</span></a></p>
+<p>예시 <a class="reference external" href="https://stackblitz.com/edit/typescript-xsuqkg?file=index.ts">stackblitz</a></p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">from</span><span class="p">,</span> <span class="k">of</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">groupBy</span><span class="p">,</span> <span class="nx">mergeMap</span><span class="p">,</span> <span class="nx">toArray</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
 
@@ -71,7 +71,7 @@
 <div class="section" id="group-by">
 <h2>6.1. Group by<a class="headerlink" href="#group-by" title="제목 주소">¶</a></h2>
 <p>groupby 연산자는 스트림의 데이터를 특정 기준에 따라 묶어서 여러개의 스트림으로 만들어주는 연산자이다.</p>
-<p>예시 <a href="#id3"><span class="problematic" id="id4">`stackblitz&lt;https://stackblitz.com/edit/typescript-qnjjnv?file=index.ts&gt;`_</span></a>:</p>
+<p>예시 <a href="#id1"><span class="problematic" id="id2">`stackblitz&lt;https://stackblitz.com/edit/typescript-qnjjnv?file=index.ts&gt;`_</span></a>:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">from</span><span class="p">,</span> <span class="k">of</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">groupBy</span><span class="p">,</span> <span class="nx">mergeMap</span><span class="p">,</span> <span class="nx">toArray</span><span class="p">,</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">switchMap</span><span class="p">,</span><span class="nx">reduce</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
 
