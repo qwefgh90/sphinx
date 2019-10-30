@@ -108,7 +108,7 @@ CSS 2.1 처리 모델 (processsing model)
 
 - 타입 셀렉터(Type selector) : 타입의 이름을 사용해 요소를 선택하는 패턴이다.
 - 유니버셜 셀렉터(Universal selector) : 어떠한 타입이든 상관없이 선택하는 패턴이다.
-- 애트리뷰트 셀렉터(Attribute selectors) : 요소의 속성을 사용해 요소를 선택하는 패턴이다. 부가적으로 다양한 종류의 패턴을 지원한다. 예를들어 `.center-spacer[_ngcontent-dxu-c8]`를 셀렉터로 사용할 경우 `center-space` 클래스를 가지며, `_ngcontent-dxu-c8` 이라는 속성을 포함하는 것을 뜻한다. 그 속성은 값을 가지고 있지 않아도 된다. (`<div _ngcontent-dxu-c8 class="center-spacer">`)
+- 애트리뷰트 셀렉터(Attribute selectors) : 요소의 속성을 사용해 요소를 선택하는 패턴이다. 부가적으로 다양한 종류의 패턴을 지원한다. 예를들어 `.center-spacer[_ngcontent-dxu-c8]` 를 셀렉터로 사용할 경우 `center-space` 클래스를 가지며, `_ngcontent-dxu-c8` 이라는 속성을 포함하는 것을 뜻한다. 그 속성은 값을 가지고 있지 않아도 된다. ( :html:`<div _ngcontent-dxu-c8 class="center-spacer">` )
 - 클래스 셀렉터(Class selectors) : Attribute selector로 class attribute를 선택하는 것과 같다. `.` 과 함께 매칭할 클래스 이름을 입력하면 관련된 요소들을 선택할 수 있다. (.bird와 class~=bird 는 같음, 연속으로 클래스 셀렉터를 주면 모두 포함할때만 동작)
 - ID 셀렉터(ID selectors) : 요소의 식별자(id attribute)로 요소를 선택하는 패턴이다. (#red, red를 값으로 갖는 요소를 선택)
 

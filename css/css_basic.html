@@ -137,7 +137,7 @@
 <ul class="simple">
 <li>타입 셀렉터(Type selector) : 타입의 이름을 사용해 요소를 선택하는 패턴이다.</li>
 <li>유니버셜 셀렉터(Universal selector) : 어떠한 타입이든 상관없이 선택하는 패턴이다.</li>
-<li>애트리뷰트 셀렉터(Attribute selectors) : 요소의 속성을 사용해 요소를 선택하는 패턴이다. 부가적으로 다양한 종류의 패턴을 지원한다. 예를들어 <cite>.center-spacer[_ngcontent-dxu-c8]`를 셀렉터로 사용할 경우 `center-space</cite> 클래스를 가지며, <cite>_ngcontent-dxu-c8</cite> 이라는 속성을 포함하는 것을 뜻한다. 그 속성은 값을 가지고 있지 않아도 된다. (<cite>&lt;div _ngcontent-dxu-c8 class=》center-spacer》&gt;</cite>)</li>
+<li>애트리뷰트 셀렉터(Attribute selectors) : 요소의 속성을 사용해 요소를 선택하는 패턴이다. 부가적으로 다양한 종류의 패턴을 지원한다. 예를들어 <cite>.center-spacer[_ngcontent-dxu-c8]</cite> 를 셀렉터로 사용할 경우 <cite>center-space</cite> 클래스를 가지며, <cite>_ngcontent-dxu-c8</cite> 이라는 속성을 포함하는 것을 뜻한다. 그 속성은 값을 가지고 있지 않아도 된다. ( <a href="#id6"><span class="problematic" id="id7">:html:`&lt;div _ngcontent-dxu-c8 class=&quot;center-spacer&quot;&gt;`</span></a> )</li>
 <li>클래스 셀렉터(Class selectors) : Attribute selector로 class attribute를 선택하는 것과 같다. <cite>.</cite> 과 함께 매칭할 클래스 이름을 입력하면 관련된 요소들을 선택할 수 있다. (.bird와 class~=bird 는 같음, 연속으로 클래스 셀렉터를 주면 모두 포함할때만 동작)</li>
 <li>ID 셀렉터(ID selectors) : 요소의 식별자(id attribute)로 요소를 선택하는 패턴이다. (#red, red를 값으로 갖는 요소를 선택)</li>
 </ul>
@@ -208,8 +208,8 @@
 <li>::before, ::after : 요소의 전, 후</li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h4>1.3.1.3. 콤비네이터<a class="headerlink" href="#id6" title="제목 주소">¶</a></h4>
+<div class="section" id="id8">
+<h4>1.3.1.3. 콤비네이터<a class="headerlink" href="#id8" title="제목 주소">¶</a></h4>
 <ul class="simple">
 <li>공백 : 자식 요소들</li>
 <li>&gt; : 자식 요소들 중에 부모 바로 밑에 있는 요소</li>
@@ -220,8 +220,8 @@
 <li>~ : 같은 부모를 갖는 요소들</li>
 </ul>
 </div>
-<div class="section" id="id7">
-<h4>1.3.1.4. 셀렉터의 우선순위<a class="headerlink" href="#id7" title="제목 주소">¶</a></h4>
+<div class="section" id="id9">
+<h4>1.3.1.4. 셀렉터의 우선순위<a class="headerlink" href="#id9" title="제목 주소">¶</a></h4>
 <p>셀렉터의 우선순위는 <a class="reference external" href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#specificity">링크</a> 를 참조하여 계산 할 수 있다. <strong>요소의 style 속성은 가장 높은 우선순위를 갖는다.</strong></p>
 </div>
 </div>
@@ -280,8 +280,8 @@
 <div class="section" id="controlling-box-generation">
 <h3>1.5.3. 박스 타입 제어(Controlling box generation)<a class="headerlink" href="#controlling-box-generation" title="제목 주소">¶</a></h3>
 <p>박스의 타입은 비주얼 포맷팅 모델에서 이 박스가 어떻게 행동할지에 대해 영향을 미친다. 박스의 타입을 명시하기 위해 <em>〈display〉</em> 속성이 사용된다.</p>
-<div class="section" id="id10">
-<h4>1.5.3.1. 블록 레벨 요소와 블록 박스<a class="headerlink" href="#id10" title="제목 주소">¶</a></h4>
+<div class="section" id="id12">
+<h4>1.5.3.1. 블록 레벨 요소와 블록 박스<a class="headerlink" href="#id12" title="제목 주소">¶</a></h4>
 <p><em>블록 레벨 요소(block-level element)는</em> 시각적으로 블록화된 요소를 뜻한다. (예를들어 paragraphs가 있음)</p>
 <p><em>블록 레벨 요소(block-level element)로</em> 만들려면 다음과 같은 속성을 사용하면 된다.:</p>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="o">:</span> <span class="nt">block</span>
@@ -335,8 +335,8 @@ This is anonymous text after the SPAN.
 <p>익명 블록 박스는 자신을 둘러싸는 블록 컨테이너 박스의 폰트를 상속받는다.</p>
 </div>
 </div>
-<div class="section" id="id11">
-<h4>1.5.3.2. 인라인 레벨 요소와 인라인 박스<a class="headerlink" href="#id11" title="제목 주소">¶</a></h4>
+<div class="section" id="id13">
+<h4>1.5.3.2. 인라인 레벨 요소와 인라인 박스<a class="headerlink" href="#id13" title="제목 주소">¶</a></h4>
 <p><strong>인라인 레벨 요소(inline-level element)는 새로운 블록을 생성하지 않는 요소이다.</strong> 콘텐츠는 줄에 배치된다.(인라인 이미지, 문장 내의 강조된 글자 등등)</p>
 <p><em>인라인 레벨 요소(inline-level element)로</em> 만드려면 다음과 같은 속성을 사용하면 된다.:</p>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="o">:</span> <span class="nt">inline</span>
@@ -476,8 +476,8 @@ This is anonymous text after the SPAN.
 </pre></div>
 </div>
 </div>
-<div class="section" id="id13">
-<h4>1.5.5.3. 상대적 위치 결정<a class="headerlink" href="#id13" title="제목 주소">¶</a></h4>
+<div class="section" id="id15">
+<h4>1.5.5.3. 상대적 위치 결정<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
 <p>일단 박스가 노멀 플로우나 플롯을 따라 배치되면, 이 포지션으로 부터 상대적으로 이동할 수 있다. 이것을 상대적인 위치 결정이라고 한다. <strong>어떤 박스가 상대적으로 위치가 결정되더라도 밀접한 박스의 위치에 주지 않는다.</strong> 즉 상대적 위치 결정은 박스들 간의 오버랩을 허용한다. 그러나 상대적인 위치로 결정될 경우 overflow:auto, overflow:scroll 박스를 오버플로우하게 하며, 유저 에이전트는 스크롤 바 생성을 통해 사용자가 이 컨텐츠에 접근하도록 허락한다.</p>
 <p>상대적으로 위치한 박스는 자신의 노멀 플로우(normal flow) 사이즈를 유지한다. (라인 브레이크와 박스를 위한 공간은 그대로)</p>
 </div>
@@ -521,8 +521,8 @@ This is anonymous text after the SPAN.
 </pre></div>
 </div>
 <p>위 예에서 라인 박스에 플롯 박스가 공간을 차지하고 위치하게 되며, 블록 박스는 플롯된 박스 오른쪽에 위치한다. <strong>블록요소에 clear: left 속성을 줄 경우 플롯 오른쪽에 박스가 위치하는 것을 막을 수 있다.</strong></p>
-<div class="section" id="id14">
-<h4>1.5.6.1. 플롯 속성<a class="headerlink" href="#id14" title="제목 주소">¶</a></h4>
+<div class="section" id="id16">
+<h4>1.5.6.1. 플롯 속성<a class="headerlink" href="#id16" title="제목 주소">¶</a></h4>
 <p>float 속성은 박스를 어느쪽 이동시킬지 결정한다. 절대적으로 위치가 결정되지(absolutely positioned) 않은 박스를 생성하는 요소에만 적용된다. 3개의 값을 갖는다.</p>
 <ul class="simple">
 <li>left: 왼쪽에 떠있는 블록 박스를 생성한다.</li>
@@ -633,8 +633,8 @@ This is anonymous text after the SPAN.
 <li>others -&gt; same as specified</li>
 </ul>
 </div>
-<div class="section" id="id15">
-<h4>1.5.7.3. 노멀 플로우, 플롯, 절대 위치 결정 비교<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
+<div class="section" id="id17">
+<h4>1.5.7.3. 노멀 플로우, 플롯, 절대 위치 결정 비교<a class="headerlink" href="#id17" title="제목 주소">¶</a></h4>
 <p>노멀 플로우 예시:</p>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nt">DOCTYPE</span> <span class="nt">HTML</span> <span class="nt">PUBLIC</span> <span class="s2">&quot;-//W3C//DTD HTML 4.01//EN&quot;</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nt">HTML</span><span class="o">&gt;</span>
@@ -709,8 +709,8 @@ This is anonymous text after the SPAN.
 <p>inner의 컨테이닝 블록은 초기 컨테이닝 블록이 된다.</p>
 </div>
 </div>
-<div class="section" id="id16">
-<h3>1.5.8. 계층화된 표현<a class="headerlink" href="#id16" title="제목 주소">¶</a></h3>
+<div class="section" id="id18">
+<h3>1.5.8. 계층화된 표현<a class="headerlink" href="#id18" title="제목 주소">¶</a></h3>
 <div class="section" id="z-index">
 <h4>1.5.8.1. z-index 속성<a class="headerlink" href="#z-index" title="제목 주소">¶</a></h4>
 <p>위치가 결정된 박스를 위해 z-index는 다음을 명시한다:</p>
@@ -780,8 +780,8 @@ This is anonymous text after the SPAN.
 <div class="section" id="page">
 <h3>1.7.1. &#64;page<a class="headerlink" href="#page" title="제목 주소">¶</a></h3>
 <p>&#64;page는 페이지를 설정할때 사용하는 규칙이며 페이지 셀렉터, 스타일 블록이 따라온다.</p>
-<div class="section" id="id18">
-<h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id18" title="제목 주소">¶</a></h4>
+<div class="section" id="id20">
+<h4>1.7.1.1. 페이지 여백<a class="headerlink" href="#id20" title="제목 주소">¶</a></h4>
 <p>margin-top, margin-right, margin-bottom, margin-left &#64;page 규칙에서 사용할 수 있다.:</p>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">page</span> <span class="p">{</span>
 <span class="nt">margin</span><span class="o">:</span> <span class="nt">3cm</span><span class="o">;</span>
@@ -789,8 +789,8 @@ This is anonymous text after the SPAN.
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h4>1.7.1.2. 페이지 선택자<a class="headerlink" href="#id19" title="제목 주소">¶</a></h4>
+<div class="section" id="id21">
+<h4>1.7.1.2. 페이지 선택자<a class="headerlink" href="#id21" title="제목 주소">¶</a></h4>
 <ul class="simple">
 <li>:first: 이 의사 클래스를 사용하여 첫번째 페이지를 설정할 수 있다.</li>
 </ul>
@@ -807,8 +807,8 @@ This is anonymous text after the SPAN.
 <p>위 속성들은 블록 요소에만 적용되며 기본적으로 auto로 동작한다. always를 주면 항상 페이지 분할이 발생하고 avoid는 분할이 발생하지 않게 한다.</p>
 </div>
 </div>
-<div class="section" id="id20">
-<h2>1.8. 참조<a class="headerlink" href="#id20" title="제목 주소">¶</a></h2>
+<div class="section" id="id22">
+<h2>1.8. 참조<a class="headerlink" href="#id22" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>CSS Snapshot: <a class="reference external" href="https://www.w3.org/Style/2011/CSS-process">https://www.w3.org/Style/2011/CSS-process</a></li>
 <li>CSS Processing: <a class="reference external" href="https://www.w3.org/TR/CSS2/intro.html#q2.0">https://www.w3.org/TR/CSS2/intro.html#q2.0</a></li>
