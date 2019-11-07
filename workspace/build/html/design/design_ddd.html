@@ -1,0 +1,164 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Domain Driven Design(DDD) &#8212; Code Accelerator Document 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136789982-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136789982-1');
+</script>
+
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="domain-driven-design-ddd">
+<span id="design-ddd"></span><h1>Domain Driven Design(DDD)<a class="headerlink" href="#domain-driven-design-ddd" title="제목 주소">¶</a></h1>
+<div class="section" id="id1">
+<h2>개념<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
+<p>도메인 주도 설계란 프로그램으로 구현하고자 하는 <strong>분야와 관련 개념을 중심으로 전체 시스템이나 서브 시스템을 모델링하는 방법론이다.</strong>
+또한 이 모델은 관계자들이 이해할 수 있는 유비쿼터스 언어로 작성되며, 도메인 모델은 결과물은 분석, 설계, 개발 전 과정에서 활용될 수 있다.</p>
+<div class="line-block">
+<div class="line"><strong>도메인 주도 설계는 특히 시스템을 적당한 크기로 나누고 그 관계를 정의하고, 다시 재통합하는데 핵심적인 전략을 제시한다.</strong></div>
+<div class="line">여기서 <strong>적당한 크기란</strong> 유지보수하기 쉬우며, 팀이나 개인이 책임질 수 있는 정도의 크기이다.</div>
+</div>
+<p>도메인 주도 설계는 여러가지 시스템(내부 또는 외부)이나 분야를 도메인 모델이라는 단위로 관리한다. 도메인 모델은 핵심 개념으로 관계나 이해할 수 있는 언어로 작성되는게 포인트이다.
+이때 유비쿼터스 언어라는게 활용되며, 이는 회의를 통해 설계되는 공통의 언어로 단순하게는, 용어의 집합을 의미한다.</p>
+<div class="line-block">
+<div class="line"><strong>프로그램이 다뤄야하는 영역의 지식은 실제 프로젝트의 성공에 상당한 영향을 끼칠 수 있다.</strong></div>
+<div class="line">당연하게도, 개발자가 어떤 분야(도메인)에 대해 잘 모르는 상태에서 설계 및 개발하면 결과물의 품질이 떨어지게 된다.</div>
+<div class="line">그래서 업무 분석가가 먼저 모든 내용을 정리하게된다. 하지만 분석가의 관점이 많이 반영되기 때문에 소프트웨어 분야와 동떨어진 결과물이 만들어 지게 된다.</div>
+<div class="line">아키텍트나 개발자가 개발자 자신의 관점에서 다시 재해석된 결과물을 바탕으로 애플리케이션을 설계 및 개발하게 된다.</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>대규모 프로젝트의 예<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<p>도메인 주도 설계는 특히 큰 규모의 시스템을 구축할때 효과적이다. 규모가 크다는 것은 단일 모델로 표현이 불가능하며, 여러 팀이 동시에 유지보수 할 수 밖에 없기 때문이다.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Code Accelerator Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../author.html">관리자 (Author)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/java_index.html">자바(Java)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_index.html">설계(Design)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pr_language/language_index.html">프로그래밍 언어(Programming Language)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/server_index.html">서버(Server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_index.html">리눅스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring/spring_index.html">Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network/network_index.html">네트워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/javascript_index.html">Javascript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../netframework/netframework_index.html">.Net Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python_index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/database_index.html">데이터베이스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/operating_system_index.html">운영체제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datastructure/datastructure_index.html">알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../statistics/statistics_index.html">통계학(Statictics)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/security_index.html">보안(Security)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ict/ict_index.html">ICT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/etc_index.html">달리 분류되지 않음</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+      &copy;2017, Choe Changwon.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/design/design_ddd.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+
+
+  </body>
+</html>
