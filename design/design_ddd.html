@@ -52,21 +52,19 @@
 <span id="design-ddd"></span><h1>2. Domain Driven Design(DDD)<a class="headerlink" href="#domain-driven-design-ddd" title="제목 주소">¶</a></h1>
 <div class="section" id="id1">
 <h2>2.1. 개념<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
-<p>도메인 주도 설계란 프로그램으로 구현하고자 하는 <strong>분야와 관련 개념을 중심으로 전체 시스템이나 서브 시스템을 모델링하는 방법론이다.</strong>
-또한 이 모델은 관계자들이 이해할 수 있는 유비쿼터스 언어로 작성되며, 도메인 모델은 결과물은 분석, 설계, 개발 전 과정에서 활용될 수 있다.</p>
+<p>도메인 주도 설계란 프로그램으로 돕거나 해결하고자 하는 <strong>분야(Domain)를 중심으로 전체 시스템이나 서브 시스템을 모델링하는 방법론이다.</strong>
+도메인은 여러개의 서브 도메인으로 나눠질 수 있으며 도메인 모델로 표현된다. 도메인 모델은 관계자들이 이해할 수 있는 유비쿼터스 언어로 작성되며 분석, 설계, 개발 전 과정에서 활용될 수 있다.</p>
 <p><strong>장점</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">도메인</span> <span class="n">주도</span> <span class="n">설계는</span> <span class="n">특히</span> <span class="n">시스템을</span> <span class="n">적당한</span> <span class="n">크기로</span> <span class="n">나누고</span> <span class="n">그</span> <span class="n">관계를</span> <span class="n">정의하고</span><span class="p">,</span> <span class="n">다시</span> <span class="n">재통합하는데</span> <span class="n">핵심적인</span> <span class="n">전략을</span> <span class="n">제시한다</span><span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">도메인</span> <span class="n">주도</span> <span class="n">설계는</span> <span class="n">특히</span> <span class="n">시스템에서</span> <span class="n">적당한</span> <span class="n">크기의</span> <span class="n">도메인을</span> <span class="n">추출하고</span> <span class="n">나누고</span> <span class="n">그</span> <span class="n">관계를</span> <span class="n">정의하고</span><span class="p">,</span> <span class="n">표현할</span> <span class="n">수</span> <span class="n">있도록</span> <span class="n">도와준다</span><span class="o">.</span>
 <span class="n">여기서</span> <span class="n">적당한</span> <span class="n">크기란</span> <span class="n">유지보수하기</span> <span class="n">쉬우며</span><span class="p">,</span> <span class="n">팀이나</span> <span class="n">개인이</span> <span class="n">책임질</span> <span class="n">수</span> <span class="n">있는</span> <span class="n">정도의</span> <span class="n">크기이다</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>도메인 주도 설계는 여러가지 시스템(내부 또는 외부)이나 분야를 도메인 모델이라는 단위로 관리한다. 도메인 모델은 핵심 개념으로 관계나 이해할 수 있는 언어로 작성되는게 포인트이다.
-이때 유비쿼터스 언어라는게 활용되며, 이는 회의를 통해 설계되는 공통의 언어로 단순하게는, 용어의 집합을 의미한다.
-일반적으로 도메인 모델은 바로 코드와 연결될 수 있으며, 코드와 상호 피드백을 하면서 모습이 변경될 수 있다.</p>
+<p>도메인 주도 설계에서 <strong>여러가지 시스템(내부 또는 외부)이나 분야는 도메인 모델로 표현된다.</strong> 도메인 모델은 핵심 개념으로 모든 관계자가 이해할 수 있는 유비쿼터스 언어로 작성되는게 포인트이다.
+이는 회의를 통해 설계되는 공통의 언어로 단순하게는 도메인에 관련된 용어의 집합을 의미한다.</p>
 <p><strong>도메인의 중요성</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">프로그램이</span> <span class="n">다뤄야하는</span> <span class="n">영역의</span> <span class="n">지식은</span> <span class="n">실제</span> <span class="n">프로젝트의</span> <span class="n">성공에</span> <span class="n">상당한</span> <span class="n">영향을</span> <span class="n">끼칠</span> <span class="n">수</span> <span class="n">있다</span><span class="o">.</span>
 <span class="n">당연하게도</span><span class="p">,</span> <span class="n">개발자가</span> <span class="n">어떤</span> <span class="n">분야</span><span class="p">(</span><span class="n">도메인</span><span class="p">)</span><span class="n">에</span> <span class="n">대해</span> <span class="n">잘</span> <span class="n">모르는</span> <span class="n">상태에서</span> <span class="n">설계</span> <span class="n">및</span> <span class="n">개발하면</span> <span class="n">결과물의</span> <span class="n">품질이</span> <span class="n">떨어지게</span> <span class="n">된다</span><span class="o">.</span>
-<span class="n">그래서</span> <span class="n">업무</span> <span class="n">분석가가</span> <span class="n">먼저</span> <span class="n">모든</span> <span class="n">내용을</span> <span class="n">정리하게된다</span><span class="o">.</span> <span class="n">하지만</span> <span class="n">분석가의</span> <span class="n">관점이</span> <span class="n">많이</span> <span class="n">반영되기</span> <span class="n">때문에</span> <span class="n">소프트웨어</span> <span class="n">분야와</span> <span class="n">동떨어진</span> <span class="n">결과물이</span> <span class="n">만들어</span> <span class="n">지게</span> <span class="n">된다</span><span class="o">.</span>
-<span class="n">아키텍트나</span> <span class="n">개발자가</span> <span class="n">개발자</span> <span class="n">자신의</span> <span class="n">관점에서</span> <span class="n">다시</span> <span class="n">재해석된</span> <span class="n">결과물을</span> <span class="n">바탕으로</span> <span class="n">애플리케이션을</span> <span class="n">설계</span> <span class="n">및</span> <span class="n">개발하게</span> <span class="n">된다</span><span class="o">.</span>
+<span class="n">업무</span> <span class="n">분석가가</span> <span class="n">먼저</span> <span class="n">모든</span> <span class="n">내용을</span> <span class="n">정리해서</span> <span class="n">개발자에게</span> <span class="n">전달하더라도</span><span class="p">,</span> <span class="n">이는</span> <span class="n">개발</span> <span class="n">분야와</span> <span class="n">동떨어진</span> <span class="n">결과물이기</span> <span class="n">때문에</span> <span class="n">설계자나</span> <span class="n">개발자는</span> <span class="n">다른</span> <span class="n">관점에서</span> <span class="n">다시</span> <span class="n">재해석하여</span> <span class="n">애플리케이션을</span> <span class="n">설계</span> <span class="n">및</span> <span class="n">개발하게</span> <span class="n">된다</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
@@ -75,8 +73,19 @@
 <p>도메인 주도 설계는 특히 큰 규모의 시스템을 구축할때 효과적이다. 규모가 크다는 것은 여러 팀이 시스템을 나눠서 설계, 개발, 유지보수를 해야할 수 밖에 없고 이때 도메인 모델이 매우 유용하기 때문이다.
 작은 도메인 모델은 서브 도메인 모델이라 불리기도 한다.</p>
 <div class="section" id="id2">
-<h3>2.2.1. 도메인 모델 블록<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
-<p>도메인 모델 설계를 위한 블록은 다음과 같다.</p>
+<h3>2.2.1. 도메인 모델<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
+<p>도메인 모델은 도메인을 그림이나 글로 표현한 것이다. 이는 다소 추상적으로 표현될 것이다.
+일반적으로 도메인 모델은 바로 코드와 연결될 수 있으며, 코드와 상호 피드백을 하면서 모습이 변경될 수 있다.
+도메인 모델은 비지니스의 핵심을 담아야 하며 계속 통합되어야 한다.</p>
+<p>여러개의 도메인 모델 표현하고 하나의 시스템으로 동작하게 하기위해 전략적 설계(strategic design)를 활용한다.</p>
+<p>전략 설계를 위한 요소는 다음과 같다.</p>
+<ul class="simple">
+<li>Bounded Context(분할된 컨텍스트)</li>
+<li>Context Map(컨텍스트 맵)</li>
+<li>유비쿼터스 언어</li>
+<li>지속적인 통합</li>
+</ul>
+<p>도메인 모델 설계를 위한 블록은 다음과 같다. 이러한 패턴을 이용해 설계하는 것을 전술적 설계(tactical design)이라 불리기도 한다.</p>
 <ul class="simple">
 <li>계층형 아키텍처(Layered Architecture)</li>
 <li>엔터티(Entity)</li>
@@ -91,8 +100,8 @@
 <h3>2.2.2. Bounded Context(분할된 컨텍스트)<a class="headerlink" href="#bounded-context" title="제목 주소">¶</a></h3>
 <p>기본적으로 서브 도메인 모델은 각기 다른 분야의 문제를 다루기 때문에 구분되는 존재이다. 하지만 <strong>통합되는 과정에서</strong> 각 모델은 구분할 수 없는 모습으로 강하게 결합된다.
 점점 큰 시스템안의 <strong>각 모델간의 경계를 명확히 표시할</strong> 필요가 있었고, 각 모델이 통합될 때 어떤 형태로 통합되는지 표현될 필요가 있게 되었다.</p>
-<p>그래서, 각 모델을 명확하게 구분하기 위해 가상의 경계선을 둘러 명확하게 분리하고 이에 <strong>분할된 컨텍스트라</strong> 이름을 지었다.</p>
-<p>분할된 컨텍스트의 특징은 특정한 문맥에 따라 사물을 해석한다는 것이다.</p>
+<p>그래서, 각 모델을 명확하게 구분하기 위해 가상의 경계선을 둘러 명확하게 분리하고 이에 <strong>분할된 컨텍스트라</strong> 이름을 지었다. 분할된 컨텍스트의 특징은 특정한 문맥에 따라 도메인의 요소를 해석한다는 것이다.</p>
+<p>분할된 컨텍스트는 시스템의 무결성 유지를 위해 개발의 변경에 다른 피드백을 수용해야한다. 따라서 테스트 케이스틀 통해 변경사항이 모델에 순응(Conform)하는지 지속적으로 확인해야한다. 이를 지속적인 통합이라 부른다.</p>
 <img alt="../_images/shopping.jpg" src="../_images/shopping.jpg" />
 <p>쇼핑몰 예시에서와 같이 <strong>같은 회원이라도</strong> 고객지원 서비스와 상품판매 홈페이지에서 다르게 해석된다는 것이다.</p>
 </div>
@@ -117,6 +126,7 @@
 <li>도메인 주도 설계란 무엇인가? (쉽고 간략하게 이해하는 DDD)</li>
 <li><a class="reference external" href="https://dddcommunity.org/">https://dddcommunity.org/</a></li>
 <li><a class="reference external" href="http://domainlanguage.com/ddd/reference/">http://domainlanguage.com/ddd/reference/</a></li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=NNFJREcalc0&amp;t=104s">https://www.youtube.com/watch?v=NNFJREcalc0&amp;t=104s</a></li>
 </ul>
 </div>
 </div>
