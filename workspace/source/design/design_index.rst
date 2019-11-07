@@ -16,6 +16,7 @@ Contents:
    :numbered: 
 
    design_terms.rst
+   design_ddd.rst
    design_pattern.rst
    design_rest.rst
    design_problem.rst
