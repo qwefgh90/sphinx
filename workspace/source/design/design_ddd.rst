@@ -84,3 +84,5 @@ Context Map(컨텍스트 맵)
 -------------------------
 
 - 도메인 주도 설계란 무엇인가? (쉽고 간략하게 이해하는 DDD)
+- https://dddcommunity.org/
+- http://domainlanguage.com/ddd/reference/
