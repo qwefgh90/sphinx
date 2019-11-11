@@ -68,13 +68,11 @@
 <span class="n">업무</span> <span class="n">분석가가</span> <span class="n">먼저</span> <span class="n">모든</span> <span class="n">내용을</span> <span class="n">정리해서</span> <span class="n">개발자에게</span> <span class="n">전달하더라도</span><span class="p">,</span> <span class="n">이는</span> <span class="n">개발</span> <span class="n">분야와</span> <span class="n">동떨어진</span> <span class="n">결과물이기</span> <span class="n">때문에</span> <span class="n">설계자나</span> <span class="n">개발자는</span> <span class="n">다른</span> <span class="n">관점에서</span> <span class="n">다시</span> <span class="n">재해석하여</span> <span class="n">애플리케이션을</span> <span class="n">설계</span> <span class="n">및</span> <span class="n">개발하게</span> <span class="n">된다</span><span class="o">.</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="ddd">
-<h2>2.2. DDD 실천 방법<a class="headerlink" href="#ddd" title="제목 주소">¶</a></h2>
 <p>도메인 주도 설계는 특히 큰 규모의 시스템을 구축할때 효과적이다. 규모가 크다는 것은 여러 팀이 시스템을 나눠서 설계, 개발, 유지보수를 해야할 수 밖에 없고 이때 도메인 모델이 매우 유용하기 때문이다.
 작은 도메인 모델은 서브 도메인 모델이라 불리기도 한다.</p>
+</div>
 <div class="section" id="id2">
-<h3>2.2.1. 도메인 모델<a class="headerlink" href="#id2" title="제목 주소">¶</a></h3>
+<h2>2.2. 도메인 모델<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <p>도메인 모델은 도메인을 그림이나 글로 표현한 것이다. 이는 다소 추상적으로 표현될 것이다.
 일반적으로 도메인 모델은 바로 코드와 연결될 수 있으며, 코드와 상호 피드백을 하면서 모습이 변경될 수 있다.
 도메인 모델은 비지니스의 핵심을 담아야 하며 계속 통합되어야 한다.</p>
@@ -98,7 +96,7 @@
 </ul>
 </div>
 <div class="section" id="bounded-context">
-<h3>2.2.2. Bounded Context(분할된 컨텍스트)<a class="headerlink" href="#bounded-context" title="제목 주소">¶</a></h3>
+<h2>2.3. Bounded Context(분할된 컨텍스트)<a class="headerlink" href="#bounded-context" title="제목 주소">¶</a></h2>
 <p>기본적으로 서브 도메인 모델은 각기 다른 분야의 문제를 다루기 때문에 구분되는 존재이다. 하지만 <strong>통합되는 과정에서</strong> 각 모델은 구분할 수 없는 모습으로 강하게 결합된다.
 점점 큰 시스템안의 <strong>각 모델간의 경계를 명확히 표시할</strong> 필요가 있었고, 각 모델이 통합될 때 어떤 형태로 통합되는지 표현될 필요가 있게 되었다.</p>
 <p>그래서, 각 모델을 명확하게 구분하기 위해 가상의 경계선을 둘러 명확하게 분리하고 이에 <strong>분할된 컨텍스트라</strong> 이름을 지었다. 분할된 컨텍스트의 특징은 특정한 문맥에 따라 도메인의 요소를 해석한다는 것이다.</p>
@@ -107,7 +105,7 @@
 <p>쇼핑몰 예시에서와 같이 <strong>같은 회원이라도</strong> 고객지원 서비스와 상품판매 홈페이지에서 다르게 해석된다는 것이다.</p>
 </div>
 <div class="section" id="context-map">
-<h3>2.2.3. Context Map(컨텍스트 맵)<a class="headerlink" href="#context-map" title="제목 주소">¶</a></h3>
+<h2>2.4. Context Map(컨텍스트 맵)<a class="headerlink" href="#context-map" title="제목 주소">¶</a></h2>
 <p>분할된 컨텍스트에는 스스로 동작할 수 컨텍스트도 있지만 다른 컨테스트를 참조해야하는 경우도 있다. <strong>분할된 컨텍스트 간의 관계를 표현하기 위해 컨텍스트 맵이 활용된다.</strong></p>
 <p>컨텍스트 같은 관계를 표현하는 방식에는 다음이 있다.</p>
 <ul class="simple">
@@ -119,10 +117,38 @@
 <li>오픈 호스트 서비스</li>
 <li>증류</li>
 </ul>
-</div>
-</div>
 <div class="section" id="id3">
-<h2>2.3. 참조<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<h3>2.4.1. 공유 커널<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
+<p>여러개로 분할된 컨텍스트 상호 간 데이터나 기능을 공유할 필요가 생길 경우 사용하는 패턴이다.
+양쪽 컨텍스트는 공유 커널에 대해 수정에 대한 책임 및 검증에 대한 책임을 진다. 그리고 컨텍스트가 개선될때마다 공유 커널을 테스트 한다.</p>
+</div>
+<div class="section" id="id4">
+<h3>2.4.2. 공급자-소비자<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
+<p>컨텍스트 간에는 의존 관계가 존재할 수도 있다. 어떤 서버 컨텍스트의 기능이 클라이언트 컨텍스트에 꼭 필요한 기능일 수 있다. 하지만 클라이언트의 변경 요구가 발생하더라도 일반적으로 서버 컨텍스트 담당은
+어떠한 계획을 가지고 클라이언트 컨텍스트를 지원하지 않을 수 있다. 이러한 경우 명확하게 관계를 갖고 서버팀은 관계에 따라 클라이언트팀의 요구사항을 들어주고 지원해줘야 한다.</p>
+<p>클라이언트 팀은 자신의 도메인 모델을 유지하기 위해 변질 방지 레이어를 설치 할 수 있다.</p>
+</div>
+<div class="section" id="id5">
+<h3>2.4.3. 순응<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
+<p>서버가 클라이언트의 요청을 들어줄 필요가 없는 경우도 있다. 이 경우에는 서버가 언젠가는 지원해준다는 생각을 버리고, 현재 주어진 기능에 순응하는게 나을 수 있다.
+이때 서버의 변경을 대비하는 레이어를 만드는 것은 큰 의미가 없을 수 있다.</p>
+</div>
+<div class="section" id="id6">
+<h3>2.4.4. 변질 방지 레이어<a class="headerlink" href="#id6" title="제목 주소">¶</a></h3>
+<p>다른 컨텍스트의 기능을 사용할때 날것 그대로 사용할 경우 현재 모델의 구조가 오염될 수 있다. 모델을 유지하기 위해 일반적으로 변질 방지 레이어를 둔다.</p>
+</div>
+<div class="section" id="id7">
+<h3>2.4.5. 분할 방식<a class="headerlink" href="#id7" title="제목 주소">¶</a></h3>
+<p>컨텍스트간의 기능 공유는 항상 큰 유지 비용을 발생하므로, 어떠한 경우에는 냉철하게 접점을 없애고 분할하는 것을 고려해야한다.</p>
+</div>
+<div class="section" id="id8">
+<h3>2.4.6. 오픈 호스트 서비스<a class="headerlink" href="#id8" title="제목 주소">¶</a></h3>
+<p>여러개의 공급자-소비자 관계는 전체 비용을 많이 증가시키도 한다. 따라서 서버에서 자체적으로 개발한 프로토콜을 클라이언트에 제공하여 비용을 낮추기도 한다.
+경우에 따라 특정 클라이언트를 위한 예외 프로토콜을 제공할 수도 있다.</p>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>2.5. 참조<a class="headerlink" href="#id9" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>도메인 주도 설계란 무엇인가? (쉽고 간략하게 이해하는 DDD)</li>
 <li><a class="reference external" href="https://dddcommunity.org/">https://dddcommunity.org/</a></li>
