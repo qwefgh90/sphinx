@@ -117,15 +117,15 @@
 <li>오픈 호스트 서비스</li>
 <li>증류</li>
 </ul>
-<div class="section" id="id3">
-<h3>2.4.1. 공유 커널<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
+<div class="section" id="shared-kernel">
+<h3>2.4.1. 공유 커널(Shared Kernel)<a class="headerlink" href="#shared-kernel" title="제목 주소">¶</a></h3>
 <p>일반적으로 지나치게 크기가 큰 컨텍스트는 지속적으로 도메인 모델을 유지하기가 어려울 수 있다. 하나의 팀에서 맡기에는 규모가 너무 크거나, 팀의 지속적 통합 스킬이 부족할 경우 지속적 통합의 비용은 너무나 높아진다.
-그래서 큰 컨텍스트를 여러개의 컨텍스트로 분할하고 팀을 배치해서 관리하게 된다. 하지만 팀을 나눴기 때문에 공통으로 사용하는 모델에 대한 변경이 자유롭게 일어나게 되고, 서로 하나의 모델을 두고 경쟁하게 된다.</p>
+그래서 큰 컨텍스트를 여러개의 컨텍스트로 분할하고 팀을 배치해서 관리하게 된다. 하지만 팀을 나눴기 때문에 공통으로 사용하는 부분에 대한 변경이 자유롭게 일어나게 되고, 서로 하나의 모델을 두고 경쟁하게 된다.</p>
 <p><strong>공유커널은 양쪽 컨텍스트에서 명확하게 공유되는 부분(컨텍스트의 일부분, 교집합)을 정의하고 양쪽 팀이 공동으로 수정에 대한 책임 및 테스트에 대한 책임을 지도록 하는 패턴이다.</strong>
-공유커널은 유지비용이 크므로 작게 유지되어야 한다. <strong>도메인 모델의 소스코드나 데이터베이스의 일부분이</strong> 공유 커널로 활용될 수 있다.</p>
+공유커널은 유지비용이 크기때문에 다소 작게 유지되어야 하며 반드시 협의를 통해 변경되어야 한다. <strong>도메인 모델의 소스코드나 데이터베이스의 일부분이</strong> 공유 커널로 활용될 수 있다.</p>
 </div>
-<div class="section" id="id4">
-<h3>2.4.2. 공급자-소비자<a class="headerlink" href="#id4" title="제목 주소">¶</a></h3>
+<div class="section" id="customer-supplier-development">
+<h3>2.4.2. 공급자-소비자(Customer/Supplier Development)<a class="headerlink" href="#customer-supplier-development" title="제목 주소">¶</a></h3>
 <p>컨텍스트 간에는 의존 관계가 존재할 수도 있다. <strong>기본적으로 특정한 정책에 묶여 있지 않을때 이러한 관계를 upstream-downstream 관계라</strong> 칭하기도 한다.
 upstream팀은 downstream팀에 상태에 관계 없이 컨텍스트를 변경할 수도 있으며 성공할 수도 있다.
 downstream팀의 경우 upstream팀의 우선순위에 따라 자신의 요구는 뒤로 미뤄지기도 한다. 또는 upstream팀의 변경 승인 절차가 너무 복잡하여 downstream팀은 오랫동안 정체될 수도 있다.
@@ -133,26 +133,26 @@ upstream팀의 경우 upstream팀이 downstream팀의 컨텍스트가 무너지�
 <p><strong>이러한 경우 컨텍스트간에 명확하게 공급자-소비자 관계를 갖고 공급자는 소비자와 적극적으로 협상하고, 예산을 투입하여 소비자가 걱정없이 계획을 세울 수 있도록 해야한다.</strong>
 클라이언트 팀은 자신의 도메인 모델을 유지하기 위해 변질 방지 레이어를 설치 할 수 있다.</p>
 </div>
-<div class="section" id="id5">
-<h3>2.4.3. 순응<a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
+<div class="section" id="conformist">
+<h3>2.4.3. 순응(Conformist)<a class="headerlink" href="#conformist" title="제목 주소">¶</a></h3>
 <p>upstream팀이 downstream팀의 요청을 들어줄 필요가 없는 경우도 있다. 어떤 경우에는 upstream팀에 있는 선한 사람이 요청을 들어주기로 약속을 하기도 한다.
 하지만 어떤 이득이나 당위성이 없어서 결국 upstream팀은 downstream팀의 요구를 묵살하고, 이를 믿고 세웠던 downstream팀의 모든 계획은 물거품으로 돌아갈 수 있다.
 이 경우에는 upstream팀이 언젠가는 지원해준다는 생각을 버리고, 현재 주어진 기능에 순응하는게 나을 수 있다.</p>
 <p><strong>번역 계층이 버리고 downstream팀 고유의 이상적인 모델을 포기해야 할지라도, upstream의 모델을 완전히 받아들이는게 문제를 간단하게 풀 수 있다.</strong></p>
 </div>
-<div class="section" id="id6">
-<h3>2.4.4. 변질 방지 레이어<a class="headerlink" href="#id6" title="제목 주소">¶</a></h3>
+<div class="section" id="anticorruption-layer">
+<h3>2.4.4. 변질 방지 레이어(Anticorruption Layer)<a class="headerlink" href="#anticorruption-layer" title="제목 주소">¶</a></h3>
 <p>어떤 경우 upstream 컨텍스트가 너무 크고 영향력이 강해서 downstream 컨텍스트가 자신의 모델을 버리고 upstream 모델을 닮아 갈 수 밖에 없는 경우가 있다.
 upstream 컨텍스트가 레거시이고 고도화 프로젝트에 적합하지 않은 모델을 가지고 있다면 upstream 모델을 따르는건 너무 위험할 수 있다.</p>
 <p>하지만 여전히 컨텍스트 간 통합은 중요하므로, 변질 방지 계층을 활용해 이러한 통합의 문제를 해결할 수 있다.
 <strong>변질 방지 계층은 한쪽 모델을 다른 모델에서 사용할 수 있도록 번역하고 인터페이스를 제공하여, 양쪽 컨텍스트에 어떠한 수정도 없이 컨텍스트를 통합하게 도와준다.</strong></p>
 </div>
-<div class="section" id="id7">
-<h3>2.4.5. 분할 방식<a class="headerlink" href="#id7" title="제목 주소">¶</a></h3>
+<div class="section" id="seperate-ways">
+<h3>2.4.5. 분할 방식(Seperate Ways)<a class="headerlink" href="#seperate-ways" title="제목 주소">¶</a></h3>
 <p>컨텍스트간에 기능을 공유하는 대부분의 경우에는 번역이 필요하며 큰 유지 비용을 발생한다. 어떠한 경우에는 상대의 요구를 들어주고 번역 계층을 변형하는데 투자하는 대신에 <strong>냉철하게 접점을 없애고 분할하는 것을 고려하는게 나을 수 있다.</strong></p>
 </div>
-<div class="section" id="id8">
-<h3>2.4.6. 오픈 호스트 서비스<a class="headerlink" href="#id8" title="제목 주소">¶</a></h3>
+<div class="section" id="open-host-service">
+<h3>2.4.6. 오픈 호스트 서비스(Open-host Service)<a class="headerlink" href="#open-host-service" title="제목 주소">¶</a></h3>
 <p>여러개의 공급자-소비자 계획이 있을때 모든 요구를 충족시키기 위해 많은 비용이 필요하다. 공급자에 변경이 발생할때마다 소비자에 존재하는 모든 번역 계층에 변경이 필요할 수도 있다.
 이는 적지않는 시간과 예산이 들며, 모든 팀의 걱정거리가 된다.</p>
 <p><strong>따라서 어떤 경우에는 upstream팀에서 자체적으로 개발한 프로토콜을 정의하고 모든 downstream에게 제공하는 것이 더 쉽고 저렴한 방법일 수 있다.</strong>
@@ -160,8 +160,8 @@ upstream 컨텍스트가 레거시이고 고도화 프로젝트에 적합하지 
 프로토콜의 경우 확장이 가능하며, 특정 클라이언트를 위한 예외 프로토콜을 제공할 수도 있다.</p>
 </div>
 </div>
-<div class="section" id="id9">
-<h2>2.5. 참조<a class="headerlink" href="#id9" title="제목 주소">¶</a></h2>
+<div class="section" id="id3">
+<h2>2.5. 참조<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>도메인 주도 설계란 무엇인가? (쉽고 간략하게 이해하는 DDD)</li>
 <li><a class="reference external" href="https://dddcommunity.org/">https://dddcommunity.org/</a></li>
