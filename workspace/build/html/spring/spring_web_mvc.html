@@ -240,18 +240,18 @@
 <p>아래 예시와 가지 2가지 스타일을 사용할 수 있다</p>
 <p>예시1:</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@ModelAttribute</span>
-<span class="kd">public</span> <span class="n">Account</span> <span class="nf">addAccount</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">accountManager</span><span class="o">.</span><span class="na">findAccount</span><span class="o">(</span><span class="n">number</span><span class="o">);</span>
-<span class="o">}</span>
+<span class="kd">public</span> <span class="n">Account</span> <span class="nf">addAccount</span><span class="p">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">number</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">accountManager</span><span class="p">.</span><span class="na">findAccount</span><span class="p">(</span><span class="n">number</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>위 메서드는 <strong>반환 값을 값으로 갖고 암묵적으로 account라는 이름(타입)을 갖는 속성을</strong> 모델에 추가한다. &#64;ModelAttribute의 인자를 주어 이름을 지정할 수 있다.</p>
 <p>예시2:</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@ModelAttribute</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">populateModel</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">number</span><span class="o">,</span> <span class="n">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="n">accountManager</span><span class="o">.</span><span class="na">findAccount</span><span class="o">(</span><span class="n">number</span><span class="o">));</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">populateModel</span><span class="p">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">number</span><span class="p">,</span> <span class="n">Model</span> <span class="n">model</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">model</span><span class="p">.</span><span class="na">addAttribute</span><span class="p">(</span><span class="n">accountManager</span><span class="p">.</span><span class="na">findAccount</span><span class="p">(</span><span class="n">number</span><span class="p">));</span>
         <span class="c1">// add more ...</span>
-<span class="o">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Model을 인자로 받아서 여러개의 속성을 추가할떄 사용한다.</p>
@@ -260,8 +260,8 @@
 <h4>2.4.3.7. &#64;ModelAttribute (메서드 인자)<a class="headerlink" href="#id8" title="제목 주소">¶</a></h4>
 <p>모델의 속성과 메서드 인자를 바인딩 시킬때 사용할 수 있다.</p>
 <p>예시:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">&quot;/owners/{ownerId}/pets/{petId}/edit&quot;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="n">String</span> <span class="nf">processSubmit</span><span class="o">(</span><span class="nd">@ModelAttribute</span> <span class="n">Pet</span> <span class="n">pet</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/owners/{ownerId}/pets/{petId}/edit&quot;</span><span class="p">)</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">processSubmit</span><span class="p">(</span><span class="nd">@ModelAttribute</span> <span class="n">Pet</span> <span class="n">pet</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 </pre></div>
 </div>
 <p>위 Pet의 인스턴스는 여러가지 위치에 있는 값과 바인딩 될 수 있다.</p>
@@ -313,18 +313,18 @@
 <p>servlet_context.xml 설정을 다음과 같다.:</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="o">?&gt;</span>
 <span class="o">&lt;</span><span class="n">beans</span> <span class="n">xmlns</span><span class="o">=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
-        <span class="n">xmlns</span><span class="o">:</span><span class="n">xsi</span><span class="o">=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
-        <span class="n">xmlns</span><span class="o">:</span><span class="n">p</span><span class="o">=</span><span class="s">&quot;http://www.springframework.org/schema/p&quot;</span>
-        <span class="n">xmlns</span><span class="o">:</span><span class="n">context</span><span class="o">=</span><span class="s">&quot;http://www.springframework.org/schema/context&quot;</span>
-        <span class="n">xsi</span><span class="o">:</span><span class="n">schemaLocation</span><span class="o">=</span><span class="s">&quot;</span>
+        <span class="n">xmlns</span><span class="p">:</span><span class="n">xsi</span><span class="o">=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+        <span class="n">xmlns</span><span class="p">:</span><span class="n">p</span><span class="o">=</span><span class="s">&quot;http://www.springframework.org/schema/p&quot;</span>
+        <span class="n">xmlns</span><span class="p">:</span><span class="n">context</span><span class="o">=</span><span class="s">&quot;http://www.springframework.org/schema/context&quot;</span>
+        <span class="n">xsi</span><span class="p">:</span><span class="n">schemaLocation</span><span class="o">=</span><span class="s">&quot;</span>
 <span class="s">                http://www.springframework.org/schema/beans</span>
 <span class="s">                http://www.springframework.org/schema/beans/spring-beans.xsd</span>
 <span class="s">                http://www.springframework.org/schema/context</span>
 <span class="s">                http://www.springframework.org/schema/context/spring-context.xsd&quot;</span><span class="o">&gt;</span>
 
-        <span class="o">&lt;</span><span class="n">context</span><span class="o">:</span><span class="n">component</span><span class="o">-</span><span class="n">scan</span> <span class="n">base</span><span class="o">-</span><span class="n">package</span><span class="o">=</span><span class="s">&quot;org.example.web&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="n">context</span><span class="p">:</span><span class="n">component</span><span class="o">-</span><span class="n">scan</span> <span class="n">base</span><span class="o">-</span><span class="n">package</span><span class="o">=</span><span class="s">&quot;org.example.web&quot;</span><span class="o">/&gt;</span>
 
-        <span class="o">&lt;!--</span> <span class="o">...</span> <span class="o">--&gt;</span>
+        <span class="o">&lt;!--</span> <span class="p">...</span> <span class="o">--&gt;</span>
 <span class="o">&lt;/</span><span class="n">beans</span><span class="o">&gt;</span>
 </pre></div>
 </div>

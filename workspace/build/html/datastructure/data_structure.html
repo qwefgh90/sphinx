@@ -107,23 +107,23 @@
 <p><a class="reference download internal" download="" href="../_downloads/ca7075c2a6bc77c735b4459e70769700/HashMap.java"><code class="xref download docutils literal notranslate"><span class="pre">Java</span> <span class="pre">8</span> <span class="pre">HashMap.java</span> <span class="pre">코드</span></code></a></p>
 <p>Java HashMap은 Java 버전에 따라 개선되고 있는 Java Collection Framework이다. Map 인터페이스를 구현한 구현체이다. <strong>HashMap은</strong> 키에 대한 해시 값을 사용하여 값을 저장하고 조회하며, 키-값 쌍의 개수에 따라 동적으로 증가하는 associate array라고 할 수 있다. <strong>associate array</strong> 는 다른 말로 Map, Dictionary(파이썬), Symbol Table등이 있다고 한다.</p>
 <p>Java HashMap 분석을 통한 <strong>해시테이블</strong> 을 알아보자:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">AbstractMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span>
-<span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;,</span> <span class="n">Cloneable</span><span class="o">,</span> <span class="n">Serializable</span> <span class="o">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">AbstractMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span>
+<span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">Cloneable</span><span class="p">,</span> <span class="n">Serializable</span> <span class="p">{</span>
 </pre></div>
 </div>
 <p>Map.java 인터페이스 함수:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">size</span><span class="o">();</span>
-<span class="n">Set</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;&gt;</span> <span class="nf">entrySet</span><span class="o">();</span>
-<span class="n">Collection</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="nf">values</span><span class="o">();</span>
-<span class="n">Set</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="nf">keySet</span><span class="o">();</span>
-<span class="kt">void</span> <span class="nf">clear</span><span class="o">();</span>
-<span class="kt">void</span> <span class="nf">putAll</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">K</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">m</span><span class="o">);</span>
-<span class="n">V</span> <span class="nf">remove</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">);</span>
-<span class="n">V</span> <span class="nf">put</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">);</span>
-<span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">);</span>
-<span class="kt">boolean</span> <span class="nf">containsValue</span><span class="o">(</span><span class="n">Object</span> <span class="n">value</span><span class="o">);</span>
-<span class="kt">boolean</span> <span class="nf">containsKey</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">);</span>
-<span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">();</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">size</span><span class="p">();</span>
+<span class="n">Set</span><span class="o">&lt;</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;&gt;</span> <span class="nf">entrySet</span><span class="p">();</span>
+<span class="n">Collection</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="nf">values</span><span class="p">();</span>
+<span class="n">Set</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="nf">keySet</span><span class="p">();</span>
+<span class="kt">void</span> <span class="nf">clear</span><span class="p">();</span>
+<span class="kt">void</span> <span class="nf">putAll</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">K</span><span class="p">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">);</span>
+<span class="n">V</span> <span class="nf">remove</span><span class="p">(</span><span class="n">Object</span> <span class="n">key</span><span class="p">);</span>
+<span class="n">V</span> <span class="nf">put</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">);</span>
+<span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">Object</span> <span class="n">key</span><span class="p">);</span>
+<span class="kt">boolean</span> <span class="nf">containsValue</span><span class="p">(</span><span class="n">Object</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">boolean</span> <span class="nf">containsKey</span><span class="p">(</span><span class="n">Object</span> <span class="n">key</span><span class="p">);</span>
+<span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -132,23 +132,23 @@
 <h2>2.4. 데이터 타입 해시와 hashCode에 의존한 Key 생성<a class="headerlink" href="#hashcode-key" title="제목 주소">¶</a></h2>
 <p>인용 사이트에 의하면 Boolean이나 Integer, Long, Double과 같은 숫자객체는 값 자체를 해시값으로 사용할 수 있어서 해시 충돌이 적게 발생하지만 String이나 POJO에 대해서 충돌이 적은 완전한 해시함수를 제작하는 것은 사실상 불가능하다고 한다.</p>
 <p>해시값 생성 예:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
-        <span class="n">String</span> <span class="n">stringKey</span> <span class="o">=</span> <span class="s">&quot;Hello World&quot;</span><span class="o">;</span>
-        <span class="n">People</span> <span class="n">objectKey1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">People</span><span class="o">();</span>
-        <span class="n">People</span> <span class="n">objectKey2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">People</span><span class="o">();</span>
-        <span class="kt">boolean</span> <span class="n">keyBool1</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="kt">boolean</span> <span class="n">keyBool2</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">keyInt1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">keyInt2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">keyInt3</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">){</span>
+        <span class="n">String</span> <span class="n">stringKey</span> <span class="o">=</span> <span class="s">&quot;Hello World&quot;</span><span class="p">;</span>
+        <span class="n">People</span> <span class="n">objectKey1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">People</span><span class="p">();</span>
+        <span class="n">People</span> <span class="n">objectKey2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">People</span><span class="p">();</span>
+        <span class="kt">boolean</span> <span class="n">keyBool1</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="kt">boolean</span> <span class="n">keyBool2</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">keyInt1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">keyInt2</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">keyInt3</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stringKey</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">objectKey1</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>              <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">objectKey2</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(((</span><span class="n">Boolean</span><span class="o">)</span><span class="n">keyBool1</span><span class="o">).</span><span class="na">hashCode</span><span class="o">());</span>             <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(((</span><span class="n">Boolean</span><span class="o">)</span><span class="n">keyBool2</span><span class="o">).</span><span class="na">hashCode</span><span class="o">());</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">keyInt1</span><span class="o">).</span><span class="na">hashCode</span><span class="o">());</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">keyInt2</span><span class="o">).</span><span class="na">hashCode</span><span class="o">());</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">keyInt3</span><span class="o">).</span><span class="na">hashCode</span><span class="o">());</span>
-<span class="o">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">stringKey</span><span class="p">.</span><span class="na">hashCode</span><span class="p">());</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">objectKey1</span><span class="p">.</span><span class="na">hashCode</span><span class="p">());</span>              <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">objectKey2</span><span class="p">.</span><span class="na">hashCode</span><span class="p">());</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(((</span><span class="n">Boolean</span><span class="p">)</span><span class="n">keyBool1</span><span class="p">).</span><span class="na">hashCode</span><span class="p">());</span>             <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(((</span><span class="n">Boolean</span><span class="p">)</span><span class="n">keyBool2</span><span class="p">).</span><span class="na">hashCode</span><span class="p">());</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(((</span><span class="n">Integer</span><span class="p">)</span><span class="n">keyInt1</span><span class="p">).</span><span class="na">hashCode</span><span class="p">());</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(((</span><span class="n">Integer</span><span class="p">)</span><span class="n">keyInt2</span><span class="p">).</span><span class="na">hashCode</span><span class="p">());</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(((</span><span class="n">Integer</span><span class="p">)</span><span class="n">keyInt3</span><span class="p">).</span><span class="na">hashCode</span><span class="p">());</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>출력 결과:</p>
@@ -164,10 +164,10 @@
 </div>
 <p>위를 보니 <strong>Integer 타입은 데이터 자체</strong> 가 <strong>hashCode()로 반환</strong> 되기 때문에 HashMap의 키값으로 사용된다. <strong>Boolean 타입은 위 출력과 같이 고정된 값</strong> 으로 변환된다.</p>
 <p>실제 HashMap에서는 hash()함수를 호출하여 해시값을 생성하게된다. <strong>내부적으로 hashcode()라는 메서드를 사용</strong> 한다. (&gt;&gt;&gt; 연산자는 sign 부호에 상관없이 0으로 채운다):</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">hash</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">h</span><span class="o">;</span>
-    <span class="k">return</span> <span class="o">(</span><span class="n">key</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="o">(</span><span class="n">h</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="na">hashCode</span><span class="o">())</span> <span class="o">^</span> <span class="o">(</span><span class="n">h</span> <span class="o">&gt;&gt;&gt;</span> <span class="mi">16</span><span class="o">);</span>
-<span class="o">}</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">hash</span><span class="p">(</span><span class="n">Object</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">h</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="p">(</span><span class="n">h</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="na">hashCode</span><span class="p">())</span> <span class="o">^</span> <span class="p">(</span><span class="n">h</span> <span class="o">&gt;&gt;&gt;</span> <span class="mi">16</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>위 해시함수에서 상위 16비트와 xor 연산하는 단순한 형태의 보조 해시함수를 사용한다.</p>
@@ -177,7 +177,7 @@
 </pre></div>
 </div>
 <p>Object 클래스의 hashCode():</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">native</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">();</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">native</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>hashCode는 HashMap을 위해 <strong>객체를 구별</strong> 하기위해 사용되는 함수이다. 일반적으로 hashCode()는 오버라드하여 사용하지만 Object 클래스에 구현되어 있는 함수는 객체의 내부주소를 Integer값으로 바꾸는 식으로 동작한다고 한다.:</p>
@@ -194,13 +194,13 @@
 <div class="section" id="id9">
 <h2>2.5. 실제 테이블 해시값 삽입<a class="headerlink" href="#id9" title="제목 주소">¶</a></h2>
 <p>hashCode()의 해시값을 이용해 실제 테이블의 인덱스를 구한다.:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">V</span> <span class="nf">putVal</span><span class="o">(</span><span class="kt">int</span> <span class="n">hash</span><span class="o">,</span> <span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">onlyIfAbsent</span><span class="o">,</span>
-           <span class="kt">boolean</span> <span class="n">evict</span><span class="o">)</span> <span class="o">{</span>
-<span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">tab</span><span class="o">;</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">p</span><span class="o">;</span> <span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="n">i</span><span class="o">;</span>
-<span class="k">if</span> <span class="o">((</span><span class="n">tab</span> <span class="o">=</span> <span class="n">table</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">tab</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="o">(</span><span class="n">tab</span> <span class="o">=</span> <span class="n">resize</span><span class="o">()).</span><span class="na">length</span><span class="o">;</span>
-<span class="k">if</span> <span class="o">((</span><span class="n">p</span> <span class="o">=</span> <span class="n">tab</span><span class="o">[</span><span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">hash</span><span class="o">])</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
-    <span class="n">tab</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">(</span><span class="n">hash</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">V</span> <span class="nf">putVal</span><span class="p">(</span><span class="kt">int</span> <span class="n">hash</span><span class="p">,</span> <span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">onlyIfAbsent</span><span class="p">,</span>
+           <span class="kt">boolean</span> <span class="n">evict</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">tab</span><span class="p">;</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">;</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">((</span><span class="n">tab</span> <span class="o">=</span> <span class="n">table</span><span class="p">)</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">tab</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">tab</span> <span class="o">=</span> <span class="n">resize</span><span class="p">()).</span><span class="na">length</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">((</span><span class="n">p</span> <span class="o">=</span> <span class="n">tab</span><span class="o">[</span><span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">hash</span><span class="o">]</span><span class="p">)</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">tab</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">newNode</span><span class="p">(</span><span class="n">hash</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>tab의 사이즈는 해시테이블의 크기로 2의 제곱수이다. <strong>tab[i = (n - 1) &amp; hash]</strong> 부분에서 연산되는 i에 실제 데이터가 들어간다. 즉 hashCode()의 결과와 사이즈를 &amp;연산 한 위치에 들어가는 것이다. 이는 int index = X.hashCode() % M; 와 유사하다. (이때 M은 크기)</p>
@@ -208,19 +208,19 @@
 <div class="section" id="id10">
 <h2>2.6. 키가 완전히 동일한 경우 삽입<a class="headerlink" href="#id10" title="제목 주소">¶</a></h2>
 <p>키가 완전히 동일한 경우 (문자열 처럼 참조값이 다르고 내용이 같아도 가능) e라는 변수에 원래 존재하던 노드를 넣고:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">hash</span> <span class="o">==</span> <span class="n">hash</span> <span class="o">&amp;&amp;</span>
-        <span class="o">((</span><span class="n">k</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">key</span><span class="o">)</span> <span class="o">==</span> <span class="n">key</span> <span class="o">||</span> <span class="o">(</span><span class="n">key</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">key</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">k</span><span class="o">))))</span>
-        <span class="n">e</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">hash</span> <span class="o">==</span> <span class="n">hash</span> <span class="o">&amp;&amp;</span>
+        <span class="p">((</span><span class="n">k</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">==</span> <span class="n">key</span> <span class="o">||</span> <span class="p">(</span><span class="n">key</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">key</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">k</span><span class="p">))))</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>아래와 같이 값을 덮어씌운다:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// existing mapping for key</span>
-        <span class="n">V</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(!</span><span class="n">onlyIfAbsent</span> <span class="o">||</span> <span class="n">oldValue</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
-            <span class="n">e</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
-        <span class="n">afterNodeAccess</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">oldValue</span><span class="o">;</span>
-    <span class="o">}</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// existing mapping for key</span>
+        <span class="n">V</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">onlyIfAbsent</span> <span class="o">||</span> <span class="n">oldValue</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="n">e</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="n">afterNodeAccess</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">oldValue</span><span class="p">;</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -228,41 +228,41 @@
 <h2>2.7. 데이터 규모에 따른 해시 크기의 변화 (재해싱)<a class="headerlink" href="#id11" title="제목 주소">¶</a></h2>
 <p>기본적으로 HashMap은 threshold(스레시홀드) 값과 Capicity(해시 테이블 용량)를 갖는다. 디폴트 스레드홀드 값은 현재 용량의 75%정도이다. 통계적으로 해시 테이블 공간 사용률이 70% ~ 80% 에 이르면 성능 저하가 나타나기 시작한다. 따라서 일반적으로 75%정도 데이터가 차게되면 재해싱을 하게된다.</p>
 <p>일반적으로 다음과 같이 해시맵을 생성한다고 가정해 보자.:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Map</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Map</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>HashMap 내부에선 다음과 같이 초기화가 일어난다.(정확하게 말하면 데이터를 삽입하면 아래와 같이 상태변이):</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">else</span> <span class="o">{</span>               <span class="c1">// zero initial threshold signifies using defaults</span>
-    <span class="n">newCap</span> <span class="o">=</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">;</span>
-    <span class="n">newThr</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">DEFAULT_LOAD_FACTOR</span> <span class="o">*</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">);</span>
-<span class="o">}</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">else</span> <span class="p">{</span>               <span class="c1">// zero initial threshold signifies using defaults</span>
+    <span class="n">newCap</span> <span class="o">=</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="p">;</span>
+    <span class="n">newThr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">DEFAULT_LOAD_FACTOR</span> <span class="o">*</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>해시맵에 데이터를 여러번 삽입한다고 가정해보자.:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">900618</span><span class="o">,</span> <span class="s">&quot;최창원&quot;</span><span class="o">);</span>
-<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">890111</span><span class="o">,</span> <span class="s">&quot;박세호&quot;</span><span class="o">);</span>
-<span class="o">...</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">900618</span><span class="p">,</span> <span class="s">&quot;최창원&quot;</span><span class="p">);</span>
+<span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">890111</span><span class="p">,</span> <span class="s">&quot;박세호&quot;</span><span class="p">);</span>
+<span class="p">...</span>
 </pre></div>
 </div>
 <p>데이터가 threshold값 이상으로 증가하게 될 경우 resize()가 발생한다.:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(++</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="o">)</span>
-        <span class="n">resize</span><span class="o">();</span>
-    <span class="n">afterNodeInsertion</span><span class="o">(</span><span class="n">evict</span><span class="o">);</span>
-    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">++</span><span class="n">modCount</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">++</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span>
+        <span class="n">resize</span><span class="p">();</span>
+    <span class="n">afterNodeInsertion</span><span class="p">(</span><span class="n">evict</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>그리고 다음과 같이 threshold와 Capicity를 2배로 증가시킨다.:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">else</span> <span class="k">if</span> <span class="o">((</span><span class="n">newCap</span> <span class="o">=</span> <span class="n">oldCap</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">MAXIMUM_CAPACITY</span> <span class="o">&amp;&amp;</span>
-             <span class="n">oldCap</span> <span class="o">&gt;=</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">)</span>
-        <span class="n">newThr</span> <span class="o">=</span> <span class="n">oldThr</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// double threshold</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">else</span> <span class="k">if</span> <span class="p">((</span><span class="n">newCap</span> <span class="o">=</span> <span class="n">oldCap</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">MAXIMUM_CAPACITY</span> <span class="o">&amp;&amp;</span>
+             <span class="n">oldCap</span> <span class="o">&gt;=</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="p">)</span>
+        <span class="n">newThr</span> <span class="o">=</span> <span class="n">oldThr</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// double threshold</span>
 </pre></div>
 </div>
 <p>결국은 new 키워드를 사용하여 새로운 해시테이블을 생성한 뒤 데이터를 이주시킨다.:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">newTab</span> <span class="o">=</span> <span class="o">(</span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[])</span><span class="k">new</span> <span class="n">Node</span><span class="o">[</span><span class="n">newCap</span><span class="o">];</span>
-     <span class="n">table</span> <span class="o">=</span> <span class="n">newTab</span><span class="o">;</span>
-     <span class="k">if</span> <span class="o">(</span><span class="n">oldTab</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">oldCap</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">newTab</span> <span class="o">=</span> <span class="p">(</span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;[]</span><span class="p">)</span><span class="k">new</span> <span class="n">Node</span><span class="o">[</span><span class="n">newCap</span><span class="o">]</span><span class="p">;</span>
+     <span class="n">table</span> <span class="o">=</span> <span class="n">newTab</span><span class="p">;</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">oldTab</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">oldCap</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
 </pre></div>
 </div>
 <p>따라서 N개의 데이터를 넣는다고 가정해보자. 데이터의 개수가 Threshold에 도달했을 때 capicity를 2배로 증가시킨다. 어쨌든 그때마다 loop를 수행해서 원본 배열에서 새로운 배열로 데이터를 이주하므로 비용을 계산해보면 다음과 같다. (삽입비용 + 데이터 이주 키-값 접근 비용)</p>
