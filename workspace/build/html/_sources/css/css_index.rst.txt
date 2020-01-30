@@ -17,4 +17,5 @@ Contents:
 
    css_basic.rst
    css_color_background.rst
+   css_flex.rst
    css_terms.rst
