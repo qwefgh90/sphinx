@@ -22,3 +22,4 @@ Contents:
    git.rst
    mis.rst
    license.rst
+   good_idea.rst

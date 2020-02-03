@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>3. 차세대통합정보시스템 구축 사례 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>5. 아이디어 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -18,8 +18,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
-    <link rel="next" title="4. 라이센스" href="license.html" />
-    <link rel="prev" title="2. Git" href="git.html" />
+    <link rel="prev" title="4. 라이센스" href="license.html" />
 
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -48,56 +47,11 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="mis">
-<span id="id1"></span><h1>3. 차세대통합정보시스템 구축 사례<a class="headerlink" href="#mis" title="제목 주소">¶</a></h1>
-<p>모 기관의 MIS구축 사례</p>
+  <div class="section" id="good-idea">
+<span id="id1"></span><h1>5. 아이디어<a class="headerlink" href="#good-idea" title="제목 주소">¶</a></h1>
 <ul class="simple">
-<li>직원 749명</li>
-<li>학생 2000명</li>
-<li>전산부서 6명</li>
+<li>immutable: If one part of our code operates on the assumption that a value will never change and another part of our code changes that value, it’s possible that the first part of the code won’t do what it was designed to do.</li>
 </ul>
-<p>행정정보시스템이 C/S와 Web로 이원화되어 있었고 전자결재와 통합정보를 따로 운영했다. 4개의 T/F팀을 구성하였다. 각 T/F팀은 현업무 담당자, 전임자1, 전임자2로 구성되어있다. 또한 임원의 적극적인 지원이 있었다.</p>
-<div class="section" id="id2">
-<h2>3.1. 업무프로세스 분석<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
-<p>분석/설계 5개월
-개발 5개월
-테스트 3개월
-안정화 지원
-운영 지원</p>
-<dl class="docutils">
-<dt>AS-IS 분석</dt>
-<dd>업무분류, 현 업무처리 절차 분석
-문제점과 개선점 도출</dd>
-<dt>TO-BE 설계</dt>
-<dd>AS-IS 대비 개선점 도출 및 목표설정
-TO-BE 설계서 작성
-지침과의 연관관계 검토</dd>
-</dl>
-<p>주관부서 중심으로 업무분석서, 프로세스설계서 작성 및 용역업체에 제공(용역업체 입장에서는 분석이 쉬워짐)</p>
-</div>
-<div class="section" id="id3">
-<h2>3.2. 시사점<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
-<p>사점 추진에 대한 역할관계를 정리할 것:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">전산부서는</span> <span class="n">개발</span> <span class="n">및</span> <span class="n">오류조치</span> <span class="n">등</span> <span class="n">기술적인</span> <span class="n">책임</span>
-
-<span class="o">*</span> <span class="n">업무분석</span> <span class="n">및</span> <span class="n">안정화에</span> <span class="n">대한</span> <span class="n">책임</span>
-
-<span class="o">*</span> <span class="n">기관장</span> <span class="n">관심</span> <span class="o">/</span> <span class="n">역할</span> <span class="o">&gt;</span> <span class="n">업무부서</span> <span class="n">의지</span> <span class="o">&gt;</span> <span class="n">전산부서</span> <span class="n">능력</span> <span class="o">/</span> <span class="n">노력</span> <span class="o">&gt;</span> <span class="n">예산</span>
-</pre></div>
-</div>
-<p>자체 업무분석 및 프로세스 설계(명확한 업무 및 프로세스 확정):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">업무담당자</span> <span class="n">및</span> <span class="n">전임자</span> <span class="n">중심</span> <span class="n">T</span><span class="o">/</span><span class="n">F구성</span>
-
-<span class="o">*</span> <span class="n">업무담당자에</span> <span class="n">의한</span> <span class="n">업무분석</span><span class="p">(</span><span class="n">AS</span><span class="o">-</span><span class="n">IS</span><span class="p">)</span><span class="n">및</span> <span class="n">업무프로세스</span> <span class="n">설계</span><span class="p">(</span><span class="n">TO</span><span class="o">-</span><span class="n">BE</span><span class="p">)</span><span class="n">후</span> <span class="n">추진</span>
-</pre></div>
-</div>
-<p>사업기간 중 업무범위 증가 억제(사전정의 필수):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">설계완료</span> <span class="n">이후</span> <span class="n">추가설계</span> <span class="n">요구</span> <span class="n">최소화</span>
-
-<span class="o">*</span> <span class="n">담당부서와</span> <span class="n">업체간</span> <span class="n">이견에</span> <span class="n">대해</span> <span class="n">냉정하게</span> <span class="n">판단하고</span> <span class="n">조정</span>
-</pre></div>
-</div>
-</div>
 </div>
 
 
@@ -140,9 +94,9 @@ TO-BE 설계서 작성
 <li class="toctree-l1 current"><a class="reference internal" href="etc_index.html">달리 분류되지 않음</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="regexpr.html">1. Regexpr cheat sheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">2. Git</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 차세대통합정보시스템 구축 사례</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mis.html">3. 차세대통합정보시스템 구축 사례</a></li>
 <li class="toctree-l2"><a class="reference internal" href="license.html">4. 라이센스</a></li>
-<li class="toctree-l2"><a class="reference internal" href="good_idea.html">5. 아이디어</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 아이디어</a></li>
 </ul>
 </li>
 </ul>
@@ -152,8 +106,7 @@ TO-BE 설계서 작성
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="etc_index.html">달리 분류되지 않음</a><ul>
-      <li>Previous: <a href="git.html" title="이전 장">2. Git</a></li>
-      <li>Next: <a href="license.html" title="다음 장">4. 라이센스</a></li>
+      <li>Previous: <a href="license.html" title="이전 장">4. 라이센스</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -191,7 +144,7 @@ TO-BE 설계서 작성
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/etc/mis.rst.txt"
+      <a href="../_sources/etc/good_idea.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
