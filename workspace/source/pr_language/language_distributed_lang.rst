@@ -140,5 +140,8 @@ dataflow가 coarse grain으로 구분되는 이유는 하나의 명령어 세트
 
 
 
+참조
+===================================
 
-
+- http://dist-prog-book.com/chapter/4/dist-langs.html
+- https://en.wikipedia.org/wiki/Granularity_(parallel_computing)
