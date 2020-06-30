@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>2. EBNF(Extended BNF) &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>3. 분산 언어 &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -18,8 +18,8 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
-    <link rel="next" title="3. 분산 언어" href="language_distributed_lang.html" />
-    <link rel="prev" title="1. 용어" href="language_terms.html" />
+    <link rel="next" title="CSS" href="../css/css_index.html" />
+    <link rel="prev" title="2. EBNF(Extended BNF)" href="language_ebnf.html" />
 
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -48,73 +48,46 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="ebnf-extended-bnf">
-<span id="pr-language-ebnf"></span><h1>2. EBNF(Extended BNF)<a class="headerlink" href="#ebnf-extended-bnf" title="제목 주소">¶</a></h1>
-<p>EBNF의 정의는 <a class="reference internal" href="language_terms.html#language-terms-ebnf"><span class="std std-ref">이곳</span></a> 에서 확인해보시길 바랍니다.</p>
-<div class="section" id="ebnf">
-<h2>2.1. EBNF의 필요성<a class="headerlink" href="#ebnf" title="제목 주소">¶</a></h2>
-<p>EBNF와 같은 표준의 문법적 메타언어가 필요한 이유는 새롭게 생겨나는 프로그래밍 언어의 메타언어와 관련이 있습니다.</p>
-<ul class="simple">
-<li>언어를 배울때마다 <strong>새로운 메타언어를 배워야 합니다.</strong></li>
-<li>새로운 메타언어는 <strong>결함을 갖을 수 있으며,</strong> 이를 이용해 완벽한 문법 정의가 어렵습니다.</li>
-<li>새로운 메타언어는 특정 언어에 <strong>종속되어 있습니다.</strong></li>
-<li>새로운 메타언어에 관련된 <strong>도구가 부족합니다.</strong> 또는 모든 메타언어를 지원하는 도구를 작성하기 어렵습니다.</li>
-</ul>
-<div class="section" id="don-t-reinvent-the-wheel">
-<h3>2.1.1. Don’t reinvent the wheel<a class="headerlink" href="#don-t-reinvent-the-wheel" title="제목 주소">¶</a></h3>
-<p>기존에 개발된 최적의 방법이 있기 때문에, 다시 개발하는데에 시간을 낭비하지 말아야 한다는 뜻입니다. EBNF은 결함이 없으며, 개발자의 시간을 절약해 주는 메타언어라 할 수 있습니다.</p>
+  <div class="section" id="distributed-lang">
+<span id="id1"></span><h1>3. 분산 언어<a class="headerlink" href="#distributed-lang" title="제목 주소">¶</a></h1>
+<div class="section" id="id2">
+<h2>3.1. 분산 시스템<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<p>분산 시스템은 프로그램상 작업을 여러 시스템에서 분산시켜 처리하는 시스템을 의미한다.
+일반적으로 처리 속도를 향상 시키는데 활용된다.</p>
 </div>
+<div class="section" id="id3">
+<h2>3.2. 분산 시스템이 어려운 이유<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<p>크게 3가지 이유가 있으며, 이에 관련된 CAP 이론이 존재한다.</p>
+<div class="section" id="patial-failure">
+<h3>3.2.1. Patial Failure(부분 실패)<a class="headerlink" href="#patial-failure" title="제목 주소">¶</a></h3>
+<p><strong>로컬 프로세스는</strong> OS안에서 관리된다. 특정 프로세스가 강제 종료되더라도 OS는 모든 프로세스에 대한 정보를 알고 있으며,
+IPC를 수행하는 중 장애가 발생하더라도 OS에 쿼리하여 정보를 얻을 수 있다.</p>
+<p>하지만 <strong>여러 컴퓨터에 분산된 프로세스는 신뢰할 수 있는 중앙 관리자가 존재할 수 없다.</strong> 로컬 프로세스와 달리
+네트워크를 활용하기 때문에 네트워크 파티셔닝으로 인해 서로간 정보가 단절될 수 있기 때문이다.
+여러가지 네트워크상의 이유로 정상적인 메시지가 유실되거나 순서가 뒤바뀔 수 있으며, 실패 메시지 조차 유실될 수 있다.</p>
+<p>이러한 부분 실패는 분산 시스템 설계시 반드시 잘 처리되어야 한다. 몇몇 방법론이 존재하는데 그중 하나는 <strong>Dataflow model</strong> 이다.
+Dataflow 모델에서는 실패를 대비하여 <strong>전체 계산 절차를</strong> 기억하고 있다. 또 다른 방법은 <strong>Two phase commit을</strong> 사용하는 것이다.
+이 방법에서는 상태 변경 직전에 관리자에게 모든 노드가 준비되었는지 물어보고, 모두 준비 되었다면 변경을 실행한다. 만약 준비되지 않았다면
+어떠한 변경도 수행하지 않는다.</p>
+<p>또 다른 방법은 <strong>복제본(replication)을</strong> 미리 만들어 놓고 실패시 복제본이 작업을 받아 처리하도록 하는 것이다. 또 다른 방법은
+<strong>각 상태에 대한 스냅샷(Snapshot) 또는 객체을</strong> 잘 저장해놓고 불러와서 다시 계산을 수행하는 방법이 있다.</p>
 </div>
-<div class="section" id="bnf-extension">
-<h2>2.2. BNF의 확장(extension)<a class="headerlink" href="#bnf-extension" title="제목 주소">¶</a></h2>
-<p>BNF의 표현를 포함하여 확장된 표현은 다음과 같습니다.</p>
-<ul class="simple">
-<li>싱글 쿼테이션 마크로 단말 심볼을 감싼다.</li>
-<li>[, ]로 옵션 심볼을 표현할 수 있다.</li>
-<li>{, }로 반복을 표현할 수 있다.</li>
-<li>각각의 규칙은 명시적인 문자로 치환될 수 있어야 한다.</li>
-<li>괄호는 항목들을 그룹 지어준다.</li>
-</ul>
+<div class="section" id="consistency">
+<h3>3.2.2. Consistency(일관성)<a class="headerlink" href="#consistency" title="제목 주소">¶</a></h3>
+<p>로컬 환경에서 각 프로세스는 매우 빠르게 통신할 수 있으며, 결과를 빠르게 받아볼 수 있다. 비록 데이터 레이스 등 동시 처리에
+여러가지 문제가 발생할 수는 있지만, Lock등 비교적 간단한 기법으로 해결할 수 있다.</p>
+<p><strong>분산 시스템의 경우 여러 시스템이 하나의 일관된 상태를 유지하기 매우 어렵다.</strong> 신뢰할 수 있는 중앙 관리자와 부분 실패 문제로 인해
+모든 시스템이 같은 상태를 유지하기 어렵다. 그래서 일관성 문제 역시 분산 시스템 설계시 반드시 다뤄져야한다.</p>
+<p>이를 해결하기 위해 사용되는 흔히 사용되는 방법은 메시지 큐 방식이다. 각 프로세스에 큐를 할당하고 쌓인 메시지는 순차적으로 1개씩 처리된다.
+이 순차적으로 처리되는 특성 덕분에 일관성이 깨질 위험이 거의 없다. <strong>하지만, 이러한 큐 방식도 네트워크 파티셔닝 문제를 해결할 수는 없다.</strong></p>
+<p><strong>현재는 느슨한 일관성을 유지하는 방법이 사용되고 있다.</strong></p>
 </div>
-<div class="section" id="bnf">
-<h2>2.3. BNF의 한계<a class="headerlink" href="#bnf" title="제목 주소">¶</a></h2>
-<p>선형적인 언어를 정의할때만 사용할 수 있습니다. 그 외에도 복잡한 문법 표현이 어려울 수 있습니다. 이를 위해 EBNF 자체를 확장하는 방법을 제공하고 있습니다.</p>
-</div>
-<div class="section" id="sentence">
-<h2>2.4. 문장(Sentence)<a class="headerlink" href="#sentence" title="제목 주소">¶</a></h2>
-<p>시작 심볼(start symbol)을 나타내는 심볼(Symbols)의 시퀀스를 뜻한다.</p>
-</div>
-<div class="section" id="start-symbol">
-<h2>2.5. 시작 심볼(Start symbol)<a class="headerlink" href="#start-symbol" title="제목 주소">¶</a></h2>
-<p>다른 문법 규칙에는 등장하지 않는 비단말 심볼을 뜻한다.</p>
-</div>
-<div class="section" id="terminal-symbol">
-<h2>2.6. 단말 심볼(Terminal symbol)<a class="headerlink" href="#terminal-symbol" title="제목 주소">¶</a></h2>
-<p><strong>메타 식별자로</strong> 식별될 수 있으며, 1개 이상의 문자들의 시퀀스를 뜻한다. 더이상 쪼갤 수 없다.</p>
-</div>
-<div class="section" id="non-terminal-symbol">
-<h2>2.7. 비 단말 심볼(Non-terminal symbol)<a class="headerlink" href="#non-terminal-symbol" title="제목 주소">¶</a></h2>
-<p><strong>메타 식별자로</strong> 식별될 수 있으며, 언어의 문법적 부분을 뜻한다.</p>
-</div>
-<div class="section" id="meta-identifier">
-<h2>2.8. 메타 식별자(Meta-identifier)<a class="headerlink" href="#meta-identifier" title="제목 주소">¶</a></h2>
-<p><strong>비 단말 / 단말 심볼(Non-terminal symbol)의 이름을 뜻한다.</strong> 하이픈(-)으로 연결된 문자열이다. 단말 심볼의 식별자는 <em>-symbol</em> 로 끝난다.</p>
-</div>
-<div class="section" id="id1">
-<h2>2.9. 연산자 우선순위<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
-<ul class="simple">
-<li>* repetition-symbol</li>
-<li>- except-symbol</li>
-<li>, concatenate-symbol</li>
-<li>| definition-separator-symbol</li>
-<li>= defining-symbol</li>
-<li>; terminator-symbol</li>
-</ul>
-<div class="section" id="syntax-syntax-rule">
-<h3>2.9.1. 문법과 문법 규칙(Syntax, Syntax-rule)<a class="headerlink" href="#syntax-syntax-rule" title="제목 주소">¶</a></h3>
-<p>언어의 문법은 1개 이상의 문법 규칙으로 이루어져있다.</p>
-<p>문법 규칙은 <strong>메타 식별자, 정의 심볼(defining-symbol), 정의 리스트(definitions-list)로</strong> 구성된다.</p>
-<p><strong>정의 리스트(definitions-list)는 |(definition-seperator-symbol)로</strong> 구분된 단일 정의(Single-definition)으로 구성된다.</p>
+<div class="section" id="latency">
+<h3>3.2.3. Latency(지연시간)<a class="headerlink" href="#latency" title="제목 주소">¶</a></h3>
+<p>네트워크 활용으로 인해 지연시간이 발생하므로 분산 시스템은 좋은 성능을 갖기 어려우며 비결정성을 띄게 된다.
+그리고 특정 타이밍을 요하는 기능을 구현할 수가 없다. <strong>또한 메시지를 받지 못했을때 실패 메시지인지 그저 메시지 전송이 느린건지 구분할 수 없다.</strong></p>
+<p>지연시간으로 인한 성능 문제를 해결하기 위해 비동기 프로그래밍이 활용될 수 있다. Future나 Promise를 이용해 요청을 기다리는 동안에도 다른 작업을
+하여 성능문제를 해결할 수 있다.</p>
 </div>
 </div>
 </div>
@@ -143,8 +116,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../scala/scala_index.html">스칼라(Scala)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="language_index.html">프로그래밍 언어(Programming Language)</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="language_terms.html">1. 용어</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2. EBNF(Extended BNF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="language_distributed_lang.html">3. 분산 언어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_ebnf.html">2. EBNF(Extended BNF)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 분산 언어</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
@@ -169,8 +142,8 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="language_index.html">프로그래밍 언어(Programming Language)</a><ul>
-      <li>Previous: <a href="language_terms.html" title="이전 장">1. 용어</a></li>
-      <li>Next: <a href="language_distributed_lang.html" title="다음 장">3. 분산 언어</a></li>
+      <li>Previous: <a href="language_ebnf.html" title="이전 장">2. EBNF(Extended BNF)</a></li>
+      <li>Next: <a href="../css/css_index.html" title="다음 장">CSS</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -208,7 +181,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/pr_language/language_ebnf.rst.txt"
+      <a href="../_sources/pr_language/language_distributed_lang.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

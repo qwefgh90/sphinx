@@ -17,4 +17,5 @@ Contents:
 
    language_terms.rst
    language_ebnf.rst
+   language_distributed_lang.rst
 
