@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>3. 분산 언어 &#8212; Code Accelerator Document 1.0 documentation</title>
+    <title>3. 분산 언어(Distribued Langauge) &#8212; Code Accelerator Document 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -48,15 +48,16 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="distributed-lang">
-<span id="id1"></span><h1>3. 분산 언어<a class="headerlink" href="#distributed-lang" title="제목 주소">¶</a></h1>
-<div class="section" id="id2">
-<h2>3.1. 분산 시스템<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+  <div class="section" id="distribued-langauge">
+<span id="distributed-lang"></span><h1>3. 분산 언어(Distribued Langauge)<a class="headerlink" href="#distribued-langauge" title="제목 주소">¶</a></h1>
+<p>분산 언어를 다루기 전 먼저 분산시스템에 대해 알아보자.</p>
+<div class="section" id="id1">
+<h2>3.1. 분산 시스템<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
 <p>분산 시스템은 프로그램상 작업을 여러 시스템에서 분산시켜 처리하는 시스템을 의미한다.
 일반적으로 처리 속도를 향상 시키는데 활용된다.</p>
 </div>
-<div class="section" id="id3">
-<h2>3.2. 분산 시스템이 어려운 이유<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<div class="section" id="id2">
+<h2>3.2. 분산 시스템이 어려운 이유<a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
 <p>크게 3가지 이유가 있으며, 이에 관련된 CAP 이론이 존재한다.</p>
 <div class="section" id="patial-failure">
 <h3>3.2.1. Patial Failure(부분 실패)<a class="headerlink" href="#patial-failure" title="제목 주소">¶</a></h3>
@@ -89,6 +90,37 @@ Dataflow 모델에서는 실패를 대비하여 <strong>전체 계산 절차를<
 <p>지연시간으로 인한 성능 문제를 해결하기 위해 비동기 프로그래밍이 활용될 수 있다. Future나 Promise를 이용해 요청을 기다리는 동안에도 다른 작업을
 하여 성능문제를 해결할 수 있다.</p>
 </div>
+<div class="section" id="cap">
+<h3>3.2.4. CAP<a class="headerlink" href="#cap" title="제목 주소">¶</a></h3>
+<p>위와 같은 세가지 문제는 서로 독립적이지 않고 연관되어 있다. 그리고 어떤 하나의 문제를 해결하는 솔루션은 다른 문제에 악영향을 끼칠 수 있다.
+예를들어 일관성을 맞추기 위해 동기화를 수행 하다보면 시간이 지연된다. 반대로 지연시간을 줄이기 위해서는 일관성을 깨뜨릴 수 밖에 없다.</p>
+<p>이러한 관계성에 대해 정립한 것이 CAP 이론이다. 어떤 분산 시스템이든 Consistency, Availability, Tolerance to Partitioning 중 2가지만 충족할 수 있다는 것이다.
+하지만 CRDT같은 이론이 등장하면서 반드시 2개만 충족한다는 것은 의미가 많이 퇴색되었다.</p>
+<ul class="simple">
+<li>Consistency: 모든 노드가 가장 최근의 읽기나 실패에 대한 정보를 아는 것</li>
+<li>Availability: 어떤 요청을 해도 일단 정상적인 응답을 받는 것 (최신 정보가 아니더라도)</li>
+<li>Tolerance to Partitioning: 네트워크가 단절되더라도 시스템이 정상동작하는 것</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>3.3. 분산 프로그래밍 언어<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
+<p>크게 분산 프로그래밍 언어에는 3가지 종류로 나눠진다. DSM(분산 공유 메모리, Distribued Shared Memory), Actor model, Dataflow model 이다.</p>
+<div class="section" id="dsm-distributed-shared-memory">
+<h3>3.3.1. DSM(Distributed Shared Memory)<a class="headerlink" href="#dsm-distributed-shared-memory" title="제목 주소">¶</a></h3>
+<p>특정 프로세스의 가상 메모리를 여러 컴퓨터에 분산 시켜 배치하는 방법이다. <strong>이 방식의 장점은 로컬프로그래밍 하듯이 프로그래밍을 할 수 있다는 것이다.</strong>
+<strong>주의할 점은 시스템 콜이 정상적으로 구현되어야 한다는 것이다.</strong> Linda등의 언어가 있다.</p>
+</div>
+<div class="section" id="actor-object-model">
+<h3>3.3.2. Actor/Object model<a class="headerlink" href="#actor-object-model" title="제목 주소">¶</a></h3>
+<p>액터라 불리는 메시지 큐를 갖는 객체를 활용하여 프로그래밍 하는 방법이다. 메시지 기반으로 통신하며 DSM 처럼 상태를 공유하지 않는다.
+메시지에 로컬, 원격에서 발송되었을 수 있지만 프로그래머 입장에선 투명성을 가지고 있으므로 다루기 쉽다. Akka등이 있다.</p>
+</div>
+<div class="section" id="dataflow-model">
+<h3>3.3.3. Dataflow model<a class="headerlink" href="#dataflow-model" title="제목 주소">¶</a></h3>
+<p>큰 데이터 입력에 대한 명령을 미리 정의하여 자동으로 분산 처리하는 방법이다. 개발자는 데이터 입력과 데이터에 대한 연산만 신경 쓰면되고
+나머지는 분산시스템이 알아서 처리하는 방식이다. 연산은 주로 데이터 변형을 의미한다. MapReduce 프레임워크 등이 있다.</p>
+</div>
 </div>
 </div>
 
@@ -117,7 +149,7 @@ Dataflow 모델에서는 실패를 대비하여 <strong>전체 계산 절차를<
 <li class="toctree-l1 current"><a class="reference internal" href="language_index.html">프로그래밍 언어(Programming Language)</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="language_terms.html">1. 용어</a></li>
 <li class="toctree-l2"><a class="reference internal" href="language_ebnf.html">2. EBNF(Extended BNF)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 분산 언어</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 분산 언어(Distribued Langauge)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../css/css_index.html">CSS</a></li>
